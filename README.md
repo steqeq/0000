@@ -42,9 +42,8 @@ also available on GitHub, and frozen for the roc-1.1.0 release:
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.1.0)
 * [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.1.0)
 
-### Supported CPU
-The ROCm needs a CPU which supports PCIe 3.0 atomic operation.
-For Intel CPUs, you should use Haswell (4th Generation) or later.
+### Hardware Requirements
+Required CPUs and GPUs are listed on a [github page](https://radeonopencompute.github.io/hardware.html).
 
 ### Installing from AMD ROCm Repositories
 AMD is hosting both debian and rpm repositories for the ROCm 1.1 packages. The
