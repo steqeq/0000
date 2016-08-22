@@ -39,6 +39,9 @@ also available on GitHub, and frozen for the roc-1.2.0 release:
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.2.0)
 * [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.2.0)
 
+### Hardware Requirements
+Required CPUs and GPUs are listed on a [github page](https://radeonopencompute.github.io/hardware.html).
+
 ### Installing from AMD ROCm Repositories
 AMD is hosting both debian and rpm repositories for the ROCm 1.2 packages. The
 packages in both repositories have been signed to ensure package integrity.
