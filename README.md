@@ -61,7 +61,7 @@ from the list provided above for compatibility purposes.
 
 #### New distribution support 
 
- * Binary package support for Ubuntu 16.04
+ * Binary package support for Ubuntu 16.04 and 18.04
  * Binary package support for CentOS 7.4 and 7.5
  * Binary package support for RHEL 7.4 and 7.5
  
@@ -97,7 +97,7 @@ are also available on GitHub, and frozen for the rocm-1.8.3 release:
 #### Supported Operating Systems - New operating systems available
 
 The ROCm 1.8.3 platform has been tested on the following operating systems:
- * Ubuntu 16.04
+ * Ubuntu 16.04 & 18.04
  * CentOS 7.4 &. 7.5 (Using devetoolset-7 runtime support)
  * RHEL 7.4. &. 7.5  (Using devetoolset-7 runtime support)
 
@@ -224,7 +224,7 @@ g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/open
  ./HelloWorld
 ```
 
-##### How to un-install from Ubuntu 16.04
+##### How to un-install from Ubuntu 16.04 and 18.04
 
 To un-install the entire rocm development package execute:
 
@@ -248,6 +248,7 @@ sudo apt install rocm-dev
 >ROCm driver stack installed
 
 ##### Removing pre-release packages
+If you installed previous version of ROCm, it need to be [un-installed first](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-from-ubuntu-1604).
 
 If you installed any of the ROCm pre-release packages from github, they will
 need to be manually un-installed:
@@ -306,13 +307,14 @@ Installing kernel drivers on CentOS/RHEL 7.4/7.5 requires dkms tool being instal
 
 ```shell
 sudo yum install -y epel-release
-sudo yum install -y dkms kernel-headers-`uname -r`
+sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
 ```
 
 
-At this point they system can install ROCm using the DKMS drivers.
+#### Installing ROCm on the system
 
-Installing ROCm on the system
+If you installed previous version of ROCm, it need to be [un-installed first](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-rocm-from-centosrhel-74).
+
 At this point ROCm can be installed on the target system. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
 ```shell
@@ -374,7 +376,7 @@ To do this, compile all applications after running this command:
 ```shell
 scl enable devtoolset-7 bash
 ```
-#### How to un-install ROCm from CentOS/RHEL 7.4
+#### How to un-install ROCm from CentOS/RHEL 7.4 and 7.5
 
 To un-install the entire rocm development package execute:
 
