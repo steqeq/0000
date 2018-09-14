@@ -70,10 +70,11 @@ Developer preview (alpha) of profiling tool 'rpl_run.sh', cmd-line front-end for
 The tool location is: /opt/rocm/rocprofiler/bin/rpl_run.sh
 
 #### Preview for rocr Debug Agent rocr_debug_agent
-Developer preview (alpha) of Debug Agent
-* The rocr_debug_agent repository provides the components required to build the library for dumping GPU memory fault info.
-* The rocr_debug_agent components are used by ROCm-GDB to support debugging GPU kernels on ROCm. 
-* Enabled on Vega10 GPUs
+The ROCr Debug Agent is a library that can be loaded by ROCm Platform Runtime to provide the following functionality:
+* Print the state for wavefronts that report memory violation or upon executing a "s_trap 2" instruction.
+* Allows SIGINT (`ctrl c`) or SIGTERM (`kill -15`) to print wavefront state of aborted GPU dispatches.
+* It is enabled on Vega10 GPUs on ROCm1.9.
+The ROCm1.9 release will install the ROCr Debug Agent library at /opt/rocm/lib/librocr_debug_agent64.so
 
 
 #### New distribution support 
