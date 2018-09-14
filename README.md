@@ -71,7 +71,7 @@ The tool location is: /opt/rocm/rocprofiler/bin/rpl_run.sh
 
 #### Preview for rocr Debug Agent rocr_debug_agent
 Developer preview (alpha) of Debug Agent
-* The rocr_debug_agent repository provides the components required to build library for dump GPU memory fault info.
+* The rocr_debug_agent repository provides the components required to build the library for dumping GPU memory fault info.
 * The rocr_debug_agent components are used by ROCm-GDB to support debugging GPU kernels on ROCm. 
 * Enabled on Vega10 GPUs
 
