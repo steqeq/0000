@@ -441,7 +441,9 @@ rcprof -A <HSA_application> fails with error message: Radeon Compute Profiler co
 
 ##### HipCaffe is supported on single GPU configurations
 
-###### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
+##### The ROCm SMI library calls to rsmi_dev_power_cap_set() and rsmi_dev_power_profile_set() will not work for all but the first gpu in multi-gpu set ups.
+
+##### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
 
 Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
 
