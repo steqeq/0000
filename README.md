@@ -84,10 +84,10 @@ The ROCm1.9 release will install the ROCr Debug Agent library at /opt/rocm/lib/l
 #### ROCm 1.9 is ABI compatible with KFD in upstream Linux kernels. 
 Upstream Linux kernels support the following GPUs in these releases:
 4.17: Fiji, Polaris 10, Polaris 11
-4.18: Vega10
+4.18: Fiji, Polaris 10, Polaris 11, Vega10
 
 Some ROCm features are not available in the upstream KFD:
-* Less system memory available to ROCm applications
+* More system memory available to ROCm applications
 * Interoperability between graphics and compute
 * RDMA
 * IPC
