@@ -45,6 +45,9 @@ from the list provided above for compatibility purposes.
  * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
  * AMD Raven Ridge APU are currently not supported
 
+### New features and enhancements in ROCm 1.9.1
+* ROCm 1.9.1 is a minor update which fixes issue with Radeon Compute Profiler, which is now able to run
+
 ### New features and enhancements in ROCm 1.9.0
 
 #### Preview for Vega 7nm
@@ -245,7 +248,8 @@ export HSA_ENABLE_SDMA=0
 
 ###### Performing an OpenCL-only Installation of ROCm
 
-Some users may want to install a subset of the full ROCm installation. In particular, if you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of known applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command **instead** of the command to install `rocm-dkms`.
+Some users may want to install a subset of the full ROCm installation. In particular, if you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of 
+applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command **instead** of the command to install `rocm-dkms`.
 
 ```shell
 sudo apt-get install dkms rock-dkms rocm-opencl
