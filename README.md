@@ -3,7 +3,7 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
 integrating the CPU and GPU with the goal of solving real-world problems.
 This software enables the high-performance operation of AMD GPUs for computationally-oriented tasks in the Linux operating system.
 
-### Current ROCm Version: 1.9.0
+### Current ROCm Version: 1.9.1
 
 - [Hardware Support](#hardware-support)
   * [Supported GPUs](#supported-gpus)
