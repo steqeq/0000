@@ -20,26 +20,26 @@ This software enables the high-performance operation of AMD GPUs for computation
 - [Getting ROCm source code](#getting-rocm-source-code)
 
 ### Hardware Support
-ROCm is focused on using AMD GPUs to accelerate computational tasks, such as machine learning, engineering workloads, and scientific computing. In order to focus our development efforts on these domains of interest, ROCm 
+ROCm is focused on using AMD GPUs to accelerate computational tasks, such as machine learning, engineering workloads, and scientific computing.
 
 #### Supported GPUs
 Because the ROCm Platform has a focus on particular computational domains, we offer official support for a selection of AMD GPUs that are designed to offer good performance and price in these domains.
 
-ROCm officially supports AMD GPUs that have use following chips:
+ROCm officially supports the following AMD GPUs:
   * GFX8 GPUs
     * "Fiji" chips, such as on the the AMD Radeon R9 Fury X and Radeon Instinct MI8
     * "Polaris 10" chips, such as on the AMD Radeon RX 580 and Radeon Instinct MI6
     * "Polaris 11" chips, such as on the AMD Radeon RX 570 and Radeon Pro WX 4100
   * GFX9 GPUs
-    * "Vega 10" chips, such as on the AMD Radeon Radeon RX Vega 64 and Radeon Instinct MI25
+    * "Vega 10" chips, such as on the AMD Radeon RX Vega 64 and Radeon Instinct MI25
 
-ROCm is a collection of software ranging from drivers and runtimnes to libraries and developer tools.
-Some of this software may work with more GPUs than the "officially supported" list above, though AMD does not make any official claims of support for these devices on the ROCm software platform.
+ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
+Some of this software may work with GPUs that are not on the "officially supported" list, though AMD does not make any official claims of support for these devices on the ROCm software platform.
 The following list of GPUs are likely to work within ROCm, though full support is not guaranteed:
   * GFX7 GPUs
     * "Hawaii" chips, such as the AMD Radeon R9 390X and FirePro W9100
 
-As described in the next section, GFX8 GPUs require PCIe gen 3 with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs, by default, also require PCIe gen 3 with support for PCIe atomics, but they can operate in most cases without this capability.
+As described in the next section, GFX8 GPUs require PCI Express 3.0 (PCIe 3.0) with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs, by default, also require PCIe 3.0 with support for PCIe atomics, but they can operate in most cases without this capability.
 
 At this time, the integrated GPUs in AMD APUs are not officially supported targets for ROCm.
 
@@ -47,7 +47,7 @@ For a more detailed list of hardware support, please see [the following document
 
 #### Supported CPUs
 As described above, GFX8 and GFX9 GPUs require PCI Express 3.0 with PCIe atomics in the default ROCm configuration.
-In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe gen 3 and PCIe atomics.
+In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe 3.0 and PCIe atomics.
 The CPU root must indicate PCIe AtomicOp Completion capabilities and any intermediate switch must indicate PCIe AtomicOp Routing capabilities.
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
@@ -63,13 +63,13 @@ Current CPUs which support PCIe Gen3 + PCIe Atomics are:
 
 Beginning with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on GFX9 GPUs such as Vega 10.
 We have similarly opened up more options for number of PCIe lanes.
-GFX9 GPUs can now be run on CPUs without PCIe atomics and on older PCIe generations such as gen 2.
+GFX9 GPUs can now be run on CPUs without PCIe atomics and on older PCIe generations, such as PCIe 2.0.
 This is not supported on GPUs below GFX9, e.g. GFX8 cards in Fiji and Polaris families.
 
 If you are using any PCIe switches in your system, please note that PCIe Atomics are only supported on some switches, such as Broadcom PLX.
-When you install your GPUs, make sure you install them in a fully PCIe Gen3 x16 or x8, x4 or x1 slot attached either directly to the CPU's Root I/O controller or via a PCIe switch directly attached to the CPU's Root I/O controller.
+When you install your GPUs, make sure you install them in a PCIe 3.0 x16, x8, x4 or x1 slot attached either directly to the CPU's Root I/O controller or via a PCIe switch directly attached to the CPU's Root I/O controller.
 
-In our experience, many issues stem from trying to use consumer motherboards which provide physical x16 connectors that are electrically connected as e.g. PCIe Gen2 x4, PCIe slots connected via the Southbridge PCIe I/O controller, or PCIe slots connected through a PCIe switch that does
+In our experience, many issues stem from trying to use consumer motherboards which provide physical x16 connectors that are electrically connected as e.g. PCIe 2.0 x4, PCIe slots connected via the Southbridge PCIe I/O controller, or PCIe slots connected through a PCIe switch that does
 not support PCIe atomics.
 
 If you attempt to run ROCm on a system without proper PCIe atomic support, you may see an error in the kernel log (`dmesg`):
@@ -84,15 +84,15 @@ from the list provided above for compatibility purposes.
 #### Not supported or very limited support under ROCm 
 ###### Limited support 
 
-* ROCm 1.9 and Vega10 should support PCIe Gen2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPU listed above. This is where we need community support; if you find problems on such setups, please report these issues.
- * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe Gen2 based, and thus are only supported with GPUs that do not require PCIe Gen 3 atomics (i.e. Vega 10). However, we have done no testing on this configuration and would need comunity support due to limited access to this type of equipment 
-
+* ROCm 1.9 and Vega10 should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support: _if you find problems on such setups, please report these issues_.
+ * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need comunity support due to limited access to this type of equipment.
+ 
 ###### Not supported 
 
 * "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 1.9.x
-* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe Gen 3 with PCIe atomics.
+* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.0 with PCIe atomics.
   * As such, do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs..
-  * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
+  * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe 2.0 based.
 * AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it comes to some key configuration parameters. In particular, we have observed that Carrizo laptops, AIOs, and desktop systems showed inconsistencies in exposing and enabling the System BIOS parameters required by the ROCm stack. Before purchasing a Carrizo system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table - please inquire with the OEM about the latter.
  * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
  * AMD Raven Ridge APU are currently not supported as GPU targets
@@ -126,7 +126,7 @@ Developer preview (alpha) of profiling tool rocProfiler. It includes a command-l
 * Multiple counters groups and app runs supported
 * Output results in CSV format
 
-The tool can be installed from the `rocprofiler-dev` package. It will be installed into: /opt/rocm/bin/rpl_run.sh
+The tool can be installed from the `rocprofiler-dev` package. It will be installed into: `/opt/rocm/bin/rpl_run.sh`
 
 #### Preview for rocr Debug Agent rocr_debug_agent
 The ROCr Debug Agent is a library that can be loaded by ROCm Platform Runtime to provide the following functionality:
@@ -134,7 +134,7 @@ The ROCr Debug Agent is a library that can be loaded by ROCm Platform Runtime to
 * Allows SIGINT (`ctrl c`) or SIGTERM (`kill -15`) to print wavefront state of aborted GPU dispatches.
 * It is enabled on Vega10 GPUs on ROCm1.9.
 
-The ROCm1.9 release will install the ROCr Debug Agent library at /opt/rocm/lib/librocr_debug_agent64.so
+The ROCm1.9 release will install the ROCr Debug Agent library at `/opt/rocm/lib/librocr_debug_agent64.so`
 
 
 #### New distribution support 
@@ -152,7 +152,7 @@ Some ROCm features are not available in the upstream KFD:
 * RDMA
 * IPC
 
-To try ROCm with an upstream kernel, install ROCm as normal, but do not install the rock-dkms package. Also add a udev rule to control /dev/kfd permissions:
+To try ROCm with an upstream kernel, install ROCm as normal, but do not install the rock-dkms package. Also add a `udev` rule to control `/dev/kfd` permissions:
 
     echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
 
@@ -242,7 +242,7 @@ If the key signature verification is failed while update, please re-add the key 
 ROCm apt repository. The current rocm.gpg.key is not avialable in a standard key ring 
 distribution, but has the following sha1sum hash:
 
-f7f8147431c75e505c58a6f3a3548510869357a6  rocm.gpg.key
+`f7f8147431c75e505c58a6f3a3548510869357a6  rocm.gpg.key`
 
 ##### Install
 
