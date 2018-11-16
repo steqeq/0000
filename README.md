@@ -99,7 +99,30 @@ from the list provided above for compatibility purposes.
  * AMD Raven Ridge APU are currently not supported as GPU targets
 
 ### New features and enhancements in ROCm 1.9.2
-#### SDMA Enablement
+#### SDMA/RDMA(MPI) support on Vega20
+* Async 2D memcpy optimizations
+* Support ROCnRDMA based on Mellanox InfiniBand
+* Support the GPU's data interaction in different nodes directly used MPI function in HIP and OpenCL Applications
+
+#### Improvements to HIP/HCC
+* Improved linker time
+* Disabling ThinLTO when early finalization is in effect
+
+#### Improvements to ROCProfiler tool
+* HSA runtime AQLprofile loading change 
+* dispatch data th-id, queue-id, kernel-object
+* fix the scenario with timestamps enabled only with rabge enabled
+* minor fix, hsa_ven_amd_aqlprofile_pfn_t alias
+* moving to non-deprecated 'get extension' table HSA API
+* standalone/sampling mode
+* adding rocprof link
+* 16 -> 8 SQ counters registers fix
+* adding Enable cmd packet
+* implementing version_major/minor API
+
+#### Updated Loader to support Code Object v3
+
+#### Critical bug fixes
 
 ### New features and enhancements in ROCm 1.9.1
 #### Added DPM support to Vega 7nm
@@ -480,8 +503,6 @@ sudo yum autoremove rocm-dkms
 ```
 
 ### Known Issues / Workarounds
-
-#### Running OCLPerfCounters test results in LLVM ERROR: out of memory
 
 #### HipCaffe is supported on single GPU configurations
 
