@@ -92,7 +92,7 @@ from the list provided above for compatibility purposes.
 
 ###### Not supported 
 
-* "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 1.9.x
+* "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 2.0.x
 * We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe Gen 3 with PCIe atomics.
   * As such, do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs..
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
@@ -274,9 +274,9 @@ are also available on GitHub, and frozen for the rocm-2.0.x release:
 #### Supported Operating Systems - New operating systems available
 
 The ROCm 2.0.x platform supports the following operating systems:
- * Ubuntu 16.04.x &. 18.04.x (Version 16.04.3 and newer or kernels 4.13 and newer)
- * CentOS 7.4 &. 7.5 &. 7.6 (Using devtoolset-7 runtime support)
- * RHEL 7.4. &. 7.5  &. 7.6 (Using devtoolset-7 runtime support)
+ * Ubuntu 16.04.x & 18.04.x (Version 16.04.3 and newer or kernels 4.13 and newer)
+ * CentOS 7.4 & 7.5 & 7.6 (Using devtoolset-7 runtime support)
+ * RHEL 7.4 & 7.5 & 7.6 (Using devtoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
