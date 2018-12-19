@@ -16,7 +16,7 @@ This software enables the high-performance operation of AMD GPUs for computation
 - [The latest ROCm platform - ROCm 2.0](#the-latest-rocm-platform---rocm-20)
 - [Installing from AMD ROCm repositories](#installing-from-amd-rocm-repositories)
   * [Ubuntu Support - Installing from a Debian repository](#ubuntu-support---installing-from-a-debian-repository)
-  * [CentOS/RHEL 7 (7.4, 7.5 and 7.6) Support](#centosrhel-7-74-75-and-76-support)
+  * [CentOS/RHEL 7 (7.4, 7.5 and 7.6) Support](#centosrhel-7-74-75-76-support)
 - [Known Issues / Workarounds](#known-issues--workarounds)
 - [Closed source components](#closed-source-components)
 - [Getting ROCm source code](#getting-rocm-source-code)
@@ -92,7 +92,7 @@ from the list provided above for compatibility purposes.
 
 ###### Not supported 
 
-* "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 1.9.x
+* "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 2.0.x
 * We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe Gen 3 with PCIe atomics.
   * As such, do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs..
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
@@ -274,9 +274,9 @@ are also available on GitHub, and frozen for the rocm-2.0.x release:
 #### Supported Operating Systems - New operating systems available
 
 The ROCm 2.0.x platform supports the following operating systems:
- * Ubuntu 16.04.x &. 18.04.x (Version 16.04.3 and newer or kernels 4.13 and newer)
- * CentOS 7.4 &. 7.5 &. 7.6 (Using devtoolset-7 runtime support)
- * RHEL 7.4. &. 7.5  &. 7.6 (Using devtoolset-7 runtime support)
+ * Ubuntu 16.04.x & 18.04.x (Version 16.04.3 and newer or kernels 4.13 and newer)
+ * CentOS 7.4 & 7.5 & 7.6 (Using devtoolset-7 runtime support)
+ * RHEL 7.4 & 7.5 & 7.6 (Using devtoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
@@ -306,7 +306,7 @@ echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | su
 ```
 The gpg key might change, so it may need to be updated when installing a new release. 
 If the key signature verification is failed while update, please re-add the key from 
-ROCm apt repository. The current rocm.gpg.key is not avialable in a standard key ring 
+ROCm apt repository. The current rocm.gpg.key is not available in a standard key ring 
 distribution, but has the following sha1sum hash:
 
 f7f8147431c75e505c58a6f3a3548510869357a6  rocm.gpg.key
@@ -348,7 +348,7 @@ echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
 
 Once complete, reboot your system.
 
-Upon Reboot run the following commands to verify that the ROCm installation waas successful. If you see your GPUs listed by both of these commands, you should be ready to go!
+Upon Reboot run the following commands to verify that the ROCm installation was successful. If you see your GPUs listed by both of these commands, you should be ready to go!
 ```shell
 /opt/rocm/bin/rocminfo 
 /opt/rocm/opencl/bin/x86_64/clinfo 
