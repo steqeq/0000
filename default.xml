@@ -12,7 +12,7 @@
     <remote name="gpuopen-tools"
             fetch="https://github.com/GPUOpen-Tools/" />
 
-    <default revision="refs/tags/roc-2.0.0"
+    <default revision="refs/tags/roc-2.1.0"
              remote="roc-github"
              sync-c="true"
              sync-j="4" />
@@ -24,6 +24,7 @@
     <project name="rocm-cmake" revision="6240bb35a3f6cc775b57561506b10e932130e20a" />
     <project name="rocminfo" revision="1bb0ccc731f772bb1a553e37b41d06eb0a684926" />
     <project name="rocprofiler" remote="rocm-devtools" />
+    <project name="roctracer" remote="rocm-devtools" />
     <!-- If you want to get the full OpenCL runtime, there is a separate repo
          manifest that is more authoritative than the copy in this file. It can
          be found at the following URL:
@@ -66,7 +67,7 @@
     <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/1.7.0" />
     <project name="Thrust" remote="rocm-swplat" revision="e0b8fe2af3d345fb85689011140a20ff46fb610d" sync-s="true" />
     <project name="rocm_smi_lib" />
-    <project name="rccl" remote="rocm-swplat" revision="refs/tags/0.7.1" />
+    <project name="rccl" remote="rocm-swplat" revision="refs/tags/0.7.4" />
     <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.0.0" />
     <project name="cub-hip" remote="rocm-swplat" revision="hip_port_1.7.4" />
 </manifest>
