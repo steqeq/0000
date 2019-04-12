@@ -2,14 +2,14 @@
 The ROCm Platform brings a rich foundation to advanced computing by seamlessly integrating the CPU and GPU with the goal of solving real-world problems.
 This software enables the high-performance operation of AMD GPUs for computationally oriented tasks in the Linux operating system.
 
-### Current ROCm Version: 2.2
+### Current ROCm Version: 2.3
 
 - [Hardware Support](#hardware-support)
   * [Supported GPUs](#supported-gpus)
   * [Supported CPUs](#supported-cpus)
   * [Not supported or limited support under ROCm](#not-supported-or-limited-support-under-rocm)
-- [New features and enhancements in ROCm 2.3](#new-features-and-enhancements-in-rocm-22)
-- [The latest ROCm platform - ROCm 2.3](#the-latest-rocm-platform---rocm-220)
+- [New features and enhancements in ROCm 2.3](#new-features-and-enhancements-in-rocm-23)
+- [The latest ROCm platform - ROCm 2.3](#the-latest-rocm-platform---rocm-230)
   * [Supported Operating Systems](#supported-operating-systems---new-operating-systems-available)
   * [ROCm support in upstream Linux kernels](#rocm-support-in-upstream-linux-kernels)
 - [Installing from AMD ROCm repositories](#installing-from-amd-rocm-repositories)
@@ -119,49 +119,55 @@ from the list provided above for compatibility purposes.
 
 ### New features and enhancements in ROCm 2.3
 
-#### Guarantee KFD driver compatible with older user-land libraries
-Ensuring AMD's KFD driver to have backward compatibility with the older user-land libraries
-
 #### Mem usage per GPU
-rocm-smi tool will display mem usage per GPU
+Per GPU memory usage is added to rocm-smi.
+Display information regarding used/total bytes for VRAM, visible VRAM and GTT, via the --showmeminfo flag
 
 #### MIVisionX, v1.1 - ONNX	
 ONNX parser changes to adjust to new file formats
 
-#### MIGraphX, v0.2 - Python API, operator support for images, RNN operators, TF POC	
-Basic RNN operators (GRU, LSTM, RNN) have been added for MIGraphX release
-TF model support for MIGraphX (POC)
+#### MIGraphX, v0.2
+MIGraphX 0.2 supports the following new features:
+* New Python API
+* Support for additional ONNX operators and fixes that now enable a large set of Imagenet models
+* Support for RNN Operators
+* Support for multi-stream Execution
+* [Experimental] Support for Tensorflow frozen protobuf files
 
-#### MIOpen, v1.8 -  3d convolutions and 3x3 bwd-weights convolutions	
-Added support in MIOpen for 3x3 bwd-weights convolutions and 3D convolutions
+See: [Getting-started:-using-the-new-features-of-MIGraphX-0.2](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki/Getting-started:-using-the-new-features-of-MIGraphX-0.2) for more details
 
-#### Caffe2 -  mGPU functional support	
-Caffe2 enabled with mGPU support
+#### MIOpen, v1.8 - 3d convolutions and int8
+* This release contains full 3-D convolution support and int8 support for inference.
+* Additionally, there are major updates in the performance database for major models including those found in Torchvision.
 
-#### (HIP/HCC) 'rocTracer' library, ROCm tracing API for collecting runtimes API and asynchronous GPU activity traces	
-rocTracer HIP/HCC domains support
+See: [MIOpen releases](https://github.com/ROCmSoftwarePlatform/MIOpen/releases)
+
+#### Caffe2 -  mGPU support	
+Multi-gpu support is enabled for Caffe2.
+
+#### rocTracer library, ROCm tracing API for collecting runtimes API and asynchronous GPU activity traces
+HIP/HCC domains support is introduced in rocTracer library.
 
 #### BLAS -  Int8 GEMM performance, Int8 functional and performance	
-BLAS -  Int8 GEMM performance, Int8 functional and performance
+Introduces support and performance optimizations for Int8 GEMM, implements TRSV support, and includes improvements and optimizations with Tensile.
 
 #### Prioritized L1/L2/L3 BLAS (functional)	
 Functional implementation of BLAS L1/L2/L3 functions
 
-#### BLAS - tensile optimization and testing tasks	
+#### BLAS - tensile optimization
 Improvements and optimizations with tensile
 
-#### MIOpen Int8 support – functional
-Functional, not optimized support for int8
+#### MIOpen Int8 support
+Support for int8
 
 Features and enhancements introduced in previous versions of ROCm can be found in [version_history.md](version_history.md)
-
 
 ### The latest ROCm platform - ROCm 2.3
 
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
 * ROCm Core Components
-  - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-2.3.0)
+  - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-2.2.0)
   - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/84443a1)
   - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.3.0)
 * ROCm Support Software
@@ -202,11 +208,11 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipSPARSE/tree/master-rocm-2.3)
   - [rocALUTION](https://github.com/ROCmSoftwarePlatform/rocALUTION/tree/master-rocm-2.3)
   - [MIOpenGEMM](https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/tree/9547fb9e)
-  - [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen/tree/6c13092)
+  - [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen/tree/roc-2.3.0)
   - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/master-rocm-2.3)
   - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc-2.3.0)
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/master-rocm-2.3)
-  - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.1.0)
+  - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/8ec8732)
   - [CUB HIP](https://github.com/ROCmSoftwarePlatform/cub-hip/tree/hip_port_1.7.4)
 
 #### Supported Operating Systems - New operating systems available
