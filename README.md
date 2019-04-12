@@ -8,8 +8,8 @@ This software enables the high-performance operation of AMD GPUs for computation
   * [Supported GPUs](#supported-gpus)
   * [Supported CPUs](#supported-cpus)
   * [Not supported or limited support under ROCm](#not-supported-or-limited-support-under-rocm)
-- [New features and enhancements in ROCm 2.2](#new-features-and-enhancements-in-rocm-22)
-- [The latest ROCm platform - ROCm 2.2](#the-latest-rocm-platform---rocm-220)
+- [New features and enhancements in ROCm 2.3](#new-features-and-enhancements-in-rocm-22)
+- [The latest ROCm platform - ROCm 2.3](#the-latest-rocm-platform---rocm-220)
   * [Supported Operating Systems](#supported-operating-systems---new-operating-systems-available)
   * [ROCm support in upstream Linux kernels](#rocm-support-in-upstream-linux-kernels)
 - [Installing from AMD ROCm repositories](#installing-from-amd-rocm-repositories)
@@ -99,7 +99,7 @@ from the list provided above for compatibility purposes.
 #### Not supported or limited support under ROCm 
 ##### Limited support 
 
-* ROCm 2.2.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
+* ROCm 2.3.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
 * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need community support due to limited access to this type of equipment.
 * AMD "Carrizo" and "Bristol Ridge" APUs are enabled to run OpenCL, but do not yet support HCC, HIP, or our libraries built on top of these compilers and runtimes.
   * As of ROCm 2.1, "Carrizo" and "Bristol Ridge" require the use of upstream kernel drivers.
@@ -112,27 +112,51 @@ from the list provided above for compatibility purposes.
   
 ##### Not supported 
 
-* "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.2.x
+* "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.3.x
 * We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.0 with PCIe atomics.
   * As such, we do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs.
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are based on PCIe 2.0.
 
-### New features and enhancements in ROCm 2.2
+### New features and enhancements in ROCm 2.3
 
-#### rocSparse Optimization on Vega20
-Cache usage optimizations for csrsv (sparse triangular solve), coomv
-(SpMV in COO format) and ellmv (SpMV in ELL format) are available.
+#### Guarantee KFD driver compatible with older user-land libraries
+Ensuring AMD's KFD driver to have backward compatibility with the older user-land libraries
 
-#### DGEMM and DTRSM Optimization
-Improved DGEMM performance for reduced matrix sizes (k=384, k=256)
+#### Mem usage per GPU
+rocm-smi tool will display mem usage per GPU
 
-#### Caffe2
-Added support for multi-GPU training
+#### MIVisionX, v1.1 - ONNX	
+ONNX parser changes to adjust to new file formats
+
+#### MIGraphX, v0.2 - Python API, operator support for images, RNN operators, TF POC	
+Basic RNN operators (GRU, LSTM, RNN) have been added for MIGraphX release
+TF model support for MIGraphX (POC)
+
+#### MIOpen, v1.8 -  3d convolutions and 3x3 bwd-weights convolutions	
+Added support in MIOpen for 3x3 bwd-weights convolutions and 3D convolutions
+
+#### Caffe2 -  mGPU functional support	
+Caffe2 enabled with mGPU support
+
+#### (HIP/HCC) 'rocTracer' library, ROCm tracing API for collecting runtimes API and asynchronous GPU activity traces	
+rocTracer HIP/HCC domains support
+
+#### BLAS -  Int8 GEMM performance, Int8 functional and performance	
+BLAS -  Int8 GEMM performance, Int8 functional and performance
+
+#### Prioritized L1/L2/L3 BLAS (functional)	
+Functional implementation of BLAS L1/L2/L3 functions
+
+#### BLAS - tensile optimization and testing tasks	
+Improvements and optimizations with tensile
+
+#### MIOpen Int8 support – functional
+Functional, not optimized support for int8
 
 Features and enhancements introduced in previous versions of ROCm can be found in [version_history.md](version_history.md)
 
 
-### The latest ROCm platform - ROCm 2.2
+### The latest ROCm platform - ROCm 2.3
 
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
@@ -189,7 +213,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
 
 The ROCm 2.2.x platform supports the following operating systems:
 
- * Ubuntu 16.04.x and 18.04.1 (Version 16.04.3 and newer or kernels 4.13-4.15)
+ * Ubuntu 16.04.x, 18.04.1 and 18.04.2 (Version 16.04.3 and newer or kernels 4.13-4.15)
  * CentOS 7.4, 7.5, and 7.6 (Using devtoolset-7 runtime support)
  * RHEL 7.4, 7.5, and 7.6 (Using devtoolset-7 runtime support)
 
@@ -221,7 +245,7 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 
 ### Installing from AMD ROCm repositories
 
-AMD hosts both [Debian](http://repo.radeon.com/rocm/apt/debian/) and [RPM](http://repo.radeon.com/rocm/yum/rpm/) repositories for the ROCm 2.2.x packages at this time.
+AMD hosts both [Debian](http://repo.radeon.com/rocm/apt/debian/) and [RPM](http://repo.radeon.com/rocm/yum/rpm/) repositories for the ROCm 2.3.x packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
@@ -615,16 +639,20 @@ echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee
 
 ### Known issues / workarounds
 
+#### Rocprim
+"Memory access fault" observed with rocprim.hip.device.scan
+#### HPL
+HPL fails to run in higher problem size (85000 Ns)
+#### Resnet50
+Multi-GPU resnet50 training using the caffe2 framework will cause a hardhang with a console message:
+kfd2kgd: amdgpu_amdkfd_restore_userptr_worker: Failed to resume KFD
+#### Caffe2
+Caffe2 images/sec drops 40% when 4 processes simultaneously run it, each using one GPU 
 #### Thrust
 functions zip_iterator.out and copy.out are not working as expected
-#### rocBLAS
-tests quick_auxilliary.logging_float and quick_auxilliary.logging_double are not working as expected
+thrust exclusive_scan produces incorrect results when running on thrust device
 #### Tensor flow
 observed memory access fault while running SAGAN tensor flow model in Polaris based ASIC
-#### PyTorch
-observing “test_gamma_gpu_sample” subtest failure
-#### Kernel
-The 4.18 kernel is not supported on 2.2. This is planned to be supported with the 2.3 release
 
 ### Closed source components
 
