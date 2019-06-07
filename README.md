@@ -37,7 +37,7 @@ Software support for BFloat16 on Radeon Instinct MI50, MI60 has been added.  Thi
 - Accuracy should be correct to 0.5 ULP
 
 #### ROCm-SMI enhancements
-Support for querying the memory size, driver version, and firmware version has been added to ROCm-smi
+CLI support for querying the memory size, driver version, and firmware version has been added to ROCm-smi.
 
 #### [PyTorch] multi-GPU functional support (CPU aggregation/Data Parallel)
 Multi-GPU support is enabled in PyTorch using Dataparallel path for versions of PyTorch built using the 06c8aa7a3bbd91cda2fd6255ec82aad21fa1c0d5 commit or later.
