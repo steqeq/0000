@@ -59,8 +59,8 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.7.0)
 * ROCm Support Software
   - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.7.0)
-  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/ac45c6e2)
-  - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/d34b716a)
+  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/master-rocm-2.7)
+  - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/roc-2.7.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.7.0)
 * ROCm Development Tools
   - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-2.7.0)
@@ -77,11 +77,11 @@ The latest supported version of the drivers, tools, libraries and source code fo
       - [ROCm lld HCC](http://github.com/RadeonOpenCompute/lld/tree/roc-hcc-2.7.0)
       - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-ocl-2.7.0)
   - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-2.7.0)
-  - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/4dd14ad8)
+  - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/rocm_2.7.0)
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.7.0)
   - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.7.0)
   - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.7.x)
-  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.7.x)
+  - [ROC Tracer](https://github.com/ROCmSoftwarePlatform/roctracer/tree/roc-2.7.x)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/3a49405)
   - Example Applications:
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
@@ -101,7 +101,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/master-rocm-2.7)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.3.0)
   - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/2.7.0)
-  - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/2.7.0)
+  - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/rocm-2.7)
 
 ### Hardware Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
