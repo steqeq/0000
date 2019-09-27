@@ -1,7 +1,9 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 2.7.2
+### Current ROCm Version: 2.8
+- [New features and enhancements in ROCm 2.7.2](#new-features-and-enhancements-in-rocm-272)
+- [New features and enhancements in ROCm 2.7.1](#new-features-and-enhancements-in-rocm-271)
 - [New features and enhancements in ROCm 2.7](#new-features-and-enhancements-in-rocm-27)
 - [New features and enhancements in ROCm 2.6](#new-features-and-enhancements-in-rocm-26)
 - [New features and enhancements in ROCm 2.5](#new-features-and-enhancements-in-rocm-25)
@@ -19,7 +21,51 @@ This file contains archived version history information for the [ROCm project](h
 - [New Features as of ROCm 1.7](#new-features-as-of-rocm-17)
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
 
+### New features and enhancements in ROCm 2.7.2
 
+This release is a hotfix for ROCm release 2.7.
+
+#### Defect fixed in ROCm 2.7.2
+
+##### A defect in upgrades from older ROCm releases has been fixed.
+
+### New features and enhancements in ROCm 2.7.1
+
+This release is a hotfix release for ROCm release 2.7.1, and addresses the defect mentioned below. The features and enhancements as mentioned in [ROCm 2.7](#new-features-and-enhancements-in-rocm-27) remain relevant to ROCm release 2.7.1 as well.
+
+#### Defect fixed in ROCm 2.7.1
+
+##### rocprofiler --hiptrace and --hsatrace fails to load roctracer library
+In ROCm 2.7.1, rocprofiler --hiptrace and --hsatrace fails to load roctracer library defect has been fixed.  
+To generate traces, please provide directory path also using the parameter: -d <$directoryPath> for ex:
+```shell
+/opt/rocm/bin/rocprof  --hsa-trace -d $PWD/traces /opt/rocm/hip/samples/0_Intro/bit_extract/bit_extract
+  ```
+All traces and results will be saved under $PWD/traces path
+
+#### Upgrading from ROCm 2.7 to 2.7.1
+
+To upgrade, please remove 2.7 completely as specified [here](#how-to-uninstall-from-ubuntu-1604-or-Ubuntu-1804) or [here](#how-to-uninstall-rocm-from-centosrhel-76), and install 2.7.1 as per instructions [here](#installing-from-amd-rocm-repositories)
+
+#### Other notes
+
+  To use rocprofiler features, the following steps need to be completed before using rocprofiler:
+
+  ##### Step-1: Install roctracer
+
+###### Ubuntu 16.04 or Ubuntu 18.04:
+
+  ```shell
+  sudo apt install roctracer-dev
+  ```
+
+######  CentOS/RHEL 7.6:
+
+  ```shell
+  sudo yum install roctracer-dev
+  ```
+  ##### Step-2: Add /opt/rocm/roctracer/lib to LD_LIBRARY_PATH
+  
 ### New features and enhancements in ROCm 2.7
 
 #### [rocFFT] Real FFT Functional
