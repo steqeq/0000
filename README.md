@@ -46,7 +46,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.8.0)
 * ROCm Support Software
   - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.8.0)
-  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/master-rocm-2.8)
+  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/roc-2.8.0)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/roc-2.8.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.8.0)
 * ROCm Development Tools
@@ -67,7 +67,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/rocm_2.8.0)
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.8.0)
   - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.8.0)
-  - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.8.x)
+  - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.8.0)
   - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.8.0)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/3a49405)
   - Example Applications:
@@ -81,7 +81,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [rocSPARSE](https://github.com/ROCmSoftwarePlatform/rocSPARSE/tree/master-rocm-2.8)
   - [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipSPARSE/tree/master-rocm-2.8)
   - [rocALUTION](https://github.com/ROCmSoftwarePlatform/rocALUTION/tree/master-rocm-2.8)
-  - [MIOpenGEMM](https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/tree/9547fb9e)
+  - [MIOpenGEMM](https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/tree/6275a879)
   - [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen/tree/roc-2.8.0)
   - [rocThrust](https://github.com/ROCmSoftwarePlatform/rocThrust/tree/master-rocm-2.8)
   - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc-2.8.0)
