@@ -24,7 +24,7 @@ This file contains archived version history information for the [ROCm project](h
 
 This release is a hotfix for ROCm release 2.7.
 
-#### Defect fixed in ROCm 2.7.2
+#### Issues fixed in ROCm 2.7.2
 
 ##### A defect in upgrades from older ROCm releases has been fixed.
 
