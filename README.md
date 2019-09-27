@@ -615,8 +615,8 @@ echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee
 
 ### Known issues / workarounds
 
-#### Warning message while running TensorFlow workload 
-"AssertionError: Bad argument" Warning may be observed while running TensorFlow benchmarks.
+#### Memory access fault while running Memory intensive workloads
+User may experience "Memory Access Fault" error if memory intensive workloads are executed back to back. This error can be avoided by waiting 3 seconds between workload execution.
 
 #### Docker container environment variable setting
 Applications fail when docker container is launched on NUMA system without --security-opt seccomp=unconfined. Please set "--security-opt seccomp=unconfined" to avoid this issue.
