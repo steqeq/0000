@@ -50,8 +50,8 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/roc-2.8.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.8.0)
 * ROCm Development Tools
-  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-2.8.2)
-  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.8.2)
+  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-2.8.0)
+  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.8.0)
   - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-2.8.0)
   - ROCm OpenCL, which is created from the following components:
     - [ROCm OpenCL Runtime](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/tree/roc-2.8.0)
@@ -68,7 +68,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.8.0)
   - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.8.0)
   - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.8.x)
-  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.8.2)
+  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.8.0)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/3a49405)
   - Example Applications:
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
