@@ -3,7 +3,6 @@ This file contains archived version history information for the [ROCm project](h
 
 ### Current ROCm Version: 2.8
 - [New features and enhancements in ROCm 2.7.2](#new-features-and-enhancements-in-rocm-272)
-- [New features and enhancements in ROCm 2.7.1](#new-features-and-enhancements-in-rocm-271)
 - [New features and enhancements in ROCm 2.7](#new-features-and-enhancements-in-rocm-27)
 - [New features and enhancements in ROCm 2.6](#new-features-and-enhancements-in-rocm-26)
 - [New features and enhancements in ROCm 2.5](#new-features-and-enhancements-in-rocm-25)
@@ -29,12 +28,6 @@ This release is a hotfix for ROCm release 2.7.
 
 ##### A defect in upgrades from older ROCm releases has been fixed.
 
-### New features and enhancements in ROCm 2.7.1
-
-This release is a hotfix release for ROCm release 2.7.1, and addresses the defect mentioned below. The features and enhancements as mentioned in [ROCm 2.7](#new-features-and-enhancements-in-rocm-27) remain relevant to ROCm release 2.7.1 as well.
-
-#### Defect fixed in ROCm 2.7.1
-
 ##### rocprofiler --hiptrace and --hsatrace fails to load roctracer library
 In ROCm 2.7.1, rocprofiler --hiptrace and --hsatrace fails to load roctracer library defect has been fixed.  
 To generate traces, please provide directory path also using the parameter: -d <$directoryPath> for ex:
@@ -43,9 +36,9 @@ To generate traces, please provide directory path also using the parameter: -d <
   ```
 All traces and results will be saved under $PWD/traces path
 
-#### Upgrading from ROCm 2.7 to 2.7.1
+#### Upgrading from ROCm 2.7 to 2.7.2
 
-To upgrade, please remove 2.7 completely as specified [here](#how-to-uninstall-from-ubuntu-1604-or-Ubuntu-1804) or [here](#how-to-uninstall-rocm-from-centosrhel-76), and install 2.7.1 as per instructions [here](#installing-from-amd-rocm-repositories)
+To upgrade, please remove 2.7 completely as specified [here](#how-to-uninstall-from-ubuntu-1604-or-Ubuntu-1804) or [here](#how-to-uninstall-rocm-from-centosrhel-76), and install 2.7.2 as per instructions [here](#installing-from-amd-rocm-repositories)
 
 #### Other notes
 
