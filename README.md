@@ -615,9 +615,6 @@ echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee
 
 ### Known issues / workarounds
 
-#### Memory access fault while running Memory intensive workloads
-User may experience "Memory Access Fault" error if memory intensive workloads are executed back to back. This error can be avoided by waiting 3 seconds between workload execution.
-
 #### Warning message while running TensorFlow workload 
 "AssertionError: Bad argument" Warning may be observed while running TensorFlow benchmarks.
 
