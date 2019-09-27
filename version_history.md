@@ -30,7 +30,7 @@ This release is a hotfix for ROCm release 2.7.
 
 ##### rocprofiler --hiptrace and --hsatrace fails to load roctracer library
 In ROCm 2.7.2, rocprofiler --hiptrace and --hsatrace fails to load roctracer library defect has been fixed.  
-To generate traces, please provide directory path also using the parameter: -d <$directoryPath> for ex:
+To generate traces, please provide directory path also using the parameter: -d <$directoryPath> for example:
 ```shell
 /opt/rocm/bin/rocprof  --hsa-trace -d $PWD/traces /opt/rocm/hip/samples/0_Intro/bit_extract/bit_extract
   ```
