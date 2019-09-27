@@ -87,7 +87,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc-2.8.0)
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/master-rocm-2.8)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.3.0)
-  - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/rocm-2.8)
+  - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/master-rocm-2.8)
 
 ### Hardware Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
@@ -658,7 +658,7 @@ If you chose a directory other than `~/bin/` to install `repo`, you should use t
 ```shell
 mkdir -p ~/ROCm/
 cd ~/ROCm/
-~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-2.8.1
+~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-2.8.0
 repo sync
 ```
 
