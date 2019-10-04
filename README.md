@@ -39,9 +39,6 @@ MIGraphX 0.4 introduces support for fp16 and int8 quantization.
 #### rocSparse csrgemm
 csrgemm enables the user to perform matrix-matrix multiplication with two sparse matrices in CSR format
 
-#### Convolutions with bfloat16
-MIOpen has been enhanced to support bfloat16 in convolutions.  
-
 #### Singularity Support
 ROCm 2.9 adds support for Singularity container version 2.5.2.
 
