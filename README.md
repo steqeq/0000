@@ -42,6 +42,9 @@ csrgemm enables the user to perform matrix-matrix multiplication with two sparse
 #### Singularity Support
 ROCm 2.9 adds support for Singularity container version 2.5.2.
 
+#### Initial release of rocTX
+ROCm 2.9 introduces rocTX, which provides a C API for code markup for performance profiling.  This initial release of rocTX supports annotation of code ranges and ASCII markers.
+
 #### Added support for Ubuntu 18.04.3
 Ubuntu 18.04.3 is now supported in ROCm 2.9.
 
@@ -74,13 +77,13 @@ The latest supported version of the drivers, tools, libraries and source code fo
       - [ROCm Clang](http://github.com/RadeonOpenCompute/clang/tree/roc-2.9.0)
       - [ROCm lld OCL](http://github.com/RadeonOpenCompute/lld/tree/roc-ocl-2.9.0)
       - [ROCm lld HCC](http://github.com/RadeonOpenCompute/lld/tree/roc-hcc-2.9.0)
-      - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-2.9.x)
+      - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-ocl-2.9.0)
   - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-2.9.0)
   - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/rocm_2.9.0)
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.9.0)
   - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.9.0)
   - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.9.0)
-  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.9.x)
+  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.9.0)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/3a49405)
   - Example Applications:
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
