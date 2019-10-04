@@ -34,10 +34,10 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 The AMD Radeon Augmentation Library (RALI) is designed to efficiently decode and process images from a variety of storage formats and modify them through a processing graph programmable by the user. RALI currently provides C API.
 
 #### Quantization in MIGraphX v0.4
-MIGraphX 0.4 introduces support for fp16 and int8 quantization. For additional details, as well as other new MIGraphX features, see [link](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki/Getting-started:-using-the-new-features-of-MIGraphX-0.4)
+MIGraphX 0.4 introduces support for fp16 and int8 quantization. For additional details, as well as other new MIGraphX features, see [MIGraphX documentation](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki/Getting-started:-using-the-new-features-of-MIGraphX-0.4).
 
 #### rocSparse csrgemm
-csrgemm enables the user to perform matrix-matrix multiplication with two sparse matrices in CSR format
+csrgemm enables the user to perform matrix-matrix multiplication with two sparse matrices in CSR format.
 
 #### Singularity Support
 ROCm 2.9 adds support for Singularity container version 2.5.2.
