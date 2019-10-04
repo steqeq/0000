@@ -43,7 +43,7 @@ csrgemm enables the user to perform matrix-matrix multiplication with two sparse
 ROCm 2.9 adds support for Singularity container version 2.5.2.
 
 #### Initial release of rocTX
-ROCm 2.9 introduces rocTX, which provides a C API for code markup for performance profiling.  This initial release of rocTX supports annotation of code ranges and ASCII markers.
+ROCm 2.9 introduces rocTX, which provides a C API for code markup for performance profiling.  This initial release of rocTX supports annotation of code ranges and ASCII markers.  For an example, see this [code](https://github.com/ROCm-Developer-Tools/roctracer/blob/amd-master/test/MatrixTranspose_test/MatrixTranspose.cpp)
 
 #### Added support for Ubuntu 18.04.3
 Ubuntu 18.04.3 is now supported in ROCm 2.9.
