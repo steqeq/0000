@@ -31,7 +31,7 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 ### New features and enhancements in ROCm 2.9
 
 #### Initial release for Radeon Augmentation Library(RALI)
-The AMD Radeon Augmentation Library (RALI) is designed to efficiently decode and process images and videos from a variety of storage formats and modify them through a processing graph programmable by the user. Rali currently provides C API.
+The AMD Radeon Augmentation Library (RALI) is designed to efficiently decode and process images from a variety of storage formats and modify them through a processing graph programmable by the user. Rali currently provides C API.
 
 #### Quantization in MIGraphX v0.4
 MIGraphX 0.4 introduces support for fp16 and int8 quantization.
