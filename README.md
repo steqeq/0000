@@ -125,7 +125,7 @@ Some of this software may work with more GPUs than the "officially supported" li
 The following list of GPUs are enabled in the ROCm software, though full support is not guaranteed:
 
   * GFX8 GPUs
-    * "Polaris 11" chips, such as on the AMD Radeon RX 570 and Radeon Pro WX 4100
+    * "Polaris 11" chips, such as on the AMD Radeon RX 560 and Radeon Pro WX 4100
     * "Polaris 12" chips, such as on the AMD Radeon RX 550 and Radeon RX 540
   * GFX7 GPUs
     * "Hawaii" chips, such as the AMD Radeon R9 390X and FirePro W9100
