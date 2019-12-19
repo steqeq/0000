@@ -24,6 +24,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
    * [Disappearing GPUs from PCIe BUS in xGMI Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-xGMI-Configurations)
    
 - [Deprecated Features](#Deprecated-Features)
+* [MIOpen](#MIOpen)
   * [SCGEMM Convolution Algorithm](#SCGEMM-Convolution-Algorithm)
   * [Text-Based Performance Database](#Text-Based-Performance-Database)
   
