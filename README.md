@@ -24,8 +24,8 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
    * [Disappearing GPUs from PCIe BUS in xGMI Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-xGMI-Configurations)
    
 - [Deprecated Features](#Deprecated-Features)
-  * [ROCm OpenCL Driver Compilation Services](#ROCm-OpenCL-Driver-Compilation-Services)
-  * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
+  * [SCGEMM Convolution Algorithm](#SCGEMM-Convolution-Algorithm)
+  * [Text-Based Performance Database](#Text-Based-Performance-Database)
   
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
@@ -212,26 +212,19 @@ Note, the issue is noticed only when using higher PRP values.
 
 
 ## Deprecated Features
-The following features are deprecated in the AMD ROCm v2.10 release. 
+The following features are deprecated in the AMD ROCm v3.0 release. 
 
-### ROCm OpenCL Driver Compilation Services
-The AMD ROCm-OpenCL-Driver Compilation Services is now deprecated. Users should migrate to ROCm-CompilerSupport, which provides more comprehensive functionality. The compiler support repository provides various lightning compiler-related services. It currently contains a single library, the Code Object Manager (Comgr) at lib/comgr.
+### SCGEMM Convolution Algorithm
+The SCGEMM convolution algorithm is now disabled by default. This algorithm is deprecated and will be removed in future releases.
 
-ROCm-OpenCL-Driver Compilation Services will no longer be actively maintained after the v2.10 release. We would encourage you to switch to the ROCm-CompilerSupport repository.
+### Text-Based Performance Database
+An SQLite database has been added to replace the text-based performance database. While the text file still exists, by default, SQLite is used over the text-based performance database. The text-based performance database support is deprecated and will be removed in the next release.
 
-### Peer-to-Peer Bridge Driver for PeerDirect
-The Peer-to-Peer bridge driver for the PeerDirect feature still works in the current release, however, it is now included as part of the ROCk kernel driver. ROCmRDMA allows third-party kernel drivers to utilize DMA access to the GPU memory. It allows a direct path for data exchange (peer-to-peer) using the standard features of PCI Express.
-
-Currently, ROCmRDMA provides the following benefits:
-
-•	Direct access to ROCm memory for 3rd party PCIe devices
-
-•	Support for PeerDirect(c) interface to offloads the CPU when dealing with ROCm memory for RDMA network stacks
 
 ## Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v2.10x packages. 
+AMD hosts both Debian and RPM repositories for the ROCm v3.0.x packages. 
 
-The following directions show how to install ROCm on supported Debian-based systems such as Ubuntu 18.04. 
+The following directions show how to install ROCm on supported Debian-based systems such as Ubuntu 18.04.x. 
 
 Note: These directions may not work as written on unsupported Debian-based distributions. For example, newer versions of Ubuntu may not be compatible with the rock-dkms kernel driver. In this case, you can exclude the rocm-dkms and rock-dkms packages.
 
