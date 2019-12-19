@@ -95,15 +95,15 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 ## What\'s New in This Release
 
 ### Support for CentOS RHEL v7.7 
-Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:[CentOS/RHEL](https://centos.org/forums/viewtopic.php?t=71657)
+Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:
 
+[CentOS/RHEL](https://centos.org/forums/viewtopic.php?t=71657)
 
 
 ### Initial distribution of AOMP 0.75 in ROCm v3.0
-The source code base for this release of AOMP is the Clang/LLVM 9.0 sources as of October 8th, 2019. The LLVM-project branch used to build this release is AOMP-191008. It is now locked. With this release, an artifact tarball of the entire source tree is created. This tree includes a Makefile in the root directory used to build AOMP from the release tarball. You can use Spack to build AOMP from this source tarball or build manually without Spack.
+The code base for this release of AOMP is the Clang/LLVM 9.0 sources as of October 8th, 2019. The LLVM-project branch used to build this release is AOMP-191008. It is now locked. With this release, an artifact tarball of the entire source tree is created. This tree includes a Makefile in the root directory used to build AOMP from the release tarball. You can use Spack to build AOMP from this source tarball or build manually without Spack.
 
 For more information about AOMP 0.7-5, see: [AOMP](https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.0.0)
-
 
 
 ### Fast Fourier Transform Updates
