@@ -219,7 +219,7 @@ The following features are deprecated in the AMD ROCm v3.0 release.
 The SCGEMM convolution algorithm is now disabled by default. This algorithm is deprecated and will be removed in future releases.
 
 ### Text-Based Performance Database
-An SQLite database has been added to replace the text-based performance database. While the text file still exists, by default, SQLite is used over the text-based performance database. The text-based performance database support is deprecated and will be removed in the next release.
+An SQLite database has been added to replace the text-based performance database. While the text file still exists, by default, SQLite is used over the text-based performance database. The text-based performance database support is deprecated and will be removed in a future release.
 
 
 ## Deploying ROCm
@@ -317,10 +317,10 @@ To uninstall the ROCm packages from Ubuntu 1v6.04 or Ubuntu v18.04.x, run the fo
 	sudo apt autoremove rocm-dkms rocm-dev rocm-utils
 
 
-### Installing Development Packages for Cross Compilation
-It is recommended that you develop and test development packages on different systems. For example, some development or build systems may not have an AMD GPU installed. In this scenario, you must avoid installing the ROCk kernel driver on the development system. 
+### Installing Development Applications for Cross Compilation
+It is recommended that you develop and test applications on different systems. For example, some development or build systems may not have an AMD GPU installed. In this scenario, you must avoid installing the ROCk kernel driver on the development system. 
 
-Instead, install the following development subset of packages:
+Instead, install the following development subset of applications:
 
 	sudo apt update
 	sudo apt install rocm-dev
@@ -469,7 +469,7 @@ You can install ROCm user-level software without installing AMD's custom ROCk ke
 	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"'  
 	sudo tee /etc/udev/rules.d/70-kfd.rules
 	
-Note: You can use this command instead of installing rocm-dkms.
+Note: You can use these commands instead of installing rocm-dkms.
 
 
 ### ROCm Installation - Known Issues and Workarounds 
