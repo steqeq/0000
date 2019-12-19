@@ -20,8 +20,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
    * [Installation Issue with Red Hat Enterprise Linux v77](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v77)
    * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)   
    * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)   
-   * [OpenCL Kernel Compile Error](#OpenCL-Kernel-Compile-Error)
-   
+      
 - [Deprecated Features](#Deprecated-Features)
 
   [MIOpen](#MIOpen)
