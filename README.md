@@ -11,7 +11,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [Support for CentOS/RHEL v7.7 ](#Support-for-CentOS/RHEL-v7.7)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#Initial-distribution-of-AOMP-0.7-5-in-ROCm-v3.0)
   * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
-  * [Fast Fourier Transform Updates](#MemCopy-Enhancement-for-rocProf)
+  * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
   
 - [Fixed Issues](#Fixed-Issues)
    * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault Error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access-Fault-Error)
