@@ -1,4 +1,4 @@
-# AMD ROCm Release Notes v2.10
+# AMD ROCm Release Notes v3.0
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues and deprecated features in the ROCm v2.10 release.
 
@@ -58,17 +58,18 @@ You can access the latest supported version of drivers, tools, libraries, and so
 https://github.com/RadeonOpenCompute/ROCm
 
 ### Supported Operating Systems
-The ROCm v2.10.x platform is designed to support the following operating systems:
+The ROCm v3.0.x platform is designed to support the following operating systems:
 
 •	SLES 15 SP1 
 
 •	Ubuntu 16.04.6(Kernel 4.15) and 18.04.3(Kernel 5.0)
 
-•	CentOS 7.6 (Using devtoolset-7 runtime support)
+•	CentOS v7.7 (Using devtoolset-7 runtime support)
 
-•	RHEL 7.6 (Using devtoolset-7 runtime support)
+•	RHEL v7.7 (Using devtoolset-7 runtime support)
 
-For details about deploying the ROCm v2.10.x on these operating systems, see the Deploying ROCm section later in the document.
+
+For details about deploying the ROCm v3.0.x on these operating systems, see the Deploying ROCm section later in the document.
 
 ### Important ROCm Links
 
@@ -85,76 +86,35 @@ https://rocm.github.io/install_issues.html
 
 •	Instructions to install PyTorch after ROCm is installed – https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html#pytorch
 
-Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
+Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
 
 ## Whats New in This Release
 
-### rocBLAS Support for Complex GEMM
-The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
+### Support for CentOS/RHEL v7.7 
+Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:
 
-In the AMD ROCm release v2.10, support is extended to the General Matrix Multiply (GEMM) routine for multiple small matrices processed simultaneously for rocBLAS in AMD Radeon Instinct MI50.  Both single and double precision, CGEMM and ZGEMM, are now supported in rocBLAS.
+https://centos.org/forums/viewtopic.php?t=71657
 
-### Support for SLES 15 SP1
-In the AMD ROCm v2.10 release, support is added for SUSE Linux® Enterprise Server (SLES) 15 SP1. SLES is a modular operating system for both multimodal and traditional IT.
+### Initial distribution of AOMP 0.7-5 in ROCm v3.0
+The source code base for this release of AOMP is the Clang/LLVM 9.0 sources as of October 8th, 2019. The LLVM-project branch used to build this release is AOMP-191008. It is now locked. With this release, an artifact tarball of the entire source tree is created. This tree includes a Makefile in the root directory used to build AOMP from the release tarball. You can use Spack to build AOMP from this source tarball or build manually without Spack.
 
-Note: The SUSE Linux® Enterprise Server is a licensed platform. Ensure you have registered and have a license key prior to installation. Use the following SUSE command line to apply your license:
-SUSEConnect -r < Key>
+For more information about AOMP 0.7-5, see 
 
-#### SLES 15 SP1 
-The following section tells you how to perform an install and uninstall ROCm on SLES 15 SP 1. 
-Run the following commands once for a fresh install on the operating system:
+https://github.com/ROCm-Developer-Tools/aomp/releases/tag/rel_0.7-5
 
-	sudo usermod -a -G video  $LOGNAME
-	sudo usermod  -a -G sudo $LOGNAME
-	sudo reboot
+### Fast Fourier Transform Updates
+The Fast Fourier Transform (FFT) is an efficient algorithm for computing the Discrete Fourier Transform. Fast Fourier transforms are used in signal processing, image processing, and many other areas. The following real FFT performance change is made in the ROCm v3.0 release:
+•	Implement efficient real/complex 2D transforms for even lengths.
 
-Installation
-1. Install the "dkms" package.
+Other improvements:
+•	More 2D test coverage sizes.
+•	Fix buffer allocation error for large 1D transforms.
+•	C++ compatibility improvements.
 
-		sudo SUSEConnect --product PackageHub/15.1/x86_64
-		sudo zypper install dkms
-	
-2. Add the ROCm repo.
-
-		sudo zypper clean --all
-		sudo zypper addrepo --no-gpgcheck http://repo.radeon.com/rocm/zyp/zypper/ rocm 
-		sudo zypper ref
-		zypper install rocm-dkms
-		sudo zypper install rocm-dkms
-		sudo reboot
-
-#Run the following command once
-
-	cat <<EOF | sudo tee /etc/modprobe.d/10-unsupported-modules.conf
- 	allow_unsupported_modules 1
-	EOF
-	sudo modprobe amdgpu
-	
-3. Verify the ROCm installation.
-
-Run /opt/rocm/bin/rocminfo and /opt/rocm/opencl/bin/x86_64/clinfo commands to list the GPUs and verify that the ROCm installation is successful.
-
-Uninstallation
-
-To uninstall, use the following command:
-
-	sudo zypper remove rocm-dkms rock-dkms
-	
-#Ensure all other installed packages/components are removed
-
-Note: Ensure all the content in the /opt/rocm directory is completely removed.
-
-
-### Code Marker Support for rocProfiler and rocTracer Libraries
-Code markers provide the external correlation ID for the calling thread. This function indicates that the calling thread is entering and leaving an external API region.
-
-• The rocProfiler library enables you to profile performance counters and derived metrics. This library supports GFX8/GFX9 and provides a hardware-specific low-level performance analysis interface for profiling of GPU compute applications. The profiling includes hardware performance counters with complex performance metrics.
-
-• The rocTracer library provides a specific runtime profiler to trace API and asynchronous activity. The API provides functionality for registering the runtimes API callbacks and the asynchronous activity records pool support.
-
-• rocTX provides a C API for code markup for performance profiling and supports annotation of code ranges and ASCII markers.
-
+### MemCopy Enhancement for rocProf
+In the v3.0 release, the rocProf tool is enhanced with an additional capability to dump asynchronous GPU memcopy information into a .csv file. You can use the '-hsa-trace' option to create the results_mcopy.csv file.
+Future enhancements will include column labels.
 
 ## Fixed Issues
 Fixed Issues in the v2.10 Release
