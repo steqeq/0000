@@ -22,7 +22,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
    * [Work Queue Issue Causes CPU to Freeze](#Work-Queue-Issue-Causes-CPU-to-Freeze)
    * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)
    * [Disappearing GPUs from PCIe BUS in xGMI Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-xGMI-Configurations)
-   * 
+   * [OpenCL Kernel Compile Error](#OpenCL-Kernel-Compile-Error)
    
 - [Deprecated Features](#Deprecated-Features)
 
