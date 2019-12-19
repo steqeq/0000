@@ -18,10 +18,8 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
  
  - [Known Issues](#Known-Issues)
    * [Installation Issue with Red Hat Enterprise Linux v77](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v77)
-   * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)
-   * [Work Queue Issue Causes CPU to Freeze](#Work-Queue-Issue-Causes-CPU-to-Freeze)
-   * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)
-   * [Disappearing GPUs from PCIe BUS in Infinity Fabric Link Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-Infinity-Fabric-Link-Configurations)
+   * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)   
+   * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)   
    * [OpenCL Kernel Compile Error](#OpenCL-Kernel-Compile-Error)
    
 - [Deprecated Features](#Deprecated-Features)
@@ -194,11 +192,6 @@ Repository 'rhel-7-server-optional-rpms' is enabled for this system.
 
 <i>alias python=python3.6</i>
 
-### Work Queue Issue Causes CPU to Freeze
-
-<b>Issue</b>: Workqueues are used to schedule actions to run in process context. They allow users to define tasks, submit them to the queue, and wait for completion. In this instance, the work queue schedules the work on the same CPU on which the interrupt handler is running. When there are many pending interrupts, the CPU takes longer to initiate work queues and, in some cases, results in freezing the CPU.
-
-<b>Resolution</b>: This is a known issue and will be fixed in a future release.
 
 ### gpuOwl Fails with Memory Access Fault Error
 
@@ -207,18 +200,6 @@ Repository 'rhel-7-server-optional-rpms' is enabled for this system.
 Note, the issue is noticed only when using higher PRP values. 
 
 <b>Resolution</b>: As a workaround, you may use lower PRP values. This issue is under investigation and will be fixed in a future release.
-
-### Disappearing GPUs from PCIe BUS in Infinity Fabric Link Configurations
-
-<b>Issue</b>: TensorFlow workloads may cause GPUs to disappear from PCIe BUS in Infinity Fabric Link configurations. 
-
-<b>Resolution</b>: This issue is under investigation and will be fixed in a future release.
-
-### OpenCL Kernel Compile Error
-
-<b>Issue</b>: The OpenCL applications Luxmark and Blender fail with a kernel compile error. 
-
-<b>Resolution</b>: This issue is under investigation and will be fixed in a future release.
 
 ## Deprecated Features
 The following features are deprecated in the AMD ROCm v3.0 release. 
