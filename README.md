@@ -22,6 +22,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
    * [Work Queue Issue Causes CPU to Freeze](#Work-Queue-Issue-Causes-CPU-to-Freeze)
    * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)
    * [Disappearing GPUs from PCIe BUS in xGMI Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-xGMI-Configurations)
+   * 
    
 - [Deprecated Features](#Deprecated-Features)
 
@@ -213,6 +214,11 @@ Note, the issue is noticed only when using higher PRP values.
 
 <b>Resolution</b>: This issue is under investigation and will be fixed in a future release.
 
+### OpenCL Kernel Compile Error
+
+<b>Issue</b>: The OpenCL applications Luxmark and Blender fail with a kernel compile error. 
+
+<b>Resolution</b>: This issue is under investigation and will be fixed in a future release.
 
 ## Deprecated Features
 The following features are deprecated in the AMD ROCm v3.0 release. 
