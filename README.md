@@ -421,7 +421,7 @@ Note: All future users must be added to the "video" group by default. To add the
 	echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
 	echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
 
-Note: The current release supports CentOS/RHEL v7.6. Before updating to the latest version of the operating system, delete the ROCm packages to avoid DKMS-related issues.
+Note: The current release supports CentOS/RHEL v7.7. Before updating to the latest version of the operating system, delete the ROCm packages to avoid DKMS-related issues.
 
 3. Restart the system.
 
@@ -606,11 +606,11 @@ from the list provided above for compatibility purposes.
 
 ### Supported Operating Systems - New operating systems available
 
-The ROCm 2.9.x platform supports the following operating systems:
+The ROCm 3.0.x platform supports the following operating systems:
 
  * Ubuntu 16.04.5(Kernel 4.15) and 18.04.3(Kernel 4.15 and Kernel 4.18)
- * CentOS 7.6 (Using devtoolset-7 runtime support)
- * RHEL 7.6 (Using devtoolset-7 runtime support)
+ * CentOS 7.7 (Using devtoolset-7 runtime support)
+ * RHEL 7.7 (Using devtoolset-7 runtime support)
 
 #### ROCm support in upstream Linux kernels
 
