@@ -8,9 +8,10 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [Important ROCm Links](#Important-ROCm-Links)
   
 - [Whats New in This Release](#Whats-New-in-This-Release)
-  * [rocBLAS Support for Complex GEMM](#rocBLAS-Support-for-Complex-GEMM)
-  * [Support for SLES 15 SP1](#Support-for-SLES-15-SP1)
-  * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
+  * [Support for CentOS/RHEL v7.7 ](#Support-for-CentOS/RHEL-v7.7)
+  * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#Initial-distribution-of-AOMP-0.7-5-in-ROCm-v3.0)
+  * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
+  * [Fast Fourier Transform Updates](#MemCopy-Enhancement-for-rocProf)
   
 - [Fixed Issues](#Fixed-Issues)
    * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault Error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access-Fault-Error)
@@ -105,11 +106,15 @@ https://github.com/ROCm-Developer-Tools/aomp/releases/tag/rel_0.7-5
 
 ### Fast Fourier Transform Updates
 The Fast Fourier Transform (FFT) is an efficient algorithm for computing the Discrete Fourier Transform. Fast Fourier transforms are used in signal processing, image processing, and many other areas. The following real FFT performance change is made in the ROCm v3.0 release:
+
 •	Implement efficient real/complex 2D transforms for even lengths.
 
 Other improvements:
+
 •	More 2D test coverage sizes.
+
 •	Fix buffer allocation error for large 1D transforms.
+
 •	C++ compatibility improvements.
 
 ### MemCopy Enhancement for rocProf
