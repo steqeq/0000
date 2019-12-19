@@ -764,13 +764,8 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-3.0.0)
   - ROCm OpenCL, which is created from the following components:
     - [ROCm OpenCL Runtime](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/tree/roc-3.0.0)
-    - [ROCm OpenCL Driver](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver/tree/roc-3.0.0)
-  - The ROCm OpenCL compiler, which is created from the following components:
-      - [ROCm LLVM OCL](http://github.com/RadeonOpenCompute/llvm/tree/roc-ocl-3.0.0)
-      - [ROCm LLVM HCC](http://github.com/RadeonOpenCompute/llvm/tree/roc-hcc-3.0.0)
-      - [ROCm Clang](http://github.com/RadeonOpenCompute/clang/tree/roc-3.0.0)
-      - [ROCm lld OCL](http://github.com/RadeonOpenCompute/lld/tree/roc-ocl-3.0.0)
-      - [ROCm lld HCC](http://github.com/RadeonOpenCompute/lld/tree/roc-hcc-3.0.0)
+     - The ROCm OpenCL compiler, which is created from the following components:
+      - [ROCm LLVM OCL](http://github.com/RadeonOpenCompute/llvm-project/tree/roc-ocl-3.0.0)                
       - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-ocl-3.0.0)
   - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-3.0.0)
   - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/rocm_3.0.0)
