@@ -794,6 +794,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/3.0.0)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.5)
   - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/3.0.0)
+  - [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphx/tree/0.5-hip-hcc)
 
 
 Features and enhancements introduced in previous versions of ROCm can be found in [version_history.md](version_history.md)
