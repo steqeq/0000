@@ -17,8 +17,11 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
    * [MIGraph v0.5 Graph Optimizer](#MIGraph-v0.5-Graph-Optimizer)
  
  - [Known Issues](#Known-Issues)
-   * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
-   * [Workaround for Tracer Library Fails to Load on RHEL](#Workaround-for-Tracer-Library-Fails-to-Load-on-RHEL)
+   * [Installation Issue with Red Hat Enterprise Linux v7.7](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v7.7)
+   * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)
+   * [Work Queue Issue Causes CPU to Freeze](#Work-Queue-Issue-Causes-CPU-to-Freeze)
+   * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)
+   * [Disappearing GPUs from PCIe BUS in xGMI Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-xGMI-Configurations)
    
 - [Deprecated Features](#Deprecated-Features)
   * [ROCm OpenCL Driver Compilation Services](#ROCm-OpenCL-Driver-Compilation-Services)
@@ -143,6 +146,69 @@ For servers, use
 
 <i>rhel-7-server-optional-rpms</i>
 
+<b>To install </b>
+
+<i>$sudo subscription-manager repos --enable=rhel-7-workstation-optional-rpms</i>
+
+|| You will see the following message:
+
+Repository 'rhel-7-workstation-optional-rpms' is enabled for this system.
+
+|| If the following error message appears,
+
+<i>Error: 'rhel-7-workstation-optional-rpms' does not match a valid repository ID. Use "subscription-manager repos --list" to see valid repositories.</i>
+
+|| Use
+
+<i>$sudo subscription-manager repos --enable=rhel-7-server-optional-rpms</i>
+
+|| You will see the following message:
+
+Repository 'rhel-7-server-optional-rpms' is enabled for this system.
+
+### Error While Running rocProfiler on SLES
+
+<b>Issue</b>: Running rocprofiler: hip/hsa trace results in the following error. Note, this issue is noticed only on SLES.
+
+<i>ImportError: No module named sqlite3 </i>
+
+<b>Resolution</b>: The following workarounds are recommended:
+
+<b>Workaround 1</b>
+
+1. Run the following command
+
+<i>sudo vi /opt/rocm/bin/rocprof </i>
+
+2. Change Python to Python3.6. 
+
+3. Save and run the test again.  
+
+<b>Workaround 2:</b>
+
+• Run the following command:
+
+<i>alias python=python3.6</i>
+
+### Work Queue Issue Causes CPU to Freeze
+
+<b>Issue</b>: Workqueues are used to schedule actions to run in process context. They allow users to define tasks, submit them to the queue, and wait for completion. In this instance, the work queue schedules the work on the same CPU on which the interrupt handler is running. When there are many pending interrupts, the CPU takes longer to initiate work queues and, in some cases, results in freezing the CPU.
+
+<b>Resolution</b>: This is a known issue and will be fixed in a future release.
+
+### gpuOwl Fails with Memory Access Fault Error
+
+<b>Issue</b>: gpuOwL is an OpenCL-based program for testing Mersenne numbers for primality. Currently, running gpuOwl for higher probable prime (PRP) values results in a Memory Access Fault error. 
+
+Note, the issue is noticed only when using higher PRP values. 
+
+<b>Resolution</b>: As a workaround, you may use lower PRP values. This issue is under investigation and will be fixed in a future release.
+
+### Disappearing GPUs from PCIe BUS in xGMI Configurations
+
+<b>Issue</b>: TensorFlow workloads may cause GPUs to disappear from PCIe BUS in xGMI configurations. 
+
+<b>Resolution</b>: This issue is under investigation and will be fixed in a future release.
 
 
 ## Deprecated Features
