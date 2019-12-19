@@ -473,12 +473,6 @@ Note: You can use this command instead of installing rocm-dkms.
 
 
 ### ROCm Installation - Known Issues and Workarounds 
-#### Docker container environment variable setting
-
-Issue: Applications fail when a Docker container is launched on a NUMA system without --security-opt seccomp=unconfined. 
-
-Resolution: Set "--security-opt seccomp=unconfined" to fix this issue.
-
 #### Closed source components
 The ROCm platform relies on some closed source components to provide functionalities like HSA image support. These components are only available through the ROCm repositories, and they may be deprecated or become open source components in the future. These components are made available in the following packages:
 
