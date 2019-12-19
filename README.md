@@ -760,8 +760,8 @@ The latest supported version of the drivers, tools, libraries and source code fo
   
 #### ROCm Development ToolChains
   - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-3.0.0)
-  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.10.0)
-  - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-3.10.0)
+  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-3.0.0)
+  - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-3.0.0)
   - ROCm OpenCL, which is created from the following components:
     - [ROCm OpenCL Runtime](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/tree/roc-3.0.0)
     - [ROCm OpenCL Driver](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver/tree/roc-3.0.0)
