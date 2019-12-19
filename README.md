@@ -94,7 +94,7 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## Whats New in This Release
 
-### Support for CentOS RHEL v77 
+### Support for CentOS RHEL v7.7 
 Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:
 
 https://centos.org/forums/viewtopic.php?t=71657
