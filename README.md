@@ -14,7 +14,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
   
 - [Fixed Issues](#Fixed-Issues)
-   * [MIGraph v0.5 Graph Optimizer](#MIGraph-v0.5-Graph-Optimizer)
+   * [MIGraph v05 Graph Optimizer](#MIGraph-v0.5-Graph-Optimizer)
  
  - [Known Issues](#Known-Issues)
    * [Installation Issue with Red Hat Enterprise Linux v77](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v77)
