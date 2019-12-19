@@ -775,6 +775,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-3.0.x)
   - [AOMP](https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.0.0)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/3a49405)
+  - [ROCmValidationSuite](https://github.com/ROCm-Developer-Tools/ROCmValidationSuite/tree/roc-3.0.0)
   - Example Applications:
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
     - [HIP Examples](https://github.com/ROCm-Developer-Tools/HIP-Examples/tree/roc-3.0.0)
