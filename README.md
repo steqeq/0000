@@ -119,8 +119,7 @@ Other improvements:
 In the v3.0 release, the rocProf tool is enhanced with an additional capability to dump asynchronous GPU memcopy information into a .csv file. You can use the '-hsa-trace' option to create the results_mcopy.csv file.
 Future enhancements will include column labels.
 
-## Fixed Issues
-Fixed Issues in the v3.0 Release
+## Fixed Issues in This Release
 ### MIGraph v0.5 Graph Optimizer 
 The ROCm v3.0 release consists of performance updates and minor bug fixes for the MIGraphX graph optimizer. 
 For more information, see 
@@ -128,30 +127,22 @@ For more information, see
 https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki/Getting-started:-using-the-new-features-of-MIGraphX-0.5
 
 
-## Known Issues
-### Memory Access Fault Error While Running RCCL in Docker Container
-Issue: The Memory Access Fault error appears while running ROCm Communication Collectives Library (RCCL) tests in the Docker container.
+## Known Issues in This Release
+### Installation Issue with Red Hat Enterprise Linux v7.7
+<b>Issue</b>: ROCm installation fails on Red Hat Enterprise Linux (RHEL) v7.7.
 
-Resolution: While launching the Docker container to run tests related to RCCL, including PyTorch, increase the size limit for the shared memory (SHM) directory to 1 GB. To increase the size limit of the shared memory directory, enter:
+<b>Resolution</b>: Ensure the following repo is installed and available prior to installing ROCm on RHEL v7.7:
 
-	“--shm-size = 1G”
+<b>Note</b>: 
 
-By default, Docker uses only16 MB of shared memory. Running a Docker container for RCCL requires you to resize the limit to 1 GB.
+For workstations, use
 
-### Workaround for Tracer Library Fails to Load on RHEL
-Issue: When running /opt/rocm/bin/rocprof --hip-trace <output filename>, a warning message is printed to console: "Tool lib "/opt/rocm/roctracer/tool/libtracer_tool.so" failed to load", and no output file is generated, on systems with RHEL distro.
+<i>rhel-7-workstation-optional-rpms</i>
 
-Resolution: You can use either of the following workarounds to fix the issue:
+For servers, use
 
-• Run Idconfig
+<i>rhel-7-server-optional-rpms</i>
 
-	'SUDO LDCONFIG' 
-
- or 
- 
-• Configure LD_LIBRARY_PATH  
-
-	'EXPORT LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/OPT/ROCM/ROCTRACER/LIB'
 
 
 ## Deprecated Features
