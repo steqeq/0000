@@ -104,7 +104,7 @@ The source code base for this release of AOMP is the Clang/LLVM 9.0 sources as o
 
 For more information about AOMP 0.7-5, see 
 
-https://github.com/ROCm-Developer-Tools/aomp/releases/tag/rel_0.7-5
+https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.0.0
 
 ### Fast Fourier Transform Updates
 The Fast Fourier Transform (FFT) is an efficient algorithm for computing the Discrete Fourier Transform. Fast Fourier transforms are used in signal processing, image processing, and many other areas. The following real FFT performance change is made in the ROCm v3.0 release:
