@@ -254,7 +254,9 @@ To install from a Debian Repository:
    
       	wget -q0 – http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
 
-      	sudo apt-key add -echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
+      	sudo apt-key add -echo 'deb [arch=amd64] 
+	
+	http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
 
       	sudo tee /etc/apt/sources.list.d/rocm.list
       
@@ -310,7 +312,7 @@ https://rocm.github.io/install_issues.html
 
 
 ### Uninstalling ROCm Packages from Ubuntu 
-To uninstall the ROCm packages from Ubuntu 1v6.04 or Ubuntu v18.04, run the following command:
+To uninstall the ROCm packages from Ubuntu 1v6.04 or Ubuntu v18.04.x, run the following command:
 
 	sudo apt autoremove rocm-dkms rocm-dev rocm-utils
 
@@ -338,16 +340,12 @@ You can install the ROCm user-level software without installing the AMD's custom
 
 ## CentOS RHEL 
 
-This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.6. 
-
-Note: The following instructions may not work on unsupported RPM-based distributions. For example, Fedora may not be compatible with the rock-dkms kernel driver. You can exclude the rocm-dkms and rock-dkms packages and use the upstream kernel driver instead.
-
-Note: Although support for CentOS/RHEL v7 was added in ROCm v1.8, ROCm requires a special runtime environment provided by the RHEL Software Collections and additional dkms support packages to install and run correctly.
+This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.7. 
 
 For more details, refer:
 https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
 
-### Preparing RHEL v7 (7.6) for Installation
+### Preparing RHEL v7 (7.7) for Installation
 RHEL is a subscription-based operating system. You must enable the external repositories to install on the devtoolset-7 environment and the dkms support files. 
 
 Note: The following steps do not apply to the CentOS installation.
@@ -376,9 +374,9 @@ https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
 Note: devtoolset-7 is a software collections package and is not supported by AMD.
 
-### Installing CentOS/RHEL (v7.6) for DKMS
+### Installing CentOS/RHEL (v7.7) for DKMS
 
-Use the dkms tool to install the kernel drivers on CentOS/RHEL v7.6:
+Use the dkms tool to install the kernel drivers on CentOS/RHEL v7.7:
 
 	sudo yum install -y epel-release
 	sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
@@ -452,7 +450,7 @@ To compile applications or samples, run the following command to use gcc-7.2 pro
 
 	scl enable devtoolset-7 bash
 
-### Uninstalling ROCm from CentOS/RHEL v7.6
+### Uninstalling ROCm from CentOS/RHEL v7.7
 To uninstall the ROCm packages, run the following command:
 
 	sudo yum autoremove rocm-dkms rock-dkms
@@ -511,7 +509,6 @@ Note: Using this sample code will cause the repo to download the open source cod
 
 ### Building the ROCm Source Code
 Each ROCm component repository contains directions for building that component. You can access the desired component for instructions to build the repository.
-
 
 
 ### Hardware and Software Support
