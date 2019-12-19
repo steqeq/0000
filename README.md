@@ -21,7 +21,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
    * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)
    * [Work Queue Issue Causes CPU to Freeze](#Work-Queue-Issue-Causes-CPU-to-Freeze)
    * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)
-   * [Disappearing GPUs from PCIe BUS in xGMI Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-xGMI-Configurations)
+   * [Disappearing GPUs from PCIe BUS in Infinity Fabric Link Configurations](#Disappearing-GPUs-from-PCIe-BUS-in-Infinity-Fabric-Link-Configurations)
    * [OpenCL Kernel Compile Error](#OpenCL-Kernel-Compile-Error)
    
 - [Deprecated Features](#Deprecated-Features)
