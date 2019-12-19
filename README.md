@@ -215,10 +215,12 @@ Note, the issue is noticed only when using higher PRP values.
 ## Deprecated Features
 The following features are deprecated in the AMD ROCm v3.0 release. 
 
-### SCGEMM Convolution Algorithm
+### MIOpen
+
+#### SCGEMM Convolution Algorithm
 The SCGEMM convolution algorithm is now disabled by default. This algorithm is deprecated and will be removed in future releases.
 
-### Text-Based Performance Database
+#### Text-Based Performance Database
 An SQLite database has been added to replace the text-based performance database. While the text file still exists, by default, SQLite is used over the text-based performance database. The text-based performance database support is deprecated and will be removed in a future release.
 
 
