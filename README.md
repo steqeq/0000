@@ -198,7 +198,7 @@ Repository 'rhel-7-server-optional-rpms' is enabled for this system.
 
 Note, the issue is noticed only when using higher PRP values. 
 
-<b>Resolution</b>: As a workaround, you may use lower PRP values. This issue is under investigation and will be fixed in a future release.
+<b>Resolution</b>: As a workaround, you may use lower PRP values. 
 
 ## Deprecated Features
 The following features are deprecated in the AMD ROCm v3.0 release. 
