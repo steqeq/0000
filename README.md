@@ -17,7 +17,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
    * [MIGraph v0.5 Graph Optimizer](#MIGraph-v0.5-Graph-Optimizer)
  
  - [Known Issues](#Known-Issues)
-   * [Installation Issue with Red Hat Enterprise Linux v7.7](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v7.7)
+   * [Installation Issue with Red Hat Enterprise Linux v77](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v77)
    * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)
    * [Work Queue Issue Causes CPU to Freeze](#Work-Queue-Issue-Causes-CPU-to-Freeze)
    * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)
