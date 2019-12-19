@@ -7,7 +7,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
   * [Supported Operating Systems](#Supported-Operating-Systems)
   * [Important ROCm Links](#Important-ROCm-Links)
   
-- [Whats New in This Release](#Whats-New-in-This-Release)
+- [What\'s New in This Release](#Whats-New-in-This-Release)
   * [Support for CentOS RHEL v77](#Support-for-CentOS-RHEL-v77)
   * [Initial distribution of AOMP 075 in ROCm v30](#Initial-distribution-of-AOMP-075-in-ROCm-v30)
   * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
@@ -92,7 +92,7 @@ https://rocm.github.io/install_issues.html
 Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
 
-## Whats New in This Release
+## What\'s New in This Release
 
 ### Support for CentOS RHEL v7.7 
 Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:[CentOS/RHEL](https://centos.org/forums/viewtopic.php?t=71657)
