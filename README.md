@@ -1,6 +1,6 @@
 # AMD ROCm Release Notes v3.0
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
-It also covers known issues and deprecated features in the ROCm v2.10 release.
+It also covers known issues and deprecated features in the ROCm v3.0 release.
 
 - [What Is ROCm?](#What-Is-ROCm)
   * [ROCm Components](#ROCm-Components)
@@ -46,7 +46,8 @@ Note: You can also clone the source code for individual ROCm components from the
 
 
 ### ROCm Components
-The following components for the ROCm platform are released and available for the v2.10 release:
+The following components for the ROCm platform are released and available for the v3.0
+release:
 
 • Drivers
 
@@ -503,7 +504,7 @@ The following example shows how to use the repo binary to download the ROCm sour
 
 	mkdir -p ~/ROCm/
 	cd ~/ROCm/
-	~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-2.10.0
+	~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-3.0.0
 	repo sync
 
 Note: Using this sample code will cause the repo to download the open source code associated with this ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download.
@@ -657,7 +658,7 @@ The releases of the upstream Linux kernel support the following GPUs in ROCm:
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
-ROCm Version 2.10
+ROCm Version 3.0
 
 ### ROCm Binary Package Structure
 
