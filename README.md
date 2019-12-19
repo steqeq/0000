@@ -205,9 +205,9 @@ Note, the issue is noticed only when using higher PRP values.
 
 <b>Resolution</b>: As a workaround, you may use lower PRP values. This issue is under investigation and will be fixed in a future release.
 
-### Disappearing GPUs from PCIe BUS in xGMI Configurations
+### Disappearing GPUs from PCIe BUS in Infinity Fabric Link Configurations
 
-<b>Issue</b>: TensorFlow workloads may cause GPUs to disappear from PCIe BUS in xGMI configurations. 
+<b>Issue</b>: TensorFlow workloads may cause GPUs to disappear from PCIe BUS in Infinity Fabric Link configurations. 
 
 <b>Resolution</b>: This issue is under investigation and will be fixed in a future release.
 
