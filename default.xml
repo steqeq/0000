@@ -60,11 +60,12 @@
     <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/rocm-3.0" />
     <project name="MIOpenGEMM" remote="rocm-swplat" revision="6275a879995b58a6e0b8cca7b1ad8421a5e02ade" />
     <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/roc-3.0.0" />
-    <project name="rocm_smi_lib" />
+    <project name="rocm_smi_lib" remote="roc-github" revision="refs/tags/roc.3.0.0" />
     <project name="rccl" remote="rocm-swplat" revision="refs/tags/3.0.0" />
     <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.5" />
     <project name="rocThrust" remote="rocm-swplat" revision="refs/tags/3.0.0" />
     <project name="hipCUB" remote="rocm-swplat" revision="refs/tags/3.0.0" />
     <project name="rocPRIM" remote="rocm-swplat" revision="refs/tags/3.0.0" />
+    <project name="AMDMIGraphX" remote="rocm-swplat" revision="0.5-hip-hcc" />
 
 </manifest>
