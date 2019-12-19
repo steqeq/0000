@@ -14,9 +14,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
   
 - [Fixed Issues](#Fixed-Issues)
-   * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault Error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access-Fault-Error)
-   * [Issue with the Docker Container Environment Variable Setting](#Issue-with-the-Docker-Container-Environment-Variable-Setting)
-   * [Printf Functionality in ROCm Re-Enabled](#Printf-functionality-in-ROCm-Re-Enabled)
+   * [MIGraph v0.5 Graph Optimizer](#MIGraph-v0.5-Graph-Optimizer)
  
  - [Known Issues](#Known-Issues)
    * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
@@ -122,19 +120,13 @@ In the v3.0 release, the rocProf tool is enhanced with an additional capability 
 Future enhancements will include column labels.
 
 ## Fixed Issues
-Fixed Issues in the v2.10 Release
-### Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault Error 
-Issue: Running the TensorFlow and PyTorch frameworks in quick succession results in a Memory Access Fault error.
+Fixed Issues in the v3.0 Release
+### MIGraph v0.5 Graph Optimizer 
+The ROCm v3.0 release consists of performance updates and minor bug fixes for the MIGraphX graph optimizer. 
+For more information, see 
 
-Resolution: This issue is resolved, and the error no longer appears.
+https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki/Getting-started:-using-the-new-features-of-MIGraphX-0.5
 
-### Issue with the Docker Container Environment Variable Setting
-Issue: Applications fail when the docker container is launched on the NUMA system without the ‘security-opt seccomp=unconfined’ setting.
-
-Resolution: Configure the “–security-opt seccomp=unconfined” variable setting to avoid this issue.
-
-### Printf Functionality in ROCm Re-Enabled
-Known issues with hc:printf have been addressed in ROCm v2.10. The hc:printf functionality has now been re-enabled on all supported distros.
 
 ## Known Issues
 ### Memory Access Fault Error While Running RCCL in Docker Container
