@@ -2,7 +2,7 @@
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
 ### Current ROCm Version: 2.10
-- [New features and enhancements in ROCm 2.10](#new-features-and-enhancements-in-rocm-210)
+- [New features and enhancements in ROCm v2.10](#new-features-and-enhancements-in-rocm-v210)
 - [New features and enhancements in ROCm 2.9](#new-features-and-enhancements-in-rocm-29)
 - [New features and enhancements in ROCm 2.8](#new-features-and-enhancements-in-rocm-28)
 - [New features and enhancements in ROCm 2.7.2](#new-features-and-enhancements-in-rocm-272)
