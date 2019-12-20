@@ -9,7 +9,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [Support for CentOS RHEL v7.7](#centos-anchor)
-  * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#Initial-distribution-of-AOMP-0\.7\-5-in-ROCm-v3\.0)
+  * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
   * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
   * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
   
@@ -17,7 +17,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
    * [MIGraph v05 Graph Optimizer](#MIGraph-v05-Graph-Optimizer)
  
  - [Known Issues](#Known-Issues)
-   * [Installation Issue with Red Hat Enterprise Linux v77](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v77)
+   * [Installation Issue with Red Hat Enterprise Linux v7.7](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v77)
    * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)   
    * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)   
       
@@ -100,7 +100,7 @@ Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more info
 [CentOS/RHEL](https://centos.org/forums/viewtopic.php?t=71657)
 
 
-### Initial distribution of AOMP 0.7-5 in ROCm v3.0
+### Initial distribution of AOMP 0.7-5 in ROCm v3.0 <a id="aomp-anchor"></a> 
 The code base for this release of AOMP is the Clang/LLVM 9.0 sources as of October 8th, 2019. The LLVM-project branch used to build this release is AOMP-191008. It is now locked. With this release, an artifact tarball of the entire source tree is created. This tree includes a Makefile in the root directory used to build AOMP from the release tarball. You can use Spack to build AOMP from this source tarball or build manually without Spack.
 
 For more information about AOMP 0.7-5, see: [AOMP](https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.0.0)
