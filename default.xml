@@ -67,5 +67,20 @@
     <project name="hipCUB" remote="rocm-swplat" revision="refs/tags/3.0.0" />
     <project name="rocPRIM" remote="rocm-swplat" revision="refs/tags/3.0.0" />
     <project name="AMDMIGraphX" remote="rocm-swplat" revision="0.5-hip-hcc" />
+    <project name="ROCmValidationSuite" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+
+    <!-- Projects for AOMP -->
+    <project name="ROCT-Thunk-Interface" path="aomp/roct-thunk-interface" remote="roc-github" revision="refs/tags/roc-3.0.0" />
+    <project name="ROCR-Runtime" path="aomp/rocr-runtime" remote="roc-github" revision="refs/tags/roc-3.0.0" />
+    <project name="hcc" path="aomp/hcc" remote="roc-github" revision="refs/tags/roc-hcc-3.0.0" />
+    <project name="ROCm-Device-Libs" path="aomp/rocm-device-libs" remote="roc-github" revision="refs/tags/roc-ocl-2.9.0" />
+    <project name="ROCm-CompilerSupport" path="aomp/rocm-compilersupport" remote="roc-github" revision="refs/tags/roc-2.9.0" />
+    <project name="rocminfo" path="aomp/rocminfo" remote="roc-github" revision="a578b432b1d13ef0fd7803a5d3afa0e7895629d1" />
+    <project name="atmi" path="aomp/atmi" remote="roc-github" revision="refs/tags/rocm_3.0.0" />
+    <project name="HIP" path="aomp/hip" remote="rocm-devtools" revision="refs/tags/roc-2.9.0" />
+    <project name="aomp" path="aomp/aomp" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+    <project name="aomp-extras" path="aomp/aomp-extras" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+    <project name="flang" path="aomp/flang" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+    <project name="llvm-project" path="aomp/llvm-project" remote="rocm-devtools" revision="refs/tags/roc-aomp-3.0.0" />
 
 </manifest>
