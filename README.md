@@ -9,7 +9,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [Support for CentOS RHEL v77](#Support-for-CentOS-RHEL-v77)
-  * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#Initial-distribution-of-AOMP-0.7-5-in-ROCm-v3.0)
+  * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#Initial-distribution-of-AOMP-0\.7\-5-in-ROCm-v3\.0)
   * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
   * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
   
