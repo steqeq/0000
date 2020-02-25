@@ -9,7 +9,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
-  * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability,-Accessibility,-and-Serviceability-Support-for-Vega7nm)
+  * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-,-Accessibility-,-and-Serviceability-Support-for-Vega7nm)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
   
 - [Fixed Issues](#Fixed-Issues)
@@ -150,13 +150,6 @@ For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
 * The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
 
 
-
-### Initial distribution of AOMP 0.7-5 in ROCm v3.0 <a id="aomp-anchor"></a> 
-The code base for this release of AOMP is the Clang/LLVM 9.0 sources as of October 8th, 2019. The LLVM-project branch used to build this release is AOMP-191008. It is now locked. With this release, an artifact tarball of the entire source tree is created. This tree includes a Makefile in the root directory used to build AOMP from the release tarball. You can use Spack to build AOMP from this source tarball or build manually without Spack.
-
-For more information about AOMP 0.7-5, see: [AOMP](https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.0.0)
-
-
 ## Known Issues for MultiVersion ROCm Installation
 
 ### MIVision MIGraphX Installation
@@ -183,8 +176,6 @@ The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is 
 * UMC RAS – HBM ECC (uncorrectable error injection), page retirement, RAS recovery via GPU (BACO) reset
 * GFX RAS – GFX, MMHUB ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
 * PCIE RAS – PCIE_BIF ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
-
-## Fixed Issues in This Release
 
 
 ## Deploying ROCm
