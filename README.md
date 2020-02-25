@@ -8,7 +8,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Important ROCm Links](#Important-ROCm-Links)
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [MultiVersion ROCm Installation](#MultiVersion ROCm Installation-anchor)
+  * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation-anchor)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
   * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
   * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
