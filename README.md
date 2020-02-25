@@ -9,7 +9,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
-  * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-,-Accessibility-,-and-Serviceability-Support-for-Vega7nm)
+  * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability\,-Accessibility\,-and-Serviceability-Support-for-Vega7nm)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
   
 - [Fixed Issues](#Fixed-Issues)
@@ -102,7 +102,7 @@ Now, users have the option to install multiple versions simultaneously and toggl
 #### Before You Begin
 Review the following important notes:
 
-**Single-Version Installation
+**Single-Version Installation**
 
 * To install a single instance of the ROCm package, access the non-versioned packages. You must not install any components from the multi-instance set
 
@@ -117,7 +117,7 @@ For example,
 
 ![singleinstance](singleinstance.png)
 
-**Multi-Version Installation
+**Multi-Version Installation**
 
 * To install a multi-instance of the ROCm package, access the versioned packages and components. 
 
@@ -128,7 +128,7 @@ For example,
 	
 * The new multi-instance package enables you to install two versions of the ROCm toolkit simultaneously and provides the ability to toggle between the two versioned packages.
 
-*Install multi-versions simultaneously
+*Install multi-versions simultaneously*
 
 ![multiinstance1](multiinstance1.png)
 
