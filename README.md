@@ -10,16 +10,13 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
-  * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
-  * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
   
 - [Fixed Issues](#Fixed-Issues)
    * [MIGraph v05 Graph Optimizer](#MIGraph-v05-Graph-Optimizer)
  
  - [Known Issues](#Known-Issues)
-   * [Installation Issue with Red Hat Enterprise Linux v7.7](#Installation-Issue-with-Red-Hat-Enterprise-Linux-v77)
-   * [Error While Running rocProfiler on SLES](#Error-While-Running-rocProfiler-on-SLES)   
-   * [gpuOwl Fails with Memory Access Fault Error](#gpuOwl-Fails-with-Memory-Access-Fault-Error)   
+   * [MIVision-MIGraphX-Installation](#MIVision-MIGraphX-Installation)
+      
       
 - [Deprecated Features](#Deprecated-Features)
 
@@ -115,7 +112,42 @@ For example,
 
 * A fresh installation or an upgrade of the single-version installation will remove the existing version completely and install the new version in the /opt/rocm-<version> folder.
 
+*Only one version can be installed at a time*
+
 ![singleinstance](singleinstance.png)
+
+**Multi-Version Installation
+
+* To install a multi-instance of the ROCm package, access the versioned packages and components. 
+
+For example,
+* rocm-dkms3.1.0
+* rocm-dev3.1.0
+* hip3.1.0
+	
+* The new multi-instance package enables you to install two versions of the ROCm toolkit simultaneously and provides the ability to toggle between the two versioned packages.
+
+*Install multi-versions simultaneously
+
+![multiinstance1](multiinstance1.png)
+
+* A single instance ROCm package (v3.0 or below) cannot co-exist with the multi-instance package (v3.1 or above). 
+
+**NOTE**: The multi-instance installation is applicable only to ROCm v3.1 and above. This package requires a fresh installation after the complete removal of ROCm v3.0 or below. The ROCm v3.1 release is not backward compatible. 
+
+#### Prerequisites
+* Ensure the existing installations of ROCm v3.0 and below, including /opt/rocm, are completely removed prior to the v3.1 ROCm toolkit installation. The ROCm v3.1 package requires a clean installation.
+
+* To install a single instance of ROCm, use the rocm-dkms or rocm-dev packages to install all the required components. This creates a symbolic link /opt/rocm pointing to the corresponding version of ROCm installed on the system. 
+
+* To install individual ROCm components, create the /opt/rocm symbolic link pointing to the version of ROCm installed on the system. 
+For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
+
+* To install multiple instance ROCm packages, create /opt/rocm symbolic link pointing to the version of ROCm installed/used on the system. 
+For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
+
+* The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
+
 
 
 ### Initial distribution of AOMP 0.7-5 in ROCm v3.0 <a id="aomp-anchor"></a> 
@@ -124,114 +156,38 @@ The code base for this release of AOMP is the Clang/LLVM 9.0 sources as of Octob
 For more information about AOMP 0.7-5, see: [AOMP](https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.0.0)
 
 
-### Fast Fourier Transform Updates
-The Fast Fourier Transform (FFT) is an efficient algorithm for computing the Discrete Fourier Transform. Fast Fourier transforms are used in signal processing, image processing, and many other areas. The following real FFT performance change is made in the ROCm v3.0 release:
+## Known Issues for MultiVersion ROCm Installation
 
-•	Implement efficient real/complex 2D transforms for even lengths.
+### MIVision MIGraphX Installation
+Install and use the latest version of MIVision/MIGraphX code available in the following repositories (where is this code available?) 
 
-Other improvements:
+Ensure the /opt/rocm symbolic link for the new version of ROCm is present and points to the right version of the ROCm toolkit. The new packaging and installing schema for the two packages will be available in the subsequent releases of ROCm.
 
-•	More 2D test coverage sizes.
+#### Using TensorFlow
+The TensorFlow build system requires the following additional changes to support the new installation path:
 
-•	Fix buffer allocation error for large 1D transforms.
+* Ensure the /opt/rocm symbolic link is preset and points to the right version of the ROCm toolkit.
+* Modify the build configure file to include the header files from the respective ROCm version-specific folder
 
-•	C++ compatibility improvements.
+#### HIP Compiler Dependency Issue
+If the HIP compiler has a dependency on /opt/rocm, use the following workaround: 
 
-### MemCopy Enhancement for rocProf
-In the v3.0 release, the rocProf tool is enhanced with an additional capability to dump asynchronous GPU memcopy information into a .csv file. You can use the '-hsa-trace' option to create the results_mcopy.csv file.
-Future enhancements will include column labels.
+* Ensure the /opt/rocm symbolic link points to the right version of the ROCm software
+* Use the ROCM_PATH environment variable that points to the version of the ROCm software installed on the system. 
+* Use the rocm-dkms package to install required ROCm components.	
+
+## Reliability, Accessibility, and Serviceability Support for Vega7nm
+The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is now available. The support includes:
+
+* UMC RAS – HBM ECC (uncorrectable error injection), page retirement, RAS recovery via GPU (BACO) reset
+* GFX RAS – GFX, MMHUB ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
+* PCIE RAS – PCIE_BIF ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
 
 ## Fixed Issues in This Release
-### MIGraph v0.5 Graph Optimizer 
-The ROCm v3.0 release consists of performance updates and minor bug fixes for the MIGraphX graph optimizer. 
-For more information, see 
-
-https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki/Getting-started:-using-the-new-features-of-MIGraphX-0.5
-
-
-## Known Issues in This Release
-### Installation Issue with Red Hat Enterprise Linux v7.7
-<b>Issue</b>: ROCm installation fails on Red Hat Enterprise Linux (RHEL) v7.7.
-
-<b>Resolution</b>: Ensure the following repo is installed and available prior to installing ROCm on RHEL v7.7:
-
-<b>Note</b>: 
-
-For workstations, use
-
-<i>rhel-7-workstation-optional-rpms</i>
-
-For servers, use
-
-<i>rhel-7-server-optional-rpms</i>
-
-<b>To install </b>
-
-<i>$sudo subscription-manager repos --enable=rhel-7-workstation-optional-rpms</i>
-
-|| You will see the following message:
-
-Repository 'rhel-7-workstation-optional-rpms' is enabled for this system.
-
-|| If the following error message appears,
-
-<i>Error: 'rhel-7-workstation-optional-rpms' does not match a valid repository ID. Use "subscription-manager repos --list" to see valid repositories.</i>
-
-|| Use
-
-<i>$sudo subscription-manager repos --enable=rhel-7-server-optional-rpms</i>
-
-|| You will see the following message:
-
-Repository 'rhel-7-server-optional-rpms' is enabled for this system.
-
-### Error While Running rocProfiler on SLES
-
-<b>Issue</b>: Running rocprofiler: hip/hsa trace results in the following error. Note, this issue is noticed only on SLES.
-
-<i>ImportError: No module named sqlite3 </i>
-
-<b>Resolution</b>: The following workarounds are recommended:
-
-<b>Workaround 1</b>
-
-1. Run the following command
-
-<i>sudo vi /opt/rocm/bin/rocprof </i>
-
-2. Change Python to Python3.6. 
-
-3. Save and run the test again.  
-
-<b>Workaround 2:</b>
-
-• Run the following command:
-
-<i>alias python=python3.6</i>
-
-
-### gpuOwl Fails with Memory Access Fault Error
-
-<b>Issue</b>: gpuOwL is an OpenCL-based program for testing Mersenne numbers for primality. Currently, running gpuOwl for higher probable prime (PRP) values results in a Memory Access Fault error. 
-
-Note, the issue is noticed only when using higher PRP values. 
-
-<b>Resolution</b>: As a workaround, you may use lower PRP values. 
-
-## Deprecated Features
-The following features are deprecated in the AMD ROCm v3.0 release. 
-
-### MIOpen
-
-#### SCGEMM Convolution Algorithm
-The SCGEMM convolution algorithm is now disabled by default. This algorithm is deprecated and will be removed in future releases.
-
-#### Text-Based Performance Database
-An SQLite database has been added to replace the text-based performance database. While the text file still exists, by default, SQLite is used over the text-based performance database. The text-based performance database support is deprecated and will be removed in a future release.
 
 
 ## Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v3.0.x packages. 
+AMD hosts both Debian and RPM repositories for the ROCm v3.1.0x packages. 
 
 The following directions show how to install ROCm on supported Debian-based systems such as Ubuntu 18.04.x. 
 
