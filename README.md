@@ -94,7 +94,7 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## What\'s New in This Release
 
-### Multi-Version ROCm Installation 
+### MultiVersion ROCm Installation 
 Users can install and access multiple versions of the ROCm toolkit simultaneously.
 
 Previously, users could install only a single version of the ROCm toolkit. 
