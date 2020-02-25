@@ -143,9 +143,9 @@ For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
 * The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
 
 
-## Known Issues for MultiVersion ROCm Installation
+### Known Issues for MultiVersion ROCm Installation
 
-### MIVision MIGraphX Installation
+#### MIVision MIGraphX Installation
 Install and use the latest version of MIVision/MIGraphX code available in the following repositories (where is this code available?) 
 
 Ensure the /opt/rocm symbolic link for the new version of ROCm is present and points to the right version of the ROCm toolkit. The new packaging and installing schema for the two packages will be available in the subsequent releases of ROCm.
