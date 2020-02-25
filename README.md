@@ -1,4 +1,4 @@
-# AMD ROCm Release Notes v3.1
+# AMD ROCm Release Notes v3.1.0
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues and deprecated features in the ROCm v3.1 release.
 
@@ -9,6 +9,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
+  * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability,-Accessibility,-and-Serviceability-Support-for-Vega7nm)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
   
 - [Fixed Issues](#Fixed-Issues)
