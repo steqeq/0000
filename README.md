@@ -700,11 +700,11 @@ The latest supported version of the drivers, tools, libraries and source code fo
  #### ROCm Core Components
   - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-3.0.0)
   - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-3.0.0)
-  - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-3.0.0)  
+  - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-3.1)  
 
   
 #### ROCm Support Software
-  - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-3.0.0)
+  - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-3.1)
   - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/roc-3.0.0)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/roc-3.0.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-3.0.0)
@@ -734,7 +734,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
 #### ROCm Libraries
   - [rocBLAS](https://github.com/ROCmSoftwarePlatform/rocBLAS/tree/rocm-3.0)
   - [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipBLAS/tree/rocm-3.0)
-  - [rocFFT](https://github.com/ROCmSoftwarePlatform/rocFFT/tree/rocm-3.0)
+  - [rocFFT](https://github.com/ROCmSoftwarePlatform/rocFFT/tree/rocm-3.1)
   - [rocRAND](https://github.com/ROCmSoftwarePlatform/rocRAND/tree/3.0.0)
   - [rocSPARSE](https://github.com/ROCmSoftwarePlatform/rocSPARSE/tree/rocm-3.0)
   - [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipSPARSE/tree/rocm-3.0)
@@ -742,7 +742,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [MIOpenGEMM](https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/tree/6275a879)
   - [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen/tree/roc-3.0.0)
   - [rocThrust](https://github.com/ROCmSoftwarePlatform/rocThrust/tree/3.0.0)
-  - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc.3.0.0)
+  - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc.3.0)
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/3.0.0)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.5)
   - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/3.0.0)
