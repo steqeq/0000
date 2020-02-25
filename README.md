@@ -47,37 +47,32 @@ https://github.com/RadeonOpenCompute/ROCm
 ### Supported Operating Systems
 The ROCm v3.1.x platform is designed to support the following operating systems:
 
-•	SLES 15 SP1 
 
-•	Ubuntu 16.04.6(Kernel 4.15) and 18.04.3(Kernel 5.3)
+* Ubuntu 16.04.6(Kernel 4.15) and 18.04.3(Kernel 5.3)
 
-•	CentOS v7.7 (Using devtoolset-7 runtime support)
+* CentOS v7.7 (Using devtoolset-7 runtime support)
 
-•	RHEL v7.7 (Using devtoolset-7 runtime support)
+* RHEL v7.7 (Using devtoolset-7 runtime support)
 
-
-For details about deploying the ROCm v3.1.0.
+* SLES 15 SP1 
 
 
-
-
-x on these operating systems, see the Deploying ROCm section later in the document.
+For details about deploying the ROCm v3.1.0.x on these operating systems, see the Deploying ROCm section later in the document.
 
 ### Important ROCm Links
 
 Access the following links for more information on:
 
-•	ROCm documentation, see 
+* ROCm documentation, see 
 https://rocm-documentation.readthedocs.io/en/latest/index.html
 
-
-•	ROCm binary structure, see
+* ROCm binary structure, see
 https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
 
-•	Common ROCm installation issues, see
+* Common ROCm installation issues, see
 https://rocm.github.io/install_issues.html
 
-•	Instructions to install PyTorch after ROCm is installed – https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html#pytorch
+* Instructions to install PyTorch after ROCm is installed – https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html#pytorch
 
 Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
