@@ -8,7 +8,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Important ROCm Links](#Important-ROCm-Links)
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Support for CentOS RHEL v7.7](#centos-anchor)
+  * [Multi-Version ROCm Installation](#Multi-Version ROCm Installation-anchor)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
   * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
   * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
@@ -94,7 +94,7 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## What\'s New in This Release
 
-### Multi-Version Installation of ROCm
+### Multi-Version ROCm Installation 
 Users can install and access multiple versions of the ROCm toolkit simultaneously.
 
 Previously, users could install only a single version of the ROCm toolkit. 
@@ -114,6 +114,8 @@ For example,
 * hip
 
 * A fresh installation or an upgrade of the single-version installation will remove the existing version completely and install the new version in the /opt/rocm-<version> folder.
+
+.. image:: singleinstance.png
 
 
 ### Initial distribution of AOMP 0.7-5 in ROCm v3.0 <a id="aomp-anchor"></a> 
