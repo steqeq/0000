@@ -8,7 +8,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Important ROCm Links](#Important-ROCm-Links)
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Multi-Version ROCm Installation](#Multi Version ROCm Installation-anchor)
+  * [Multi-Version ROCm Installation](# Multi Version ROCm Installation-anchor)
   * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
   * [Fast Fourier Transform Updates](#Fast-Fourier-Transform-Updates)
   * [MemCopy Enhancement for rocProf](#MemCopy-Enhancement-for-rocProf)
@@ -115,7 +115,7 @@ For example,
 
 * A fresh installation or an upgrade of the single-version installation will remove the existing version completely and install the new version in the /opt/rocm-<version> folder.
 
-![alt text](http://url/to/singleinstance.png)
+![singleinstance](singleinstance.png)
 
 
 ### Initial distribution of AOMP 0.7-5 in ROCm v3.0 <a id="aomp-anchor"></a> 
