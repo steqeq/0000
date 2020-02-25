@@ -1,6 +1,6 @@
-# AMD ROCm Release Notes v3.0
+# AMD ROCm Release Notes v3.1
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
-It also covers known issues and deprecated features in the ROCm v3.0 release.
+It also covers known issues and deprecated features in the ROCm v3.1 release.
 
 - [What Is ROCm?](#What-Is-ROCm)
   * [ROCm Components](#ROCm-Components)
@@ -46,7 +46,7 @@ Note: You can also clone the source code for individual ROCm components from the
 
 
 ### ROCm Components
-The following components for the ROCm platform are released and available for the v3.0
+The following components for the ROCm platform are released and available for the v3.1
 release:
 
 • Drivers
@@ -61,11 +61,11 @@ You can access the latest supported version of drivers, tools, libraries, and so
 https://github.com/RadeonOpenCompute/ROCm
 
 ### Supported Operating Systems
-The ROCm v3.0.x platform is designed to support the following operating systems:
+The ROCm v3.1.x platform is designed to support the following operating systems:
 
 •	SLES 15 SP1 
 
-•	Ubuntu 16.04.6(Kernel 4.15) and 18.04.3(Kernel 5.0)
+•	Ubuntu 16.04.6(Kernel 4.15) and 18.04.3(Kernel 5.3)
 
 •	CentOS v7.7 (Using devtoolset-7 runtime support)
 
@@ -94,10 +94,26 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## What\'s New in This Release
 
-### Support for CentOS RHEL v7.7 <a id="centos-anchor"></a> 
-Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:
+### Multi-Version Installation of ROCm
+Users can install and access multiple versions of the ROCm toolkit simultaneously.
 
-[CentOS/RHEL](https://centos.org/forums/viewtopic.php?t=71657)
+Previously, users could install only a single version of the ROCm toolkit. 
+
+Now, users have the option to install multiple versions simultaneously and toggle to the desired version of the ROCm toolkit. From the v3.1 release, multiple versions of ROCm packages can be installed in the /opt/rocm-<version> folder.
+
+#### Before You Begin
+Review the following important notes:
+
+**Single-Version Installation
+
+* To install a single instance of the ROCm package, access the non-versioned packages. You must not install any components from the multi-instance set
+
+For example, 
+* rocm-dkms
+* rocm-dev
+* hip
+
+* A fresh installation or an upgrade of the single-version installation will remove the existing version completely and install the new version in the /opt/rocm-<version> folder.
 
 
 ### Initial distribution of AOMP 0.7-5 in ROCm v3.0 <a id="aomp-anchor"></a> 
