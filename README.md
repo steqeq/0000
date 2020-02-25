@@ -10,21 +10,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
-  * [Initial distribution of AOMP 0.7-5 in ROCm v3.0](#aomp-anchor)
-  
-- [Fixed Issues](#Fixed-Issues)
-   * [MIGraph v05 Graph Optimizer](#MIGraph-v05-Graph-Optimizer)
- 
- - [Known Issues](#Known-Issues)
-   * [MIVision-MIGraphX-Installation](#MIVision-MIGraphX-Installation)
       
-      
-- [Deprecated Features](#Deprecated-Features)
-
-  [MIOpen](#MIOpen)
-  * [SCGEMM Convolution Algorithm](#SCGEMM-Convolution-Algorithm)
-  * [Text-Based Performance Database](#Text-Based-Performance-Database)
-  
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
   * [CentOS RHEL](#CentOS-RHEL)
@@ -70,7 +56,12 @@ The ROCm v3.1.x platform is designed to support the following operating systems:
 •	RHEL v7.7 (Using devtoolset-7 runtime support)
 
 
-For details about deploying the ROCm v3.0.x on these operating systems, see the Deploying ROCm section later in the document.
+For details about deploying the ROCm v3.1.0.
+
+
+
+
+x on these operating systems, see the Deploying ROCm section later in the document.
 
 ### Important ROCm Links
 
@@ -78,6 +69,7 @@ Access the following links for more information on:
 
 •	ROCm documentation, see 
 https://rocm-documentation.readthedocs.io/en/latest/index.html
+
 
 •	ROCm binary structure, see
 https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
@@ -131,6 +123,7 @@ For example,
 *Install multi-versions simultaneously*
 
 ![multiinstance1](multiinstance1.png)
+
 
 * A single instance ROCm package (v3.0 or below) cannot co-exist with the multi-instance package (v3.1 or above). 
 
@@ -449,7 +442,7 @@ The following example shows how to use the repo binary to download the ROCm sour
 
 	mkdir -p ~/ROCm/
 	cd ~/ROCm/
-	~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-3.0.0
+	~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-3.1.0
 	repo sync
 
 Note: Using this sample code will cause the repo to download the open source code associated with this ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download.
@@ -484,7 +477,7 @@ The following list of GPUs are enabled in the ROCm software, though full support
   * GFX7 GPUs
     * "Hawaii" chips, such as the AMD Radeon R9 390X and FirePro W9100
 
-As described in the next section, GFX8 GPUs require PCI Express 3.0 (PCIe 3.0) with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs require PCIe 3.0 with support for PCIe atomics by default, but they can operate in most cases without this capability.
+As described in the next section, GFX8 GPUs require PCI Express 3.1.0 (PCIe 3.1.0) with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs require PCIe 3.1.0 with support for PCIe atomics by default, but they can operate in most cases without this capability.
 
 The integrated GPUs in AMD APUs are not officially supported targets for ROCm.
 As described [below](#limited-support), "Carrizo", "Bristol Ridge", and "Raven Ridge" APUs are enabled in our upstream drivers and the ROCm OpenCL runtime.
@@ -494,8 +487,8 @@ As such, they are not yet officially supported targets for ROCm.
 For a more detailed list of hardware support, please see [the following documentation](https://rocm.github.io/hardware.html).
 
 #### Supported CPUs
-As described above, GFX8 GPUs require PCIe 3.0 with PCIe atomics in order to run ROCm.
-In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe 3.0 and PCIe atomics.
+As described above, GFX8 GPUs require PCIe 3.1.0 with PCIe atomics in order to run ROCm.
+In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe 3.1.0 and PCIe atomics.
 The CPU root must indicate PCIe AtomicOp Completion capabilities and any intermediate switch must indicate PCIe AtomicOp Routing capabilities.
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are:
@@ -516,7 +509,7 @@ GFX9 GPUs can now be run on CPUs without PCIe atomics and on older PCIe generati
 This is not supported on GPUs below GFX9, e.g. GFX8 cards in the Fiji and Polaris families.
 
 If you are using any PCIe switches in your system, please note that PCIe Atomics are only supported on some switches, such as Broadcom PLX.
-When you install your GPUs, make sure you install them in a PCIe 3.0 x16, x8, x4, or x1 slot attached either directly to the CPU's Root I/O controller or via a PCIe switch directly attached to the CPU's Root I/O controller.
+When you install your GPUs, make sure you install them in a PCIe 3.1.0 x16, x8, x4, or x1 slot attached either directly to the CPU's Root I/O controller or via a PCIe switch directly attached to the CPU's Root I/O controller.
 
 In our experience, many issues stem from trying to use consumer motherboards which provide physical x16 connectors that are electrically connected as e.g. PCIe 2.0 x4, PCIe slots connected via the Southbridge PCIe I/O controller, or PCIe slots connected through a PCIe switch that does
 not support PCIe atomics.
@@ -534,7 +527,7 @@ from the list provided above for compatibility purposes.
 ##### Limited support
 
 * ROCm 2.9.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
-* Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need community support due to limited access to this type of equipment.
+* Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.1.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need community support due to limited access to this type of equipment.
 * AMD "Carrizo" and "Bristol Ridge" APUs are enabled to run OpenCL, but do not yet support HCC, HIP, or our libraries built on top of these compilers and runtimes.
   * As of ROCm 2.1, "Carrizo" and "Bristol Ridge" require the use of upstream kernel drivers.
   * In addition, various "Carrizo" and "Bristol Ridge" platforms may not work due to OEM and ODM choices when it comes to key configurations parameters such as inclusion of the required CRAT tables and IOMMU configuration parameters in the system BIOS.
@@ -547,13 +540,13 @@ from the list provided above for compatibility purposes.
 ##### Not supported
 
 * "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.9.x
-* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.0 with PCIe atomics.
+* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.1.0 with PCIe atomics.
   * As such, we do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs.
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are based on PCIe 2.0.
 
 ### Supported Operating Systems - New operating systems available
 
-The ROCm 3.0.x platform supports the following operating systems:
+The ROCm 3.1.0.x platform supports the following operating systems:
 
  * Ubuntu 16.04.5(Kernel 4.15) and 18.04.3(Kernel 4.15 and Kernel 4.18)
  * CentOS 7.7 (Using devtoolset-7 runtime support)
@@ -602,7 +595,7 @@ The releases of the upstream Linux kernel support the following GPUs in ROCm:
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
-ROCm Version 3.0
+ROCm Version 3.1.0
 
 ### ROCm Binary Package Structure
 
