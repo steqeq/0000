@@ -253,9 +253,9 @@ https://rocm.github.io/install_issues.html
 
 
 ### Uninstalling ROCm Packages from Ubuntu 
-To uninstall the ROCm packages from Ubuntu 1v6.04 or Ubuntu v18.04.x, run the following command:
+To uninstall the ROCm packages from Ubuntu v16.04 or Ubuntu v18.04.x, run the following command:
 
-	sudo apt autoremove rocm-dkms rocm-dev rocm-utils
+	sudo apt autoremove rocm-dkms 
 
 
 ### Installing Development Applications for Cross Compilation
@@ -303,7 +303,7 @@ Note: The following steps do not apply to the CentOS installation.
 
 3. Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
 
-		sudo rpm -ivh 
+		sudo rpm -ivh <repo>
 
 For more details, see
 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
