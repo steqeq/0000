@@ -10,6 +10,8 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
+  
+  - [Known Issues](#Known-Issues)
       
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
@@ -138,7 +140,9 @@ For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
 * The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
 
 
-### Known Issues for MultiVersion ROCm Installation
+## Known Issues 
+
+### MultiVersion ROCm Installation
 
 #### MIVision MIGraphX Installation
 Install and use the latest version of MIVision/MIGraphX code available in the following repositories (where is this code available?) 
