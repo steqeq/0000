@@ -12,7 +12,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
   
 - [Known Issues](#Known-Issues)
-  * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
+  * [MultiVersion ROCm Installation Issues](#MultiVersion-ROCm-Installation-Issues)
       
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
@@ -82,7 +82,7 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## What\'s New in This Release
 
-### MultiVersion ROCm Installation 
+### MultiVersion ROCm Installation Issues
 Users can install and access multiple versions of the ROCm toolkit simultaneously.
 
 Previously, users could install only a single version of the ROCm toolkit. 
