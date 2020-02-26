@@ -143,7 +143,7 @@ For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
 
 ## Known Issues 
 
-### MultiVersion ROCm Installation
+### MultiVersion ROCm Installation Issues
 
 #### MIVision MIGraphX Installation
 Install and use the latest version of MIVision/MIGraphX code available in the following repositories (where is this code available?) 
