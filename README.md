@@ -12,7 +12,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
   
 - [Known Issues](#Known-Issues)
-  * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
+  * [MultiVersion ROCm Installation Issues](#MultiVersion-ROCm-Installation-Issues)
   
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
@@ -143,7 +143,7 @@ For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
 
 ## Known Issues 
 
-### MultiVersion ROCm Installation 
+### MultiVersion ROCm Installation Issues
 
 #### MIVision MIGraphX Installation
 Install and use the latest version of MIVision/MIGraphX code available in the following repositories (where is this code available?) 
