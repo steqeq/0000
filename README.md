@@ -12,7 +12,8 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
   
 - [Known Issues](#Known-Issues)
-  * [MultiVersion Installation](#MultiVersion-Installation)
+  * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
+  
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
   * [CentOS RHEL](#CentOS-RHEL)
