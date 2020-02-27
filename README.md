@@ -405,9 +405,9 @@ The following section tells you how to perform an install and uninstall ROCm on 
 
 6. Set permissions. 
 
-To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using ROCm. To identify the groups you are a member of, use the following command:
+To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using 	 ROCm. To identify the groups you are a member of, use the following command:
 
-	groups
+		groups
 
 7. To add your user to the video group, use the following command for the sudo password:
 	
