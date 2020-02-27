@@ -301,7 +301,6 @@ You can install the ROCm user-level software without installing the AMD's custom
 	sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
-
 ## CentOS RHEL v7 (v7.7) Support
 
 This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.7. 
@@ -462,19 +461,19 @@ To access the GPU, you must be a user in the video group. Ensure your user accou
 
 7. To add your user to the video group, use the following command for the sudo password:
 	
-	sudo usermod -a -G video $LOGNAME
+		sudo usermod -a -G video $LOGNAME
 	
 8. By default, add any future users to the video group. Run the following command to add users to the video group:
 
-	echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
-	echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+		echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
+		echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
 
 9. Restart the system.
 10. Test the basic ROCm installation.
 11. After restarting the system, run the following commands to verify that the ROCm installation is successful. If you see your GPUs listed by both commands, the installation is considered successful.
 
-	/opt/rocm/bin/rocminfo
-	/opt/rocm/opencl/bin/x86_64/clinfo
+		/opt/rocm/bin/rocminfo
+		/opt/rocm/opencl/bin/x86_64/clinfo
 
 Note: To run the ROCm programs more efficiently, add the ROCm binaries in your PATH.
 echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | 
@@ -495,8 +494,8 @@ Some users may want to install a subset of the full ROCm installation. If you ar
 
 	sudo yum install rock-dkms rocm-opencl-devel
 	
-### ROCm Installation - Known Issues and Workarounds 
-#### Closed source components
+## ROCm Installation - Known Issues and Workarounds 
+### Closed source components
 The ROCm platform relies on some closed source components to provide functionalities like HSA image support. These components are only available through the ROCm repositories, and they may be deprecated or become open source components in the future. These components are made available in the following packages:
 
 •	hsa-ext-rocr-dev
