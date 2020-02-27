@@ -739,12 +739,12 @@ The latest supported version of the drivers, tools, libraries and source code fo
 #### ROCm Development ToolChains
   - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-3.1.0)
   - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-3.1.0)
-  - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-3.0.0)
+  - [ROCm Device Libraries HCC](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-3.1.0)
   - ROCm OpenCL, which is created from the following components:
     - [ROCm OpenCL Runtime](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/tree/roc-3.1.0)
      - The ROCm OpenCL compiler, which is created from the following components:
       - [ROCm LLVM OCL](http://github.com/RadeonOpenCompute/llvm-project/tree/roc-ocl-3.1.0)                
-      - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-ocl-3.1.0)
+      - [ROCm Device Libraries OCL](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-ocl-3.1.0)
   - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-3.1.0)
   - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/rocm_3.1.0)
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-3.1.0)
@@ -773,7 +773,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/3.1.0)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/commit/755e7a08d5299a95c42def092af7c736d5eda90c)
   - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/3.1.0)
-  - [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphx/tree/0.5-hip-hcc)
+  - [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/tree/0.5.1)
 
 
 Features and enhancements introduced in previous versions of ROCm can be found in [version_history.md](version_history.md)
