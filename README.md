@@ -185,7 +185,7 @@ If the HIP compiler has a dependency on /opt/rocm, use the following workaround:
 **Issue:** gpuOwL is an OpenCL-based program for testing Mersenne numbers for primality. GpuOWL is currently failing with the error message “error on load” when using the latest commits of the application source code.
 
 **Workaround:** A third-party application is identified as the probable cause of this error.
-Use the source code from the last passing commit and avoid the latest commits until a fix from the application team is provided.
+Use the source code from the last passing commit and avoid the latest commits until a fix from the third-party application team is provided.
 
 
 ## Deploying ROCm
