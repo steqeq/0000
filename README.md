@@ -87,63 +87,12 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## What\'s New in This Release
 
-### MultiVersion ROCm Installation 
-Users can install and access multiple versions of the ROCm toolkit simultaneously.
-
-Previously, users could install only a single version of the ROCm toolkit. 
-
-Now, users have the option to install multiple versions simultaneously and toggle to the desired version of the ROCm toolkit. From the v3.1 release, multiple versions of ROCm packages can be installed in the /opt/rocm-\<version> folder.
-
-#### Before You Begin
-Review the following important notes:
-
-**Single-Version Installation**
-
-* To install a single instance of the ROCm package, access the non-versioned packages. You must not install any components from the multi-instance set
-
-For example, 
-* rocm-dkms
-* rocm-dev
-* hip
-
-* A fresh installation or an upgrade of the single-version installation will remove the existing version completely and install the new version in the /opt/rocm-<version> folder.
-
-*Only one version can be installed at a time*
-
-![singleinstance](singleinstance.png)
-
-**Multi-Version Installation**
-
-* To install a multi-instance of the ROCm package, access the versioned packages and components. 
-
-For example,
-* rocm-dkms3.1.0
-* rocm-dev3.1.0
-* hip3.1.0
+### Change in ROCm Installation Directory Structure
+A fresh installation of the ROCm toolkit installs the packages in the */opt/rocm-<version>* folder. 
 	
-* The new multi-instance package enables you to install two versions of the ROCm toolkit simultaneously and provides the ability to toggle between the two versioned packages.
-
-*Install multi-versions simultaneously*
-
-![multiinstance1](multiinstance1.png)
+Previously, ROCm toolkit packages were installed in the */opt/rocm* folder. 
 
 
-* A single instance ROCm package (v3.0 or below) cannot co-exist with the multi-instance package (v3.1 or above). 
-
-**NOTE**: The multi-instance installation is applicable only to ROCm v3.1 and above. This package requires a fresh installation after the complete removal of ROCm v3.0 or below. The ROCm v3.1 release is not backward compatible. 
-
-#### Prerequisites
-* Ensure the existing installations of ROCm v3.0 and below, including /opt/rocm, are completely removed prior to the v3.1 ROCm toolkit installation. The ROCm v3.1 package requires a clean installation.
-
-* To install a single instance of ROCm, use the rocm-dkms or rocm-dev packages to install all the required components. This creates a symbolic link /opt/rocm pointing to the corresponding version of ROCm installed on the system. 
-
-* To install individual ROCm components, create the /opt/rocm symbolic link pointing to the version of ROCm installed on the system. 
-For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
-
-* To install multiple instance ROCm packages, create /opt/rocm symbolic link pointing to the version of ROCm installed/used on the system. 
-For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
-
-* The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
 
 ## Reliability, Accessibility, and Serviceability Support for Vega7nm
 The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is now available. The support includes:
@@ -159,20 +108,18 @@ SLURM (Simple Linux Utility for Resource Management) is an open source, fault-to
 
 ## Known Issues 
 
-### MultiVersion ROCm Installation Issues
-
-#### MIVision MIGraphX Installation
+### MIVision MIGraphX Installation
 Install and use the latest version of MIVision/MIGraphX code available in the following repositories (where is this code available?) 
 
 Ensure the /opt/rocm symbolic link for the new version of ROCm is present and points to the right version of the ROCm toolkit. The new packaging and installing schema for the two packages will be available in the subsequent releases of ROCm.
 
-#### Using TensorFlow
+### Using TensorFlow
 The TensorFlow build system requires the following additional changes to support the new installation path:
 
 * Ensure the /opt/rocm symbolic link is preset and points to the right version of the ROCm toolkit.
 * Modify the build configure file to include the header files from the respective ROCm version-specific folder
 
-#### HIP Compiler Dependency Issue
+### HIP Compiler Dependency Issue
 If the HIP compiler has a dependency on /opt/rocm, use the following workaround: 
 
 * Ensure the /opt/rocm symbolic link points to the right version of the ROCm software
