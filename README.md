@@ -19,6 +19,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
   * [CentOS RHEL](#CentOS-RHEL)
+  * [SLES 15 Service Pack 1](#SLES 15 Service Pack 1)
 
 
 - [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
@@ -423,7 +424,7 @@ You can install ROCm user-level software without installing AMD's custom ROCk ke
 	
 Note: You can use these commands instead of installing rocm-dkms.
 
-## SLES 15 Service Pack (SP)1
+## SLES 15 Service Pack 1
 
 The following section tells you how to perform an install and uninstall ROCm on SLES 15 SP 1. 
 
