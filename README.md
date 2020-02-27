@@ -108,9 +108,9 @@ SLURM (Simple Linux Utility for Resource Management) is an open source, fault-to
 ## Known Issues 
 
 ### MIVision MIGraphX Installation
-Install and use the latest version of MIVision/MIGraphX code available in the following repositories (where is this code available?) 
+Install and use the latest version of MIVision/MIGraphX code available in the following repositories  
 
-Ensure the /opt/rocm symbolic link for the new version of ROCm is present and points to the right version of the ROCm toolkit. The new packaging and installing schema for the two packages will be available in the subsequent releases of ROCm.
+Ensure the /opt/rocm symbolic link for the new version of ROCm is present and points to the right version of the ROCm toolkit. 
 
 ### Using TensorFlow
 The TensorFlow build system requires the following additional changes to support the new installation path:
