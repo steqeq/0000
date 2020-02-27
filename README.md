@@ -92,7 +92,7 @@ Users can install and access multiple versions of the ROCm toolkit simultaneousl
 
 Previously, users could install only a single version of the ROCm toolkit. 
 
-Now, users have the option to install multiple versions simultaneously and toggle to the desired version of the ROCm toolkit. From the v3.1 release, multiple versions of ROCm packages can be installed in the /opt/rocm-<version> folder.
+Now, users have the option to install multiple versions simultaneously and toggle to the desired version of the ROCm toolkit. From the v3.1 release, multiple versions of ROCm packages can be installed in the /opt/rocm-\<version> folder.
 
 #### Before You Begin
 Review the following important notes:
