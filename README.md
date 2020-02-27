@@ -282,10 +282,10 @@ https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 4. Install and set up Devtoolset-7.
 
-To setup the Devtoolset-7 environment, follow the instructions on this page:
-https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
+  To setup the Devtoolset-7 environment, follow the instructions on this page:
+  https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
-Note: devtoolset-7 is a software collections package and is not supported by AMD.
+  Note: devtoolset-7 is a software collections package and is not supported by AMD.
 
 ### Installing CentOS/RHEL (v7.7) for DKMS
 
