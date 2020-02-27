@@ -23,7 +23,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
-  * [CentOS RHEL](#CentOS-RHEL)
+  * [CentOS RHEL v7](#CentOS-RHEL-v7)
   * [SLES 15 Service Pack 1](#SLES-15-Service-Pack-1)
 
 
@@ -251,7 +251,7 @@ You can install the ROCm user-level software without installing the AMD's custom
 	sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
-## CentOS RHEL v7 (v7.7) Support
+## CentOS RHEL v7 
 
 This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.7. 
 
