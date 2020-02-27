@@ -14,11 +14,11 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   
   
 - [Known Issues](#Known-Issues)
-* [MIVision MIGraphX Installation](#MIVision-MIGraphX-Installation)
-* [Using TensorFlow](#Using-TensorFlow)
-* [HIP Compiler Dependency Issue](#HIP-Compiler-Dependency-Issue)
+	* [MIVision MIGraphX Installation](#MIVision-MIGraphX-Installation)
+	* [Using TensorFlow](#Using-TensorFlow)
+	* [HIP Compiler Dependency Issue](#HIP-Compiler-Dependency-Issue)
 
-    * [Error Running ROC Profiler](#Error-Running-ROC-Profiler)
+    	* [Error Running ROC Profiler](#Error-Running-ROC-Profiler)
  
   
 - [Deploying ROCm](#Deploying-ROCm)
