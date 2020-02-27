@@ -10,8 +10,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
-  [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
-  [SLURM Support for AMD GPU](#SLURM-Support-for-AMD-GPU)
+  * [SLURM Support for AMD GPU](#SLURM-Support-for-AMD-GPU)
   
   
 - [Known Issues](#Known-Issues)
