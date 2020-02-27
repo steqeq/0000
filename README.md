@@ -87,11 +87,11 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 ## What\'s New in This Release
 
 ### Change in ROCm Installation Directory Structure
-A fresh installation of the ROCm toolkit installs the packages in the */opt/rocm-<version>* folder. 
+A fresh installation of the ROCm toolkit installs the packages in the */opt/rocm-\<version>* folder. 
 	
 Previously, ROCm toolkit packages were installed in the */opt/rocm* folder. 
 
-
+![ScreenShot](Versionchange.png)
 
 ## Reliability, Accessibility, and Serviceability Support for Vega7nm
 The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is now available. The support includes:
