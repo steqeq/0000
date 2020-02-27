@@ -313,8 +313,7 @@ Note: The URL of the repository must point to the location of the repositoriesâ€
 
 		sudo yum install rocm-dkms
 
-4.Restart the system.
-The rock-dkms component is installed and the /dev/kfd device is now available.
+4. Restart the system.The rock-dkms component is installed and the /dev/kfd device is now available.
 
 5. Set permissions.
 To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using ROCm. To identify the groups you are a member of, use the following command:
