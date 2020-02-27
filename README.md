@@ -13,6 +13,8 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   
 - [Known Issues](#Known-Issues)
   * [MultiVersion ROCm Installation Issues](#MultiVersion-ROCm-Installation-Issues)
+  * [Error Running ROC Profiler](#Error-Running-ROC-Profiler)
+  * [gpuOWL Fails with ‘Error on Load’ Message](#gpuOWL-Fails-with-‘Error-on-Load’-Message)
   
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
@@ -140,6 +142,13 @@ For example, # ln -s /opt/rocm-3.1.0 /opt/rocm
 
 * The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
 
+## Reliability, Accessibility, and Serviceability Support for Vega7nm
+The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is now available. The support includes:
+
+* UMC RAS – HBM ECC (uncorrectable error injection), page retirement, RAS recovery via GPU (BACO) reset
+* GFX RAS – GFX, MMHUB ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
+* PCIE RAS – PCIE_BIF ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
+
 
 ## Known Issues 
 
@@ -163,12 +172,19 @@ If the HIP compiler has a dependency on /opt/rocm, use the following workaround:
 * Use the ROCM_PATH environment variable that points to the version of the ROCm software installed on the system. 
 * Use the rocm-dkms package to install required ROCm components.	
 
-## Reliability, Accessibility, and Serviceability Support for Vega7nm
-The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is now available. The support includes:
+### Error Running ROC Profiler
+**Issue:** Running ROC profiler results in the following error -
+“: hip / hsa trace due to "ImportError: No module named sqlite3" error”
 
-* UMC RAS – HBM ECC (uncorrectable error injection), page retirement, RAS recovery via GPU (BACO) reset
-* GFX RAS – GFX, MMHUB ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
-* PCIE RAS – PCIE_BIF ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
+**Workaround:** Export the Python version before running ROC profiler: 
+
+*export ROCP_PYTHON_VERSION=<python version>*
+*ex: export ROCP_PYTHON_VERSION=python3*
+
+### gpuOWL Fails with ‘Error on Load’ Message
+**Issue:** gpuOwL is an OpenCL-based program for testing Mersenne numbers for primality. GpuOWL is currently failing with the error message “error on load” when using the latest commits of the application source code.
+
+**Workaround:** Use the source code from the last passing commit and avoid the latest commits until a fix from the application team is provided.
 
 
 ## Deploying ROCm
@@ -703,8 +719,8 @@ Drivers, ToolChains, Libraries, and Source Code
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
  #### ROCm Core Components
-  - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-3.0.0)
-  - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-3.0.0)
+  - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-3.1.0)
+  - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-3.1.0)
   - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-3.1)  
 
   
