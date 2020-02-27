@@ -8,14 +8,13 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Important ROCm Links](#Important-ROCm-Links)
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [MultiVersion ROCm Installation](#MultiVersion-ROCm-Installation)
+  * [Change in ROCm Installation Directory Structure](#Change-in-ROCm-Installation-Directory-Structure)
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
   * [SLURM Support for AMD GPU](#SLURM-Support-for-AMD-GPU)
   
   
 - [Known Issues](#Known-Issues)
-  * [MultiVersion ROCm Installation Issues](#MultiVersion-ROCm-Installation-Issues)
-  * [Error Running ROC Profiler](#Error-Running-ROC-Profiler)
+    * [Error Running ROC Profiler](#Error-Running-ROC-Profiler)
  
   
 - [Deploying ROCm](#Deploying-ROCm)
