@@ -178,7 +178,8 @@ To install from a Debian Repository:
 
   The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
 
-  	e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
+	$ wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sha1sum
+  	e85a40d1a43453fe37d63aa6899bc96e08f2817a -
 	
 
 3. Install the ROCm meta-package.
