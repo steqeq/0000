@@ -121,8 +121,8 @@ The TensorFlow build system requires the following additional changes to support
 
 * Ensure the /opt/rocm symbolic link is preset and points to the right version of the ROCm toolkit.
 
-    ls -l /opt/rocm
-    lrwxrwxrwx 1 root root 15 Feb 28 14:14 /opt/rocm -> /opt/rocm-3.1.0
+        ls -l /opt/rocm
+        lrwxrwxrwx 1 root root 15 Feb 28 14:14 /opt/rocm -> /opt/rocm-3.1.0
 
 * Modify the build configure file to include the header files from the respective ROCm version-specific folder
 
