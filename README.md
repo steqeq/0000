@@ -385,7 +385,7 @@ The following section tells you how to perform an install and uninstall ROCm on 
 2. Add the ROCm repo.
  
 		sudo zypper clean –all
-		sudo zypper addrepo --no-gpgcheck http://repo.radeon.com/rocm/zyp/zypper/ rocm 
+		sudo zypper addrepo --no-gpgcheck https://repo.radeon.com/rocm/zyp/zypper/ rocm 
 		sudo zypper ref
 		zypper install rocm-dkms
 		sudo zypper install rocm-dkms
