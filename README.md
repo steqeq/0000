@@ -25,6 +25,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Ubuntu](#Ubuntu)
   * [CentOS RHEL v7](#CentOS-RHEL-v7)
   * [SLES 15 Service Pack 1](#SLES-15-Service-Pack-1)
+  * [Arch Linux](#Arch Linux)
 
 
 - [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
@@ -67,6 +68,11 @@ The ROCm v3.1.x platform is designed to support the following operating systems:
 
 * SLES 15 SP1 
 
+#### Experimental Operating Systems
+The ROCm v3.1.x platform is not officially supported by us on these platforms,
+but rather the operating system's own community.
+
+* Arch Linux
 
 For details about deploying the ROCm v3.1.x on these operating systems, see the Deploying ROCm section later in the document.
 
@@ -436,6 +442,44 @@ To uninstall, use the following command:
 
 Note: Ensure all other installed packages/components are removed.
 Note: Ensure all the content in the /opt/rocm directory is completely removed.
+
+
+## Arch Linux
+The Arch Linux packages for ROCm are available on the
+[AUR](https://wiki.archlinux.org/index.php/Arch_User_Repository) and are
+currently being maintained at
+[rocm-arch](https://github.com/rocm-arch) by the Arch Linux community.
+
+Note: Support for ROCm on Arch Linux is currently experimental.
+That being said please submit any issues you encounter at the rocm-arch
+[issue tracker](https://github.com/rocm-arch/rocm-arch/issues).
+
+### Installation
+Since many packages will be installed, it is recommended to use an
+[AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers) like
+[`yay`](https://aur.archlinux.org/packages/yay/).
+
+It is also recommended to use the
+[`arch4edu`](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#arch4edu)
+binary repository as it will greatly speed up your installation time. Visit
+[here](https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux)
+to add and use `arch4edu`.
+
+To install ROCm, use the following command:
+
+    yay -S rocm-dkms
+
+You can also install specific ROCm packages like so:
+
+    yay -S hcc
+
+For additional installation configuration, such as adding a user to the `video`
+group refer to the installation instructions of the above operating systems.
+
+### Uninstallation
+To uninstall, use the following command:
+
+    yay -R rocm-dkms
 
 
 ## Performing an OpenCL-only Installation of ROCm
