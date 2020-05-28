@@ -26,61 +26,52 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
   * [ROCm Platform Packages](#ROCm-Platform-Packages)
   
 
-## What Is ROCm?
-ROCm is designed to be a universal platform for gpu-accelerated computing. This modular design allows hardware vendors to build drivers that support the ROCm framework. ROCm is also designed to integrate multiple programming languages and makes it easy to add support for other languages. 
+## Supported Operating Systems 
 
-Note: You can also clone the source code for individual ROCm components from the GitHub repositories.
+The AMD ROCm v3.5.x platform is designed to support the following operating systems:
 
+* Ubuntu 16.04.6(Kernel 4.15) and 18.04.4(Kernel 5.3)
+* CentOS 7.7 (Kernel 3.10-1062) and RHEL 7.8(Kernel 3.10.0-1127)(Using devtoolset-7 runtime support)
+* SLES 15 SP1
+* CentOS and RHEL 8.1(Kernel 4.18.0-147)
 
-### ROCm Components
-The following components for the ROCm platform are released and available for the v3.3
-release:
-
-• Drivers
-
-• Tools
-
-• Libraries
-
-• Source Code
-
-You can access the latest supported version of drivers, tools, libraries, and source code for the ROCm platform at the following location:
-https://github.com/RadeonOpenCompute/ROCm
-
-### Supported Operating Systems
-The ROCm v3.3.x platform is designed to support the following operating systems:
+**NOTE**: Framework support (TensorFlow, pyTorch & Caffe2) for v8.1 is not available.
 
 
-* Ubuntu 16.04.6 (Kernel 4.15) and 18.04.4 (Kernel 5.3)
-
-* CentOS v7.7 (Using devtoolset-7 runtime support)
-
-* RHEL v7.7 (Using devtoolset-7 runtime support)
-
-* SLES 15 SP1 
+## AMD ROCm v3.5 Documentation Updates
 
 
+### AMD ROCDebugger (ROCbdg)
 
-### Important ROCm Links
+* ROCAPI Library
+
+### HIP-Clang Compiler
+
+* FAQ - Transition from HCC to HIP-Clang
+* HIP-Clang Porting Guide
+* HIP-Clang Installation Guide
+* HIP-Clang Readme
+
+
+### General AMD ROCm Documentatin Links
 
 Access the following links for more information on:
 
-* ROCm documentation, see 
-https://rocm-documentation.readthedocs.io/en/latest/index.html
+• For AMD ROCm documentation, see 
 
-* ROCm Release Notes
-https://rocm-documentation.readthedocs.io/en/latest/Current_Release_Notes/Current-Release-Notes.html
+https://rocmdocs.amd.com/en/latest/
 
-* ROCm QuickStart Installation Guide, see
-https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html
+• For installation instructions on supported platforms, see
 
-* ROCm binary structure, see
-https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html#rocm-platform-packages
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
+• For AMD ROCm binary structure, see
 
-* Instructions to install PyTorch after ROCm is installed – https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html#pytorch
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#machine-learning-and-high-performance-computing-software-stack-for-amd-gpu-v3-3-0
 
-Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
+• For AMD ROCm Release History, see
+
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#amd-rocm-version-history
 
 
 ## What\'s New in This Release
