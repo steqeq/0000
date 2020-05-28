@@ -57,121 +57,39 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 
 Access the following links for more information on:
 
-• For AMD ROCm documentation, see 
+* For AMD ROCm documentation, see 
 
 https://rocmdocs.amd.com/en/latest/
 
-• For installation instructions on supported platforms, see
+* For installation instructions on supported platforms, see
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
-• For AMD ROCm binary structure, see
+* For AMD ROCm binary structure, see
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#machine-learning-and-high-performance-computing-software-stack-for-amd-gpu-v3-3-0
 
-• For AMD ROCm Release History, see
+* For AMD ROCm Release History, see
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#amd-rocm-version-history
 
 
-## What\'s New in This Release
+# What\'s New in This Release
 
-### Multi Version Installation
-
-Users can install and access multiple versions of the ROCm toolkit simultaneously.
-
-Previously, users could install only a single version of the ROCm toolkit. 
-
-Now, users have the option to install multiple versions simultaneously and toggle to the desired version of the ROCm toolkit. From the v3.3 release, multiple versions of ROCm packages can be installed in the */opt/rocm-<version>* folder. 
+## How to Successfully Upgrade from AMD ROCm v3.3 to v3.5
 
 
-**Prerequisites**
+## AMD ROCm Compilers
+### Heterogeneous-Compute Interface for Portability
 
-Ensure the existing installations of ROCm, including/opt/rocm, are completely removed before the v3.3 ROCm toolkit installation. The ROCm v3.3 package requires a clean installation.
+In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
 
-* To install a single instance of ROCm, use the rocm-dkms or rocm-dev packages to install all the required components. This creates a symbolic link /opt/rocm pointing to the corresponding version of ROCm installed on the system. 
+NOTE: The HCC environment variables will be gradually deprecated in subsequent releases.
 
-* To install individual ROCm components, create the /opt/rocm symbolic link pointing to the version of ROCm installed on the system. 
-For example, # ln -s /opt/rocm-3.3.0 /opt/rocm
-
-* To install multiple instance ROCm packages, create /opt/rocm symbolic link pointing to the version of ROCm installed/used on the system. 
-For example, # ln -s /opt/rocm-3.3.0 /opt/rocm
-
-**NOTE**: The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
-
-**Before You Begin**
-
-Review the following important notes:
-
-Single Version Installation
-
-To install a single instance of the ROCm package, access the non-versioned packages. You must not install any components from the multi-instance set.
-
-For example, 
-
-* rocm-dkms
-* rocm-dev
-* hip
-
-A fresh installation or an upgrade of the single-version installation will remove the existing version completely and install the new version in the */opt/rocm-<version>* folder.
-
-![ScreenShot](singleinstance.png)
+The majority of the codebase for the HIP-Clang compiler has been upstreamed to the Clang trunk. The HIP-Clang implementation has undergone a strict code review by the LLVM/Clang community and comprehensive tests consisting of LLVM/Clang build bots. These reviews and tests resulted in higher productivity, code quality, and lower cost of maintenance.
 
 
-**Multi-version Installation**
 
-* To install a multi-instance of the ROCm package, access the versioned packages and components. 
-
-For example,
-
-* rocm-dkms3.3.0
-* rocm-dev3.3.0
-* hip3.3.0
-	
-* The new multi-instance package enables you to install two versions of the ROCm toolkit simultaneously and provides the ability to toggle between the two versioned packages.
-
-* The ROCm-DEV package does not create symlinks
-
-* Users must create symlinks if required
-
-* Multi-version installation with previous ROCm versions is not supported
-
-* Kernel Fusion Driver (KFD) must be compatible with all versions of ROCm installations
-
-![ScreenShot](MultiIns.png)
-
-**IMPORTANT**: A single instance ROCm package cannot co-exist with the multi-instance package. 
-
-**NOTE**: The multi-instance installation applies only to ROCm v3.3 and above. This package requires a fresh installation after the complete removal of existing ROCm packages. **The multi-version installation is not backward compatible.**
-
-
-## GPU Process Information 
-
-A new functionality to display process information for GPUs is available in this release. For example,  you can view the process details to determine if the GPU(s) must be reset. 
-
-To display the GPU process details, you can:
-
-* Invoke the API 
-
-or
-
-* Use the Command Line Interface (CLI)
-
-For more details about the API and the command instructions, see
-
-https://github.com/RadeonOpenCompute/rocm_smi_lib/blob/master/docs/ROCm_SMI_Manual.pdf
-
-
-## Support for 3D Pooling Layers
-
-AMD ROCm is enhanced to include support for 3D pooling layers. The implementation of 3D pooling layers now allows users to run 3D convolutional networks, such as ResNext3D, on AMD Radeon Instinct GPUs. 
-
-
-## ONNX Enhancements
- 
-Open Neural Network eXchange (ONNX) is a widely-used neural net exchange format. The AMD model compiler & optimizer support the pre-trained models in ONNX, NNEF, & Caffe formats. Currently, ONNX versions 1.3 and below are supported. 
-
-The AMD Neural Net Intermediate Representation (NNIR) is enhanced to handle the rapidly changing ONNX versions and its layers. 
 
 ![ScreenShot](onnx.png)
 
@@ -182,7 +100,7 @@ https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/master/m
 
 
 ## Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v3.3.0x packages. 
+AMD hosts both Debian and RPM repositories for the ROCm v3.5.x packages. 
 
 The following directions show how to install ROCm on supported Debian-based systems such as Ubuntu 18.04.x. 
 
@@ -190,7 +108,7 @@ Note: These directions may not work as written on unsupported Debian-based distr
 
 For more information on ROCM installation on all platforms, see
 
-https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 
 ## Deprecations in This Release
