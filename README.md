@@ -59,24 +59,26 @@ Access the following links for more information on:
 
 * For AMD ROCm documentation, see 
 
-https://rocmdocs.amd.com/en/latest/
+  https://rocmdocs.amd.com/en/latest/
 
 * For installation instructions on supported platforms, see
 
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
+  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 * For AMD ROCm binary structure, see
 
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#machine-learning-and-high-performance-computing-software-stack-for-amd-gpu-v3-3-0
+  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#machine-learning-and-high-performance-computing-software-stack-for-amd-gpu-v3-3-0
 
 * For AMD ROCm Release History, see
 
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#amd-rocm-version-history
+  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#amd-rocm-version-history
 
 
 # What\'s New in This Release
 
 ## How to Successfully Upgrade from AMD ROCm v3.3 to v3.5
+
+Add text
 
 
 ## AMD ROCm Compilers
@@ -88,15 +90,26 @@ NOTE: The HCC environment variables will be gradually deprecated in subsequent r
 
 The majority of the codebase for the HIP-Clang compiler has been upstreamed to the Clang trunk. The HIP-Clang implementation has undergone a strict code review by the LLVM/Clang community and comprehensive tests consisting of LLVM/Clang build bots. These reviews and tests resulted in higher productivity, code quality, and lower cost of maintenance.
 
+![ScreenShot](HIPClang2.png)
 
+For most HIP applications, the transition from HCC to HIP-Clang is transparent and efficient as the HIPCC and HIP cmake files automatically choose compilation options for HIP-Clang and hide the difference between the HCC and HIP-Clang code. However, minor changes may be required as HIP-Clang has a stricter syntax and semantic checks compared to HCC.
 
+NOTE: Native HCC language features are no longer supported.
 
-![ScreenShot](onnx.png)
+### Radeon Open Compute Common Language Runtime
+Radeon Open Compute Common Language Runtime (ROCclr) is a virtual device interface that computes runtime interaction with backends such as ROCr or PAL.
 
-For more details about AMD support for ONNX and ISV samples, see
+In this release,  HIP is implemented on top of ROCclr, which is a layer abstracting ROCm and PAL (Platform Abstraction Library) APIs. This abstraction allows runtimes to work easily on Linux and Windows machines. 
 
-https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/master/model_compiler
+The following image summarizes the HIP stack for HIP-Clang.
 
+![ScreenShot](HIPClang1.png)
+
+### OpenCL Runtime
+The following OpenCL runtime changes are made in this release:
+
+* AMD ROCm OpenCL Runtime extends support to OpenCL2.2
+* The developer branch is changed from master to master-next.
 
 
 ## Deploying ROCm
