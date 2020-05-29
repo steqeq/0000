@@ -19,11 +19,11 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
 - [Known Issues](#Known-Issues)
 
 - [Deprecations](#Deprecations)
+  * [Heterogeneous Compute Compiler](#Heterogeneous-Compute-Compiler)
 
 - [Deploying ROCm](#Deploying-ROCm)
  
-- [Deprecations in This Release](#Deprecations-in-This-Release)
-  * [Code Object Manager (Comgr) Functions](#Code-Object-Manager-(Comgr)-Functions)
+
 
 
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -259,7 +259,7 @@ There is no known workaround for this issue.
 
 
 
-# Deprecations in This Release
+# Deprecations 
 
 ## Heterogeneous Compute Compiler
 In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
