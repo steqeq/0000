@@ -83,7 +83,9 @@ Access the following links for more information on:
 
 # What\'s New in This Release
 
-## Upgrading from v3.3 to v3.5 
+## Upgrading to This Release
+
+You must follow the requirements as stated below to successfully upgrade from v3.3 to v3.5.
 
 Add text
 
