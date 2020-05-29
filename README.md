@@ -83,7 +83,7 @@ Access the following links for more information on:
 
 # What\'s New in This Release
 
-## Upgrading from AMD ROCm v3.3 to v3.5
+## Upgrading from v3.3 to v3.5
 
 Add text
 
