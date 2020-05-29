@@ -2,18 +2,24 @@
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues and deprecated features in the ROCm v3.5.0 release.
 
-- [What Is ROCm?](#What-Is-ROCm)
-  * [ROCm Components](#ROCm-Components)
+- [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
   * [Supported Operating Systems](#Supported-Operating-Systems)
-  * [Important ROCm Links](#Important-ROCm-Links)
-  
+  * [Documentation Updates](#Documentation-Updates)
+   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Multi Version Installation](#Multi-Version-Installation)
-  * [GPU Process Information](#GPU-Process-Information)
-  * [Support for 3D Pooling Layers](#Support-for-3D-Pooling-Layers)
-  * [ONNX Enhancements](#ONNX-Enhancements)
+  * [Upgrading from V3.3 to v3.5](#Upgrading-from-v3.3-v3.5)
+  * [AMD ROCm Tools](#AMD-ROCm-Tools)
+  * [AMD ROCm Math and Communications Libraries](#AMD-ROCm-Math-and-Communications-Libraries)
+  * [AMD ROCm Deep Learning](#AMD-ROCm-Deep-Learning)
+  * [AMD ROCm System Management Interface](#AMD-ROCm-System-Management-Interface)
+  * [AMD ROCm MIVision](#AMD-ROCm-MIVision)
   
-  
+- [Fixed Issues](#Fixed-Issues)
+
+- [Known Issues](#Known-Issues)
+
+- [Deprecations](#Deprecations)
+
 - [Deploying ROCm](#Deploying-ROCm)
  
 - [Deprecations in This Release](#Deprecations-in-This-Release)
@@ -24,7 +30,8 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
   * [ROCm Platform Packages](#ROCm-Platform-Packages)
-  
+
+# Supported Operating Systems and Documentation Updates
 
 ## Supported Operating Systems 
 
@@ -258,8 +265,7 @@ There is no known workaround for this issue.
 In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
 
 For more information, see HIP documentation at:
-https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html#hip-heterogeneous-computing-interface-for-portability
-
+https://rocmdocs.amd.com/en/latest
 
 
 ## Deploying ROCm
