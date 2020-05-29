@@ -7,7 +7,7 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
   * [Documentation Updates](#Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Upgrading from V3\.3 to v3\.5](#Upgrading-from-v3\.3-v3\.5)
+  * [Upgrading from V3\.3 to v3\.5](#Upgrading-from-V3\.3-V3\.5)
   * [AMD ROCm Tools](#AMD-ROCm-Tools)
   * [AMD ROCm Math and Communications Libraries](#AMD-ROCm-Math-and-Communications-Libraries)
   * [AMD ROCm Deep Learning](#AMD-ROCm-Deep-Learning)
@@ -45,7 +45,7 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 **NOTE**: Framework support (TensorFlow, pyTorch & Caffe2) for v8.1 is not available.
 
 
-## AMD ROCm v3.5 Documentation Updates
+## Documentation Updates
 
 
 ### AMD ROCDebugger (ROCbdg)
@@ -193,8 +193,10 @@ To install the kernel package for your GPU architecture, use the following comma
  
 * <arch> is the GPU architecture. Ror example, gfx900, gfx906
 * <num cu> is the number of CUs available in the GPU. Ffor example, 56 or 64 
+ 
+## System Management Interface
 
-## New SMI Event Interface and Library
+### New SMI Event Interface and Library
 
 An SMI event interface is added to the kernel and ROCm SMI  lib for system administrators to get notified when specific events occur. On the kernel side, AMDKFD_IOC_SMI_EVENTS input/output control is enhanced to allow notifications propagation to user mode through the event channel. 
 
@@ -202,7 +204,7 @@ On the ROCm SMI lib side, APIs are added to set an event mask and receive event 
 
 For the more details about ROCm SMI API, see (enter doc link after updating the website)
 
-## API for CPU Affinity
+### API for CPU Affinity
 A new API is introduced for aiding applications to select appropriate memory node for a given accelerator(GPU). 
 
 The API for CPU affinity has the following signature:
@@ -213,7 +215,7 @@ This API takes as input, device index (dv_ind), and returns the NUMA node (CPU a
 
 Non-Uniform Memory Access (NUMA) is a computer memory design used in multiprocessing, where the memory access time depends on the memory location relative to the processor. 
 
-## AMD ROCm - MIVision
+## AMD ROCm MIVision
 
 ### Radeon Performance Primitives Library
 The new Radeon Performance Primitives (RPP) library is a comprehensive high-performance computer vision library for AMD (CPU and GPU) with the HIP and OpenCL backend. The target operating system is Linux.
