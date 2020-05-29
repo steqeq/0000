@@ -7,7 +7,7 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
   * [Documentation Updates](#Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * <a name="Upgrading from v3.3 to v3.5"></a>
+  * [Upgrading from v3.3 to v3.5](#<a name="Upgrading from v3.3 to v3.5"></a>)
   * [AMD ROCm Tools](#AMD-ROCm-Tools)
   * [AMD ROCm Math and Communications Libraries](#AMD-ROCm-Math-and-Communications-Libraries)
   * [AMD ROCm Deep Learning](#AMD-ROCm-Deep-Learning)
