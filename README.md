@@ -217,7 +217,30 @@ For more information about prerequisites and library functions, see
 https://rocmdocs.amd.com/en/latest/Current_Release_Notes/Current-Release-Notes.html
 
 
+# Fixed Issues
 
+## Device printf Support for HIP-Clang
+HIP now supports the use of printf in the device code. The parameters and return value for the device-side printf follow the POSIX.1 standard, with the exception that the "%n" specifier is not supported. A call to printf blocks the calling wavefront until the operation is completely processed by the host. 
+
+No host-side runtime calls by the application are needed to cause the output to appear. There is also no limit on the number of device-side calls to printf or the amount of data that is printed.
+
+For more details, refer the HIP Programming Guide at:
+https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-GUIDE.html#hip-guide
+
+## Assertions in HIP Device Code  
+Previously, a failing assertion caused early termination of kernels and the application to exit with a line number, file, and failing condition printed to the screen.
+This issue is now fixed and the assert() and abort() functions are implemented for HIP device code. 
+NOTE: There may be a performance impact in the use of device assertions in its current form. 
+
+You may choose to disable the assertion in the production code. For example, to disable an assertion of:
+
+*assert(foo != 0);*    
+
+you may comment it out as:  
+
+*//assert(foo != 0);*
+
+NOTE: Assertions are currently enabled by default. 
 
 ## Deprecations in This Release
 
