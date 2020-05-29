@@ -242,24 +242,26 @@ you may comment it out as:
 
 NOTE: Assertions are currently enabled by default. 
 
-## Deprecations in This Release
+# Known Issues 
+The following are the known issues in the v3.5.x release.
 
-### Code Object Manager (Comgr) Functions
+## ROCgdb Single Stepping of S_ENDPGM Instruction
+Issue: The instruction single step of the S_ENDPGM instruction may cause the GPU hardware to freeze.
+There is no known workaround for this issue. 
 
-The following Code Object Manager (Comgr) functions are deprecated.
 
-* `amd_comgr_action_info_set_options` 
 
-* `amd_comgr_action_info_get_options` 
 
-These functions were originally deprecated in version 1.3 of the Comgr library as they no longer support options with embedded spaces. 
-The deprecated functions are now replaced with the array-oriented options API, which includes 
+# Deprecations in This Release
 
-* `amd_comgr_action_info_set_option_list`
+## Heterogeneous Compute Compiler
+In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
 
-* `amd_comgr_action_info_get_option_list_count`
+For more information, see HIP documentation at:
+https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html#hip-heterogeneous-computing-interface-for-portability
 
-* `amd_comgr_action_info_get_option_list_item`
+
+
 ## Deploying ROCm
 AMD hosts both Debian and RPM repositories for the ROCm v3.5.x packages. 
 
