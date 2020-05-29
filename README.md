@@ -103,25 +103,120 @@ In this release,  HIP is implemented on top of ROCclr, which is a layer abstract
 
 The following image summarizes the HIP stack for HIP-Clang.
 
-![ScreenShot](HIPClang1.png)
+![ScreenShot](HIPClang2.1.png)
 
 ### OpenCL Runtime
 The following OpenCL runtime changes are made in this release:
 
 * AMD ROCm OpenCL Runtime extends support to OpenCL2.2
-* The developer branch is changed from master to master-next.
+* The developer branch is changed from master to master-next
+
+## AMD ROCm Tools
+
+### AMD ROCm GNU Debugger (ROCgdb)
+The AMD ROCm Debugger (ROCgdb) is the AMD ROCm source-level debugger for Linux based on the GNU Debugger (GDB). It enables heterogeneous debugging on the AMD ROCm platform of an x86-based host architecture along with AMD GPU architectures and supported by the AMD Debugger API Library (ROCdbgapi). 
+
+The AMD Debugger API Library (ROCdbgapi) is included with the AMD ROCm release. The ROCgdb and ROCdbgapi packages are part of the rocm-dev meta-package that is installed as part of the rocm-dkms package.
+
+The current AMD ROCm Debugger (ROCgdb) is an initial prototype that focuses on source line debugging. 
+
+Note: Symbolic variable debugging capabilities are not currently supported.
+
+For more information about AMD ROCm, see
+
+https://rocmdocs.amd.com
+
+You can use the standard GDB commands for both CPU and GPU code debugging. For more information about ROCgdb, refer to the *ROCgdb User Guide*, which is installed at:
+* ``/opt/rocm/share/info/gdb.info`` as a texinfo file
+* ``/opt/rocm/share/doc/gdb/gdb.pdf`` as a PDF file
+
+You can refer to the following chapters in the AMD ROCgdb User Guide for more specific information about debugging heterogeneous programs on AMD ROCm:
+
+* *Debugging Heterogeneous Programs*: Provides general information about debugging heterogeneous programs. It presents features and commands that are not currently implemented but provisionally planned for future versions.
+
+* *Configuration-Specific Information > Architectures > AMD GPU*: Provides specific information about debugging heterogeneous programs on AMD ROCm with supported AMD GPU chips. This section also lists the implementation status and known issues of the current version.
+
+For more information about GNU Debugger (GDB), refer to the GNU Debugger (GDB) web site at: http://www.gnu.org/software/gdb
+
+### AMD ROCm Debugger API Library 
+
+The amd-dbgapi library implements an AMD GPU debugger application programming interface (API). It provides the support necessary for a client of the library to control the execution and inspect the state of supported commercially available AMD GPU devices.
+
+(Enter Doc link)
+
+### rocProfiler Dispatch Callbacks Start/Stop API
+
+In this release, a new rocprofiler start/stop API is added to enable/disable GPU kernel HSA dispatch callbacks. The callback can be registered with the 'rocprofiler_set_hsa_callbacks' API. The API helps you eliminate some profiling performance impact by invoking the profiler only for kernel dispatches of interest. This optimization will result in significant performance gains.
+
+The API provides the following functions:
+* *hsa_status_t rocprofiler_start_queue_callbacks(); is used to start profiling
+* *hsa_status_t rocprofiler_stop_queue_callbacks(); is used to stop profiling. 
+
+For more information on kernel dispatches, see the HSA Platform System Architecture Specification guide at http://www.hsafoundation.com/standards/.
+
+## AMD ROCm Math and Communications Libraries
+
+### ROCm Communications Collective Library 
+The ROCm Communications Collective Library (RCCL) consists of the following enhancements:
+* Re-enable target 0x803
+* Build time improvements for the HIP-Clang compiler
+
+### NVIDIA Communications Collective Library Version Compatibility
+AMD RCCL is now compatible with NVIDIA Communications Collective Library (NCCL) v2.6.4 and provides the following features: 
+* Network interface improvements with API v3
+* Network topology detection 
+* Improved CPU type detection
+* Infiniband adaptive routing support
+
+## AMD ROCm Deep Learning
+
+### Support for Detectron2
+The AMD ROCM software stack now extends support to Detectron2. The build process attempts to detect the AMD ROCm enabled PyTorch and a corresponding Torchvision installation. Upon detection,  it builds and runs Detectron2 successfully on AMD ROCm.  
+
+The supported platform is Python v3.6.
+
+### MIOpen - Optional Kernel Package Installation
+MIOpen provides an optional pre-compiled kernel package to reduce startup latency. 
+
+NOTE: The installation of this package is optional. MIOpen will continue to function as expected even if you choose to not install the pre-compiled kernel package. This is because MIOpen compiles the kernels on the target machine once the kernel is run. However, the compilation step may significantly increase the startup time for different operations.
+
+To install the kernel package for your GPU architecture, use the following command:
+
+*apt-get install miopen-kernels-<arch>-<num cu>*
+ 
+* <arch> is the GPU architecture. Ror example, gfx900, gfx906
+* <num cu> is the number of CUs available in the GPU. Ffor example, 56 or 64 
+
+## New SMI Event Interface and Library
+
+An SMI event interface is added to the kernel and ROCm SMI  lib for system administrators to get notified when specific events occur. On the kernel side, AMDKFD_IOC_SMI_EVENTS input/output control is enhanced to allow notifications propagation to user mode through the event channel. 
+
+On the ROCm SMI lib side, APIs are added to set an event mask and receive event notifications with a timeout option. Further, ROCm SMI API details can be found in the PDF generated by Doxygen from source or by referring to the rocm_smi.h header file (see the rsmi_event_notification_* functions).
+
+For the more details about ROCm SMI API, see (enter doc link after updating the website)
+
+## API for CPU Affinity
+A new API is introduced for aiding applications to select appropriate memory node for a given accelerator(GPU). 
+
+The API for CPU affinity has the following signature:
+
+*rsmi_status_t rsmi_topo_numa_affinity_get(uint32_t dv_ind, uint32_t *numa_node);*
+
+This API takes as input, device index (dv_ind), and returns the NUMA node (CPU affinity), stored at location pointed by numa_node pointer, associated with the device.
+
+Non-Uniform Memory Access (NUMA) is a computer memory design used in multiprocessing, where the memory access time depends on the memory location relative to the processor. 
+
+## AMD ROCm - MIVision
+
+### Radeon Performance Primitives Library
+The new Radeon Performance Primitives (RPP) library is a comprehensive high-performance computer vision library for AMD (CPU and GPU) with the HIP and OpenCL backend. The target operating system is Linux.
+
+![ScreenShot](RPP.png)
+
+For more information about prerequisites and library functions, see 
+https://rocmdocs.amd.com/en/latest/Current_Release_Notes/Current-Release-Notes.html
 
 
-## Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v3.5.x packages. 
-
-The following directions show how to install ROCm on supported Debian-based systems such as Ubuntu 18.04.x. 
-
-Note: These directions may not work as written on unsupported Debian-based distributions. For example, newer versions of Ubuntu may not be compatible with the rock-dkms kernel driver. In this case, you can exclude the rocm-dkms and rock-dkms packages.
-
-For more information on ROCM installation on all platforms, see
-
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 
 ## Deprecations in This Release
@@ -142,7 +237,12 @@ The deprecated functions are now replaced with the array-oriented options API, w
 * `amd_comgr_action_info_get_option_list_count`
 
 * `amd_comgr_action_info_get_option_list_item`
+## Deploying ROCm
+AMD hosts both Debian and RPM repositories for the ROCm v3.5.x packages. 
 
+For more information on ROCM installation on all platforms, see
+
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 ## Hardware and Software Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
