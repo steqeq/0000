@@ -98,7 +98,7 @@ NOTE: The HCC environment variables will be gradually deprecated in subsequent r
 
 The majority of the codebase for the HIP-Clang compiler has been upstreamed to the Clang trunk. The HIP-Clang implementation has undergone a strict code review by the LLVM/Clang community and comprehensive tests consisting of LLVM/Clang build bots. These reviews and tests resulted in higher productivity, code quality, and lower cost of maintenance.
 
-![ScreenShot](HipClang2.png)
+![ScreenShot](HIPClang2.png)
 
 For most HIP applications, the transition from HCC to HIP-Clang is transparent and efficient as the HIPCC and HIP cmake files automatically choose compilation options for HIP-Clang and hide the difference between the HCC and HIP-Clang code. However, minor changes may be required as HIP-Clang has a stricter syntax and semantic checks compared to HCC.
 
@@ -111,7 +111,7 @@ In this release,  HIP is implemented on top of ROCclr, which is a layer abstract
 
 The following image summarizes the HIP stack for HIP-Clang.
 
-![ScreenShot](HIPClang2.1.png)
+![ScreenShot](HipClang2.1.png)
 
 ### OpenCL Runtime
 The following OpenCL runtime changes are made in this release:
