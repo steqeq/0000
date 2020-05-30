@@ -137,7 +137,7 @@ The following OpenCL runtime changes are made in this release:
 ## AMD ROCm Tools
 
 ### AMD ROCm GNU Debugger (ROCgdb)
-The AMD ROCm Debugger (ROCgdb) is the AMD ROCm source-level debugger for Linux based on the GNU Debugger (GDB). It enables heterogeneous debugging on the AMD ROCm platform of an x86-based host architecture along with AMD GPU architectures and supported by the AMD Debugger API Library (ROCdbgapi)
+The AMD ROCm Debugger (ROCgdb) is the AMD ROCm source-level debugger for Linux based on the GNU Debugger (GDB). It enables heterogeneous debugging on the AMD ROCm platform of an x86-based host architecture along with AMD GPU architectures and supported by the AMD Debugger API Library (ROCdbgapi).
 
 The AMD ROCm Debugger is installed by the rocm-gdb package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
 
@@ -155,11 +155,16 @@ The AMD ROCm Debugger User Guide is available as a PDF at:
 For more information about GNU Debugger (GDB), refer to the GNU Debugger (GDB) web site at: http://www.gnu.org/software/gdb
 
 
-For more information about GNU Debugger (GDB), refer to the GNU Debugger (GDB) web site at: http://www.gnu.org/software/gdb
-
 ### AMD ROCm Debugger API Library 
 
-The amd-dbgapi library implements an AMD GPU debugger application programming interface (API). It provides the support necessary for a client of the library to control the execution and inspect the state of supported commercially available AMD GPU devices.
+The AMD ROCm Debugger API Library (ROCdbgapi) implements an AMD GPU debugger application programming interface (API) that provides the support necessary for a client of the library to control the execution and inspect the state of AMD GPU devices.
+
+The following AMD GPU architectures are supported:
+* Vega 10 
+* Vega 7nm
+
+The AMD ROCm Debugger API Library is installed by the rocm-dbgapi package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
+The AMD ROCm Debugger API Specification is available as a PDF at:
 
 (Enter Doc link)
 
