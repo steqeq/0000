@@ -64,11 +64,11 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 
 ### AMD ROCm Deep Learning
 
-* MIOpen API
+* [MIOpen API])(https://github.com/ROCmSoftwarePlatform/MIOpen)
 
 ### AMD ROCm Glossary of Terms
 
-* Updated Glossary of Terms and Definitions
+* [Updated Glossary of Terms and Definitions](https://rocmdocs.amd.com/en/latest/ROCm_Glossary/ROCm-Glossary.html)
 
 ### General AMD ROCm Documentatin Links
 
