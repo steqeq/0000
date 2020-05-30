@@ -8,6 +8,7 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [Upgrading to This Release](#Upgrading-to-This-Release)
+  * [AMD ROCm Compilers](#AMD-ROCm-Compilers)
   * [AMD ROCm Tools](#AMD-ROCm-Tools)
   * [AMD ROCm Math and Communications Libraries](#AMD-ROCm-Math-and-Communications-Libraries)
   * [AMD ROCm Deep Learning](#AMD-ROCm-Deep-Learning)
