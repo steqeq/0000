@@ -57,7 +57,6 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 * FAQ - Transition from HCC to HIP-Clang
 * HIP-Clang Porting Guide
 * HIP-Clang Installation Guide
-* HIP-Clang Readme
 
 
 ### General AMD ROCm Documentatin Links
@@ -99,7 +98,7 @@ NOTE: The HCC environment variables will be gradually deprecated in subsequent r
 
 The majority of the codebase for the HIP-Clang compiler has been upstreamed to the Clang trunk. The HIP-Clang implementation has undergone a strict code review by the LLVM/Clang community and comprehensive tests consisting of LLVM/Clang build bots. These reviews and tests resulted in higher productivity, code quality, and lower cost of maintenance.
 
-![ScreenShot](HIPClang2.png)
+![ScreenShot](HipClang2.png)
 
 For most HIP applications, the transition from HCC to HIP-Clang is transparent and efficient as the HIPCC and HIP cmake files automatically choose compilation options for HIP-Clang and hide the difference between the HCC and HIP-Clang code. However, minor changes may be required as HIP-Clang has a stricter syntax and semantic checks compared to HCC.
 
