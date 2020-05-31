@@ -61,7 +61,7 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 
 ### AMD ROCm Systems Management Interface
 
-* [System Management Interface Event API Guide]9https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf)
+* [System Management Interface Event API Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf)
 
 ### AMD ROCm Deep Learning
 
