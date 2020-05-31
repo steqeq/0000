@@ -151,7 +151,7 @@ You can use the standard GDB commands for both CPU and GPU code debugging. For m
 
 The AMD ROCm Debugger User Guide is available as a PDF at:
 
--	<<<put link here>>>
+https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf
  
 For more information about GNU Debugger (GDB), refer to the GNU Debugger (GDB) web site at: http://www.gnu.org/software/gdb
 
@@ -167,7 +167,7 @@ The following AMD GPU architectures are supported:
 The AMD ROCm Debugger API Library is installed by the rocm-dbgapi package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
 The AMD ROCm Debugger API Specification is available as a PDF at:
 
-(Enter Doc link)
+https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf
 
 ### rocProfiler Dispatch Callbacks Start/Stop API
 
@@ -217,7 +217,7 @@ On the ROCm SMI lib side, APIs are added to set an event mask and receive event 
 
 For the more details about ROCm SMI API, see 
 
-(enter doc link after updating the website)
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf
 
 ### API for CPU Affinity
 A new API is introduced for aiding applications to select the appropriate memory node for a given accelerator(GPU). 
