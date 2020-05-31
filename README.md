@@ -56,12 +56,12 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 
 ### AMD ROCDebugger (ROCbdg)
 
-* ROCgdb User Guide
-* ROCgdbapi Library
+* [ROCgdb User Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf)
+* [ROCgdbapi Guide] (https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf)
 
 ### AMD ROCm Systems Management Interface
 
-* System Management Interface Event Library
+* [System Management Interface Event API Guide]9https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf)
 
 ### AMD ROCm Deep Learning
 
