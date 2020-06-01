@@ -319,10 +319,14 @@ Running AMD ROCm v3.3 in the user mode with the AMD ROCm v3.5 DKMS kernel module
 * IPC import/export, cross memory copy (used by UCX and MPI)
 * Experimental GDB support
 
-**Resolution**: Install ROCm v3.5 Thunk when using ROCm 3.5 Kernel Fusion Driver (KFD).
+**Resolution**: Install ROCm v3.5 Thunk (*Hsakmt*) when using ROCm 3.5 Kernel Fusion Driver (KFD). You can access the Thunk package at:
+
+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
 
 # Deprecations 
+Install ROCm v3.5 Thunk (Hsakmt) when using ROCm 3.5 Kernel Fusion Driver (KFD). You can access the Thunk package at:
 
+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
 ## Heterogeneous Compute Compiler
 In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
 
