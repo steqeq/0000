@@ -31,10 +31,8 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
 
 - [Deploying ROCm](#Deploying-ROCm)
  
-
-
-
 - [Hardware and Software Support](#Hardware-and-Software-Support)
+
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
   * [ROCm Platform Packages](#ROCm-Platform-Packages)
@@ -280,6 +278,31 @@ When the ROCdbgapi library is used with an application that rapidly creates and 
 *[amd-dbgapi]: fatal error: kfd_queue_id 2 should have been reported as a NEW_QUEUE before next_pending_event failed (rc=-2)*
 
 There are no known workarounds at this time.
+
+## rocThrust and hipCUB Unit Test Failures 
+
+The following unit test failures have been observed due to known issues in the ROCclr runtime. 
+
+rocThrust
+* sort 
+* sort_by_key
+
+hipCUB
+* BlockDiscontinuity 
+* BlockExchange 
+* BlockHistogram 
+* BlockRadixSort
+* BlockReduce 
+* BlockScan
+
+**Workaround**: Use AMD ROCm v3.3 or older versions. 
+
+## PEBB & PQT Tests Freeze and Remain Incomplete
+
+The measuring of the PCIe and GPU <-> GPU bandwidth is not supported in this release.
+
+There are no known workarounds at this time.
+
 
 # Deprecations 
 
