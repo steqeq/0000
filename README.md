@@ -8,12 +8,19 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [Upgrading to This Release](#Upgrading-to-This-Release)
-  * [AMD ROCm Compilers](#AMD-ROCm-Compilers)
-  * [AMD ROCm Tools](#AMD-ROCm-Tools)
-  * [AMD ROCm Math and Communications Libraries](#AMD-ROCm-Math-and-Communications-Libraries)
-  * [AMD ROCm Deep Learning](#AMD-ROCm-Deep-Learning)
-  * [AMD ROCm System Management Interface](#AMD-ROCm-System-Management-Interface)
-  * [AMD ROCm MIVision](#AMD-ROCm-MIVision)
+  * [Heterogeneous-Compute Interface for Portability](#Heterogeneous-Compute-Interface-for-Portability)
+  * [Radeon Open Compute Common Language Runtime](#Radeon-Open-Compute-Common-Language-Runtime)
+  * [OpenCL Runtime](#OpenCL-Runtime)
+  * [AMD ROCm GNU Debugger ROCgdb](#AMD-ROCm-GNU-Debugger-ROCgdb)
+  * [AMD ROCm Debugger API Library](#AMD-ROCm-Debugger-API-Library)
+  * [rocProfiler Dispatch Callbacks Start/Stop API](#rocProfiler-Dispatch-Callbacks-Start-Stop-API)
+  * [ROCm Communications Collective Library](#ROCm-Communications-Collective-Library)
+  * [NVIDIA Communications Collective Library Version Compatibility](#NVIDIA-Communications-Collective-Library-Version-Compatibility)
+  * [MIOpen - Optional Kernel Package Installation](#MIOpen-Optional-Kernel-Package-Installation)
+  * [New SMI Event Interface and Library](#New-SMI-Event-Interface-and-Library)
+  * [API for CPU Affinity](#API-for-CPU-Affinity)
+  * [Radeon Performance Primitives Library](#Radeon-Performance-Primitives-Library)
+  
   
 - [Fixed Issues](#Fixed-Issues)
 
@@ -119,7 +126,7 @@ For most HIP applications, the transition from HCC to HIP-Clang is transparent a
 
 NOTE: Native HCC language features are no longer supported.
 
-### Radeon Open Compute Common Language Runtime
+## Radeon Open Compute Common Language Runtime
 Radeon Open Compute Common Language Runtime (ROCclr) is a virtual device interface that computes runtime interaction with backends such as ROCr or PAL.
 
 In this release,  HIP is implemented on top of ROCclr, which is a layer abstracting ROCm and PAL (Platform Abstraction Library) APIs. This abstraction allows runtimes to work easily on Linux and Windows machines. 
@@ -128,7 +135,7 @@ The following image summarizes the HIP stack for HIP-Clang.
 
 ![ScreenShot](HipClang2.1.png)
 
-### OpenCL Runtime
+## OpenCL Runtime
 The following OpenCL runtime changes are made in this release:
 
 * AMD ROCm OpenCL Runtime extends support to OpenCL2.2
@@ -166,7 +173,7 @@ The AMD ROCm Debugger API Specification is available as a PDF at:
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf
 
-## rocProfiler Dispatch Callbacks Start/Stop API
+## rocProfiler Dispatch Callbacks Start Stop API
 
 In this release, a new rocprofiler start/stop API is added to enable/disable GPU kernel HSA dispatch callbacks. The callback can be registered with the 'rocprofiler_set_hsa_callbacks' API. The API helps you eliminate some profiling performance impact by invoking the profiler only for kernel dispatches of interest. This optimization will result in significant performance gains.
 
