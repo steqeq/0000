@@ -304,6 +304,14 @@ The measuring of the PCIe and GPU <-> GPU bandwidth is not supported in this rel
 There are no known workarounds at this time.
 
 
+## Multiple GPU Configuration Freezes with Imagenet Training and tf_cnn_benchmark on TensorFlow 
+
+A random freeze has been observed with Imagenet training and tf_cnn_benchmark on TensorFlow when multiple GPU configurations are involved. 
+
+There is no freeze observed with single GPUs.  
+
+There are no known workarounds at this time.
+
 # Deprecations 
 
 ## Heterogeneous Compute Compiler
