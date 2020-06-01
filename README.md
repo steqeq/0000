@@ -105,8 +105,7 @@ You must perform a fresh and a clean AMD ROCm install to successfully upgrade fr
      * v3.3 release had the firmware as part of the rock-dkms package
 
 
-## AMD ROCm Compilers
-### Heterogeneous-Compute Interface for Portability
+## Heterogeneous-Compute Interface for Portability
 
 In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
 
@@ -135,9 +134,7 @@ The following OpenCL runtime changes are made in this release:
 * AMD ROCm OpenCL Runtime extends support to OpenCL2.2
 * The developer branch is changed from master to master-next
 
-## AMD ROCm Tools
-
-### AMD ROCm GNU Debugger (ROCgdb)
+## AMD ROCm GNU Debugger (ROCgdb)
 The AMD ROCm Debugger (ROCgdb) is the AMD ROCm source-level debugger for Linux based on the GNU Debugger (GDB). It enables heterogeneous debugging on the AMD ROCm platform of an x86-based host architecture along with AMD GPU architectures and supported by the AMD Debugger API Library (ROCdbgapi).
 
 The AMD ROCm Debugger is installed by the rocm-gdb package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
@@ -156,7 +153,7 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf
 For more information about GNU Debugger (GDB), refer to the GNU Debugger (GDB) web site at: http://www.gnu.org/software/gdb
 
 
-### AMD ROCm Debugger API Library 
+## AMD ROCm Debugger API Library 
 
 The AMD ROCm Debugger API Library (ROCdbgapi) implements an AMD GPU debugger application programming interface (API) that provides the support necessary for a client of the library to control the execution and inspect the state of AMD GPU devices.
 
@@ -169,7 +166,7 @@ The AMD ROCm Debugger API Specification is available as a PDF at:
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf
 
-### rocProfiler Dispatch Callbacks Start/Stop API
+## rocProfiler Dispatch Callbacks Start/Stop API
 
 In this release, a new rocprofiler start/stop API is added to enable/disable GPU kernel HSA dispatch callbacks. The callback can be registered with the 'rocprofiler_set_hsa_callbacks' API. The API helps you eliminate some profiling performance impact by invoking the profiler only for kernel dispatches of interest. This optimization will result in significant performance gains.
 
@@ -179,23 +176,19 @@ The API provides the following functions:
 
 For more information on kernel dispatches, see the HSA Platform System Architecture Specification guide at http://www.hsafoundation.com/standards/.
 
-## AMD ROCm Math and Communications Libraries
-
-### ROCm Communications Collective Library 
+## ROCm Communications Collective Library 
 The ROCm Communications Collective Library (RCCL) consists of the following enhancements:
 * Re-enable target 0x803
 * Build time improvements for the HIP-Clang compiler
 
-### NVIDIA Communications Collective Library Version Compatibility
+## NVIDIA Communications Collective Library Version Compatibility
 AMD RCCL is now compatible with NVIDIA Communications Collective Library (NCCL) v2.6.4 and provides the following features: 
 * Network interface improvements with API v3
 * Network topology detection 
 * Improved CPU type detection
 * Infiniband adaptive routing support
 
-## AMD ROCm Deep Learning
-
-### MIOpen - Optional Kernel Package Installation
+## MIOpen - Optional Kernel Package Installation
 MIOpen provides an optional pre-compiled kernel package to reduce startup latency. 
 
 NOTE: The installation of this package is optional. MIOpen will continue to function as expected even if you choose to not install the pre-compiled kernel package. This is because MIOpen compiles the kernels on the target machine once the kernel is run. However, the compilation step may significantly increase the startup time for different operations.
@@ -207,9 +200,8 @@ To install the kernel package for your GPU architecture, use the following comma
 * <arch> is the GPU architecture. Ror example, gfx900, gfx906
 * <num cu> is the number of CUs available in the GPU. Ffor example, 56 or 64 
  
-## AMD ROCm System Management Interface
 
-### New SMI Event Interface and Library
+## New SMI Event Interface and Library
 
 An SMI event interface is added to the kernel and ROCm SMI  lib for system administrators to get notified when specific events occur. On the kernel side, AMDKFD_IOC_SMI_EVENTS input/output control is enhanced to allow notifications propagation to user mode through the event channel. 
 
@@ -219,7 +211,7 @@ For the more details about ROCm SMI API, see
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf
 
-### API for CPU Affinity
+## API for CPU Affinity
 A new API is introduced for aiding applications to select the appropriate memory node for a given accelerator(GPU). 
 
 The API for CPU affinity has the following signature:
@@ -230,9 +222,7 @@ This API takes as input, device index (dv_ind), and returns the NUMA node (CPU a
 
 Non-Uniform Memory Access (NUMA) is a computer memory design used in multiprocessing, where the memory access time depends on the memory location relative to the processor. 
 
-## AMD ROCm MIVision
-
-### Radeon Performance Primitives Library
+## Radeon Performance Primitives Library
 The new Radeon Performance Primitives (RPP) library is a comprehensive high-performance computer vision library for AMD (CPU and GPU) with the HIP and OpenCL backend. The target operating system is Linux.
 
 ![ScreenShot](RPP.png)
