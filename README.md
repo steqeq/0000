@@ -59,7 +59,7 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 * [HIP-Clang Porting Guide](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide)
 * [HIP - Glossary of Terms](https://rocmdocs.amd.com/en/latest/ROCm_Glossary/ROCm-Glossary.html)
 
-### AMD ROCDebugger (ROCbdg)
+### AMD ROCDebugger (ROCgdb)
 
 * [ROCgdb User Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf)
 * [ROCgdbapi Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf)
