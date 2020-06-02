@@ -132,10 +132,6 @@ Radeon Open Compute Common Language Runtime (ROCclr) is a virtual device interfa
 
 In this release,  HIP is implemented on top of ROCclr, which is a layer abstracting ROCm and PAL (Platform Abstraction Library) APIs. This abstraction allows runtimes to work easily on Linux and Windows machines. 
 
-The following image summarizes the HIP stack for HIP-Clang.
-
-![ScreenShot](HipClang2.1.png)
-
 ## OpenCL Runtime
 The following OpenCL runtime changes are made in this release:
 
