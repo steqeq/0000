@@ -202,7 +202,7 @@ To install the kernel package for your GPU architecture, use the following comma
 
 *apt-get install miopen-kernels-<arch>-<num cu>*
  
-* <arch> is the GPU architecture. Ror example, gfx900, gfx906
+* <arch> is the GPU architecture. For example, gfx900, gfx906
 * <num cu> is the number of CUs available in the GPU. Ffor example, 56 or 64 
  
 
