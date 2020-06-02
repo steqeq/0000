@@ -326,7 +326,7 @@ Running AMD ROCm v3.3 in the user mode with the AMD ROCm v3.5 DKMS kernel module
 
 The ROCProfiler tool appears to be broken when the SQLite3 library is not found.
 
-Resolution: Install the SQLite3 Python module separately and ensure the environment variable is set to ROCP_PYTHON_VERSION to confirm the Python version, which includes the SQLite3 module.
+**Resolution**: Install the SQLite3 Python module separately and ensure the environment variable is set to ROCP_PYTHON_VERSION to confirm the Python version, which includes the SQLite3 module.
 
 
 
