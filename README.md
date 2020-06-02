@@ -465,20 +465,6 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 |      |   | Does not include most up-to-date firmware |
 
 
-## Software Support
-As of AMD ROCm v1.9.0, the ROCm user-level software is compatible with the AMD drivers in certain upstream Linux kernels. You have the following options:
-
-• Use the ROCk kernel driver that is a part of AMD’s ROCm repositories 
-or
-• Use the upstream driver and only install ROCm user-level utilities from AMD’s ROCm repositories
-
-The releases of the upstream Linux kernel support the following GPUs in ROCm:
-
-• Fiji, Polaris 10, Polaris 11
-• Fiji, Polaris 10, Polaris 11, Vega10
-• Fiji, Polaris 10, Polaris 11, Vega10, Vega 7nm
-
-
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
