@@ -1,6 +1,6 @@
-# AMD ROCm Release Notes v3.5
+# AMD ROCm Release Notes v3.5.0
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
-It also covers known issues and deprecated features in the ROCm v3.5 release.
+It also covers known issues and deprecated features in the ROCm v3.5.0 release.
 
 - [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
   * [Supported Operating Systems](#Supported-Operating-Systems)
@@ -128,9 +128,7 @@ For most HIP applications, the transition from HCC to HIP-Clang is transparent a
 NOTE: Native HCC language features are no longer supported.
 
 ## Radeon Open Compute Common Language Runtime
-Radeon Open Compute Common Language Runtime (ROCclr) is a virtual device interface that computes runtime interaction with backends such as ROCr or PAL.
-
-In this release,  HIP is implemented on top of ROCclr, which is a layer abstracting ROCm and PAL (Platform Abstraction Library) APIs. This abstraction allows runtimes to work easily on Linux and Windows machines. 
+In this release,  the HIP runtime API is implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr.
 
 ## OpenCL Runtime
 The following OpenCL runtime changes are made in this release:
@@ -262,6 +260,18 @@ NOTE: Assertions are currently enabled by default.
 
 # Known Issues 
 The following are the known issues in the v3.5 release.
+
+## HIPify-Clang Installation Failure on CentOS/RHEL 
+
+HIPify-Clang fails to get installed on CentOS/RHEL.
+
+**Workaround**: This is a known issue. As a workaround, 
+
+* Download the file 
+* Perform a force install using RPM and the following command: 
+
+  sudo rpm -ivh --force hipify-clang-11.0.0.x86_64.rpm
+
 
 ## Failure to Process Breakpoint before Queue Destroy Results in ROCm Debugger Error
 When ROCgdb is in non-stop mode with an application that rapidly creates and destroys queues, a breakpoint may be reported that is not processed by the debugger before the queue is deleted. In some cases, this can result in the following error that prevents further debugging:
