@@ -263,12 +263,14 @@ The following are the known issues in the v3.5 release.
 
 ## HIPify-Clang Installation Failure on CentOS/RHEL 
 
-HIPify-Clang fails to get installed on CentOS/RHEL.
+HIPify-Clang fails to install on CentOS/RHEL with the following error:
 
-**Workaround**: This is a known issue. As a workaround, 
+*file from install of hipify-clang conflicts with file from package hip-base*
 
-* Download the file 
-* Perform a force install using RPM and the following command: 
+**Workaround**: This is a known issue and the following workaround is recommended for a successful installation of HIPify-Clang on CentOS/RHEL:
+
+* Download HIPify-Clang RPM. For example, *hipify-clang-11.0.0.x86_64.rpm*
+* Perform a force install using the following command: 
 
   *sudo rpm -ivh --force hipify-clang-11.0.0.x86_64.rpm*
 
