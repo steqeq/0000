@@ -1,21 +1,8 @@
 
-## Multiple Release Installations of AMD ROCm on a Server Fail
+# AMD ROCm Release Notes v3.7.0
 
-The Side-by-Side install feature does not behave as expected, and multiple release installations of AMD ROCm fail. Attempts to install AMD ROCm v3.5.0 and AMD ROCm v3.5.1 side-by-side can result in breaking the existing ROCm v3.5.0 installation.
-
-This known issue is currently under investigation.
-
-# AMD ROCm v3.5.1 Patch Release 
-
-AMD ROCm released a maintenance patch release v3.5.1. For more information, see
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_Release_Notes_v3.5.1.pdf
-
-
-
-# AMD ROCm Release Notes v3.5.0
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
-It also covers known issues and deprecated features in the ROCm v3.5.0 release.
+It also covers known issues and deprecated features in this release.
 
 - [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
   * [Supported Operating Systems](#Supported-Operating-Systems)
@@ -58,8 +45,9 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
 
 ## Supported Operating Systems 
 
-The AMD ROCm v3.5.x platform is designed to support the following operating systems:
+The AMD ROCm v3.7.x platform is designed to support the following operating systems:
 
+* Ubuntu 20.04
 * Ubuntu 16.04.6(Kernel 4.15) and 18.04.4(Kernel 5.3)
 * CentOS 7.7 (Kernel 3.10-1062) and RHEL 7.8(Kernel 3.10.0-1127)(Using devtoolset-7 runtime support)
 * SLES 15 SP1
