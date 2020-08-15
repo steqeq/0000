@@ -253,6 +253,7 @@ The following are the known issues in this release.
 ## (AOMP) ‘Undefined Hidden Symbol’ Linker Error Causes Compilation Failure in HIP
 
 The HIP example device_lib fails to compile due to unreferenced symbols with Link Time Optimization resulting in ‘undefined hidden symbol’ errors. 
+
 This issue is under investigation and there is no known workaround at this time.
 
 
@@ -267,6 +268,7 @@ Build MIGraphX v3.7 from the source using AMD ROCm v3.3
 ## Missing Google Test Installation May Cause RCCL Unit Test Compilation Failure
 Users of the RCCL install.sh script may encounter an RCCL unit test compilation error. It is recommended to use CMAKE directly instead of install.sh to compile RCCL. Ensure Google Test 1.10+ is available in the CMAKE search path.
 
+
 As a workaround, use the latest RCCL from the GitHub development branch at:
 https://github.com/ROCmSoftwarePlatform/rccl/pull/237
 
@@ -279,6 +281,7 @@ Ensure the hardware supports peer-to-peer transfers and enable the peer-to-peer 
 
 ## Partial Loss of Tracing Events for Large Applications
 An internal tracing buffer allocation issue can cause a partial loss of some tracing events for large applications.
+
 As a workaround, rebuild the roctracer/rocprofiler libraries from the GitHub ‘roc-3.7’ branch at:
 •	https://github.com/ROCm-Developer-Tools/rocprofiler
 •	https://github.com/ROCm-Developer-Tools/roctracer
@@ -286,6 +289,7 @@ As a workaround, rebuild the roctracer/rocprofiler libraries from the GitHub ‘
 
 ## GPU Kernel C++ Names Not Demangled
 GPU kernel C++ names in the profiling traces and stats produced by ‘—hsa-trace’ option are not demangled.
+
 As a workaround, users may choose to demangle the GPU kernel C++ names as required.
 
 
