@@ -259,10 +259,13 @@ This issue is under investigation and there is no known workaround at this time.
 
 ## MIGraphX Fails for fp16 Datatype
 The MIGraphX functionality does not work for the fp16 datatype.  
+
 The following workarounds are recommended: 
 
 Use the AMD ROCm v3.3 of MIGraphX 
+
 Or
+
 Build MIGraphX v3.7 from the source using AMD ROCm v3.3
 
 ## Missing Google Test Installation May Cause RCCL Unit Test Compilation Failure
