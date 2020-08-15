@@ -22,9 +22,7 @@ It also covers known issues and deprecated features in this release.
   * [API for CPU Affinity](#API-for-CPU-Affinity)
   * [Radeon Performance Primitives Library](#Radeon-Performance-Primitives-Library)
   
-  
-- [Fixed Issues](#Fixed-Issues)
-
+ 
 - [Known Issues](#Known-Issues)
 
 - [Deprecations](#Deprecations)
@@ -40,7 +38,7 @@ It also covers known issues and deprecated features in this release.
   
 
 
-# Supported Operating Systems and Documentation Updates
+# Supported Operating Systems 
 
 ## Supported Operating Systems 
 
@@ -51,7 +49,7 @@ The AMD ROCm v3.7.x platform is designed to support the following operating syst
 * CentOS 8.2 & RHEL 8.2 (Kernel 4.18.0 ) (devtoolset is not required)
 * SLES 15 SP1
 
-## FRESH INSTALLATION OF AMD ROCM V3.7 RECOMMENDED
+## Fresh Installation of AMD ROCm v3.7 Recommended
 A fresh and clean installation of AMD ROCm v3.7 is recommended. An upgrade from previous releases to AMD ROCm v3.7 is not supported.
 
 For more information, refer to the AMD ROCm Installation Guide at:
@@ -60,9 +58,9 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 **Note**: AMD ROCm release v3.3 or prior releases are not fully compatible with AMD ROCm v3.5 and higher versions. You must perform a fresh ROCm installation if you want to upgrade from AMD ROCm v3.3 or older to 3.5 or higher versions and vice-versa.
 
 
-## Documentation Updates
+# AMD ROCm Documentation Updates
 
-### AMD ROCM INSTALLATION GUIDE 
+## AMD ROCm Installation Guide 
 
 The AMD ROCm Installation Guide in this release includes:
 
@@ -72,32 +70,32 @@ The AMD ROCm Installation Guide in this release includes:
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 
-### AMD ROCm - HIP Documentation Updates
+## AMD ROCm - HIP Documentation Updates
 
-#### Texture and Surface Functions
+### Texture and Surface Functions
 The documentation for Texture and Surface functions is updated and available at:
 
 https://rocmdocs.amd.com/en/latest/Programming_Guides/Kernel_language.html
 
-#### Warp Shuffle Functions
+### Warp Shuffle Functions
 The documentation for Warp Shuffle functions is updated and available at:
 
 https://rocmdocs.amd.com/en/latest/Programming_Guides/Kernel_language.html
 
-#### Compiler Defines and Environment Variables
+### Compiler Defines and Environment Variables
 The documentation for the updated HIP Porting Guide is available at:
 
 https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide
 
 
-### AMD ROCm DEBUG AGENT 
+## AMD ROCm Debug Agent
 
 * ROCm Debug Agent Library 
 
 https://rocmdocs.amd.com/en/latest/ROCm_Tools/rocm-debug-agent.html
 
 
-### General AMD ROCm Documentatin Links
+## General AMD ROCm Documentatin Links
 
 Access the following links for more information:
 
