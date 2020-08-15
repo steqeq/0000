@@ -147,7 +147,7 @@ For more information about RCCL APIs and compatibility with NCCL v2.7, see
 https://rccl.readthedocs.io/en/develop/index.html
 
 
-## Singular Value Decomposition of Bi\-diagonal Matrices
+## Singular Value Decomposition of Bi-diagonal Matrices
 
 Rocsolver_bdsqr now computes the Singular Value Decomposition (SVD) of bi-diagonal matrices. It is an auxiliary function for the SVD of general matrices (function rocsolver_gesvd). 
 
