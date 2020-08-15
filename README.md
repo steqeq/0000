@@ -65,12 +65,12 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 ### AMD ROCM INSTALLATION GUIDE 
 
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
-
 The AMD ROCm Installation Guide in this release includes:
 
 * Updated Supported Environments
 * HIP Installation Instructions
+
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 
 ### AMD ROCm - HIP Documentation Updates
@@ -100,7 +100,7 @@ https://rocmdocs.amd.com/en/latest/ROCm_Tools/rocm-debug-agent.html
 
 ### General AMD ROCm Documentatin Links
 
-Access the following links for more information on:
+Access the following links for more information:
 
 * For AMD ROCm documentation, see 
 
@@ -122,15 +122,29 @@ Access the following links for more information on:
 
 # What\'s New in This Release
 
-## Upgrading to This Release
+## AOMP ENHANCEMENTS
 
-You must perform a fresh and a clean AMD ROCm install to successfully upgrade from v3.3 to v3.5. The following changes apply in this release: 
+AOMP is a scripted build of LLVM. It supports OpenMP target offload on AMD GPUs. Since AOMP is a Clang/LLVM compiler, it also supports GPU offloading with HIP, CUDA, and OpenCL.
 
-* HCC is deprecated and replaced with the HIP-Clang compiler
-* HIP-HCC runtime is changed to Radeon Open Compute Common Language Runtime (HIP-ROCClr)
-* In the v3.5 release, the firmware is separated from the kernel package. The difference is as    follows:
-     * v3.5 release has two separate rock-dkms and rock-dkms-firmware packages
-     * v3.3 release had the firmware as part of the rock-dkms package
+The following enhancements are made for AOMP in this release: 
+* OpenMP 5.0 is enabled by default. You can use -fopenmp-version=45 for OpenMP 4.5 compliance
+* Restructured to include the ROCm compiler
+* B=Bitcode search path using hip policy HIP_DEVICE_LIB_PATH and hip-devic-lib command line option to enable global_free for kmpc_impl_free
+
+Restructured hostrpc, including:
+* Replaced hostcall register functions with handlePayload(service, payload). Note, handlPayload has a simple switch to call the correct service handler function.
+* Removed the WITH_HSA macro
+* Moved the hostrpc stubs and host fallback functions into a single library and the include file. This enables the stubs openmp cpp source instead of hip and reorganizes the directory openmp/libomptarget/hostrpc.
+* Moved hostrpc_invoke.cl to DeviceRTLs/amdgcn.
+* Generalized the vargs processing in printf to work for any vargs function to execute on the host, including a vargs function that uses a function pointer.
+* Reorganized files, added global_allocate and global_free.
+* Fixed llvm TypeID enum to match the current upstream llvm TypeID.
+* Moved strlen_max function inside the declare target #ifdef _DEVICE_GPU in hostrpc.cpp to resolve linker failure seen in pfspecifier_str smoke test.
+* Fixed AOMP_GIT_CHECK_BRANCH in aomp_common_vars to not block builds in Red Hat if the repository is on a specific commit hash.
+* Simplified and reduced the size of openmp host runtime
+* Switched to default OpenMP 5.0
+
+For more information, see https://github.com/ROCm-Developer-Tools/aomp
      
 
 ## rocProf Command Line Tool Python Requirement
