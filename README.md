@@ -9,7 +9,6 @@ It also covers known issues and deprecated features in this release.
   * [Documentation Updates](#Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Upgrading to This Release](#Upgrading-to-This-Release)
   * [Heterogeneous-Compute Interface for Portability](#Heterogeneous-Compute-Interface-for-Portability)
   * [Radeon Open Compute Common Language Runtime](#Radeon-Open-Compute-Common-Language-Runtime)
   * [OpenCL Runtime](#OpenCL-Runtime)
@@ -147,242 +146,150 @@ Restructured hostrpc, including:
 For more information, see https://github.com/ROCm-Developer-Tools/aomp
      
 
-## rocProf Command Line Tool Python Requirement
-SQLite3 is a required Python module for the rocprof command-line tool.  You can install the SQLite3 Python module using the pip utility and set env var ROCP_PYTHON_VERSION to the Python version, which includes the SQLite3 module.
+## ROCM COMMUNICATIONS COLLECTIVE LIBRARY
+
+### Compatibility with NVIDIA Communications Collective Library v2.7 API
+
+ROCm Communications Collective Library (RCCL) is now compatible with the NVIDIA Communications Collective Library (NCCL) v2.7 API.
+
+RCCL (pronounced "Rickle") is a stand-alone library of standard collective communication routines for GPUs, implementing all-reduce, all-gather, reduce, broadcast, reduce-scatter, gather, scatter, and all-to-all. There is also initial support for direct GPU-to-GPU send and receive operations. It has been optimized to achieve high bandwidth on platforms using PCIe, xGMI as well as networking using InfiniBand Verbs or TCP/IP sockets. RCCL supports an arbitrary number of GPUs installed in a single node or multiple nodes, and can be used in either single- or multi-process (e.g., MPI) applications.
+
+The collective operations are implemented using ring and tree algorithms and have been optimized for throughput and latency. For best performance, small operations can be either batched into larger operations or aggregated through the API.
+
+For more information about RCCL APIs and compatibility with NCCL v2.7, see
+https://rccl.readthedocs.io/en/develop/index.html
 
 
+## Singular Value Decomposition of Bi-diagonal Matrices
 
-## Heterogeneous-Compute Interface for Portability
+Rocsolver_bdsqr now computes the Singular Value Decomposition (SVD) of bi-diagonal matrices. It is an auxiliary function for the SVD of general matrices (function rocsolver_gesvd). 
 
-In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
+BDSQR computes the singular value decomposition (SVD) of a n-by-n bidiagonal matrix B.
 
-NOTE: The HCC environment variables will be gradually deprecated in subsequent releases.
+The SVD of B has the following form:
 
-The majority of the codebase for the HIP-Clang compiler has been upstreamed to the Clang trunk. The HIP-Clang implementation has undergone a strict code review by the LLVM/Clang community and comprehensive tests consisting of LLVM/Clang build bots. These reviews and tests resulted in higher productivity, code quality, and lower cost of maintenance.
+B = Ub * S * Vb'
+where 
+•	S is the n-by-n diagonal matrix of singular values of B
+•	the columns of Ub are the left singular vectors of B
+•	the columns of Vb are its right singular vectors
 
-![ScreenShot](HIPClang2.png)
+The computation of the singular vectors is optional; this function accepts input matrices U (of size nu-by-n) and V (of size n-by-nv) that are overwritten with U*Ub and Vb’*V. If nu = 0 no left vectors are computed; if nv = 0 no right vectors are computed.
 
-For most HIP applications, the transition from HCC to HIP-Clang is transparent and efficient as the HIPCC and HIP cmake files automatically choose compilation options for HIP-Clang and hide the difference between the HCC and HIP-Clang code. However, minor changes may be required as HIP-Clang has a stricter syntax and semantic checks compared to HCC.
+Optionally, this function can also compute Ub’*C for a given n-by-nc input matrix C.
 
-NOTE: Native HCC language features are no longer supported.
+PARAMETERS
+•	[in] handle: rocblas_handle.
+•	[in] uplo: rocblas_fill.
 
-## Radeon Open Compute Common Language Runtime
-In this release,  the HIP runtime API is implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr.
+Specifies whether B is upper or lower bidiagonal.
+•	[in] n: rocblas_int. n >= 0.
 
-## OpenCL Runtime
-The following OpenCL runtime changes are made in this release:
+The number of rows and columns of matrix B.
+•	[in] nv: rocblas_int. nv >= 0.
 
-* AMD ROCm OpenCL Runtime extends support to OpenCL2.2
-* The developer branch is changed from master to master-next
+The number of columns of matrix V.
+•	[in] nu: rocblas_int. nu >= 0.
 
-## AMD ROCm GNU Debugger (ROCgdb)
-The AMD ROCm Debugger (ROCgdb) is the AMD ROCm source-level debugger for Linux based on the GNU Debugger (GDB). It enables heterogeneous debugging on the AMD ROCm platform of an x86-based host architecture along with AMD GPU architectures and supported by the AMD Debugger API Library (ROCdbgapi).
+The number of rows of matrix U.
+•	[in] nc: rocblas_int. nu >= 0.
 
-The AMD ROCm Debugger is installed by the rocm-gdb package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
+The number of columns of matrix C.
+•	[inout] D: pointer to real type. Array on the GPU of dimension n.
 
-The current AMD ROCm Debugger (ROCgdb) is an initial prototype that focuses on source line debugging. Note, symbolic variable debugging capabilities are not currently supported.
+On entry, the diagonal elements of B. On exit, if info = 0, the singular values of B in decreasing order; if info > 0, the diagonal elements of a bidiagonal matrix orthogonally equivalent to B.
 
-You can use the standard GDB commands for both CPU and GPU code debugging. For more information about ROCgdb, refer to the ROCgdb User Guide, which is installed at:
+•	[inout] E: pointer to real type. Array on the GPU of dimension n-1.
+On entry, the off-diagonal elements of B. On exit, if info > 0, the off-diagonal elements of a bidiagonal matrix orthogonally equivalent to B (if info = 0 this matrix converges to zero).
 
-* /opt/rocm/share/info/gdb.info as a texinfo file
-* /opt/rocm/share/doc/gdb/gdb.pdf as a PDF file
+•	[inout] V: pointer to type. Array on the GPU of dimension ldv*nv.
+On entry, the matrix V. On exit, it is overwritten with Vb’*V. (Not referenced if nv = 0).
 
-The AMD ROCm Debugger User Guide is available as a PDF at:
+•	[in] ldv: rocblas_int. ldv >= n if nv > 0, or ldv >=1 if nv = 0.
+Specifies the leading dimension of V.
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf
- 
-For more information about GNU Debugger (GDB), refer to the GNU Debugger (GDB) web site at: http://www.gnu.org/software/gdb
+•	[inout] U: pointer to type. Array on the GPU of dimension ldu*n.
+On entry, the matrix U. On exit, it is overwritten with U*Ub. (Not referenced if nu = 0).
+
+•	[in] ldu: rocblas_int. ldu >= nu.
+Specifies the leading dimension of U.
+
+•	[inout] C: pointer to type. Array on the GPU of dimension ldc*nc.
+On entry, the matrix C. On exit, it is overwritten with Ub’*C. (Not referenced if nc = 0).
+
+•	[in] ldc: rocblas_int. ldc >= n if nc > 0, or ldc >=1 if nc = 0.
+Specifies the leading dimension of C.
+
+•	[out] info: pointer to a rocblas_int on the GPU.
+If info = 0, successful exit. If info = i > 0, i elements of E have not converged to zero.
+
+For more information, see
+https://rocsolver.readthedocs.io/en/latest/userguide_api.html#rocsolver-type-bdsqr
 
 
-## AMD ROCm Debugger API Library 
+### rocSPARSE_gemmi() Operations for Sparse Matrices
 
-The AMD ROCm Debugger API Library (ROCdbgapi) implements an AMD GPU debugger application programming interface (API) that provides the support necessary for a client of the library to control the execution and inspect the state of AMD GPU devices.
+This enhancement provides a dense matrix sparse matrix multiplication using the CSR storage format.
+rocsparse_gemmi multiplies the scalar αα with a dense m×km×k matrix AA and the sparse k×nk×n matrix BB defined in the CSR storage format, and adds the result to the dense m×nm×n matrix CC that is multiplied by the scalar ββ, such that
+C:=α⋅op(A)⋅op(B)+β⋅CC:=α⋅op(A)⋅op(B)+β⋅C
+with
 
-The following AMD GPU architectures are supported:
-* Vega 10 
-* Vega 7nm
+op(A)=⎧⎩⎨⎪⎪A,AT,AH,if trans_A == rocsparse_operation_noneif trans_A == rocsparse_operation_transposeif trans_A == rocsparse_operation_conjugate_transposeop(A)={A,if trans_A == rocsparse_operation_noneAT,if trans_A == rocsparse_operation_transposeAH,if trans_A == rocsparse_operation_conjugate_transpose
 
-The AMD ROCm Debugger API Library is installed by the rocm-dbgapi package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
-The AMD ROCm Debugger API Specification is available as a PDF at:
+and
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf
+op(B)=⎧⎩⎨⎪⎪B,BT,BH,if trans_B == rocsparse_operation_noneif trans_B == rocsparse_operation_transposeif trans_B == rocsparse_operation_conjugate_transposeop(B)={B,if trans_B == rocsparse_operation_noneBT,if trans_B == rocsparse_operation_transposeBH,if trans_B == rocsparse_operation_conjugate_transpose
+Note: This function is non-blocking and executed asynchronously with the host. It may return before the actual computation has finished.
 
-## rocProfiler Dispatch Callbacks Start Stop API
-
-In this release, a new rocprofiler start/stop API is added to enable/disable GPU kernel HSA dispatch callbacks. The callback can be registered with the 'rocprofiler_set_hsa_callbacks' API. The API helps you eliminate some profiling performance impact by invoking the profiler only for kernel dispatches of interest. This optimization will result in significant performance gains.
-
-The API provides the following functions:
-* *hsa_status_t rocprofiler_start_queue_callbacks();* is used to start profiling
-* *hsa_status_t rocprofiler_stop_queue_callbacks();* is used to stop profiling. 
-
-For more information on kernel dispatches, see the HSA Platform System Architecture Specification guide at http://www.hsafoundation.com/standards/.
-
-## ROCm Communications Collective Library 
-The ROCm Communications Collective Library (RCCL) consists of the following enhancements:
-* Re-enable target 0x803
-* Build time improvements for the HIP-Clang compiler
-
-### NVIDIA Communications Collective Library Version Compatibility
-AMD RCCL is now compatible with NVIDIA Communications Collective Library (NCCL) v2.6.4 and provides the following features: 
-* Network interface improvements with API v3
-* Network topology detection 
-* Improved CPU type detection
-* Infiniband adaptive routing support
-
-## MIOpen Optional Kernel Package Installation
-MIOpen provides an optional pre-compiled kernel package to reduce startup latency. 
-
-NOTE: The installation of this package is optional. MIOpen will continue to function as expected even if you choose to not install the pre-compiled kernel package. This is because MIOpen compiles the kernels on the target machine once the kernel is run. However, the compilation step may significantly increase the startup time for different operations.
-
-To install the kernel package for your GPU architecture, use the following command:
-
-*apt-get install miopen-kernels-<arch>-<num cu>*
- 
-* <arch> is the GPU architecture. For example, gfx900, gfx906
-* <num cu> is the number of CUs available in the GPU. For example, 56 or 64 
- 
-
-## New SMI Event Interface and Library
-
-A Systems Management Interface (SMI) event interface is added to the kernel and ROCm SMI  lib for system administrators to get notified when specific events occur. On the kernel side, AMDKFD_IOC_SMI_EVENTS input/output control is enhanced to allow notifications propagation to user mode through the event channel. 
-
-On the ROCm SMI lib side, APIs are added to set an event mask and receive event notifications with a timeout option. Further, ROCm SMI API details can be found in the PDF generated by Doxygen from source or by referring to the rocm_smi.h header file (see the rsmi_event_notification_* functions).
-
-For the more details about ROCm SMI API, see 
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf
-
-## API for CPU Affinity
-A new API is introduced for aiding applications to select the appropriate memory node for a given accelerator(GPU). 
-
-The API for CPU affinity has the following signature:
-
-*rsmi_status_t rsmi_topo_numa_affinity_get(uint32_t dv_ind, uint32_t *numa_node);*
-
-This API takes as input, device index (dv_ind), and returns the NUMA node (CPU affinity), stored at the location pointed by numa_node pointer, associated with the device.
-
-Non-Uniform Memory Access (NUMA) is a computer memory design used in multiprocessing, where the memory access time depends on the memory location relative to the processor. 
-
-## Radeon Performance Primitives Library
-The new Radeon Performance Primitives (RPP) library is a comprehensive high-performance computer vision library for AMD (CPU and GPU) with the HIP and OpenCL backend. The target operating system is Linux.
-
-![ScreenShot](RPP.png)
-
-For more information about prerequisites and library functions, see 
-
-https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/master/docs
-
-# Fixed Issues
-
-## Device printf Support for HIP-Clang
-HIP now supports the use of printf in the device code. The parameters and return value for the device-side printf follow the POSIX.1 standard, with the exception that the "%n" specifier is not supported. A call to printf blocks the calling wavefront until the operation is completely processed by the host. 
-
-No host-side runtime calls by the application are needed to cause the output to appear. There is also no limit on the number of device-side calls to printf or the amount of data that is printed.
-
-For more details, refer the HIP Programming Guide at:
-https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-GUIDE.html#hip-guide
-
-## Assertions in HIP Device Code  
-Previously, a failing assertion caused early termination of kernels and the application to exit with a line number, file, and failing condition printed to the screen.
-This issue is now fixed and the assert() and abort() functions are implemented for HIP device code. 
-NOTE: There may be a performance impact in the use of device assertions in its current form. 
-
-You may choose to disable the assertion in the production code. For example, to disable an assertion of:
-
-*assert(foo != 0);*    
-
-you may comment it out as:  
-
-*//assert(foo != 0);*
-
-NOTE: Assertions are currently enabled by default. 
+For more information and examples, see
+https://rocsparse.readthedocs.io/en/master/usermanual.html#rocsparse-gemmi
+ 
 
 # Known Issues 
-The following are the known issues in the v3.5 release.
+The following are the known issues in this release.
 
-## HIPify-Clang Installation Failure on CentOS/RHEL 
+## (AOMP) ‘Undefined Hidden Symbol’ Linker Error Causes Compilation Failure in HIP
 
-HIPify-Clang fails to install on CentOS/RHEL with the following error:
-
-*file from install of hipify-clang conflicts with file from package hip-base*
-
-**Workaround**: This is a known issue and the following workaround is recommended for a successful installation of HIPify-Clang on CentOS/RHEL:
-
-* Download HIPify-Clang RPM. For example, *hipify-clang-11.0.0.x86_64.rpm*
-* Perform a force install using the following command: 
-
-  *sudo rpm -ivh --force hipify-clang-11.0.0.x86_64.rpm*
+The HIP example device_lib fails to compile due to unreferenced symbols with Link Time Optimization resulting in ‘undefined hidden symbol’ errors. 
+This issue is under investigation and there is no known workaround at this time.
 
 
-## Failure to Process Breakpoint before Queue Destroy Results in ROCm Debugger Error
-When ROCgdb is in non-stop mode with an application that rapidly creates and destroys queues, a breakpoint may be reported that is not processed by the debugger before the queue is deleted. In some cases, this can result in the following error that prevents further debugging:
+## MIGraphX Fails for fp16 Datatype
+The MIGraphX functionality does not work for the fp16 datatype.  
+The following workarounds are recommended: 
 
-*[amd-dbgapi]: fatal error: kfd_queue_id 2 should have been reported as a NEW_QUEUE before next_pending_event failed (rc=-2)*
+Use the AMD ROCm v3.3 of MIGraphX 
+Or
+Build MIGraphX v3.7 from the source using AMD ROCm v3.3
 
-There are no known workarounds at this time.
+## Missing Google Test Installation May Cause RCCL Unit Test Compilation Failure
+Users of the RCCL install.sh script may encounter an RCCL unit test compilation error. It is recommended to use CMAKE directly instead of install.sh to compile RCCL. Ensure Google Test 1.10+ is available in the CMAKE search path.
 
-## Failure to Process Breakpoint before Queue Destroy Results in ROCm Debugger API Error
-
-When the ROCdbgapi library is used with an application that rapidly creates and destroys queues, a breakpoint may be reported that is not processed by the client before the queue is deleted. In some cases, this can result in a fatal error and the following error log message is produced:
-
-*[amd-dbgapi]: fatal error: kfd_queue_id 2 should have been reported as a NEW_QUEUE before next_pending_event failed (rc=-2)*
-
-There are no known workarounds at this time.
-
-## rocThrust and hipCUB Unit Test Failures 
-
-The following unit test failures have been observed due to known issues in the ROCclr runtime. 
-
-rocThrust
-* sort 
-* sort_by_key
-
-hipCUB
-* BlockDiscontinuity 
-* BlockExchange 
-* BlockHistogram 
-* BlockRadixSort
-* BlockReduce 
-* BlockScan
-
-There are no known workarounds in the current release. 
+As a workaround, use the latest RCCL from the GitHub development branch at:
+https://github.com/ROCmSoftwarePlatform/rccl/pull/237
 
 
-## Multiple GPU Configuration Freezes with Imagenet Training and tf_cnn_benchmark on TensorFlow 
+## Issue with Peer-to-Peer Transfers 
+Using peer-to-peer (P2P) transfers on systems without the hardware P2P assistance may produce incorrect results.
 
-A random freeze has been observed with Imagenet training and tf_cnn_benchmark on TensorFlow when multiple GPU configurations are involved. 
-
-There is no freeze observed with single GPUs.  
-
-There are no known workarounds at this time.
-
-## Issue with Running AMD ROCm v3.3 User Mode with AMD ROCm v3.5 DKMS Kernel Module
-
-Running AMD ROCm v3.3 in the user mode with the AMD ROCm v3.5 DKMS kernel module will cause the following features to be broken:
-
-* IPC import/export, cross memory copy (used by UCX and MPI)
-* Experimental GDB support
-
-**Resolution**: Install ROCm v3.5 Thunk (*Hsakmt*) when using ROCm 3.5 Kernel Fusion Driver (KFD).
+Ensure the hardware supports peer-to-peer transfers and enable the peer-to-peer setting in the hardware to resolve this issue. 
 
 
-## SQLite3 Library Not Found in ROCProfiler
+## Partial Loss of Tracing Events for Large Applications
+An internal tracing buffer allocation issue can cause a partial loss of some tracing events for large applications.
+As a workaround, rebuild the roctracer/rocprofiler libraries from the GitHub ‘roc-3.7’ branch at:
+•	https://github.com/ROCm-Developer-Tools/rocprofiler
+•	https://github.com/ROCm-Developer-Tools/roctracer
 
-The ROCProfiler tool appears to be broken when the SQLite3 library is not found.
 
-**Resolution**: Install the SQLite3 Python module separately and ensure the environment variable is set to ROCP_PYTHON_VERSION to confirm the Python version, which includes the SQLite3 module.
+## GPU Kernel C++ Names Not Demangled
+GPU kernel C++ names in the profiling traces and stats produced by ‘—hsa-trace’ option are not demangled.
+As a workaround, users may choose to demangle the GPU kernel C++ names as required.
 
 
+## ‘rocprof’ option ‘--parallel-kernels’ Not Supported in This Release
 
-# Deprecations 
-Install ROCm v3.5 Thunk (Hsakmt) when using ROCm 3.5 Kernel Fusion Driver (KFD). You can access the Thunk package at:
-
-https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
-## Heterogeneous Compute Compiler
-In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
-
-For more information, see HIP documentation at:
-https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html
+‘rocprof’ option ‘--parallel-kernels’ is available in the options list, however,  it is not fully validated and supported in this release.
 
 
 ## Deploying ROCm
