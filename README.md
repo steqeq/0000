@@ -144,7 +144,7 @@ Restructured hostrpc, including:
 For more information, see https://github.com/ROCm-Developer-Tools/aomp
      
 
-## ROCM COMMUNICATIONS COLLECTIVE LIBRARY
+## ROCm COMMUNICATIONS COLLECTIVE LIBRARY
 
 ### Compatibility with NVIDIA Communications Collective Library v2.7 API
 
@@ -177,48 +177,63 @@ The computation of the singular vectors is optional; this function accepts input
 Optionally, this function can also compute Ub’*C for a given n-by-nc input matrix C.
 
 PARAMETERS
+
 •	[in] handle: rocblas_handle.
+
 •	[in] uplo: rocblas_fill.
 
 Specifies whether B is upper or lower bidiagonal.
+
 •	[in] n: rocblas_int. n >= 0.
 
 The number of rows and columns of matrix B.
-•	[in] nv: rocblas_int. nv >= 0.
+
+•	[in] nv: rocblas_int. nv >= 0. 
 
 The number of columns of matrix V.
-•	[in] nu: rocblas_int. nu >= 0.
+
+•	[in] nu: rocblas_int. nu >= 0. 
 
 The number of rows of matrix U.
-•	[in] nc: rocblas_int. nu >= 0.
+
+•	[in] nc: rocblas_int. nu >= 0. 
 
 The number of columns of matrix C.
+
 •	[inout] D: pointer to real type. Array on the GPU of dimension n.
 
 On entry, the diagonal elements of B. On exit, if info = 0, the singular values of B in decreasing order; if info > 0, the diagonal elements of a bidiagonal matrix orthogonally equivalent to B.
 
 •	[inout] E: pointer to real type. Array on the GPU of dimension n-1.
+
 On entry, the off-diagonal elements of B. On exit, if info > 0, the off-diagonal elements of a bidiagonal matrix orthogonally equivalent to B (if info = 0 this matrix converges to zero).
 
 •	[inout] V: pointer to type. Array on the GPU of dimension ldv*nv.
+
 On entry, the matrix V. On exit, it is overwritten with Vb’*V. (Not referenced if nv = 0).
 
 •	[in] ldv: rocblas_int. ldv >= n if nv > 0, or ldv >=1 if nv = 0.
+
 Specifies the leading dimension of V.
 
 •	[inout] U: pointer to type. Array on the GPU of dimension ldu*n.
+
 On entry, the matrix U. On exit, it is overwritten with U*Ub. (Not referenced if nu = 0).
 
 •	[in] ldu: rocblas_int. ldu >= nu.
+
 Specifies the leading dimension of U.
 
 •	[inout] C: pointer to type. Array on the GPU of dimension ldc*nc.
+
 On entry, the matrix C. On exit, it is overwritten with Ub’*C. (Not referenced if nc = 0).
 
 •	[in] ldc: rocblas_int. ldc >= n if nc > 0, or ldc >=1 if nc = 0.
+
 Specifies the leading dimension of C.
 
 •	[out] info: pointer to a rocblas_int on the GPU.
+
 If info = 0, successful exit. If info = i > 0, i elements of E have not converged to zero.
 
 For more information, see
