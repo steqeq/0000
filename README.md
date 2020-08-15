@@ -9,24 +9,13 @@ It also covers known issues and deprecated features in this release.
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Heterogeneous-Compute Interface for Portability](#Heterogeneous-Compute-Interface-for-Portability)
-  * [Radeon Open Compute Common Language Runtime](#Radeon-Open-Compute-Common-Language-Runtime)
-  * [OpenCL Runtime](#OpenCL-Runtime)
-  * [AMD ROCm GNU Debugger ROCgdb](#AMD-ROCm-GNU-Debugger-ROCgdb)
-  * [AMD ROCm Debugger API Library](#AMD-ROCm-Debugger-API-Library)
-  * [rocProfiler Dispatch Callbacks Start/Stop API](#rocProfiler-Dispatch-Callbacks-Start-Stop-API)
-  * [ROCm Communications Collective Library](#ROCm-Communications-Collective-Library)
-  * [NVIDIA Communications Collective Library Version Compatibility](#NVIDIA-Communications-Collective-Library-Version-Compatibility)
-  * [MIOpen Optional Kernel Package Installation](#MIOpen-Optional-Kernel-Package-Installation)
-  * [New SMI Event Interface and Library](#New-SMI-Event-Interface-and-Library)
-  * [API for CPU Affinity](#API-for-CPU-Affinity)
-  * [Radeon Performance Primitives Library](#Radeon-Performance-Primitives-Library)
-  
+  * [AOMP Enhancements](#AOMP-Enhancements)
+  * [Compatibility with NVIDIA Communications Collective Library v2.7 API](#Compatibility-with-NVIDIA-Communications-Collective-Library-v2.7-API)
+  * [Singular Value Decomposition of Bi-diagonal Matrices](#Singular-Value-Decomposition-of-Bi/-diagonal-Matrices)
+  * [rocSPARSE_gemmi() Operations for Sparse Matrices](#rocSPARSE_gemmi()-Operations-for-Sparse-Matrices)
+    
  
 - [Known Issues](#Known-Issues)
-
-- [Deprecations](#Deprecations)
-  * [Heterogeneous Compute Compiler](#Heterogeneous-Compute-Compiler)
 
 - [Deploying ROCm](#Deploying-ROCm)
  
@@ -90,7 +79,7 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip
 
 ## AMD ROCm Debug Agent
 
-* ROCm Debug Agent Library 
+ROCm Debug Agent Library 
 
 https://rocmdocs.amd.com/en/latest/ROCm_Tools/rocm-debug-agent.html
 
