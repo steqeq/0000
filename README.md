@@ -260,7 +260,7 @@ This issue is under investigation and there is no known workaround at this time.
 ## MIGraphX Fails for fp16 Datatype
 The MIGraphX functionality does not work for the fp16 datatype.  
 
-The following workarounds are recommended: 
+The following workaround is recommended: 
 
 Use the AMD ROCm v3.3 of MIGraphX 
 
