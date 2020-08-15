@@ -6,7 +6,7 @@ It also covers known issues and deprecated features in this release.
 
 - [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
   * [Supported Operating Systems](#Supported-Operating-Systems)
-  * [Documentation Updates](#Documentation-Updates)
+  * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [Heterogeneous-Compute Interface for Portability](#Heterogeneous-Compute-Interface-for-Portability)
