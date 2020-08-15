@@ -47,37 +47,56 @@ It also covers known issues and deprecated features in this release.
 
 The AMD ROCm v3.7.x platform is designed to support the following operating systems:
 
-* Ubuntu 20.04
-* Ubuntu 16.04.6(Kernel 4.15) and 18.04.4(Kernel 5.3)
-* CentOS 7.7 (Kernel 3.10-1062) and RHEL 7.8(Kernel 3.10.0-1127)(Using devtoolset-7 runtime support)
+* Ubuntu 20.04 and 18.04.4 (Kernel 5.3)	
+* CentOS 7.8 & RHEL 7.8 (Kernel 3.10.0-1127) (Using devtoolset-7 runtime support)
+* CentOS 8.2 & RHEL 8.2 (Kernel 4.18.0 ) (devtoolset is not required)
 * SLES 15 SP1
-* CentOS and RHEL 8.1(Kernel 4.18.0-147)
+
+## FRESH INSTALLATION OF AMD ROCM V3.7 RECOMMENDED
+A fresh and clean installation of AMD ROCm v3.7 is recommended. An upgrade from previous releases to AMD ROCm v3.7 is not supported.
+
+For more information, refer to the AMD ROCm Installation Guide at:
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
+
+**Note**: AMD ROCm release v3.3 or prior releases are not fully compatible with AMD ROCm v3.5 and higher versions. You must perform a fresh ROCm installation if you want to upgrade from AMD ROCm v3.3 or older to 3.5 or higher versions and vice-versa.
 
 
 ## Documentation Updates
 
-### HIP-Clang Compile
+### AMD ROCM INSTALLATION GUIDE 
 
-* [HIP FAQ - Transition from HCC to HIP-Clang](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq)
-* [HIP-Clang Porting Guide](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide)
-* [HIP - Glossary of Terms](https://rocmdocs.amd.com/en/latest/ROCm_Glossary/ROCm-Glossary.html)
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
-### AMD ROCDebugger (ROCgdb)
+The AMD ROCm Installation Guide in this release includes:
 
-* [ROCgdb User Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf)
-* [ROCgdbapi Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf)
+* Updated Supported Environments
+* HIP Installation Instructions
 
-### AMD ROCm Systems Management Interface
 
-* [System Management Interface Event API Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf)
+### AMD ROCm - HIP Documentation Updates
 
-### AMD ROCm Deep Learning
+#### Texture and Surface Functions
+The documentation for Texture and Surface functions is updated and available at:
 
-* [MIOpen API](https://github.com/ROCmSoftwarePlatform/MIOpen)
+https://rocmdocs.amd.com/en/latest/Programming_Guides/Kernel_language.html
 
-### AMD ROCm Glossary of Terms
+#### Warp Shuffle Functions
+The documentation for Warp Shuffle functions is updated and available at:
 
-* [Updated Glossary of Terms and Definitions](https://rocmdocs.amd.com/en/latest/ROCm_Glossary/ROCm-Glossary.html)
+https://rocmdocs.amd.com/en/latest/Programming_Guides/Kernel_language.html
+
+#### Compiler Defines and Environment Variables
+The documentation for the updated HIP Porting Guide is available at:
+
+https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide
+
+
+### AMD ROCm DEBUG AGENT 
+
+* ROCm Debug Agent Library 
+
+https://rocmdocs.amd.com/en/latest/ROCm_Tools/rocm-debug-agent.html
+
 
 ### General AMD ROCm Documentatin Links
 
@@ -87,17 +106,18 @@ Access the following links for more information on:
 
   https://rocmdocs.amd.com/en/latest/
 
-* For installation instructions on supported platforms, see
+* For installation instructions on supped platforms, see
 
   https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 * For AMD ROCm binary structure, see
 
-  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#machine-learning-and-high-performance-computing-software-stack-for-amd-gpu-v3-3-0
+  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#build-amd-rocm
 
 * For AMD ROCm Release History, see
 
   https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#amd-rocm-version-history
+
 
 
 # What\'s New in This Release
