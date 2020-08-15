@@ -305,14 +305,14 @@ As a workaround, users may choose to demangle the GPU kernel C++ names as requir
 ‘rocprof’ option ‘--parallel-kernels’ is available in the options list, however,  it is not fully validated and supported in this release.
 
 
-## Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v3.5.x packages. 
+# Deploying ROCm
+AMD hosts both Debian and RPM repositories for the ROCm v3.7.x packages. 
 
 For more information on ROCM installation on all platforms, see
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
-## Hardware and Software Support
+# Hardware and Software Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
 In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section.
 
