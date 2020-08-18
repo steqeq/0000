@@ -338,7 +338,7 @@ As described in the next section, GFX8 GPUs require PCI Express 3.0 (PCIe 3.0) w
 
 The integrated GPUs in AMD APUs are not officially supported targets for ROCm.
 As described [below](#limited-support), "Carrizo", "Bristol Ridge", and "Raven Ridge" APUs are enabled in our upstream drivers and the ROCm OpenCL runtime.
-However, they are not enabled in our HCC or HIP runtimes, and may not work due to motherboard or OEM hardware limitations.
+However, they are not enabled in HIP runtimes, and may not work due to motherboard or OEM hardware limitations.
 As such, they are not yet officially supported targets for ROCm.
 
 For a more detailed list of hardware support, please see [the following documentation](https://rocm.github.io/hardware.html).
