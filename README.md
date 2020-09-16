@@ -9,10 +9,9 @@ It also covers known issues and deprecated features in this release.
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [AOMP Enhancements](#AOMP-Enhancements)
-  * [Compatibility with NVIDIA Communications Collective Library v2\.7 API](#Compatibility-with-NVIDIA-Communications-Collective-Library-v27-API)
-  * [Singular Value Decomposition of Bi\-diagonal Matrices](#Singular-Value-Decomposition-of-Bi-diagonal-Matrices)
-  * [rocSPARSE_gemmi\() Operations for Sparse Matrices](#rocSPARSE_gemmi-Operations-for-Sparse-Matrices)
+  * [Hipfort - Interface for GPU Kernel Libraries](#Hipfort-Interface-for-GPU-Kernel-Libraries)
+  * [Error-Correcting Code Fields in ROCm Data Center Tool](#Error-Correcting-Code-Fields-in-ROCm-Data-Center-Tool)
+  * [Static Linking Libraries](#Static-Linking-Libraries)
     
 - [Fixed Defects](#Fixed-Defects)
 
@@ -115,18 +114,15 @@ For information on HIPFort installation and examples, see
 https://github.com/ROCmSoftwarePlatform/hipfort
   
 
-## ROCM DATA CENTER TOOL
+## Error Correcting Code Fields in ROCM DATA CENTER TOOL
 
-### Error-Correcting Code Fields
 The ROCm Data Center (RDC) tool is enhanced to provide counters to track correctable and uncorrectable errors. While a single bit per word error can be corrected, double bit per word errors cannot be corrected. 
 
 The RDC tool now helps monitor and protect undetected memory data corruption. If the system is using ECC- enabled memory, the ROCm Data Center tool can report the error counters to monitor the status of the memory. 
 
 ![ScreenShot](https://github.com/Rmalavally/ROCm/blob/master/forweb.PNG)
 
-## ROCM COMMUNICATIONS COLLECTIVE LIBRARY
-
-### Static Linking Libraries
+## Static Linking Libraries 
 
 The underlying libraries of AMD ROCm are dynamic and are called shared objects (.so) in Linux.
 The AMD ROCm v3.8 release includes the capability to build static ROCm libraries and link to the applications statically. CMake target files enable linking an application statically to ROCm libraries and each component exports the required dependencies for linking. The static libraries are called Archives (.a) in Linux.
