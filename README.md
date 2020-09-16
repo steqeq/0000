@@ -9,7 +9,7 @@ It also covers known issues and deprecated features in this release.
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Hipfort - Interface for GPU Kernel Libraries](#Hipfort-Interface-for-GPU-Kernel-Libraries)
+  * [Hipfort-Interface for GPU Kernel Libraries](#Hipfort-Interface-for-GPU-Kernel-Libraries)
   * [Error-Correcting Code Fields in ROCm Data Center Tool](#Error-Correcting-Code-Fields-in-ROCm-Data-Center-Tool)
   * [Static Linking Libraries](#Static-Linking-Libraries)
     
