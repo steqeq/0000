@@ -104,7 +104,7 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## HIPFORT - INTERFACE FOR GPU KERNEL LIBRARIES
+## Hipfort - Interface for GPU Kernel Libraries
 
 Hipfort is an interface library for accessing GPU Kernels. It provides support to the AMD ROCm architecture from within the Fortran programming language. Currently, the gfortran and HIP-Clang compilers support hipfort. Note, the gfortran compiler belongs to the GNU Compiler Collection (GCC). While hipfc wrapper calls hipcc for the non-fortran kernel source, gfortran is used for FORTRAN applications that call GPU kernels.
 
@@ -114,7 +114,7 @@ For information on HIPFort installation and examples, see
 https://github.com/ROCmSoftwarePlatform/hipfort
   
 
-## Error Correcting Code Fields in ROCM DATA CENTER TOOL
+## Error Correcting Code Fields in ROCm Data Center Tool
 
 The ROCm Data Center (RDC) tool is enhanced to provide counters to track correctable and uncorrectable errors. While a single bit per word error can be corrected, double bit per word errors cannot be corrected. 
 
