@@ -43,7 +43,7 @@ The AMD ROCm platform is designed to support the following operating systems:
 * CentOS 8.2 & RHEL 8.2 (Kernel 4.18.0 ) (devtoolset is not required)
 * SLES 15 SP1
 
-## Fresh Installation of AMD ROCm v3.7 Recommended
+## Fresh Installation of AMD ROCm v3.8 Recommended
 A fresh and clean installation of AMD ROCm v3.8 is recommended. An upgrade from previous releases to AMD ROCm v3.8 is not supported.
 
 For more information, refer to the AMD ROCm Installation Guide at:
@@ -120,7 +120,7 @@ The ROCm Data Center (RDC) tool is enhanced to provide counters to track correct
 
 The RDC tool now helps monitor and protect undetected memory data corruption. If the system is using ECC- enabled memory, the ROCm Data Center tool can report the error counters to monitor the status of the memory. 
 
-![ScreenShot]forweb.PNG
+![ScreenShot] forweb.PNG
 
 ## ROCM COMMUNICATIONS COLLECTIVE LIBRARY
 
@@ -133,7 +133,7 @@ This release also comprises of the requisite changes required for all the compon
 
 In the AMD ROCm v3.8 release, the following libraries support static linking: 
 
-![ScreenShot]staticlinkinglib.PNG
+![ScreenShot] staticlinkinglib.PNG
 
 # Fixed Defects
 The following defects are fixed in this release:
