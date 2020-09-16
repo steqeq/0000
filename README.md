@@ -29,10 +29,6 @@ It also covers known issues and deprecated features in this release.
 
 # Supported Operating Systems 
 
-## Support for Ubuntu 20.04 
-
-In this release, AMD ROCm extends support to Ubuntu 20.04, including v5.4 and v5.6-oem.
-
 ## Support for Vega 7nm Workstation
 
 This release extends support to the Vega 7nm Workstation (Vega20 GL-XE) version.
@@ -123,7 +119,7 @@ The ROCm Data Center (RDC) tool is enhanced to provide counters to track correct
 
 The RDC tool now helps monitor and protect undetected memory data corruption. If the system is using ECC- enabled memory, the ROCm Data Center tool can report the error counters to monitor the status of the memory. 
 
-..image:: forweb.png
+![ScreenShot]forweb.png
 
 ## ROCM COMMUNICATIONS COLLECTIVE LIBRARY
 
@@ -136,7 +132,7 @@ This release also comprises of the requisite changes required for all the compon
 
 In the AMD ROCm v3.8 release, the following libraries support static linking: 
 
-..image:: staticlinkinglib.png
+![ScreenShot]staticlinkinglib.png
 
 # Fixed Defects
 The following defects are fixed in this release:
