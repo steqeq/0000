@@ -14,7 +14,8 @@ It also covers known issues and deprecated features in this release.
   * [Singular Value Decomposition of Bi\-diagonal Matrices](#Singular-Value-Decomposition-of-Bi-diagonal-Matrices)
   * [rocSPARSE_gemmi\() Operations for Sparse Matrices](#rocSPARSE_gemmi-Operations-for-Sparse-Matrices)
     
- 
+- [Fixed Defects](#Fixed-Defects)
+
 - [Known Issues](#Known-Issues)
 
 - [Deploying ROCm](#Deploying-ROCm)
@@ -119,7 +120,7 @@ The ROCm Data Center (RDC) tool is enhanced to provide counters to track correct
 
 The RDC tool now helps monitor and protect undetected memory data corruption. If the system is using ECC- enabled memory, the ROCm Data Center tool can report the error counters to monitor the status of the memory. 
 
-![ScreenShot]forweb.png
+![ScreenShot]forweb.PNG
 
 ## ROCM COMMUNICATIONS COLLECTIVE LIBRARY
 
@@ -132,7 +133,7 @@ This release also comprises of the requisite changes required for all the compon
 
 In the AMD ROCm v3.8 release, the following libraries support static linking: 
 
-![ScreenShot]staticlinkinglib.png
+![ScreenShot]staticlinkinglib.PNG
 
 # Fixed Defects
 The following defects are fixed in this release:
