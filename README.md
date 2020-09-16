@@ -120,7 +120,7 @@ The ROCm Data Center (RDC) tool is enhanced to provide counters to track correct
 
 The RDC tool now helps monitor and protect undetected memory data corruption. If the system is using ECC- enabled memory, the ROCm Data Center tool can report the error counters to monitor the status of the memory. 
 
-![ScreenShot] forweb.PNG
+![ScreenShot](https://github.com/Rmalavally/ROCm/blob/master/forweb.PNG)
 
 ## ROCM COMMUNICATIONS COLLECTIVE LIBRARY
 
@@ -133,7 +133,7 @@ This release also comprises of the requisite changes required for all the compon
 
 In the AMD ROCm v3.8 release, the following libraries support static linking: 
 
-![ScreenShot] staticlinkinglib.PNG
+![ScreenShot] /ROCm/staticlinkinglib.PNG
 
 # Fixed Defects
 The following defects are fixed in this release:
