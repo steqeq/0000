@@ -104,7 +104,7 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## Hipfort - Interface for GPU Kernel Libraries
+## Hipfort-Interface for GPU Kernel Libraries
 
 Hipfort is an interface library for accessing GPU Kernels. It provides support to the AMD ROCm architecture from within the Fortran programming language. Currently, the gfortran and HIP-Clang compilers support hipfort. Note, the gfortran compiler belongs to the GNU Compiler Collection (GCC). While hipfc wrapper calls hipcc for the non-fortran kernel source, gfortran is used for FORTRAN applications that call GPU kernels.
 
