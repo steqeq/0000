@@ -127,7 +127,7 @@ The RDC tool now helps monitor and protect undetected memory data corruption. If
 The underlying libraries of AMD ROCm are dynamic and are called shared objects (.so) in Linux.
 The AMD ROCm v3.8 release includes the capability to build static ROCm libraries and link to the applications statically. CMake target files enable linking an application statically to ROCm libraries and each component exports the required dependencies for linking. The static libraries are called Archives (.a) in Linux.
 
-This release also comprises of the requisite changes required for all the components to work in a static environment. The components have been successfully tested for basic functionalities like rocminfo /rocm_badwidth_test and archives.
+This release also comprises of the requisite changes required for all the components to work in a static environment. The components have been successfully tested for basic functionalities like *rocminfo /rocm_bandwidth_test* and archives.
 
 In the AMD ROCm v3.8 release, the following libraries support static linking: 
 
