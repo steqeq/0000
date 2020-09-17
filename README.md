@@ -83,6 +83,7 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html#hi
 * Installation and Build instructions for SLES 15 Service Pack 1 
 
 For more information, refer to the AMD ROCm Data Center User Guide at
+
 https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
 
 ## General AMD ROCm Documentation Links
