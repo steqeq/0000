@@ -73,7 +73,8 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 * HIP Repository Information
 
-For more information, see https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html#hip-repository-information
+For more information, see 
+https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html#hip-repository-information
 
 ## ROCm Data Center Tool User Guide
 
