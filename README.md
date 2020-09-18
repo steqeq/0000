@@ -175,12 +175,6 @@ The following defects are fixed in this release:
 
 # Known Issues 
 
-## ROCm Data Center Installation Issue on CentOS/RHEL 7.8/8.2 and SLES
-
-Installing ROCm Data Center on CentOS/RHEL v7.8/v8.2 and SLES may fail with an error.
-
-This issue is under investigation and there is no known workaround currently.
-
 ## Undefined Reference Issue in Statically Linked Libraries
 
 Libraries and applications statically linked using flags -rtlib=compiler-rt, such as rocBLAS, have an implicit dependency on gcc_s not captured in their CMAKE configuration.  
