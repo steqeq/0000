@@ -1,5 +1,5 @@
 
-# AMD ROCm Release Notes v3.7.0
+# AMD ROCm Release Notes v3.8.0
 
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues in this release.
