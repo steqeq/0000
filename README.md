@@ -141,7 +141,7 @@ Refer to the ROCm Data Center Tool™ User Guide for more details on the differe
 
 NOTE: The ROCm Data Center User Guide is intended to provide an overview of ROCm Data Center Tool features and how system administrators and Data Center (or HPC) users can administer and configure AMD GPUs. The guide also provides an overview of its components and open source developer handbook. 
 
-For installation information on different distributions, refer to the ROCm Data Center User Guide at
+For installation information on different distributions, refer the ROCm Data Center User Guide at
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
 
@@ -174,6 +174,12 @@ The following defects are fixed in this release:
 * ‘rocprof’ option ‘--parallel-kernels’ Not Supported in this Release
 
 # Known Issues 
+
+## ROCm Data Center Installation Issue on CentOS/RHEL 7.8/8.2 and SLES
+
+Installing ROCm Data Center on CentOS/RHEL v7.8/v8.2 and SLES may fail with an error.
+
+This issue is under investigation and there is no known workaround currently.
 
 ## Undefined Reference Issue in Statically Linked Libraries
 
