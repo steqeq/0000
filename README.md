@@ -330,4 +330,4 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 
 For an updated version of the software stack for AMD GPU, see
 
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#machine-learning-and-high-performance-computing-software-stack-for-amd-gpu-v3-5-0
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#software-stack-for-amd-gpu
