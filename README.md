@@ -47,6 +47,7 @@ The AMD ROCm v3.7.x platform is designed to support the following operating syst
 A fresh and clean installation of AMD ROCm v3.7 is recommended. An upgrade from previous releases to AMD ROCm v3.7 is not supported.
 
 For more information, refer to the AMD ROCm Installation Guide at:
+
 https://github.com/RadeonOpenCompute/ROCm/blob/roc-3.7.x/ROCm_Installation_Guide_v3.7.md
 
 **Note**: AMD ROCm release v3.3 or prior releases are not fully compatible with AMD ROCm v3.5 and higher versions. You must perform a fresh ROCm installation if you want to upgrade from AMD ROCm v3.3 or older to 3.5 or higher versions and vice-versa.
