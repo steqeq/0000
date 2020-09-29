@@ -1,4 +1,4 @@
-![AMD Logo](ROCm/amdblack.jpg)
+![AMD Logo](amdblack.jpg)
 
 
 # AMD ROCm Installation Guide v3.7
