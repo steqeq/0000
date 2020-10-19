@@ -126,34 +126,29 @@ ROCM-SMI version: 1.4.1 | Kernel version: 5.6.20
    * Usage
    * Optional Arguments
    * Display Options
-o	Topology
-o	Pages Information
-o	Hardware-related Information
-o	Software-related/controlled information
-o	Set Options
-o	Reset Options
-o	Auto-response Options
-o	Output Options
+   * Topology
+   * Pages Information
+   * Hardware-related Information
+   * Software-related/controlled information
+   * Set Options
+   * Reset Options
+   * Auto-response Options
+   * Output Options
+
 For more information, refer to 
+
 https://rocmdocs.amd.com/en/latest/ROCm_System_Managment/ROCm-System-Managment.html#rocm-command-line-interface
 
 
 
 ## AMD ROCm - HIP Documentation Updates
 
-* HIP Repository Information
+* HIP Porting Guide – CU_Pointer_Attribute_Memory_Type
 
-For more information, see 
+For more information, refer to
 
-https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html#hip-repository-information
+https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide
 
-## ROCm Data Center Tool User Guide
-
-* Error-Correction Codes Field and Output Documentation
-
-For more information, refer to the AMD ROCm Data Center User Guide at
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
 
 ## General AMD ROCm Documentation Links
 
