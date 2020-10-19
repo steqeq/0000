@@ -6,6 +6,7 @@ It also covers known issues in this release.
 
 - [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
   * [Supported Operating Systems](#Supported-Operating-Systems)
+  * [ROCm Installation Updates](#ROCm-Installation-Updates)
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
@@ -51,9 +52,11 @@ The AMD ROCm platform is designed to support the following operating systems:
 * SLES 15 SP1
 
 * SLES 15 SP2
- 
 
-## Fresh Installation of AMD ROCm v3.8 Recommended
+ 
+# ROCm Installation Updates
+
+## Fresh Installation of AMD ROCm v3.9 Recommended
 A fresh and clean installation of AMD ROCm v3.9 is recommended. An upgrade from previous releases to AMD ROCm v3.9 is not supported.
 
 For more information, refer to the AMD ROCm Installation Guide at:
