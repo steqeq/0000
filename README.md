@@ -30,24 +30,27 @@ It also covers known issues in this release.
 
 # Supported Operating Systems 
 
-## Support for Vega 7nm Workstation
+## Support for Ubuntu 20.04.1
 
-This release extends support to the Vega 7nm Workstation (Vega20 GL-XE) version.
+In this release, AMD ROCm extends support to Ubuntu 20.04.1, including v5.4 and v5.6-oem.
+
+## Support for SLES 15 SP2
+
+This release extends support to SLES 15 SP2.
 
 ## List of Supported Operating Systems
 
 The AMD ROCm platform is designed to support the following operating systems:
 
-* Ubuntu 20.04 (5.4 and 5.6-oem) and 18.04.5 (Kernel 5.4)	
-
-  **Note**: Ubuntu versions lower than 18 are no longer supported.
-
-* CentOS 7.8 & RHEL 7.8 (Kernel 3.10.0-1127) (Using devtoolset-7 runtime support)
-* CentOS 8.2 & RHEL 8.2 (Kernel 4.18.0 ) (devtoolset is not required)
-* SLES 15 SP1
+•	Ubuntu 20.04.1 (5.4 and 5.6-oem) and 18.04.5 (Kernel 5.4)	
+•	CentOS 7.8 & RHEL 7.8 (Kernel 3.10.0-1127) (Using devtoolset-7 runtime support)
+•	CentOS 8.2 & RHEL 8.2 (Kernel 4.18.0 ) (devtoolset is not required)
+•	SLES 15 SP1
+•	SLES 15 SP2
+ 
 
 ## Fresh Installation of AMD ROCm v3.8 Recommended
-A fresh and clean installation of AMD ROCm v3.8 is recommended. An upgrade from previous releases to AMD ROCm v3.8 is not supported.
+A fresh and clean installation of AMD ROCm v3.9 is recommended. An upgrade from previous releases to AMD ROCm v3.9 is not supported.
 
 For more information, refer to the AMD ROCm Installation Guide at:
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
@@ -61,6 +64,25 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 * For ROCm v3.3 and older releases, the *clinfo* path remains unchanged -  */opt/rocm/opencl/bin/x86_64/clinfo*.
 
 
+## ROCm MultiVersion Installation Update
+
+With the AMD ROCm v3.9 release, the following ROCm multi-version installation changes apply:
+
+The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm installs. For example, rocm-dkms3.7.0, rocm-dkms3.8.0.
+ 
+* Multi-version installation of ROCm should be performed by installing rocm-dev<version> using   each of the desired ROCm versions. For example, rocm-dev3.7.0, rocm-dev3.8.0, rocm-dev3.9.0.   
+* Version files must be created for each multi-version rocm <= 3.9.0
+
+    * command: echo <version> | sudo tee /opt/rocm-<version>/.info/version
+
+    * example: echo 3.9.0 | sudo tee /opt/rocm-3.9.0/.info/version
+
+* The rock-dkms loadable kernel modules should be installed using a single rock-dkms package. 
+
+**NOTE**: The single version installation of the ROCm stack remains the same. The rocm-dkms package can be used for single version installs and is not deprecated at this time.
+
+
+
 # AMD ROCm Documentation Updates
 
 ## AMD ROCm Installation Guide 
@@ -72,6 +94,8 @@ The AMD ROCm Installation Guide in this release includes:
 * Tensorflow ROCm Port: Basic Installations on RHEL v8.2
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
+
+
 
 ## AMD ROCm - HIP Documentation Updates
 
