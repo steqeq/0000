@@ -97,10 +97,45 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 The AMD ROCm Installation Guide in this release includes:
 
 * Updated Supported Environments
-* HIP Installation Instructions
-* Tensorflow ROCm Port: Basic Installations on RHEL v8.2
+* Multi-version Installation Instructions
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
+
+
+## ROCm Compiler Documentation Updates 
+
+The ROCm Compiler documentation updates include,
+
+* OpenMP – Extras v12.9-0
+* OpenMP-Extras Installation
+* OpenMP-Extras Source Build
+* AOMP-v11.9-0
+* AOMP Source Build 
+
+For more information, see 
+
+https://rocmdocs.amd.com/en/latest/Programming_Guides/openmp_support.html
+
+
+## ROCm System Management Information
+
+ROCM-SMI version: 1.4.1 | Kernel version: 5.6.20
+
+* ROCm SMI and Command Line Interface 
+* ROCm SMI APIs for Compute Unit Occupancy
+   * Usage
+   * Optional Arguments
+   * Display Options
+o	Topology
+o	Pages Information
+o	Hardware-related Information
+o	Software-related/controlled information
+o	Set Options
+o	Reset Options
+o	Auto-response Options
+o	Output Options
+For more information, refer to 
+https://rocmdocs.amd.com/en/latest/ROCm_System_Managment/ROCm-System-Managment.html#rocm-command-line-interface
 
 
 
