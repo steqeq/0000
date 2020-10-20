@@ -139,6 +139,10 @@ For more information, refer to
 
 https://rocmdocs.amd.com/en/latest/ROCm_System_Managment/ROCm-System-Managment.html#rocm-command-line-interface
 
+For ROCm SMI API Guide, see
+
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual_v3.9.pdf
+
 
 
 ## AMD ROCm - HIP Documentation Updates
