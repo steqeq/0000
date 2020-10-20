@@ -249,14 +249,38 @@ Target region executed on the device
 For more examples, see */opt/rocm/llvm/examples*.
 
 
- AMD ROCM SYSTEM MANAGEMENT INFORMATION
+## AMD ROCM SYSTEM MANAGEMENT INFORMATION
+
 The AMD ROCm v3.9 release consists of the following ROCm System Management Information (SMI) enhancements:
-•	Shows the hardware topology
-•	The ROCm-SMI showpids option shows per-process Compute Unit (CU) Occupancy, VRAM usage, and SDMA usage
-•	Support for GPU Reset Event and Thermal Throttling Event in ROCm-SMI Library
-ROCm-SMI Hardware Topology
+
+* Shows the hardware topology
+
+* The ROCm-SMI showpids option shows per-process Compute Unit (CU) Occupancy, VRAM usage, and SDMA usage
+
+* Support for GPU Reset Event and Thermal Throttling Event in ROCm-SMI Library
+
+### ROCm-SMI Hardware Topology
+
 The ROCm-SMI Command Line Interface (CLI) is enhanced to include new options to denote GPU inter-connect topology in the system along with the relative distance between each other and the closest NUMA (CPU) node for each GPU.
 
+![ROCMCLI1](/images/ROCMCLI1.png)
+
+### Compute Unit Occupancy
+
+The AMD ROCm stack now supports a user process in querying Compute Unit (CU) occupancy at a particular moment. This service can be accessed to determine if a process P is using sufficient compute units.
+
+A periodic collection is used to build the profile of a compute unit occupancy for a workload. 
+
+![ROCMCLI2](/images/ROCMCLI2.png)
+
+
+ROCm supports this capability only on GFX9 devices. Users can access the functionality in two ways:
+
+* indirectly from the SMI library 
+
+* directly via Sysfs 
+
+**NOTE**: On systems that have both GFX9 and non-GFX9 devices, users should interpret the compute unit (CU) occupancy value carefully as the service does not support non-GFX9 devices. 
 
 
 
