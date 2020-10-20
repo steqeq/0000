@@ -10,10 +10,10 @@ It also covers known issues in this release.
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Hipfort-Interface for GPU Kernel Libraries](#Hipfort-Interface-for-GPU-Kernel-Libraries)
-  * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
-  * [Error-Correcting Code Fields in ROCm Data Center Tool](#Error-Correcting-Code-Fields-in-ROCm-Data-Center-Tool)
-  * [Static Linking Libraries](#Static-Linking-Libraries)
+  * [ROCm Compiler Enhancements](#ROCm-Compiler-Enhancements)
+  * [ROCm System Management Information](#ROCm-Systems-Management-Information)
+  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communicatioin-Libraries)
+  * [ROCM AOMP Enhancements](#ROCm-AOMP-Enhancements)
     
 - [Fixed Defects](#Fixed-Defects)
 
@@ -249,7 +249,7 @@ Target region executed on the device
 For more examples, see */opt/rocm/llvm/examples*.
 
 
-## ROCM SYSTEM MANAGEMENT INFORMATION
+## AMD ROCM SYSTEM MANAGEMENT INFORMATION
 
 The AMD ROCm v3.9 release consists of the following ROCm System Management Information (SMI) enhancements:
 
@@ -402,7 +402,7 @@ For more information, refer to
 https://rocsolver.readthedocs.io/en/latest/userguide_api.html 
 
 
-## ROCm AOMP ENHANCEMENTS
+## AOMP ENHANCEMENTS
 
 ### AOMP v11.08-0
 
