@@ -381,7 +381,7 @@ For more logging information, refer to https://rocblas.readthedocs.io/en/latest/
 
 In this release, the following new Matrix Pruning functions are introduced. 
 
-
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/matrix.png)
 
 
 ### rocSOLVER General Matrix Singular Value Decomposition API
