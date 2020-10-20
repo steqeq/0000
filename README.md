@@ -363,7 +363,7 @@ Input
 
 Currently, rocblas_gemm_ext2() supports matrix multiplication D <= alpha * A * B + beta * C, where the A, B, C, and D matrices are single-precision float, column-major, and non-transposed, except that the row stride of C may equal 0. This means the first row of C is broadcast M times in C:
 
-
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/GEMM2.PNG)
 
 If an optimized kernel solution for a particular problem is not available, a slow fallback algorithm is used, and the first time a fallback algorithm is used, the following message is printed to standard error:
 
@@ -377,41 +377,128 @@ If an optimized kernel solution for a particular problem is not available, a slo
 For more logging information, refer to https://rocblas.readthedocs.io/en/latest/logging.html.
 
 
+### New Matrix Pruning Functions
+
+In this release, the following new Matrix Pruning functions are introduced. 
+
+
+
+
+### rocSOLVER General Matrix Singular Value Decomposition API
+
+The rocSOLVER General Matrix Singular Value Decomposition (GESVD) API is now available in the AMD ROCm v3.9 release. 
+
+GESVD computes the Singular Values and, optionally, the Singular Vectors of a general m-by-n matrix A (Singular Value Decomposition).
+
+The SVD of matrix A is given by:
+
+```
+A = U * S * V'
+
+```
+
+For more information, refer to 
+
+https://rocsolver.readthedocs.io/en/latest/userguide_api.html 
+
+
+## AOMP ENHANCEMENTS
+
+### AOMP v11.08-0
+
+The source code base for this release is the upstream LLVM 11 monorepo release/11.x sources as of August 18, 2020 with the hash value 
+
+*aabff0f7d564b22600b33731e0d78d2e70d060b4*
+
+The amd-llvm-project branch used to build this release is amd-stg-openmp. In addition to complete source tarball, the artifacts of this release includes the file llvm-project.patch. This file shows the delta from the llvm-project upstream release/11.x which is currently at 32715 lines in 240 files. These changes include support for flang driver, OMPD support and the hsa libomptarget plugin. Our goal is to reduce this with continued upstreaming activity.
+
+These are the major changes for this release of AOMP:
+
+* Switch to the LLVM 11.x stable code base.
+
+* OMPD updates for flang.
+
+* To support debugging OpenMP, selected OpenMP runtime sources are included in lib-debug/src/openmp. The ROCgdb debugger will find these automatically.
+
+* Threadsafe hsa plugin for libomptarget.
+
+* Updates to support device libraries.
+
+* Openmpi configure issue with real16 resolved.
+
+* DeviceRTL memory use is now independent of number of openmp binaries.
+
+* Startup latency on first kernel launch reduced by order of magnitude.
+
+### AOMP v11.07-1
+
+The source code base for this release is the upstream LLVM 11 monorepo development sources as July 10, 2020 with hash valued 979c5023d3f0656cf51bd645936f52acd62b0333 The amd-llvm-project branch used to build this release is amd-stg-openmp. In addition to complete source tarball, the artifacts of this release includes the file llvm-project.patch. This file shows the delta from the llvm-project upstream trunk which is currently at 34121 lines in 277 files. Our goal is to reduce this with continued upstreaming activity.
+
+* Inclusion of OMPD support which is not yet upstream
+
+* Build of ROCgdb
+
+* Host runtime optimisation. GPU image information is now mostly read on the host instead of from the GPU.
+
+* Fixed the source build scripts so that building from the source tarball does not fail because of missing test directories. This fixes issue #116.
+
+
 # Fixed Defects
+
 The following defects are fixed in this release:
 
-* GPU Kernel C++ Names Not Demangled
-* MIGraphX Fails for fp16 Datatype
-* Issue with Peer-to-Peer Transfers
-* ‘rocprof’ option ‘--parallel-kernels’ Not Supported in this Release
+* Random Soft Hang Observed When Running ResNet-Based Models
+
+* (AOMP) ‘Undefined Hidden Symbol’ Linker Error Causes Compilation Failure in HIP
+
+* MIGraphx -> test_gpu_ops_test FAILED
+
+* Unable to install RDC on CentOS/RHEL 7.8/8.2 & SLES
+
 
 # Known Issues 
 
-## Undefined Reference Issue in Statically Linked Libraries
+The following are the known issues in this release.
 
-Libraries and applications statically linked using flags -rtlib=compiler-rt, such as rocBLAS, have an implicit dependency on gcc_s not captured in their CMAKE configuration.  
+## (AOMP) HIP EXAMPLE DEVICE_LIB FAILS TO COMPILE
 
-Client applications may require linking with an additional library -lgcc_s to resolve the undefined reference to symbol '_Unwind_Resume@@GCC_3.0'.
+The HIP example device_lib fails to compile and displays the following error:
 
-## MIGraphX Pooling Operation Fails for Some Models
+   *lld: error: undefined hidden symbol: inc_arrayval
+   
+The recommended workaround is to use */opt/rocm/hip/bin/hipcc to compile HIP applications*.
 
-MIGraphX does not work for some models with pooling operations and the following error appears:
+## HIPFORT INSTALLATION FAILURE
 
-*‘test_gpu_ops_test FAILED’*
+Hipfort fails to install during the ROCm installation.
 
-This issue is currently under investigation and there is no known workaround currently. 
+As a workaround, you may force install hipfort using the following instructions:
 
-## MIVisionX Installation Error on CentOS/RHEL8.2 and SLES 15
+### Ubuntu
 
-Installing ROCm on MIVisionX results in the following error on CentOS/RHEL8.2 and SLES 15:
+```
+sudo apt-get -o Dpkg::Options::="--force-overwrite" install hipfort
 
-*"Problem: nothing provides opencv needed"*
+```
 
-As a workaround, install opencv before installing MIVisionX.
+### SLES
+
+Zypper gives you an option to continue with the overwrite during the installation.
+
+### CentOS
+
+Download hipfort to a temporary location and force install with rpm:
+
+```
+yum install --downloadonly --downloaddir=/tmp/hipfort hipfort
+rpm -i --replacefiles hipfort<package-version>
+
+```
 
 
 # Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v3.8.x packages. 
+
+AMD hosts both Debian and RPM repositories for the ROCm v3.9.x packages. 
 
 For more information on ROCM installation on all platforms, see
 
