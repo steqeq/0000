@@ -11,8 +11,8 @@ It also covers known issues in this release.
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [ROCm Compiler Enhancements](#ROCm-Compiler-Enhancements)
-  * [ROCm System Management Information](#ROCm-Systems-Management-Information)
-  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communicatioin-Libraries)
+  * [ROCm System Management Information](#ROCm-System-Management-Information)
+  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
   * [ROCM AOMP Enhancements](#ROCm-AOMP-Enhancements)
     
 - [Fixed Defects](#Fixed-Defects)
