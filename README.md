@@ -174,60 +174,78 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## Hipfort-Interface for GPU Kernel Libraries
+## ROCm Compiler Enhancements
 
-Hipfort is an interface library for accessing GPU Kernels. It provides support to the AMD ROCm architecture from within the Fortran programming language. Currently, the gfortran and HIP-Clang compilers support hipfort. Note, the gfortran compiler belongs to the GNU Compiler Collection (GCC). While hipfc wrapper calls hipcc for the non-fortran kernel source, gfortran is used for FORTRAN applications that call GPU kernels.
+The ROCm compiler support in the llvm-amdgpu-12.0.dev-amd64.deb package is enhanced to include support for OpenMP. To utilize this support, the additional package openmp-extras_12.9-0_amd64.deb is required. 
 
-The hipfort interface library is meant for Fortran developers with a focus on gfortran users. 
+Note, by default, both packages are installed during the ROCm v3.9 installation. For information about ROCm installation, refer to the ROCm Installation Guide. 
 
-For information on HIPFort installation and examples, see
-https://github.com/ROCmSoftwarePlatform/hipfort
+AMD ROCm supports the following compilers:
+
+* C++ compiler - Clang++ 
+* C compiler - Clang  
+* Flang - FORTRAN compiler (FORTRAN 2003 standard)
+
+**NOTE** : All of the above-mentioned compilers support:
+
+* OpenMP standard 4.5 and an evolving subset of the OpenMP 5.0 standard
+* OpenMP computational offloading to the AMD GPUs
+
+For more information about AMD ROCm compilers, see the Compiler Documentation section at,
+
+https://rocmdocs.amd.com/en/latest/index.html
+
   
+### Auxiliary Package Supporting OpenMP
 
-## ROCm Data Center Tool 
+The openmp-extras_12.9-0_amd64.deb auxiliary package supports OpenMP within the ROCm compiler. It contains OpenMP specific header files, which are installed in /opt/rocm/llvm/include as well as runtime libraries, fortran runtime libraries, and device bitcode files in /opt/rocm/llvm/lib. The auxiliary package also consists of examples in the /opt/rocm/llvm/examples folder.
 
-The ROCm™ Data Center Tool™ simplifies the administration and addresses key infrastructure challenges in AMD GPUs in cluster and datacenter environments. The important features of this tool are:
+**NOTE**: The optional AOMP package resides in /opt/rocm//aomp/bin/clang and the ROCm compiler, which supports OpenMP for AMDGPU, is located in /opt/rocm/llvm/bin/clang.
 
-* GPU telemetry  
+### AOMP Optional Package Deprecation
 
-* GPU statistics for jobs 
+Before the AMD ROCm v3.9 release, the optional AOMP package provided support for OpenMP. While AOMP is available in this release, the optional package may be deprecated from ROCm in the future. It is recommended you transition to the ROCm compiler or AOMP standalone releases for OpenMP support. 
 
-* Integration with third-party tools 
+### Understanding ROCm Compiler OpenMP Support and AOMP OpenMP Support
 
-* Open source 
+The AOMP OpenMP support in ROCm v3.9 is based on the standalone AOMP v11.9-0, with LLVM v11 as the underlying system. However, the ROCm compiler's OpenMP support is based on LLVM v12 (upstream).
 
-The ROCm Data Center Tool can be used in the standalone mode if all components are installed. The same set of features is also available in a library format that can be used by existing management tools. 
+**NOTE**: Do not combine the object files from the two LLVM implementations. You must rebuild the application in its entirety using either the AOMP OpenMP or the ROCm OpenMP implementation.  
 
-![ScreenShot](https://github.com/Rmalavally/ROCm/blob/master/RDCComponentsrevised.png)
-
-
-Refer to the ROCm Data Center Tool™ User Guide for more details on the different modes of operation.  
-
-NOTE: The ROCm Data Center User Guide is intended to provide an overview of ROCm Data Center Tool features and how system administrators and Data Center (or HPC) users can administer and configure AMD GPUs. The guide also provides an overview of its components and open source developer handbook. 
-
-For installation information on different distributions, refer to the ROCm Data Center User Guide at
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
+### Example – OpenMP Using the ROCm Compiler
 
 
-### Error Correcting Code Fields in ROCm Data Center Tool
+$ cat helloworld.c
+#include <stdio.h>
+#include <omp.h>
+ int main(void) {
+  int isHost = 1; 
+#pragma omp target map(tofrom: isHost)
+  {
+    isHost = omp_is_initial_device();
+    printf("Hello world. %d\n", 100);
+    for (int i =0; i<5; i++) {
+      printf("Hello world. iteration %d\n", i);
+    }
+  }
+   printf("Target region executed on the %s\n", isHost ? "host" : "device");
+  return isHost;
+}
+$ /opt/rocm/llvm/bin/clang  -O3 -target x86_64-pc-linux-gnu -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx900 helloworld.c -o helloworld
+$ export LIBOMPTARGET_KERNEL_TRACE=1
+$ ./helloworld
+DEVID: 0 SGN:1 ConstWGSize:256  args: 1 teamsXthrds:(   1X 256) reqd:(   1X   0) n:__omp_offloading_34_af0aaa_main_l7
+Hello world. 100
+Hello world. iteration 0
+Hello world. iteration 1
+Hello world. iteration 2
+Hello world. iteration 3
+Hello world. iteration 4
+Target region executed on the device
+For more examples, see /opt/rocm/llvm/examples
+ 
 
-The ROCm Data Center (RDC) tool is enhanced to provide counters to track correctable and uncorrectable errors. While a single bit per word error can be corrected, double bit per word errors cannot be corrected. 
 
-The RDC tool now helps monitor and protect undetected memory data corruption. If the system is using ECC- enabled memory, the ROCm Data Center tool can report the error counters to monitor the status of the memory. 
-
-![ScreenShot](https://github.com/Rmalavally/ROCm/blob/master/forweb.PNG)
-
-## Static Linking Libraries 
-
-The underlying libraries of AMD ROCm are dynamic and are called shared objects (.so) in Linux.
-The AMD ROCm v3.8 release includes the capability to build static ROCm libraries and link to the applications statically. CMake target files enable linking an application statically to ROCm libraries and each component exports the required dependencies for linking. The static libraries are called Archives (.a) in Linux.
-
-This release also comprises of the requisite changes required for all the components to work in a static environment. The components have been successfully tested for basic functionalities like *rocminfo /rocm_bandwidth_test* and archives.
-
-In the AMD ROCm v3.8 release, the following libraries support static linking: 
-
-![ScreenShot](https://github.com/Rmalavally/ROCm/blob/master/staticlinkinglib.PNG)
 
 # Fixed Defects
 The following defects are fixed in this release:
