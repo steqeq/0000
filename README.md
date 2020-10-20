@@ -116,6 +116,10 @@ For more information, see
 
 https://rocmdocs.amd.com/en/latest/Programming_Guides/openmp_support.html
 
+For the updated ROCm SMI API Guide, see 
+
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual_v3.9.pdf
+
 
 ## ROCm System Management Information
 
