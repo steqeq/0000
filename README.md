@@ -249,7 +249,7 @@ Target region executed on the device
 For more examples, see */opt/rocm/llvm/examples*.
 
 
-## AMD ROCM SYSTEM MANAGEMENT INFORMATION
+## ROCM SYSTEM MANAGEMENT INFORMATION
 
 The AMD ROCm v3.9 release consists of the following ROCm System Management Information (SMI) enhancements:
 
@@ -402,7 +402,7 @@ For more information, refer to
 https://rocsolver.readthedocs.io/en/latest/userguide_api.html 
 
 
-## AOMP ENHANCEMENTS
+## ROCm AOMP ENHANCEMENTS
 
 ### AOMP v11.08-0
 
