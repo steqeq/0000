@@ -214,6 +214,7 @@ The AOMP OpenMP support in ROCm v3.9 is based on the standalone AOMP v11.9-0, wi
 
 ### Example – OpenMP Using the ROCm Compiler
 
+```
 
 $ cat helloworld.c
 #include <stdio.h>
@@ -242,8 +243,20 @@ Hello world. iteration 2
 Hello world. iteration 3
 Hello world. iteration 4
 Target region executed on the device
-For more examples, see /opt/rocm/llvm/examples
- 
+
+```
+
+For more examples, see */opt/rocm/llvm/examples*.
+
+
+ AMD ROCM SYSTEM MANAGEMENT INFORMATION
+The AMD ROCm v3.9 release consists of the following ROCm System Management Information (SMI) enhancements:
+•	Shows the hardware topology
+•	The ROCm-SMI showpids option shows per-process Compute Unit (CU) Occupancy, VRAM usage, and SDMA usage
+•	Support for GPU Reset Event and Thermal Throttling Event in ROCm-SMI Library
+ROCm-SMI Hardware Topology
+The ROCm-SMI Command Line Interface (CLI) is enhanced to include new options to denote GPU inter-connect topology in the system along with the relative distance between each other and the closest NUMA (CPU) node for each GPU.
+
 
 
 
