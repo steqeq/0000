@@ -271,7 +271,7 @@ The AMD ROCm stack now supports a user process in querying Compute Unit (CU) occ
 
 A periodic collection is used to build the profile of a compute unit occupancy for a workload. 
 
-![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/ROCMCLI2.png)
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/ROCMCLI2.PNG)
 
 
 ROCm supports this capability only on GFX9 devices. Users can access the functionality in two ways:
@@ -282,7 +282,58 @@ ROCm supports this capability only on GFX9 devices. Users can access the functio
 
 **NOTE**: On systems that have both GFX9 and non-GFX9 devices, users should interpret the compute unit (CU) occupancy value carefully as the service does not support non-GFX9 devices. 
 
+### Accessing Compute Unit Occupancy Indirectly
 
+The ROCm System Management Interface (SMI) library provides a convenient interface to determine the CU occupancy for a process. To get the CU occupancy of a process reported in percentage terms, invoke the SMI interface using rsmi_compute_process_info_by_pid_get(). The value is reported through the member field cu_occupancy of struct rsmi_process_info_t.
+
+```
+/**
+   * @brief Encodes information about a process
+   * @cu_occupancy Compute Unit usage in percent
+   */
+  typedef struct {
+      - - -,
+      uint32_t cu_occupancy;
+  } rsmi_process_info_t;
+
+  /**
+   * API to get information about a process
+  rsmi_status_t
+      rsmi_compute_process_info_by_pid_get(uint32_t pid,
+          rsmi_process_info_t *proc);
+```
+
+
+### Accessing Compute Unit Occupancy Directly Using SYSFS
+
+Information provided by SMI library is built from sysfs. For every valid device, ROCm stack surfaces a file by the name cu_occupancy in Sysfs. Users can read this file to determine how that device is being used by a particular workload. The general structure of the file path is /proc/<pid>/stats_<gpuid>/cu_occupancy
+ 
+```
+/**
+   * CU occupancy files for processes P1 and P2 on two devices with 
+   * ids: 1008 and 112326
+   */
+  /sys/devices/virtual/kfd/kfd/proc/<Pid_1>/stats_1008/cu_occupancy
+  /sys/devices/virtual/kfd/kfd/proc/<Pid_1>/stats_2326/cu_occupancy
+  /sys/devices/virtual/kfd/kfd/proc/<Pid_2>/stats_1008/cu_occupancy
+  /sys/devices/virtual/kfd/kfd/proc/<Pid_2>/stats_2326/cu_occupancy
+  
+// To get CU occupancy for a process P<i>
+  for each valid-device from device-list {
+    path-1 = Build path for cu_occupancy file;
+    path-2 = Build path for file Gpu-Properties;
+    cu_in_use += Open and Read the file path-1;
+    cu_total_cnt += Open and Read the file path-2;
+  }
+  cu_percent = ((cu_in_use * 100) / cu_total_cnt);
+  
+```
+
+### GPU Reset Event and Thermal Throttling Event
+
+The ROCm-SMI library clients can now register for the following events:
+
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/ROCMCLI3.PNG)
 
 # Fixed Defects
 The following defects are fixed in this release:
