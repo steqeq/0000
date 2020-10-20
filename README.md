@@ -263,7 +263,7 @@ The AMD ROCm v3.9 release consists of the following ROCm System Management Infor
 
 The ROCm-SMI Command Line Interface (CLI) is enhanced to include new options to denote GPU inter-connect topology in the system along with the relative distance between each other and the closest NUMA (CPU) node for each GPU.
 
-![Screenshot](/images/ROCMCLI1.png)
+![Screenshot](images/ROCMCLI1.png)
 
 ### Compute Unit Occupancy
 
@@ -271,7 +271,7 @@ The AMD ROCm stack now supports a user process in querying Compute Unit (CU) occ
 
 A periodic collection is used to build the profile of a compute unit occupancy for a workload. 
 
-![Screenshot](/images/ROCMCLI2.png)
+![Screenshot](images/ROCMCLI2.png)
 
 
 ROCm supports this capability only on GFX9 devices. Users can access the functionality in two ways:
