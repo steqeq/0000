@@ -116,6 +116,10 @@ For more information, see
 
 https://rocmdocs.amd.com/en/latest/Programming_Guides/openmp_support.html
 
+For the updated ROCm SMI API Guide, see 
+
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual_v3.9.pdf
+
 
 ## ROCm System Management Information
 
@@ -498,6 +502,16 @@ yum install --downloadonly --downloaddir=/tmp/hipfort hipfort
 rpm -i --replacefiles hipfort<package-version>
 
 ```
+
+## MEMORY FAULT ACCESS ERROR DURING ROCM VALIDATION SUITE INSTALLATION
+
+When the ROCm Validation Suite (RVS) is installed using the prebuilt Debian/rpm package and run for the first time, the memory module displays the following error message, 
+
+*Memory access fault by GPU node-<x> (Agent handle: 0xa55170) on address 0x7fc268c00000. Reason: Page not present or supervisor privilege. Aborted (core dumped)*
+ 
+As a workaround, run the installation process again. Subsequent runs appear to fix the error and result in a successful installation.
+
+**NOTE**: The error may display after a system reboot. Reinstallation of the ROCm Validation Suite is not required. 
 
 
 # Deploying ROCm
