@@ -511,7 +511,7 @@ When the ROCm Validation Suite (RVS) is installed using the prebuilt Debian/rpm 
  
 As a workaround, run the installation process again. Subsequent runs appear to fix the error and result in a successful installation.
 
-**NOTE**: The error may display after a system reboot. Reinstallation of the ROCm Validate Suite is not required. 
+**NOTE**: The error may display after a system reboot. Reinstallation of the ROCm Validation Suite is not required. 
 
 
 # Deploying ROCm
