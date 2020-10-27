@@ -19,6 +19,8 @@ It also covers known issues in this release.
 
 - [Known Issues](#Known-Issues)
 
+- [Deprecations](#Deprecations)
+
 - [Deploying ROCm](#Deploying-ROCm)
  
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -512,6 +514,17 @@ When the ROCm Validation Suite (RVS) is installed using the prebuilt Debian/rpm 
 As a workaround, run the installation process again. Subsequent runs appear to fix the error and result in a successful installation.
 
 **NOTE**: The error may display after a system reboot. Reinstallation of the ROCm Validation Suite is not required. 
+
+
+# Deprecations
+
+This section describes deprecations and removals in AMD ROCm.
+
+## WARNING: COMPILER-GENERATED CODE OBJECT VERSION 2 DEPRECATION 
+
+Compiler-generated code object version 2 is no longer supported and will be removed shortly. AMD ROCm users must plan for the code object version 2 deprecation immediately. 
+
+Support for loading code object version 2 is also being deprecated with no announced removal release.
 
 
 # Deploying ROCm
