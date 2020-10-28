@@ -19,6 +19,8 @@ It also covers known issues in this release.
 
 - [Known Issues](#Known-Issues)
 
+- [Deprecations](#Deprecations)
+
 - [Deploying ROCm](#Deploying-ROCm)
  
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -48,8 +50,6 @@ The AMD ROCm platform is designed to support the following operating systems:
 * CentOS 7.8 & RHEL 7.8 (Kernel 3.10.0-1127) (Using devtoolset-7 runtime support)
 
 * CentOS 8.2 & RHEL 8.2 (Kernel 4.18.0 ) (devtoolset is not required)
-
-* SLES 15 SP1
 
 * SLES 15 SP2
 
@@ -85,6 +85,9 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
     * example: echo 3.9.0 | sudo tee /opt/rocm-3.9.0/.info/version
 
 * The rock-dkms loadable kernel modules should be installed using a single rock-dkms package. 
+
+* ROCm v3.9 and above will not set any *ldconfig* entries for ROCm libraries for multi-version installation.  Users must set *LD_LIBRARY_PATH* to load the ROCm library version of choice.
+
 
 **NOTE**: The single version installation of the ROCm stack remains the same. The rocm-dkms package can be used for single version installs and is not deprecated at this time.
 
@@ -412,6 +415,35 @@ https://rocsolver.readthedocs.io/en/latest/userguide_api.html
 
 ## ROCm AOMP ENHANCEMENTS
 
+### AOMP v11.9-0
+
+The source code base for this release is the upstream LLVM 11 monorepo release/11.x sources as of August 18, 2020, with the hash value 
+
+*1e6907f09030b636054b1c7b01de36f281a61fa2*
+
+The llvm-project branch used to build this release is aomp11. In addition to completing the source tarball, the artifacts of this release include the file llvm-project.patch. This file shows the delta from the llvm-project upstream release/11.x. The size of this patch XXXX lines in XXX files. These changes include support for flang driver, OMPD support, and the hsa libomptarget plugin. The goal is to reduce this with continued upstreaming activity.
+
+The changes for this release of AOMP are:
+
+* Fix compiler warnings for build_project.sh and build_openmp.sh.
+
+* Fix: [flang] The AOMP 11.7-1 Fortran compiler claims to support the -isystem flag, but ignores it.
+
+* Fix: [flang] producing internal compiler error when a character is used with KIND.
+
+* Fix: [flang] openmp map clause on complex allocatable expressions !$omp target data map( chunk%tiles(1)%field%density0).
+
+* DeviceRTL memory footprint has been reduced from ~2.3GB to ~770MB for AMDGCN target.
+
+* Workaround for red_bug_51 failing on gfx908.
+
+* Switch to python3 for ompd and rocgdb.
+
+* Now require cmake 3.13.4 to compile from source.
+
+* Fix aompcc to accept file type cxx.
+
+
 ### AOMP v11.08-0
 
 The source code base for this release is the upstream LLVM 11 monorepo release/11.x sources as of August 18, 2020 with the hash value 
@@ -503,15 +535,30 @@ rpm -i --replacefiles hipfort<package-version>
 
 ```
 
-## MEMORY FAULT ACCESS ERROR DURING ROCM VALIDATION SUITE INSTALLATION
+## MEMORY FAULT ACCESS ERROR DURING MEMORY TEST OF ROCM VALIDATION SUITE 
 
 When the ROCm Validation Suite (RVS) is installed using the prebuilt Debian/rpm package and run for the first time, the memory module displays the following error message, 
 
-*Memory access fault by GPU node-<x> (Agent handle: 0xa55170) on address 0x7fc268c00000. Reason: Page not present or supervisor privilege. Aborted (core dumped)*
+“Memory access fault by GPU node-<x> (Agent handle: 0xa55170) on address 0x7fc268c00000. Reason: Page not present or supervisor privilege.
+Aborted (core dumped)”
  
-As a workaround, run the installation process again. Subsequent runs appear to fix the error and result in a successful installation.
+As a workaround, run the test again. Subsequent runs appear to fix the error.
 
-**NOTE**: The error may display after a system reboot. Reinstallation of the ROCm Validation Suite is not required. 
+**NOTE**: The error may appear after a system reboot. Run the test again to fix the issue. 
+
+Note, reinstallation of ROCm Validation Suite is not required. 
+
+
+
+# Deprecations
+
+This section describes deprecations and removals in AMD ROCm.
+
+## WARNING: COMPILER-GENERATED CODE OBJECT VERSION 2 DEPRECATION 
+
+Compiler-generated code object version 2 is no longer supported and will be removed shortly. AMD ROCm users must plan for the code object version 2 deprecation immediately. 
+
+Support for loading code object version 2 is also being deprecated with no announced removal release.
 
 
 # Deploying ROCm
