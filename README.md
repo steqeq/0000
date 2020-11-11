@@ -1,4 +1,10 @@
 
+
+
+# AMD ROCm™ Patch Release Notes v3.9.1
+
+Users of RPM-based operating systems (RHEL, CentOS, and others) are recommended to use the ROCm v3.9.1 patch release due to a potential compatibility issue with certain drivers.
+
 # AMD ROCm Release Notes v3.9.0
 
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
@@ -36,6 +42,8 @@ It also covers known issues in this release.
 ## Support for Ubuntu 20.04.1
 
 In this release, AMD ROCm extends support to Ubuntu 20.04.1, including v5.4 and v5.6-oem.
+
+**Note**: AMD ROCm only supports Long Term Support (LTS) versions of Ubuntu. Versions other than LTS may work with ROCm, however, they are not officially supported. 
 
 ## Support for SLES 15 SP2
 
