@@ -269,8 +269,39 @@ Add link
 
 ### New rocSOLVER APIs
 The following new rocSOLVER APIs are added in this release:
-![Screenshot]()
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/rocsolverAPI.PNG)
 
+For more information, refer to 
+
+https://rocsolver.readthedocs.io/en/latest/userguide_api.html
+
+### RCCL Alltoallv Support in PyTorch
+
+The AMD ROCm v3.10 release includes a new API for ROCm Communication Collectives Library (RCCL). This API sends data from all to all ranks and each rank provides arrays of input/output data counts and offsets. 
+
+For details about the functions and parameters, see 
+
+https://rccl.readthedocs.io/en/master/allapi.html
+
+## AOMP Enhancements
+
+### AOMP Release 11.11-0
+
+The source code base for this release is the upstream LLVM 11 monorepo release/11.x sources with the hash value 
+
+*176249bd6732a8044d457092ed932768724a6f06*
+
+This release includes fixes to the internal Clang math headers:
+
+* This set of changes applies to clang internal headers to support OpenMP C, C++, and FORTRAN and for HIP C. This establishes consistency between NVPTX and AMDGCN offloading and between OpenMP, HIP, and CUDA. OpenMP uses function variants and header overlays to define device versions of functions. This causes clang LLVM IR codegen to mangled names of variants in both the definition and callsites of functions defined in the internal clang headers. These changes apply to headers found in the installation subdirectory lib/clang/11.0.0/include.
+
+* These changes temporarily eliminate the use of the libm bitcode libraries for C and C++. Although math functions are now defined with internal clang headers, a bitcode library of the C functions defined in the headers is still built for FORTRAN toolchain linking because FORTRAN cannot use c math headers. This bitcode library is installed in lib/libdevice/libm-.bc. The source build of this bitcode library is done with the aomp-extras repository and the component built script build_extras.sh. In the future, we will introduce across the board changes to eliminate massive header files for math libraries and replace them with linking to bitcode libraries.
+
+* Added support for -gpubnames in Flang Driver
+
+* Added an example category for Kokkos. The Kokkos example makefile detects if Kokkos is installed and, if not, it builds Kokkos from the Web. Refer to the script kokkos_build.sh in the bin directory on how to build Kokkos. Kokkos now builds cleanly with the OpenMP backend for simple test cases. 
+
+* Fixed hostrpc cmake race condition in the build of openmp
 
 
 # Fixed Defects
