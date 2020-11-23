@@ -103,6 +103,10 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 * System DMA (SDMA) Utilization API 
 
+* ROCm-SMI Command Line Interface
+
+* Enhanced ROCm SMI Library for Events
+
 
 For the updated ROCm SMI API Guide, see 
 
