@@ -281,7 +281,7 @@ For details about the functions and parameters, see
 
 https://rccl.readthedocs.io/en/master/allapi.html
 
-## AOMP ENHANCEMENTS
+## ROCm AOMP ENHANCEMENTS
 
 ### AOMP Release 11.11-0
 
