@@ -1,6 +1,4 @@
 
-
-
 # AMD ROCm™ Patch Release Notes v3.9.1
 
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
@@ -303,71 +301,37 @@ This release includes fixes to the internal Clang math headers:
 
 * Fixed hostrpc cmake race condition in the build of openmp
 
+* Add a fatal error if missing -Xopenmp-target or -march options when -fopenmp-targets is specified. However, we do forgive this requirement for offloading to host when there is only a single target and that target is the host.
+
+* Fix a bug in InstructionSimplify pass where a comparison of two constants of different sizes found in the optimization pass. This fixes issue #182 which was causing kokkos build failure.
+
+* Fix openmp error message output for no_rocm_device_lib, was asserting.
+
+* Changed linkage on constant per-kernel symbols from external to weaklinkageonly to prevent duplicate symbols when building kokkos.
+
+
 
 # Fixed Defects
 
 The following defects are fixed in this release:
 
-* Random Soft Hang Observed When Running ResNet-Based Models
+* HIPfort failed to be installed
 
-* (AOMP) ‘Undefined Hidden Symbol’ Linker Error Causes Compilation Failure in HIP
+* rocm-smi does not work as-is in 3.9, instead prints a reference to documentation
 
-* MIGraphx -> test_gpu_ops_test FAILED
+* *--showtopo*, weight and hop count shows wrong data
 
-* Unable to install RDC on CentOS/RHEL 7.8/8.2 & SLES
+* unable to install RDC on CentOS/RHEL 7.8/8.2 & SLES
+
+* unable to install mivisionx with error "Problem: nothing provides opencv needed"
+
 
 
 # Known Issues 
 
 The following are the known issues in this release.
 
-## (AOMP) HIP EXAMPLE DEVICE_LIB FAILS TO COMPILE
 
-The HIP example device_lib fails to compile and displays the following error:
-
-   *lld: error: undefined hidden symbol: inc_arrayval
-   
-The recommended workaround is to use */opt/rocm/hip/bin/hipcc to compile HIP applications*.
-
-## HIPFORT INSTALLATION FAILURE
-
-Hipfort fails to install during the ROCm installation.
-
-As a workaround, you may force install hipfort using the following instructions:
-
-### Ubuntu
-
-```
-sudo apt-get -o Dpkg::Options::="--force-overwrite" install hipfort
-
-```
-
-### SLES
-
-Zypper gives you an option to continue with the overwrite during the installation.
-
-### CentOS
-
-Download hipfort to a temporary location and force install with rpm:
-
-```
-yum install --downloadonly --downloaddir=/tmp/hipfort hipfort
-rpm -i --replacefiles hipfort<package-version>
-
-```
-
-## MEMORY FAULT ACCESS ERROR DURING MEMORY TEST OF ROCM VALIDATION SUITE 
-
-When the ROCm Validation Suite (RVS) is installed using the prebuilt Debian/rpm package and run for the first time, the memory module displays the following error message, 
-
-“Memory access fault by GPU node-<x> (Agent handle: 0xa55170) on address 0x7fc268c00000. Reason: Page not present or supervisor privilege.
-Aborted (core dumped)”
- 
-As a workaround, run the test again. Subsequent runs appear to fix the error.
-
-**NOTE**: The error may appear after a system reboot. Run the test again to fix the issue. 
-
-Note, reinstallation of ROCm Validation Suite is not required. 
 
 
 
