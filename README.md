@@ -348,7 +348,7 @@ Support for loading code object version 2 is also being deprecated with no annou
 
 # Deploying ROCm
 
-AMD hosts both Debian and RPM repositories for the ROCm v3.9.x packages. 
+AMD hosts both Debian and RPM repositories for the ROCm v3.10.x packages. 
 
 For more information on ROCM installation on all platforms, see
 
