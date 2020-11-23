@@ -164,26 +164,9 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## ROCm Compiler Enhancements
+## ROCm Data Center Tool 
 
-The ROCm compiler support in the llvm-amdgpu-12.0.dev-amd64.deb package is enhanced to include support for OpenMP. To utilize this support, the additional package openmp-extras_12.9-0_amd64.deb is required. 
 
-Note, by default, both packages are installed during the ROCm v3.9 installation. For information about ROCm installation, refer to the ROCm Installation Guide. 
-
-AMD ROCm supports the following compilers:
-
-* C++ compiler - Clang++ 
-* C compiler - Clang  
-* Flang - FORTRAN compiler (FORTRAN 2003 standard)
-
-**NOTE** : All of the above-mentioned compilers support:
-
-* OpenMP standard 4.5 and an evolving subset of the OpenMP 5.0 standard
-* OpenMP computational offloading to the AMD GPUs
-
-For more information about AMD ROCm compilers, see the Compiler Documentation section at,
-
-https://rocmdocs.amd.com/en/latest/index.html
 
   
 ### Auxiliary Package Supporting OpenMP
