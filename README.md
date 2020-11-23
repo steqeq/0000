@@ -10,7 +10,7 @@ It also covers known issues in this release.
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [ROCm Compiler Enhancements](#ROCm-Compiler-Enhancements)
+  * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
   * [ROCm System Management Information](#ROCm-System-Management-Information)
   * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
   * [ROCM AOMP Enhancements](#ROCm-AOMP-Enhancements)
@@ -156,7 +156,7 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## ROCm Data Center Tool 
+## ROCm DATA CENTER TOOL 
 
 The following enhancements are made to the ROCm Data Center Tool.
 
@@ -281,7 +281,7 @@ For details about the functions and parameters, see
 
 https://rccl.readthedocs.io/en/master/allapi.html
 
-## AOMP Enhancements
+## AOMP ENHANCEMENTS
 
 ### AOMP Release 11.11-0
 
