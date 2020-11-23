@@ -35,16 +35,6 @@ It also covers known issues in this release.
 
 # Supported Operating Systems 
 
-## Support for Ubuntu 20.04.1
-
-In this release, AMD ROCm extends support to Ubuntu 20.04.1, including v5.4 and v5.6-oem.
-
-**Note**: AMD ROCm only supports Long Term Support (LTS) versions of Ubuntu. Versions other than LTS may work with ROCm, however, they are not officially supported. 
-
-## Support for SLES 15 SP2
-
-This release extends support to SLES 15 SP2.
-
 ## List of Supported Operating Systems
 
 The AMD ROCm platform is designed to support the following operating systems:
@@ -154,7 +144,7 @@ Access the following links for more information:
 
 * For AMD ROCm binary structure, see
 
-  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#build-amd-rocm
+  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#software-stack-for-amd-gpu 
 
 * For AMD ROCm Release History, see
 
@@ -166,24 +156,110 @@ Access the following links for more information:
 
 ## ROCm Data Center Tool 
 
+The following enhancements are made to the ROCm Data Center Tool.
+
+### Prometheus Plugin for ROCm Data Center Tool
+
+The ROCm Data Center (RDC) Tool now provides the Prometheus plugin, a Python client to collect the telemetry data of the GPU. 
+The RDC uses Python binding for Prometheus and the collected plugin. The Python binding maps the RDC C APIs to Python using ctypes. The functions supported by C APIs can also be used in the Python binding.
+
+For installation instructions, refer to the 
+
+### Python Binding
+
+The ROCm Data Center (RDC) Tool now uses PyThon Binding for Prometheus and collectd plugins. PyThon binding maps the RDC C APIs to PyThon using ctypes. All the functions supported by C APIs can also be used in PyThon binding. A generic PyThon class RdcReader is created to simplify the usage of the RDC:
+
+* Users can only specify the fields they want to monitor. RdcReader creates groups and fieldgroups, watches the fields, and fetches the fields. 
+
+* The RdcReader can support both the Embedded and Standalone mode. Standalone mode can be used with and without authentication.
+
+* In the Standalone mode, the RdcReader can automatically reconnect to rdcd when connection is lost.When rdcd is restarted, the previously created group and fieldgroup may lose. The RdcReader can re-create them and watch the fields after a reconnect. 
+
+* If the client is restarted, RdcReader can detect the groups and fieldgroups created previously, and, therefore, can avoid recreating them.
+
+* Users can pass the unit converter if they do not want to use the RDC default unit.
+
+See the following sample program to monitor the power and GPU utilization using the RdcReader:
+
+```
+
+from RdcReader import RdcReader
+from RdcUtil import RdcUtil
+from rdc_bootstrap import *
+ 
+default_field_ids = [
+        rdc_field_t.RDC_FI_POWER_USAGE,
+        rdc_field_t.RDC_FI_GPU_UTIL
+]
+ 
+class SimpleRdcReader(RdcReader):
+    def __init__(self):
+        RdcReader.__init__(self,ip_port=None, field_ids = default_field_ids, update_freq=1000000)
+    def handle_field(self, gpu_index, value):
+        field_name = self.rdc_util.field_id_string(value.field_id).lower()
+        print("%d %d:%s %d" % (value.ts, gpu_index, field_name, value.value.l_int))
+ 
+if __name__ == '__main__':
+    reader = SimpleRdcReader()
+    while True:
+        time.sleep(1)
+        reader.process()
+        
+ ```
+
+For more information about RDC Python binding and the Prometheus plugin integration, refer to the ROCm Data Center Tool User Guide. 
+
+## ROCm SYSTEM MANAGEMENT INFORMATION 
+
+### System DMA (SDMA) Utilization
+
+Per-process, the SDMA usage is exposed via the ROCm SMI library. The structure rsmi_process_info_t is extended to include sdma_usage. sdma_usage is a 64-bit value that counts the duration (in microseconds) for which the SDMA engine was active during that process's lifetime. 
+
+For example, see the rsmi_compute_process_info_by_pid_get() API below.
+
+```
+
+/**
+* @brief This structure contains information specific to a process.
+*/
+  typedef struct {
+      - - -,
+      uint64_t sdma_usage; // SDMA usage in microseconds
+  } rsmi_process_info_t;
+  rsmi_status_t
+      rsmi_compute_process_info_by_pid_get(uint32_t pid,
+          rsmi_process_info_t *proc);
+
+```
+
+### ROCm-SMI Command Line Interface
+
+The SDMA usage per-process is available using the following command,
+
+```
+$ rocm-smi –showpids
+
+```
+
+For more information, see the ROCm SMI API guide at,
+
+Add link
+
+### Enhanced ROCm SMI Library for Events
+
+ROCm-SMI library clients can now register to receive the following events: 
+
+* GPU PRE RESET: This reset event is sent to the client just before a GPU is going to be RESET.
+
+* GPU POST RESET: This reset event is sent to the client after a successful GPU RESET.
+
+* GPU THERMAL THROTTLE: This Thermal throttling event is sent if GPU clocks are throttled.
+
+For more information, refer to the ROCm SMI API Guide at:
+
+Add link
 
 
-  
-### Auxiliary Package Supporting OpenMP
-
-The openmp-extras_12.9-0_amd64.deb auxiliary package supports OpenMP within the ROCm compiler. It contains OpenMP specific header files, which are installed in /opt/rocm/llvm/include as well as runtime libraries, fortran runtime libraries, and device bitcode files in /opt/rocm/llvm/lib. The auxiliary package also consists of examples in the /opt/rocm/llvm/examples folder.
-
-**NOTE**: The optional AOMP package resides in /opt/rocm//aomp/bin/clang and the ROCm compiler, which supports OpenMP for AMDGPU, is located in /opt/rocm/llvm/bin/clang.
-
-### AOMP Optional Package Deprecation
-
-Before the AMD ROCm v3.9 release, the optional AOMP package provided support for OpenMP. While AOMP is available in this release, the optional package may be deprecated from ROCm in the future. It is recommended you transition to the ROCm compiler or AOMP standalone releases for OpenMP support. 
-
-### Understanding ROCm Compiler OpenMP Support and AOMP OpenMP Support
-
-The AOMP OpenMP support in ROCm v3.9 is based on the standalone AOMP v11.9-0, with LLVM v11 as the underlying system. However, the ROCm compiler's OpenMP support is based on LLVM v12 (upstream).
-
-**NOTE**: Do not combine the object files from the two LLVM implementations. You must rebuild the application in its entirety using either the AOMP OpenMP or the ROCm OpenMP implementation.  
 
 ### Example – OpenMP Using the ROCm Compiler
 
