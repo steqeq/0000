@@ -92,7 +92,8 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 The AMD ROCm Installation Guide in this release includes:
 
 * Updated Supported Environments
-* Installation Instructions
+* Installation Instructions for v3.10
+* HIP Installation Instructions
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
@@ -209,7 +210,9 @@ if __name__ == '__main__':
         
  ```
 
-For more information about RDC Python binding and the Prometheus plugin integration, refer to the ROCm Data Center Tool User Guide. 
+For more information about RDC Python binding and the Prometheus plugin integration, refer to the ROCm Data Center Tool User Guide at
+
+
 
 ## ROCm SYSTEM MANAGEMENT INFORMATION 
 
@@ -261,12 +264,20 @@ For more information, refer to the ROCm SMI API Guide at:
 
 Add link
 
+### ROCm SMI – Command Line Interface Hardware Topology
+
+This feature provides a matrix representation of the GPUs present in a system by providing information of the manner in which the nodes are connected. This is represented in terms of weights, hops, and link types between two given GPUs. It also provides the numa node and the CPU affinity associated with every GPU.
+
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CLI1.PNG)
+
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CLI2.PNG)
 
 
 ## ROCm MATH and COMMUNICATION LIBRARIES
 
 ### New rocSOLVER APIs
 The following new rocSOLVER APIs are added in this release:
+
 ![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/rocsolverAPI.PNG)
 
 For more information, refer to 
@@ -321,18 +332,18 @@ The following defects are fixed in this release:
 
 * *--showtopo*, weight and hop count shows wrong data
 
-* unable to install RDC on CentOS/RHEL 7.8/8.2 & SLES
+* Unable to install RDC on CentOS/RHEL 7.8/8.2 & SLES
 
-* unable to install mivisionx with error "Problem: nothing provides opencv needed"
-
+* Unable to install mivisionx with error "Problem: nothing provides opencv needed"
 
 
 # Known Issues 
 
 The following are the known issues in this release.
 
+## Upgrade to AMD ROCm v3.10 Not Supported
 
-
+An upgrade from previous releases to AMD ROCm v3.10 is not supported. A fresh and clean installation of AMD ROCm v3.10 is recommended. 
 
 
 # Deprecations
