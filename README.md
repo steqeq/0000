@@ -92,7 +92,8 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 The AMD ROCm Installation Guide in this release includes:
 
 * Updated Supported Environments
-* Installation Instructions
+* Installation Instructions for v3.10
+* HIP Installation Instructions
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
