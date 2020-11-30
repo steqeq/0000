@@ -111,6 +111,7 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 For the updated ROCm SMI API Guide, see 
 
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_Guide_v3.10.pdf
 
 
 ## ROCm Data Center Tool User Guide
@@ -250,7 +251,8 @@ $ rocm-smi –showpids
 
 For more information, see the ROCm SMI API guide at,
 
-Add link
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_Guide_v3.10.pdf
+
 
 ### Enhanced ROCm SMI Library for Events
 
@@ -264,7 +266,8 @@ ROCm-SMI library clients can now register to receive the following events:
 
 For more information, refer to the ROCm SMI API Guide at:
 
-Add link
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_Guide_v3.10.pdf
+
 
 ### ROCm SMI – Command Line Interface Hardware Topology
 
