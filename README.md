@@ -1,5 +1,5 @@
 
-# AMD ROCm™ Patch Release Notes v3.9.1
+# AMD ROCm™ Patch Release Notes v3.10.0
 
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues in this release.
