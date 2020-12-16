@@ -259,13 +259,25 @@ To check the pp_dpm_pcie file, use *"rocm-smi --showclocks"*.
 ![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/SMI.PNG)
 
 
+## AMD GPU Debugger Enhancements
+
+In this release, AMD GPU Debugger has the following enhancements:
+
+* ROCm v4.0 ROCgdb is based on gdb 10.1
+
+* Extended support for AMD Instinct™ MI100 
+
+
+
+
 # Known Issues 
 
 The following are the known issues in this release.
 
-## Upgrade to AMD ROCm v3.10 Not Supported
+## Upgrade to AMD ROCm v4.0 Not Supported
 
-An upgrade from previous releases to AMD ROCm v3.10 is not supported. A fresh and clean installation of AMD ROCm v3.10 is recommended. 
+An upgrade from previous releases to AMD ROCm v4.0 is not supported. A fresh and clean installation of AMD ROCm v4.0 is recommended. 
+
 
 
 # Deprecations
@@ -277,6 +289,94 @@ This section describes deprecations and removals in AMD ROCm.
 Compiler-generated code object version 2 is no longer supported and will be removed shortly. AMD ROCm users must plan for the code object version 2 deprecation immediately. 
 
 Support for loading code object version 2 is also being deprecated with no announced removal release.
+
+## ROCR RUNTIME DEPRECATIONS
+
+The following ROCr Runtime enumerations, functions, and structs are deprecated in the AMD ROCm v4.0 release.
+
+### Deprecated ROCr Runtime Functions
+
+* hsa_isa_get_info
+
+* hsa_isa_compatible
+
+* hsa_executable_create
+
+* hsa_executable_get_symbol
+
+* hsa_executable_iterate_symbols
+
+* hsa_code_object_serialize
+
+* hsa_code_object_deserialize
+
+* hsa_code_object_destroy
+
+* hsa_code_object_get_info
+
+* hsa_executable_load_code_object
+
+* hsa_code_object_get_symbol
+
+* hsa_code_object_get_symbol_from_name
+
+* hsa_code_symbol_get_info
+
+* hsa_code_object_iterate_symbols
+
+
+### Deprecated ROCr Runtime Enumerations
+
+* HSA_ISA_INFO_CALL_CONVENTION_COUNT
+
+* HSA_ISA_INFO_CALL_CONVENTION_INFO_WAVEFRONT_SIZE
+
+* HSA_ISA_INFO_CALL_CONVENTION_INFO_WAVEFRONTS_PER_COMPUTE_UNIT
+
+* HSA_EXECUTABLE_SYMBOL_INFO_MODULE_NAME_LENGTH
+
+* HSA_EXECUTABLE_SYMBOL_INFO_MODULE_NAME
+
+* HSA_EXECUTABLE_SYMBOL_INFO_AGENT
+
+* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_ALLOCATION
+
+* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_SEGMENT
+
+* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_ALIGNMENT
+
+* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_SIZE
+
+* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_IS_CONST
+
+* HSA_EXECUTABLE_SYMBOL_INFO_KERNEL_CALL_CONVENTION
+
+* HSA_EXECUTABLE_SYMBOL_INFO_INDIRECT_FUNCTION_CALL_CONVENTION
+
+   - hsa_code_object_type_t
+   
+   - hsa_code_object_info_t
+   
+   - hsa_code_symbol_info_t
+
+
+### Deprecated ROCr Runtime Structs
+
+* hsa_code_object_t
+
+* hsa_callback_data_t
+
+* hsa_code_symbol_t
+
+
+
+## AOMP DEPRECATION
+
+As of AMD ROCm v4.0, AOMP (aomp-amdgpu) is deprecated. OpenMP support has moved to the openmp-extras auxiliary package, which leverages the ROCm compiler on LLVM 12.
+
+For more information, refer to 
+
+https://rocmdocs.amd.com/en/latest/Programming_Guides/openmp_support.html
 
 
 # Deploying ROCm
