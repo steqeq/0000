@@ -22,9 +22,9 @@ It also covers known issues in this release.
 
 - [Deprecations](#Deprecations)
 
-  * [COMPILER GENERATED CODE OBJECT VERSION 2 DEPRECATION ](#COMPILER-GENERATED-CODE-OBJECT-VERSION-2-DEPRECATION)
-  * [ROCR RUNTIME DEPRECATIONS](#ROCR-RUNTIME-DEPRECATIONS)
-  * [AOMP DEPRECATION](#AOMP-DEPRECATION)
+  * [Compiler Generated Code Object Version 2 Deprecation ](#Compiler-Generated-Code-Object-Version-2-Deprecation)
+  * [ROCr Runtime Deprecations](#ROCr-Runtime-Deprecations)
+  * [AOMP Deprecation](#AOMP-Deprecation)
   
 
 - [Deploying ROCm](#Deploying-ROCm)
@@ -289,7 +289,7 @@ An upgrade from previous releases to AMD ROCm v4.0 is not supported. A fresh and
 
 This section describes deprecations and removals in AMD ROCm.
 
-## COMPILER GENERATED CODE OBJECT VERSION 2 DEPRECATION 
+## Compiler Generated Code Object Version 2 Deprecation 
 
 **WARNING**
 
@@ -297,7 +297,7 @@ Compiler-generated code object version 2 is no longer supported and will be remo
 
 Support for loading code object version 2 is also being deprecated with no announced removal release.
 
-## ROCR RUNTIME DEPRECATIONS
+## ROCr Runtime Deprecations
 
 The following ROCr Runtime enumerations, functions, and structs are deprecated in the AMD ROCm v4.0 release.
 
@@ -377,7 +377,7 @@ The following ROCr Runtime enumerations, functions, and structs are deprecated i
 
 
 
-## AOMP DEPRECATION
+## AOMP Deprecation
 
 As of AMD ROCm v4.0, AOMP (aomp-amdgpu) is deprecated. OpenMP support has moved to the openmp-extras auxiliary package, which leverages the ROCm compiler on LLVM 12.
 
