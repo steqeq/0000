@@ -47,6 +47,7 @@ The AMD ROCm platform is designed to support the following operating systems:
 # ROCm Installation Updates
 
 ## Fresh Installation of AMD ROCm v4.0 Recommended
+
 A fresh and clean installation of AMD ROCm v4.0 is recommended. An upgrade from previous releases to AMD ROCm v4.0 is not supported.
 
 For more information, refer to the AMD ROCm Installation Guide at:
@@ -92,9 +93,13 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 The AMD ROCm Installation Guide in this release includes:
 
 * Supported Environments
+
 * Installation Instructions for v4.0
+
 * HIP Installation Instructions 
+
 * AMD ROCm and Mesa Multimedia Installation 
+
 * Using CMake with AMD ROCm 
 
 For more information, refer to the ROCm documentation website at:
@@ -153,64 +158,55 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## ROCm DATA CENTER TOOL 
+## INTRODUCING AMD INSTINCT™ MI100
 
-The following enhancements are made to the ROCm Data Center Tool.
+The AMD Instinct™ MI100 accelerator is the world’s fastest HPC GPU, and a culmination of the AMD CDNA architecture, with all-new Matrix Core Technology, and AMD ROCm™ open ecosystem to deliver new levels of performance, portability, and productivity. AMD CDNA is an all-new GPU architecture from AMD to drive accelerated computing into the era of exascale computing. The new architecture augments scalar and vector processing with new Matrix Core Engines and adds Infinity Fabric™ technology to scale up to larger systems. The open ROCm ecosystem puts customers in control and is a robust, mature platform that is easy to develop for and capable of running the most critical applications. The overall result is that the MI100 is the first GPU to break the 10TFLOP/s FP64 barrier designed as the steppingstone to the next generation of Exascale systems that will deliver pioneering discoveries in machine learning and scientific computing.
 
-### Prometheus Plugin for ROCm Data Center Tool
 
-The ROCm Data Center (RDC) Tool now provides the Prometheus plugin, a Python client to collect the telemetry data of the GPU. 
-The RDC uses Python binding for Prometheus and the collected plugin. The Python binding maps the RDC C APIs to Python using ctypes. The functions supported by C APIs can also be used in the Python binding.
+### Key Features of AMD Instinct™ MI100 
 
-For installation instructions, refer to the ROCm Data Center Tool User Guide at
+Important features of the AMD Instinct™ MI100 accelerator include:
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
+* Extended matrix core engine with Matrix Fused Multiply-Add (MFMA) for mixed-precision arithmetic and operates on KxN matrices (FP32, FP16, BF16, Int8) 
 
-### Python Binding
+* Added native support for the bfloat16 data type
 
-The ROCm Data Center (RDC) Tool now uses PyThon Binding for Prometheus and collectd plugins. PyThon binding maps the RDC C APIs to PyThon using ctypes. All the functions supported by C APIs can also be used in PyThon binding. A generic PyThon class RdcReader is created to simplify the usage of the RDC:
+* 3 Infinity fabric connections per GPU enable a fully connected group of 4 GPUs in a ‘hive’ 
 
-* Users can only specify the fields they want to monitor. RdcReader creates groups and fieldgroups, watches the fields, and fetches the fields. 
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/keyfeatures.PNG)
 
-* RdcReader can support both the Embedded and Standalone mode. Standalone mode can be used with and without authentication.
 
-* In the Standalone mode, the RdcReader can automatically reconnect to rdcd when connection is lost.When rdcd is restarted, the previously created group and fieldgroup may lose. The RdcReader can re-create them and watch the fields after a reconnect. 
+### Matrix Core Engines and GFX908 Considerations
 
-* If the client is restarted, RdcReader can detect the groups and fieldgroups created previously, and, therefore, can avoid recreating them.
+The AMD CDNA architecture builds on GCN’s foundation of scalars and vectors and adds matrices while simultaneously adding support for new numerical formats for machine learning and preserving backward compatibility for any software written for the GCN architecture. These Matrix Core Engines add a new family of wavefront-level instructions, the Matrix Fused MultiplyAdd or MFMA. The MFMA family performs mixed-precision arithmetic and operates on KxN matrices using four different types of input data: 8-bit integers (INT8), 16-bit half-precision FP (FP16), 16-bit brain FP (bf16), and 32-bit single-precision (FP32). All MFMA instructions produce either a 32-bit integer (INT32) or FP32 output, which reduces the likelihood of overflowing during the final accumulation stages of matrix multiplication.
 
-* Users can pass the unit converter if they do not want to use the RDC default unit.
+On nodes with gfx908, MFMA instructions are available to substantially speed up matrix operations. This hardware feature is used only in matrix multiplications functions in rocBLAS and supports only three base types f16_r, bf16_r, and f32_r. 
 
-See the following sample program to monitor the power and GPU utilization using the RdcReader:
+* For half precision (f16_r and bf16_r) GEMM, use the function rocblas_gemm_ex, and set the compute_type parameter to f32_r.
 
-```
+* For single precision (f32_r) GEMM, use the function rocblas_sgemm.
 
-from RdcReader import RdcReader
-from RdcUtil import RdcUtil
-from rdc_bootstrap import *
- 
-default_field_ids = [
-        rdc_field_t.RDC_FI_POWER_USAGE,
-        rdc_field_t.RDC_FI_GPU_UTIL
-]
- 
-class SimpleRdcReader(RdcReader):
-    def __init__(self):
-        RdcReader.__init__(self,ip_port=None, field_ids = default_field_ids, update_freq=1000000)
-    def handle_field(self, gpu_index, value):
-        field_name = self.rdc_util.field_id_string(value.field_id).lower()
-        print("%d %d:%s %d" % (value.ts, gpu_index, field_name, value.value.l_int))
- 
-if __name__ == '__main__':
-    reader = SimpleRdcReader()
-    while True:
-        time.sleep(1)
-        reader.process()
-        
- ```
+* For single precision complex (f32_c) GEMM, use the function rocblas_cgemm.
 
-For more information about RDC Python binding and the Prometheus plugin integration, refer to the ROCm Data Center Tool User Guide at
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
+### References
+* For more information about bfloat16, see 
+
+https://rocblas.readthedocs.io/en/master/usermanual.html
+
+* For more details about AMD Instinct™ MI100 accelerator key features, see 
+
+https://www.amd.com/system/files/documents/instinct-mi100-brochure.pdf
+
+* For more information about the AMD Instinct MI100 accelerator, refer to the following sources:
+
+  - AMD CDNA whitepaper at https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf
+  
+  - MI100 datasheet at https://www.amd.com/system/files/documents/instinct-mi100-brochure.pdf
+
+* AMD Instinct MI100/CDNA1 Shader Instruction Set Architecture (Dec. 2020) – This document describes the current environment, organization, and program state of AMD CDNA “Instinct MI100” devices. It details the instruction set and the microcode formats native to this family of processors that are accessible to programmers and compilers.
+
+https://developer.amd.com/wp-content/resources/CDNA1_Shader_ISA_14December2020.pdf
 
 
 ## ROCm SYSTEM MANAGEMENT INFORMATION 
