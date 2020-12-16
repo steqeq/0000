@@ -10,10 +10,13 @@ It also covers known issues in this release.
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
+  * [INTRODUCING AMD INSTINCT™ MI100](#INTRODUCING-AMD-INSTINCT™-MI100)
+  * [RAS Enhancements](#RAS-Enhancements)
+  * [Using CMake with AMD ROCm](#Using-CMake-with-AMD-ROCm)
+  * [AMD ROCm and Mesa Multimedia](#AMD-ROCm-and-Mesa-Multimedia)
   * [ROCm System Management Information](#ROCm-System-Management-Information)
-  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
-  * [ROCM AOMP Enhancements](#ROCm-AOMP-Enhancements)
+  * [AMD GPU Debugger Enhancements](#AMD-GPU-Debugger-Enhancements)
+
     
 - [Known Issues](#Known-Issues)
 
