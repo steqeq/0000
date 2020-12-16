@@ -22,6 +22,8 @@ It also covers known issues in this release.
 
 - [Deprecations](#Deprecations)
 
+  * [COMPILER ENERATED CODE OBJECT VERSION 2 DEPRECATION ](#COMPILER-GENERATED-CODE-OBJECT-VERSION-2-DEPRECATION
+
 - [Deploying ROCm](#Deploying-ROCm)
  
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -284,7 +286,9 @@ An upgrade from previous releases to AMD ROCm v4.0 is not supported. A fresh and
 
 This section describes deprecations and removals in AMD ROCm.
 
-## WARNING: COMPILER-GENERATED CODE OBJECT VERSION 2 DEPRECATION 
+## COMPILER ENERATED CODE OBJECT VERSION 2 DEPRECATION 
+
+**WARNING**
 
 Compiler-generated code object version 2 is no longer supported and will be removed shortly. AMD ROCm users must plan for the code object version 2 deprecation immediately. 
 
