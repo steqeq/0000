@@ -289,7 +289,7 @@ An upgrade from previous releases to AMD ROCm v4.0 is not supported. A fresh and
 
 This section describes deprecations and removals in AMD ROCm.
 
-## COMPILER ENERATED CODE OBJECT VERSION 2 DEPRECATION 
+## COMPILER GENERATED CODE OBJECT VERSION 2 DEPRECATION 
 
 **WARNING**
 
