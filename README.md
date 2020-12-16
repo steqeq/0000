@@ -405,12 +405,16 @@ Because the ROCm Platform has a focus on particular computational domains, we of
 
 ROCm officially supports AMD GPUs that use following chips:
 
-  * GFX8 GPUs
-    * "Fiji" chips, such as on the AMD Radeon R9 Fury X and Radeon Instinct MI8
-    * "Polaris 10" chips, such as on the AMD Radeon RX 580 and Radeon Instinct MI6
-  * GFX9 GPUs
-    * "Vega 10" chips, such as on the AMD Radeon RX Vega 64 and Radeon Instinct MI25
-    * "Vega 7nm" chips, such as on the Radeon Instinct MI50, Radeon Instinct MI60 or AMD Radeon VII
+* GFX9 GPUs
+
+  - "Vega 10" chips, such as on the AMD Radeon RX Vega 64 and Radeon Instinct MI25
+  
+  - "Vega 7nm" chips, such as on the Radeon Instinct MI50, Radeon Instinct MI60 or AMD Radeon VII, 
+
+* CDNA GPUs
+
+  - MI100 chips such as on the AMD Instinct™ MI100
+
 
 ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
 Some of this software may work with more GPUs than the "officially supported" list above, though AMD does not make any official claims of support for these devices on the ROCm software platform.
