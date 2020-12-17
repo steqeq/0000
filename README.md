@@ -237,7 +237,9 @@ Most components in AMD ROCm support CMake 3.5 or higher out-of-the-box and do no
 
 AMD ROCm provides the respective config-file packages, and this enables find_package to be used directly. AMD ROCm does not require any Find module as the config-file packages are shipped with the upstream projects.
 
-For more information, see UPDATE LINK
+For more information, see 
+
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Using-CMake-with-AMD-ROCm.html
 
 
 AMD ROCm AND Mesa Multimedia
