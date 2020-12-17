@@ -123,7 +123,7 @@ Add link
 
 * HIP API Guide v4.0
 
-Add link
+https://github.com/RadeonOpenCompute/ROCm/blob/master/HIP-API_Guide_v4.0.pdf
 
 * HIP FAQ  
 
