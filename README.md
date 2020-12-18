@@ -10,7 +10,7 @@ It also covers known issues in this release.
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [INTRODUCING AMD INSTINCT\ ™ MI100](#INTRODUCING-AMD-INSTINCT-MI100)
+  * [INTRODUCING AMD INSTINCT \ ™ MI100](#INTRODUCING-AMD-INSTINCT-MI100)
   * [RAS Enhancements](#RAS-Enhancements)
   * [Using CMake with AMD ROCm](#Using-CMake-with-AMD-ROCm)
   * [AMD ROCm and Mesa Multimedia](#AMD-ROCm-and-Mesa-Multimedia)
