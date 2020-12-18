@@ -242,13 +242,13 @@ For more information, see
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Using-CMake-with-AMD-ROCm.html
 
 
-AMD ROCm AND Mesa Multimedia
+## AMD ROCm AND Mesa Multimedia
 
 AMD ROCm extends support to Mesa Multimedia. Mesa is an open-source software implementation of OpenGL, Vulkan, and other graphics API specifications. Mesa translates these specifications to vendor-specific graphics hardware drivers.
 
 For detailed installation instructions, refer to
 
-UPDATE LINK
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Mesa-Multimedia-Installation.html
 
 
 ## ROCm System Management Information 
