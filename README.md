@@ -251,7 +251,7 @@ For detailed installation instructions, refer to
 UPDATE LINK
 
 
-## ROCm SYSTEM MANAGEMENT INFORMATION 
+## ROCm System Management Information 
 
 The following enhancements are made to ROCm System Management Interface (SMI).
 
@@ -273,6 +273,7 @@ Rocm_smi_lib now provides an API that exposes xGMI (inter-chip Global Memory Int
 Refer to the rocm_smi_lib API documentation for more details. 
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_Guide_v4.0.pdf
+
 
 
 
