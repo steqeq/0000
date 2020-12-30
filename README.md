@@ -449,7 +449,7 @@ ROCm officially supports AMD GPUs that use following chips:
 
 * CDNA GPUs
 
-  - 7 nm	"MI100 XL" chips, which LLVM calls a "gfx1030", found on:
+  - 7 nm	"MI100 XL" chips, which LLVM calls a "gfx1030" processor, found on:
     - AMD Instinct™ MI100
 
 ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
