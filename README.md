@@ -123,7 +123,8 @@ https://rocmdocs.amd.com/en/latest/
 
   For more information, refer to the ROCm Data Center User Guide at,
 
-
+  https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.1.pdf
+  
 
 * ROCm Data Center Tool API Guide
 
