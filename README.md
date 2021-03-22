@@ -219,8 +219,8 @@ The extractkernel tool in previous AMD ROCm releases has been removed from the A
 and will no longer be  supported.
 
 **Note**
-..note::
-  The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
+ 
+ The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
 
 * File::Which
 * File::BaseDir
@@ -232,13 +232,13 @@ following instructions to install the Perl modules:
 
 **Ubuntu**
 
-::       
+    ::           
      
      apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl 
    
 **CentOS**
 
-::     
+    ::     
     
     yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
 
