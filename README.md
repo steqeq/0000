@@ -35,7 +35,7 @@ This document describes the features, fixed issues, and information about downlo
 
 
 
-## SUPPORTED OPERATING SYSTEMS
+## ROCm Installation Updates 
 
 ### List of Supported Operating Systems
 
