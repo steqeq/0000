@@ -231,15 +231,11 @@ This error is due to the missing dependencies in the hip-base installer package.
 following instructions to install the Perl modules:  
 
 **Ubuntu**
-
-    ::     
      
      apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl 
    
 **CentOS**
-
-    ::         
-    
+            
       yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
 
 
