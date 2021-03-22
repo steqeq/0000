@@ -46,7 +46,7 @@ The AMD ROCm platform is designed to support the following operating systems:
 * CentOS 8.3 (4.18.0-193.el8) and RHEL 8.3 (4.18.0-193.1.1.el8) (devtoolset is not required)
 * SLES 15 SP2
 
-### FRESH INSTALLATION OF AMD ROCM V4.0.1 RECOMMENDED
+### FRESH INSTALLATION OF AMD ROCM V4.1 RECOMMENDED
 
 A complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. An upgrade from previous releases to AMD ROCm v4.1 is not supported. For more information, refer to the AMD ROCm Installation Guide at
 
@@ -89,13 +89,9 @@ The AMD ROCm Installation Guide in this release includes:
 
 * Supported Environments
 
-* Installation Instructions for v4.0
+* Installation Instructions for v4.1
 
 * HIP Installation Instructions 
-
-* AMD ROCm and Mesa Multimedia Installation 
-
-* Using CMake with AMD ROCm 
 
 For more information, refer to the ROCm documentation website at:
 
@@ -104,13 +100,17 @@ https://rocmdocs.amd.com/en/latest/
 
 ## AMD ROCm - HIP Documentation Updates
 
-* HIP Programming Guide v4.0 
+* HIP Programming Guide v4.1 
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/HIP_Programming_Guide_v4.0.pdf
 
-* HIP API Guide v4.0
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/HIP-API_Guide_v4.0.pdf
+* HIP API Guide v4.1
+
+
+
+* HIP-Supported CUDA API Reference Guide v4.1
+
+
 
 * HIP FAQ  
 
@@ -119,13 +119,24 @@ For more information, refer to
 https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 
+## ROCm Data Center User Guide
+
+* •	Grafana Plugin Integration
+
+For more information, refer to the ROCm Data Center User Guide at,
+
+* ROCm Data Center API Guide
+
+For more information, refer to the ROCm Data Center API Guide at,
+
+
 ## ROCm SMI API Documentation Updates 
 
-* xGMI API
+* ROCm SMI API Guide 
 
 For more information, refer to the ROCm SMI API Guide at,
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_Guide_v4.0.pdf
+
 
 
 ## General AMD ROCm Documentation Links
