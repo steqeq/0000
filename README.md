@@ -69,7 +69,7 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 
  * Command: echo <version> | sudo tee /opt/rocm-<version>/.info/version
 
- * Example: echo 4.0.1 | sudo tee /opt/rocm-4.0.1/.info/version
+ * Example: echo 4.1.0 | sudo tee /opt/rocm-4.1.0/.info/version
 
 * The rock-dkms loadable kernel modules should be installed using a single rock-dkms package. 
 
@@ -428,7 +428,7 @@ Compiler-generated code object version 2 is no longer supported and has been com
 
 # Deploying ROCm
 
-AMD hosts both Debian and RPM repositories for the ROCm v4.0.0 packages. 
+AMD hosts both Debian and RPM repositories for the ROCm packages. 
 
 For more information on ROCM installation on all platforms, see
 
