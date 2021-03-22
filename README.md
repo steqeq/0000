@@ -7,7 +7,7 @@ This document describes the features, fixed issues, and information about downlo
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [INTRODUCING AMD INSTINCT MI100](#INTRODUCING-AMD-INSTINCT-MI100)
+  * [TargetID for Multiple Configurations](#TargetID-for-Multiple-Configurations)
   * [RAS Enhancements](#RAS-Enhancements)
   * [Using CMake with AMD ROCm](#Using-CMake-with-AMD-ROCm)
   * [AMD ROCm and Mesa Multimedia](#AMD-ROCm-and-Mesa-Multimedia)
@@ -232,14 +232,12 @@ following instructions to install the Perl modules:
 
 **Ubuntu**
 
- ::  
-     
+ ::       
      apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl 
    
 **CentOS**
 
- ::
-     
+ ::     
      yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
 
 
