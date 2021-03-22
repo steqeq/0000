@@ -129,7 +129,7 @@ https://rocmdocs.amd.com/en/latest/
 
   For more information, refer to the ROCm Data Center API Guide at,
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Too_API_Manual_4.1.pdf
+  https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_Manual_4.1.pdf
 
 
 ## ROCm SMI API Documentation Updates 
