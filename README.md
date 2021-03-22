@@ -8,8 +8,8 @@ This document describes the features, fixed issues, and information about downlo
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [TargetID for Multiple Configurations](#TargetID-for-Multiple-Configurations)
-  * [RAS Enhancements](#RAS-Enhancements)
-  * [Using CMake with AMD ROCm](#Using-CMake-with-AMD-ROCm)
+  * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
+  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
   * [AMD ROCm and Mesa Multimedia](#AMD-ROCm-and-Mesa-Multimedia)
   * [ROCm System Management Information](#ROCm-System-Management-Information)
   * [AMD GPU Debugger Enhancements](#AMD-GPU-Debugger-Enhancements)
@@ -230,47 +230,31 @@ and will no longer be  supported.
 This error is due to the missing dependencies in the hip-base installer package.  As a workaround, you may use the 
 following instructions to install the Perl modules:  
 
-**Ubuntu**
+*Ubuntu*
      
      apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl
    
-**CentOS**
+*CentOS*
             
       yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
 
 
 
-### Matrix Core Engines and GFX908 Considerations
+## ROCm Data Center Tool 
 
-The AMD CDNA architecture builds on GCN’s foundation of scalars and vectors and adds matrices while simultaneously adding support for new numerical formats for machine learning and preserving backward compatibility for any software written for the GCN architecture. These Matrix Core Engines add a new family of wavefront-level instructions, the Matrix Fused MultiplyAdd or MFMA. The MFMA family performs mixed-precision arithmetic and operates on KxN matrices using four different types of input data: 8-bit integers (INT8), 16-bit half-precision FP (FP16), 16-bit brain FP (bf16), and 32-bit single-precision (FP32). All MFMA instructions produce either a 32-bit integer (INT32) or FP32 output, which reduces the likelihood of overflowing during the final accumulation stages of matrix multiplication.
+### Grafana Integration
 
-On nodes with gfx908, MFMA instructions are available to substantially speed up matrix operations. This hardware feature is used only in matrix multiplications functions in rocBLAS and supports only three base types f16_r, bf16_r, and f32_r. 
+The ROCm Data Center (RDC) Tool is enhanced with the Grafana plugin. Grafana is a common monitoring stack used for storing and visualizing time series data. Prometheus acts as the storage backend, and Grafana is used as the interface for analysis and visualization. Grafana has a plethora of visualization options and can be integrated with Prometheus for the ROCm Data Center (RDC) dashboard. 
 
-* For half precision (f16_r and bf16_r) GEMM, use the function rocblas_gemm_ex, and set the compute_type parameter to f32_r.
+For more information about Grafana integration and installation, refer to the ROCm Data Center Tool User guide at:
 
-* For single precision (f32_r) GEMM, use the function rocblas_sgemm.
-
-* For single precision complex (f32_c) GEMM, use the function rocblas_cgemm.
+*Add link to User Guide v4.1*
 
 
-### References
-* For more information about bfloat16, see 
 
-https://rocblas.readthedocs.io/en/master/usermanual.html
+## ROCm Math and Communication Libraries 
 
-* For more details about AMD Instinct™ MI100 accelerator key features, see 
 
-https://www.amd.com/system/files/documents/instinct-mi100-brochure.pdf
-
-* For more information about the AMD Instinct MI100 accelerator, refer to the following sources:
-
-  - AMD CDNA whitepaper at https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf
-  
-  - MI100 datasheet at https://www.amd.com/system/files/documents/instinct-mi100-brochure.pdf
-
-* AMD Instinct MI100/CDNA1 Shader Instruction Set Architecture (Dec. 2020) – This document describes the current environment, organization, and program state of AMD CDNA “Instinct MI100” devices. It details the instruction set and the microcode formats native to this family of processors that are accessible to programmers and compilers.
-
-https://developer.amd.com/wp-content/resources/CDNA1_Shader_ISA_14December2020.pdf
 
 
 ## RAS Enhancements
