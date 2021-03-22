@@ -20,9 +20,6 @@ This document describes the features, fixed issues, and information about downlo
 - [Deprecations](#Deprecations)
 
   * [Compiler Generated Code Object Version 2 Deprecation ](#Compiler-Generated-Code-Object-Version-2-Deprecation)
-  * [ROCr Runtime Deprecations](#ROCr-Runtime-Deprecations)
-  * [AOMP Deprecation](#AOMP-Deprecation)
-  
 
 - [Deploying ROCm](#Deploying-ROCm)
  
