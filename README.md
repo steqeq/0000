@@ -185,17 +185,17 @@ https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
 
 https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
 
-    * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, 
+   * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, 
       which executes on a target configured for either value of the setting impacting the overall performance. 
       
-      It is recommended to explicitly specify the setting for more efficient performance. 
+     It is recommended to explicitly specify the setting for more efficient performance. 
 
-    * In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
+   * In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
 
-    * The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still 
-      supported, however, they will be removed in a future release. 
+   * The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still 
+     supported, however, they will be removed in a future release. 
 
-    * The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
+   * The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
 
 * The clang offload bundler uses the new offload hipv4 for HIP code object version 4. For more information, see 
 https://clang.llvm.org/docs/ClangOffloadBundler.html
@@ -213,12 +213,12 @@ Refer to the HIP Programming Guide v4.1 for additional information and examples.
 
 (Add Link - HIP Programming Guide v4.1)
 
-.. note::
+**Note**
 
 The extractkernel tool in previous AMD ROCm releases has been removed from the AMD ROCm v4.1 release 
 and will no longer be  supported.
 
-.. note::
+**Note**
 
 The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
 
@@ -231,11 +231,13 @@ This error is due to the missing dependencies in the hip-base installer package.
 following instructions to install the Perl modules:  
 
 **Ubuntu**
+
 ::
   
       apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl 
    
 **CentOS**
+
 ::
 
     yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
