@@ -253,7 +253,7 @@ The ROCm Data Center (RDC) Tool is enhanced with the Grafana plugin. Grafana is 
 
 For more information about Grafana integration and installation, refer to the ROCm Data Center Tool User guide at:
 
-*Add link to User Guide v4.1*
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.1.pdf
 
 
 
