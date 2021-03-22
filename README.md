@@ -296,6 +296,14 @@ For more information, see
 
 https://rocsolver.readthedocs.io/en/latest/
 
+### hipCUB
+
+The new iterator DiscardOutputIterator in hipCUB represents a special kind of pointer that ignores values written to it upon dereference.  It is useful for ignoring the output of certain algorithms without wasting memory capacity or bandwidth.  DiscardOutputIterator may also be used to count the size of an algorithm's output, which was not known previously.
+
+For more information, see
+
+https://hipcub.readthedocs.io/en/latest/
+
 
 ## RAS Enhancements
 
