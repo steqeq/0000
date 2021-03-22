@@ -121,7 +121,7 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 ## ROCm Data Center User Guide
 
-* •	Grafana Plugin Integration
+* Grafana Plugin Integration
 
 For more information, refer to the ROCm Data Center User Guide at,
 
@@ -164,22 +164,41 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## INTRODUCING AMD INSTINCT MI100
+## TARGETID FOR MULTIPLE CONFIGURATIONS
 
-The AMD Instinct™ MI100 accelerator is the world’s fastest HPC GPU, and a culmination of the AMD CDNA architecture, with all-new Matrix Core Technology, and AMD ROCm™ open ecosystem to deliver new levels of performance, portability, and productivity. AMD CDNA is an all-new GPU architecture from AMD to drive accelerated computing into the era of exascale computing. The new architecture augments scalar and vector processing with new Matrix Core Engines and adds Infinity Fabric™ technology to scale up to larger systems. The open ROCm ecosystem puts customers in control and is a robust, mature platform that is easy to develop for and capable of running the most critical applications. The overall result is that the MI100 is the first GPU to break the 10TFLOP/s FP64 barrier designed as the steppingstone to the next generation of Exascale systems that will deliver pioneering discoveries in machine learning and scientific computing.
+The new TargetID functionality allows compilations to specify various configurations of the supported hardware. 
+
+Previously, ROCm supported only a single configuration per target. 
+
+With the TargetID enhancement, ROCm supports configurations for Linux, PAL and associated configurations such as XNACK. This feature addresses configurations for the same target in different modes and allows applications to build executables that specify the supported configurations, including the option to be agnostic for the desired setting.
 
 
-### Key Features of AMD Instinct™ MI100 
+### New Code Object Format Version for TargetID
 
-Important features of the AMD Instinct™ MI100 accelerator include:
+* A new clang option -mcode-object-version can be used to request the legacy code object version 3 or code object version 2. For more information, refer to
 
-* Extended matrix core engine with Matrix Fused Multiply-Add (MFMA) for mixed-precision arithmetic and operates on KxN matrices (FP32, FP16, BF16, Int8) 
+https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
 
-* Added native support for the bfloat16 data type
+* A new clang --offload-arch= option is introduced to specify the offload target architecture(s) for the HIP language.
 
-* 3 Infinity fabric connections per GPU enable a fully connected group of 4 GPUs in a ‘hive’ 
+* The clang --offload-arch= and -mcpu options accept a new Target ID syntax. This allows both the processor and target feature settings to be specified. For more details, refer to
 
-![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/keyfeatures.PNG)
+https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
+
+  * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, which executes on a target configured for either value of the setting impacting the overall performance. It is recommended to explicitly specify the setting for more efficient performance. 
+
+  * In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
+
+  * The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still supported, however, they will be removed in a future release. 
+
+  * The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
+
+* The clang offload bundler uses the new offload hipv4 for HIP code object version 4. For more information, see 
+https://clang.llvm.org/docs/ClangOffloadBundler.html
+
+* ROCm v4.1 corrects code object loading to enforce target feature settings of the code object to match the setting of the agent. It also corrects the recording of target feature settings in the code object. As a consequence, the legacy code objects may no longer load due to mismatches.
+
+* gfx802, gfx803, and gfx805 do not support the XNACK target feature in the ROCm v4.1 release.
 
 
 ### Matrix Core Engines and GFX908 Considerations
