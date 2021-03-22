@@ -117,9 +117,11 @@ https://rocmdocs.amd.com/en/latest/
   https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 
-## ROCm Data Center User Guide
+## ROCm Data Center User and API Guide
 
-* Grafana Plugin Integration
+* ROCm Data Center Tool User Guide
+
+   - Grafana Plugin Integration
 
   For more information, refer to the ROCm Data Center User Guide at,
 
