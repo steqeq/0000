@@ -177,25 +177,25 @@ With the TargetID enhancement, ROCm supports configurations for Linux, PAL and a
 
 * A new clang option -mcode-object-version can be used to request the legacy code object version 3 or code object version 2. For more information, refer to
 
-https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
+  https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
 
 * A new clang --offload-arch= option is introduced to specify the offload target architecture(s) for the HIP language.
 
 * The clang --offload-arch= and -mcpu options accept a new Target ID syntax. This allows both the processor and target feature settings to be specified. For more details, refer to
 
-https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
+  https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
 
-   - If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, 
+    - If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, 
       which executes on a target configured for either value of the setting impacting the overall performance. 
       
-     It is recommended to explicitly specify the setting for more efficient performance. 
+      It is recommended to explicitly specify the setting for more efficient performance. 
 
-   - In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
+    - In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
 
-   - The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still 
-     supported, however, they will be removed in a future release. 
+    - The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still 
+      supported, however, they will be removed in a future release. 
 
-   - The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
+    - The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
 
 * The clang offload bundler uses the new offload hipv4 for HIP code object version 4. For more information, see 
 https://clang.llvm.org/docs/ClangOffloadBundler.html
