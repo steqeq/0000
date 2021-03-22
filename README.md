@@ -435,7 +435,7 @@ For more information on ROCM installation on all platforms, see
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 
-## Machine Learning and High Performance Computing Software Stack for AMD GPU
+# Machine Learning and High Performance Computing Software Stack for AMD GPU
 
 For an updated version of the software stack for AMD GPU, see
 
