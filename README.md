@@ -254,8 +254,20 @@ For more information about Grafana integration and installation, refer to the RO
 
 ## ROCm Math and Communication Libraries 
 
+###rocSPARSE
 
+rocSPARSE extends support for:
 
+* gebsrmm
+* gebsrmv
+* gebsrsv
+* coo2dense and dense2coo
+* generic API including axpby, gather, scatter, rot, spvv, spmv, spgemm, sparsetodense, densetosparse
+* mixed indexing types in matrix formats
+
+For more information, see 
+
+https://rocsparse.readthedocs.io/en/latest/
 
 ## RAS Enhancements
 
