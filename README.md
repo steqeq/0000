@@ -103,7 +103,8 @@ https://rocmdocs.amd.com/en/latest/
 
 * HIP API Guide v4.1
 
-
+  https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_v4.1.pdf
+  
 
 * HIP-Supported CUDA API Reference Guide v4.1
 
@@ -111,29 +112,33 @@ https://rocmdocs.amd.com/en/latest/
 
 * HIP FAQ  
 
-For more information, refer to
+  For more information, refer to
 
-https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
+  https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 
 ## ROCm Data Center User Guide
 
 * Grafana Plugin Integration
 
-For more information, refer to the ROCm Data Center User Guide at,
+  For more information, refer to the ROCm Data Center User Guide at,
 
-* ROCm Data Center API Guide
 
-For more information, refer to the ROCm Data Center API Guide at,
+
+* ROCm Data Center Tool API Guide
+
+  For more information, refer to the ROCm Data Center API Guide at,
+
+  https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Too_API_Manual_4.1.pdf
 
 
 ## ROCm SMI API Documentation Updates 
 
 * ROCm SMI API Guide 
 
-For more information, refer to the ROCm SMI API Guide at,
+  For more information, refer to the ROCm SMI API Guide at,
 
-
+  https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_GUIDE_v4.1.pdf
 
 
 ## General AMD ROCm Documentation Links
