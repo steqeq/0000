@@ -185,7 +185,8 @@ https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
 
 https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
 
-    * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, which executes on       a target configured for either value of the setting impacting the overall performance. 
+    * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, 
+      which executes on a target configured for either value of the setting impacting the overall performance. 
       
       It is recommended to explicitly specify the setting for more efficient performance. 
 
@@ -212,11 +213,11 @@ Refer to the HIP Programming Guide v4.1 for additional information and examples.
 
 (Add Link - HIP Programming Guide v4.1)
 
-..NOTE::
+..note::
 
 The extractkernel tool in previous AMD ROCm releases has been removed from the AMD ROCm v4.1 release and will no longer be supported.
 
-..NOTE::
+..note::
 
 The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
 
