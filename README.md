@@ -320,40 +320,62 @@ Cooperative Groups defines, synchronizes, and communicates between groups of thr
 ![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CG3.PNG)
 
 
-## ROCm System Management Information 
+###  Support for Extern Shared Declarations
 
-The following enhancements are made to ROCm System Management Interface (SMI).
+Previously, it was required to declare dynamic shared memory using the HIP_DYNAMIC_SHARED macro for accuracy as using static shared memory in the same kernel could result in overlapping memory ranges and data-races.
+Now, the HIP-Clang compiler provides support for extern shared declarations, and the HIP_DYNAMIC_SHARED option is no longer required. 
 
-### Support for Printing PCle Information on AMD Instinct™100
+You may use the standard extern definition:
 
-AMD ROCm extends support for printing PCle information on AMD Instinct MI100. 
-
-To check the pp_dpm_pcie file, use *"rocm-smi --showclocks"*.
-
-*/opt/rocm-4.0.0-6132/bin/rocm_smi.py  --showclocks*
-
-![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/SMI.PNG)
+    extern __shared__ type var[];
 
 
-### New API for xGMI 
+## OpenMP Enhancements and Fixes
 
-Rocm_smi_lib now provides an API that exposes xGMI (inter-chip Global Memory Interconnect) throughput from one node to another. 
+This release includes the following OpenMP changes:
 
-Refer to the rocm_smi_lib API documentation for more details. 
+* Usability Enhancements
+* Fixes to Internal Clang Math Headers
+* OpenMP Defect Fixes
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_Guide_v4.0.pdf
+### Usability
 
+* OMPD updates for flang
+* To support OpenMP debugging, the selected OpenMP runtime sources are included in lib-debug/src/openmp. The ROCgdb debugger 
+  will find these automatically.
+* Threadsafe hsa plugin for libomptarget
+* Support multiple devices with malloc and hostrpc
+* Improve hostrpc version check
+* Add max reduction offload feature to flang
+* Integration of changes to support HPC Toolkit
+* Support for fprintf
+* Initial support for GPU malloc and Free. The internal (device rtl) is required for GPU malloc and Free for nested parallelism.  
+  GPU malloc and Free are now replaced, which improves the device memory footprint.
+* Increase detail of debug printing controlled by LIBOMPTARGET_KERNEL_TRACE environment variable
+* Add support for -gpubnames in Flang Driver
+* Increase detail of debug printing controlled by LIBOMPTARGET_KERNEL_TRACE environment variable
+* Add support for -gpubnames in Flang Driver
 
+###  Fixes to Internal Clang Math Headers
 
+This release includes a set of changes applied to Clang internal headers to support OpenMP C, C++, FORTRAN, and HIP C. This establishes consistency between NVPTX and AMDGCN offloading, and OpenMP, HIP, and CUDA. OpenMP uses function variants and header overlays to define device versions of functions. This causes Clang LLVM IR codegen to mangle names of variants in both the definition and callsites of functions defined in the internal Clang headers. The changes apply to headers found in the installation subdirectory lib/clang/11.0.0/include.
 
-## AMD GPU Debugger Enhancements
+The changes also temporarily eliminate the use of the libm bitcode libraries for C and C++. Although math functions are now defined with internal clang headers, a bitcode library of the C functions defined in the headers is still built for the FORTRAN toolchain linking. This is because FORTRAN cannot use C math headers. This bitcode library is installed in lib/libdevice/libm-.bc. The source build of the bitcode library is implemented with the aomp-extras repository and the component-built script build_extras.sh. 
 
-In this release, AMD GPU Debugger has the following enhancements:
+### OpenMP Defect Fixes
 
-* ROCm v4.0 ROCgdb is based on gdb 10.1
+The following OpenMP defects are fixed in this release:
 
-* Extended support for AMD Instinct™ MI100 
-
+* Openmpi configuration issue with real16. 
+* [flang] The AOMP 11.7-1 Fortran compiler claims to support the -isystem flag, but ignores it.
+* [flang] producing internal compiler error when the character is used with KIND.
+* [flang] openmp map clause on complex allocatable expressions !$omp target data map( chunk%tiles(1)%field%density0).
+* Add a fatal error if missing -Xopenmp-target or -march options when -fopenmp-targets is specified. However, this requirement is not 
+  applicable for offloading to the host when there is only a single target and that target is the host.
+* Openmp error message output for no_rocm_device_lib was asserting.
+* Linkage on constant per-kernel symbols from external to weaklinkageonly to prevent duplicate symbols when building kokkos.
+* Add environment variables ROCM_LLD_ARGS ROCM_LINK_ARGS ROCM_SELECT_ARGS to test driver options without compiler rebuild.  
+* Fix problems with device math functions being ambiguous, especially the pow function.ix aompcc to accept file type cxx. 
 
 
 
