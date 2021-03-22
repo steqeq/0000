@@ -99,7 +99,7 @@ https://rocmdocs.amd.com/en/latest/
 
 * HIP Programming Guide v4.1 
 
-
+  https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide_v4.1.pdf
 
 * HIP API Guide v4.1
 
@@ -216,7 +216,7 @@ AMD ROCm v4.1 provides new code object tools *roc-obj-ls* and *roc-obj-extract*.
 
 Refer to the HIP Programming Guide v4.1 for additional information and examples.
 
-(Add Link - HIP Programming Guide v4.1)
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide_v4.1.pdf
 
 **Note**
 
