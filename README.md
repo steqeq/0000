@@ -11,7 +11,7 @@ This document describes the features, fixed issues, and information about downlo
   * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
   * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
   * [HIP Enhancements](#HIP-Enhancements)
-  * [ROCm System Management Information](#ROCm-System-Management-Information)
+  * [OpenMP Enhancements and Fixes](#OpenMP-Enhancements-and-Fixes)
   * [AMD GPU Debugger Enhancements](#AMD-GPU-Debugger-Enhancements)
 
     
