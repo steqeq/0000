@@ -254,7 +254,7 @@ For more information about Grafana integration and installation, refer to the RO
 
 ## ROCm Math and Communication Libraries 
 
-###rocSPARSE
+### rocSPARSE
 
 rocSPARSE extends support for:
 
@@ -268,6 +268,34 @@ rocSPARSE extends support for:
 For more information, see 
 
 https://rocsparse.readthedocs.io/en/latest/
+
+
+### rocSOLVER
+
+rocSOLVER extends support for:
+
+* Eigensolver routines for symmetric/hermitian matrices:
+  - STERF, STEQR
+  
+* Linear solvers for general non-square systems:
+  - GELS (API added with batched and strided_batched versions. Only the overdetermined non-transpose case is implemented in 
+    this release. Other cases will return rocblas_status_not_implemented status for now.)
+    
+* Extended test coverage for functions returning information
+
+* Changelog file
+
+* Tridiagonalization routines for symmetric and hermitian matrices:
+  - LATRD
+  - SYTD2, SYTRD (with batched and strided_batched versions)
+  - HETD2, HETRD (with batched and strided_batched versions)
+  
+* Sample code and unit test for unified memory model/Heterogeneous Memory Management (HMM)
+
+For more information, see
+
+https://rocsolver.readthedocs.io/en/latest/
+
 
 ## RAS Enhancements
 
