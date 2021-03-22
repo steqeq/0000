@@ -185,11 +185,14 @@ https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
 
 https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
 
-    * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, which executes on  a target configured for either value of the setting impacting the overall performance. It is recommended to explicitly specify the setting for more efficient performance. 
+    * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, which executes on       a target configured for either value of the setting impacting the overall performance. 
+      
+      It is recommended to explicitly specify the setting for more efficient performance. 
 
     * In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
 
-    * The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still supported, however, they will be removed in a future release. 
+    * The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still supported, 
+      however, they will be removed in a future release. 
 
     * The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
 
@@ -217,18 +220,20 @@ The extractkernel tool in previous AMD ROCm releases has been removed from the A
 
 The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
 
-* *File::Which
-* *File::BaseDir
-* *File::Copy
-* *URI::Encode
+* *File::Which*
+* *File::BaseDir*
+* *File::Copy*
+* *URI::Encode*
 
 This error is due to the missing dependencies in the hip-base installer package.  As a workaround, you may use the following instructions to install the Perl modules:  
 
 **Ubuntu**
+
 ::
    apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl 
    
 **CentOS**
+
 ::
 
    yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
