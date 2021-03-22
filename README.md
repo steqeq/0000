@@ -10,7 +10,7 @@ This document describes the features, fixed issues, and information about downlo
   * [TargetID for Multiple Configurations](#TargetID-for-Multiple-Configurations)
   * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
   * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
-  * [AMD ROCm and Mesa Multimedia](#AMD-ROCm-and-Mesa-Multimedia)
+  * [HIP Enhancements](#HIP-Enhancements)
   * [ROCm System Management Information](#ROCm-System-Management-Information)
   * [AMD GPU Debugger Enhancements](#AMD-GPU-Debugger-Enhancements)
 
@@ -305,38 +305,21 @@ For more information, see
 https://hipcub.readthedocs.io/en/latest/
 
 
-## RAS Enhancements
+## HIP Enhancements
 
-RAS (Reliability, Availability, and Accessibility) features provide help with data center GPU management. It is a method provided to users to track and manage data points via options implemented in the ROCm-SMI Command Line Interface (CLI) tool. 
+### Support for hipEventDisableTiming Flag
 
-For more information about rocm-smi, see 
+HIP now supports the hipEventDisableTiming flag for hipEventCreateWithFlags. Note, events created with this flag do not record profiling data and provide optimal performance when used for synchronization.
 
-https://github.com/RadeonOpenCompute/ROC-smi 
+### Cooperative Group Functions
 
-The command options are wrappers of the system calls into the device driver interface as described here:
+Cooperative Groups defines, synchronizes, and communicates between groups of threads and blocks for efficiency and ease of management. HIP now supports the following kernel language Cooperative Groups types and functions:
 
-https://dri.freedesktop.org/docs/drm/gpu/amdgpu.html#amdgpu-ras-support
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CG1.PNG)
 
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CG2.PNG)
 
-
-## Using CMake with AMD ROCm
-
-Most components in AMD ROCm support CMake 3.5 or higher out-of-the-box and do not require any special Find modules. A Find module is often used downstream to find the files by guessing locations of files with platform-specific hints. Typically, the Find module is required when the upstream is not built with CMake or the package configuration files are not available.
-
-AMD ROCm provides the respective config-file packages, and this enables find_package to be used directly. AMD ROCm does not require any Find module as the config-file packages are shipped with the upstream projects.
-
-For more information, see 
-
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Using-CMake-with-AMD-ROCm.html
-
-
-## AMD ROCm and Mesa Multimedia
-
-AMD ROCm extends support to Mesa Multimedia. Mesa is an open-source software implementation of OpenGL, Vulkan, and other graphics API specifications. Mesa translates these specifications to vendor-specific graphics hardware drivers.
-
-For detailed installation instructions, refer to
-
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Mesa-Multimedia-Installation.html
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CG3.PNG)
 
 
 ## ROCm System Management Information 
