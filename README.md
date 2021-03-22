@@ -395,10 +395,29 @@ https://github.com/ROCmSoftwarePlatform/MIOpenTensile
 
 The following are the known issues in this release.
 
-## Upgrade to AMD ROCm v4.0 Not Supported
+## Upgrade to AMD ROCm v4.1 Not Supported
 
-An upgrade from previous releases to AMD ROCm v4.0 is not supported. A fresh and clean installation of AMD ROCm v4.0 is recommended. 
+An upgrade from previous releases to AMD ROCm v4.1 is not supported. A complete uninstallation of previous ROCm versions is required before installing a new version of ROCm.
 
+## Performance Impact for Kernel Launch Bound Attribute
+
+Kernels without the *__launch_bounds__* attribute assume the default maximum threads per block value. In the previous ROCm release, this value was 256. In the ROCm v4.1 release, it is changed to 1024. The objective of this change ensures the actual threads per block value used to launch a kernel, by default, are always within the launch bounds, thus, establishing the correctness of HIP programs. 
+
+**NOTE**: Using the above-mentioned approach may incur performance degradation in certain cases. Users must add a minimum launch bound to each kernel, which covers all possible threads per block values used to launch that kernel for correctness and performance. 
+
+The recommended workaround to recover the performance is to add *--gpu-max-threads-per-block=256* to the compilation options for HIP programs.
+
+## Issue with Passing a Subset of GPUs in a Multi-GPU System
+
+ROCm support for passing individual GPUs via the docker --device flag in a Docker run command has a known issue when passing a subset of GPUs in a multi-GPU system. The command runs without any warning or error notification. However, all GPU executable run outputs are randomly corrupted. 
+
+Using GPU targeting via the Docker command is not recommended for users of ROCm 4.1. There is no workaround for this issue currently. 
+
+## Performance Impact for LDS-Bound Kernels
+
+The compiler in ROCm v4.1 generates LDS load and stores instructions that incorrectly assume equal performance between aligned and misaligned accesses. While this does not impact code correctness, it may result in sub-optimal performance.
+
+This issue is under investigation, and there is no known workaround at this time.
 
 
 # Deprecations
@@ -407,99 +426,7 @@ This section describes deprecations and removals in AMD ROCm.
 
 ## Compiler Generated Code Object Version 2 Deprecation 
 
-**WARNING**
-
-Compiler-generated code object version 2 is no longer supported and will be removed shortly. AMD ROCm users must plan for the code object version 2 deprecation immediately. 
-
-Support for loading code object version 2 is also being deprecated with no announced removal release.
-
-## ROCr Runtime Deprecations
-
-The following ROCr Runtime enumerations, functions, and structs are deprecated in the AMD ROCm v4.0 release.
-
-### Deprecated ROCr Runtime Functions
-
-* hsa_isa_get_info
-
-* hsa_isa_compatible
-
-* hsa_executable_create
-
-* hsa_executable_get_symbol
-
-* hsa_executable_iterate_symbols
-
-* hsa_code_object_serialize
-
-* hsa_code_object_deserialize
-
-* hsa_code_object_destroy
-
-* hsa_code_object_get_info
-
-* hsa_executable_load_code_object
-
-* hsa_code_object_get_symbol
-
-* hsa_code_object_get_symbol_from_name
-
-* hsa_code_symbol_get_info
-
-* hsa_code_object_iterate_symbols
-
-
-### Deprecated ROCr Runtime Enumerations
-
-* HSA_ISA_INFO_CALL_CONVENTION_COUNT
-
-* HSA_ISA_INFO_CALL_CONVENTION_INFO_WAVEFRONT_SIZE
-
-* HSA_ISA_INFO_CALL_CONVENTION_INFO_WAVEFRONTS_PER_COMPUTE_UNIT
-
-* HSA_EXECUTABLE_SYMBOL_INFO_MODULE_NAME_LENGTH
-
-* HSA_EXECUTABLE_SYMBOL_INFO_MODULE_NAME
-
-* HSA_EXECUTABLE_SYMBOL_INFO_AGENT
-
-* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_ALLOCATION
-
-* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_SEGMENT
-
-* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_ALIGNMENT
-
-* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_SIZE
-
-* HSA_EXECUTABLE_SYMBOL_INFO_VARIABLE_IS_CONST
-
-* HSA_EXECUTABLE_SYMBOL_INFO_KERNEL_CALL_CONVENTION
-
-* HSA_EXECUTABLE_SYMBOL_INFO_INDIRECT_FUNCTION_CALL_CONVENTION
-
-   - hsa_code_object_type_t
-   
-   - hsa_code_object_info_t
-   
-   - hsa_code_symbol_info_t
-
-
-### Deprecated ROCr Runtime Structs
-
-* hsa_code_object_t
-
-* hsa_callback_data_t
-
-* hsa_code_symbol_t
-
-
-
-## AOMP Deprecation
-
-As of AMD ROCm v4.0, AOMP (aomp-amdgpu) is deprecated. OpenMP support has moved to the openmp-extras auxiliary package, which leverages the ROCm compiler on LLVM 12.
-
-For more information, refer to 
-
-https://rocmdocs.amd.com/en/latest/Programming_Guides/openmp_support.html
+Compiler-generated code object version 2 is no longer supported and has been completely removed. Support for loading code object version 2 is also deprecated with no announced removal release.
 
 
 # Deploying ROCm
@@ -536,7 +463,7 @@ ROCm officially supports AMD GPUs that use following chips:
 
   - "Vega 10" chips, such as on the AMD Radeon RX Vega 64 and Radeon Instinct MI25
   
-  - "Vega 7nm" chips, such as on the Radeon Instinct MI50, Radeon Instinct MI60 or AMD Radeon VII, 
+  - "Vega 7nm" chips, such as on the Radeon Instinct MI50, Radeon Instinct MI60 or AMD Radeon VII, Radeon Pro VII
 
 * CDNA GPUs
 
@@ -545,6 +472,7 @@ ROCm officially supports AMD GPUs that use following chips:
 
 ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
 Some of this software may work with more GPUs than the "officially supported" list above, though AMD does not make any official claims of support for these devices on the ROCm software platform.
+
 The following list of GPUs are enabled in the ROCm software, though full support is not guaranteed:
 
   * GFX8 GPUs
@@ -603,7 +531,7 @@ from the list provided above for compatibility purposes.
 
 ##### Limited support
 
-* ROCm 2.9.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
+* ROCm 4.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
 * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.1.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need community support due to limited access to this type of equipment.
 * AMD "Carrizo" and "Bristol Ridge" APUs are enabled to run OpenCL, but do not yet support HIP or our libraries built on top of these compilers and runtimes.
   * As of ROCm 2.1, "Carrizo" and "Bristol Ridge" require the use of upstream kernel drivers.
@@ -616,10 +544,12 @@ from the list provided above for compatibility purposes.
 
 ##### Not supported
 
-* "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.9.x
+* "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported.
 * We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.0 with PCIe atomics.
   * As such, we do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs.
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are based on PCIe 2.0.
+
+In the default ROCm configuration, GFX8 and GFX9 GPUs require PCI Express 3.0 with PCIe atomics. The ROCm platform leverages these advanced capabilities to allow features such as user-level submission of work from the host to the GPU. This includes PCIe atomic Fetch and Add, Compare and Swap, Unconditional Swap, and AtomicOp Completion.
 
 #### ROCm support in upstream Linux kernels
 
