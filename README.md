@@ -220,23 +220,23 @@ Refer to the HIP Programming Guide v4.1 for additional information and examples.
 
 .. note::
 
-     The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
+The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
 
-     * *File::Which*
-     * *File::BaseDir*
-     * *File::Copy*
-     * *URI::Encode*
+* File::Which
+* File::BaseDir
+* File::Copy
+* URI::Encode
 
-    This error is due to the missing dependencies in the hip-base installer package.  As a workaround, you may use the 
-    following instructions to install the Perl modules:  
+This error is due to the missing dependencies in the hip-base installer package.  As a workaround, you may use the 
+following instructions to install the Perl modules:  
 
-    **Ubuntu**
+**Ubuntu**
 
     ::
   
       apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl 
    
-    **CentOS**
+**CentOS**
 
    ::
 
