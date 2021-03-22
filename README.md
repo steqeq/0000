@@ -12,7 +12,7 @@ This document describes the features, fixed issues, and information about downlo
   * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
   * [HIP Enhancements](#HIP-Enhancements)
   * [OpenMP Enhancements and Fixes](#OpenMP-Enhancements-and-Fixes)
-  * [AMD GPU Debugger Enhancements](#AMD-GPU-Debugger-Enhancements)
+  * [MIOpen Tensile Integration](#MIOpen-Tensile-Integration)
 
     
 - [Known Issues](#Known-Issues)
@@ -338,7 +338,7 @@ This release includes the following OpenMP changes:
 * Fixes to Internal Clang Math Headers
 * OpenMP Defect Fixes
 
-### Usability
+### Usability Enhancements
 
 * OMPD updates for flang
 * To support OpenMP debugging, the selected OpenMP runtime sources are included in lib-debug/src/openmp. The ROCgdb debugger 
@@ -376,7 +376,19 @@ The following OpenMP defects are fixed in this release:
 * Linkage on constant per-kernel symbols from external to weaklinkageonly to prevent duplicate symbols when building kokkos.
 * Add environment variables ROCM_LLD_ARGS ROCM_LINK_ARGS ROCM_SELECT_ARGS to test driver options without compiler rebuild.  
 * Fix problems with device math functions being ambiguous, especially the pow function.ix aompcc to accept file type cxx. 
+* Fix a latent race between host runtime and devicertl.
 
+## MIOPEN TENSILE INTEGRATION
+
+MIOpenTensile provides host-callable interfaces to the Tensile library and supports the HIP programming model. You may use the Tensile feature in the HIP backend by setting the building environment variable value to ON.
+
+    MIOPEN_USE_MIOPENTENSILE=ON
+
+MIOpenTensile is an open-source collaboration tool where external entities can submit source pull requests (PRs) for updates. MIOpenTensile maintainers review and approve the PRs using standard open-source practices. 
+
+For more information about the sources and the build system, see
+
+https://github.com/ROCmSoftwarePlatform/MIOpenTensile
 
 
 # Known Issues 
