@@ -185,13 +185,13 @@ https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
 
 https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
 
-  * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, which executes on a target configured for either value of the setting impacting the overall performance. It is recommended to explicitly specify the setting for more efficient performance. 
+    * If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, which executes on  a target configured for either value of the setting impacting the overall performance. It is recommended to explicitly specify the setting for more efficient performance. 
 
-  * In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
+    * In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
 
-  * The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still supported, however, they will be removed in a future release. 
+    * The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still supported, however, they will be removed in a future release. 
 
-  * The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
+    * The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
 
 * The clang offload bundler uses the new offload hipv4 for HIP code object version 4. For more information, see 
 https://clang.llvm.org/docs/ClangOffloadBundler.html
@@ -199,6 +199,40 @@ https://clang.llvm.org/docs/ClangOffloadBundler.html
 * ROCm v4.1 corrects code object loading to enforce target feature settings of the code object to match the setting of the agent. It also corrects the recording of target feature settings in the code object. As a consequence, the legacy code objects may no longer load due to mismatches.
 
 * gfx802, gfx803, and gfx805 do not support the XNACK target feature in the ROCm v4.1 release.
+
+
+### New Code Object Tools
+
+AMD ROCm v4.1 provides new code object tools *roc-obj-ls* and *roc-obj-extract*. These tools allow for the listing and extraction of AMD GPU ROCm code objects that are embedded in HIP executables and shared objects. Each tool supports a --help option that provides more information. 
+
+Refer to the HIP Programming Guide v4.1 for additional information and examples.
+
+(Add Link - HIP Programming Guide v4.1)
+
+..NOTE::
+
+The extractkernel tool in previous AMD ROCm releases has been removed from the AMD ROCm v4.1 release and will no longer be supported.
+
+..NOTE::
+
+The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
+
+* *File::Which
+* *File::BaseDir
+* *File::Copy
+* *URI::Encode
+
+This error is due to the missing dependencies in the hip-base installer package.  As a workaround, you may use the following instructions to install the Perl modules:  
+
+**Ubuntu**
+::
+   apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl 
+   
+**CentOS**
+::
+
+   yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
+
 
 
 ### Matrix Core Engines and GFX908 Considerations
