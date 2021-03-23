@@ -81,7 +81,7 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 
 
 
-# Driver Compatibility Issue in ROCm v4.\1
+# Driver Compatibility Issue in This Release
 
 In certain scenarios, the ROCm 4.1 run-time and userspace environment are not compatible with ROCm v4.0 and older driver implementations for 7nm-based (Vega 20) hardware (MI50 and MI60). 
 
