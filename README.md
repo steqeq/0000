@@ -113,6 +113,8 @@ To inspect the version of the installed kernel driver,  run either:
 
 * dpkg --status rock-dkms [Debian-based]
 
+or
+
 * rpm -ql rock-dkms [RHEL, SUSE, and others]
 
 To install or update the driver, follow the installation instructions at:
