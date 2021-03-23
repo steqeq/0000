@@ -5,6 +5,8 @@ This document describes the features, fixed issues, and information about downlo
   * [Supported Operating Systems](#Supported-Operating-Systems)
   * [ROCm Installation Updates](#ROCm-Installation-Updates)
   * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
+
+- [Driver Compatibility Issue in ROCm v4.1](#Driver-Compatibility-Issue-in-ROCm-v4.\1)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [TargetID for Multiple Configurations](#TargetID-for-Multiple-Configurations)
