@@ -77,9 +77,9 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 
 **NOTE**: The single version installation of the ROCm stack remains the same. The rocm-dkms package can be used for single version installs and is not deprecated at this time.
 
-=========================================
-Driver Compatibility Issue in ROCm v4.1
-=========================================
+
+
+# Driver Compatibility Issue in ROCm v4.1
 
 In certain scenarios, the ROCm 4.1 run-time and userspace environment are not compatible with ROCm v4.0 and older driver implementations for 7nm-based (Vega 20) hardware (MI50 and MI60). 
 
@@ -90,8 +90,8 @@ Users are notified in the following scenarios:
 * Bare Metal 
 * Containers
  
-Bare Metal
-=============
+## Bare Metal
+
 In the bare-metal environment, the following error message displays in the console: 
 
 *“HSA Error: Incompatible kernel and userspace, Vega 20 disabled. Upgrade amdgpu.”*
@@ -100,8 +100,7 @@ To test the compatibility, run the ROCm v4.1 version of rocminfo using the follo
 
 */opt/rocm-4.1.0/bin/rocminfo 2>&1 | less*
 
-Containers
-=============
+## Containers
 
 A container (built with error detection for this issue) using a ROCm v4.1 or newer run-time is initiated to execute on an older kernel. The container fails to start and the following warning appears:
 
