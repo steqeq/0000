@@ -455,11 +455,12 @@ Or
 * For inclusive_scan, which does not have an initial value argument, use a transform_iterator  to explicitly cast the input iterators to match the output’s value_type
 
 
-## Precision Issue in 7nm Workstation and Radeon VII
+## Precision Issue in AMD RADEON™ PRO VII and AMD RADEON™ VII
 
-In 7nm (Vega20) Work Station and Radeon VII, the Tensorflow XLA path can cause a precision issue.
+In AMD Radeon™ Pro VII AND AMD Radeon™ VII, the Tensorflow XLA path can cause a precision issue.
 
 This issue is currently under investigation.
+
 
 
 # Deprecations
