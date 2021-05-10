@@ -36,7 +36,7 @@ This document describes the features, fixed issues, and information about downlo
 
 ## ROCm Installation Updates 
 
-### List of Supported Operating Systems
+### Supported Operating Systems
 
 The AMD ROCm platform is designed to support the following operating systems:
 
