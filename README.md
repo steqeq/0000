@@ -177,13 +177,12 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_
 ## ROC Debugger User and API Guide 
 
 * ROC Debugger User Guide 
-
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Debugger_User_Guide_v4.2.pdf
 
   
 
 * Debugger API Guide 
-
-  
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Debugger_API_Guide_v4.2.pdf  
 
 
 ## General AMD ROCm Documentation Links
