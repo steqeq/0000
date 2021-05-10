@@ -454,7 +454,7 @@ Or
 
 ## Precision Issue in AMD RADEON™ PRO VII and AMD RADEON™ VII
 
-In AMD Radeon™ Pro VII AND AMD Radeon™ VII, the Tensorflow XLA path can cause a precision issue.
+In AMD Radeon™ Pro VII AND AMD Radeon™ VII, a precision issue can occur when using the Tensorflow XLA path.
 
 This issue is currently under investigation.
 
