@@ -239,9 +239,9 @@ For example,
 
 In the ROCm4.2 release, HIP *include* header directories for platforms are updated as follows:
 
-* *include\amd_details/*** - includes source header details for the ‘amd’ platform implementation. In previous releases, the "hcc_detail" directory was defined, and it it is now deprecated.  
+* *amd_detail/* - includes source header details for the ‘amd’ platform implementation. In previous releases, the "hcc_detail" directory was defined, and it it is now deprecated.  
 
-* *nvidia_details/*** - includes source header details for the ‘nvidia’ platform implementation. In previous releases, the "nvcc_detail" directory was defined, and it is now deprecated. 
+* *nvidia_detail/* - includes source header details for the ‘nvidia’ platform implementation. In previous releases, the "nvcc_detail" directory was defined, and it is now deprecated. 
 
 
 ### HIP Stream Memory Operations
