@@ -397,43 +397,46 @@ The compiler in ROCm v4.1 generates LDS load and stores instructions that incorr
 
 The following are the known issues in this release.
 
-## Upgrade to AMD ROCm v4.1 Not Supported
+## Upgrade to AMD ROCm v4.2 Not Supported
 
-An upgrade from previous releases to AMD ROCm v4.1 is not supported. A complete uninstallation of previous ROCm versions is required before installing a new version of ROCm.
+An upgrade from previous releases to AMD ROCm v4.2 is not supported. Complete uninstallation of previous ROCm versions is required before installing a new version of ROCm.
 
-## Performance Impact for Kernel Launch Bound Attribute
+The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
 
-Kernels without the *__launch_bounds__* attribute assume the default maximum threads per block value. In the previous ROCm release, this value was 256. In the ROCm v4.1 release, it is changed to 1024. The objective of this change ensures the actual threads per block value used to launch a kernel, by default, are always within the launch bounds, thus, establishing the correctness of HIP programs. 
 
-**NOTE**: Using the above-mentioned approach may incur performance degradation in certain cases. Users must add a minimum launch bound to each kernel, which covers all possible threads per block values used to launch that kernel for correctness and performance. 
+#### For SLES 15 SP2
 
-The recommended workaround to recover the performance is to add *--gpu-max-threads-per-block=256* to the compilation options for HIP programs.
+		sudo zypper addrepo 
 
-## Issue with Passing a Subset of GPUs in a Multi-GPU System
 
-ROCm support for passing individual GPUs via the docker --device flag in a Docker run command has a known issue when passing a subset of GPUs in a multi-GPU system. The command runs without any warning or error notification. However, all GPU executable run outputs are randomly corrupted. 
+For more information, see
 
-Using GPU targeting via the Docker command is not recommended for users of ROCm 4.1. There is no workaround for this issue currently. 
+https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
 
-## Performance Impact for LDS-Bound Kernels
 
-The compiler in ROCm v4.1 generates LDS load and stores instructions that incorrectly assume equal performance between aligned and misaligned accesses. While this does not impact code correctness, it may result in sub-optimal performance.
 
-This issue is under investigation, and there is no known workaround at this time.
+#### For CentOS8.3
 
-## Changed HIP Environment Variables in ROCm v4.1 Release
+		sudo yum config-manager --set-enabled powertools
+	
 
-In the ROCm v3.5 release, the Heterogeneous Compute Compiler (HCC) compiler was deprecated, and the HIP-Clang compiler was introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs. Also, the HIP runtime API was implemented on top of the Radeon Open Compute Common Language runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr. 
+#### For RHEL8.3
 
-While the *HIP_PLATFORM=hcc* environment variable was functional in subsequent releases after ROCm v3.5, in the ROCm v4.1 release, changes to the following environment variables were implemented: 
+		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+ 
+ 
+## Modulefile Fails to Install Automatically in ROCm Multi-Version Environment
 
-* *HIP_PLATFORM=hcc was changed to HIP_PLATFORM=amd*
+The ROCm v4.2 release includes a preliminary implementation of environment modules to enable switching between multi versions of ROCm installation. The modulefile in */opt/rocm-4.2/lib/rocmmod* fails to install automatically in the ROCm multi-version environment.
 
-* *HIP_PLATFORM=nvcc was changed to HIP_PLATFORM=nvidia*
+This is a known limitation for environment modules in ROCm, and the issue is under investigation at this time. 
 
-Therefore, any applications continuing to use the HIP_PLATFORM=hcc environment variable will fail.
+**Workaround**
 
-**Workaround:**  Update the environment variables to reflect the changes mentioned above.
+Ensure you install the modulefile in */opt/rocm-4.2/lib/rocmmod* manually in a multi-version installation environment. 
+
+For general information about modules, see
+http://modules.sourceforge.net/ 
 
 
 # Deprecations
