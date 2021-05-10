@@ -11,11 +11,9 @@ This document describes the features, fixed issues, and information about downlo
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [HIP Enhancements](#HIP-Enhancements)
-  * [TargetID for Multiple Configurations](#TargetID-for-Multiple-Configurations)
   * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
   * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)  * 
-  * [OpenMP Enhancements and Fixes](#OpenMP-Enhancements-and-Fixes)
-  * [MIOpen Tensile Integration](#MIOpen-Tensile-Integration)
+
 
 - [Fixed Defects](#Fixed-Defects)  
 
@@ -290,162 +288,100 @@ Therefore, any applications continuing to use the HIP_PLATFORM=hcc variable will
 
 ## ROCm Data Center Tool 
 
-### Grafana Integration
+### RAS Integration
 
-The ROCm Data Center (RDC) Tool is enhanced with the Grafana plugin. Grafana is a common monitoring stack used for storing and visualizing time series data. Prometheus acts as the storage backend, and Grafana is used as the interface for analysis and visualization. Grafana has a plethora of visualization options and can be integrated with Prometheus for the ROCm Data Center (RDC) dashboard. 
+The ROCm Data Center (RDC) Tool is enhanced with the Reliability, Accessibility, and Serviceability (RAS) plugin. 
 
-For more information about Grafana integration and installation, refer to the ROCm Data Center Tool User guide at:
+For more information about RAS integration and installation, refer to the ROCm Data Center Tool User guide at:
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.1.pdf
-
+Add link
 
 
 ## ROCm Math and Communication Libraries 
 
-### rocSPARSE
+### rocBLAS
 
-rocSPARSE extends support for:
+Enhancements and fixes:
 
-* gebsrmm
-* gebsrmv
-* gebsrsv
-* coo2dense and dense2coo
-* generic API including axpby, gather, scatter, rot, spvv, spmv, spgemm, sparsetodense, densetosparse
-* mixed indexing types in matrix formats
+* Added option to install script to build only rocBLAS clients with a pre-built rocBLAS library
 
-For more information, see 
+* Supported gemm ext for unpacked int8 input layout on gfx908 GPUs
 
-https://rocsparse.readthedocs.io/en/latest/
+   * Added new flags rocblas_gemm_flags::rocblas_gemm_flags_pack_int8x4 to specify if using the packed layout
+
+    * Set the rocblas_gemm_flags_pack_int8x4 when using packed int8x;, this should be always set on GPUs before gfx908
+
+    * For gfx908 GPUs, unpacked int8 is supported. Setting of this flag is no longer required
+
+    * Notice the default flags 0 uses unpacked int8 and changes the behaviour of int8 gemm from ROCm 4.1.0
+
+* Added a query function rocblas_query_int8_layout_flag to get the preferable layout of int8 for gemm by device
+
+For more information, refer to 
+
+https://rocblas.readthedocs.io/en/master/
 
 
-### rocSOLVER
+### rocRAND
 
-rocSOLVER extends support for:
+* Performance fixes
 
-* Eigensolver routines for symmetric/hermitian matrices:
-  - STERF, STEQR
-  
-* Linear solvers for general non-square systems:
-  - GELS (API added with batched and strided_batched versions. Only the overdetermined non-transpose case is implemented in 
-    this release. Other cases will return rocblas_status_not_implemented status for now.)
-    
-* Extended test coverage for functions returning information
+For more information, refer to
 
-* Changelog file
+https://rocrand.readthedocs.io/en/latest/
 
-* Tridiagonalization routines for symmetric and hermitian matrices:
-  - LATRD
-  - SYTD2, SYTRD (with batched and strided_batched versions)
-  - HETD2, HETRD (with batched and strided_batched versions)
-  
-* Sample code and unit test for unified memory model/Heterogeneous Memory Management (HMM)
 
-For more information, see
+### rocSOLVER	
+
+Support for:
+
+* Multi-level logging functionality
+
+* Implementation of the Thin-SVD algorithm
+
+* Reductions of generalized symmetric- and hermitian-definite eigenproblems:
+
+   * SYGS2, SYGST (with batched and strided_batched versions)
+   * HEGS2, HEGST (with batched and strided_batched versions)
+
+* Symmetric and hermitian matrix eigensolvers:
+
+   * SYEV (with batched and strided_batched versions)
+   * HEEV (with batched and strided_batched versions)
+   
+* Generalized symmetric- and hermitian-definite eigensolvers:
+
+   * SYGV (with batched and strided_batched versions)
+   * HEGV (with batched and strided_batched versions)
+
+For more information, refer to
 
 https://rocsolver.readthedocs.io/en/latest/
 
-### hipCUB
 
-The new iterator DiscardOutputIterator in hipCUB represents a special kind of pointer that ignores values written to it upon dereference.  It is useful for ignoring the output of certain algorithms without wasting memory capacity or bandwidth.  DiscardOutputIterator may also be used to count the size of an algorithm's output, which was not known previously.
+### rocSPARSE	
 
-For more information, see
+Enhancements:
 
-https://hipcub.readthedocs.io/en/latest/
+* SpMM (CSR, COO)
+* Code coverage analysis
 
+For more information, refer to
 
-## HIP Enhancements
-
-## Changed Environment Variables for HIP 
-
-In the ROCm v3.5 release, the Heterogeneous Compute Compiler (HCC) compiler was deprecated, and the HIP-Clang compiler was introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs. In addition, the HIP runtime API was implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr. 
-
-While the *HIP_PLATFORM=hcc* environment variable was functional in subsequent releases, in the ROCm v4.1 release, the following environment variables were changed: 
-
-* *HIP_PLATFORM=hcc to HIP_PLATFORM=amd*
-
-* *HIP_PLATFORM=nvcc to HIP_PLATFORM=nvidia*
-
-Therefore, any applications continuing to use the *HIP_PLATFORM=hcc* variable will fail. You must update the environment variables to reflect the changes as mentioned above.
+https://rocsparse.readthedocs.io/en/latest/usermanual.html#rocsparse-gebsrmv
 
 
-## Updated HIP Instructions for ROCm Installation
+### hipSPARSE	
 
-The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
+Enhancements:
 
-* For SLES 15 SP2
+* Generic API support, including SpMM (CSR, COO)
+* csru2csr, csr2csru
 
-		sudo zypper addrepo 
+For more information, refer to
 
-  https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
+https://rocsparse.readthedocs.io/en/latest/usermanual.html#types
 
-* For CentOS8.3 
-
-		sudo yum config-manager --set-enabled powertools
-
-* For RHEL8.3
-
-		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-
-
-## OpenMP Enhancements and Fixes
-
-This release includes the following OpenMP changes:
-
-* Usability Enhancements
-* Fixes to Internal Clang Math Headers
-* OpenMP Defect Fixes
-
-### Usability Enhancements
-
-* OMPD updates for flang
-* To support OpenMP debugging, the selected OpenMP runtime sources are included in lib-debug/src/openmp. The ROCgdb debugger 
-  will find these automatically.
-* Threadsafe hsa plugin for libomptarget
-* Support multiple devices with malloc and hostrpc
-* Improve hostrpc version check
-* Add max reduction offload feature to flang
-* Integration of changes to support HPC Toolkit
-* Support for fprintf
-* Initial support for GPU malloc and Free. The internal (device rtl) is required for GPU malloc and Free for nested parallelism.  
-  GPU malloc and Free are now replaced, which improves the device memory footprint.
-* Increase detail of debug printing controlled by LIBOMPTARGET_KERNEL_TRACE environment variable
-* Add support for -gpubnames in Flang Driver
-* Increase detail of debug printing controlled by LIBOMPTARGET_KERNEL_TRACE environment variable
-* Add support for -gpubnames in Flang Driver
-
-###  Fixes to Internal Clang Math Headers
-
-This release includes a set of changes applied to Clang internal headers to support OpenMP C, C++, FORTRAN, and HIP C. This establishes consistency between NVPTX and AMDGCN offloading, and OpenMP, HIP, and CUDA. OpenMP uses function variants and header overlays to define device versions of functions. This causes Clang LLVM IR codegen to mangle names of variants in both the definition and callsites of functions defined in the internal Clang headers. The changes apply to headers found in the installation subdirectory lib/clang/11.0.0/include.
-
-The changes also temporarily eliminate the use of the libm bitcode libraries for C and C++. Although math functions are now defined with internal clang headers, a bitcode library of the C functions defined in the headers is still built for the FORTRAN toolchain linking. This is because FORTRAN cannot use C math headers. This bitcode library is installed in lib/libdevice/libm-.bc. The source build of the bitcode library is implemented with the aomp-extras repository and the component-built script build_extras.sh. 
-
-### OpenMP Defect Fixes
-
-The following OpenMP defects are fixed in this release:
-
-* Openmpi configuration issue with real16. 
-* [flang] The AOMP 11.7-1 Fortran compiler claims to support the -isystem flag, but ignores it.
-* [flang] producing internal compiler error when the character is used with KIND.
-* [flang] openmp map clause on complex allocatable expressions !$omp target data map( chunk%tiles(1)%field%density0).
-* Add a fatal error if missing -Xopenmp-target or -march options when -fopenmp-targets is specified. However, this requirement is not 
-  applicable for offloading to the host when there is only a single target and that target is the host.
-* Openmp error message output for no_rocm_device_lib was asserting.
-* Linkage on constant per-kernel symbols from external to weaklinkageonly to prevent duplicate symbols when building kokkos.
-* Add environment variables ROCM_LLD_ARGS ROCM_LINK_ARGS ROCM_SELECT_ARGS to test driver options without compiler rebuild.  
-* Fix problems with device math functions being ambiguous, especially the pow function.ix aompcc to accept file type cxx. 
-* Fix a latent race between host runtime and devicertl.
-
-## MIOpen Tensile Integration
-
-MIOpenTensile provides host-callable interfaces to the Tensile library and supports the HIP programming model. You may use the Tensile feature in the HIP backend by setting the building environment variable value to ON.
-
-    MIOPEN_USE_MIOPENTENSILE=ON
-
-MIOpenTensile is an open-source collaboration tool where external entities can submit source pull requests (PRs) for updates. MIOpenTensile maintainers review and approve the PRs using standard open-source practices. 
-
-For more information about the sources and the build system, see
-
-https://github.com/ROCmSoftwarePlatform/MIOpenTensile
 
 
 # Fixed Defects
