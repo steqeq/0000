@@ -10,10 +10,10 @@ This document describes the features, fixed issues, and information about downlo
 - [Driver Compatibility Issue in This Release](#Driver-Compatibility-Issue-in-This-Release)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
+  * [HIP Enhancements](#HIP-Enhancements)
   * [TargetID for Multiple Configurations](#TargetID-for-Multiple-Configurations)
   * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
-  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
-  * [HIP Enhancements](#HIP-Enhancements)
+  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)  * 
   * [OpenMP Enhancements and Fixes](#OpenMP-Enhancements-and-Fixes)
   * [MIOpen Tensile Integration](#MIOpen-Tensile-Integration)
 
@@ -239,6 +239,54 @@ For example,
 	#include <hip/nvidia_detail/hip_complex.h>
 
 ```
+
+### Updated HIP 'Include' Directories
+
+In the ROCm4.2 release, HIP *include* header directories for platforms are updated as follows:
+
+* *include\amd_details/*** - includes source header details for the ‘amd’ platform implementation. In previous releases, the "hcc_detail" directory was defined, and it it is now deprecated.  
+
+* *nvidia_details/*** - includes source header details for the ‘nvidia’ platform implementation. In previous releases, the "nvcc_detail" directory was defined, and it is now deprecated. 
+
+
+### HIP Stream Memory Operations
+
+The ROCm v4.2 extends support to Stream Memory Operations to enable direct synchronization between Network Nodes and GPU. The following new APIs are added:
+
+* hipStreamWaitValue32
+* hipStreamWaitValue64
+* hipStreamWriteValue32
+* hipStreamWriteValue64
+
+For more details, see the HIP API guide at
+
+Add link
+
+
+### HIP Events in Kernel Dispatch
+
+HIP events in kernel dispatch using *hipExtLaunchKernelGGL/hipExtLaunchKernel* and passed in the API are not explicitly recorded and should only be used to get elapsed time for that specific launch.
+
+Events used across multiple dispatches, for example, start and stop events from different *hipExtLaunchKernelGGL/hipExtLaunchKernel* calls, are treated as invalid unrecorded events. In such scenarios, HIP will display the error *"hipErrorInvalidHandle"* from *hipEventElapsedTime*.
+
+For more details, refer to the HIP API Guide at
+
+Add link
+
+
+### Changed Environment Variables for HIP
+
+In the ROCm v3.5 release, the Heterogeneous Compute Compiler (HCC) compiler was deprecated, and the HIP-Clang compiler was introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs. In addition, the HIP runtime API was implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr.
+
+While the HIP_PLATFORM=hcc environment variable was functional in subsequent releases, in the ROCm v4.1 release, the following environment variables were changed:
+
+* *HIP_PLATFORM=hcc to HIP_PLATFORM=amd*
+
+* *HIP_PLATFORM=nvcc to HIP_PLATFORM=nvidia*
+
+Therefore, any applications continuing to use the HIP_PLATFORM=hcc variable will fail. You must update the environment variables to reflect the changes as mentioned above. 
+
+
 
 ## ROCm Data Center Tool 
 
