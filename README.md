@@ -130,6 +130,7 @@ https://rocmdocs.amd.com/en/latest/
 
 * HIP Programming Guide v4.2 
 
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD%20HIP%20Programming%20Guide_v4.2.pdf
  
 
 * HIP API Guide v4.2
