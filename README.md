@@ -139,13 +139,13 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
 
 * HIP-Supported CUDA API Reference Guide v4.2
 
-  
+https://github.com/RadeonOpenCompute/ROCm/blob/master/HIP_Supported_CUDA_API_Reference_Guide_v4.2.pdf  
 
 * HIP FAQ  
 
   For more information, refer to
 
-  https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
+https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 
 ## ROCm Data Center User and API Guide
@@ -156,7 +156,7 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
 
   For more information, refer to the ROCm Data Center User Guide at,
 
-
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.2.pdf
   
 
 * ROCm Data Center Tool API Guide
@@ -292,7 +292,7 @@ The ROCm Data Center (RDC) Tool is enhanced with the Reliability, Accessibility,
 
 For more information about RAS integration and installation, refer to the ROCm Data Center Tool User guide at:
 
-Add link
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.2.pdf
 
 
 ## ROCm Math and Communication Libraries 
