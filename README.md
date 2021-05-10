@@ -1,72 +1,5 @@
-# AMD ROCm™ v4.1.1 Patch Release Notes 
+# AMD ROCm™ v4.2 Release Notes 
 
-## Known Issue with rocm-libs4.1.1 Installation (RCCL) on Ubuntu 18/20 HWE 
-
-The rocm-libs4.1.1 package fails to install on Ubuntu 18/20 HWE. *Note, this issue occurs only if a previous version of ROCm is installed on the system*. Users will not observe the issue in a fresh and complete installation of the rocm-libs4.1.1 package.
-
-**Note**: The rocm-libs4.1.1 package installs successfully on CentOS/RHEL.
-
-This is primarily caused because of a known issue with the v4.1.1 RCCL library installation. Users can successfully install other v4.1.1 libraries from the rocm-libs meta-package. For example,
-
-      sudo apt-get install rocblas4.1.1 
-      sudo apt-get install hipblas4.1.1
-      sudo apt-get install hipfft4.1.1
-      sudo apt-get install rocftt4.1.1
-
-This issue is under investigation and will be fixed in a future release. 
-
-## ROCm v4.1.1 Patch Release Updates
-
-The ROCm v4.1.1 release consists of the following updates:
-
-* Changed Environment Variables for HIP
-
-* Updated HIP Instructions for ROCm Installation
-
-* Fixed Defect - Performance Impact for LDS-BOUND Kernels
-
-
-## Changed Environment Variables for HIP 
-
-In the ROCm v3.5 release, the Heterogeneous Compute Compiler (HCC) compiler was deprecated, and the HIP-Clang compiler was introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs. In addition, the HIP runtime API was implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr. 
-
-While the *HIP_PLATFORM=hcc* environment variable was functional in subsequent releases, in the ROCm v4.1 release, the following environment variables were changed: 
-
-* *HIP_PLATFORM=hcc to HIP_PLATFORM=amd*
-
-* *HIP_PLATFORM=nvcc to HIP_PLATFORM=nvidia*
-
-Therefore, any applications continuing to use the *HIP_PLATFORM=hcc* variable will fail. You must update the environment variables to reflect the changes as mentioned above.
-
-
-## Updated HIP Instructions for ROCm Installation
-
-The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
-
-* For SLES 15 SP2
-
-		sudo zypper addrepo 
-
-  https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
-
-* For CentOS8.3 
-
-		sudo yum config-manager --set-enabled powertools
-
-* For RHEL8.3
-
-		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-
-
-## Fixed Defect - Performance Impact for LDS-BOUND Kernels 
-
-The following known issue in the ROCm v4.1 release is fixed in the ROCm v4.1.1 patch release. 
-
-The compiler in ROCm v4.1 generates LDS load and stores instructions that incorrectly assume equal performance between aligned and misaligned accesses. While this does not impact code correctness, it may result in sub-optimal performance.
-
-
-
-# AMD ROCm™ v4.1 Release Notes 
 This document describes the features, fixed issues, and information about downloading and installing the AMD ROCm™ software. It also covers known issues and deprecations in the AMD ROCm v4.1 release.
 
 - [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
@@ -84,7 +17,8 @@ This document describes the features, fixed issues, and information about downlo
   * [OpenMP Enhancements and Fixes](#OpenMP-Enhancements-and-Fixes)
   * [MIOpen Tensile Integration](#MIOpen-Tensile-Integration)
 
-    
+- [Fixed Defects](#Fixed-Defects)  
+
 - [Known Issues](#Known-Issues)
 
 - [Deprecations](#Deprecations)
@@ -108,14 +42,18 @@ This document describes the features, fixed issues, and information about downlo
 
 The AMD ROCm platform is designed to support the following operating systems:
 
-* Ubuntu 20.04.1 (5.4 and 5.6-oem) and 18.04.5 (Kernel 5.4)	
+* Ubuntu 20.04.2 (5.4 and 5.6-oem) and 18.04.5 (Kernel 5.4)
+	
 * CentOS 7.9 (3.10.0-1127) & RHEL 7.9 (3.10.0-1160.6.1.el7) (Using devtoolset-7 runtime support)
+
 * CentOS 8.3 (4.18.0-193.el8) and RHEL 8.3 (4.18.0-193.1.1.el8) (devtoolset is not required)
+
 * SLES 15 SP2
 
-### Fresh Installation of AMD ROCM V4.1 Recommended
 
-A complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. An upgrade from previous releases to AMD ROCm v4.1 is not supported. For more information, refer to the AMD ROCm Installation Guide at
+### Fresh Installation of AMD ROCM V4.2 Recommended
+
+A complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. An upgrade from previous releases to AMD ROCm v4.2 is not supported. For more information, refer to the AMD ROCm Installation Guide at
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
@@ -129,17 +67,17 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
  
 ### ROCm Multi-Version Installation Update
 
-With the AMD ROCm v4.1 release, the following ROCm multi-version installation changes apply:
+With the AMD ROCm v4.2 release, the following ROCm multi-version installation changes apply:
 
 The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm installs.  For example, rocm-dkms3.7.0, rocm-dkms3.8.0.
  
 * Multi-version installation of ROCm should be performed by installing rocm-dev<version> using each of the desired ROCm versions. For example, rocm-dev3.7.0, rocm-dev3.8.0, rocm-dev3.9.0.   
 
-* Version files must be created for each multi-version rocm <= 4.1.0
+* Version files must be created for each multi-version rocm <= 4.2.0
 
  * Command: echo <version> | sudo tee /opt/rocm-<version>/.info/version
 
- * Example: echo 4.1.0 | sudo tee /opt/rocm-4.1.0/.info/version
+ * Example: echo 4.2.0 | sudo tee /opt/rocm-4.2.0/.info/version
 
 * The rock-dkms loadable kernel modules should be installed using a single rock-dkms package. 
 
@@ -479,26 +417,36 @@ https://hipcub.readthedocs.io/en/latest/
 
 ## HIP Enhancements
 
-### Support for hipEventDisableTiming Flag
+## Changed Environment Variables for HIP 
 
-HIP now supports the hipEventDisableTiming flag for hipEventCreateWithFlags. Note, events created with this flag do not record profiling data and provide optimal performance when used for synchronization.
+In the ROCm v3.5 release, the Heterogeneous Compute Compiler (HCC) compiler was deprecated, and the HIP-Clang compiler was introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs. In addition, the HIP runtime API was implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr. 
 
-### Cooperative Group Functions
+While the *HIP_PLATFORM=hcc* environment variable was functional in subsequent releases, in the ROCm v4.1 release, the following environment variables were changed: 
 
-Cooperative Groups defines, synchronizes, and communicates between groups of threads and blocks for efficiency and ease of management. HIP now supports the following kernel language Cooperative Groups types and functions:
+* *HIP_PLATFORM=hcc to HIP_PLATFORM=amd*
 
-![Screenshot](images/CGMain.PNG)
+* *HIP_PLATFORM=nvcc to HIP_PLATFORM=nvidia*
+
+Therefore, any applications continuing to use the *HIP_PLATFORM=hcc* variable will fail. You must update the environment variables to reflect the changes as mentioned above.
 
 
+## Updated HIP Instructions for ROCm Installation
 
-###  Support for Extern Shared Declarations
+The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
 
-Previously, it was required to declare dynamic shared memory using the HIP_DYNAMIC_SHARED macro for accuracy as using static shared memory in the same kernel could result in overlapping memory ranges and data-races.
-Now, the HIP-Clang compiler provides support for extern shared declarations, and the HIP_DYNAMIC_SHARED option is no longer required. 
+* For SLES 15 SP2
 
-You may use the standard extern definition:
+		sudo zypper addrepo 
 
-    extern __shared__ type var[];
+  https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
+
+* For CentOS8.3 
+
+		sudo yum config-manager --set-enabled powertools
+
+* For RHEL8.3
+
+		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
 
 
 ## OpenMP Enhancements and Fixes
@@ -560,6 +508,15 @@ MIOpenTensile is an open-source collaboration tool where external entities can s
 For more information about the sources and the build system, see
 
 https://github.com/ROCmSoftwarePlatform/MIOpenTensile
+
+
+# Fixed Defects
+
+## Performance Impact for LDS-BOUND Kernels 
+
+The following issue is fixed in the ROCm v4.2 release. 
+
+The compiler in ROCm v4.1 generates LDS load and stores instructions that incorrectly assume equal performance between aligned and misaligned accesses. While this does not impact code correctness, it may result in sub-optimal performance.
 
 
 # Known Issues 
