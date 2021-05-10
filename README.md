@@ -1,6 +1,6 @@
 # AMD ROCm™ v4.2 Release Notes 
 
-This document describes the features, fixed issues, and information about downloading and installing the AMD ROCm™ software. It also covers known issues and deprecations in the AMD ROCm v4.1 release.
+This document describes the features, fixed issues, and information about downloading and installing the AMD ROCm™ software. It also covers known issues and deprecations in this release.
 
 - [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
   * [Supported Operating Systems](#Supported-Operating-Systems)
