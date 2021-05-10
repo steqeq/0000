@@ -51,9 +51,9 @@ The AMD ROCm platform is designed to support the following operating systems:
 * SLES 15 SP2
 
 
-### Fresh Installation of AMD ROCM V4.2 Recommended
+### Complete Installation of AMD ROCM V4.2 Recommended
 
-A complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. An upgrade from previous releases to AMD ROCm v4.2 is not supported. For more information, refer to the AMD ROCm Installation Guide at
+Complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. **An upgrade from previous releases to AMD ROCm v4.2 is not supported**. For more information, refer to the AMD ROCm Installation Guide at
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
@@ -65,7 +65,7 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 * For ROCm v3.3 and older releases, the clinfo path remains /opt/rocm/opencl/bin/x86_64/clinfo. 
  
-### ROCm Multi-Version Installation Update
+## ROCm Multi-Version Installation Update
 
 With the AMD ROCm v4.2 release, the following ROCm multi-version installation changes apply:
 
@@ -112,46 +112,6 @@ https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:lan
 		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
  
 
-# Driver Compatibility Issue in This Release
-
-In certain scenarios, the ROCm 4.1 run-time and userspace environment are not compatible with ROCm v4.0 and older driver implementations for 7nm-based (Vega 20) hardware (MI50 and MI60). 
-
-To mitigate issues, the ROCm v4.1 or newer userspace prevents running older drivers for these GPUs.
-
-Users are notified in the following scenarios:
-
-* Bare Metal 
-* Containers
- 
-## Bare Metal
-
-In the bare-metal environment, the following error message displays in the console: 
-
-*“HSA Error: Incompatible kernel and userspace, Vega 20 disabled. Upgrade amdgpu.”*
-
-To test the compatibility, run the ROCm v4.1 version of rocminfo using the following instruction: 
-
-*/opt/rocm-4.1.0/bin/rocminfo 2>&1 | less*
-
-## Containers
-
-A container (built with error detection for this issue) using a ROCm v4.1 or newer run-time is initiated to execute on an older kernel. The container fails to start and the following warning appears:
-
-*Error: Incompatible ROCm environment. The Docker container requires the latest kernel driver to operate correctly.
-Upgrade the ROCm kernel to v4.1 or newer, or use a container tagged for v4.0.1 or older.*
-
-To inspect the version of the installed kernel driver,  run either: 
-
-* dpkg --status rock-dkms [Debian-based]
-
-or
-
-* rpm -ql rock-dkms [RHEL, SUSE, and others]
-
-To install or update the driver, follow the installation instructions at:
-
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
-
 
 # AMD ROCm Documentation Updates
 
@@ -161,7 +121,7 @@ The AMD ROCm Installation Guide in this release includes:
 
 * Supported Environments
 
-* Installation Instructions for v4.1
+* Installation Instructions 
 
 * HIP Installation Instructions 
 
@@ -172,18 +132,18 @@ https://rocmdocs.amd.com/en/latest/
 
 ## AMD ROCm - HIP Documentation Updates
 
-* HIP Programming Guide v4.1 
+* HIP Programming Guide v4.2 
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide_v4.1.pdf
+ 
 
-* HIP API Guide v4.1
+* HIP API Guide v4.2
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_v4.1.pdf
+
   
 
-* HIP-Supported CUDA API Reference Guide v4.1
+* HIP-Supported CUDA API Reference Guide v4.2
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/HIP_Supported_CUDA_API_Reference_Guide_v4.1.pdf
+  
 
 * HIP FAQ  
 
@@ -196,18 +156,18 @@ https://rocmdocs.amd.com/en/latest/
 
 * ROCm Data Center Tool User Guide
 
-   - Grafana Plugin Integration
+   - Reliability, Accessibility, and Serviceability (RAS) Plugin Integration
 
   For more information, refer to the ROCm Data Center User Guide at,
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.1.pdf
+
   
 
 * ROCm Data Center Tool API Guide
 
   For more information, refer to the ROCm Data Center API Guide at,
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_Manual_4.1.pdf
+
 
 
 ## ROCm SMI API Documentation Updates 
@@ -216,18 +176,18 @@ https://rocmdocs.amd.com/en/latest/
 
   For more information, refer to the ROCm SMI API Guide at,
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_API_GUIDE_v4.1.pdf
+ 
   
 ## ROC Debugger User and API Guide 
 
 * ROC Debugger User Guide 
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/Debugging%20with%20ROCGDB%20User%20Guide%20v4.1.pdf
+
   
 
 * Debugger API Guide 
 
-  https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD-Debugger%20API%20Guide%20v4.1.pdf
+  
 
 
 ## General AMD ROCm Documentation Links
@@ -255,100 +215,30 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## TargetID for Multiple Configurations
+## HIP Enhancements
 
-The new TargetID functionality allows compilations to specify various configurations of the supported hardware. 
+### HIP Target Platform Macro
 
-Previously, ROCm supported only a single configuration per target. 
+The platform macros are updated to target either the AMD or NVIDIA platform in HIP projects. They now include corresponding headers and libraries for compilation/linking.
 
-With the TargetID enhancement, ROCm supports configurations for Linux, PAL and associated configurations such as XNACK. This feature addresses configurations for the same target in different modes and allows applications to build executables that specify the supported configurations, including the option to be agnostic for the desired setting.
+* *__HIP_PLATFORM_AMD__* is defined if the HIP platform targets AMD. Note, __HIP_PLATFORM_HCC__ was used previously if the HIP platform targeted AMD. 
+This is now deprecated.
 
+* *__HIP_PLATFORM_NVDIA__* is defined if the HIP platform targets NVIDIA. Note, _HIP_PLATFORM_NVCC__  was used previously if the HIP platform targeted NVIDIA. This is now deprecated.
 
-### New Code Object Format Version for TargetID
+For example,
 
-* A new clang option -mcode-object-version can be used to request the legacy code object version 3 or code object version 2. For more information, refer to
+```
 
-  https://llvm.org/docs/AMDGPUUsage.html#elf-code-object
+	#if (defined(__HIP_PLATFORM_AMD__)) && !(defined(__HIP_PLATFORM_NVIDIA__))
 
-* A new clang --offload-arch= option is introduced to specify the offload target architecture(s) for the HIP language.
+	#include <hip/amd_detail/hip_complex.h>
 
-* The clang --offload-arch= and -mcpu options accept a new Target ID syntax. This allows both the processor and target feature settings to be specified. For more details, refer to
+	#elif !(defined(__HIP_PLATFORM_AMD__)) && (defined(__HIP_PLATFORM_NVIDIA__))
 
-  https://llvm.org/docs/AMDGPUUsage.html#amdgpu-target-id
+	#include <hip/nvidia_detail/hip_complex.h>
 
-    - If a target feature is not specified, it defaults to a new concept of "any". The compiler, then, produces code, 
-      which executes on a target configured for either value of the setting impacting the overall performance. 
-      
-      It is recommended to explicitly specify the setting for more efficient performance. 
-
-    - In particular, the setting for XNACK now defaults to produce less performant code than previous ROCm releases.
-
-    - The legacy clang -mxnack, -mno-xnack, -msram-ecc, and -mno-sram-ecc options are deprecated. They are still 
-      supported, however, they will be removed in a future release. 
-
-    - The new Target ID syntax renames the SRAM ECC feature from sram-ecc to sramecc.
-
-* The clang offload bundler uses the new offload hipv4 for HIP code object version 4. For more information, see 
-https://clang.llvm.org/docs/ClangOffloadBundler.html
-
-* ROCm v4.1 corrects code object loading to enforce target feature settings of the code object to match the setting of the agent. It also corrects the recording of target feature settings in the code object. As a consequence, the legacy code objects may no longer load due to mismatches.
-
-* gfx802, gfx803, and gfx805 do not support the XNACK target feature in the ROCm v4.1 release.
-
-
-### New Code Object Tools
-
-AMD ROCm v4.1 provides new code object tools *roc-obj-ls* and *roc-obj-extract*. These tools allow for the listing and extraction of AMD GPU ROCm code objects that are embedded in HIP executables and shared objects. Each tool supports a --help option that provides more information. 
-
-Refer to the HIP Programming Guide v4.1 for additional information and examples.
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide_v4.1.pdf
-
-**Note**
-
-The extractkernel tool in previous AMD ROCm releases has been removed from the AMD ROCm v4.1 release 
-and will no longer be  supported.
-
-**Note**
- 
- The roc-obj-ls and roc-obj-extract tools may generate an error about the following missing Perl modules: 
-
-* File::Which
-* File::BaseDir
-* File::Copy
-* URI::Encode
-
-This error is due to the missing dependencies in the hip-base installer package.  As a workaround, you may use the 
-following instructions to install the Perl modules:  
-
-*Ubuntu*
-     
-     apt-get install libfile-which-perl libfile-basedir-perl libfile-copy-recursive-perl liburi-encode-perl
-   
-*CentOS*
-            
-    “sudo yum install perl-File-Which perl-File-BaseDir perl-File-Copy-Recursive perl-URI-Encode” 
-    
-
-Repo for CentOS8.3: 
-
-    sudo yum config-manager --set-enabled powertools
-
-
-*RHEL*
-
-    sudo yum install perl-File-Which perl-File-BaseDir perl-File-Copy-Recursive perl-URI-Encode 
-    
-
-Repo for RHEL8.3: 
-
-    sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-
-
-*SLES 15 SP2*
-
-       sudo zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
-
+```
 
 ## ROCm Data Center Tool 
 
