@@ -309,11 +309,11 @@ Enhancements and fixes:
 
    * Added new flags rocblas_gemm_flags::rocblas_gemm_flags_pack_int8x4 to specify if using the packed layout
 
-    * Set the rocblas_gemm_flags_pack_int8x4 when using packed int8x;, this should be always set on GPUs before gfx908
+     * Set the rocblas_gemm_flags_pack_int8x4 when using packed int8x;, this should be always set on GPUs before gfx908
 
-    * For gfx908 GPUs, unpacked int8 is supported. Setting of this flag is no longer required
+     * For gfx908 GPUs, unpacked int8 is supported. Setting of this flag is no longer required
 
-    * Notice the default flags 0 uses unpacked int8 and changes the behaviour of int8 gemm from ROCm 4.1.0
+     * Notice the default flags 0 uses unpacked int8 and changes the behaviour of int8 gemm from ROCm 4.1.0
 
 * Added a query function rocblas_query_int8_layout_flag to get the preferable layout of int8 for gemm by device
 
