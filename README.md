@@ -134,7 +134,7 @@ https://rocmdocs.amd.com/en/latest/
 
 * HIP API Guide v4.2
 
-
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
   
 
 * HIP-Supported CUDA API Reference Guide v4.2
@@ -163,7 +163,7 @@ https://rocmdocs.amd.com/en/latest/
 
   For more information, refer to the ROCm Data Center API Guide at,
 
-
+https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_Guide_v4.2.pdf
 
 
 ## ROCm SMI API Documentation Updates 
