@@ -222,7 +222,7 @@ The platform macros are updated to target either the AMD or NVIDIA platform in H
 * *__HIP_PLATFORM_AMD__* is defined if the HIP platform targets AMD. Note, __HIP_PLATFORM_HCC__ was used previously if the HIP platform targeted AMD. 
 This is now deprecated.
 
-* *__HIP_PLATFORM_NVDIA__* is defined if the HIP platform targets NVIDIA. Note, _HIP_PLATFORM_NVCC__  was used previously if the HIP platform targeted NVIDIA. This is now deprecated.
+* *__HIP_PLATFORM_NVIDIA__* is defined if the HIP platform targets NVIDIA. Note, _HIP_PLATFORM_NVCC__  was used previously if the HIP platform targeted NVIDIA. This is now deprecated.
 
 For example,
 
