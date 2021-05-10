@@ -438,6 +438,29 @@ Ensure you install the modulefile in */opt/rocm-4.2/lib/rocmmod* manually in a m
 For general information about modules, see
 http://modules.sourceforge.net/ 
 
+## Issue with Input/Output Types for Scan Algorithms in rocThrust
+
+As rocThrust is updated to match CUDA Thrust 1.10, the different input/output types for scan algorithms in rocThrust/CUDA Thrust are no longer officially supported.  In this situation, the current C++ standard does not specify the intermediate accumulator type leading to potentially incorrect results and ill-defined behavior. 
+
+As a workaround, users can:
+
+* Use the same types for input and output
+
+Or 
+
+* For exclusive_scan, explicitly specify an *InitialValueType* in the last argument
+
+Or 
+
+* For inclusive_scan, which does not have an initial value argument, use a transform_iterator  to explicitly cast the input iterators to match the output’s value_type
+
+
+## Precision Issue in 7nm Workstation and Radeon VII
+
+In 7nm (Vega20) Work Station and Radeon VII, the Tensorflow XLA path can cause a precision issue.
+
+This issue is currently under investigation.
+
 
 # Deprecations
 
