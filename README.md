@@ -255,7 +255,7 @@ The ROCm v4.2 extends support to Stream Memory Operations to enable direct synch
 
 For more details, see the HIP API guide at
 
-Add link
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
 
 
 ### HIP Events in Kernel Dispatch
