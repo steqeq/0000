@@ -172,7 +172,7 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_
 
   For more information, refer to the ROCm SMI API Guide at,
 
- 
+ https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual_4.2.pdf
   
 ## ROC Debugger User and API Guide 
 
@@ -266,7 +266,7 @@ Events used across multiple dispatches, for example, start and stop events from 
 
 For more details, refer to the HIP API Guide at
 
-Add link
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
 
 
 ### Changed Environment Variables for HIP
