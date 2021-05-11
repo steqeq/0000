@@ -68,12 +68,6 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
  
 * Multi-version installation of ROCm should be performed by installing rocm-dev<version> using each of the desired ROCm versions. For example, rocm-dev3.7.0, rocm-dev3.8.0, rocm-dev3.9.0.   
 
-* Version files must be created for each multi-version rocm <= 4.2.0
-
- * Command: echo <version> | sudo tee /opt/rocm-<version>/.info/version
-
- * Example: echo 4.2.0 | sudo tee /opt/rocm-4.2.0/.info/version
-
 * The rock-dkms loadable kernel modules should be installed using a single rock-dkms package. 
 
 * ROCm v3.9 and above will not set any ldconfig entries for ROCm libraries for multi-version installation.  Users must set LD_LIBRARY_PATH to load the ROCm library version of choice.
