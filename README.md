@@ -1,4 +1,4 @@
-# AMD ROCm™ v4.2 Release Notes 
+# AMD ROCm™ v4.3 Release Notes 
 
 This document describes the features, fixed issues, and information about downloading and installing the AMD ROCm™ software. It also covers known issues and deprecations in this release.
 
@@ -18,10 +18,6 @@ This document describes the features, fixed issues, and information about downlo
 
 - [Known Issues](#Known-Issues)
 
-- [Deprecations](#Deprecations)
-
-  * [Compiler Generated Code Object Version 2 Deprecation ](#Compiler-Generated-Code-Object-Version-2-Deprecation)
-
 - [Deploying ROCm](#Deploying-ROCm)
  
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -39,16 +35,12 @@ This document describes the features, fixed issues, and information about downlo
 
 The AMD ROCm platform is designed to support the following operating systems:
 
-* Ubuntu 20.04.2 HWE (5.4 and 5.6-oem) and 18.04.5 (Kernel 5.4) 
-* CentOS 7.9 (3.10.0-1127) & RHEL 7.9 (3.10.0-1160.6.1.el7) (Using devtoolset-7 runtime support) 
-* CentOS 8.3 (4.18.0-193.el8)and RHEL 8.3 (4.18.0-193.1.1.el8) (devtoolset is not required) 
-* SLES 15 SP2
+![OSkernel](/images/OSKernel.png)
 
 
+### Complete Installation of AMD ROCM V4.3 Recommended
 
-### Complete Installation of AMD ROCM V4.2 Recommended
-
-Complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. **An upgrade from previous releases to AMD ROCm v4.2 is not supported**. For more information, refer to the AMD ROCm Installation Guide at
+Complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. **An upgrade from previous releases to AMD ROCm v4.3 is not supported**. For more information, refer to the AMD ROCm Installation Guide at
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
@@ -62,7 +54,7 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
  
 ## ROCm Multi-Version Installation Update
 
-With the AMD ROCm v4.2 release, the following ROCm multi-version installation changes apply:
+With the AMD ROCm v4.3 release, the following ROCm multi-version installation changes apply:
 
 The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm installs.  For example, rocm-dkms3.7.0, rocm-dkms3.8.0.
  
@@ -73,32 +65,15 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 * ROCm v3.9 and above will not set any ldconfig entries for ROCm libraries for multi-version installation.  Users must set LD_LIBRARY_PATH to load the ROCm library version of choice.
 
 **NOTE**: The single version installation of the ROCm stack remains the same. The rocm-dkms package can be used for single version installs and is not deprecated at this time.
-
-
-### Updated HIP Instructions for ROCm Installation
-
-The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
-
-
-#### For SLES 15 SP2
-
-		sudo zypper addrepo 
-
-
-For more information, see
-
-https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
-
-
-
-#### For CentOS8.3
-
-		sudo yum config-manager --set-enabled powertools
 	
 
-#### For RHEL8.3
-
-		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+## Support for Enviornment Modules
+	
+Environment modules are now supported. This enhancement in the ROCm v4.3 release enables users to switch between ROCm v4.2 and ROCm v4.3 easily and efficiently. 
+	
+For more information about installing environment modules, refer to
+	
+https://modules.readthedocs.io/en/latest/
  
 
 
