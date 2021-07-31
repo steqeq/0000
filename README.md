@@ -277,8 +277,8 @@ This feature provides a counter that displays the coarse grain GPU usage informa
 Sample output
 
 ```
-	$ rocm_smi.py --showuse
-	============================== % time GPU is busy =============================
+		$ rocm_smi.py --showuse
+		============================== % time GPU is busy =============================
                GPU[0] : GPU use (%): 0
                GPU[0] : GFX Activity: 3401
 ```
@@ -378,21 +378,15 @@ Sample output
 
 ### rocBLAS
 
-Enhancements and fixes:
+**Optimizations**
 
-* Added option to install script to build only rocBLAS clients with a pre-built rocBLAS library
-
-* Supported gemm ext for unpacked int8 input layout on gfx908 GPUs
-
-   * Added new flags rocblas_gemm_flags::rocblas_gemm_flags_pack_int8x4 to specify if using the packed layout
-
-     * Set the rocblas_gemm_flags_pack_int8x4 when using packed int8x;, this should be always set on GPUs before gfx908
-
-     * For gfx908 GPUs, unpacked int8 is supported. Setting of this flag is no longer required
-
-     * Notice the default flags 0 uses unpacked int8 and changes the behaviour of int8 gemm from ROCm 4.1.0
-
-* Added a query function rocblas_query_int8_layout_flag to get the preferable layout of int8 for gemm by device
+* Improved performance of non-batched and batched rocblas_Xgemv for gfx908 when m <= 15000 and n <= 15000
+	
+* Improved performance of non-batched and batched rocblas_sgemv and rocblas_dgemv for gfx906 when m <= 6000 and n <= 6000
+	
+* Improved the overall performance of non-batched and batched rocblas_cgemv for gfx906
+	
+* Improved the overall performance of rocblas_Xtrsv
 
 For more information, refer to 
 
