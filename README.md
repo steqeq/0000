@@ -258,16 +258,18 @@ While the new release of the ROCm compiler supports indirect function calls and 
 * Constructing an object with virtual functions in private or shared memory may crash the program due to a compiler issue when generating code for the constructor.  
 
 
-
 ## ROCm Data Center Tool 
 
-### RAS Integration
+### Prometheus (Grafana) Integration with Automatic Node Detection 
 
-The ROCm Data Center (RDC) Tool is enhanced with the Reliability, Accessibility, and Serviceability (RAS) plugin. 
+The ROCm Data Center (RDC) tool enables you to use Consul to discover the rdc_prometheus service automatically. Consul is “a service mesh solution providing a full-featured control plane with service discovery, configuration, and segmentation functionality.” For more information, refer to their website at https://www.consul.io/docs/intro.
+	
+The ROCm Data Center Tool uses Consul for health checks of RDC’s integration with the Prometheus plug-in (rdc_prometheus), and these checks provide information on its efficiency.  
+	
+Previously, when a new compute node was added, users had to change prometheus_targets.json to use Consul manually. Now, with the Consul agent integration, a new compute node can be discovered automatically.
+	
+Add link
 
-For more information about RAS integration and installation, refer to the ROCm Data Center Tool User guide at:
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.2.pdf
 
 
 ## ROCm Math and Communication Libraries 
