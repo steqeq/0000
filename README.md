@@ -200,45 +200,62 @@ HIP now supports and automatically manages Heterogeneous Memory Management (HMM)
   	HIPCHECK(hipMallocManaged(&Hmm, N * sizeof(T)));
 	. . .
 	}
-
 ```
 
-### HIP Stream Memory Operations
+### Kernel Enqueue Serialization
 
-The ROCm v4.2 extends support to Stream Memory Operations to enable direct synchronization between Network Nodes and GPU. The following new APIs are added:
+Developers can control kernel command serialization from the host using the following environment variable,
+AMD_SERIALIZE_KERNEL
+	
+* AMD_SERIALIZE_KERNEL = 1, Wait for completion before enqueue,
 
-* hipStreamWaitValue32
-* hipStreamWaitValue64
-* hipStreamWriteValue32
-* hipStreamWriteValue64
+* AMD_SERIALIZE_KERNEL = 2, Wait for completion after enqueue,
 
-For more details, see the HIP API guide at
+* AMD_SERIALIZE_KERNEL = 3, Both.
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
-
-
-### HIP Events in Kernel Dispatch
-
-HIP events in kernel dispatch using *hipExtLaunchKernelGGL/hipExtLaunchKernel* and passed in the API are not explicitly recorded and should only be used to get elapsed time for that specific launch.
-
-Events used across multiple dispatches, for example, start and stop events from different *hipExtLaunchKernelGGL/hipExtLaunchKernel* calls, are treated as invalid unrecorded events. In such scenarios, HIP will display the error *"hipErrorInvalidHandle"* from *hipEventElapsedTime*.
-
-For more details, refer to the HIP API Guide at
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
+This environment variable setting enables HIP runtime to wait for GPU idle before/after any GPU command.
 
 
-### Changed Environment Variables for HIP
+### NUMA-aware Host Memory Allocation
+	
+The Non-Uniform Memory Architecture (NUMA) policy determines how memory is allocated and selects a CPU closest to each GPU. 
+	
+NUMA also measures the distance between the GPU and CPU devices. By default, each GPU selects a Numa CPU node that has the least NUMA distance between them; the host memory is automatically allocated closest to the memory pool of the NUMA node of the current GPU device. 
+	
+Note, using the *hipSetDevice* API with a different GPU provides access to the host allocation. However, it may have a longer NUMA distance.
 
-In the ROCm v3.5 release, the Heterogeneous Compute Compiler (HCC) compiler was deprecated, and the HIP-Clang compiler was introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs. In addition, the HIP runtime API was implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr.
 
-While the HIP_PLATFORM=hcc environment variable was functional in subsequent releases, in the ROCm v4.1 release, the following environment variables were changed:
+### New Atomic System Scope Atomic Operations
+	
+HIP now provides new APIs with _system as a suffix to support system scope atomic operations. For example,  atomicAnd atomic is dedicated to the GPU device, and atomicAnd_system allows developers to extend the atomic operation to system scope from the GPU device to other CPUs and GPU devices in the system.
+	
+For more information, refer to the HIP Programming Guide at,
+	
+Add link
 
-* *HIP_PLATFORM=hcc to HIP_PLATFORM=amd*
-
-* *HIP_PLATFORM=nvcc to HIP_PLATFORM=nvidia*
-
-Therefore, any applications continuing to use the HIP_PLATFORM=hcc variable will fail. You must update the environment variables to reflect the changes as mentioned above. 
+### Indirect Function Call and C++ Virtual Functions 
+	
+While the new release of the ROCm compiler supports indirect function calls and C++ virtual functions on a device, there are some known limitations and issues. 
+	
+**Limitations**
+	
+* An address to a function is device specific.  Note, a function address taken on the host can not be used on a device, and a function address taken on a device can not be used on the host.  On a system with multiple devices, an address taken on one device can not be used on a different device.
+	
+* C++ virtual functions only work on the device where the object was constructed.
+	
+* Indirect call to a device function with function scope shared memory allocation is not supported. For example, LDS.
+	
+* Indirect call to a device function defined in a source file different than the calling function/kernel is only supported when compiling the entire program with -fgpu-rdc.
+	
+**Known Issues in This Release**
+	
+* Programs containing kernels with different launch bounds may crash when making an indirect function call.  This issue is due to a compiler issue miscalculating the register budget for the callee function.
+	
+* Programs may not work correctly when making an indirect call to a function that uses more resources. For example, scratch memory, shared memory, registers made available by the caller.
+	
+* Compiling a program with objects with pure or deleted virtual functions on the device will result in a linker error.  This issue is due to the missing implementation of some C++ runtime functions on the device.
+	
+* Constructing an object with virtual functions in private or shared memory may crash the program due to a compiler issue when generating code for the constructor.  
 
 
 
