@@ -169,7 +169,6 @@ The HIP version definition is updated from the ROCm v4.2 release as follows:
 ```
 	HIP_VERSION=HIP_VERSION_MAJOR * 10000000 + HIP_VERSION_MINOR * 100000 + 
 	HIP_VERSION_PATCH)
-
 ```
 
 The HIP version can be queried from a HIP API call
@@ -177,20 +176,32 @@ The HIP version can be queried from a HIP API call
 
 ```	
 	hipRuntimeGetVersion(&runtimeVersion);	
-
 ```
 	
 **Note**: The version returned will be greater than the version in previous ROCm releases.
+
+For example,
 	
-	
-### Updated HIP 'Include' Directories
+### Support for Managed Memory Allocation
 
-In the ROCm4.2 release, HIP *include* header directories for platforms are updated as follows:
+HIP now supports and automatically manages Heterogeneous Memory Management (HMM) allocation. The HIP application performs a capability check before making the managed memory API call hipMallocManaged.
 
-* *amd_detail/* - includes source header details for the ‘amd’ platform implementation. In previous releases, the "hcc_detail" directory was defined, and it it is now deprecated.  
+**Note**: The _managed_ keyword is unsupported currently. 
 
-* *nvidia_detail/* - includes source header details for the ‘nvidia’ platform implementation. In previous releases, the "nvcc_detail" directory was defined, and it is now deprecated. 
+```
+	int managed_memory = 0;
+	HIPCHECK(hipDeviceGetAttribute(&managed_memory,
+ 	 hipDeviceAttributeManagedMemory,p_gpuDevice));
+	if (!managed_memory ) {
+  	printf ("info: managed memory access not supported on the device %d\n Skipped\n", p_gpuDevice);
+	}
+	else {
+ 	 HIPCHECK(hipSetDevice(p_gpuDevice));
+  	HIPCHECK(hipMallocManaged(&Hmm, N * sizeof(T)));
+	. . .
+	}
 
+```
 
 ### HIP Stream Memory Operations
 
