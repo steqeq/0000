@@ -349,7 +349,29 @@ Sample output
 	$ rocm_smi.py --resetperfdeterminism 	
 ```	
 	
+**Note**: The idle clock will not take up higher clock values if no workload is running. After enabling determinism, users can run a GFX workload to set performance determinism to the desired clock value in the valid range.
+
+	* GFX clock could either be less than or equal to the max value set in this mode. GFX clock will be at the max clock set in this mode only when required by the running 	workload.
 	
+	* VDDGFX will be higher by an offset (75mv or so based on PPTable) in the determinism mode.
+	
+### HBM Temperature Metric Per Stack
+
+This feature will enable ROCm SMI to report all HBM temperature values as shown below.
+
+Sample output
+
+```	
+   	$ rocm_smi.py –showtemp
+	================================= Temperature =================================
+	GPU[0] : Temperature (Sensor edge) (C): 29.0
+	GPU[0] : Temperature (Sensor junction) (C): 36.0
+	GPU[0] : Temperature (Sensor memory) (C): 45.0
+	GPU[0] : Temperature (Sensor HBM 0) (C): 43.0
+	GPU[0] : Temperature (Sensor HBM 1) (C): 42.0
+	GPU[0] : Temperature (Sensor HBM 2) (C): 44.0
+	GPU[0] : Temperature (Sensor HBM 3) (C): 45.0
+```	
 
 	
 ## ROCm Math and Communication Libraries 
