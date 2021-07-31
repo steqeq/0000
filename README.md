@@ -395,7 +395,19 @@ https://rocblas.readthedocs.io/en/master/
 
 ### rocRAND
 
-* Performance fixes
+**Enhancements**
+	
+* gfx90a support added
+	
+* gfx1030 support added
+
+* gfx803 supported re-enabled
+
+**Fixed**
+	
+* Memory leaks in Poisson tests has been fixed.
+	
+* Memory leaks when generator has been created but setting seed/offset/dimensions display an exception has been fixed.
 
 For more information, refer to
 
@@ -404,26 +416,34 @@ https://rocrand.readthedocs.io/en/latest/
 
 ### rocSOLVER	
 
-Support for:
+**Enhancements**
+	
+Linear solvers for general non-square systems:
+	
+* GELS now supports underdetermined and transposed cases
+	
+* Inverse of triangular matrices
+	
+* TRTRI (with batched and strided_batched versions)
+	
+* Out-of-place general matrix inversion
+	
+* GETRI_OUTOFPLACE (with batched and strided_batched versions)
+	
+* Argument names for the benchmark client now match argument names from the public API
+	
+**Fixed Issues**
+	
+* Known issues with Thin-SVD. The problem was identified in the test specification, not in the thin-SVD implementation or the rocBLAS gemm_batched routines.
 
-* Multi-level logging functionality
+* Benchmark client longer crashes as a result of leading dimension or stride arguments not being provided on the command line.
 
-* Implementation of the Thin-SVD algorithm
+**Optimizations**
+	
+* Improved general performance of matrix inversion (GETRI)
 
-* Reductions of generalized symmetric- and hermitian-definite eigenproblems:
 
-   * SYGS2, SYGST (with batched and strided_batched versions)
-   * HEGS2, HEGST (with batched and strided_batched versions)
 
-* Symmetric and hermitian matrix eigensolvers:
-
-   * SYEV (with batched and strided_batched versions)
-   * HEEV (with batched and strided_batched versions)
-   
-* Generalized symmetric- and hermitian-definite eigensolvers:
-
-   * SYGV (with batched and strided_batched versions)
-   * HEGV (with batched and strided_batched versions)
 
 For more information, refer to
 
