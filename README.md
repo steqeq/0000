@@ -451,11 +451,23 @@ https://rocsolver.readthedocs.io/en/latest/
 
 
 ### rocSPARSE	
+	
+**Enhancements**
+	
+* (batched) tridiagonal solver with and without pivoting
+	
+* dense matrix sparse vector multiplication (gemvi)
+	
+* support for gfx90a
+	
+* sampled dense-dense matrix multiplication (sddmm)
+	
+**Improvements**
+	
+* client matrix download mechanism
+	
+* boost dependency in clients removed
 
-Enhancements:
-
-* SpMM (CSR, COO)
-* Code coverage analysis
 
 For more information, refer to
 
