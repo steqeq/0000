@@ -442,9 +442,6 @@ Linear solvers for general non-square systems:
 	
 * Improved general performance of matrix inversion (GETRI)
 
-
-
-
 For more information, refer to
 
 https://rocsolver.readthedocs.io/en/latest/
@@ -474,17 +471,74 @@ For more information, refer to
 https://rocsparse.readthedocs.io/en/latest/usermanual.html#rocsparse-gebsrmv
 
 
-### hipSPARSE	
+### hipBLAS
 
-Enhancements:
+**Enhancements**
+	
+* Added *hipblasStatusToString*
+	
+**Fixed**
+	
+* Added catch() blocks around API calls to prevent the leak of C++ exceptions
+	
 
-* Generic API support, including SpMM (CSR, COO)
-* csru2csr, csr2csru
+### rocFFT
+
+**Changes**
+	
+* Re-split device code into single-precision, double-precision, and miscellaneous kernels.
+	
+**Fixed Issues**
+	
+* double-precision planar->planar transpose.
+	
+* 3D transforms with unusual strides, for SBCC-optimized sizes.
+	
+* Improved buffer placement logic.
 
 For more information, refer to
 
-https://rocsparse.readthedocs.io/en/latest/usermanual.html#types
+https://rocfft.readthedocs.io/en/rocm-4.3.0/
+	
 
+### hipFFT	
+
+**Fixed Issues**
+	
+* CMAKE updates
+	
+* Added callback API in hipfftXt.h header.
+
+
+### rocALUTION
+	
+**Enhancements**
+	
+* Support for gfx90a target
+	
+* Support for gfx1030 target
+	
+**Improvements**
+	
+* Install script
+	
+For more information, refer to
+	
+### rocTHRUST	
+
+**Enhancements**
+	
+* Updated to match upstream Thrust 1.11
+	
+* gfx90a support added
+	
+* gfx803 support re-enabled
+
+hipCUB	
+
+Enhancements
+
+* DiscardOutputIterator to backend header
 
 
 # Fixed Defects
