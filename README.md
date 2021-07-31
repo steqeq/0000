@@ -319,6 +319,39 @@ Sample output:
 	GPU[1]          : Valid sclk range: 551Mhz - 1270Mhz             
 ```
 	
+### Memory Utilization Counters
+
+This feature provides a counter display memory utilization information as shown below.
+
+Sample output
+	
+```
+       $ rocm_smi.py --showmemuse
+	========================== Current Memory Use ==============================
+
+	GPU[0] : GPU memory use (%): 0
+	GPU[0] : Memory Activity: 0
+```	
+
+### Performance Determinism
+
+ROCm SMI supports performance determinism as a unique mode of operation. Performance variations are minimal as this enhancement allows users to control the entry and exit to set a soft maximum (ceiling) for the GFX clock.
+	
+Sample output
+
+```
+	$ rocm_smi.py --setperfdeterminism 650
+	cat pp_od_clk_voltage
+	GFXCLK:                
+	0: 500Mhz
+	1: 650Mhz *
+	2: 1200Mhz
+	$ rocm_smi.py --resetperfdeterminism 	
+```	
+	
+	
+
+	
 ## ROCm Math and Communication Libraries 
 
 ### rocBLAS
