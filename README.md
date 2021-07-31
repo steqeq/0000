@@ -270,8 +270,55 @@ Previously, when a new compute node was added, users had to change prometheus_ta
 	
 Add link
 
+### Coarse Grain Utilization
+	
+This feature provides a counter that displays the coarse grain GPU usage information, as shown below.
+	
+Sample output
 
+```
+	$ rocm_smi.py --showuse
+	============================== % time GPU is busy =============================
+               GPU[0] : GPU use (%): 0
+               GPU[0] : GFX Activity: 3401
+```
 
+	
+### Add 64-bit Energy Accumulator In-band
+	
+This feature provides an average value of energy consumed over time in a free-flowing RAPL counter, a 64-bit Energy Accumulator.
+	
+Sample output
+	
+```
+	$ rocm_smi.py --showenergycounter
+	=============================== Consumed Energy ================================
+	GPU[0] : Energy counter: 2424868
+	GPU[0] : Accumulated Energy (uJ): 0.0	
+
+```	
+	
+### Support for Continuous Clocks Values
+	
+ROCm SMI will support continuous clock values instead of the previous discrete levels. Moving forward the updated sysfs file will consist of only MIN and MAX values and the user can set the clock value in the given range. 
+	
+Sample output:
+
+```
+	$ rocm_smi.py --setsrange 551 1270 
+	Do you accept these terms? [y/N] y                                                                                    
+	============================= Set Valid sclk Range=======
+	GPU[0]          : Successfully set sclk from 551(MHz) to 1270(MHz)                                                     
+	GPU[1]          : Successfully set sclk from 551(MHz) to 1270(MHz)                                                     
+	=========================================================================
+                       
+	$ rocm_smi.py --showsclkrange                                                                                                                                                                    
+	============================ Show Valid sclk Range======                     
+
+	GPU[0]          : Valid sclk range: 551Mhz - 1270Mhz                                                                  
+	GPU[1]          : Valid sclk range: 551Mhz - 1270Mhz             
+```
+	
 ## ROCm Math and Communication Libraries 
 
 ### rocBLAS
