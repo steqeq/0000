@@ -96,19 +96,13 @@ https://rocmdocs.amd.com/en/latest/
 
 ## AMD ROCm - HIP Documentation Updates
 
-* HIP Programming Guide v4.2 
+* HIP Programming Guide v4.3 
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD%20HIP%20Programming%20Guide_v4.2.pdf
- 
+* HIP API Guide v4.3
 
-* HIP API Guide v4.2
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_4.2.pdf
-  
-
-* HIP-Supported CUDA API Reference Guide v4.2
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/HIP_Supported_CUDA_API_Reference_Guide_v4.2.pdf  
+* HIP-Supported CUDA API Reference Guide v4.3
+	
+* AMD ROCm Compiler Reference Guide v4.3 - *NEW*
 
 * HIP FAQ  
 
@@ -121,16 +115,13 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 * ROCm Data Center Tool User Guide
 
-   - Reliability, Accessibility, and Serviceability (RAS) Plugin Integration
+  - 
 
   For more information, refer to the ROCm Data Center User Guide at,
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.2.pdf
   
 
 * ROCm Data Center Tool API Guide
-
-  For more information, refer to the ROCm Data Center API Guide at,
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_Guide_v4.2.pdf
 
@@ -139,19 +130,13 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_
 
 * ROCm SMI API Guide 
 
-  For more information, refer to the ROCm SMI API Guide at,
-
- https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual_4.2.pdf
+ 
   
 ## ROC Debugger User and API Guide 
 
-* ROC Debugger User Guide 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Debugger_User_Guide_v4.2.pdf
-
-  
+* ROC Debugger User Guide  
 
 * Debugger API Guide 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Debugger_API_Guide_v4.2.pdf  
 
 
 ## General AMD ROCm Documentation Links
