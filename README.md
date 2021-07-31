@@ -116,10 +116,10 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 * ROCm Data Center Tool User Guide
 
   - Prometheus (Grafana) Integration with Automatic Node Detection 
+	
+
 
 * ROCm Data Center Tool API Guide
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_Data_Center_Tool_API_Guide_v4.2.pdf
 
 
 ## ROCm SMI API Documentation Updates 
@@ -162,29 +162,27 @@ Access the following links for more information:
 
 ## HIP Enhancements
 
-### HIP Target Platform Macro
+### HIP Versioning Update
 
-The platform macros are updated to target either the AMD or NVIDIA platform in HIP projects. They now include corresponding headers and libraries for compilation/linking.
+The HIP version definition is updated from the ROCm v4.2 release as follows: 
 
-* *__HIP_PLATFORM_AMD__* is defined if the HIP platform targets AMD. Note, __HIP_PLATFORM_HCC__ was used previously if the HIP platform targeted AMD. 
-This is now deprecated.
-
-* *__HIP_PLATFORM_NVIDIA__* is defined if the HIP platform targets NVIDIA. Note, _HIP_PLATFORM_NVCC__  was used previously if the HIP platform targeted NVIDIA. This is now deprecated.
-
-For example,
+```
+	HIP_VERSION=HIP_VERSION_MAJOR * 10000000 + HIP_VERSION_MINOR * 100000 + 
+	HIP_VERSION_PATCH)
 
 ```
 
-	#if (defined(__HIP_PLATFORM_AMD__)) && !(defined(__HIP_PLATFORM_NVIDIA__))
+The HIP version can be queried from a HIP API call
 
-	#include <hip/amd_detail/hip_complex.h>
 
-	#elif !(defined(__HIP_PLATFORM_AMD__)) && (defined(__HIP_PLATFORM_NVIDIA__))
-
-	#include <hip/nvidia_detail/hip_complex.h>
+```	
+	hipRuntimeGetVersion(&runtimeVersion);	
 
 ```
-
+	
+**Note**: The version returned will be greater than the version in previous ROCm releases.
+	
+	
 ### Updated HIP 'Include' Directories
 
 In the ROCm4.2 release, HIP *include* header directories for platforms are updated as follows:
