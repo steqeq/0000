@@ -35,7 +35,7 @@ This document describes the features, fixed issues, and information about downlo
 
 The AMD ROCm platform is designed to support the following operating systems:
 
-![Screenshot](/images/OSKernel.png)
+![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/OSKernel.PNG)
 
 
 ### Complete Installation of AMD ROCM V4.3 Recommended
