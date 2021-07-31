@@ -115,11 +115,7 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 * ROCm Data Center Tool User Guide
 
-  - 
-
-  For more information, refer to the ROCm Data Center User Guide at,
-
-  
+  - Prometheus (Grafana) Integration with Automatic Node Detection 
 
 * ROCm Data Center Tool API Guide
 
