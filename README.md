@@ -178,7 +178,6 @@ The HIP version can be queried from a HIP API call
 	
 **Note**: The version returned will be greater than the version in previous ROCm releases.
 
-For example,
 	
 ### Support for Managed Memory Allocation
 
