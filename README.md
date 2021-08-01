@@ -613,9 +613,9 @@ Finally, these traces may be combined using the merge traces script (<insert lin
 
 Use the following input arguments to the merge_traces.sh script to control which traces are merged and where the resulting merged trace is saved.
 	
-* -o <outputdir> - output directory where the results are aggregated.
+* -o /<outputdir> - output directory where the results are aggregated.
 	
-* <inputdir>... - space-separated list of rocprofiler directories. If not specified, CWD is used.
+* /<inputdir>... - space-separated list of rocprofiler directories. If not specified, CWD is used.
 
 The file 'unified/results.json' is generated,  and the resulting unified/results.json file contains trace data from both MPI ranks. 
 	
