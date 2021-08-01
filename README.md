@@ -648,7 +648,7 @@ Snippet of the HIP trace
 
 There is no known workaround at this time. 
 	
-## PYCACHE Folder Exists Even After ROCM SMI Library Uninstallation
+## PYCACHE Folder Exists After ROCM SMI Library Uninstallation
 	
 Users may observe that the /opt/rocm-x/bin/__pycache__ folder continues to exist even after the rocm_smi_lib uninstallation.
 Workaround: Delete the /opt/rocm-x/bin/__pycache__ folder manually before uninstalling rocm_smi_lib.
