@@ -539,17 +539,89 @@ hipCUB
 Enhancements
 
 * DiscardOutputIterator to backend header
+	
 
+## ROCProfiler Enhancements
 
-# Fixed Defects
+### Tracing Multiple MPI Ranks 
 
-## Performance Impact for LDS-BOUND Kernels 
+When tracing multiple MPI ranks in ROCm v4.3, users must use the form:
 
-The following issue is fixed in the ROCm v4.2 release. 
+```
+	mpirun ... <mpi args> ... rocprof ... <rocprof args> ... application ... <application args>
+	
+```
 
-The compiler in ROCm v4.1 generates LDS load and stores instructions that incorrectly assume equal performance between aligned and misaligned accesses. While this does not impact code correctness, it may result in sub-optimal performance.
+**NOTE**: This feature differs from ROCm v4.2 (and lower), which used "rocprof ... mpirun ... application".
+	
+This change was made to enable ROCProfiler to handle process forking better and launching via mpirun (and related) executables. 
 
+From a user perspective, this new execution mode requires:
+	
+1. Generation of trace data per MPI (or process) rank.
+	
+2. Use of a new "merge_traces.sh" utility script (see: <insert link here>) to combine traces from multiple processes into a unified trace for profiling.
+	
+For example, to accomplish step #1, ROCm provides a simple bash wrapper that demonstrates how to generate a unique output directory per process:
+	
+```
+	$ cat wrapper.sh
+	#! /usr/bin/env bash
+	if [[ -n ${OMPI_COMM_WORLD_RANK+z} ]]; then
+ 	 # mpich
+  	export MPI_RANK=${OMPI_COMM_WORLD_RANK}
+	elif [[ -n ${MV2_COMM_WORLD_RANK+z} ]]; then
+  	# ompi
+  	export MPI_RANK=${MV2_COMM_WORLD_RANK}
+	fi
+	args="$*"
+	pid="$$"
+	outdir="rank_${pid}_${MPI_RANK}"
+	outfile="results_${pid}_${MPI_RANK}.csv"
+	eval "rocprof -d ${outdir} -o ${outdir}/${outfile} $*"
+```
 
+This script:
+	
+* Determines the global MPI rank (implemented here for OpenMPI and MPICH only)
+	
+* Determines the process id of the MPI rank
+	
+* Generates a unique output directory using the two
+
+To invoke this wrapper, use the following command:
+
+```
+	mpirun <mpi args> ./wrapper.sh --hip-trace <application> <args>
+```
+
+This generates an output directory for each used MPI rank. For example, 	
+
+```
+	$ ls -ld rank_* | awk {'print $5" "$9'}
+	4096 rank_513555_0
+	4096 rank_513556_1
+```	
+	
+Finally, these traces may be combined using the merge traces script (<insert link here>). For example, 
+
+```
+	$  ./merge_traces.sh -h
+	Script for aggregating results from multiple rocprofiler out directries.
+	Full path: /opt/rocm/bin/merge_traces.sh
+	Usage:
+  	merge_traces.sh -o <outputdir> [<inputdir>...]
+```	
+
+Use the following input arguments to the merge_traces.sh script to control which traces are merged and where the resulting merged trace is saved.
+	
+* -o <outputdir> - output directory where the results are aggregated.
+	
+* <inputdir>... - space-separated list of rocprofiler directories. If not specified, CWD is used.
+
+The file 'unified/results.json' is generated,  and the resulting unified/results.json file contains trace data from both MPI ranks. 
+	
+	
 # Known Issues 
 
 The following are the known issues in this release.
