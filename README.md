@@ -11,10 +11,8 @@ This document describes the features, fixed issues, and information about downlo
 - [What\'s New in This Release](#Whats-New-in-This-Release)
   * [HIP Enhancements](#HIP-Enhancements)
   * [ROCm Data Center Tool](#ROCm-Data-Center-Tool)
-  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)   
-
-
-- [Fixed Defects](#Fixed-Defects)  
+  * [ROCm Math and Communication Libraries](#ROCm-Math-and-Communication-Libraries)
+  * [ROCProfiler Enhancements](#ROCProfiler-Enhancements)   
 
 - [Known Issues](#Known-Issues)
 
