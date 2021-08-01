@@ -613,90 +613,46 @@ Finally, these traces may be combined using the merge traces script (<insert lin
 
 Use the following input arguments to the merge_traces.sh script to control which traces are merged and where the resulting merged trace is saved.
 	
-* -o <<outputdir>> - output directory where the results are aggregated.
+* -o <<*outputdir*>> - output directory where the results are aggregated.
 	
-* <<inputdir>>... - space-separated list of rocprofiler directories. If not specified, CWD is used.
+* <<*inputdir*>>... - space-separated list of rocprofiler directories. If not specified, CWD is used.
 
 The file 'unified/results.json' is generated,  and the resulting unified/results.json file contains trace data from both MPI ranks. 
+
+Known issue for ROCProfiler
 	
+Collecting several counter collection passes (multiple "pmc:" lines in an counter input file) is not supported in a single run.  
+The workaround is to break the multiline counter input file into multiple single-line counter input files and execute runs.
+
 	
-# Known Issues 
+# Known Issues in This Release
 
 The following are the known issues in this release.
 
-## Upgrade to AMD ROCm v4.2 Not Supported
+## Upgrade to AMD ROCm v4.3 Not Supported
 
 An upgrade from previous releases to AMD ROCm v4.2 is not supported. Complete uninstallation of previous ROCm versions is required before installing a new version of ROCm.
-
-The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
-
-
-#### For SLES 15 SP2
-
-		sudo zypper addrepo 
-
-
-For more information, see
-
-https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
-
-
-
-#### For CentOS8.3
-
-		sudo yum config-manager --set-enabled powertools
 	
+## _LAUNCH BOUNDS_Ignored During Kernel Launch
 
-#### For RHEL8.3
-
-		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+The HIP runtime returns the hipErrorLaunchFailure error code when an application tries to launch kernel with a block size larger than the launch bounds mentioned during compile time. If no launch bounds were specified during the compile time, the default value of 1024 is assumed.  Refer to the HIP trace for more information about the failing kernel. A sample error in the trace is shown below:
  
- 
-## Modulefile Fails to Install Automatically in ROCm Multi-Version Environment
+Snippet of the HIP trace
+	
+```
+	:3:devprogram.cpp           :2504: 2227377746776 us: Using Code Object V4.
+	:3:hip_module.cpp           :361 : 2227377768546 us: 7670 : [7f7c6eddd180] ihipModuleLaunchKernel ( 0x0x16fe080, 2048, 1, 1, 		1024, 1, 1, 0, stream:<null>, 0x7ffded8ad260, char array:<null>, event:0, event:0, 0, 0 )
+	:1:hip_module.cpp           :254 : 2227377768572 us: Launch params (1024, 1, 1) are larger than launch bounds (64) for 		kernel _Z8MyKerneliPd
+	:3:hip_platform.cpp         :667 : 2227377768577 us: 7670 : [7f7c6eddd180] ihipLaunchKernel: Returned hipErrorLaunchFailure 		:
+	:3:hip_module.cpp           :493 : 2227377768581 us: 7670 : [7f7c6eddd180] hipLaunchKernel: Returned hipErrorLaunchFailure :
+```
 
-The ROCm v4.2 release includes a preliminary implementation of environment modules to enable switching between multi versions of ROCm installation. The modulefile in */opt/rocm-4.2/lib/rocmmod* fails to install automatically in the ROCm multi-version environment.
-
-This is a known limitation for environment modules in ROCm, and the issue is under investigation at this time. 
-
-**Workaround**
-
-Ensure you install the modulefile in */opt/rocm-4.2/lib/rocmmod* manually in a multi-version installation environment. 
-
-For general information about modules, see
-http://modules.sourceforge.net/ 
-
-## Issue with Input/Output Types for Scan Algorithms in rocThrust
-
-As rocThrust is updated to match CUDA Thrust 1.10, the different input/output types for scan algorithms in rocThrust/CUDA Thrust are no longer officially supported.  In this situation, the current C++ standard does not specify the intermediate accumulator type leading to potentially incorrect results and ill-defined behavior. 
-
-As a workaround, users can:
-
-* Use the same types for input and output
-
-Or 
-
-* For exclusive_scan, explicitly specify an *InitialValueType* in the last argument
-
-Or 
-
-* For inclusive_scan, which does not have an initial value argument, use a transform_iterator  to explicitly cast the input iterators to match the output’s value_type
-
-
-## Precision Issue in AMD RADEON™ PRO VII and AMD RADEON™ VII
-
-In AMD Radeon™ Pro VII AND AMD Radeon™ VII, a precision issue can occur when using the Tensorflow XLA path.
-
-This issue is currently under investigation.
-
-
-
-# Deprecations
-
-This section describes deprecations and removals in AMD ROCm.
-
-## Compiler Generated Code Object Version 2 Deprecation 
-
-Compiler-generated code object version 2 is no longer supported and has been completely removed. Support for loading code object version 2 is also deprecated with no announced removal release.
+There is no known workaround at this time. 
+	
+## PYCACHE Folder Exists Even After ROCM SMI Library Uninstallation
+	
+Users may observe that the /opt/rocm-x/bin/__pycache__ folder continues to exist even after the rocm_smi_lib uninstallation.
+Workaround: Delete the /opt/rocm-x/bin/__pycache__ folder manually before uninstalling rocm_smi_lib.
 
 
 # Deploying ROCm
