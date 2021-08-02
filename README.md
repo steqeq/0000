@@ -16,8 +16,6 @@ This document describes the features, fixed issues, and information about downlo
 
 - [Known Issues in This Release](#Known-Issues-in-This-Release)
 
-- [Deploying ROCm](#Deploying-ROCm)
- 
 - [Hardware and Software Support](#Hardware-and-Software-Support)
 
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
@@ -95,17 +93,24 @@ https://rocmdocs.amd.com/en/latest/
 ## AMD ROCm - HIP Documentation Updates
 
 * HIP Programming Guide v4.3 
-
+	
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide_v4.3.pdf
+	
 * HIP API Guide v4.3
-
+	
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_API_Guide_v4.3.pdf
+	
 * HIP-Supported CUDA API Reference Guide v4.3
 	
-* AMD ROCm Compiler Reference Guide v4.3 - *NEW*
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Supported_CUDA_API_Reference_Guide_v4.3.pdf
+	
 
-* HIP FAQ  
-
-  For more information, refer to
-
+* **NEW** - AMD ROCm Compiler Reference Guide v4.3 
+	
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_Compiler_Reference_Guide_v4.3.pdf
+	
+* HIP FAQ
+	
 https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
 
@@ -115,23 +120,30 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq
 
   - Prometheus (Grafana) Integration with Automatic Node Detection 
 	
-
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide_v4.3.pdf
 
 * ROCm Data Center Tool API Guide
 
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_RDC_API_Guide_v4.3.pdf
+	
 
 ## ROCm SMI API Documentation Updates 
 
 * ROCm SMI API Guide 
 
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_SMI_Guide_v4.3.pdf
  
   
 ## ROC Debugger User and API Guide 
 
 * ROC Debugger User Guide  
+	
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCDebugger_User_Guide.pdf
 
 * Debugger API Guide 
 
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCDebugger_API.pdf 
+	
 
 ## General AMD ROCm Documentation Links
 
