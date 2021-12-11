@@ -1,5 +1,110 @@
 
 
+# AMD ROCm™ v4.5.2 Release Notes 
+
+This document describes the features, fixed issues, and information about downloading and installing the AMD ROCm™ software. It also covers known issues and deprecations in this release.
+
+## INSTALLATION GUIDE UPDATES FOR ROCM V4.5.2 
+
+In this release, users have the option to install the kernel mode driver using the Installer method. Some of the ROCm-specific use cases that the installer currently supports are:    
+
+- OpenCL (ROCr/KFD based) runtime  
+
+- HIP runtimes  
+
+- ROCm libraries and applications  
+
+- ROCm Compiler and device libraries  
+
+- ROCr runtime and thunk  
+
+- Kernel mode driver  
+
+For more details, refer to the AMD ROCm Installation Guide v4.5.2 at, 
+
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation_new.html
+
+
+## HIP ENHANCEMENTS
+
+
+The ROCm v4.5.2 release consists of the following HIP enhancement. 
+
+### Changes to the roc-obj-ls Tool 
+
+The roc-obj-ls tool is corrected in ROCm v4.5.2, and the command roc-obj-ls <exe> | roc-obj-extract is no longer the preferred syntax.   
+
+Use the roc-obj tool with the following correct command:  
+
+```   
+
+        roc-obj <exe> 
+ 
+ ```   
+
+For example, 
+
+Extract all ROCm code objects from a list of executables 
+ 
+ ```   
+
+       roc-obj <executable>... 
+ 
+ ```   
+
+Extract all ROCm code objects from a list of executables, and disassemble them 
+ 
+ ```   
+
+       roc-obj --disassemble <executable>... 
+ 
+       # or 
+
+       roc-obj -d <executable>... 
+
+ ```   
+
+Extract all ROCm code objects from a list of executables into dir/ 
+ 
+ ```   
+
+       roc-obj --outdir dir/ <executable>... 
+
+       # or 
+
+       roc-obj -o dir/ <executable>... 
+
+ ```   
+
+Extract only ROCm code objects matching regex over Target ID 
+ 
+ ```   
+
+       roc-obj --target-id gfx9 <executable>... 
+
+        # or 
+
+       roc-obj -t gfx9 <executable>... 
+
+```    
+
+For more information, refer to the HIP Programming Guide at:  
+
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide.pdf
+
+
+ ## OPENMP DEFECT FIX
+
+Previously, ROCProfiler crashed when the following ROCProfiler options were used in OpenMP programs: 
+
+* --stats  
+
+* --hsa-trace 
+
+This issue is fixed in the OpenMP plugin by ensuring that the contents of a kernel dispatch packet are not accessed after publishing it. The issue is also fixed in ROCTracer by ensuring that the registered exit function is called before the runtime library is closed. 
+ 
+ 
+
 # AMD ROCm™ v4.5 Release Notes 
 
 This document describes the features, fixed issues, and information about downloading and installing the AMD ROCm™ software. It also covers known issues and deprecations in this release.
@@ -52,8 +157,6 @@ The AMD ROCm platform supports the following operating systems:
 | CentOS 8.3        | 4.18.0-193.el8      |
 | Ubuntu 18.04.5    | 5.4.0-71-generic    |
 | Ubuntu 20.04.3HWE | 5.8.0-48-generic    |
-| Host OS           | Azure RS1.86        |
-| Guest OS          | Ubuntu 20.04        |
 
 
 
@@ -227,8 +330,7 @@ This feature can be disabled by setting the following environment variable,
 
 ### Support for HIP Graph 
 
-ROCm v4.5 extends support for HIP Graph. For details, refer to the HIP
-API Guide at
+ROCm v4.5 extends support for HIP Graph. For details, refer to the HIP API Guide at
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD-HIP-API-4.5.pdf
 
@@ -260,8 +362,7 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD-HIP-API-4.5.pdf
 
 ### New Flag for Backwards Compatibility on float/double atomicAdd Function
 
-In the ROCm4.5 release, a new compilation flag is introduced as an
-option in the CMAKE file. This flag ensures backwards compatibility in
+In the ROCm4.5 release, a new compilation flag is introduced as an option in the CMAKE file. This flag ensures backwards compatibility in
 float/double atomicAdd functions.
 
 ```   
@@ -287,7 +388,7 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide.
 The HIP version definition is updated as follows:
 
 ```  
-     HIP_VERSION=HIP_VERSION_MAJOR \* 10000000 + HIP_VERSION_MINOR \*
+     HIP_VERSION=HIP_VERSION_MAJOR * 10000000 + HIP_VERSION_MINOR *
      100000 + HIP_VERSION_PATCH)
 ```  
 
@@ -297,8 +398,7 @@ The HIP version can be queried from the following HIP API call,
      hipRuntimeGetVersion(&runtimeVersion);
 ```  
 
-The version returned is always greater than the versions in the previous
-ROCm releases.
+The version returned is always greater than the versions in the previous ROCm releases.
 
 **Note:** The version definition of the HIP runtime is different from that of CUDA. The function returns the HIP runtime version on the AMD
 platform, while on the NVIDIA platform, it returns the CUDA runtime version. There is no mapping or a correlation between the HIP and CUDA
@@ -366,8 +466,8 @@ compiler builds code that works in both modes. Code can be optimized for one spe
 OpenCL:
 
 ```  
-     clang \... -mcpu=gfx908:***xnack+***:sramecc- \... // xnack on, sramecc off\
-     clang \... -mcpu=gfx908:***xnack-***:sramecc+ \... // xnack off, sramecc on
+     clang \... -mcpu=gfx908:xnack+:sramecc- \... // xnack on, sramecc off\
+     clang \... -mcpu=gfx908:xnack-:sramecc+ \... // xnack off, sramecc on
 ```  
 
 HIP:
@@ -435,10 +535,8 @@ The default power cap is 225.0W before any changes.
 
 ## OpenMP Enhancements
 
-The ROCm installation includes an LLVM-based implementation, which fully
-supports OpenMP 4.5 standard and a subset of the OpenMP 5.0 standard.
-Fortran and C/C++ compilers and corresponding runtime libraries are
-included. Along with host APIs, the OpenMP compilers support offloading
+The ROCm installation includes an LLVM-based implementation, which fully supports OpenMP 4.5 standard and a subset of the OpenMP 5.0 standard.
+Fortran and C/C++ compilers and corresponding runtime libraries are included. Along with host APIs, the OpenMP compilers support offloading
 code and data onto GPU devices.
 
 For more information, refer to
@@ -693,15 +791,14 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 
 # Disclaimer
 
-The information presented in this document is for informational purposes only and may contain technical inaccuracies, omissions, and typographical errors.  The information contained herein is subject to change and may be rendered inaccurate for many reasons, including but not limited to product and roadmap changes, component and motherboard versionchanges, new  model and/or product releases, product differences between differing manufacturers, software changes, BIOS flashes, firmware upgrades, or the like. Any computer system has risks of security vulnerabilities that cannot be completely prevented or mitigated.AMD  assumes  no  obligation  to  update  or  otherwise  correct  or  revise  this  information.  However, AMD reserves the right to revise this information and to make changes from time to time to the content hereof without obligation of AMD to notify any person of such revisions or changes.THIS INFORMATION IS PROVIDED ‘AS IS.” AMD MAKES NO REPRESENTATIONS OR WARRANTIES WITH RESPECT  TO  THE  CONTENTS  HEREOF  AND  ASSUMES  NO  RESPONSIBILITY  FOR  ANY  INACCURACIES, ERRORS, OR OMISSIONS THAT MAY APPEAR IN THIS INFORMATION. AMD SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR ANY PARTICULAR PURPOSE.  IN NO EVENT WILL AMD BE LIABLE TO ANY PERSON FOR ANY RELIANCE, DIRECT, INDIRECT, SPECIAL,  OR  OTHER  CONSEQUENTIAL  DAMAGES  ARISING  FROM  THE  USE  OF  ANY  INFORMATION CONTAINED HEREIN, EVEN IF AMD IS EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.AMD,  the  AMD  Arrow  logo,[insert  all  other  AMD  trademarks  used  in  the  material  here  perAMD Trademarks]and combinations thereof are trademarks of Advanced Micro Devices, Inc.Other product names  used  in  this  publication  are  for  identification  purposes  only  and  may  be  trademarks  of  their respective  companies. [Insert  any  third  party  trademark  attribution  here  per  AMD'sThird  Party Trademark List.]
+The information presented in this document is for informational purposes only and may contain technical inaccuracies, omissions, and typographical errors.  The information contained herein is subject to change and may be rendered inaccurate for many reasons, including but not limited to product and roadmap changes, component and motherboard versionchanges, new  model and/or product releases, product differences between differing manufacturers, software changes, BIOS flashes, firmware upgrades, or the like. Any computer system has risks of security vulnerabilities that cannot be completely prevented or mitigated.AMD  assumes  no  obligation  to  update  or  otherwise  correct  or  revise  this  information.  However, AMD reserves the right to revise this information and to make changes from time to time to the content hereof without obligation of AMD to notify any person of such revisions or changes.THIS INFORMATION IS PROVIDED ‘AS IS.” AMD MAKES NO REPRESENTATIONS OR WARRANTIES WITH RESPECT  TO  THE  CONTENTS  HEREOF  AND  ASSUMES  NO  RESPONSIBILITY  FOR  ANY  INACCURACIES, ERRORS, OR OMISSIONS THAT MAY APPEAR IN THIS INFORMATION. AMD SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR ANY PARTICULAR PURPOSE.  IN NO EVENT WILL AMD BE LIABLE TO ANY PERSON FOR ANY RELIANCE, DIRECT, INDIRECT, SPECIAL,  OR  OTHER  CONSEQUENTIAL  DAMAGES  ARISING  FROM  THE  USE  OF  ANY  INFORMATION CONTAINED HEREIN, EVEN IF AMD IS EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.AMD,  the  AMD  Arrow  logo, and combinations thereof are trademarks of Advanced Micro Devices, Inc.Other product names  used  in  this  publication  are  for  identification  purposes  only  and  may  be  trademarks  of  their respective  companies.
 ©[2021]Advanced Micro Devices, Inc.All rights reserved.
 
-Third-party Disclaimer
+## Third-party Disclaimer
 Third-party content is licensed to you directly by the third party that owns the content and is not licensed to you by AMD.  ALL LINKED THIRD-PARTY CONTENT IS PROVIDED “AS IS” WITHOUT A WARRANTY OF ANY KIND.  USE OF SUCH THIRD-PARTY CONTENT IS DONE AT YOUR SOLE DISCRETION AND UNDER NO CIRCUMSTANCES WILL AMD BE LIABLE TO YOU FOR ANY THIRD-PARTY CONTENT.  YOU ASSUME ALL RISK AND ARE SOLELY RESPONSIBLE FOR ANY DAMAGES THAT MAY ARISE FROM YOUR USE OF THIRD-PARTY CONTENT. 
 
 
 
-## Disclaimer
-Third-party content is licensed to you directly by the third party that owns the content and is not licensed to you by AMD.  ALL LINKED THIRD-PARTY CONTENT IS PROVIDED “AS IS” WITHOUT A WARRANTY OF ANY KIND.  USE OF SUCH THIRD-PARTY CONTENT IS DONE AT YOUR SOLE DISCRETION AND UNDER NO CIRCUMSTANCES WILL AMD BE LIABLE TO YOU FOR ANY THIRD-PARTY CONTENT.  YOU ASSUME ALL RISK AND ARE SOLELY RESPONSIBLE FOR ANY DAMAGES THAT MAY ARISE FROM YOUR USE OF THIRD-PARTY CONTENT.
+
 
 
