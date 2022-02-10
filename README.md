@@ -253,9 +253,7 @@ The following new environment variable is added in this release:
 | **Library** | **Changes** |
 | --- | --- |
 | **rocBLAS** | **Added** Added rocblas\_get\_version\_string\_size convenience functionAdded rocblas\_xtrmm\_outofplace, an out-of-place version of rocblas\_xtrmmAdded hpl and trig initialization for gemm\_ex to rocblas-benchAdded source code gemm. It can be used as an alternative to Tensile for debugging and developmentAdded option ROCM\_MATHLIBS\_API\_USE\_HIP\_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex 
-
 **Optimizations** Improved performance of non-batched and batched single-precision GER for size m \&gt; 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU. 
-
 **Changed** Instantiate templated rocBLAS functions to reduce size of librocblas.soRemoved static library dependency on msgpackRemoved boost dependencies for clients 
 
 **Fixed** Option to install script to build only rocBLAS clients with a pre-built rocBLAS libraryCorrectly set output of nrm2\_batched\_ex and nrm2\_strided\_batched\_ex when given bad inputFix for dgmm with side == rocblas\_side\_left and a negative incxFixed out-of-bounds read for small trsmFixed numerical checking for tbmv\_strided\_batched
