@@ -252,75 +252,8 @@ The following new environment variable is added in this release:
 
 
 
-**Known issues**
 
-Managed memory is not currently supported for clique-based kernels |
-| **hipCUB** | **Fixed**
 
-Added missing includes to hipcub.hpp
-
-**Added**
-
-Bfloat16 support to test cases (device\_reduce & device\_radix\_sort)
-
-Device merge sort
-
-Block merge sort
-
-API update to CUB 1.14.0
-
-**Changed**
-
-The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend. |
-| **rocPRIM** | **Fixed**
-
-Enable bfloat16 tests and reduce threshold for bfloat16
-
-Fix device scan limit\_size feature
-
-Non-optimized builds no longer trigger local memory limit errors
-
-**Added**
-
-Scan size limit feature
-
-Reduce size limit feature
-
-Transform size limit feature
-
-Add block\_load\_striped and block\_store\_striped
-
-Add gather\_to\_blocked to gather values from other threads into a blocked arrangement
-
-The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config
-
-Block sort step supports multiple items per thread
-
-**Changed**
-
-size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameter
-
-Device\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).
-
-low-res input with high-res output (e.g. float input, double output)
-
-Revert old Fiji workaround, because they solved the issue at compiler side
-
-Update README cmake minimum version number
-
-Block sort support multiple items per thread
-
-Currently only powers of two block sizes, and items per threads are supported and only for full blocks
-
-Bumped the minimum required version of CMake to 3.16
-
-**Known issues**
-
-Unit tests may soft hang on MI200 when running in hipMallocManaged mode.
-
-device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on Windows
-
-ReduceEmptyInput cause random faulire with bfloat16 |
 
 ## System Management Interface
 
