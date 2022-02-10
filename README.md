@@ -82,7 +82,7 @@ For more details, refer to the AMD ROCm Installation Guide v5.0.
 
 # AMD ROCm V5.0 Documentation Updates
 
-## New AMD ROCm Documentation Portal – ROCm v4.5 and Above
+## New AMD ROCm Information Portal – ROCm v4.5 and Above
 
 Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at _[https://docs.amd.com](https://docs.amd.com/)_. This portal consists of ROCm documentation v4.5 and above.
 
