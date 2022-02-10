@@ -205,6 +205,8 @@ Managed memory, including the ` __managed__ ` keyword, is now supported in the H
 
 **Note:** In a HIP application, it is recommended to do a capability check before calling the managed memory APIs. For example,
 
+```
+
 int managed\_memory = 0;
 
 HIPCHECK(hipDeviceGetAttribute(&amp;managed\_memory,
@@ -226,6 +228,8 @@ HIPCHECK(hipMallocManaged(&amp;Hmm, N \* sizeof(T)));
 . . .
 
 }
+
+```
 
 **Note:** The managed memory capability check may not be necessary; however, if HMM is not supported, managed malloc will fall back to using system memory. Other managed memory API calls will, then, have
 
