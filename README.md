@@ -250,169 +250,44 @@ The following new environment variable is added in this release:
 
 ## ROCm Math and Communication Libraries
 
-| **rocBLAS** | **Added**
+| **Library** | **Changes** |
+| --- | --- |
+| **rocBLAS** | **Added** Added rocblas\_get\_version\_string\_size convenience functionAdded rocblas\_xtrmm\_outofplace, an out-of-place version of rocblas\_xtrmmAdded hpl and trig initialization for gemm\_ex to rocblas-benchAdded source code gemm. It can be used as an alternative to Tensile for debugging and developmentAdded option ROCM\_MATHLIBS\_API\_USE\_HIP\_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex **Optimizations** Improved performance of non-batched and batched single-precision GER for size m \&gt; 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU. **Changed** Instantiate templated rocBLAS functions to reduce size of librocblas.soRemoved static library dependency on msgpackRemoved boost dependencies for clients **Fixed** Option to install script to build only rocBLAS clients with a pre-built rocBLAS libraryCorrectly set output of nrm2\_batched\_ex and nrm2\_strided\_batched\_ex when given bad inputFix for dgmm with side == rocblas\_side\_left and a negative incxFixed out-of-bounds read for small trsmFixed numerical checking for tbmv\_strided\_batched
+ |
+| --- | --- |
+| **hipBLAS** | **Added** Added rocSOLVER functions to hipblas-benchAdded option ROCM\_MATHLIBS\_API\_USE\_HIP\_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplexAdded compilation warning for future trmm changesAdded documentation to hipblas.hAdded option to forgo pivoting for getrf and getri when ipiv is nullptrAdded code coverage option **Fixed** Fixed use of incorrect &#39;HIP\_PATH&#39; when building from source.Fixed windows packagingAllowing negative increments in hipblas-benchRemoved boost dependency |
+| --- | --- |
+| **rocFFT** | **Changed** Enabled runtime compilation of single FFT kernels \&gt; length 1024.Re-aligned split device library into 4 roughly equal libraries.Implemented the FuseShim framework to replace the original OptimizePlanImplemented the generic buffer-assignment framework. The buffer assignment is no longer performed by each node. A generic algorithm is designed to test and pick the best assignment path. With the help of FuseShim, more kernel-fusions are achieved.Do not read the imaginary part of the DC and Nyquist modes for even-length complex-to-real transforms. **Optimizations** Optimized twiddle-conjugation; complex-to-complex inverse transforms have similar performance to foward transforms now.Improved performance of single-kernel small 2D transforms. |
+| --- | --- |
+| **hipFFT** | **Fixed** Fixed incorrect reporting of rocFFT version. **Changed** Unconditionally enabled callback functionality. On the CUDA backend, callbacks only run correctly when hipFFT is built as a static library, and is linked against the static cuFFT library.
+ |
+| --- | --- |
+| **rocSPARSE** | **Added** csrmv, coomv, ellmv, hybmv for (conjugate) transposed matricescsrmv for symmetric matrices **Changed** spmm\_ex is now deprecated and will be removed in the next major release **Improved** Optimization for gtsv |
+| --- | --- |
+| **hipSPARSE** | **Added** Added (conjugate) transpose support for csrmv, hybmv and spmv routines |
+| --- | --- |
+| **rocALUTION** | **Changed** Removed deprecated GlobalPairwiseAMG class, please use PairwiseAMG instead. **Improved** Improved documentation |
+| --- | --- |
+| **rocTHRUST** | **Updates** Updated to match upstream Thrust 1.13.0Updated to match upstream Thrust 1.14.0Added async scan **Changed** Scan algorithms: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output). And low-res input with high-res output (e.g. float input, double output) |
+| --- | --- |
+| **rocSOLVER** | **Added** Symmetric matrix factorizations:LASYF
+- SYTF2, SYTRF (with batched and strided\_batched versions)
+Added rocsolver\_get\_version\_string\_size to help with version string queriesAdded rocblas\_layer\_mode\_ex and the ability to print kernel calls in the trace and profile logsExpanded batched and strided\_batched sample programs. **Optimizations** Improved general performance of LU factorizationIncreased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems. **Changed** The rocsolver-test client now prints the rocSOLVER version used to run the tests, rather than the version used to build themThe rocsolver-bench client now prints the rocSOLVER version used in the benchmark **Fixed** Added missing stdint.h include to rocsolver.h
+ |
+| --- | --- |
+| **hipSOLVER** | **Added** Added functions
+- sytrf
+- hipsolverSsytrf\_bufferSize, hipsolverDsytrf\_bufferSize, hipsolverCsytrf\_bufferSize, hipsolverZsytrf\_bufferSize- hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf **Fixed** Fixed use of incorrect HIP\_PATH when building from source (#40).
+ |
+| --- | --- |
+| **RCCL** | **Added** Compatibility with NCCL 2.10.3 **Known issues** Managed memory is not currently supported for clique-based kernels
+ |
+| --- | --- |
+| **hipCUB** | **Fixed** Added missing includes to hipcub.hpp **Added** Bfloat16 support to test cases (device\_reduce &amp; device\_radix\_sort)Device merge sortBlock merge sortAPI update to CUB 1.14.0 **Changed** The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend.
+ |
+| --- | --- |
+| **rocPRIM** | **Fixed** Enable bfloat16 tests and reduce threshold for bfloat16Fix device scan limit\_size featureNon-optimized builds no longer trigger local memory limit errors **Added** Scan size limit featureReduce size limit featureTransform size limit featureAdd block\_load\_striped and block\_store\_stripedAdd gather\_to\_blocked to gather values from other threads into a blocked arrangementThe block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel configBlock sort step supports multiple items per thread **Changed** size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameterDevice\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).low-res input with high-res output (e.g. float input, double output)Revert old Fiji workaround, because they solved the issue at compiler sideUpdate README cmake minimum version numberBlock sort support multiple items per threadCurrently only powers of two block sizes, and items per threads are supported and only for full blocksBumped the minimum required version of CMake to 3.16 **Known issues** Unit tests may soft hang on MI200 when running in hipMallocManaged mode.device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on WindowsReduceEmptyInput cause random faulire with bfloat16 |
 
-Added rocblas\_get\_version\_string\_size convenience function
-
-Added rocblas\_xtrmm\_outofplace, an out-of-place version of rocblas\_xtrmm
-
-Added hpl and trig initialization for gemm\_ex to rocblas-bench
-
-Added source code gemm. It can be used as an alternative to Tensile for debugging and development
-
-Added option ROCM\_MATHLIBS\_API\_USE\_HIP\_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex
-
-**Optimizations**
-
-Improved performance of non-batched and batched single-precision GER for size m > 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.
-
-Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU.
-
-**Changed**
-
-Instantiate templated rocBLAS functions to reduce size of librocblas.so
-
-Removed static library dependency on msgpack
-
-Removed boost dependencies for clients
-
-**Fixed**
-
-Option to install script to build only rocBLAS clients with a pre-built rocBLAS library
-
-Correctly set output of nrm2\_batched\_ex and nrm2\_strided\_batched\_ex when given bad input
-
-Fix for dgmm with side == rocblas\_side\_left and a negative incx
-
-Fixed out-of-bounds read for small trsm
-
-Fixed numerical checking for tbmv\_strided\_batched |
-| **hipBLAS** | **Added**
-
-Added rocSOLVER functions to hipblas-bench
-
-Added option ROCM\_MATHLIBS\_API\_USE\_HIP\_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex
-
-Added compilation warning for future trmm changes
-
-Added documentation to hipblas.h
-
-Added option to forgo pivoting for getrf and getri when ipiv is nullptr
-
-Added code coverage option
-
-**Fixed**
-
-Fixed use of incorrect 'HIP\_PATH' when building from source.
-
-Fixed windows packaging
-
-Allowing negative increments in hipblas-bench
-
-Removed boost dependency |
-| **rocFFT** | **Changed**
-
-Enabled runtime compilation of single FFT kernels > length 1024.
-
-Re-aligned split device library into 4 roughly equal libraries.
-
-Implemented the FuseShim framework to replace the original OptimizePlan
-
-Implemented the generic buffer-assignment framework. The buffer assignment is no longer performed by each node. A generic algorithm is designed to test and pick the best assignment path. With the help of FuseShim, more kernel-fusions are achieved.
-
-Do not read the imaginary part of the DC and Nyquist modes for even-length complex-to-real transforms.
-
-**Optimizations**
-
-Optimized twiddle-conjugation; complex-to-complex inverse transforms have similar performance to foward transforms now.
-
-Improved performance of single-kernel small 2D transforms. |
-| **hipFFT** | **Fixed**
-
-Fixed incorrect reporting of rocFFT version.
-
-**Changed**
-
-Unconditionally enabled callback functionality. On the CUDA backend, callbacks only run correctly when hipFFT is built as a static library, and is linked against the static cuFFT library. |
-| **rocSPARSE** | **Added**
-
-csrmv, coomv, ellmv, hybmv for (conjugate) transposed matrices
-
-csrmv for symmetric matrices
-
-**Changed**
-
-spmm\_ex is now deprecated and will be removed in the next major release
-
-**Improved**
-
-Optimization for gtsv |
-| **hipSPARSE** | **Added**
-
-Added (conjugate) transpose support for csrmv, hybmv and spmv routines |
-| **rocALUTION** | **Changed**
-
-Removed deprecated GlobalPairwiseAMG class, please use PairwiseAMG instead.
-
-**Improved**
-
-Improved documentation |
-| **rocTHRUST** | **Updates**
-
-Updated to match upstream Thrust 1.13.0
-
-Updated to match upstream Thrust 1.14.0
-
-Added async scan
-
-**Changed**
-
-Scan algorithms: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output). And low-res input with high-res output (e.g. float input, double output) |
-| **rocSOLVER** | **Added**
-
-Symmetric matrix factorizations:
-
-      LASYF
-
-· SYTF2, SYTRF (with batched and strided\_batched versions)
-
-Added rocsolver\_get\_version\_string\_size to help with version string queries
-
-Added rocblas\_layer\_mode\_ex and the ability to print kernel calls in the trace and profile logs
-
-Expanded batched and strided\_batched sample programs.
-
-**Optimizations**
-
-Improved general performance of LU factorization
-
-Increased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems.
-
-**Changed**
-
-The rocsolver-test client now prints the rocSOLVER version used to run the tests, rather than the version used to build them
-
-The rocsolver-bench client now prints the rocSOLVER version used in the benchmark
-
-**Fixed**
-
-Added missing stdint.h include to rocsolver.h |
-| **hipSOLVER** | **Added**
-
-Added functions
-
-· sytrf
-
-\-    hipsolverSsytrf\_bufferSize, hipsolverDsytrf\_bufferSize, hipsolverCsytrf\_bufferSize, hipsolverZsytrf\_bufferSize
-
-\-  hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf
-
-**Fixed**
-
-Fixed use of incorrect HIP\_PATH when building from source (#40). |
-| **RCCL** | **Added**
-
-Compatibility with NCCL 2.10.3
 
 **Known issues**
 
