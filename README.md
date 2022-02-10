@@ -298,13 +298,19 @@ This feature lists GPU events as they occur in real-time and can be used with _k
 
 The command can be called with either &quot; **-e**&quot; or &quot; **--showevents**&quot; like this:
 
+```
+
   **-e** [EVENT [EVENT ...]], **--showevents** [EVENT [EVENT ...]]  Show event list
+  
+```
 
 Where &quot;EVENT&quot; is any list combination of &#39; **VM\_FAULT**&#39;, &#39; **THERMAL\_THROTTLE**&#39;, or &#39; **GPU\_RESET**&#39; and is NOT case sensitive.
 
 **Note:** If no event arguments are passed, all events will be watched by default.
 
 #### CLI Commands
+
+```
 
 ./rocm-smi --showevents vm\_fault thermal\_throttle gpu\_reset
 
@@ -320,6 +326,9 @@ DEVICE          TIME            TYPE            DESCRIPTION
 
 \*run kfdtest in another window to test for vm\_fault events
 
+
+```
+
 **Note:** Unlike other rocm-smi CLI commands, this command does not quit unless specified by the user. Users may press either &#39; **q**&#39; or &#39; **ctrl + c**&#39; to quit.
 
 ### Display XGMI Bandwidth Between Nodes
@@ -327,6 +336,8 @@ DEVICE          TIME            TYPE            DESCRIPTION
 The _rsmi\_minmax\_bandwidth\_get_ API reads the HW Topology file and displays bandwidth (min-max) between any two NUMA nodes in a matrix format.
 
 The Command Line Interface (CLI) command can be called as follows:
+
+```
 
 ./rocm-smi --shownodesbw
 
@@ -348,6 +359,8 @@ sample output-
  GPU6 50000-100000 0-0 0-0 0-0 50000-50000 0-0 N/A 50000-200000
  GPU7 0-0 0-0 0-0 50000-50000 0-0 50000-50000 50000-200000 N/A
  Format: min-max; Units: mps
+ 
+ ```
 
 **Note:**&quot;0-0&quot; min-max bandwidth indicates devices are not connected directly.
 
@@ -356,6 +369,8 @@ sample output-
 The _rsmi\_is\_p2p\_accessible_ API returns &quot;True&quot; if P2P can be implemented between two nodes, and returns &quot;False&quot; if P2P cannot be implemented between the two nodes.
 
 The Command Line Interface command can be called as follows:
+
+```
 
 ./rocm-smi –showtopoaccess
 
@@ -766,6 +781,8 @@ typedef enum hipDeviceAttribute\_t {
 } hipDeviceAttribute\_t;
 
 enum hipComputeMode {
+
+```
 
 # Known Issues in This Release
 
