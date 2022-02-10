@@ -259,7 +259,6 @@ The following new environment variable is added in this release:
 | **rocFFT** | **Changed** <ul><li> Enabled runtime compilation of single FFT kernels \&gt; length 1024.Re-aligned split device library into 4 roughly equal libraries.Implemented the FuseShim framework to replace the original OptimizePlanImplemented the generic buffer-assignment framework. The buffer assignment is no longer performed by each node. A generic algorithm is designed to test and pick the best assignment path. With the help of FuseShim, more kernel-fusions are achieved.Do not read the imaginary part of the DC and Nyquist modes for even-length complex-to-real transforms.</ul></li> **Optimizations** <ul><li> Optimized twiddle-conjugation; complex-to-complex inverse transforms have similar performance to foward transforms now.Improved performance of single-kernel small 2D transforms.</ul></li> |
 | --- | --- |
 | **hipFFT** | **Fixed** <ul><li> Fixed incorrect reporting of rocFFT version. </ul></li> **Changed** <ul><li> Unconditionally enabled callback functionality. On the CUDA backend, callbacks only run correctly when hipFFT is built as a static library, and is linked against the static cuFFT library. </ul></li>
- |
 | --- | --- |
 | **rocSPARSE** | **Added** <ul><li> csrmv, coomv, ellmv, hybmv for (conjugate) transposed matricescsrmv for symmetric matrices </ul></li> **Changed** <ul><li> spmm\_ex is now deprecated and will be removed in the next major release **Improved** Optimization for gtsv </ul></li> |
 | --- | --- |
