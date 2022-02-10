@@ -1,13 +1,4 @@
 
-# New AMD ROCm™ Information Portal ROCm v4.5 and Above
-
-Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at https://docs.amd.com. This portal consists
-of ROCm documentation v4.5 and above.
-
-For documentation prior to ROCm v4.5, you may continue to access http://rocmdocs.amd.com 
-
-
-
 # AMD ROCm™ v5.0 Release Notes
 
 
@@ -269,7 +260,7 @@ The following new environment variable is added in this release:
 | | |
 | **hipFFT** | **Fixed** <br> Fixed incorrect reporting of rocFFT version. <br> **Changed** <br> Unconditionally enabled callback functionality. On the CUDA backend, callbacks only run correctly when hipFFT is built as a static library, and is linked against the static cuFFT library. <br> |
 | | |
-| **rocSPARSE** | <div align="left">**Added** <br> csrmv, coomv, ellmv, hybmv for (conjugate) transposed matricescsrmv for symmetric matrices <br> **Changed** <br> spmm\_ex is now deprecated and will be removed in the next major release **Improved** Optimization for gtsv <br> |
+| **rocSPARSE** | <div align="left">**Added** <br> csrmv, coomv, ellmv, hybmv for (conjugate) transposed matricescsrmv for symmetric matrices <br> **Changed** <br> spmm\_ex is now deprecated and will be removed in the next major release <br> **Improved** <br> Optimization for gtsv <br> |
 | | |
 | **hipSPARSE** | **Added** <br> Added (conjugate) transpose support for csrmv, hybmv and spmv routines <br> |
 | | |
@@ -277,94 +268,19 @@ The following new environment variable is added in this release:
 | | |
 | **rocTHRUST** | **Updates** <br> Updated to match upstream Thrust 1.13.0Updated to match upstream Thrust 1.14.0Added async scan <br> **Changed** <br> Scan algorithms: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output). And low-res input with high-res output (e.g. float input, double output) <br> |
 | | |
-| **rocSOLVER** | **Added** <br> Symmetric matrix factorizations:LASYF
-- SYTF2, SYTRF (with batched and strided\_batched versions)
-Added rocsolver\_get\_version\_string\_size to help with version string queriesAdded rocblas\_layer\_mode\_ex and the ability to print kernel calls in the trace and profile logsExpanded batched and strided\_batched sample programs. <br> **Optimizations** <br> Improved general performance of LU factorizationIncreased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems. <br> **Changed** <br> The rocsolver-test client now prints the rocSOLVER version used to run the tests, rather than the version used to build themThe rocsolver-bench client now prints the rocSOLVER version used in the benchmark <br> **Fixed** <br> Added missing stdint.h include to rocsolver.h <br>
- |
+| **rocSOLVER** | **Added** <br> Symmetric matrix factorizations:LASYF <br> - SYTF2, SYTRF (with batched and strided\_batched versions) <br> Added rocsolver\_get\_version\_string\_size to help with version string queriesAdded rocblas\_layer\_mode\_ex and the ability to print kernel calls in the trace and profile logsExpanded batched and strided\_batched sample programs. <br> **Optimizations** <br> Improved general performance of LU factorizationIncreased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems. <br> **Changed** <br> The rocsolver-test client now prints the rocSOLVER version used to run the tests, rather than the version used to build themThe rocsolver-bench client now prints the rocSOLVER version used in the benchmark <br> **Fixed** <br> Added missing stdint.h include to rocsolver.h <br> |
 | | |
-| **hipSOLVER** | **Added** <br> Added functions
-- sytrf
-- hipsolverSsytrf\_bufferSize, hipsolverDsytrf\_bufferSize, hipsolverCsytrf\_bufferSize, hipsolverZsytrf\_bufferSize- hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf <br> **Fixed** <br> Fixed use of incorrect HIP\_PATH when building from source (#40). <br>
- |
+| **hipSOLVER** | **Added** <br> Added functions <br> - sytrf <br> - hipsolverSsytrf\_bufferSize, hipsolverDsytrf\_bufferSize, hipsolverCsytrf\_bufferSize, hipsolverZsytrf\_bufferSize- hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf <br> **Fixed** <br> Fixed use of incorrect HIP\_PATH when building from source (#40). <br> |
 | | |
-| **RCCL** | **Added** Compatibility with NCCL 2.10.3 **Known issues** Managed memory is not currently supported for clique-based kernels
- |
+| **RCCL** | **Added** <br> Compatibility with NCCL 2.10.3 <br> **Known issues** <br> Managed memory is not currently supported for clique-based kernels <br> |
 | | |
-| **hipCUB** | **Fixed** Added missing includes to hipcub.hpp **Added** Bfloat16 support to test cases (device\_reduce &amp; device\_radix\_sort)Device merge sortBlock merge sortAPI update to CUB 1.14.0 **Changed** The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend.
- |
+| **hipCUB** | **Fixed** <br> Added missing includes to hipcub.hpp <br> **Added** <br> Bfloat16 support to test cases (device\_reduce &amp; device\_radix\_sort)Device merge sortBlock merge sortAPI update to CUB 1.14.0 <br> **Changed** <br> The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend. <br> |
 | | |
-| **rocPRIM** | **Fixed** Enable bfloat16 tests and reduce threshold for bfloat16Fix device scan limit\_size featureNon-optimized builds no longer trigger local memory limit errors **Added** Scan size limit featureReduce size limit featureTransform size limit featureAdd block\_load\_striped and block\_store\_stripedAdd gather\_to\_blocked to gather values from other threads into a blocked arrangementThe block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel configBlock sort step supports multiple items per thread **Changed** size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameterDevice\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).low-res input with high-res output (e.g. float input, double output)Revert old Fiji workaround, because they solved the issue at compiler sideUpdate README cmake minimum version numberBlock sort support multiple items per threadCurrently only powers of two block sizes, and items per threads are supported and only for full blocksBumped the minimum required version of CMake to 3.16 **Known issues** Unit tests may soft hang on MI200 when running in hipMallocManaged mode.device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on WindowsReduceEmptyInput cause random faulire with bfloat16 |
-
-
-**Known issues**
-
-Managed memory is not currently supported for clique-based kernels |
-| **hipCUB** | **Fixed**
-
-Added missing includes to hipcub.hpp
-
-**Added**
-
-Bfloat16 support to test cases (device\_reduce & device\_radix\_sort)
-
-Device merge sort
-
-Block merge sort
-
-API update to CUB 1.14.0
-
-**Changed**
-
-The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend. |
-| **rocPRIM** | **Fixed**
-
-Enable bfloat16 tests and reduce threshold for bfloat16
-
-Fix device scan limit\_size feature
-
-Non-optimized builds no longer trigger local memory limit errors
-
-**Added**
-
-Scan size limit feature
-
-Reduce size limit feature
-
-Transform size limit feature
-
-Add block\_load\_striped and block\_store\_striped
-
-Add gather\_to\_blocked to gather values from other threads into a blocked arrangement
-
-The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config
-
-Block sort step supports multiple items per thread
-
-**Changed**
-
-size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameter
-
-Device\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).
-
-low-res input with high-res output (e.g. float input, double output)
-
-Revert old Fiji workaround, because they solved the issue at compiler side
-
-Update README cmake minimum version number
-
-Block sort support multiple items per thread
-
-Currently only powers of two block sizes, and items per threads are supported and only for full blocks
-
-Bumped the minimum required version of CMake to 3.16
-
-**Known issues**
-
-Unit tests may soft hang on MI200 when running in hipMallocManaged mode.
-
-device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on Windows
-
-ReduceEmptyInput cause random faulire with bfloat16 |
+| **rocPRIM** | **Fixed** <br> Enable bfloat16 tests and reduce threshold for bfloat16Fix device scan limit\_size featureNon-optimized builds no longer trigger local memory limit errors <br> **Added** <br> Scan size limit featureReduce size limit featureTransform size limit featureAdd block\_load\_striped and block\_store\_stripedAdd gather\_to\_blocked to gather values from other threads into a blocked arrangementThe block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel configBlock sort step supports multiple items per thread <br> **Changed** <br> size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameterDevice\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).low-res input with high-res output (e.g. float input, double output)Revert old Fiji workaround, because they solved the issue at compiler sideUpdate README cmake minimum version numberBlock sort support multiple items per threadCurrently only powers of two block sizes, and items per threads are supported and only for full blocksBumped the minimum required version of CMake to 3.16 <br> **Known issues** <br> Unit tests may soft hang on MI200 when running in hipMallocManaged mode.device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on WindowsReduceEmptyInput cause random faulire with bfloat16 <br> **Known issues** <br> Managed memory is not currently supported for clique-based kernels |
+| | |
+| **hipCUB** | **Fixed** <br> Added missing includes to hipcub.hpp <br> **Added** <br> Bfloat16 support to test cases (device\_reduce & device\_radix\_sort) <br> Device merge sort <br> Block merge sort <br> API update to CUB 1.14.0 <br> **Changed** <br> The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend. <br> |
+| | |
+| **rocPRIM** | **Fixed** <br> Enable bfloat16 tests and reduce threshold for bfloat16 <br> Fix device scan limit\_size feature <br> Non-optimized builds no longer trigger local memory limit errors <br> **Added** <br> Scan size limit feature <br> Reduce size limit feature <br> Transform size limit feature <br> Add block\_load\_striped and block\_store\_striped <br> Add gather\_to\_blocked to gather values from other threads into a blocked arrangement <br> The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config <br> Block sort step supports multiple items per thread <br> **Changed** <br> size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameter <br> Device\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output). <br> low-res input with high-res output (e.g. float input, double output) <br> Revert old Fiji workaround, because they solved the issue at compiler side <br> Update README cmake minimum version number <br> Block sort support multiple items per thread <br> Currently only powers of two block sizes, and items per threads are supported and only for full blocks <br> Bumped the minimum required version of CMake to 3.16 <br> **Known issues** <br> Unit tests may soft hang on MI200 when running in hipMallocManaged mode. <br> device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on Windows <br> ReduceEmptyInput cause random faulire with bfloat16 |
 
 ## System Management Interface
 
