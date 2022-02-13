@@ -214,29 +214,19 @@ Managed memory, including the ` __managed__ ` keyword, is now supported in the H
 **Note:** In a HIP application, it is recommended to do a capability check before calling the managed memory APIs. For example,
 
 ```
+int managed_memory = 0;
 
-int managed\_memory = 0;
+HIPCHECK(hipDeviceGetAttribute(&managed_memory, hipDeviceAttributeManagedMemory,
+                               p_gpuDevice));
 
-HIPCHECK(hipDeviceGetAttribute(&amp;managed\_memory,
-
-hipDeviceAttributeManagedMemory,p\_gpuDevice));
-
-if (!managed\_memory ) {
-
-printf (&quot;info: managed memory access not supported on the device %d\n Skipped\n&quot;, p\_gpuDevice);
-
+if (!managed_memory) {
+  printf("info: managed memory access not supported on the device %d\n",
+         p_gpuDevice);
+} else {
+  HIPCHECK(hipSetDevice(p\_gpuDevice));
+  HIPCHECK(hipMallocManaged(&amp; Hmm, N \* sizeof(T)));
+  ...
 }
-
-else {
-
-HIPCHECK(hipSetDevice(p\_gpuDevice));
-
-HIPCHECK(hipMallocManaged(&amp;Hmm, N \* sizeof(T)));
-
-. . .
-
-}
-
 ```
 
 **Note:** The managed memory capability check may not be necessary; however, if HMM is not supported, managed malloc will fall back to using system memory. Other managed memory API calls will, then, have
@@ -312,19 +302,19 @@ Where &quot;EVENT&quot; is any list combination of &#39; **VM\_FAULT**&#39;, &#3
 
 ```
 
-./rocm-smi --showevents vm\_fault thermal\_throttle gpu\_reset
+./rocm-smi --showevents vm_fault thermal_throttle gpu_reset
 
 =========== ROCm System Management Interface ======================
 
 ========================== Show Events ============================
 
-press &#39;q&#39; or &#39;ctrl + c&#39; to quit
+press 'q' or 'ctrl + c' to quit
 
 DEVICE          TIME            TYPE            DESCRIPTION
 
 ========================= End of ROCm SMI Log =====================
 
-\*run kfdtest in another window to test for vm\_fault events
+\*run kfdtest in another window to test for vm_fault events
 
 
 ```
@@ -389,7 +379,7 @@ GPU0 True True
 GPU1 True True
 
 ============================= End of ROCm SMI Log ============================
-
+```
 # Breaking Changes
 
 ## Runtime Breaking Change
@@ -397,7 +387,7 @@ GPU1 True True
 Re-ordering of the enumerated type in hip\_runtime\_api.h to better match NV.  See below for the difference in enumerated types.
 
 ROCm software will be affected if any of the defined enums listed below are used in the code.  Applications built with ROCm v5.0 enumerated types will work with a ROCm 4.5.2 driver. However, an undefined behavior error will occur with a ROCm v4.5.2 application that uses these enumerated types with a ROCm 5.0 runtime.
-
+```
 typedef enum hipDeviceAttribute\_t {
 
 - hipDeviceAttributeMaxThreadsPerBlock, ///\&lt; Maximum number of threads per block.
@@ -852,59 +842,36 @@ System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV
 - The rocsparse\_spmm signature in 5.0 was changed to match that of rocsparse\_spmm\_ex.  In 5.0, rocsparse\_spmm\_ex is still present, but deprecated.  Signature diff for rocsparse\_spmm
 
 ### _rocsparse\_spmm in 5.0_
-
-rocsparse\_status rocsparse\_spmm(rocsparse\_handle            handle,
-
-                                rocsparse\_operation         trans\_A,
-
-                                rocsparse\_operation         trans\_B,
-
-                                const void\*                 alpha,
-
-                                const rocsparse\_spmat\_descr mat\_A,
-
-                                const rocsparse\_dnmat\_descr mat\_B,
-
-                                const void\*                 beta,
-
-                                const rocsparse\_dnmat\_descr mat\_C,
-
-                                rocsparse\_datatype          compute\_type,
-
-                                rocsparse\_spmm\_alg          alg,
-
-                                rocsparse\_spmm\_stage        stage,
-
-                                size\_t\*                     buffer\_size,
-
-                                void\*                       temp\_buffer);
-
+```
+rocsparse_status rocsparse_spmm(rocsparse_handle            handle,
+                                rocsparse_operation         trans_A,
+                                rocsparse_operation         trans_B,
+                                const void*                 alpha,
+                                const rocsparse_spmat_descr mat_A,
+                                const rocsparse_dnmat_descr mat_B,
+                                const void*                 beta,
+                                const rocsparse_dnmat_descr mat_C,
+                                rocsparse_datatype          compute_type,
+                                rocsparse_spmm_alg          alg,
+                                rocsparse_spmm_stage        stage,
+                                size_t*                     buffer_size,
+                                void*                       temp_buffer);
+```
 ### _rocSPARSE\_spmm in 4.0_
-
-rocsparse\_status rocsparse\_spmm(rocsparse\_handle            handle,
-
-                                rocsparse\_operation         trans\_A,
-
-                                rocsparse\_operation         trans\_B,
-
-                                const void\*                 alpha,
-
-                                const rocsparse\_spmat\_descr mat\_A,
-
-                                const rocsparse\_dnmat\_descr mat\_B,
-
-                                const void\*                 beta,
-
-                                const rocsparse\_dnmat\_descr mat\_C,
-
-                                rocsparse\_datatype          compute\_type,
-
-                                rocsparse\_spmm\_alg          alg,
-
-                                size\_t\*                     buffer\_size,
-
-                                void\*                       temp\_buffer);
-
+```
+rocsparse_status rocsparse_spmm(rocsparse_handle            handle,
+                                rocsparse_operation         trans_A,
+                                rocsparse_operation         trans_B,
+                                const void*                 alpha,
+                                const rocsparse_spmat_descr mat_A,
+                                const rocsparse_dnmat_descr mat_B,
+                                const void*                 beta,
+                                const rocsparse_dnmat_descr mat_C,
+                                rocsparse_datatype          compute_type,
+                                rocsparse_spmm_alg          alg,
+                                size_t*                     buffer_size,
+                                void*                       temp_buffer);
+```
 ## HIP API Deprecations and Warnings
 
 ### Warning - Arithmetic Operators of HIP Complex and Vector Types
