@@ -333,7 +333,7 @@ The _rsmi\_is\_p2p\_accessible_ API returns "True" if P2P can be implemented bet
 
 The Command Line Interface command can be called as follows:
 
-    rocm-smi –showtopoaccess
+    rocm-smi --showtopoaccess
 
 Sample Output:
 
