@@ -54,6 +54,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="rocFFT" remote="rocm-swplat" />
     <project name="hipFFT" remote="rocm-swplat" />
     <project name="rocRAND" remote="rocm-swplat" />
+    <project name="hipRAND" remote="rocm-swplat" />
     <project name="rocSPARSE" remote="rocm-swplat" />
     <project name="rocSOLVER" remote="rocm-swplat" />
     <project name="hipSOLVER" remote="rocm-swplat" />
