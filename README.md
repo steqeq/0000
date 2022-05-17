@@ -133,6 +133,18 @@ However, ROCm was not validated against these products before release.
 This ROCm release can be used with number of GPU products which are no longer purchaseable.
 Such GPUs need to implement one of the instruction set architectures (ISA) listed in [the CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/be030feb91fff8d6d2b4409153fe549b81237580/CMakeLists.txt#L113-L118).
 
+Current target instruction set architectures are:
+
+-   gfx803
+-   gfx900
+-   gfx906:xnack-
+-   gfx908:xnack-
+-   gfx90a:xnack+
+-   gfx90a:xnack-
+-   gfx1010
+-   gfx1012
+-   gfx1030
+
 ## ROCm Installation Updates for ROCm v5.0
 
 This release has the following ROCm installation enhancements.
