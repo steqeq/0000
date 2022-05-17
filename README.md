@@ -102,7 +102,7 @@ This ROCm release officially supports workstation GPU products.
 However, there are also compatible consumer GPU products available.
 Finally, this ROCm release can be used with a number of older GPU products.
 
-#### Tier 0: Supported Workstation GPUs
+#### Supported Workstation GPUs
 
 This ROCm release extends support to two workstation GPU products:
 
@@ -117,7 +117,7 @@ These features are verified to work by quality assurance (QA):
 
 **Note:** AMD Radeon™ PRO V620 is not supported on SLES.
 
-#### Tier 1: Compatible Consumer GPUs
+#### Compatible Consumer GPUs
 
 The supported workstation GPU products all use the `gfx1030` instruction set architecture (ISA) implemented in the "Navi 21" silicon.
 The same silicon type implementing the same ISA is also used in some consumer GPU products, which *should* therefore be compatible with this ROCm release.
@@ -128,23 +128,10 @@ However, ROCm was not validated against these products before release.
 -   AMD Radeon™ RX 6900 XT
 -   AMD Radeon™ RX 6950 XT
 
-#### Tier 2: Older GPUs
+#### Library Target Matrix
 
-This ROCm release can be used with number of GPU products which are no longer purchasable.
-
-Such GPUs need to implement one of the instruction set architectures (ISA) listed in the libraries `TARGETS` variables:
-
-- [`TARGETS` in RCCL's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rccl/blob/develop/CMakeLists.txt#L35)
-- [`TARGETS` in rocBLAS' CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CMakeLists.txt#L117)
-- [`TARGETS` in rocFFT's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocFFT/blob/develop/CMakeLists.txt#L155)
-- [`TARGETS` in rocPrim's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocPRIM/blob/develop/CMakeLists.txt#L74)
-- [`TARGETS` in rocRAND's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/CMakeLists.txt#L82)
-- [`TARGETS` in rocSolver's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/CMakeLists.txt#L142)
-- [`TARGETS` in rocSparse's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocSPARSE/blob/develop/CMakeLists.txt#L153)
-- [`TARGETS` in rocWMMA's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CMakeLists.txt#L77)
-- [`TARGETS` in rocThrust's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocThrust/blob/develop/CMakeLists.txt#L62)
-
-Current target GPU products with relevant instruction set architectures are:
+In general, the libraries of this ROCm release can be used with GPU products which implement one of the instruction set architectures (ISA) listed in each of the libraries `TARGETS` variables.
+The current target GPU products with relevant instruction set architectures are:
 
 | ISA           | Family     | Chip            | Product                                           | RCCL | rocBLAS | rocFFT | rocPRIM | rocRAND | rocSolver | rocSparse | rocWMMA | rocThrust | rocALUTION |
 |:--------------|:-----------|:----------------|:--------------------------------------------------|:----:|:-------:|:------:|:-------:|:-------:|:---------:|:---------:|:-------:|:---------:|:----------:|
@@ -203,6 +190,19 @@ Current target GPU products with relevant instruction set architectures are:
 | gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6950 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
 | gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ PRO V620                              |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
 | gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ PRO W6800                             |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+
+Sources of this table:
+
+- [`TARGETS` in RCCL's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rccl/blob/develop/CMakeLists.txt#L35)
+- [`TARGETS` in rocBLAS' CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CMakeLists.txt#L117)
+- [`TARGETS` in rocFFT's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocFFT/blob/develop/CMakeLists.txt#L155)
+- [`TARGETS` in rocPRIM's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocPRIM/blob/develop/CMakeLists.txt#L74)
+- [`TARGETS` in rocRAND's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/CMakeLists.txt#L82)
+- [`TARGETS` in rocSolver's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/CMakeLists.txt#L142)
+- [`TARGETS` in rocSparse's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocSPARSE/blob/develop/CMakeLists.txt#L153)
+- [`TARGETS` in rocWMMA's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CMakeLists.txt#L77)
+- [`TARGETS` in rocThrust's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocThrust/blob/develop/CMakeLists.txt#L62)
+- [`TARGETS` in rocALUTION's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/CMakeLists.txt#L82)
 
 > Note: A ROCm library being able to run on a given GPU product, does not mean that it works correctly on said hardware.
 
