@@ -135,7 +135,44 @@ Such GPUs need to implement one of the instruction set architectures (ISA) liste
 
 Current target instruction set architectures are:
 
--   gfx803
+- gfx803
+  - Fiji
+    - Fiji XT
+      - Radeon Instinct MI8
+      - Radeon R9 Fury X
+      - Radeon R9 Fury
+      - Radeon R9 Nano
+    - Capsaicin XT
+      - FirePro S9300x2
+      - Radeon Pro Duo 2016
+  - Polaris 30
+    - Radeon RX 590
+  - Polaris 20
+    - Radeon Pro 580
+    - Radeon RX 580
+    - Radeon Pro 575
+    - Radeon Pro 570
+    - Radeon RX 570
+  - Polaris 10
+    - Radeon Instinct MI6
+    - Radeon Pro Duo 2017
+    - Radeon Pro WX 7100
+    - Radeon Pro WX 7100 Mobile
+    - Radeon RX 480
+    - Radeon Pro WX 5100
+    - Radeon RX 470
+  - Polaris 21
+    - Radeon Pro 560X
+    - Radeon Pro 560
+    - Radeon Pro 555X
+    - Radeon Pro 555
+  - Polaris 11
+    - Radeon Pro WX 4100
+    - Radeon Pro WX 4170 Mobile
+    - Radeon Pro WX 4150 Mobile
+    - Radeon Pro WX 4130 Mobile
+    - Radeon RX 560D
+    - Radeon RX 460
 -   gfx900
 -   gfx906:xnack-
 -   gfx908:xnack-
