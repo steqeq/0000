@@ -98,31 +98,40 @@ This release extends support for RHEL v8.5.
 
 ### Supported GPUs
 
-#### Official Support for Workstation GPUs
+This ROCm release officially supports workstation GPU products.
+However, there are also compatible consumer GPU products available.
+Finally, this ROCm release can be used with a number of older GPU products.
 
-This release extends ROCm support for two workstation GPU products:
+#### Tier 0: Supported Workstation GPUs
 
-- Radeon Pro V620
-- Radeon Pro W6800
+This ROCm release extends support to two workstation GPU products:
 
-These features are officially supported:
+- AMD Radeon™ PRO V620
+- AMD Radeon™ PRO W6800
 
-- SRIOV virtualization support for Radeon Pro V620
+These features are verified to work by quality assurance (QA):
+
+- SRIOV virtualization support for AMD Radeon™ PRO V620
 - KVM Hypervisor (1VF support only) on Ubuntu Host OS with Ubuntu, CentOs, and RHEL Guest
-- Support for ROCm-SMI in an SRIOV environment. For more details, refer to the ROCm SMI API documentation.
+- Support for ROCm-SMI in an SRIOV environment. For more details, refer to [the ROCm SMI API documentation](https://rocmdocs.amd.com/en/latest/ROCm_System_Managment/ROCm-System-Managment.html).
 
-**Note:** Radeon Pro v620 is not supported on SLES.
+**Note:** AMD Radeon™ PRO V620 is not supported on SLES.
 
-#### Unofficial Support for Consumer GPUs
+#### Tier 1: Compatible Consumer GPUs
 
-Additionally, you can find more AMD GPUs with the same `gfx1030` instruction set architecture (ISA), as the two officially supported GPUs based on the "Navi21" silicon. For the current list, please refer to [the CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/be030feb91fff8d6d2b4409153fe549b81237580/CMakeLists.txt#L113-L118). As a result, you can be confident that the following GPUs run on a stack that has undergone full QA verification of the ISA code generated that is specific to this GPU architecture:
+The supported workstation GPU products all use the `gfx1030` instruction set architecture (ISA) implemented in the "Navi 21" silicon.
+The same silicon type implementing the same ISA is also used in some consumer GPU products, which *should* therefore be compatible with this ROCm release.
+However, ROCm was not validated against these products before release.
 
--   Radeon RX 6800
--   Radeon RX 6800 XT
--   Radeon RX 6900 XT
--   Radeon RX 6950 XT
+-   AMD Radeon™ RX 6800
+-   AMD Radeon™ RX 6800 XT
+-   AMD Radeon™ RX 6900 XT
+-   AMD Radeon™ RX 6950 XT
 
-At the moment, no official support is promised for these consumer GPUs.
+#### Tier 2: Older GPUs
+
+This ROCm release can be used with number of GPU products which are no longer purchaseable.
+Such GPUs need to implement one of the instruction set architectures (ISA) listed in [the CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/be030feb91fff8d6d2b4409153fe549b81237580/CMakeLists.txt#L113-L118).
 
 ## ROCm Installation Updates for ROCm v5.0
 
