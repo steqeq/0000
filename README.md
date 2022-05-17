@@ -100,7 +100,7 @@ This release extends support for RHEL v8.5.
 
 #### Official Support for Workstation GPUs
 
-This release extends ROCm support for two Workstation GPU products:
+This release extends ROCm support for two workstation GPU products:
 
 - Radeon Pro V620
 - Radeon Pro W6800
@@ -120,6 +120,7 @@ Additionally, you can find more AMD GPUs with the same `gfx1030` instruction set
 -   Radeon RX 6800
 -   Radeon RX 6800 XT
 -   Radeon RX 6900 XT
+-   Radeon RX 6950 XT
 
 At the moment, no official support is promised for these consumer GPUs.
 
