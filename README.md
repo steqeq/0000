@@ -130,65 +130,79 @@ However, ROCm was not validated against these products before release.
 
 #### Tier 2: Older GPUs
 
-This ROCm release can be used with number of GPU products which are no longer purchaseable.
+This ROCm release can be used with number of GPU products which are no longer purchasable.
+
 Such GPUs need to implement one of the instruction set architectures (ISA) listed in the libraries `TARGETS` variables:
 
--   [`TARGETS` in rocBLAS' CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CMakeLists.txt#L117)
--   [`TARGETS` in rocRAND's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/CMakeLists.txt#L82)
+- [`TARGETS` in RCCL's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rccl/blob/develop/CMakeLists.txt#L35)
+- [`TARGETS` in rocBLAS' CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CMakeLists.txt#L117)
+- [`TARGETS` in rocFFT's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocFFT/blob/develop/CMakeLists.txt#L155)
+- [`TARGETS` in rocPrim's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocPRIM/blob/develop/CMakeLists.txt#L74)
+- [`TARGETS` in rocRAND's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/CMakeLists.txt#L82)
+- [`TARGETS` in rocSolver's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/CMakeLists.txt#L142)
+- [`TARGETS` in rocSparse's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocSPARSE/blob/develop/CMakeLists.txt#L153)
+- [`TARGETS` in rocWMMA's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CMakeLists.txt#L77)
+- [`TARGETS` in rocThrust's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocThrust/blob/develop/CMakeLists.txt#L62)
 
 Current target GPU products with relevant instruction set architectures are:
 
-| ISA           | Family     | Chip            | Product                                           | rocBLAS | rocRAND | rocSolver | rocSparse | rocFFT | rocThrust |
-|:--------------|:-----------|:----------------|:--------------------------------------------------|:-------:|:-------:|:---------:|:---------:|:------:|:---------:|
-| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Fury                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Nano                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Fury X                             |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ Instinct MI8                          |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Fiji       | Capsaicin XT    | AMD FirePro S9300x2                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Fiji       | Capsaicin XT    | AMD Radeon™ PRO Duo 2016                          |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4100                           |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4130 Mobile                    |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4150 Mobile                    |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4170 Mobile                    |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ RX 460                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ RX 560D                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ Instinct MI6                          |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO Duo 2017                          |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 5100                           |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 7100                           |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 7100 Mobile                    |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ RX 470                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ RX 480                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 555                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 555X                              |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 560                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 560X                              |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ PRO 575                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ RX 580                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ PRO 580                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ RX 570                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ PRO 570                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx803        | Polaris    | Polaris 30      | AMD Radeon™ RX 590                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx900        | Vega       | Vega 10 XL      | AMD Radeon™ RX Vega 56                            |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx900        | Vega       | Vega 10 XL      | AMD Radeon™ PRO Vega 56                           |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ Instinct MI25                         |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ RX Vega 64                            |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ RX Vega 64 Liquid                     |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx900        | Vega       | Vega 10 XTX AIR | AMD Radeon™ Vega Frontier Edition                 |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx900        | Vega       | Vega 10 XTX LCS | AMD Radeon™ Vega Frontier Edition (Liquid Cooled) |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct MI50                         |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct MI60                         |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx906:xnack- | Radeon VII | Vega 20 XT      | AMD Radeon™ VII                                   |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx906:xnack- | Radeon VII | Vega 20 XT      | AMD Radeon™ PRO VII                               |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx908:xnack- | MI100      | MI100 XL        | AMD Instinct MI100                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
-| gfx90a:xnack+ | TBA        | TBA             | TBA                                               |    ✅    |    ✅    |     ❌     |     ✅     |   ?    |     ?     |
-| gfx90a:xnack- | TBA        | TBA             | TBA                                               |    ✅    |    ✅    |     ❌     |     ✅     |   ?    |     ?     |
-| gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ PRO 5600M                             |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
-| gfx1010       | Navi       | Navi 10 XLE     | AMD Radeon™ PRO 5600 XT                           |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
-| gfx1010       | Navi       | Navi 10 XL      | AMD Radeon™ RX 5700                               |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
-| gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ RX 5700 XT                            |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
-| gfx1012       | Navi       | Navi 14 XT      | AMD Radeon™ RX 5500                               |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
-| gfx1012       | Navi       | Navi 14 XTX     | AMD Radeon™ RX 5500 XT                            |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
+| ISA           | Family     | Chip            | Product                                           | RCCL | rocBLAS | rocFFT | rocPRIM | rocRAND | rocSolver | rocSparse | rocWMMA | rocThrust | rocALUTION |
+|:--------------|:-----------|:----------------|:--------------------------------------------------|:----:|:-------:|:------:|:-------:|:-------:|:---------:|:---------:|:-------:|:---------:|:----------:|
+| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Fury                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Nano                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Fury X                             |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ Instinct MI8                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Fiji       | Capsaicin XT    | AMD FirePro S9300x2                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Fiji       | Capsaicin XT    | AMD Radeon™ PRO Duo 2016                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4100                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4130 Mobile                    |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4150 Mobile                    |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4170 Mobile                    |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ RX 460                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 11      | AMD Radeon™ RX 560D                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ Instinct MI6                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO Duo 2017                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 5100                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 7100                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 7100 Mobile                    |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ RX 470                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ RX 480                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 555                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 555X                              |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 560                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 21      | AMD Radeon™ PRO 560X                              |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ PRO 575                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ RX 580                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ PRO 580                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ RX 570                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 20      | AMD Radeon™ PRO 570                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx803        | Polaris    | Polaris 30      | AMD Radeon™ RX 590                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx900        | Vega       | Vega 10 XL      | AMD Radeon™ RX Vega 56                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx900        | Vega       | Vega 10 XL      | AMD Radeon™ PRO Vega 56                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ Instinct MI25                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ RX Vega 64                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ RX Vega 64 Liquid                     |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx900        | Vega       | Vega 10 XTX AIR | AMD Radeon™ Vega Frontier Edition                 |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx900        | Vega       | Vega 10 XTX LCS | AMD Radeon™ Vega Frontier Edition (Liquid Cooled) |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct MI50                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct MI60                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx906:xnack- | Radeon VII | Vega 20 XT      | AMD Radeon™ VII                                   |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx906:xnack- | Radeon VII | Vega 20 XT      | AMD Radeon™ PRO VII                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx908:xnack- | MI100      | MI100 XL        | AMD Instinct MI100                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ✅    |     ✅     |     ✅      |
+| gfx90a:xnack+ | TBA        | TBA             | TBA                                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ✅    |     ✅     |     ✅      |
+| gfx90a:xnack- | TBA        | TBA             | TBA                                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ✅    |     ✅     |     ✅      |
+| gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ PRO 5600M                             |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |    ❌    |     ❌     |     ❌      |
+| gfx1010       | Navi       | Navi 10 XLE     | AMD Radeon™ PRO 5600 XT                           |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |    ❌    |     ❌     |     ❌      |
+| gfx1010       | Navi       | Navi 10 XL      | AMD Radeon™ RX 5700                               |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |    ❌    |     ❌     |     ❌      |
+| gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ RX 5700 XT                            |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |    ❌    |     ❌     |     ❌      |
+| gfx1012       | Navi       | Navi 14 XT      | AMD Radeon™ RX 5500                               |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |    ❌    |     ❌     |     ❌      |
+| gfx1012       | Navi       | Navi 14 XTX     | AMD Radeon™ RX 5500 XT                            |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |    ❌    |     ❌     |     ❌      |
+| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6800                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6800 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6900 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6950 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ PRO V620                              |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
+| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ PRO W6800                             |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |    ❌    |     ✅     |     ✅      |
 
 > Note: A ROCm library being able to run on a given GPU product, does not mean that it works correctly on said hardware.
 
