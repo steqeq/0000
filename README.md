@@ -115,7 +115,13 @@ These features are officially supported:
 
 #### Unofficial Support for Consumer GPUs
 
-Additionally, you can find more AMD GPUs with the same `gfx1030` instruction set architecture (ISA), as the two officially supported GPUs based on the "Navi21" silicon. For the current list, please refer to [the CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/be030feb91fff8d6d2b4409153fe549b81237580/CMakeLists.txt#L113-L118). As a result, you can be confident that Radeon RX 6800, Radeon RX 6800 XT and Radeon RX 6900 XT run on a stack that has undergone full QA verification of the ISA code generated that is specific to this GPU architecture. At the moment, no official support is promised for these consumer GPUs.
+Additionally, you can find more AMD GPUs with the same `gfx1030` instruction set architecture (ISA), as the two officially supported GPUs based on the "Navi21" silicon. For the current list, please refer to [the CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/be030feb91fff8d6d2b4409153fe549b81237580/CMakeLists.txt#L113-L118). As a result, you can be confident that the following GPUs run on a stack that has undergone full QA verification of the ISA code generated that is specific to this GPU architecture:
+
+-   Radeon RX 6800
+-   Radeon RX 6800 XT
+-   Radeon RX 6900 XT
+
+At the moment, no official support is promised for these consumer GPUs.
 
 ## ROCm Installation Updates for ROCm v5.0
 
