@@ -173,14 +173,31 @@ Current target instruction set architectures are:
     - AMD Radeon™ PRO WX 4130 Mobile
     - AMD Radeon™ RX 560D
     - AMD Radeon™ RX 460
--   gfx900
--   gfx906:xnack-
--   gfx908:xnack-
--   gfx90a:xnack+
--   gfx90a:xnack-
--   gfx1010
--   gfx1012
--   gfx1030
+- gfx900
+  - AMD Radeon™ Vega Frontier Edition
+  - AMD Radeon™ RX Vega 56
+  - AMD Radeon™ RX Vega 64
+  - AMD Radeon™ RX Vega 64 Liquid
+  - AMD Radeon™ Instinct MI25
+- gfx906:xnack-
+  - AMD Radeon™ Instinct MI50
+  - AMD Radeon™ Instinct MI60
+  - AMD Radeon™ VII
+  - AMD Radeon™ PRO VII
+- gfx908:xnack-
+  - AMD Instinct MI100 Accelerator
+- gfx90a:xnack+
+  - TBA
+- gfx90a:xnack-
+  - TBA
+- gfx1010
+  - AMD Radeon™ RX 5700
+  - AMD Radeon™ RX 5700 XT
+  - AMD Radeon™ PRO 5600 XT
+  - AMD Radeon™ PRO 5600M
+- gfx1012
+  - AMD Radeon™ RX 5500
+  - AMD Radeon™ RX 5500 XT
 
 ## ROCm Installation Updates for ROCm v5.0
 
