@@ -136,7 +136,7 @@ Such GPUs need to implement one of the instruction set architectures (ISA) liste
 -   [`TARGETS` in rocBLAS' CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CMakeLists.txt#L117)
 -   [`TARGETS` in rocRAND's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/CMakeLists.txt#L82)
 
-Current target instruction set architectures are:
+Current target GPU products with relevant instruction set architectures are:
 
 |   ISA          | Family       |  Chip           | Product                           | rocBLAS | rocRAND |
 | -------------- | ------------ | --------------- | --------------------------------- | ------- | ------- |
@@ -188,6 +188,7 @@ Current target instruction set architectures are:
 |  gfx1012       |  Navi        | Navi 14 XT      | AMD Radeon™ RX 5500               |    ✅    |    ❌    |
 |  gfx1012       |  Navi        | Navi 14 XTX     | AMD Radeon™ RX 5500 XT            |    ✅    |    ❌    |
 
+**Note: A ROCm library being able to run on a given GPU product, does not mean that it works correctly on said hardware.**
 
 ## ROCm Installation Updates for ROCm v5.0
 
