@@ -183,7 +183,7 @@ Current target GPU products with relevant instruction set architectures are:
 | gfx908:xnack- | MI100      | MI100 XL        | AMD Instinct MI100                                |    ✅    |    ✅    |     ✅     |     ✅     |   ?    |     ?     |
 | gfx90a:xnack+ | TBA        | TBA             | TBA                                               |    ✅    |    ✅    |     ❌     |     ✅     |   ?    |     ?     |
 | gfx90a:xnack- | TBA        | TBA             | TBA                                               |    ✅    |    ✅    |     ❌     |     ✅     |   ?    |     ?     |
-| gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ PRO 5600M                             |    ✅    |    ❌    |     ❌     |     ❌     |   ?    |     ?     |
+| gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ PRO 5600M                             |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
 | gfx1010       | Navi       | Navi 10 XLE     | AMD Radeon™ PRO 5600 XT                           |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
 | gfx1010       | Navi       | Navi 10 XL      | AMD Radeon™ RX 5700                               |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
 | gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ RX 5700 XT                            |    ✅    |    ❌    |     ✅     |     ❌     |   ?    |     ?     |
