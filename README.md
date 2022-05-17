@@ -138,41 +138,41 @@ Current target instruction set architectures are:
 - gfx803
   - Fiji
     - Fiji XT
-      - Radeon Instinct MI8
-      - Radeon R9 Fury X
-      - Radeon R9 Fury
-      - Radeon R9 Nano
+      - AMD Radeon™ Instinct MI8
+      - AMD Radeon™ R9 Fury X
+      - AMD Radeon™ R9 Fury
+      - AMD Radeon™ R9 Nano
     - Capsaicin XT
-      - FirePro S9300x2
-      - Radeon Pro Duo 2016
+      - AMD FirePro S9300x2
+      - AMD Radeon™ PRO Duo 2016
   - Polaris 30
     - Radeon RX 590
   - Polaris 20
-    - Radeon Pro 580
-    - Radeon RX 580
-    - Radeon Pro 575
-    - Radeon Pro 570
-    - Radeon RX 570
+    - AMD Radeon™ PRO 580
+    - AMD Radeon™ RX 580
+    - AMD Radeon™ PRO 575
+    - AMD Radeon™ PRO 570
+    - AMD Radeon™ RX 570
   - Polaris 10
-    - Radeon Instinct MI6
-    - Radeon Pro Duo 2017
-    - Radeon Pro WX 7100
-    - Radeon Pro WX 7100 Mobile
-    - Radeon RX 480
-    - Radeon Pro WX 5100
-    - Radeon RX 470
+    - AMD Radeon™ Instinct MI6
+    - AMD Radeon™ PRO Duo 2017
+    - AMD Radeon™ PRO WX 7100
+    - AMD Radeon™ PRO WX 7100 Mobile
+    - AMD Radeon™ RX 480
+    - AMD Radeon™ PRO WX 5100
+    - AMD Radeon™ RX 470
   - Polaris 21
-    - Radeon Pro 560X
-    - Radeon Pro 560
-    - Radeon Pro 555X
-    - Radeon Pro 555
+    - AMD Radeon™ PRO 560X
+    - AMD Radeon™ PRO 560
+    - AMD Radeon™ PRO 555X
+    - AMD Radeon™ PRO 555
   - Polaris 11
-    - Radeon Pro WX 4100
-    - Radeon Pro WX 4170 Mobile
-    - Radeon Pro WX 4150 Mobile
-    - Radeon Pro WX 4130 Mobile
-    - Radeon RX 560D
-    - Radeon RX 460
+    - AMD Radeon™ PRO WX 4100
+    - AMD Radeon™ PRO WX 4170 Mobile
+    - AMD Radeon™ PRO WX 4150 Mobile
+    - AMD Radeon™ PRO WX 4130 Mobile
+    - AMD Radeon™ RX 560D
+    - AMD Radeon™ RX 460
 -   gfx900
 -   gfx906:xnack-
 -   gfx908:xnack-
