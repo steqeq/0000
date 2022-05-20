@@ -129,7 +129,7 @@ These features are verified to work by quality assurance (QA):
 
 #### Compatible Consumer GPUs
 
-The supported workstation GPU products all use the `gfx1030` instruction set architecture (ISA) implemented in the "Navi 21" silicon.
+All the supported workstation GPU products use the `gfx1030` instruction set architecture (ISA) implemented in the "Navi 21" silicon.
 The same silicon type implementing the same ISA is also used in some consumer GPU products, which *should* therefore be compatible with this ROCm release.
 However, ROCm was not validated against these products before release.
 
