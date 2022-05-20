@@ -131,7 +131,7 @@ These features are verified to work by quality assurance (QA):
 
 All the supported workstation GPU products use the `gfx1030` instruction set architecture (ISA) implemented in the "Navi 21" silicon.
 The same silicon type implementing the same ISA is also used in some consumer GPU products, which *should* therefore be compatible with this ROCm release.
-However, ROCm was not validated against these products before release.
+However, ROCm was not validated against the following products before release:
 
 -   AMD Radeon™ RX 6800
 -   AMD Radeon™ RX 6800 XT
