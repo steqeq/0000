@@ -214,7 +214,7 @@ Sources of this table:
 - [`TARGETS` in rocThrust's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocThrust/blob/develop/CMakeLists.txt#L62)
 - [`TARGETS` in rocALUTION's CMakeLists.txt](https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/CMakeLists.txt#L82)
 
-> Note: A ROCm library being able to run on a given GPU product, does not mean that it works correctly on said hardware.
+> Note: A ROCm library being able to run on a given GPU product does not mean that it works correctly on said hardware.
 
 ## ROCm Installation Updates for ROCm v5.0
 
