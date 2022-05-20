@@ -6,11 +6,11 @@ Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at https://
 
 For documentation prior to ROCm v4.5, you may continue to access https://rocmdocs.amd.com.
 
-# AMD  ROCm™ V5.1.1 Release 
+# AMD  ROCm™ V5.1.1 Release
 
 AMD ROCm v5.1.1 is now released. The release documentation is available at https://docs.amd.com.
 
-# AMD  ROCm™ V5.1 Release 
+# AMD  ROCm™ V5.1 Release
 
 AMD ROCm v5.1 is now released. The release documentation is available at https://docs.amd.com.
 
@@ -344,7 +344,7 @@ $ rocm-smi --showevents vm_fault thermal_throttle gpu_reset
 ======================= ROCm System Management Interface =======================
 ================================= Show Events ==================================
 press 'q' or 'ctrl + c' to quit
-DEVICE		TIME		TYPE		DESCRIPTION	
+DEVICE		TIME		TYPE		DESCRIPTION
 
 ============================= End of ROCm SMI Log ==============================
 ```
