@@ -203,11 +203,11 @@ The current target GPU products with relevant instruction set architectures are:
 
 Legend of this table:
 
-| Symbol | Meaning                      |
-|:------:|:----------------------------:|
-|   ∅    | No required hardware         |
-|   ✅   | Library targets GPU           |
-|   ❌   | Library omids targetting GPU  |
+| Symbol |           Meaning           |
+|:------:|:---------------------------:|
+|   ∅    |    No required hardware     |
+|   ✅    |     Library targets GPU     |
+|   ❌    | Library omits targeting GPU |
 
 Sources of this table:
 
