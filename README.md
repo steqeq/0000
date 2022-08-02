@@ -8,7 +8,7 @@ ROCm™ 5.2.2 is a bug fix point release. The highlights are shown below. All us
 Reference fixed issue
 ## HIP Runtime
 Reference fixed issue
-## Libraries
+## HIP Libraries
 No changes in this release.
 ## Development Tools
 Reference fixed issues.
