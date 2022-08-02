@@ -6,4 +6,5 @@ This repository contains the manifest file for ROCm releases, changelogs and rel
 ROCm™ 5.2.2 is a bug fix point release. All users of 5.2.1 and below are encouraged to upgrade to it.
 ## Fixed
 
-# [CHANGELOG](CHANGELOG.md)
+# Older ROCm™ Releases
+For release information for older ROCm releases, please visit the [CHANGELOG](CHANGELOG.md).
