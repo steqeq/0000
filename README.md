@@ -9,6 +9,13 @@ Reference fixed issue
 ## HIP Runtime
 Reference fixed issue
 ## HIP Libraries
+### rocBLAS
+#### Fixed
+- Improved logic to #include <filesystem> vs <experimental/filesystem>.
+- install.sh -s option to build rocblas as a static library.
+- dot function now sets the device results asynchronously for N <= 0
+### hipBLAS
+
 No changes in this release.
 ## Development Tools
 Reference fixed issues.
