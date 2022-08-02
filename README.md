@@ -25,4 +25,4 @@ No changes in this release.
 # Older ROCm™ Releases
 For release information for older ROCm™ releases, please visit the [CHANGELOG](CHANGELOG.md).
 
-[ROCmVer] 5.2.2
+[ROCmVer]: 5.2.2
