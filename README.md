@@ -1,5 +1,5 @@
 
-#ROCm
+# ROCm
 This repository contains the manifest file for ROCm releases, changelogs and release information. The file default.xml contains information all the repositories and the associate commit use to build the current ROCm release. The default.xml file uses the repo Manifest Format.
 
 # Release Notes ROCm™ 5.2.2
