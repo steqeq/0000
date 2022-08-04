@@ -27,21 +27,20 @@ No changes in this release.
 
 ### [Tensile](https://github.com/ROCmSoftwarePlatform/Tensile)
 No changes in this release.
-### rocBLAS()
+
+### rocBLAS(https://github.com/ROCmSoftwarePlatform/rocBLAS)
 No changes in this release.
 
-### [hipBLAS]()
+### [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipBLAS)
 No changes in this release.
 
-### [rocSOLVER]()
+### [rocSOLVER](https://github.com/ROCmSoftwarePlatform/rocSOLVER)
 No changes in this release.
 
-
-### [hipSOLVER]()
+### [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipSOLVER)
 No changes in this release.
 
-
-### [rocWMMA]()
+### [rocWMMA](https://github.com/ROCmSoftwarePlatform/rocWMMA)
 No changes in this release.
 
 ### [RCCL](https://github.com/ROCmSoftwarePlatform/rccl)
@@ -63,6 +62,7 @@ No changes in this release.
   - Avoid using NCCL_IB_SOCK_SERVER_PORT_REUSE when NCCL_NCHANNELS_PER_NET_PEER is tuned >1
 #### Removed
 - Removed experimental clique-based kernels
+
 ## Development Tools
 
 ###
