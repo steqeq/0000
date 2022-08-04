@@ -2,24 +2,27 @@
 This repository contains the manifest file for ROCm™ releases, changelogs and release information. The file default.xml contains information all the repositories and the associated commit use to build the current ROCm release. The default.xml file uses the repo Manifest Format.
 
 # Release Notes
-5.2.3 is a patch release for ROCm™. The details are listed below. Highlights of this release include a bump in RCCL version compatibility and minor bug fixes in the HIP Runtime. This release of ROCm™ is validated with the AMDGPU version 22.20.1.
+5.2.3 is a patch release for ROCm™. The details are listed below. Highlights of this release include a bump in RCCL
+version compatibility and minor bug fixes in the HIP Runtime. Additionally, ROCm releases will return to use of this repository 
+for version controlled release notes henceforth. This release of ROCm™ is validated with the AMDGPU version 22.20.1.
 
 All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit https://docs.amd.com for all documentation associated with this release. 
 
-
-
 ## HIP and Other Runtimes
 
-### ROCR Runtime
-No changes in this release.
 ### HIP Runtime
+
 #### Fixes
- - A bug was discovered in the hip graph capture implementation in ROCm 5.2.0. If the same kernel is called twice
+ - A bug was discovered in the hip graph capture implementation in ROCm™ 5.2.0. If the same kernel is called twice
  (with different argument values) in a graph capture, the implementation was only keeping the argument values for 
  the second kernel call. This bug has now been fixed.
- - A bug was introduced in the hiprtc implementation in ROCm 5.2.0. Due to the bug, hiprtcGetLoweredName would fail
+ - A bug was introduced in the hiprtc implementation in ROCm™ 5.2.0. Due to the bug, hiprtcGetLoweredName would fail
  for named expressions that had a whitespace in it. For example, the named expression "my_sqrt<complex<double>>" would
  pass but "my_sqrt<complex<double> >" would fail. This bug has now been fixed.
+ 
+### ROCR Runtime
+No changes in this release.
+
 ### ROCm-OpenCL-Runtime
 No changes in this release.
 
@@ -43,7 +46,50 @@ No changes in this release.
 ### [rocWMMA](https://github.com/ROCmSoftwarePlatform/rocWMMA)
 No changes in this release.
 
+### [rocFFT](https://github.com/ROCmSoftwarePlatform/rocFFT)
+No changes in this release.
+
+### [hipFFT](https://github.com/ROCmSoftwarePlatform/hipFFT)
+No changes in this release.
+
+### [rocPRIM](https://github.com/ROCmSoftwarePlatform/rocPRIM)
+No changes in this release.
+
+### [rocCUB](https://github.com/ROCmSoftwarePlatform/hipCUB)
+No changes in this release.
+
+### [rocThrust](https://github.com/ROCmSoftwarePlatform/rocThrust)
+No changes in this release.
+
+### [rocSPARSE](https://github.com/ROCmSoftwarePlatform/rocSPARSE)
+No changes in this release.
+
+### [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipSPARSE)
+No changes in this release.
+
+### [rocALUTION](https://github.com/ROCmSoftwarePlatform/rocALUTION)
+No changes in this release.
+
+### [rocRAND](https://github.com/ROCmSoftwarePlatform/rocRAND)
+No changes in this release.
+
+### [MIOpenGEMM](https://github.com/ROCmSoftwarePlatform/MIOpenGEMM)
+No changes in this release.
+
+### [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen)
+No changes in this release.
+
+### [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX)
+No changes in this release.
+
+### [AMDMIGraphx](https://github.com/ROCmSoftwarePlatform/AMDMIGraphx)
+No changes in this release.
+
+### [hipfort](https://github.com/ROCmSoftwarePlatform/hipfort)
+No changes in this release.
+
 ### [RCCL](https://github.com/ROCmSoftwarePlatform/rccl)
+
 #### Added
 - Compatibility with NCCL 2.12.10
 - Packages for test and benchmark executables on all supported OSes using CPack.
@@ -65,12 +111,12 @@ No changes in this release.
 
 ## Development Tools
 
-###
-
 ### [AOMP]()
 No changes in this release.
 
 ## Deployment and Management Tools
+
+### [ROCmValidationSuite](https://github.com/ROCmSoftwarePlatform/ROCmValidationSuite)
 No changes in this release.
 
 # Older ROCm™ Releases
