@@ -19,7 +19,7 @@ No changes in this release.
 
 ## HIP Libraries
 
-### [Tensile]https://github.com/ROCmSoftwarePlatform/Tensile
+### [Tensile](https://github.com/ROCmSoftwarePlatform/Tensile)
 No changes in this release.
 ### rocBLAS
 No changes in this release.
