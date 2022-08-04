@@ -33,6 +33,9 @@ No changes in this release.
 ### [ROCm Device Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs)
 No changes in this release.
 
+### [atmi](https://github.com/RadeonOpenCompute/atmi)
+No changes in this release.
+
 ## ROCm Libraries
 
 ### [Tensile](https://github.com/ROCmSoftwarePlatform/Tensile)
@@ -133,10 +136,22 @@ No changes in this release.
 ### [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer)
 No changes in this release.
 
+### [ROCgdb](https://github.com/ROCm-Developer-Tools/ROCgdb)
+No changes in this release.
+
+### [ROCdbgapi](https://github.com/ROCm-Developer-Tools/ROCdbgapi)
+No changes in this release.
+
 ### [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/radeon_compute_profiler)
 No changes in this release.
 
-### [AOMP]()
+### [AOMP](https://github.com/ROCm-Developer-Tools/aomp)
+No changes in this release.
+
+### [AOMP Extras](https://github.com/ROCm-Developer-Tools/aomp-extras)
+No changes in this release.
+
+### [flang](https://github.com/ROCm-Developer-Tools/flang)
 No changes in this release.
 
 ### [ROCm CMake](https://github.com/RadeonOpenCompute/rocm-cmake)
@@ -145,7 +160,13 @@ No changes in this release.
 ### [clang-ocl](https://github.com/RadeonOpenCompute/clang-ocl)
 No changes in this release.
 
-### [atmi](https://github.com/RadeonOpenCompute/atmi)
+### [ROCm CompilerSupport](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport)
+No changes in this release.
+
+### [rocr_debug_agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent)
+No changes in this release.
+
+### [half](https://github.com/ROCmSoftwarePlatform/half)
 No changes in this release.
 
 ## Deployment and Management Tools
@@ -160,6 +181,9 @@ No changes in this release.
 No changes in this release.
 
 ### [ROCm System Management Interface (ROCm SMI) Library](https://github.com/RadeonOpenCompute/rocm_smi_lib)
+No changes in this release.
+
+### [rocm_bandwidth_test](https://github.com/ROCm-Developer-Tools/rocm_bandwidth_test)
 No changes in this release.
 
 # Older ROCm™ Releases
