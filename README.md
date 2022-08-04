@@ -2,7 +2,7 @@
 This repository contains the manifest file for ROCm™ releases, changelogs and release information. The file default.xml contains information all the repositories and the associated commit use to build the current ROCm release. The default.xml file uses the repo Manifest Format.
 
 # Release Notes
-5.2.3 is a patch release for ROCm™. The details are listed below. Highlights of this release include a bump in RCCL version and minor bug fixes. This release of ROCm™ is validated with the AMDGPU version 22.20.1.
+5.2.3 is a patch release for ROCm™. The details are listed below. Highlights of this release include a bump in RCCL version compatibility and minor bug fixes in the HIP Runtime. This release of ROCm™ is validated with the AMDGPU version 22.20.1.
 
 All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit https://docs.amd.com for all documentation associated with this release. 
 
@@ -18,22 +18,33 @@ No changes in this release.
  (with different argument values) in a graph capture, the implementation was only keeping the argument values for 
  the second kernel call. This bug has now been fixed.
  - A bug was introduced in the hiprtc implementation in ROCm 5.2.0. Due to the bug, hiprtcGetLoweredName would fail
- for named expressions that had a whitespace in it. For example the named expression "my_sqrt<complex<double>>" would
+ for named expressions that had a whitespace in it. For example, the named expression "my_sqrt<complex<double>>" would
  pass but "my_sqrt<complex<double> >" would fail. This bug has now been fixed.
 ### ROCm-OpenCL-Runtime
 No changes in this release.
 
-## HIP Libraries
+## ROCm Libraries
 
 ### [Tensile](https://github.com/ROCmSoftwarePlatform/Tensile)
 No changes in this release.
-### rocBLAS
+### rocBLAS()
 No changes in this release.
 
-### hipBLAS
+### [hipBLAS]()
 No changes in this release.
 
-### RCCL
+### [rocSOLVER]()
+No changes in this release.
+
+
+### [hipSOLVER]()
+No changes in this release.
+
+
+### [rocWMMA]()
+No changes in this release.
+
+### [RCCL](https://github.com/ROCmSoftwarePlatform/rccl)
 #### Added
 - Compatibility with NCCL 2.12.10
 - Packages for test and benchmark executables on all supported OSes using CPack.
@@ -53,8 +64,13 @@ No changes in this release.
 #### Removed
 - Removed experimental clique-based kernels
 ## Development Tools
-Reference fixed issues.
-## Deployment Tools
+
+###
+
+### [AOMP]()
+No changes in this release.
+
+## Deployment and Management Tools
 No changes in this release.
 
 # Older ROCm™ Releases
