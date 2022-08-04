@@ -111,12 +111,21 @@ No changes in this release.
 
 ## Development Tools
 
+
+### [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/radeon_compute_profiler)
+No changes in this release.
+
 ### [AOMP]()
 No changes in this release.
 
 ## Deployment and Management Tools
 
-### [ROCmValidationSuite](https://github.com/ROCmSoftwarePlatform/ROCmValidationSuite)
+
+
+### [ROCm Data Center Tool](https://github.com/RadeonOpenCompute/rdc)
+No changes in this release.
+
+### [ROCmValidationSuite](https://github.com/ROCm-Developer-Tools/ROCmValidationSuite)
 No changes in this release.
 
 # Older ROCm™ Releases
