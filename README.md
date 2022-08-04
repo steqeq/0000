@@ -4,7 +4,7 @@ This repository contains the manifest file for ROCm™ releases, changelogs and 
 # Release Notes
 5.2.3 is a patch release for ROCm™. The details are listed below. Highlights of this release include a bump in RCCL
 version compatibility and minor bug fixes in the HIP Runtime. Additionally, ROCm releases will return to use of the 
-[ROCm]((https://github.com/RadeonOpenCompute/ROCm) repository for version controlled release notes henceforth. This 
+[ROCm](https://github.com/RadeonOpenCompute/ROCm) repository for version controlled release notes henceforth. This 
 release of ROCm™ is validated with the AMDGPU version 22.20.1.
 
 All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit https://docs.amd.com for all documentation associated with this release. 
@@ -114,6 +114,11 @@ No changes in this release.
 - Removed experimental clique-based kernels
 
 ## Development Tools
+### [HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC)
+No changes in this release.
+
+### [HIPIFY](https://github.com/ROCm-Developer-Tools/HIPIY)
+No changes in this release.
 
 ### [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler)
 No changes in this release.
