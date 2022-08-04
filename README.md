@@ -30,6 +30,9 @@ No changes in this release.
 ### [ROCm-OpenCL-Runtime](https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime)
 No changes in this release.
 
+### [ROCm Device Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs)
+No changes in this release.
+
 ## ROCm Libraries
 
 ### [Tensile](https://github.com/ROCmSoftwarePlatform/Tensile)
@@ -114,6 +117,10 @@ No changes in this release.
 - Removed experimental clique-based kernels
 
 ## Development Tools
+
+### [LLVM](https://github.com/RadeonOpenCompute/llvm-project)
+No changes in this release.
+
 ### [HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC)
 No changes in this release.
 
@@ -136,6 +143,9 @@ No changes in this release.
 No changes in this release.
 
 ### [clang-ocl](https://github.com/RadeonOpenCompute/clang-ocl)
+No changes in this release.
+
+### [atmi](https://github.com/RadeonOpenCompute/atmi)
 No changes in this release.
 
 ## Deployment and Management Tools
