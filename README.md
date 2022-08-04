@@ -28,7 +28,7 @@ No changes in this release.
 ### [Tensile](https://github.com/ROCmSoftwarePlatform/Tensile)
 No changes in this release.
 
-### rocBLAS(https://github.com/ROCmSoftwarePlatform/rocBLAS)
+### [rocBLAS](https://github.com/ROCmSoftwarePlatform/rocBLAS)
 No changes in this release.
 
 ### [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipBLAS)
