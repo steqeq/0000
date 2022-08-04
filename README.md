@@ -8,7 +8,7 @@ for version controlled release notes henceforth. This release of ROCm™ is vali
 
 All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit https://docs.amd.com for all documentation associated with this release. 
 
-## HIP and Other Runtimes
+## HIP and Language Runtimes
 
 ### HIP Runtime
 
@@ -19,11 +19,14 @@ All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit htt
  - A bug was introduced in the hiprtc implementation in ROCm™ 5.2.0. Due to the bug, hiprtcGetLoweredName would fail
  for named expressions that had a whitespace in it. For example, the named expression "my_sqrt<complex<double>>" would
  pass but "my_sqrt<complex<double> >" would fail. This bug has now been fixed.
+
+### [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface)
+No changes in this release.
  
-### ROCR Runtime
+### [ROCR Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime)
 No changes in this release.
 
-### ROCm-OpenCL-Runtime
+### [ROCm-OpenCL-Runtime](https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime)
 No changes in this release.
 
 ## ROCm Libraries
@@ -111,6 +114,11 @@ No changes in this release.
 
 ## Development Tools
 
+### [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler)
+No changes in this release.
+
+### [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer)
+No changes in this release.
 
 ### [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/radeon_compute_profiler)
 No changes in this release.
@@ -118,14 +126,24 @@ No changes in this release.
 ### [AOMP]()
 No changes in this release.
 
+### [ROCm CMake](https://github.com/RadeonOpenCompute/rocm-cmake)
+No changes in this release.
+
+### [clang-ocl](https://github.com/RadeonOpenCompute/clang-ocl)
+No changes in this release.
+
 ## Deployment and Management Tools
 
-
+### [ROCm Info](https://github.com/RadeonOpenCompute/rocminfo)
+No changes in this release.
 
 ### [ROCm Data Center Tool](https://github.com/RadeonOpenCompute/rdc)
 No changes in this release.
 
 ### [ROCmValidationSuite](https://github.com/ROCm-Developer-Tools/ROCmValidationSuite)
+No changes in this release.
+
+### [ROCm System Management Interface (ROCm SMI) Library](https://github.com/RadeonOpenCompute/rocm_smi_lib)
 No changes in this release.
 
 # Older ROCm™ Releases
