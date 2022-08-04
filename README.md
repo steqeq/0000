@@ -9,7 +9,7 @@ release of ROCm™ is validated with the AMDGPU version 22.20.1.
 
 All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit https://docs.amd.com for all documentation associated with this release. 
 
-## HIP and Language Runtimes
+## HIP and Other Runtimes
 
 ### HIP Runtime
 
