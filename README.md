@@ -1,8 +1,8 @@
 # ROCm™ 5.2.3
-This repository contains the manifest file for ROCm™ releases, changelogs and release information. The file default.xml contains information all the repositories and the associated commit use to build the current ROCm release. The default.xml file uses the repo Manifest Format.
+This repository contains the manifest file for ROCm™ releases, changelogs and release information. The file default.xml contains information all the repositories and the associated commit use to build the current ROCm release. The default.xml file uses the repo Manifest format.
 
 # Release Notes
-5.2.3 is a patch release for ROCm™. The details are listed below. Highlights of this release include a bump in RCCL
+The ROCm v5.2.3 is a patch release. The details are listed below. Highlights of this release include a bump in RCCL
 version compatibility and minor bug fixes in the HIP Runtime. Additionally, ROCm releases will return to use of the 
 [ROCm](https://github.com/RadeonOpenCompute/ROCm) repository for version controlled release notes henceforth. This 
 release of ROCm™ is validated with the AMDGPU version 22.20.1.
