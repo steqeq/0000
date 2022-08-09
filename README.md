@@ -122,7 +122,8 @@ No changes in this release.
 ## Development Tools
 
 ### [LLVM](https://github.com/RadeonOpenCompute/llvm-project)
-No changes in this release.
+#### Fixes
+- The compiler resolves an issue with usage of the __shfl_sync intrinsic when some of the input are not initialized by the application code base.
 
 ### [HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC)
 No changes in this release.
