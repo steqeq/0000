@@ -21,7 +21,7 @@ All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Refer to https:/
  - A bug was introduced in the hiprtc implementation in ROCm™ 5.2.0. Due to the bug, *hiprtcGetLoweredName* failed
  for named expressions that had a whitespace in it. 
 
-    **Example:** the named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. This bug has now been fixed.
+    **Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. This bug has now been fixed.
 
 ## ROCm Libraries
 
