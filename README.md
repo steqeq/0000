@@ -1,23 +1,23 @@
 
-# ROCm™ 5.2.3
+# ROCm™ v5.2.3
 This repository contains the manifest file for ROCm™ releases, changelogs and release information. The file default.xml contains information all the repositories and the associated commit use to build the current ROCm release. The default.xml file uses the repo Manifest format.
 
 # Release Notes
-The ROCm™ 5.2.3 patch release is now available. The details are listed below. Highlights of this release include a bump in RCCL version compatibility and minor bug fixes in the HIP Runtime. Additionally, ROCm™ releases will return to use of the 
+The ROCm™ v5.2.3 patch release is now available. The details are listed below. Highlights of this release include a bump in RCCL version compatibility and minor bug fixes in the HIP Runtime. Additionally, ROCm™ releases will return to use of the 
 [ROCm™](https://github.com/RadeonOpenCompute/ROCm) repository for version controlled release notes henceforth. This 
 release of ROCm™ is validated with the AMDGPU version 22.20.1.
 
-All users of the ROCm™ 5.2.1 release and below are encouraged to upgrade. Refer to https://docs.amd.com for all documentation associated with this release. 
+All users of the ROCm™ v5.2.1 release and below are encouraged to upgrade. Refer to https://docs.amd.com for all documentation associated with this release. 
 
 ## HIP and Other Runtimes
 
 ### HIP Runtime
 
 #### Fixes
- - A bug was discovered in the HIP graph capture implementation in the ROCm™ 5.2.0 release. If the same kernel is called twice
+ - A bug was discovered in the HIP graph capture implementation in the ROCm™ v5.2.0 release. If the same kernel is called twice
  (with different argument values) in a graph capture, the implementation was only keeping the argument values for 
  the second kernel call. This bug is now fixed.
- - A bug was introduced in the hiprtc implementation in the ROCm™ 5.2.0 release. Due to the bug, *hiprtcGetLoweredName*call failed
+ - A bug was introduced in the hiprtc implementation in the ROCm™ v5.2.0 release. Due to the bug, *hiprtcGetLoweredName*call failed
  for named expressions that had a whitespace in it. 
 
     **Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. This bug has now been fixed.
