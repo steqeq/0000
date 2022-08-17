@@ -5,7 +5,7 @@ This repository contains the manifest file for ROCm™ releases, changelogs and 
 # Release Notes
 The ROCm™ v5.2.3 patch release is now available. The details are listed below. Highlights of this release include a bump in RCCL version compatibility and minor bug fixes in the HIP Runtime. Additionally, ROCm™ releases will return to use of the 
 [ROCm™](https://github.com/RadeonOpenCompute/ROCm) repository for version controlled release notes henceforth. This 
-release of ROCm™ is validated with the AMDGPU version 22.20.1.
+release of ROCm™ is validated with the AMDGPU release 22.20.1.
 
 All users of the ROCm™ v5.2.1 release and below are encouraged to upgrade. Refer to https://docs.amd.com for all documentation associated with this release. 
 
