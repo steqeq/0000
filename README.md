@@ -18,8 +18,8 @@ All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit htt
  (with different argument values) in a graph capture, the implementation was only keeping the argument values for 
  the second kernel call. This bug has now been fixed.
  - A bug was introduced in the hiprtc implementation in ROCm™ 5.2.0. Due to the bug, hiprtcGetLoweredName would fail
- for named expressions that had a whitespace in it. For example, the named expression "my_sqrt<complex<double>>" would
- pass but "my_sqrt<complex<double> >" would fail. This bug has now been fixed.
+ for named expressions that had a whitespace in it. For example, the named expression '''my_sqrt<complex<double>>''' would
+ pass but '''my_sqrt<complex<double>>''' would fail. This bug has now been fixed.
 
 ### [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface)
 No changes in this release.
