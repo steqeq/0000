@@ -9,6 +9,11 @@ release of ROCm is validated with the AMDGPU release 22.20.1.
 
 All users of the ROCm v5.2.1 release and below are encouraged to upgrade. Refer to https://docs.amd.com for all documentation associated with this release. 
 
+
+## All Components
+### End of Life Announcement
+ROCm 5.2.3 will be the last release to support Ubuntu 18.04. Future releases of ROCm will not provide prebuilt packages for Ubuntu 18.04. 
+
 ## HIP and Other Runtimes
 
 ### HIP Runtime
