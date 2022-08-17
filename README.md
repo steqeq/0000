@@ -17,7 +17,7 @@ All users of the ROCm™ v5.2.1 release and below are encouraged to upgrade. Ref
  - A bug was discovered in the HIP graph capture implementation in the ROCm™ v5.2.0 release. If the same kernel is called twice
  (with different argument values) in a graph capture, the implementation was only keeping the argument values for 
  the second kernel call. This bug is now fixed.
- - A bug was introduced in the hiprtc implementation in the ROCm™ v5.2.0 release. Due to the bug, *hiprtcGetLoweredName*call failed
+ - A bug was introduced in the hiprtc implementation in the ROCm™ v5.2.0 release. Due to the bug, *hiprtcGetLoweredName* call failed
  for named expressions that had a whitespace in it. 
 
     **Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. This bug has now been fixed.
