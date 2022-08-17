@@ -8,19 +8,20 @@ version compatibility and minor bug fixes in the HIP Runtime. Additionally, ROCm
 [ROCm™](https://github.com/RadeonOpenCompute/ROCm) repository for version controlled release notes henceforth. This 
 release of ROCm™ is validated with the AMDGPU version 22.20.1.
 
-All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Please visit https://docs.amd.com for all documentation associated with this release. 
+All users of ROCm™ 5.2.1 and below are encouraged to upgrade. Refer to https://docs.amd.com for all documentation associated with this release. 
 
 ## HIP and Other Runtimes
 
 ### HIP Runtime
 
 #### Fixes
- - A bug was discovered in the hip graph capture implementation in ROCm™ 5.2.0. If the same kernel is called twice
+ - A bug was discovered in the HIP graph capture implementation in ROCm™ 5.2.0. If the same kernel is called twice
  (with different argument values) in a graph capture, the implementation was only keeping the argument values for 
- the second kernel call. This bug has now been fixed.
- - A bug was introduced in the hiprtc implementation in ROCm™ 5.2.0. Due to the bug, hiprtcGetLoweredName would fail
- for named expressions that had a whitespace in it. For example, the named expression ```my_sqrt<complex<double>>``` would
- pass but ```my_sqrt<complex<double>>``` would fail. This bug has now been fixed.
+ the second kernel call. This bug is now fixed.
+ - A bug was introduced in the hiprtc implementation in ROCm™ 5.2.0. Due to the bug, *hiprtcGetLoweredName* failed
+ for named expressions that had a whitespace in it. 
+
+    **Example:** the named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. This bug has now been fixed.
 
 ## ROCm Libraries
 
