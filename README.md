@@ -18,13 +18,13 @@ ROCm v5.2.3 is the last release to support Ubuntu 18.04. Future releases of ROCm
 ### HIP Runtime
 
 #### Fixes
- - A bug was discovered in the HIP graph capture implementation in the ROCm v5.2.0 release. If the same kernel is called twice
+ - Fixed a bug discovered in the HIP graph capture implementation in the ROCm v5.2.0 release. If the same kernel is called twice
  (with different argument values) in a graph capture, the implementation was only keeping the argument values for 
- the second kernel call. This bug is now fixed.
- - A bug was introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the *hiprtcGetLoweredName* call failed
+ the second kernel call.
+ - Fixed a bug introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the *hiprtcGetLoweredName* call failed
  for named expressions with a whitespace in it. 
 
-    **Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. This bug has now been fixed.
+    **Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. 
 
 ## ROCm Libraries
 
