@@ -24,7 +24,7 @@ ROCm v5.2.3 is the last release to support Ubuntu 18.04. Future releases of ROCm
  - Fixed a bug introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the *hiprtcGetLoweredName* call failed
  for named expressions with a whitespace in it. 
 
-    **Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed. 
+    **Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex< double>>``` failed. 
 
 ## ROCm Libraries
 
