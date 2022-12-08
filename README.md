@@ -96,7 +96,9 @@ The AMD ROCm platform supports the following operating systems:
 
 This release extends support for RHEL v8.5.
 
-### Supported GPUs
+### Supported GPUs - Unofficial -
+This document is a work in progress. It is a work in progress in a feature branch based on community feedback. 
+
 
 Support can be assumed for current server accelerators and GPUs intended for enterprise customers.
 This ROCm release officially supports workstation GPU products.
