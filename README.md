@@ -108,7 +108,7 @@ Finally, this ROCm release can be used with a number of older GPU products.
 Current enterprise GPU accelerators can be assumed to be supported. These include:
 
 - AMD Instinct™ MI100
-- AMD Instinct™ MI200
+- AMD Instinct™ MI210
 - AMD Instinct™ MI250
 - AMD Instinct™ MI250X
 
