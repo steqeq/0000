@@ -195,12 +195,12 @@ The current target GPU products with relevant instruction set architectures are:
 | gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ RX 5700 XT                            |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |     ❌     |     ❌      |    ∅    |
 | gfx1012       | Navi       | Navi 14 XT      | AMD Radeon™ RX 5500                               |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |     ❌     |     ❌      |    ∅    |
 | gfx1012       | Navi       | Navi 14 XTX     | AMD Radeon™ RX 5500 XT                            |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |     ❌     |     ❌      |    ∅    |
-| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6800                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6800 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6900 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ RX 6950 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ PRO V620                              |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx1030       | Big Navi   | Navi 21         | AMD Radeon™ PRO W6800                             |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx1030       | Navi 2X    | Navi 21         | AMD Radeon™ RX 6800                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx1030       | Navi 2X    | Navi 21         | AMD Radeon™ RX 6800 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx1030       | Navi 2X    | Navi 21         | AMD Radeon™ RX 6900 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx1030       | Navi 2X    | Navi 21         | AMD Radeon™ RX 6950 XT                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx1030       | Navi 2X    | Navi 21         | AMD Radeon™ PRO V620                              |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx1030       | Navi 2X    | Navi 21         | AMD Radeon™ PRO W6800                             |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 
 Legend of this table:
 
