@@ -98,7 +98,7 @@ This release extends support for RHEL v8.5.
 
 ### Supported GPUs
 
-Support can be assumed for current server accelerators GPUs intended for enterprise customers.
+Support can be assumed for current server accelerators and GPUs intended for enterprise customers.
 This ROCm release officially supports workstation GPU products.
 However, there are also compatible consumer GPU products available.
 Finally, this ROCm release can be used with a number of older GPU products.
