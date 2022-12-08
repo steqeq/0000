@@ -148,8 +148,8 @@ The current target GPU products with relevant instruction set architectures are:
 | gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Fury                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Nano                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Fiji       | Fiji XT         | AMD Radeon™ R9 Fury X                             |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ Instinct MI8                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx803        | Fiji       | Capsaicin XT    | AMD FirePro S9300x2                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx803        | Fiji       | Fiji XT         | AMD Radeon™ Instinct™ MI8                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx803        | Fiji       | Capsaicin XT    | AMD FirePro™  S9300x2                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Fiji       | Capsaicin XT    | AMD Radeon™ PRO Duo 2016                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4100                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4130 Mobile                    |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
@@ -157,7 +157,7 @@ The current target GPU products with relevant instruction set architectures are:
 | gfx803        | Polaris    | Polaris 11      | AMD Radeon™ PRO WX 4170 Mobile                    |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Polaris    | Polaris 11      | AMD Radeon™ RX 460                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Polaris    | Polaris 11      | AMD Radeon™ RX 560D                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ Instinct MI6                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx803        | Polaris    | Polaris 10      | AMD Radeon™ Instinct™ MI6                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO Duo 2017                          |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 5100                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx803        | Polaris    | Polaris 10      | AMD Radeon™ PRO WX 7100                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
@@ -176,16 +176,16 @@ The current target GPU products with relevant instruction set architectures are:
 | gfx803        | Polaris    | Polaris 30      | AMD Radeon™ RX 590                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx900        | Vega       | Vega 10 XL      | AMD Radeon™ RX Vega 56                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx900        | Vega       | Vega 10 XL      | AMD Radeon™ PRO Vega 56                           |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ Instinct MI25                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ Instinct™ MI25                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ RX Vega 64                            |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx900        | Vega       | Vega 10 XT      | AMD Radeon™ RX Vega 64 Liquid                     |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx900        | Vega       | Vega 10 XTX AIR | AMD Radeon™ Vega Frontier Edition                 |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx900        | Vega       | Vega 10 XTX LCS | AMD Radeon™ Vega Frontier Edition (Liquid Cooled) |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct MI50                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct MI60                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct™ MI50                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
+| gfx906:xnack- | Radeon VII | Vega 20 GL      | AMD Radeon™ Instinct™ MI60                         |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx906:xnack- | Radeon VII | Vega 20 XT      | AMD Radeon™ VII                                   |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
 | gfx906:xnack- | Radeon VII | Vega 20 XT      | AMD Radeon™ PRO VII                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ∅    |
-| gfx908:xnack- | MI100      | MI100 XL        | AMD Instinct MI100                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ✅    |
+| gfx908:xnack- | MI100      | MI100 XL        | AMD Instinct™  MI100                                |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ✅    |
 | gfx90a:xnack+ | MI210      | Aldebaran       | TBA                                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ✅    |
 | gfx90a:xnack- | MI210      | Aldebaran       | TBA                                               |  ✅   |    ✅    |   ✅    |    ✅    |    ✅    |     ✅     |     ✅     |     ✅     |     ✅      |    ✅    |
 | gfx1010       | Navi       | Navi 10 XT      | AMD Radeon™ PRO 5600M                             |  ❌   |    ✅    |   ❌    |    ❌    |    ❌    |     ✅     |     ❌     |     ❌     |     ❌      |    ∅    |
@@ -314,7 +314,7 @@ For documentation prior to ROCm v4.5, you may continue to access https://rocmdoc
 
 #### Compilers
 
-- AMD Instinct High Performance Computing and Tuning Guide
+- AMD Instinct™ High Performance Computing and Tuning Guide
 - AMD Compiler Reference Guide
 
 #### HIPify Documentation
