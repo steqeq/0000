@@ -5,7 +5,7 @@ defaults:
 root: index
 subtrees:
   - entries:
-    - file: ../../CHANGELOG
+    - file: ../../CHANGELOG.md
 
 
 
