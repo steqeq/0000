@@ -8,7 +8,7 @@ subtrees:
     - file: os_support
     - file: kernel_userspace
     - file: gpu_support
-    - file: ../../CHANGELOG
+    - file: CHANGELOG
 
 
 

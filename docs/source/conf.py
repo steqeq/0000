@@ -13,12 +13,13 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('../../')) #allows including Changelog
 from format_toc import format_toc
 
 
 # -- Project information -----------------------------------------------------
 
-project = "HIPIFY Documentation"
+project = "ROCm Release Documentation"
 copyright = "2022, Advanced Micro Devices Ltd. "
 author = "Advanced Micro Devices <a href=\"https://\">Disclaimer and Licensing Info</a> "
 
