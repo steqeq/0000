@@ -12,10 +12,10 @@
 #
 import os
 import sys
+import shutil
 sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('../../')) #allows including Changelog
 from format_toc import format_toc
-
+shutil.copy2('../../CHANGELOG.md','./')
 
 # -- Project information -----------------------------------------------------
 
