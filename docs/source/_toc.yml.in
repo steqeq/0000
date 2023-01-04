@@ -5,7 +5,9 @@ defaults:
 root: index
 subtrees:
   - entries:
-    - file: ../../CHANGELOG.md
+    - file: os_support
+    - file: kernel_support
+    - file: gpu_suppoort
 
 
 
