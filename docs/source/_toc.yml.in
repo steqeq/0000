@@ -6,8 +6,9 @@ root: index
 subtrees:
   - entries:
     - file: os_support
-    - file: kernel_support
+    - file: kernel_userpace
     - file: gpu_suppoort
+    - file: ../../CHANGELOG
 
 
 
