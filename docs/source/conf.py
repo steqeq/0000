@@ -16,6 +16,7 @@ import shutil
 sys.path.insert(0, os.path.abspath('.'))
 from format_toc import format_toc
 shutil.copy2('../../CHANGELOG.md','./')
+shutil.copy2('../../RELEASE.md','./')
 
 # -- Project information -----------------------------------------------------
 

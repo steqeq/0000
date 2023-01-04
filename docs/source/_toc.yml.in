@@ -9,6 +9,7 @@ subtrees:
     - file: kernel_userspace
     - file: gpu_support
     - file: CHANGELOG
+    - file: RELEASE
 
 
 
