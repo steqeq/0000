@@ -1,6 +1,6 @@
 # GPU Support
 
-|GPU|Architecture|LLVM Target|[Support Level](#description)|
+|GPU|Architecture|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html)|[Support Level](#description)|
 |--------------|----------------|--------|---------------|
 |Instinct™ MI250|CDNA2|gfx90a|Full|
 |Instinct™ MI210|CDNA2|gfx90a|Full|
