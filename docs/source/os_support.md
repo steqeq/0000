@@ -14,7 +14,7 @@ ROCm supports the operating systems listed below.
 ROCm supports virtualization for select GPUs only as shown below.
 
 | Hypervisor     | Version  | GPU | Validated VM OS (validated kernel)|
-|---- -----------|----------|-----|----------------|
+|---------------|----------|-----|----------------|
 | VMWare|ESXi 8|MI250|Ubuntu 20.04 (5.15.0-56-generic)|
 | VMWare|ESXi 8|MI210|Ubuntu 20.04 (5.15.0-56-generic), SLES 15 SP4(5.14.21-150400.24.18-default)|
 | VMWare|ESXi 7|MI210|Ubuntu 20.04 (5.15.0-56-generic), SLES 15 SP4(5.14.21-150400.24.18-default)|
