@@ -1,4 +1,4 @@
-# GPU Support Describe our status exactly
+# GPU Support
 GPU support levels in ROCm:
  * Full - AMD provides full support for all software that is part of ROCm
  * Noncommercial - AMD enables all software that is part of ROCm. However, commercial usage is not supported.
