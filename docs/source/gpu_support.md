@@ -1,21 +1,15 @@
-# GPU Support
+# GPU Support Describe our status exactly
+GPU support levels in ROCm:
+ * Full - AMD provides full support for all software that is part of ROCm
+ * Noncommercial - AMD enables all software that is part of ROCm. However, commercial usage is not supported.
+ * HIP - AMD supports the HIP Runtime only for these products
+ * Community - Packages distributed by AMD have dropped support for these GPUs or never enabled support for the GPUs. Builds from source are possible without direct support from AMD. AMD encourages the open source community to enable functionality for these cards.
 
-## Performant Support
-Performant cards are optimized and extensively tested. 
+|GPU|Architecture|Support Level|
+|Instinct MI250|CDNA2|Full|
+|Instinct MI210|CDNA2|Full|
+|Radeon RX 6900 XT|RDNA2|Noncommercial|
+|Radeon RX 6600|RDNA2|HIP|
+|Radeon™ R9 Fury|Fiji|Community|
 
-## HIP Runtime Only
-HIP runtime is enabled on all cards listed below. 
 
-## Deprecated
-Support for these will be removed in a future ROCm release.
-
-## Unsupported
-Support for these cards have been dropped.
-
-## Pending Support
-AMD will enable ROCm support for these newly released cards soon.
-
-## Compute Enabled Consumer Cards
-ROCm based computation is enabled on select consumer cards. Commercial application support on consumer cards is not provided by AMD. The cards listed below are community support only. 
-
-## Detailed Support Matrix by Library and GPU
