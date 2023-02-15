@@ -1,10 +1,11 @@
 # GPU Support
 
-
-|GPU|Architecture|[Support Level](#Description)|
+|GPU|Architecture|[Support Level](#description)|
 |--------------|----------------|---------------|
 |Instinct MI250|CDNA2|Full|
 |Instinct MI210|CDNA2|Full|
+|Radeon™ Pro W6800|RDNA2|Full|
+|Radeon™ Pro V620|RDNA2|Full|
 |Radeon RX 6900 XT|RDNA2|Noncommercial|
 |Radeon RX 6600|RDNA2|HIP|
 |Radeon™ R9 Fury|Fiji|Community|
