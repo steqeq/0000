@@ -59,6 +59,22 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
               - title: hipSOLVER
                 url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
+          - file: reference/sparse
+            title: SPARSE
+            subtrees:
+            - entries: 
+              - title: rocSPARSE
+                url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
+              - title: hipSPARSE
+                url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
+          - file: reference/fft
+            title: FFT
+            subtrees:
+            - entries: 
+              - title: rocFFT
+                url: https://rocmdocs.amd.com/projects/rocFFT/en/{branch}/
+              - title: hipFFT
+                url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
     - file: reference/c++_primitives
       title: C++ Primitives
       subtrees:
