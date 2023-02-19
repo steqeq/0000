@@ -1,4 +1,4 @@
-# AMD ROCm 5.3.3
+# AMD ROCm
 
 AMD ROCm Software's technical documentation is available below. This release is Linux only. Link to release blog.
 

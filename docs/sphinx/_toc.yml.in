@@ -62,6 +62,18 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
               - title: hipSOLVER
                 url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
+    - file: reference/c++_primitives
+      title: C++ Primitives
+      subtrees:
+        - entries:
+          - file: reference/rocPRIM
+            title: rocPRIM                
+        - entries:
+          - file: reference/hipCUB
+            title: hipCUB 
+        - entries:
+          - file: reference/rocThrust
+            title: rocThrust
     - file: reference/compilers
       title: ROCm Compilers
       subtrees:
