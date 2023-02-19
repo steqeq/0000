@@ -2,22 +2,17 @@
 # These comments will also be removed.
 defaults:
   numbered: False
-root: index
-subtrees:
-  - entries:
-    - file: os_support
-    - file: kernel_userspace
-    - file: gpu_support
-    - file: CHANGELOG
-    - file: RELEASE
-
-
 
 subtrees:
 - caption: AMD ROCm
   entries:
     - title: Release Notes
       url: https://
+    - file: os_support
+    - file: kernel_userspace
+    - file: gpu_support
+    - file: CHANGELOG
+    - file: RELEASE
 root: index
 
 subtrees:
