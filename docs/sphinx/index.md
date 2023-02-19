@@ -20,8 +20,6 @@ AMD ROCm Software's technical documentation is available below. This release is 
  * Quick Start
  * Advanced Installation Guide
  * Docker
- * spack
- * Networking and Communication
 :::
 ::::
 

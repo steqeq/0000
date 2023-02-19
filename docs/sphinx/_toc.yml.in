@@ -5,14 +5,6 @@ defaults:
 
 subtrees:
 - caption: AMD ROCm
-  entries:
-    - title: Release Notes
-      url: https://
-    - file: os_support
-    - file: kernel_userspace
-    - file: gpu_support
-    - file: CHANGELOG
-    - file: RELEASE
 root: index
 
 subtrees:
@@ -20,6 +12,11 @@ subtrees:
   entries:
     - title: Release Notes
       url: https://
+    - file: os_support
+    - file: kernel_userspace
+    - file: gpu_support
+    - file: CHANGELOG
+    - file: RELEASE      
 # Example comment to have content replaced: {branch}
 
 - caption: Deploy ROCm
@@ -66,13 +63,13 @@ subtrees:
       title: C++ Primitives
       subtrees:
         - entries:
-          - file: reference/rocPRIM
-            title: rocPRIM                
+          - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
+            title: rocPRIM
         - entries:
-          - file: reference/hipCUB
+          - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
             title: hipCUB 
         - entries:
-          - file: reference/rocThrust
+          - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
             title: rocThrust
     - file: reference/compilers
       title: ROCm Compilers
