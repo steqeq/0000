@@ -8,9 +8,8 @@ AMD ROCm Software's technical documentation is available below. This release is 
 ::::{grid-item}
 :::{dropdown} Release Info
  * Release Notes
- * Support Matrix
+ * [GPU and OS Support](gpu_os_support)
  * [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Known%20Issue)
- * Compatibility
  * End Of Life and Support Policies
 :::
 ::::
@@ -19,6 +18,7 @@ AMD ROCm Software's technical documentation is available below. This release is 
 :::{dropdown} Deploy ROCm
  * Quick Start
  * Advanced Installation Guide
+ * Virtualization
  * Docker
 :::
 ::::

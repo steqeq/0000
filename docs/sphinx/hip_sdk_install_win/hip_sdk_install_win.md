@@ -1,4 +1,4 @@
-# HIP SDK on Windows Installation
+# Quick Start (Windows)
 
 The steps to install the HIP SDK for Windows are described in this document.
 

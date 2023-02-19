@@ -10,11 +10,7 @@ root: index
 subtrees:
 - caption: Release Info
   entries:
-    - title: Release Notes
-      url: https://
-    - file: os_support
-    - file: kernel_userspace
-    - file: gpu_support
+    - file: gpu_os_support
     - file: CHANGELOG
     - file: RELEASE      
 # Example comment to have content replaced: {branch}
@@ -27,7 +23,6 @@ subtrees:
 
 - caption: APIs and Reference
   entries:
-
     - file: reference/all
       title: HIP
       subtrees:
@@ -66,7 +61,7 @@ subtrees:
               - title: rocRAND
                 url: https://rocmdocs.amd.com/projects/rocRAND/en/{branch}/
               - title: hipRAND
-                url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/                
+                url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
           - file: reference/solver
             title: SOLVER
             subtrees:
