@@ -51,6 +51,22 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
               - title: hipBLAS
                 url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
+          - file: reference/fft
+            title: FFT
+            subtrees:
+            - entries: 
+              - title: rocFFT
+                url: https://rocmdocs.amd.com/projects/rocFFT/en/{branch}/
+              - title: hipFFT
+                url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
+          - file: reference/rand
+            title: RAND
+            subtrees:
+            - entries: 
+              - title: rocRAND
+                url: https://rocmdocs.amd.com/projects/rocRAND/en/{branch}/
+              - title: hipRAND
+                url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/                
           - file: reference/solver
             title: SOLVER
             subtrees:
@@ -67,14 +83,6 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
               - title: hipSPARSE
                 url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
-          - file: reference/fft
-            title: FFT
-            subtrees:
-            - entries: 
-              - title: rocFFT
-                url: https://rocmdocs.amd.com/projects/rocFFT/en/{branch}/
-              - title: hipFFT
-                url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
     - file: reference/c++_primitives
       title: C++ Primitives
       subtrees:
