@@ -121,6 +121,8 @@ subtrees:
             title: ROCmCC
           - file: reference/openmp/openmp
             title: OpenMP
+    - file: reference/gpu_arch
+      title: GPU Architecture
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
