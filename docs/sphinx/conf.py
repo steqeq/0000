@@ -4,6 +4,7 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import shutil
 shutil.copy2('../../CHANGELOG.md','./')
 shutil.copy2('../../RELEASE.md','./')
 
