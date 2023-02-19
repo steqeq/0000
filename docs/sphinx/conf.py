@@ -8,30 +8,11 @@ import shutil
 shutil.copy2('../../CHANGELOG.md','./')
 shutil.copy2('../../RELEASE.md','./')
 
+from rocm_docs import ROCmDocs
 
-from rocm_docs import setup_rocm_docs
+docs_core = ROCmDocs("ROCm Documentation")
+docs_core.run_doxygen()
+docs_core.setup()
 
-(
-    copyright,
-    author,
-    project,
-    extensions,
-    myst_enable_extensions,
-    myst_heading_anchors,
-    external_toc_path,
-    external_toc_exclude_missing,
-    intersphinx_mapping,
-    intersphinx_disabled_domains,
-    templates_path,
-    epub_show_urls,
-    exclude_patterns,
-    html_theme,
-    html_title,
-    html_static_path,
-    html_css_files,
-    html_js_files,
-    html_extra_path,
-    html_theme_options,
-    html_show_sphinx,
-    html_favicon,
-) = setup_rocm_docs("ROCm Documentation")
+for sphinx_var in ROCmDocs.SPHINX_VARS:
+    globals()[sphinx_var] = getattr(docs_core, sphinx_var)
