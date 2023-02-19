@@ -29,11 +29,11 @@ subtrees:
   entries:
 
     - file: reference/all
-      title: All
+      title: HIP
       subtrees:
         - caption: HIP Runtime
           entries:
-            - title: HIP API
+            - title: HIP Runtime API
               url: https://github.com/
             - title: HIPify
               url: https://github.com/
@@ -95,6 +95,24 @@ subtrees:
         - entries:
           - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
             title: rocThrust
+    - file: reference/c++_primitives
+      title: C++ Primitives
+      subtrees:
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
+            title: rocPRIM
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
+            title: hipCUB 
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
+            title: rocThrust
+    - file: reference/communication
+      title: Communication Libraries
+      subtrees:
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
+            title: RCCL
     - file: reference/compilers
       title: ROCm Compilers
       subtrees:
