@@ -1,12 +1,12 @@
 ===========================
-Using CMake with AMD ROCm
+Using CMake with ROCm
 ===========================
 
-Most components in AMD ROCm support CMake 3.5 or higher out-of-the-box and do not require any special Find modules. A Find module is often used by
+Most components in ROCm support CMake 3.5 or higher out-of-the-box and do not require any special Find modules. A Find module is often used by
 downstream to find the files by guessing locations of files with platform-specific hints. Typically, the Find module is required when the
 upstream is not built with CMake or the package configuration files are not available.
 
-AMD ROCm provides the respective *config-file* packages, and this enables ``find_package`` to be used directly. AMD ROCm does not require any Find
+ROCm provides the respective *config-file* packages, and this enables ``find_package`` to be used directly. ROCm does not require any Find
 module as the *config-file* packages are shipped with the upstream projects.
 
 Finding Dependencies
@@ -98,7 +98,7 @@ set in the CMakeLists.txt as a cached variable before calling
     # Find hip
     find_package(hip)
 
-Using AMD ROCm Libraries
+Using ROCm Libraries
 ---------------------------
 
 Libraries such as rocBLAS, MIOpen, and others support CMake users as
