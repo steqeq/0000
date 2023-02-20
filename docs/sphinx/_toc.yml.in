@@ -10,7 +10,7 @@ root: index
 subtrees:
 - caption: Release Info
   entries:
-    - file: RELEASE        
+    - file: RELEASE
     - file: gpu_os_support
     - file: CHANGELOG
 

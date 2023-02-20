@@ -38,6 +38,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 GPU support levels in ROCm:
  * Full - AMD provides full support for all software that is part of ROCm
  * Noncommercial - AMD enables all software that is part of ROCm. However, commercial usage is not supported.
+ * HIP SDK - AMD supports select GPU libraries and the HIP Runtime on these products. The HIP SDK contents are described [here]().
  * HIP - AMD supports the HIP Runtime only for these products.
  * Maintenance - This GPUs is now in maintenance mode. No new features will be enabled on this product.
  * Community - Packages distributed by AMD have dropped support for these GPUs or never enabled support for the GPUs. Builds from source are not disabled. AMD encourages the open source community to enable functionality for these cards.

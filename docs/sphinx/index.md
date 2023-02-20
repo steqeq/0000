@@ -1,6 +1,6 @@
 # AMD ROCm
 
-AMD ROCm Software's technical documentation is available below. This release is Linux only. Link to release blog.
+Welcome to AMD ROCm's documentation!
 
 :::::{grid} 1 1 2 2
 :gutter: 1
