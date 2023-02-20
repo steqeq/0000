@@ -4,15 +4,16 @@ defaults:
   numbered: False
 
 subtrees:
-- caption: AMD ROCm
+- caption: Home
 root: index
 
 subtrees:
 - caption: Release Info
   entries:
+    - file: RELEASE        
     - file: gpu_os_support
     - file: CHANGELOG
-    - file: RELEASE      
+
 # Example comment to have content replaced: {branch}
 
 - caption: Deploy ROCm
