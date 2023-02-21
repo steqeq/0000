@@ -16,7 +16,6 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |clang-ocl|[MIT](https://github.com/RadeonOpenCompute/clang-ocl/blob/master/LICENSE)|
 |HIP|[MIT](https://github.com/ROCm-Developer-Tools/HIP/blob/develop/LICENSE.txt)|
 |hipamd|[MIT](https://github.com/ROCm-Developer-Tools/hipamd/blob/develop/LICENSE.txt)|
-|HIP-Examples||
 |ROCclr|[MIT](https://github.com/ROCm-Developer-Tools/ROCclr/blob/develop/LICENSE.txt)|
 |HIPIFY|[MIT](https://github.com/ROCm-Developer-Tools/HIPIFY/blob/amd-staging/LICENSE.txt)|
 |HIPCC|[MIT](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt)|
@@ -44,18 +43,18 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |rocALUTION|[MIT](https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/LICENSE.md)|
 |MIOpenGEMM|[MIT](https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/blob/master/LICENSE.txt)|
 |MIOpen|[MIT](https://github.com/ROCmSoftwarePlatform/MIOpen/blob/master/LICENSE.txt)|
-|rccl||
-|MIVisionX||
-|rocThrust||
-|hipCUB||
-|rocPRIM||
-|rocWMMA||
-|hipfort||
-|AMDMIGraphX||
-|ROCmValidationSuite||
-|aomp||
-|aomp-extras||
-|flang||
+|rccl|[Custom](https://github.com/ROCmSoftwarePlatform/rccl/blob/develop/LICENSE.txt)|
+|MIVisionX|[MIT](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/blob/master/LICENSE.txt)|
+|rocThrust|[Apache 2.0](https://github.com/ROCmSoftwarePlatform/rocThrust/blob/develop/LICENSE)|
+|hipCUB|[Custom](https://github.com/ROCmSoftwarePlatform/hipCUB/blob/develop/LICENSE.txt)|
+|rocPRIM|[MIT](https://github.com/ROCmSoftwarePlatform/rocPRIM/blob/develop/LICENSE.txt)|
+|rocWMMA|[MIT](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/LICENSE.md)|
+|hipfort|[MIT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/LICENSE)|
+|AMDMIGraphX|[MIT](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/blob/develop/LICENSE)|
+|ROCmValidationSuite|[MIT](https://github.com/ROCm-Developer-Tools/ROCmValidationSuite/blob/master/LICENSE)|
+|aomp|[Apache 2.0](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/LICENSE)|
+|aomp-extras|[MIT](https://github.com/ROCm-Developer-Tools/aomp-extras/blob/aomp-dev/LICENSE)|
+|flang|[Apache 2.0](https://github.com/ROCm-Developer-Tools/flang/blob/master/LICENSE.txt)|
 The additional terms and conditions below apply to your use of ROCm technical documentation.
 
 ©2022 Advanced Micro Devices, Inc. All rights reserved.
