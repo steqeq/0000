@@ -12,21 +12,21 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |rocprofiler|[MIT](https://github.com/ROCm-Developer-Tools/rocprofiler/blob/amd-master/LICENSE)|
 |roctracer|[MIT](https://github.com/ROCm-Developer-Tools/roctracer/blob/amd-master/LICENSE)|
 |ROCm-OpenCL-Runtime|[MIT](https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/blob/develop/LICENSE.txt)|
-|ROCm-OpenCL-Runtime/api/opencl/khronos/icd||
-|clang-ocl||
-|HIP||
-|hipamd||
+|ROCm-OpenCL-Runtime/api/opencl/khronos/icd|[Apache 2.0](https://github.com/KhronosGroup/OpenCL-ICD-Loader/blob/main/LICENSE)|
+|clang-ocl|[MIT](https://github.com/RadeonOpenCompute/clang-ocl/blob/master/LICENSE)|
+|HIP|[MIT](https://github.com/ROCm-Developer-Tools/HIP/blob/develop/LICENSE.txt)|
+|hipamd|[MIT](https://github.com/ROCm-Developer-Tools/hipamd/blob/develop/LICENSE.txt)|
 |HIP-Examples||
-|ROCclr||
-|HIPIFY||
-|HIPCC||
-|llvm-project||
-|ROCm-Device-Libs||
-|atmi||
-|ROCm-CompilerSupport||
-|rocr_debug_agent||
-|rocm_bandwidth_test||
-|half||
+|ROCclr|[MIT](https://github.com/ROCm-Developer-Tools/ROCclr/blob/develop/LICENSE.txt)|
+|HIPIFY|[MIT](https://github.com/ROCm-Developer-Tools/HIPIFY/blob/amd-staging/LICENSE.txt)|
+|HIPCC|[MIT](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt)|
+|llvm-project|[Apache](https://github.com/ROCm-Developer-Tools/llvm-project/blob/main/LICENSE.TXT)|
+|ROCm-Device-Libs|[The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/blob/amd-stg-open/LICENSE.TXT)|
+|atmi|[MIT](https://github.com/RadeonOpenCompute/atmi/blob/master/LICENSE.txt)|
+|ROCm-CompilerSupport|[The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/blob/amd-stg-open/LICENSE.txt)|
+|rocr_debug_agent|[The University of Illinois/NCSA](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/blob/master/LICENSE.txt)|
+|rocm_bandwidth_test|[The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/blob/master/LICENSE.txt)|
+|half|[MIT](https://github.com/ROCmSoftwarePlatform/half/blob/master/LICENSE.txt)|
 |RCP||
 |ROCgdb||
 |ROCdbgapi||
@@ -36,7 +36,7 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |hipBLAS||
 |rocFFT||
 |hipFFT||
-|rocRAND||
+|rocRAND|[MIT](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/LICENSE.txt)|
 |rocSPARSE||
 |rocSOLVER||
 |hipSOLVER||
