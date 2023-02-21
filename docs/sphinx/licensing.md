@@ -1,6 +1,6 @@
 # Licensing Terms
 
-ROCm™ is released by Advanced Micro Devices, Inc. under the open source licenses via public GitHub repositories. The following is a list ROCm components with the links to the license terms. The list ordered to follow ROCm's manifest file.
+ROCm™ is released by Advanced Micro Devices, Inc. under the open source licenses via public GitHub repositories. The following table is a list of ROCm components with the links to the license terms. The list is ordered to follow ROCm's manifest file.
 | Component|License  |
 |--------------|--------------------|
 | ROCK-Kernel-Driver | [GPL 2.0 WITH Linux-syscall-note](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/blob/master/COPYING)   |
@@ -34,10 +34,10 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |rocBLAS|[MIT](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/LICENSE.md)|
 |Tensile|[MIT](https://github.com/ROCmSoftwarePlatform/Tensile/blob/develop/LICENSE.md)|
 |hipBLAS|[MIT](https://github.com/ROCmSoftwarePlatform/hipBLAS/blob/develop/LICENSE.md)|
-|rocFFT||
-|hipFFT||
+|rocFFT|[MIT](https://github.com/ROCmSoftwarePlatform/rocFFT/blob/develop/LICENSE.md)|
+|hipFFT|[MIT](https://github.com/ROCmSoftwarePlatform/hipFFT/blob/develop/LICENSE.md)|
 |rocRAND|[MIT](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/LICENSE.txt)|
-|rocSPARSE||
+|rocSPARSE|[MIT](https://github.com/ROCmSoftwarePlatform/rocSPARSE/blob/develop/LICENSE.md)|
 |rocSOLVER||
 |hipSOLVER||
 |hipSPARSE||
