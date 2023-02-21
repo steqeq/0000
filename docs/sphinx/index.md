@@ -1,6 +1,6 @@
 # AMD ROCm
 
-Welcome to AMD ROCm's documentation!
+Welcome to AMD ROCm's documentation! Test demo
 
 :::::{grid} 1 1 2 2
 :gutter: 1
