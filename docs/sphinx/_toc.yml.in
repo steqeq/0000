@@ -135,7 +135,7 @@ subtrees:
             - file: examples/inception_casestudy/inception_casestudy
             - file: examples/inception_casestudy_migraphx/inception_casestudy_migraphx
 
-- caption: About 
-  entries:
-    - file: about
+#- caption: About 
+#  entries:
+#    - file: about
 
