@@ -1,5 +1,5 @@
 ===========================
-Using CMake with ROCm
+Using CMake
 ===========================
 
 Most components in ROCm support CMake 3.5 or higher out-of-the-box and do not require any special Find modules. A Find module is often used by

@@ -13,6 +13,7 @@ subtrees:
     - file: RELEASE
     - file: gpu_os_support
     - file: CHANGELOG
+    - file: licensing
 
 # Example comment to have content replaced: {branch}
 
@@ -135,3 +136,7 @@ subtrees:
         - entries:
             - file: examples/inception_casestudy/inception_casestudy
             - file: examples/inception_casestudy_migraphx/inception_casestudy_migraphx
+
+- caption: About 
+  entries:
+    -file: about
