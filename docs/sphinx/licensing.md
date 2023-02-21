@@ -1,6 +1,6 @@
 # Licensing Terms
 
-ROCm™ is released by Advanced Micro Devices, Inc. under the open source licenses via public GitHub repositories. The following is a list ROCm components with the links to the license terms.
+ROCm™ is released by Advanced Micro Devices, Inc. under the open source licenses via public GitHub repositories. The following is a list ROCm components with the links to the license terms. The list ordered to follow ROCm's manifest file.
 | Component                 |License  |
 |--------------------|----------------|
 | ROCK-Kernel-Driver | [GPL 2.0 WITH Linux-syscall-note](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/blob/master/COPYING)   |
@@ -9,10 +9,54 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |rocm_smi_lib||
 |rocm-cmake||
 |rocminfo||
-
-
-
- The additional terms and conditions below apply to your use of ROCm technical documentation.
+|rocprofiler||
+|roctracer||
+|ROCm-OpenCL-Runtime||
+|ROCm-OpenCL-Runtime/api/opencl/khronos/icd||
+|clang-ocl||
+|HIP||
+|hipamd||
+|HIP-Examples||
+|ROCclr||
+|HIPIFY||
+|HIPCC||
+|llvm-project||
+|ROCm-Device-Libs||
+|atmi||
+|ROCm-CompilerSupport||
+|rocr_debug_agent||
+|rocm_bandwidth_test||
+|half||
+|RCP||
+|ROCgdb||
+|ROCdbgapi||
+|rdc||
+|rocBLAS||
+|Tensile||
+|hipBLAS||
+|rocFFT||
+|hipFFT||
+|rocRAND||
+|rocSPARSE||
+|rocSOLVER||
+|hipSOLVER||
+|hipSPARSE||
+|rocALUTION||
+|MIOpenGEMM||
+|MIOpen||
+|rccl||
+|MIVisionX||
+|rocThrust||
+|hipCUB||
+|rocPRIM||
+|rocWMMA||
+|hipfort||
+|AMDMIGraphX||
+|ROCmValidationSuite||
+|aomp||
+|aomp-extras||
+|flang||
+The additional terms and conditions below apply to your use of ROCm technical documentation.
 
 ©2022 Advanced Micro Devices, Inc. All rights reserved.
 
