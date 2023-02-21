@@ -27,13 +27,13 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |rocr_debug_agent|[The University of Illinois/NCSA](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/blob/master/LICENSE.txt)|
 |rocm_bandwidth_test|[The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/blob/master/LICENSE.txt)|
 |half|[MIT](https://github.com/ROCmSoftwarePlatform/half/blob/master/LICENSE.txt)|
-|RCP||
-|ROCgdb||
-|ROCdbgapi||
-|rdc||
-|rocBLAS||
-|Tensile||
-|hipBLAS||
+|RCP|[MIT](https://github.com/GPUOpen-Tools/radeon_compute_profiler/blob/master/LICENSE)|
+|ROCgdb|[GNU General Public License v2.0](https://github.com/ROCm-Developer-Tools/ROCgdb/blob/amd-master/COPYING)|
+|ROCdbgapi|[MIT](https://github.com/ROCm-Developer-Tools/ROCdbgapi/blob/amd-master/LICENSE.txt)|
+|rdc|[MIT](https://github.com/RadeonOpenCompute/rdc/blob/master/LICENSE)|
+|rocBLAS|[MIT](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/LICENSE.md)|
+|Tensile|[MIT](https://github.com/ROCmSoftwarePlatform/Tensile/blob/develop/LICENSE.md)|
+|hipBLAS|[MIT](https://github.com/ROCmSoftwarePlatform/hipBLAS/blob/develop/LICENSE.md)|
 |rocFFT||
 |hipFFT||
 |rocRAND|[MIT](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/LICENSE.txt)|
