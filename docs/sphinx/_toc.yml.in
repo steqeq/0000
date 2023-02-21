@@ -15,8 +15,6 @@ subtrees:
     - file: CHANGELOG
     - file: licensing
 
-# Example comment to have content replaced: {branch}
-
 - caption: Deploy ROCm
   entries:
 
@@ -140,3 +138,4 @@ subtrees:
 - caption: About 
   entries:
     -file: about
+

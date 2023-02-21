@@ -4,6 +4,12 @@ ROCm™ is made available by Advanced Micro Devices, Inc. under the open source 
 | Component                 |License  |
 |--------------------|----------------|
 | ROCK-Kernel-Driver | [GPL 2.0 WITH Linux-syscall-note](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/blob/master/COPYING)   |
+|ROCT-Thunk-Interface||
+|ROCR-Runtime||
+|rocm_smi_lib||
+|rocm-cmake||
+|rocminfo||
+
 
 
  The additional terms and conditions below apply to your use of ROCm technical documentation.
