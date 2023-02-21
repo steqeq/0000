@@ -10,8 +10,8 @@ ROCm™ is released by Advanced Micro Devices, Inc. under the open source licens
 |rocm-cmake|[MIT](https://github.com/RadeonOpenCompute/rocm-cmake/blob/develop/LICENSE)|
 |rocminfo|[The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/rocminfo/blob/master/License.txt)|
 |rocprofiler|[MIT](https://github.com/ROCm-Developer-Tools/rocprofiler/blob/amd-master/LICENSE)|
-|roctracer||
-|ROCm-OpenCL-Runtime||
+|roctracer|[MIT](https://github.com/ROCm-Developer-Tools/roctracer/blob/amd-master/LICENSE)|
+|ROCm-OpenCL-Runtime|[MIT](https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/blob/develop/LICENSE.txt)|
 |ROCm-OpenCL-Runtime/api/opencl/khronos/icd||
 |clang-ocl||
 |HIP||
