@@ -2,12 +2,12 @@
 
 ROCm™ is released by Advanced Micro Devices, Inc. under the open source licenses via public GitHub repositories. The following is a list ROCm components with the links to the license terms. The list ordered to follow ROCm's manifest file.
 | Component                 |License  |
-|--------------------|----------------|
+|--------------|--------------------|
 | ROCK-Kernel-Driver | [GPL 2.0 WITH Linux-syscall-note](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/blob/master/COPYING)   |
-|ROCT-Thunk-Interface||
-|ROCR-Runtime||
-|rocm_smi_lib||
-|rocm-cmake||
+|ROCT-Thunk-Interface|[MIT](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/blob/master/LICENSE.md)|
+|ROCR-Runtime|[The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/ROCR-Runtime/blob/master/LICENSE.txt)|
+|rocm_smi_lib|[The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/rocm_smi_lib/blob/master/License.txt)|
+|rocm-cmake|[MIT](https://github.com/RadeonOpenCompute/rocm-cmake/blob/develop/LICENSE)|
 |rocminfo||
 |rocprofiler||
 |roctracer||
