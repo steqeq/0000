@@ -137,5 +137,5 @@ subtrees:
 
 - caption: About 
   entries:
-    -file: about
+    - file: about
 
