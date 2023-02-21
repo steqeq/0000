@@ -1,6 +1,6 @@
 # Licensing Terms
 
-ROCm™ is made available by Advanced Micro Devices, Inc. under the open source license identified in the top-level directory for the library in the repository on Github.com.
+ROCm™ is released by Advanced Micro Devices, Inc. under the open source licenses via public GitHub repositories. The following is a list ROCm components with the links to the license terms.
 | Component                 |License  |
 |--------------------|----------------|
 | ROCK-Kernel-Driver | [GPL 2.0 WITH Linux-syscall-note](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/blob/master/COPYING)   |
