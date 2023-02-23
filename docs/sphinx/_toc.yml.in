@@ -79,24 +79,24 @@ subtrees:
                       url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
                     - title: hipSPARSE
                       url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
-          - file: reference/c++_primitives
-            title: C++ Primitives
-            subtrees:
-              - entries:
-                - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
-                  title: rocPRIM
-              - entries:
-                - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
-                  title: hipCUB 
-              - entries:
-                - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
-                  title: rocThrust
-          - file: reference/communication
-            title: Communication Libraries
-            subtrees:
-              - entries:
-                - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
-                  title: RCCL
+                - file: reference/c++_primitives
+                  title: C++ Primitives
+                  subtrees:
+                    - entries:
+                      - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
+                        title: rocPRIM
+                    - entries:
+                      - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
+                        title: hipCUB 
+                    - entries:
+                      - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
+                        title: rocThrust
+                - file: reference/communication
+                  title: Communication Libraries
+                  subtrees:
+                    - entries:
+                      - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
+                        title: RCCL
     - file: reference/compilers
       title: ROCm Compilers
       subtrees:
