@@ -98,14 +98,14 @@ subtrees:
                         - entries:
                           - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
                             title: RCCL
+    - file: reference/openmp/openmp
+      title: OpenMP
     - file: reference/compilers
       title: ROCm Compilers
       subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-          - file: reference/openmp/openmp
-            title: OpenMP
     - file: reference/gpu_arch
       title: GPU Architecture
 - caption: Understand ROCm
