@@ -101,7 +101,7 @@ subtrees:
     - file: reference/openmp/openmp
       title: OpenMP
     - file: reference/compilers
-      title: ROCm Compilers
+      title: Compilers
       subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
