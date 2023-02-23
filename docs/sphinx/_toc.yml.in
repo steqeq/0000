@@ -33,7 +33,7 @@ subtrees:
               url: https://github.com/
             - title: HIPify
               url: https://github.com/
-
+            - file: gpu_libraries
     - file: reference/math
       title: Math Libraries
       subtrees:
