@@ -26,7 +26,6 @@ subtrees:
     - file: reference/all
       title: HIP
       subtrees:
-        - caption: HIP Runtime
           entries:
             - title: HIP Runtime API
               url: https://github.com/
@@ -34,68 +33,70 @@ subtrees:
               url: https://github.com/
     - file: reference/framework_compatiblity/framework_compatiblity
     - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
-    - file: reference/math
-      title: Math Libraries
       subtrees:
-        - entries:
-          - file: reference/blas
-            title: BLAS
+        entries:
+          - file: reference/math
+            title: Math Libraries
             subtrees:
-            - entries: 
-              - title: rocBLAS
-                url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
-              - title: hipBLAS
-                url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
-          - file: reference/fft
-            title: FFT
+              - entries:
+                - file: reference/blas
+                  title: BLAS
+                  subtrees:
+                  - entries: 
+                    - title: rocBLAS
+                      url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
+                    - title: hipBLAS
+                      url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
+                - file: reference/fft
+                  title: FFT
+                  subtrees:
+                  - entries: 
+                    - title: rocFFT
+                      url: https://rocmdocs.amd.com/projects/rocFFT/en/{branch}/
+                    - title: hipFFT
+                      url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
+                - file: reference/rand
+                  title: RAND
+                  subtrees:
+                  - entries: 
+                    - title: rocRAND
+                      url: https://rocmdocs.amd.com/projects/rocRAND/en/{branch}/
+                    - title: hipRAND
+                      url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
+                - file: reference/solver
+                  title: SOLVER
+                  subtrees:
+                  - entries: 
+                    - title: rocSOLVER
+                      url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
+                    - title: hipSOLVER
+                      url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
+                - file: reference/sparse
+                  title: SPARSE
+                  subtrees:
+                  - entries: 
+                    - title: rocSPARSE
+                      url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
+                    - title: hipSPARSE
+                      url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
+          - file: reference/c++_primitives
+            title: C++ Primitives
             subtrees:
-            - entries: 
-              - title: rocFFT
-                url: https://rocmdocs.amd.com/projects/rocFFT/en/{branch}/
-              - title: hipFFT
-                url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
-          - file: reference/rand
-            title: RAND
+              - entries:
+                - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
+                  title: rocPRIM
+              - entries:
+                - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
+                  title: hipCUB 
+              - entries:
+                - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
+                  title: rocThrust
+          - file: reference/communication
+            title: Communication Libraries
             subtrees:
-            - entries: 
-              - title: rocRAND
-                url: https://rocmdocs.amd.com/projects/rocRAND/en/{branch}/
-              - title: hipRAND
-                url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
-          - file: reference/solver
-            title: SOLVER
-            subtrees:
-            - entries: 
-              - title: rocSOLVER
-                url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
-              - title: hipSOLVER
-                url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
-          - file: reference/sparse
-            title: SPARSE
-            subtrees:
-            - entries: 
-              - title: rocSPARSE
-                url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
-              - title: hipSPARSE
-                url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
-    - file: reference/c++_primitives
-      title: C++ Primitives
-      subtrees:
-        - entries:
-          - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
-            title: rocPRIM
-        - entries:
-          - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
-            title: hipCUB 
-        - entries:
-          - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
-            title: rocThrust
-    - file: reference/communication
-      title: Communication Libraries
-      subtrees:
-        - entries:
-          - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
-            title: RCCL
+              - entries:
+                - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
+                  title: RCCL
     - file: reference/compilers
       title: ROCm Compilers
       subtrees:
