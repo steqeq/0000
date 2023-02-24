@@ -2,7 +2,7 @@
 # These comments will also be removed.
 defaults:
   numbered: False
-root: index
+root: intro
 subtrees:
 - caption: Release Info
   entries:
@@ -102,7 +102,6 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-    - file: reference/docker
     - file: reference/gpu_arch
     - file: reference/tools
       title: Management Tools
