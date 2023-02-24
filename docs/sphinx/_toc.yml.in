@@ -23,6 +23,7 @@ subtrees:
             subtrees:
               - entries:
                   - file: deploy/advanced/uninstall
+                  - file: deploy/advanced/multi
           - file: deploy/docker
 
 - caption: APIs and Reference

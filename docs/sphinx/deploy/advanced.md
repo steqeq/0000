@@ -1,4 +1,9 @@
 # Advanced
 
+## Installations
  * [Uninstall](advanced/uninstall)
- * Side by Side version of ROCm
+ * [Multi-ROCm Installations](advanced/multi)
+
+## Clusters and Network Deployment
+ * [spack](advanced/spack)
+ 
