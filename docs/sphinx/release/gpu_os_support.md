@@ -42,3 +42,6 @@ GPU support levels in ROCm:
  * HIP - AMD supports the HIP Runtime only for these products.
  * Maintenance - This GPUs is now in maintenance mode. No new features will be enabled on this product.
  * Community - Packages distributed by AMD have dropped support for these GPUs or never enabled support for the GPUs. Builds from source are not disabled. AMD encourages the open source community to enable functionality for these cards.
+
+## CPU Support
+ROCm requires CPUs that support PCIe:tm: Atomics. Modern CPUs after the release of 1st generation AMD Zen CPU and Intel™ Haswell support PCIe Atomics. 
