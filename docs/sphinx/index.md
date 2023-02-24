@@ -9,7 +9,7 @@ Welcome to AMD ROCm's documentation!
 :::{dropdown} [Release Info](release)
  * Release Notes
  * [GPU and OS Support](gpu_os_support)
- * [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Known%20Issue)
+ * [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue)
  * End Of Life and Support Policies
 :::
 ::::
