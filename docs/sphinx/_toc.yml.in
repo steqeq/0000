@@ -88,7 +88,7 @@ subtrees:
                         - entries:
                           - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
                             title: rocThrust
-                    - file: reference/communication
+                    - file: reference/gpu_libraries/communication
                       title: Communication Libraries
                       subtrees:
                         - entries:
