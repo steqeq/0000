@@ -3,8 +3,10 @@ Please follow the guides below to begin your ROCm journey.
 :::::{grid} 1 1 3 3
 :gutter: 1
 
-::::{grid-item} Quick Start
+::::{grid-item} 
 :padding: 2
+Quick Start
+^^^
  * [Linux](quick_start)
  * [Windows](gpu_os_support)
 ::::
