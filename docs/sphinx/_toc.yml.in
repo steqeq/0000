@@ -2,17 +2,16 @@
 # These comments will also be removed.
 defaults:
   numbered: False
+root: index
 subtrees:
 - entries:
   - file: release
     subtrees:
       - entries:
           - file: release/gpu_os_support
-- caption: Release Info
-  entries:
-    - file: licensing
-    - file: reference/framework_compatiblity/framework_compatiblity
-    - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
+          - file: licensing
+          - file: reference/framework_compatiblity/framework_compatiblity
+          - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
 
 - caption: Deploy ROCm
   entries:
