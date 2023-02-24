@@ -17,6 +17,7 @@ subtrees:
 
     - file: quick_start
     - file: hip_sdk_install_win/hip_sdk_install_win
+    - file: all_deploy_options
 
 - caption: APIs and Reference
   entries:
@@ -31,11 +32,11 @@ subtrees:
             - file: gpu_libraries
               subtrees:
                 - entries:
-                    - file: reference/math
+                    - file: reference/gpu_libraries/math
                       title: Math Libraries
                       subtrees:
                         - entries:
-                          - file: reference/blas
+                          - file: reference/gpu_libraries/blas
                             title: BLAS
                             subtrees:
                             - entries: 
@@ -43,7 +44,7 @@ subtrees:
                                 url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
                               - title: hipBLAS
                                 url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
-                          - file: reference/fft
+                          - file: reference/gpu_libraries/fft
                             title: FFT
                             subtrees:
                             - entries: 
@@ -59,7 +60,7 @@ subtrees:
                                 url: https://rocmdocs.amd.com/projects/rocRAND/en/{branch}/
                               - title: hipRAND
                                 url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
-                          - file: reference/solver
+                          - file: reference/gpu_libraries/solver
                             title: SOLVER
                             subtrees:
                             - entries: 
@@ -67,7 +68,7 @@ subtrees:
                                 url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
                               - title: hipSOLVER
                                 url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
-                          - file: reference/sparse
+                          - file: reference/gpu_libraries/sparse
                             title: SPARSE
                             subtrees:
                             - entries: 
@@ -75,7 +76,7 @@ subtrees:
                                 url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
                               - title: hipSPARSE
                                 url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
-                    - file: reference/c++_primitives
+                    - file: reference/gpu_libraries/c++_primitives
                       title: C++ Primitives
                       subtrees:
                         - entries:
@@ -101,8 +102,8 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
+    - file: reference/docker
     - file: reference/gpu_arch
-      title: GPU Architecture
     - file: reference/tools
       title: Management Tools
 - caption: Understand ROCm
