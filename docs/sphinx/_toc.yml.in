@@ -21,13 +21,14 @@ subtrees:
       - entries:    
           - file: quick_start
           - file: hip_sdk_install_win/hip_sdk_install_win
+          - file: deploy/docker
           - file: deploy/advanced
             subtrees:
               - entries:
                   - file: deploy/advanced/uninstall
                   - file: deploy/advanced/multi
                   - file: deploy/advanced/spack
-          - file: deploy/docker
+
 
 - caption: APIs and Reference
   entries:
