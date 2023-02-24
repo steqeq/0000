@@ -30,7 +30,7 @@ subtrees:
         - entries:
             - title: HIP Runtime API
               url: https://github.com/
-            - title: HIPify: Port Your Code
+            - title: HIPify - Port Your Code
               url: https://github.com/
             - file: gpu_libraries
               subtrees:
