@@ -19,7 +19,8 @@ subtrees:
       - entries:    
           - file: quick_start
           - file: hip_sdk_install_win/hip_sdk_install_win
-          - file: all_deploy_options
+          - file: deploy/advanced
+          - file: deploy/docker
 
 - caption: APIs and Reference
   entries:

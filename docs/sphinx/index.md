@@ -16,10 +16,10 @@ Welcome to AMD ROCm's documentation!
 
 ::::{grid-item}
 :::{dropdown} Deploy ROCm
- * Quick Start
- * Advanced Installation Guide
- * Virtualization
- * Docker
+ * [Quick Start (Linux)](quick_start)
+ * [Quick Start (Windows)](hip_sdk_install_win/hip_sdk_install_win)
+ * [Advanced (Linux)](deploy/advanced)
+ * [Docker](deploy/docker)
 :::
 ::::
 
