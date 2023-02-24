@@ -1,4 +1,4 @@
 # Advanced
 
- * [Uninstall](uninstall)
+ * [Uninstall](advanced/uninstall)
  * Side by Side version of ROCm
