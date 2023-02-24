@@ -12,7 +12,6 @@ subtrees:
 - caption: Release Info
   entries:
     - file: RELEASE
-    - file: release/gpu_os_support
     - file: licensing
     - file: reference/framework_compatiblity/framework_compatiblity
     - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
