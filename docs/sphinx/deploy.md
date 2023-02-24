@@ -8,14 +8,14 @@ Please follow the guides below to begin your ROCm journey.
 Quick Start
 ^^^
  * [Linux](quick_start)
- * [Windows](gpu_os_support)
+ * [Windows](hip_sdk_install_win/hip_sdk_install_win)
 ::::
 
 ::::{grid-item-card} 
 :padding: 2
 Docker
 ^^^
- * Guide
+ * [Guide](deploy/docker)
  * [Dockerhub](https://hub.docker.com/u/rocm/#!)
 ::::
 
