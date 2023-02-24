@@ -23,9 +23,9 @@ Docker
 :padding: 2
 [Advanced](advanced)
 ^^^
- * [Uninstall](advanced/uninstall)
- * [Multi-ROCm Installations](advanced/multi)
- * [spack](advanced/spack)
+ * [Uninstall](deploy/advanced/uninstall)
+ * [Multi-ROCm Installations](deploy/advanced/multi)
+ * [spack](deploy/advanced/spack)
 ::::
 
 :::::
