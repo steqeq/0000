@@ -1,5 +1,5 @@
 # Deploy
-
+Please follow the guides below to begin your ROCm journey.
 :::::{grid} 1 1 3 3
 :gutter: 1
 
@@ -21,3 +21,5 @@ Quick Start
 ::::
 
 :::::
+## Related Information
+[Release Information](release)
