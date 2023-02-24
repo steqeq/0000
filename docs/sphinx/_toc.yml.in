@@ -5,10 +5,10 @@ defaults:
 root: intro
 subtrees:
 
-- file: release
-  subtrees:
-    - entries:
-        - file: release/gpu_os_support
+#- file: release
+#  subtrees:
+#    - entries:
+#        - file: release/gpu_os_support
 - caption: Release Info
   entries:
     - file: RELEASE
