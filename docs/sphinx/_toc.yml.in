@@ -24,6 +24,7 @@ subtrees:
               - entries:
                   - file: deploy/advanced/uninstall
                   - file: deploy/advanced/multi
+                  - file: deploy/advanced/spack
           - file: deploy/docker
 
 - caption: APIs and Reference
