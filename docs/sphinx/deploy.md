@@ -1,5 +1,5 @@
 # Deploy
-Please follow the guides below to begin your ROCm journey.
+Please follow the guides below to begin your ROCm journey. ROCm can be consumed via many mechanisms. 
 :::::{grid} 1 1 3 3
 :gutter: 1
 
@@ -26,6 +26,7 @@ Docker
  * [Uninstall](deploy/advanced/uninstall)
  * [Multi-ROCm Installations](deploy/advanced/multi)
  * [spack](deploy/advanced/spack)
+ * [Build from Source](deploy/advanced/build_source)
 ::::
 
 :::::

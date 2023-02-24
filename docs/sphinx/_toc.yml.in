@@ -28,6 +28,7 @@ subtrees:
                   - file: deploy/advanced/uninstall
                   - file: deploy/advanced/multi
                   - file: deploy/advanced/spack
+                  - file: deploy/advanced/build_source
 
 
 - caption: APIs and Reference
