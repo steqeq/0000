@@ -4,11 +4,11 @@ defaults:
   numbered: False
 root: index
 subtrees:
-
-- file: release
-  subtrees:
-    - entries:
-        - file: release/gpu_os_support
+- entries:
+  - file: release
+    subtrees:
+      - entries:
+          - file: release/gpu_os_support
 - caption: Release Info
   entries:
     - file: licensing
