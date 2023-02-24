@@ -12,9 +12,8 @@
 
 ::::{grid-item}
 :::{dropdown} Docker
- * [Linux](quick_start)
- * [Windows](hip_sdk_install_win/hip_sdk_install_win)
-:::
+ * Guide
+ * [Dockerhub](https://hub.docker.com/u/rocm/#!)
 ::::
 
 ::::{grid-item}
