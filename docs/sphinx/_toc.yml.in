@@ -4,10 +4,6 @@ defaults:
   numbered: False
 
 subtrees:
-- caption: Home
-root: index
-
-subtrees:
 - caption: Release Info
   entries:
     - file: RELEASE
