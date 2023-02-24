@@ -4,10 +4,15 @@ defaults:
   numbered: False
 root: intro
 subtrees:
+
+- file: release
+  subtrees:
+    - entries:
+        - file: release/gpu_os_support
 - caption: Release Info
   entries:
     - file: RELEASE
-    - file: gpu_os_support
+    - file: release/gpu_os_support
     - file: licensing
     - file: reference/framework_compatiblity/framework_compatiblity
     - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
