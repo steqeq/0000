@@ -11,7 +11,7 @@ subtrees:
     - file: licensing
     - file: reference/framework_compatiblity/framework_compatiblity
     - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
-    
+
 - caption: Deploy ROCm
   entries:
 
@@ -97,7 +97,7 @@ subtrees:
     - file: reference/openmp/openmp
       title: OpenMP
     - file: reference/compilers
-      title: Compilers
+      title: Compilers and Tools
       subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
