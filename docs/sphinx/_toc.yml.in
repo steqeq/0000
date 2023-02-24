@@ -13,12 +13,13 @@ subtrees:
           - file: reference/framework_compatiblity/framework_compatiblity
           - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
 
-- caption: Deploy ROCm
-  entries:
-
-    - file: quick_start
-    - file: hip_sdk_install_win/hip_sdk_install_win
-    - file: all_deploy_options
+- entries:
+  - file: deploy
+    subtrees:
+      - entries:    
+          - file: quick_start
+          - file: hip_sdk_install_win/hip_sdk_install_win
+          - file: all_deploy_options
 
 - caption: APIs and Reference
   entries:
