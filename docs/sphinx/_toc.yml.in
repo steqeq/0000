@@ -118,8 +118,7 @@ subtrees:
 
 - caption: How to Guides
   entries:
-    - title: How to Isolate GPUs in Docker
-      url: https://github.com/
+    - file: docker_gpu_isolation
     - file: how_to/magma_install/magma_install
     - file: how_to/pytorch_install/pytorch_install
     - file: how_to/tensorflow_install/tensorflow_install
