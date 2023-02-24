@@ -3,9 +3,8 @@ Please follow the guides below to begin your ROCm journey.
 :::::{grid} 1 1 3 3
 :gutter: 1
 
-::::{grid-item-card} 
-:padding: 2
-Quick Start
+::::{grid-item-card} Quick Start
+:padding: 2 
 ^^^
  * [Linux](quick_start)
  * [Windows](gpu_os_support)
@@ -13,12 +12,14 @@ Quick Start
 
 ::::{grid-item-card} Docker
 :padding: 2
+^^^
  * Guide
  * [Dockerhub](https://hub.docker.com/u/rocm/#!)
 ::::
 
 ::::{grid-item-card} [Advanced](advanced)
 :padding: 2
+^^^
  * [Uninstall](advanced/uninstall)
  * [Multi-ROCm Installations](advanced/multi)
  * [spack](advanced/spack)
