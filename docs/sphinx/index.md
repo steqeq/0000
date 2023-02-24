@@ -15,7 +15,7 @@ Welcome to AMD ROCm's documentation!
 ::::
 
 ::::{grid-item}
-:::{dropdown} Deploy ROCm
+:::{dropdown} [Deploy ROCm](deploy)
  * [Quick Start (Linux)](quick_start)
  * [Quick Start (Windows)](hip_sdk_install_win/hip_sdk_install_win)
  * [Advanced (Linux)](deploy/advanced)
