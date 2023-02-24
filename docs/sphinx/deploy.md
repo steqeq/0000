@@ -21,7 +21,7 @@ Docker
 
 ::::{grid-item-card} 
 :padding: 2
-[Advanced](advanced)
+[Advanced](deploy/advanced)
 ^^^
  * [Uninstall](deploy/advanced/uninstall)
  * [Multi-ROCm Installations](deploy/advanced/multi)
