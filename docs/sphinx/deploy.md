@@ -4,24 +4,20 @@
 :gutter: 1
 
 ::::{grid-item}
-:::{dropdown} Quick Start
+Quick Start
  * [Linux](quick_start)
  * [Windows](gpu_os_support)
-:::
 ::::
 
-::::{grid-item}
-:::{dropdown} Docker
+::::{grid-item} Docker
  * Guide
  * [Dockerhub](https://hub.docker.com/u/rocm/#!)
 ::::
 
-::::{grid-item}
-:::{dropdown} [Advanced](advanced)
+::::{grid-item} [Advanced](advanced)
  * [Uninstall](advanced/uninstall)
  * [Multi-ROCm Installations](advanced/multi)
  * [spack](advanced/spack)
-:::
 ::::
 
 :::::
