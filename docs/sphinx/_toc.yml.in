@@ -2,7 +2,7 @@
 # These comments will also be removed.
 defaults:
   numbered: False
-
+root: index
 subtrees:
 - caption: Release Info
   entries:
@@ -114,7 +114,6 @@ subtrees:
     - file: understand/deep_learning/deep_learning
     - file: understand/cmake_packages
 
-
 - caption: How to Guides
   entries:
     - title: How to Isolate GPUs in Docker
@@ -122,7 +121,6 @@ subtrees:
     - file: how_to/magma_install/magma_install
     - file: how_to/pytorch_install/pytorch_install
     - file: how_to/tensorflow_install/tensorflow_install
-
 
 - caption: Examples
   entries:
