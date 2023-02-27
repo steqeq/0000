@@ -116,9 +116,9 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-    - file: reference/gpu_arch
     - file: reference/tools
       title: Management Tools
+    - file: reference/gpu_arch
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation

@@ -37,9 +37,12 @@ Welcome to AMD ROCm's documentation!
 [APIs and Reference](https://example.com)
 ^^^
 
-- [HIP API](https://cgmb-hip.readthedocs.io/en/sphinx/index.html)
-- [rocBLAS API](https://rocmdocs.amd.com/projects/rocblas/en/latest/)
-- [All APIs](https://example.com)
+- [HIP](reference/hip)
+- [OpenMP](reference/openmp/openmp)
+- [Compilers and Tools](reference/compilers)
+- [Management Tools](reference/tools)
+- [GPU Architecture](reference/gpu_arch)
+
 :::
 
 :::{grid-item-card}
