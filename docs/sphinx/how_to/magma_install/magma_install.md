@@ -8,3 +8,4 @@ Deep Learning applications. Figure 5 provides the sequential flow for the use of
 each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
 /bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html.
+## PyTorch
