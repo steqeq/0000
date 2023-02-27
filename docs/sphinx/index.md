@@ -58,10 +58,8 @@ Understand ROCm
 :padding: 2
 How to Guides
 ^^^
-
-- How to setup a four node GPU cluster on EC2?
-- How to Isolate GPUs in Docker?
-- All Articles
+- [How to Isolate GPUs in Docker?](how_to/docker_gpu_isolation)
+- [Magma Installation for ROCm](how_to/magma_install/magma_install)
 
 :::
 
