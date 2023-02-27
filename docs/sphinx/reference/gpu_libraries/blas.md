@@ -1,4 +1,4 @@
-# BLAS
+# Matrix Multiplication Libraries
 
 ROCm libraries for BLAS are as follows:
 
@@ -8,13 +8,10 @@ ROCm libraries for BLAS are as follows:
 :::{grid-item-card} hipBLAS
 hipBLAS is a compatiblity layer for GPU accelerated BLAS optimized for AMD GPUs
 via rocBLAS and rocSOLVER. hipBLAS allows for a common interface for other GPU
-BLAS libraries. Users adopting ROCm are encouraged to choose the hipBLAS
-interface over rocBLAS.
+BLAS libraries. 
 
 - [Changelog](https://github.com/ROCmSoftwarePlatform/hipBLAS/blob/develop/CHANGELOG.md)
-- User Guide
-- API Guide
-- Examples
+- [API Reference Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
 
 :::
 
@@ -22,8 +19,7 @@ interface over rocBLAS.
 rocBLAS is an AMD GPU optimized library for BLAS.
 
 - [Changelog](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CHANGELOG.md)
-- User Guide
-- API Guide
+- [API Reference Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocBLAS)
 
 :::
