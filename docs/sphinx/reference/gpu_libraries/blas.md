@@ -1,4 +1,4 @@
-# Matrix Multiplication Libraries
+# Matrix Multiplication
 
 ROCm libraries for BLAS are as follows:
 
