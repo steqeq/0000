@@ -36,8 +36,7 @@ subtrees:
 
 - caption: APIs and Reference
   entries:
-    - file: reference/all
-      title: HIP
+    - file: reference/hip
       subtrees:
         - entries:
             - title: HIP Runtime API
