@@ -1,1 +1,1 @@
-# Random Number Generators
+# Random Numbers

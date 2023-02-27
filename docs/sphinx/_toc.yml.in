@@ -49,7 +49,6 @@ subtrees:
               subtrees:
                 - entries:
                   - file: reference/gpu_libraries/blas
-                    title: BLAS
                     subtrees:
                     - entries: 
                       - title: rocBLAS
