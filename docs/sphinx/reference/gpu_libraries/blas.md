@@ -19,7 +19,7 @@ BLAS libraries.
 rocBLAS is an AMD GPU optimized library for BLAS.
 
 - [Changelog](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CHANGELOG.md)
-- [API Reference Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
+- [API Reference Manual](https://rocmdocs.amd.com/projects/rocBLAS/en/rtd/)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocBLAS)
 
 :::
