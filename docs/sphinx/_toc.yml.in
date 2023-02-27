@@ -41,7 +41,7 @@ subtrees:
       subtrees:
         - entries:
             - title: HIP Runtime API
-              url: https://github.com/
+              url: https://advanced-micro-devices-hip-saad.readthedocs-hosted.com/en/wip-sphinx/
             - title: HIPify - Port Your Code
               url: https://github.com/
             - file: reference/gpu_libraries/math
