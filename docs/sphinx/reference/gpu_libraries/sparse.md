@@ -1,1 +1,1 @@
-# Sparse Solvers
+# Sparse Matrix Solvers

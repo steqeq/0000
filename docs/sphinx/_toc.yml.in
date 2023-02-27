@@ -57,7 +57,6 @@ subtrees:
                       - title: hipBLAS
                         url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
                   - file: reference/gpu_libraries/fft
-                    title: FFT
                     subtrees:
                     - entries: 
                       - title: rocFFT
@@ -65,7 +64,6 @@ subtrees:
                       - title: hipFFT
                         url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
                   - file: reference/gpu_libraries/rand
-                    title: RAND
                     subtrees:
                     - entries: 
                       - title: rocRAND
@@ -73,7 +71,6 @@ subtrees:
                       - title: hipRAND
                         url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
                   - file: reference/gpu_libraries/solver
-                    title: SOLVER
                     subtrees:
                     - entries: 
                       - title: rocSOLVER
@@ -81,7 +78,6 @@ subtrees:
                       - title: hipSOLVER
                         url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
                   - file: reference/gpu_libraries/sparse
-                    title: SPARSE
                     subtrees:
                     - entries: 
                       - title: rocSPARSE
