@@ -19,7 +19,6 @@ PyTorch is an open source Machine Learning Python library, primarily differentia
 - The ability to deploy at scale using TorchServe
 
 - A production-ready deployment mechanism through TorchScript
-- test 1
-- test 2
+
 
 ### Installing PyTorch
