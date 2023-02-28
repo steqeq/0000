@@ -11,14 +11,8 @@ framework's most current release notes at
 ## PyTorch
 PyTorch is an open source Machine Learning Python library, primarily differentiated by Tensor computing with GPU acceleration and a type-based automatic differentiation. Other advanced features include:
 - Support for distributed training
-
 - Native ONNX support
-
 - C++ frontend
-
 - The ability to deploy at scale using TorchServe
-
 - A production-ready deployment mechanism through TorchScript
-
-
 ### Installing PyTorch
