@@ -10,15 +10,15 @@ framework's most current release notes at
 /bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html.
 ## PyTorch
 PyTorch is an open source Machine Learning Python library, primarily differentiated by Tensor computing with GPU acceleration and a type-based automatic differentiation. Other advanced features include:
-• Support for distributed training
+- Support for distributed training
 
-•  Native ONNX support
+- Native ONNX support
 
-• C++ frontend
+- C++ frontend
 
-•  The ability to deploy at scale using TorchServe
+- The ability to deploy at scale using TorchServe
 
-• A production-ready deployment mechanism through TorchScript
+- A production-ready deployment mechanism through TorchScript
 - test 1
 - test 2
 
