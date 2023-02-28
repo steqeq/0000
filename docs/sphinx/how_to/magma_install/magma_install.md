@@ -9,7 +9,7 @@ each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
 /bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html.
 
-![Figure 5](/figures/image.005.png)
+![Figure 5](figures/image.005.png)
 ## PyTorch
 PyTorch is an open source Machine Learning Python library, primarily differentiated by Tensor computing with GPU acceleration and a type-based automatic differentiation. Other advanced features include:
 - Support for distributed training
