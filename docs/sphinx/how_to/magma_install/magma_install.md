@@ -17,3 +17,4 @@ PyTorch is an open source Machine Learning Python library, primarily differentia
 - The ability to deploy at scale using TorchServe
 - A production-ready deployment mechanism through TorchScript
 ### Installing PyTorch
+To install ROCm on bare metal, refer to the section [ROCm Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60). The recommended option to get a PyTorch environment is through Docker. However, installing the PyTorch wheels package on bare metal is also supported.
