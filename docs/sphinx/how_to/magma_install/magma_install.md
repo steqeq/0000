@@ -42,4 +42,4 @@ This will automatically download the image if it does not exist on the host. You
 ---
 #### Option 2: Install PyTorch Using Wheels Package
 PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, refer to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/) and choose the "ROCm" compute platform. Figure 6 is a matrix from [pytroch.org](pytroch.org) that illustrates the installation compatibility between ROCm and the PyTorch build.
-
+![Figure 5](figures/image.005.png)
