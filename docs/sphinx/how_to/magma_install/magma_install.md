@@ -45,7 +45,7 @@ This will automatically download the image if it does not exist on the host. You
 
 ---
 #### Option 2: Install PyTorch Using Wheels Package
-PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, refer to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/) and choose the "ROCm" compute platform. Figure 6 is a matrix from [pytroch.org](pytroch.org) that illustrates the installation compatibility between ROCm and the PyTorch build.
+PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, refer to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/) and choose the "ROCm" compute platform. Figure 6 is a matrix from pytroch.org that illustrates the installation compatibility between ROCm and the PyTorch build.
 
 
 | ![Figure 6](figures/image.006.png)|
@@ -61,4 +61,4 @@ a. Obtain a base Docker image with the correct user-space ROCm version installed
 
  or
 
-b.  Download a base OS Docker image and install ROCm following the installation directions in the section [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60). ROCm 5.2 is installed in this example, as supported by the installation matrix from [pytorch.org](pytorch.org).
+b.  Download a base OS Docker image and install ROCm following the installation directions in the section [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60). ROCm 5.2 is installed in this example, as supported by the installation matrix from pytorch.org.
