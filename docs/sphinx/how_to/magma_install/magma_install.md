@@ -28,3 +28,9 @@ Follow these steps:
 ```
 
 Optionally, you may download a specific and supported configuration with different user-space ROCm versions, PyTorch versions, and supported operating systems. To download the PyTorch Docker image, refer to [https://hub.docker.com/r/rocm/pytorch](https://hub.docker.com/r/rocm/pytorch).
+
+2. Start a Docker container using the downloaded image.
+
+```
+    docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
+```
