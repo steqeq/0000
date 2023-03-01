@@ -40,3 +40,6 @@ Optionally, you may download a specific and supported configuration with differe
 This will automatically download the image if it does not exist on the host. You can also pass the -v argument to mount any data directories from the host onto the container.
 
 ---
+#### Option 2: Install PyTorch Using Wheels Package
+PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, refer to [https://pytorch.org/get-started/locally/] (https://pytorch.org/get-started/locally/) and choose the "ROCm" compute platform. Figure 6 is a matrix from [pytroch.org] (pytroch.org) that illustrates the installation compatibility between ROCm and the PyTorch build.
+
