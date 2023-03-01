@@ -8,7 +8,13 @@ Deep Learning applications. Figure 5 provides the sequential flow for the use of
 each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
 /bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html.
+
+| 
 ![Figure 5](figures/image.005.png)
+|
+|:--:|
+| <b>Figure 5. ROCm Compatible Frameworks Flowchart</b>|
+
 ## PyTorch
 PyTorch is an open source Machine Learning Python library, primarily differentiated by Tensor computing with GPU acceleration and a type-based automatic differentiation. Other advanced features include:
 - Support for distributed training
@@ -42,4 +48,13 @@ This will automatically download the image if it does not exist on the host. You
 ---
 #### Option 2: Install PyTorch Using Wheels Package
 PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, refer to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/) and choose the "ROCm" compute platform. Figure 6 is a matrix from [pytroch.org](pytroch.org) that illustrates the installation compatibility between ROCm and the PyTorch build.
+
 ![Figure 6](figures/image.006.png)
+
+To install PyTorch using the wheels package, follow these installation steps:
+
+1. Choose one of the following options:
+
+a. Obtain a base Docker image with the correct user-space ROCm version installed from [https://hub.docker.com/repository/docker/rocm/dev-ubuntu-20.04](https://hub.docker.com/repository/docker/rocm/dev-ubuntu-20.04).
+
+ or
