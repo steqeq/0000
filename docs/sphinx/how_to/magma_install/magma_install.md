@@ -9,9 +9,7 @@ each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
 /bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html.
 
-| 
-![Figure 5](figures/image.005.png)
-|
+| ![Figure 5](figures/image.005.png)|
 |:--:|
 | <b>Figure 5. ROCm Compatible Frameworks Flowchart</b>|
 
