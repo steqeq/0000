@@ -22,5 +22,5 @@ To install ROCm on bare metal, refer to the section [ROCm Installation](https://
 Using Docker gives you portability and access to a prebuilt Docker container that has been rigorously tested within AMD. This might also save on the compilation time and should perform as it did when tested without facing potential installation issues.
 Follow these steps:
 1. Pull the latest public PyTorch Docker image.
-'''docker pull rocm/pytorch:latest'''
+```docker pull rocm/pytorch:latest```
 Optionally, you may download a specific and supported configuration with different user-space ROCm versions, PyTorch versions, and supported operating systems. To download the PyTorch Docker image, refer to [](https://hub.docker.com/r/rocm/pytorch).
