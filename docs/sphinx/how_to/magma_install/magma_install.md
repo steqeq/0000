@@ -60,3 +60,6 @@ To install PyTorch using the wheels package, follow these installation steps:
 a. Obtain a base Docker image with the correct user-space ROCm version installed from [https://hub.docker.com/repository/docker/rocm/dev-ubuntu-20.04](https://hub.docker.com/repository/docker/rocm/dev-ubuntu-20.04).
 
  or
+
+b.  Download a base OS Docker image and install ROCm following the installation directions in the section [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60). ROCm 5.2 is installed in this example, as supported by the installation matrix from [pytorch.org](pytorch.org).
+ 
