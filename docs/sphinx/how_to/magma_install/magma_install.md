@@ -7,7 +7,7 @@ The following sections cover the different framework installations for ROCm and
 Deep Learning applications. Figure 5 provides the sequential flow for the use of
 each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
-/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html.
+[/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html](/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html).
 
 | ![Figure 5](figures/image.005.png)|
 |:--:|
@@ -62,4 +62,3 @@ a. Obtain a base Docker image with the correct user-space ROCm version installed
  or
 
 b.  Download a base OS Docker image and install ROCm following the installation directions in the section [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60). ROCm 5.2 is installed in this example, as supported by the installation matrix from [pytorch.org](pytorch.org).
- 
