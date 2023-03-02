@@ -99,7 +99,9 @@ subtrees:
                   - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
                     title: RCCL
             - url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
-              title: MIOpen - Machine Intelligence Library
+              title: MIOpen - Machine Intelligence
+            - url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
+              title: MIGraphX- Graph Optimization 
     - file: reference/openmp/openmp
       title: OpenMP
     - file: reference/compilers
