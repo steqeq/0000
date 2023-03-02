@@ -152,3 +152,8 @@ USE_ROCM=1 MAX_JOBS=4 python3 setup.py install ––user
 ```
 #### Option 4: Install Using PyTorch Upstream Docker File
 Instead of using a prebuilt base Docker image, you can build a custom base Docker image using scripts from the PyTorch repository. This will utilize a standard Docker image from operating system maintainers and install all the dependencies required to build PyTorch, including
+- ROCm
+- Torchvision
+- Conda packages
+- Compiler toolchain
+Follow these steps:
