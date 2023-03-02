@@ -117,3 +117,9 @@ git clone https://github.com/pytorch/pytorch.git
 cd pytorch
 git submodule update --init –recursive
 ```
+
+4. Build PyTorch for ROCm.
+
+:::{note}
+By default in the rocm/pytorch:latest-base, PyTorch builds for these architectures simultaneously:
+:::
