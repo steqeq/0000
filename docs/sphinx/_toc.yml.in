@@ -26,13 +26,10 @@ subtrees:
           - file: quick_start
           - file: hip_sdk_install_win/hip_sdk_install_win
           - file: deploy/docker
-          - file: deploy/advanced
-            subtrees:
-              - entries:
-                  - file: deploy/advanced/uninstall
-                  - file: deploy/advanced/multi
-                  - file: deploy/advanced/spack
-                  - file: deploy/advanced/build_source
+          - file: deploy/advanced/uninstall
+          - file: deploy/advanced/multi
+          - file: deploy/advanced/spack
+          - file: deploy/advanced/build_source
 
 
 - caption: APIs and Reference
@@ -101,6 +98,8 @@ subtrees:
                 - entries:
                   - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
                     title: RCCL
+            - url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
+              title: MIOpen - Machine Intelligence Library
     - file: reference/openmp/openmp
       title: OpenMP
     - file: reference/compilers

@@ -25,32 +25,26 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 |GPU               |Architecture    | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | [Support Level](#gpu-support-levels) |
 |:----------------:|:--------------:|:--------------------------------------------------------------------:|:------------------------------------:|
-|Instinct™ MI250X  | CDNA2          | gfx90a                                                               | Full                                 |
-|Instinct™ MI250   | CDNA2          | gfx90a                                                               | Full                                 |
-|Instinct™ MI210   | CDNA2          | gfx90a                                                               | Full                                 |
-|Instinct™ MI100   | CDNA           | gfx908                                                               | Full                                 |
-|Instinct™ MI50    | Vega           | gfx906                                                               | Maintenance                          |
-|Radeon™ Pro W6800 | RDNA2          | gfx1030                                                              | Full                                 |
-|Radeon™ Pro V620  | RDNA2          | gfx1030                                                              | Full                                 |
-|Radeon™ RX 6900 XT| RDNA2          | gfx1030                                                              | Non-commercial                       |
-|Radeon™ RX 6600   | RDNA2          | gfx1031                                                              | HIP                                  |
-|Radeon™ R9 Fury   | Fiji           | gfx803                                                               | Community                            |
+|Instinct™ MI250X  | CDNA2          | gfx90a                                                               |                                      |
+|Instinct™ MI250   | CDNA2          | gfx90a                                                               |                                      |
+|Instinct™ MI210   | CDNA2          | gfx90a                                                               |                                      |
+|Instinct™ MI100   | CDNA           | gfx908                                                               |                                      |
+|Instinct™ MI50    | Vega           | gfx906                                                               |                                      |
+|Radeon™ Pro W6800 | RDNA2          | gfx1030                                                              |                                      |
+|Radeon™ Pro V620  | RDNA2          | gfx1030                                                              |                                      |
+|Radeon™ RX 6900 XT| RDNA2          | gfx1030                                                              |                                      |
+|Radeon™ RX 6600   | RDNA2          | gfx1031                                                              |                                      |
+|Radeon™ R9 Fury   | Fiji           | gfx803                                                               |                                      |
 
 ### GPU Support Levels
 
 GPU support levels in ROCm:
 
-- Full - AMD provides full support for all software that is part of ROCm
-- Non-commercial - AMD enables all software that is part of ROCm. However,
-  commercial usage is not supported.
-- HIP SDK - AMD supports select GPU libraries and the HIP Runtime on these
-  products. The HIP SDK contents are described [here]().
-- HIP - AMD supports the HIP Runtime only for these products.
-- Maintenance - This GPUs is now in maintenance mode. No new features will be
-  enabled on this product.
-- Community - Packages distributed by AMD have dropped support for these GPUs or
-  never enabled support for the GPUs. Builds from source are not disabled. AMD
-  encourages the open source community to enable functionality for these cards.
+- Support level 1
+- Support level 2 
+- Deprecated
+- Unsupported
+
 
 ## CPU Support
 
