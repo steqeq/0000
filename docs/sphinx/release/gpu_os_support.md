@@ -34,17 +34,16 @@ ROCm supports virtualization for select GPUs only as shown below.
 |Radeon™ Pro V620  | RDNA2          |     |gfx1030                                                              |                                      |         |
 |Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |Supported                             |         |
 |Radeon™ RX 6600   | RDNA2          |HIP|gfx1031                                                              |                                      |         |
-|Radeon™ R9 Fury   | Fiji           |     |gfx803                                                               |                                      |         |
+|Radeon™ R9 Fury   | Fiji           |     |gfx803                                                               |Community                            |         |
 
 ### GPU Support Levels
 
 GPU support levels in ROCm:
 
-- Full
-- HIP SDK
-- HIP
-- Deprecated
+- Supported
 - Unsupported
+- Deprecated
+- Community
 
 
 ## CPU Support
