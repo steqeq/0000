@@ -28,7 +28,7 @@ Follow these steps:
 1. Pull the latest public PyTorch Docker image.
 
 ```
-    docker pull rocm/pytorch:latest
+docker pull rocm/pytorch:latest
 ```
 
 Optionally, you may download a specific and supported configuration with different user-space ROCm versions, PyTorch versions, and supported operating systems. To download the PyTorch Docker image, refer to [https://hub.docker.com/r/rocm/pytorch](https://hub.docker.com/r/rocm/pytorch).
@@ -36,7 +36,7 @@ Optionally, you may download a specific and supported configuration with differe
 2. Start a Docker container using the downloaded image.
 
 ```
-    docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
+docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
 ```
 
 :::{note}
@@ -67,14 +67,14 @@ or
  c.  Install on bare metal. Skip to Step 3.
 
 ```
-    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
+docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
 ```
 3. Install any dependencies needed for installing the wheels package.
 
 ```
-    sudo apt update
-    sudo apt install libjpeg-dev python3-dev
-    pip3 install wheel setuptools
+sudo apt update
+sudo apt install libjpeg-dev python3-dev
+pip3 install wheel setuptools
 ```
 
 4. Install torch, torchvision, and torchaudio as specified by the installation matrix.
@@ -100,6 +100,6 @@ Follow these steps:
 
 1. Obtain the Docker image.
 ```
-    docker pull rocm/pytorch:latest-base
+docker pull rocm/pytorch:latest-base
 ```
 The above will download the base container, which does not contain PyTorch.
