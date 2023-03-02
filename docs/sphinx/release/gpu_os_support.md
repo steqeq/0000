@@ -23,18 +23,18 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 ## GPU Support Table
 
-|GPU               |Architecture    | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | [Support Level](#gpu-support-levels) |
-|:----------------:|:--------------:|:--------------------------------------------------------------------:|:------------------------------------:|
-|Instinct™ MI250X  | CDNA2          | gfx90a                                                               |                                      |
-|Instinct™ MI250   | CDNA2          | gfx90a                                                               |                                      |
-|Instinct™ MI210   | CDNA2          | gfx90a                                                               |                                      |
-|Instinct™ MI100   | CDNA           | gfx908                                                               |                                      |
-|Instinct™ MI50    | Vega           | gfx906                                                               |                                      |
-|Radeon™ Pro W6800 | RDNA2          | gfx1030                                                              |                                      |
-|Radeon™ Pro V620  | RDNA2          | gfx1030                                                              |                                      |
-|Radeon™ RX 6900 XT| RDNA2          | gfx1030                                                              |                                      |
-|Radeon™ RX 6600   | RDNA2          | gfx1031                                                              |                                      |
-|Radeon™ R9 Fury   | Fiji           | gfx803                                                               |                                      |
+|GPU               |Architecture    | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
+|:----------------:|:--------------:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
+|Instinct™ MI250X  | CDNA2          | gfx90a                                                               |                                      |         |
+|Instinct™ MI250   | CDNA2          | gfx90a                                                               |                                      |         |
+|Instinct™ MI210   | CDNA2          | gfx90a                                                               |                                      |         |
+|Instinct™ MI100   | CDNA           | gfx908                                                               |                                      |         |
+|Instinct™ MI50    | Vega           | gfx906                                                               |                                      |         |
+|Radeon™ Pro W6800 | RDNA2          | gfx1030                                                              |                                      |         |
+|Radeon™ Pro V620  | RDNA2          | gfx1030                                                              |                                      |         |
+|Radeon™ RX 6900 XT| RDNA2          | gfx1030                                                              |                                      |         |
+|Radeon™ RX 6600   | RDNA2          | gfx1031                                                              |                                      |         |
+|Radeon™ R9 Fury   | Fiji           | gfx803                                                               |                                      |         |
 
 ### GPU Support Levels
 
