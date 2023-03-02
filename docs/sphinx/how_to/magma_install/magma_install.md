@@ -79,3 +79,16 @@ or
 ```
 
 4. Install torch, torchvision, and torchaudio as specified by the installation matrix.
+
+---
+**NOTE**
+
+ROCm 5.2 PyTorch wheel in the command below is shown for reference.
+
+---
+
+```
+    pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/rocm5.2/
+```
+
+#### Option 3: Install PyTorch Using PyTorch ROCm Base Docker Image
