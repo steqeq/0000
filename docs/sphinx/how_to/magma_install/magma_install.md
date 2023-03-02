@@ -150,4 +150,4 @@ This will first convert PyTorch sources for HIP compatibility and build the PyTo
 python3 tools/amd_build/build_amd.py
 USE_ROCM=1 MAX_JOBS=4 python3 setup.py install ––user
 ```
-
+#### Option 4: Install Using PyTorch Upstream Docker File
