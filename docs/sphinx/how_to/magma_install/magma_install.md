@@ -137,3 +137,4 @@ rocminfo | grep gfx
 ```
 export PYTORCH_ROCM_ARCH=<uarch>
 ```
+\<uarch\> is the architecture reported by the rocminfo command. is the architecture reported by the rocminfo command.
