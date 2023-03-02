@@ -66,3 +66,16 @@ b.  Download a base OS Docker image and install ROCm following the installation 
 or
 
  c.  Install on bare metal. Skip to Step 3.
+
+```
+    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
+```
+3. Install any dependencies needed for installing the wheels package.
+
+```
+    sudo apt update
+    sudo apt install libjpeg-dev python3-dev
+    pip3 install wheel setuptools
+```
+
+4. Install torch, torchvision, and torchaudio as specified by the installation matrix.
