@@ -25,12 +25,12 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
 |:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
-|Instinct™ MI250X  | CDNA2          |ROCm |gfx90a                                                               |                                      |         |
-|Instinct™ MI250   | CDNA2          |ROCm |gfx90a                                                               |                                      |         |
-|Instinct™ MI210   | CDNA2          |ROCm |gfx90a                                                               |                                      |         |
-|Instinct™ MI100   | CDNA           |     |gfx908                                                               |                                      |         |
-|Instinct™ MI50    | Vega           |     |gfx906                                                               |                                      |         |
-|Radeon™ Pro W6800 | RDNA2          |     |gfx1030                                                              |                                      |         |
+|Instinct™ MI250X  | CDNA2          |ROCm |gfx90a                                                               |Full                                  |Unsupported  |
+|Instinct™ MI250   | CDNA2          |ROCm |gfx90a                                                               |Full                                  |Unsupported  |
+|Instinct™ MI210   | CDNA2          |ROCm |gfx90a                                                               |                                      |Unsupported   |
+|Instinct™ MI100   | CDNA           |     |gfx908                                                               |                                      |Unsupported  |
+|Instinct™ MI50    | Vega           |     |gfx906                                                               |                                      |Unsupported  |
+|Radeon™ Pro W6800 | RDNA2          |ROCm |gfx1030                                                              |                                      |             |
 |Radeon™ Pro V620  | RDNA2          |     |gfx1030                                                              |                                      |         |
 |Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |                                      |         |
 |Radeon™ RX 6600   | RDNA2          |HIP|gfx1031                                                              |                                      |         |
