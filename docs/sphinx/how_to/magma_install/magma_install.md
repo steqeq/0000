@@ -62,3 +62,7 @@ a. Obtain a base Docker image with the correct user-space ROCm version installed
  or
 
 b.  Download a base OS Docker image and install ROCm following the installation directions in the section [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60). ROCm 5.2 is installed in this example, as supported by the installation matrix from pytorch.org.
+
+or
+
+ c.  Install on bare metal. Skip to Step 3.
