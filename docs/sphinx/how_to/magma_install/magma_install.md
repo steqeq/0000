@@ -109,6 +109,7 @@ The above will download the base container, which does not contain PyTorch.
 docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest-base
 ```
 You can also pass the -v argument to mount any data directories from the host onto the container.
+
 3. Clone the PyTorch repository.
 ```
 cd ~
