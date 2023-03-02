@@ -95,3 +95,11 @@ A prebuilt base Docker image is used to build PyTorch in this option. The base D
 - Conda packages
 - Compiler toolchain
 Additionally, a particular environment flag (BUILD_ENVIRONMENT) is set, and the build scripts utilize that to determine the build environment configuration.
+
+Follow these steps:
+
+1. Obtain the Docker image.
+```
+    docker pull rocm/pytorch:latest-base
+```
+The above will download the base container, which does not contain PyTorch.
