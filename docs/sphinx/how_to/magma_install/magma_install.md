@@ -38,14 +38,9 @@ Optionally, you may download a specific and supported configuration with differe
 ```
     docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
 ```
----
-**NOTE**
 
-This will automatically download the image if it does not exist on the host. You can also pass the -v argument to mount any data directories from the host onto the container.
-
----
 :::{note}
-This text is **standard** *Markdown*
+This will automatically download the image if it does not exist on the host. You can also pass the -v argument to mount any data directories from the host onto the container.
 :::
 
 #### Option 2: Install PyTorch Using Wheels Package
