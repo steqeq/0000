@@ -89,3 +89,4 @@ ROCm 5.2 PyTorch wheel in the command below is shown for reference.
 ```
 
 #### Option 3: Install PyTorch Using PyTorch ROCm Base Docker Image
+A prebuilt base Docker image is used to build PyTorch in this option. The base Docker has all dependencies installed, including:
