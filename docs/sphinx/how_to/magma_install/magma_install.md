@@ -132,3 +132,5 @@ By default in the rocm/pytorch:latest-base, PyTorch builds for these architectur
 ```
 rocminfo | grep gfx
 ```
+
+6. In the event you want to compile only for your uarch, use:
