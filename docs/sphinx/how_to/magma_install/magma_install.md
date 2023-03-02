@@ -121,13 +121,10 @@ git submodule update --init –recursive
 4. Build PyTorch for ROCm.
 :::{note}
 By default in the rocm/pytorch:latest-base, PyTorch builds for these architectures simultaneously:
-:::
 - gfx900
-
 - gfx906
-
 - gfx908
-
 - gfx90a
-
 - gfx1030
+:::
+
