@@ -103,6 +103,7 @@ Follow these steps:
 docker pull rocm/pytorch:latest-base
 ```
 The above will download the base container, which does not contain PyTorch.
+
 2. Start a Docker container using the image.
 ```
 docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest-base
