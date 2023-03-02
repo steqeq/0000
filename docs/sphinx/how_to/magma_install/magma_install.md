@@ -138,3 +138,8 @@ rocminfo | grep gfx
 export PYTORCH_ROCM_ARCH=<uarch>
 ```
 \<uarch\> is the architecture reported by the rocminfo command. is the architecture reported by the rocminfo command.
+7.  Build PyTorch using the following command:
+```
+./.jenkins/pytorch/build.sh
+```
+This will first convert PyTorch sources for HIP compatibility and build the PyTorch framework.
