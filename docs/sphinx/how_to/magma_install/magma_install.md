@@ -134,3 +134,6 @@ rocminfo | grep gfx
 ```
 
 6. In the event you want to compile only for your uarch, use:
+```
+export PYTORCH_ROCM_ARCH=<uarch>
+```
