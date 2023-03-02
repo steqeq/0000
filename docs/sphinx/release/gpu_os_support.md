@@ -24,9 +24,9 @@ ROCm supports virtualization for select GPUs only as shown below.
 ## GPU Support Table
 
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
-|:----------------:|:--------------:|     |:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
+|:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
 |Instinct™ MI250X  | CDNA2          |ROCm |gfx90a                                                               |                                      |         |
-|Instinct™ MI250   | CDNA2          |ROCm|gfx90a                                                               |                                      |         |
+|Instinct™ MI250   | CDNA2          |ROCm |gfx90a                                                               |                                      |         |
 |Instinct™ MI210   | CDNA2          |ROCm |gfx90a                                                               |                                      |         |
 |Instinct™ MI100   | CDNA           |     |gfx908                                                               |                                      |         |
 |Instinct™ MI50    | Vega           |     |gfx906                                                               |                                      |         |
@@ -41,6 +41,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 GPU support levels in ROCm:
 
 - Full
+- HIP SDK
 - HIP
 - Deprecated
 - Unsupported
