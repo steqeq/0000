@@ -52,6 +52,8 @@ subtrees:
                         url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
                       - title: hipBLAS
                         url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
+                      - title: rocWMMA
+                        url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
                   - file: reference/gpu_libraries/fft
                     subtrees:
                     - entries: 
