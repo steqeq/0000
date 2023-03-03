@@ -111,13 +111,12 @@ subtrees:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
           - file: reference/dev_tools
-              subtrees:
-                - entries:
-                  - url: http://profiler
-                  - title: rocprof
+            subtrees:
+              - entries:
+                - url: http://profiler
+                  title: rocprof
     - file: reference/management_tools
       title: Management Tools
-      
     - file: reference/gpu_arch
 - caption: Understand ROCm
   entries:
