@@ -25,7 +25,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 ::::{tab-set}
 
-:::{tab-item} Instinct
+:::{tab-item} Instinct™
 :sync: instinct
 
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
@@ -39,7 +39,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 :::
 
-:::{tab-item} Radeon Pro
+:::{tab-item} Radeon Pro™
 :sync: radeonpro
 
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
@@ -52,7 +52,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 :::
 
-:::{tab-item} Radeon
+:::{tab-item} Radeon™
 :sync: radeon
 
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
