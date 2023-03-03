@@ -170,7 +170,15 @@ git submodule update --init –recursive
 2. Build the PyTorch Docker image.
 ```
 cd.circleci/docker
-  ./build.sh pytorch-linux-bionic-rocm<version>-py3.7 
-  # eg. ./build.sh pytorch-linux-bionic-rocm3.10-py3.7
+./build.sh pytorch-linux-bionic-rocm<version>-py3.7 
+# eg. ./build.sh pytorch-linux-bionic-rocm3.10-py3.7
 ```
 This should be complete with a message "Successfully build &lt;image_id&gt;."
+
+3. Start a Docker container using the image:
+```
+docker run -it --cap-add=SYS_PTRACE --security-opt 
+seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add 
+video --ipc=host --shm-size 8G <image_id>
+```
+You can also pass -v argument to mount any data directories from the host onto the container.
