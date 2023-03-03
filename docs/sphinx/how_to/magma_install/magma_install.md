@@ -156,4 +156,6 @@ Instead of using a prebuilt base Docker image, you can build a custom base Docke
 - Torchvision
 - Conda packages
 - Compiler toolchain
+
 Follow these steps:
+1.     Clone the PyTorch repository on the host.
