@@ -206,3 +206,9 @@ By default in the rocm/pytorch:latest-base, PyTorch builds for these architectur
 ```
 rocminfo | grep gfx
 ```
+
+7. If you want to compile only for your uarch:
+```
+export PYTORCH_ROCM_ARCH=<uarch>
+```
+<uarch> is the architecture reported by the rocminfo command.
