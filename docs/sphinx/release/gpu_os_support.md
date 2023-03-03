@@ -23,6 +23,11 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 ## GPU Support Table
 
+::::{tab-set}
+
+:::{tab-item} Instinct
+:sync: instinct
+
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
 |:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
 |Instinct™ MI250X  | CDNA2          |All |gfx90a                                                               |Supported                                  |Unsupported  |
@@ -35,6 +40,37 @@ ROCm supports virtualization for select GPUs only as shown below.
 |Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |Supported                             |Supported|
 |Radeon™ RX 6600   | RDNA2          |HIP|gfx1031                                                              |Supported|Supported|
 |Radeon™ R9 Fury   | Fiji           |All|gfx803                                                               |Community                            |Unsupported|
+
+:::
+
+:::{tab-item} Radeon Pro
+:sync: radeonpro
+
+|GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
+|:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
+|Radeon™ Pro W6800 | RDNA2          |All |gfx1030                                                              |Supported                            |Supported|
+|Radeon™ Pro V620  | RDNA2          |All|gfx1030                                                              |Supported                            |Unsupported|
+|Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |Supported                             |Supported|
+|Radeon™ RX 6600   | RDNA2          |HIP|gfx1031                                                              |Supported|Supported|
+|Radeon™ R9 Fury   | Fiji           |All|gfx803                                                               |Community                            |Unsupported|
+
+:::
+
+:::{tab-item} Radeon
+:sync: radeon
+
+|GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
+|:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
+|Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |Supported                             |Supported|
+|Radeon™ RX 6600   | RDNA2          |HIP|gfx1031                                                              |Supported|Supported|
+|Radeon™ R9 Fury   | Fiji           |All|gfx803                                                               |Community                            |Unsupported|
+:::
+
+
+
+::::
+
+
 
 ### Products in ROCm
 ROCm software support varies by GPU type and Operating System. ROCm ecosystem products are three software stack enablement levels that correspond as described below:
