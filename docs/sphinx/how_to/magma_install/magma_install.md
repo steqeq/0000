@@ -237,3 +237,27 @@ Do not run in the PyTorch git folder.
 ```
 python3 -c 'import torch' 2> /dev/null && echo 'Success' || echo 'Failure'
 ```
+
+2. Test if the GPU is accessible from PyTorch. In the PyTorch framework, torch.cuda is a generic mechanism to access the GPU; it will access an AMD GPU only if available.
+```
+python3 -c 'import torch; print(torch.cuda.is_available())'
+```
+
+3. Run the unit tests to validate the PyTorch installation fully. Run the following command from the PyTorch home directory:
+```
+BUILD_ENVIRONMENT=${BUILD_ENVIRONMENT:-rocm} ./.jenkins/pytorch/test.sh
+```
+This ensures that even for wheel installs in a non-controlled environment, the required environment variable will be set to skip certain unit tests for ROCm.
+:::{note}
+Make sure the PyTorch source code is corresponding to the PyTorch wheel or installation in the Docker image. Incompatible PyTorch source code might give errors when running the unit tests.
+:::
+This will first install some dependencies, such as a supported torchvision version for PyTorch. Torchvision is used in some PyTorch tests for loading models. Next, this will run all the unit tests.
+:::{note}
+Some tests may be skipped, as appropriate, based on your system configuration. All features of PyTorch are not supported on ROCm, and the tests that evaluate these features are skipped. In addition, depending on the host memory, or the number of available GPUs, other tests may be skipped. No test should fail if the compilation and installation are correct.
+:::
+
+4. Run individual unit tests with the following command:
+```
+PYTORCH\_TEST\_WITH\_ROCM=1 python3 test/test\_nn.py --verbose
+```
+test_nn.py can be replaced with any other test set.
