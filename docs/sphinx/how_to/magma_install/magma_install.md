@@ -231,3 +231,9 @@ You can use PyTorch unit tests to validate a PyTorch installation. If using a pr
 Follow these steps:
 
 1. Test if PyTorch is installed and accessible by importing the torch package in Python.
+:::{note}
+Do not run in the PyTorch git folder.
+:::
+```
+python3 -c 'import torch' 2> /dev/null && echo 'Success' || echo 'Failure'
+```
