@@ -244,3 +244,6 @@ python3 -c 'import torch; print(torch.cuda.is_available())'
 ```
 
 3. Run the unit tests to validate the PyTorch installation fully. Run the following command from the PyTorch home directory:
+```
+BUILD_ENVIRONMENT=${BUILD_ENVIRONMENT:-rocm} ./.jenkins/pytorch/test.sh
+```
