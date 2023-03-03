@@ -101,7 +101,15 @@ subtrees:
             - url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
               title: MIOpen - Machine Intelligence
             - url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
-              title: MIGraphX- Graph Optimization 
+              title: MIGraphX- Graph Optimization
+            - file: reference/computer_vision
+              subtrees:
+                - entries:
+                  - url: https://rocmdocs.amd.com/projects/MIVisionX/en/{branch}/
+                    title: MIVisionX
+                - entries:
+                  - url: https://rocmdocs.amd.com/projects/rocAL/en/{branch}/
+                    title: rocAL 
     - file: reference/openmp/openmp
       title: OpenMP
     - file: reference/compilers
@@ -117,6 +125,10 @@ subtrees:
                   title: rocprof
     - file: reference/management_tools
       title: Management Tools
+      subtrees:
+        - entries:
+          - url: http://smi
+            title: rocmsmi
     - file: reference/gpu_arch
 - caption: Understand ROCm
   entries:
