@@ -252,3 +252,7 @@ This ensures that even for wheel installs in a non-controlled environment, the r
 Make sure the PyTorch source code is corresponding to the PyTorch wheel or installation in the Docker image. Incompatible PyTorch source code might give errors when running the unit tests.
 :::
 This will first install some dependencies, such as a supported torchvision version for PyTorch. Torchvision is used in some PyTorch tests for loading models. Next, this will run all the unit tests.
+:::{note}
+Some tests may be skipped, as appropriate, based on your system configuration. All features of PyTorch are not supported on ROCm, and the tests that evaluate these features are skipped. In addition, depending on the host memory, or the number of available GPUs, other tests may be skipped. No test should fail if the compilation and installation are correct.
+:::
+
