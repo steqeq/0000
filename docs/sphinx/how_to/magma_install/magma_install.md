@@ -251,3 +251,4 @@ This ensures that even for wheel installs in a non-controlled environment, the r
 :::{note}
 Make sure the PyTorch source code is corresponding to the PyTorch wheel or installation in the Docker image. Incompatible PyTorch source code might give errors when running the unit tests.
 :::
+This will first install some dependencies, such as a supported torchvision version for PyTorch. Torchvision is used in some PyTorch tests for loading models. Next, this will run all the unit tests.
