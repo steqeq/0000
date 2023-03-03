@@ -158,4 +158,12 @@ Instead of using a prebuilt base Docker image, you can build a custom base Docke
 - Compiler toolchain
 
 Follow these steps:
+
 1.     Clone the PyTorch repository on the host.
+```
+cd ~
+git clone https://github.com/pytorch/pytorch.git
+cd pytorch
+git submodule update --init –recursive
+```
+
