@@ -211,7 +211,7 @@ rocminfo | grep gfx
 ```
 export PYTORCH_ROCM_ARCH=<uarch>
 ```
-/<uarch/> is the architecture reported by the rocminfo command.
+\<uarch\> is the architecture reported by the rocminfo command.
 
 8. Build PyTorch using:
 ```
