@@ -182,3 +182,13 @@ seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add
 video --ipc=host --shm-size 8G <image_id>
 ```
 You can also pass -v argument to mount any data directories from the host onto the container.
+
+4. Clone the PyTorch repository.
+```
+cd ~
+git clone https://github.com/pytorch/pytorch.git
+cd pytorch
+git submodule update --init --recursive
+```
+
+5. Build PyTorch for ROCm.
