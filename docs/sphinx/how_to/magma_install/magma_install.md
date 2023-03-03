@@ -257,3 +257,7 @@ Some tests may be skipped, as appropriate, based on your system configuration. A
 :::
 
 4. Run individual unit tests with the following command:
+```
+PYTORCH\_TEST\_WITH\_ROCM=1 python3 test/test\_nn.py --verbose
+```
+test_nn.py can be replaced with any other test set.
