@@ -26,10 +26,10 @@ subtrees:
           - file: quick_start
           - file: hip_sdk_install_win/hip_sdk_install_win
           - file: deploy/docker
-          - file: deploy/advanced/uninstall
-          - file: deploy/advanced/multi
-          - file: deploy/advanced/spack
-          - file: deploy/advanced/build_source
+          - file: deploy/install
+          - file: deploy/multi
+          - file: deploy/spack
+          - file: deploy/build_source
 
 
 - caption: APIs and Reference

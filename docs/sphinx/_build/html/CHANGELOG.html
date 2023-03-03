@@ -1,0 +1,1896 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Changelog &#8212; ROCm Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=18134341461cad4d0490f915e28f299975ce52b8" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/rocm_header.css" />
+    <link rel="stylesheet" type="text/css" href="_static/rocm_footer.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/code_word_breaks.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CHANGELOG';</script>
+    <link rel="shortcut icon" href="https://www.amd.com/themes/custom/amd/favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar"><div class="rocm-header">
+    <div class="rocm-header-buttons">
+        <a href="https://www.amd.com" class="rocm-header-link">
+            <img id="amd-logo" alt="Advanced Micro Devices, Inc." src="amd-header-logo.svg"></img>
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+        <a href="http://github.com/RadeonOpenCompute/ROCm" class="rocm-header-link">
+            <div class="rocm-link-box">
+                <p>GitHub</p>
+            </div>
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+        <a href="https://github.com/RadeonOpenCompute/ROCm/discussions" class="rocm-header-link">
+            <div class="rocm-link-box">
+                <p>Community</p>
+            </div>
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+        <a href="https://github.com/RadeonOpenCompute/ROCm/issues/new" class="rocm-header-link">
+            <div class="rocm-link-box">
+                <p>Support</p>
+            </div>
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+        <a href="https://www.amd.com/en/technologies/infinity-hub" class="rocm-header-link">
+            <div class="rocm-link-box">
+                <p>Infinity Hub</p>
+            </div>
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+        <a href="https://rocm.amd.com" class="rocm-header-link rocm-header-last" id="rocm-link">
+            <img id="rocm-logo" alt="ROCm logo" src="rocm-on.png"></img>
+            <div class="glow-wrap">
+                <i class="glow"></i>
+            </div>
+        </a>
+    </div>
+</div>
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ROCm Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="release.html">Release Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="release/gpu_os_support.html">GPU and OS Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release/licensing.html">Licensing Terms</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue">Known Issues</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="release/compatibility.html">Compatibility</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/framework_compatiblity/framework_compatiblity.html">Framework Compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/kernel_userspace_compatibility/kernel_userspace_comp.html">Kernel Userspace Compatiblity Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="deploy.html">Deploy</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html">Quick Start (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hip_sdk_install_win/hip_sdk_install_win.html">Quick Start (Windows)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy/docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy/install.html">Basic Installation Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy/multi.html">Multi-ROCm Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy/spack.html">spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy/build_source.html">Build from Source</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">APIs and Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="reference/hip.html">HIP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://advanced-micro-devices-hip-saad.readthedocs-hosted.com/en/wip-sphinx/">HIP Runtime API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://advanced-micro-devices-demo--737.com.readthedocs.build/projects/HIPIFY/en/737/">HIPify - Port Your Code</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="reference/gpu_libraries/math.html">Math Libraries</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/gpu_libraries/blas.html">Matrix Multiplication</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocBLAS/en/master/">rocBLAS</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/hipBLAS/en/master/">hipBLAS</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocWMMA/en/master/">rocWMMA</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/gpu_libraries/fft.html">Fast Fourier Transforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocFFT/en/master/">rocFFT</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/hipFFT/en/master/">hipFFT</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/gpu_libraries/rand.html">Random Numbers</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocRAND/en/master/">rocRAND</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/hipRAND/en/master/">hipRAND</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/gpu_libraries/solver.html">Linear Solvers</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocSOLVER/en/master/">rocSOLVER</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/hipSOLVER/en/master/">hipSOLVER</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="reference/gpu_libraries/sparse.html">Sparse Matrix Solvers</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocSPARSE/en/master/">rocSPARSE</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://rocmdocs.amd.com/projects/hipSPARSE/en/master/">hipSPARSE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="reference/gpu_libraries/c%2B%2B_primitives.html">C++ Primitives</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocPRIM/en/master/">rocPRIM</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://rocmdocs.amd.com/projects/hipCUB/en/master/">hipCUB</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocThrust/en/master/">rocThrust</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="reference/gpu_libraries/communication.html">Communication Libraries</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://rocmdocs.amd.com/projects/RCCL/en/master/">RCCL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html">MIOpen - Machine Intelligence</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/">MIGraphX- Graph Optimization</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="reference/computer_vision.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://rocmdocs.amd.com/projects/MIVisionX/en/master/">MIVisionX</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://rocmdocs.amd.com/projects/rocAL/en/master/">rocAL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/openmp/openmp.html">OpenMP</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="reference/compilers.html">Compilers and Tools</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/rocmcc/rocmcc.html">ROCmCC</a></li>
+<li class="toctree-l2"><a class="reference external" href="http://profiler">ROCGDB</a></li>
+<li class="toctree-l2"><a class="reference external" href="http://profiler">rocprof</a></li>
+<li class="toctree-l2"><a class="reference external" href="http://profiler">roctracer</a></li>
+<li class="toctree-l2"><a class="reference external" href="http://profiler">ROCdbgapi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="reference/management_tools.html">Management Tools</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="http://smi">rocmsmi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/gpu_arch.html">GPU Architectures</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Understand ROCm</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="isv_deployment_win.html">ISV Deployment Guide (Windows)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="understand/deep_learning/deep_learning.html">Deep Learning Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="understand/cmake_packages.html">Using CMake</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">How to Guides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how_to/docker_gpu_isolation.html">Docker GPU Isolation Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to/magma_install/magma_install.html">Magma Installation for ROCm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to/pytorch_install/pytorch_install.html">PyTorch Installation for ROCm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to/tensorflow_install/tensorflow_install.html">TensorFlow Installation for ROCm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to/system_debugging.html">System Debugging Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/">rocm-examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples/ai_ml_inferencing.html">AI/ML/Inferencing</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/inception_casestudy/inception_casestudy.html">Inception V3 with PyTorch</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About ROCm Documentation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Changelog</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<a href="https://github.com/RadeonOpenCompute/ROCm/edit/master/docs/sphinx/CHANGELOG.md" target="_blank"
+   class="btn btn-sm"
+   title="Edit onGitHub"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/CHANGELOG.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Changelog</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-releases">AMD ROCm™ Releases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-2-release">AMD  ROCm™ V5.2 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-1-3-release">AMD  ROCm™ V5.1.3 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-1-1-release">AMD  ROCm™ V5.1.1 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-1-release">AMD  ROCm™ V5.1 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-2-release-notes">AMD ROCm™ v5.0.2 Release Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-defects-in-this-release">Fixed Defects in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-with-hostcall-facility-in-hip-runtime">Issue with hostcall Facility in HIP Runtime</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibility-matrix-updates-to-rocm-deep-learning-guide">Compatibility Matrix Updates to ROCm Deep Learning Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-1-release-notes">AMD ROCm™ v5.0.1 Release Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecations-and-warnings">Deprecations and Warnings</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-of-hipcc-hipconfig">Refactor of HIPCC/HIPCONFIG</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-documentation-updates-for-rocm-5-0-1">ROCM DOCUMENTATION UPDATES FOR ROCM 5.0.1</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-release-notes">AMD ROCm™ v5.0 Release Notes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-installation-updates">ROCm Installation Updates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notice-for-open-source-and-closed-source-rocm-repositories-in-future-releases">Notice for Open-source and Closed-source ROCm Repositories in Future Releases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-supported-operating-systems">List of Supported Operating Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-rhel-v8-5">Support for RHEL v8.5</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-gpus">Supported GPUs</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#radeon-pro-v620-and-w6800-workstation-gpus">Radeon Pro V620 and W6800 Workstation GPUs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-installation-updates-for-rocm-v5-0">ROCm Installation Updates for ROCm v5.0</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-kernel-mode-driver">Support for Kernel Mode Driver</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-multi-version-rocm-installation-and-uninstallation">Support for Multi-version ROCm Installation and Uninstallation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-updating-information-on-local-repositories">Support for Updating Information on Local Repositories</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-release-upgrades">Support for Release Upgrades</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-documentation-updates">AMD ROCm V5.0 Documentation Updates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-amd-rocm-information-portal-rocm-v4-5-and-above">New AMD ROCm Information Portal – ROCm v4.5 and Above</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-updates-for-rocm-5-0">Documentation Updates for ROCm 5.0</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-tools">Deployment Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-data-center-tool-documentation-updates">ROCm Data Center Tool Documentation Updates</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-system-management-interface-updates">ROCm System Management Interface Updates</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-command-line-interface-updates">ROCm Command Line Interface Updates</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-ai-documentation-updates">Machine Learning/AI Documentation Updates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-libraries-documentation-updates">ROCm Libraries Documentation Updates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers-and-tools">Compilers and Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocdebugger-documentation-updates">ROCDebugger Documentation Updates</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#roctracer">ROCTracer</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers">Compilers</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#hipify-documentation">HIPify Documentation</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-debug-agent">ROCm Debug Agent</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-models-documentation">Programming Models Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-documentation">HIP Documentation</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#openmp-documentation">OpenMP Documentation</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-glossary">ROCm Glossary</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-legacy-documentation-links-rocm-v4-3-and-prior">AMD ROCm Legacy Documentation Links – ROCm v4.3 and Prior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-new-in-this-release">What’s New in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-enhancements">HIP Enhancements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-installation-guide-updates">HIP Installation Guide Updates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#managed-memory-allocation">Managed Memory Allocation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-environment-variable">New Environment Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-math-and-communication-libraries">ROCm Math and Communication Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-management-interface">System Management Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clock-throttling-for-gpu-events">Clock Throttling for GPU Events</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-commands">CLI Commands</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#display-xgmi-bandwidth-between-nodes">Display XGMI Bandwidth Between Nodes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p2p-connection-status">P2P Connection Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breaking-changes">Breaking Changes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-breaking-change">Runtime Breaking Change</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#known-issues-in-this-release">Known Issues in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorrect-dgpu-behavior-when-using-amdvbflash-tool">Incorrect dGPU Behavior When Using AMDVBFlash Tool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-with-start-timestamp-in-rocprofiler">Issue with START Timestamp in ROCProfiler</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#issue">Issue</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#current-behavior">Current behavior</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-behavior">Expected behavior</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-workaround">Recommended Workaround</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-support-for-smi-and-rocdebugger-on-sriov">No Support for SMI and ROCDebugger on SRIOV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecations-and-warnings-in-this-release">Deprecations and Warnings in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-libraries-changes-deprecations-and-deprecation-removal">ROCm Libraries Changes – Deprecations and Deprecation Removal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocsparse-spmm-in-5-0"><code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code> in 5.0</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocsparse-spmm-in-4-0"><code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code> in 4.0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-api-deprecations-and-warnings">HIP API Deprecations and Warnings</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-arithmetic-operators-of-hip-complex-and-vector-types">Warning - Arithmetic Operators of HIP Complex and Vector Types</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hipcc-hipconfig-refactoring">HIPCC/HIPCONFIG Refactoring</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-compiler-generated-code-object-version-4-deprecation">Warning - Compiler-Generated Code Object Version 4 Deprecation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-miopentensile-deprecation">Warning - MIOpenTensile Deprecation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archived-documentation">Archived Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">Disclaimer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-party-disclaimer">Third-party Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="section" id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">#</a></h1>
+<hr class="docutils" />
+<div class="section" id="amd-rocm-releases">
+<h2>AMD ROCm™ Releases<a class="headerlink" href="#amd-rocm-releases" title="Permalink to this headline">#</a></h2>
+<div class="section" id="amd-rocm-v5-2-release">
+<h3>AMD  ROCm™ V5.2 Release<a class="headerlink" href="#amd-rocm-v5-2-release" title="Permalink to this headline">#</a></h3>
+<p>AMD ROCm v5.2 is now released. The release documentation is available at
+<a class="reference external" href="https://docs.amd.com">https://docs.amd.com</a>.</p>
+</div>
+<div class="section" id="amd-rocm-v5-1-3-release">
+<h3>AMD  ROCm™ V5.1.3 Release<a class="headerlink" href="#amd-rocm-v5-1-3-release" title="Permalink to this headline">#</a></h3>
+<p>AMD ROCm v5.1.3 is now released. The release documentation is available at
+<a class="reference external" href="https://docs.amd.com">https://docs.amd.com</a>.</p>
+</div>
+<div class="section" id="amd-rocm-v5-1-1-release">
+<h3>AMD  ROCm™ V5.1.1 Release<a class="headerlink" href="#amd-rocm-v5-1-1-release" title="Permalink to this headline">#</a></h3>
+<p>AMD ROCm v5.1.1 is now released. The release documentation is available at
+<a class="reference external" href="https://docs.amd.com">https://docs.amd.com</a>.</p>
+</div>
+<div class="section" id="amd-rocm-v5-1-release">
+<h3>AMD  ROCm™ V5.1 Release<a class="headerlink" href="#amd-rocm-v5-1-release" title="Permalink to this headline">#</a></h3>
+<p>AMD ROCm v5.1 is now released. The release documentation is available at
+<a class="reference external" href="https://docs.amd.com">https://docs.amd.com</a>.</p>
+</div>
+<div class="section" id="amd-rocm-v5-0-2-release-notes">
+<h3>AMD ROCm™ v5.0.2 Release Notes<a class="headerlink" href="#amd-rocm-v5-0-2-release-notes" title="Permalink to this headline">#</a></h3>
+<div class="section" id="fixed-defects-in-this-release">
+<h4>Fixed Defects in This Release<a class="headerlink" href="#fixed-defects-in-this-release" title="Permalink to this headline">#</a></h4>
+<p>The following defects are fixed in the ROCm v5.0.2 release.</p>
+<div class="section" id="issue-with-hostcall-facility-in-hip-runtime">
+<h5>Issue with hostcall Facility in HIP Runtime<a class="headerlink" href="#issue-with-hostcall-facility-in-hip-runtime" title="Permalink to this headline">#</a></h5>
+<p>In ROCm v5.0, when using the <code class="docutils literal notranslate"><span class="pre">assert()</span></code> call in a HIP kernel, the compiler may
+sometimes fail to emit kernel metadata related to the hostcall facility, which
+results in incomplete initialization of the hostcall facility in the HIP
+runtime. This can cause the HIP kernel to crash when it attempts to execute the
+<code class="docutils literal notranslate"><span class="pre">assert()</span></code> call. The root cause was an incorrect check in the compiler to
+determine whether the hostcall facility is required by the kernel. This is fixed
+in the ROCm v5.0.2 release. The resolution includes a compiler change, which
+emits the required metadata by default, unless the compiler can prove that the
+hostcall facility is not required by the kernel. This ensures that the
+<code class="docutils literal notranslate"><span class="pre">assert()</span></code> call never fails.</p>
+<p><strong>Note</strong>: This fix may lead to breakage in some OpenMP offload use cases, which
+use print inside a target region and result in an abort in device code.
+The issue will be fixed in a future release.</p>
+</div>
+<div class="section" id="compatibility-matrix-updates-to-rocm-deep-learning-guide">
+<h5>Compatibility Matrix Updates to ROCm Deep Learning Guide<a class="headerlink" href="#compatibility-matrix-updates-to-rocm-deep-learning-guide" title="Permalink to this headline">#</a></h5>
+<p>The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm
+v5.0.2.</p>
+<p>For more information and documentation updates, refer to <a class="reference external" href="https://docs.amd.com">https://docs.amd.com</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="amd-rocm-v5-0-1-release-notes">
+<h3>AMD ROCm™ v5.0.1 Release Notes<a class="headerlink" href="#amd-rocm-v5-0-1-release-notes" title="Permalink to this headline">#</a></h3>
+<div class="section" id="deprecations-and-warnings">
+<h4>Deprecations and Warnings<a class="headerlink" href="#deprecations-and-warnings" title="Permalink to this headline">#</a></h4>
+<div class="section" id="refactor-of-hipcc-hipconfig">
+<h5>Refactor of HIPCC/HIPCONFIG<a class="headerlink" href="#refactor-of-hipcc-hipconfig" title="Permalink to this headline">#</a></h5>
+<p>In prior ROCm releases, by default, the <code class="docutils literal notranslate"><span class="pre">hipcc</span></code>/<code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> Perl scripts were
+used to identify and set target compiler options, target platform, compiler, and
+runtime appropriately.</p>
+<p>In ROCm v5.0.1, <code class="docutils literal notranslate"><span class="pre">hipcc.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig.bin</span></code> have been added as the compiled
+binary implementations of the <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig</span></code>. These new binaries are
+currently a work-in-progress, considered, and marked as experimental. ROCm plans
+to fully transition to <code class="docutils literal notranslate"><span class="pre">hipcc.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig.bin</span></code> in the a future ROCm
+release. The existing <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> Perl scripts are renamed to
+<code class="docutils literal notranslate"><span class="pre">hipcc.pl</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig.pl</span></code> respectively. New top-level <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> Perl scripts are created, which can switch between the Perl script
+or the compiled binary based on the environment variable
+<code class="docutils literal notranslate"><span class="pre">HIPCC_USE_PERL_SCRIPT</span></code>.</p>
+<p>In ROCm 5.0.1, by default, this environment variable is set to use <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> through the Perl scripts. Subsequently, Perl scripts will no longer
+be available in ROCm in a future release.</p>
+</div>
+</div>
+<div class="section" id="rocm-documentation-updates-for-rocm-5-0-1">
+<h4>ROCM DOCUMENTATION UPDATES FOR ROCM 5.0.1<a class="headerlink" href="#rocm-documentation-updates-for-rocm-5-0-1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>ROCm Downloads Guide</p></li>
+<li><p>ROCm Installation Guide</p></li>
+<li><p>ROCm Release Notes</p></li>
+</ul>
+<p>For more information, see <a class="reference external" href="https://docs.amd.com">https://docs.amd.com</a>.</p>
+</div>
+</div>
+<div class="section" id="amd-rocm-v5-0-release-notes">
+<h3>AMD ROCm™ v5.0 Release Notes<a class="headerlink" href="#amd-rocm-v5-0-release-notes" title="Permalink to this headline">#</a></h3>
+</div>
+</div>
+<div class="section" id="rocm-installation-updates">
+<h2>ROCm Installation Updates<a class="headerlink" href="#rocm-installation-updates" title="Permalink to this headline">#</a></h2>
+<p>This document describes the features, fixed issues, and information about
+downloading and installing the AMD ROCm™ software.</p>
+<p>It also covers known issues and deprecations in this release.</p>
+</div>
+<div class="section" id="notice-for-open-source-and-closed-source-rocm-repositories-in-future-releases">
+<h2>Notice for Open-source and Closed-source ROCm Repositories in Future Releases<a class="headerlink" href="#notice-for-open-source-and-closed-source-rocm-repositories-in-future-releases" title="Permalink to this headline">#</a></h2>
+<p>To make a distinction between open-source and closed-source components, all ROCm
+repositories will consist of sub-folders in future releases.</p>
+<ul class="simple">
+<li><p>All open-source components will be placed in the <code class="docutils literal notranslate"><span class="pre">base-url/&lt;rocm-ver&gt;/main</span></code>
+sub-folder</p></li>
+<li><p>All closed-source components will reside in the
+<code class="docutils literal notranslate"><span class="pre">base-url/&lt;rocm-ver&gt;/proprietary</span></code> sub-folder</p></li>
+</ul>
+<div class="section" id="list-of-supported-operating-systems">
+<h3>List of Supported Operating Systems<a class="headerlink" href="#list-of-supported-operating-systems" title="Permalink to this headline">#</a></h3>
+<p>The AMD ROCm platform supports the following operating systems:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p><strong>OS-Version (64-bit)</strong></p></th>
+<th class="text-center head"><p><strong>Kernel Versions</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>CentOS 8.3</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">4.18.0-193.el8</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>CentOS 7.9</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">3.10.0-1127</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>RHEL 8.5</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">4.18.0-348.7.1.el8_5.x86_64</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>RHEL 8.4</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">4.18.0-305.el8.x86_64</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>RHEL 7.9</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">3.10.0-1160.6.1.el7</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>SLES 15 SP3</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">5.3.18-59.16-default</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Ubuntu 20.04.3</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">5.8.0</span> <span class="pre">LTS</span> <span class="pre">/</span> <span class="pre">5.11</span> <span class="pre">HWE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Ubuntu 18.04.5 [5.4 HWE kernel]</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">5.4.0-71-generic</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="support-for-rhel-v8-5">
+<h4>Support for RHEL v8.5<a class="headerlink" href="#support-for-rhel-v8-5" title="Permalink to this headline">#</a></h4>
+<p>This release extends support for RHEL v8.5.</p>
+</div>
+<div class="section" id="supported-gpus">
+<h4>Supported GPUs<a class="headerlink" href="#supported-gpus" title="Permalink to this headline">#</a></h4>
+<div class="section" id="radeon-pro-v620-and-w6800-workstation-gpus">
+<h5>Radeon Pro V620 and W6800 Workstation GPUs<a class="headerlink" href="#radeon-pro-v620-and-w6800-workstation-gpus" title="Permalink to this headline">#</a></h5>
+<p>This release extends ROCm support for Radeon Pro V620 and W6800 Workstation
+GPUs.</p>
+<ul class="simple">
+<li><p>SRIOV virtualization support for Radeon Pro V620</p></li>
+<li><p>KVM Hypervisor (1VF support only) on Ubuntu Host OS with Ubuntu, CentOs, and
+RHEL Guest</p></li>
+<li><p>Support for ROCm-SMI in an SRIOV environment. For more details, refer to the
+ROCm SMI API documentation.</p></li>
+</ul>
+<p><strong>Note:</strong> Radeon Pro v620 is not supported on SLES.</p>
+</div>
+</div>
+</div>
+<div class="section" id="rocm-installation-updates-for-rocm-v5-0">
+<h3>ROCm Installation Updates for ROCm v5.0<a class="headerlink" href="#rocm-installation-updates-for-rocm-v5-0" title="Permalink to this headline">#</a></h3>
+<p>This release has the following ROCm installation enhancements.</p>
+<div class="section" id="support-for-kernel-mode-driver">
+<h4>Support for Kernel Mode Driver<a class="headerlink" href="#support-for-kernel-mode-driver" title="Permalink to this headline">#</a></h4>
+<p>In this release, users can install the kernel-mode driver using the Installer
+method. Some of the ROCm-specific use cases that the installer currently
+supports are:</p>
+<ul class="simple">
+<li><p>OpenCL (ROCr/KFD based) runtime</p></li>
+<li><p>HIP runtimes</p></li>
+<li><p>ROCm libraries and applications</p></li>
+<li><p>ROCm Compiler and device libraries</p></li>
+<li><p>ROCr runtime and thunk</p></li>
+<li><p>Kernel-mode driver</p></li>
+</ul>
+</div>
+<div class="section" id="support-for-multi-version-rocm-installation-and-uninstallation">
+<h4>Support for Multi-version ROCm Installation and Uninstallation<a class="headerlink" href="#support-for-multi-version-rocm-installation-and-uninstallation" title="Permalink to this headline">#</a></h4>
+<p>Users now can install multiple ROCm releases simultaneously on a system using
+the newly introduced installer script and package manager install mechanism.</p>
+<p>Users can also uninstall multi-version ROCm releases using the
+<code class="docutils literal notranslate"><span class="pre">amdgpu-uninstall</span></code> script and package manager.</p>
+</div>
+<div class="section" id="support-for-updating-information-on-local-repositories">
+<h4>Support for Updating Information on Local Repositories<a class="headerlink" href="#support-for-updating-information-on-local-repositories" title="Permalink to this headline">#</a></h4>
+<p>In this release, the <code class="docutils literal notranslate"><span class="pre">amdgpu-install</span></code> script automates the process of updating
+local repository information before proceeding to ROCm installation.</p>
+</div>
+<div class="section" id="support-for-release-upgrades">
+<h4>Support for Release Upgrades<a class="headerlink" href="#support-for-release-upgrades" title="Permalink to this headline">#</a></h4>
+<p>Users can now upgrade the existing ROCm installation to specific or latest ROCm
+releases.</p>
+<p>For more details, refer to the AMD ROCm Installation Guide v5.0.</p>
+</div>
+</div>
+</div>
+<div class="section" id="amd-rocm-v5-0-documentation-updates">
+<h2>AMD ROCm V5.0 Documentation Updates<a class="headerlink" href="#amd-rocm-v5-0-documentation-updates" title="Permalink to this headline">#</a></h2>
+<div class="section" id="new-amd-rocm-information-portal-rocm-v4-5-and-above">
+<h3>New AMD ROCm Information Portal – ROCm v4.5 and Above<a class="headerlink" href="#new-amd-rocm-information-portal-rocm-v4-5-and-above" title="Permalink to this headline">#</a></h3>
+<p>Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at
+<a class="reference external" href="https://docs.amd.com">https://docs.amd.com</a>. This portal consists of ROCm documentation v4.5 and
+above.</p>
+<p>For documentation prior to ROCm v4.5, you may continue to access
+<a class="reference external" href="https://rocmdocs.amd.com">https://rocmdocs.amd.com</a>.</p>
+</div>
+<div class="section" id="documentation-updates-for-rocm-5-0">
+<h3>Documentation Updates for ROCm 5.0<a class="headerlink" href="#documentation-updates-for-rocm-5-0" title="Permalink to this headline">#</a></h3>
+<div class="section" id="deployment-tools">
+<h4>Deployment Tools<a class="headerlink" href="#deployment-tools" title="Permalink to this headline">#</a></h4>
+<div class="section" id="rocm-data-center-tool-documentation-updates">
+<h5>ROCm Data Center Tool Documentation Updates<a class="headerlink" href="#rocm-data-center-tool-documentation-updates" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>ROCm Data Center Tool User Guide</p></li>
+<li><p>ROCm Data Center Tool API Guide</p></li>
+</ul>
+</div>
+<div class="section" id="rocm-system-management-interface-updates">
+<h5>ROCm System Management Interface Updates<a class="headerlink" href="#rocm-system-management-interface-updates" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>System Management Interface Guide</p></li>
+<li><p>System Management Interface API Guide</p></li>
+</ul>
+</div>
+<div class="section" id="rocm-command-line-interface-updates">
+<h5>ROCm Command Line Interface Updates<a class="headerlink" href="#rocm-command-line-interface-updates" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Command Line Interface Guide</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="machine-learning-ai-documentation-updates">
+<h4>Machine Learning/AI Documentation Updates<a class="headerlink" href="#machine-learning-ai-documentation-updates" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Deep Learning Guide</p></li>
+<li><p>MIGraphX API Guide</p></li>
+<li><p>MIOpen API Guide</p></li>
+<li><p>MIVisionX API Guide</p></li>
+</ul>
+</div>
+<div class="section" id="rocm-libraries-documentation-updates">
+<h4>ROCm Libraries Documentation Updates<a class="headerlink" href="#rocm-libraries-documentation-updates" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>hipSOLVER User Guide</p></li>
+<li><p>RCCL User Guide</p></li>
+<li><p>rocALUTION User Guide</p></li>
+<li><p>rocBLAS User Guide</p></li>
+<li><p>rocFFT User Guide</p></li>
+<li><p>rocRAND User Guide</p></li>
+<li><p>rocSOLVER User Guide</p></li>
+<li><p>rocSPARSE User Guide</p></li>
+<li><p>rocThrust User Guide</p></li>
+</ul>
+</div>
+<div class="section" id="compilers-and-tools">
+<h4>Compilers and Tools<a class="headerlink" href="#compilers-and-tools" title="Permalink to this headline">#</a></h4>
+<div class="section" id="rocdebugger-documentation-updates">
+<h5>ROCDebugger Documentation Updates<a class="headerlink" href="#rocdebugger-documentation-updates" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>ROCDebugger User Guide</p></li>
+<li><p>ROCDebugger API Guide</p></li>
+</ul>
+</div>
+<div class="section" id="roctracer">
+<h5>ROCTracer<a class="headerlink" href="#roctracer" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>ROCTracer User Guide</p></li>
+<li><p>ROCTracer API Guide</p></li>
+</ul>
+</div>
+<div class="section" id="compilers">
+<h5>Compilers<a class="headerlink" href="#compilers" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>AMD Instinct High Performance Computing and Tuning Guide</p></li>
+<li><p>AMD Compiler Reference Guide</p></li>
+</ul>
+</div>
+<div class="section" id="hipify-documentation">
+<h5>HIPify Documentation<a class="headerlink" href="#hipify-documentation" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>HIPify User Guide</p></li>
+<li><p>HIP Supported CUDA API Reference Guide</p></li>
+</ul>
+</div>
+<div class="section" id="rocm-debug-agent">
+<h5>ROCm Debug Agent<a class="headerlink" href="#rocm-debug-agent" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>ROCm Debug Agent Guide</p></li>
+<li><p>System Level Debug Guide</p></li>
+<li><p>ROCm Validation Suite</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="programming-models-documentation">
+<h4>Programming Models Documentation<a class="headerlink" href="#programming-models-documentation" title="Permalink to this headline">#</a></h4>
+<div class="section" id="hip-documentation">
+<h5>HIP Documentation<a class="headerlink" href="#hip-documentation" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>HIP Programming Guide</p></li>
+<li><p>HIP API Guide</p></li>
+<li><p>HIP FAQ Guide</p></li>
+</ul>
+</div>
+<div class="section" id="openmp-documentation">
+<h5>OpenMP Documentation<a class="headerlink" href="#openmp-documentation" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>OpenMP Support Guide</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="rocm-glossary">
+<h4>ROCm Glossary<a class="headerlink" href="#rocm-glossary" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>ROCm Glossary – Terms and Definitions</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="amd-rocm-legacy-documentation-links-rocm-v4-3-and-prior">
+<h3>AMD ROCm Legacy Documentation Links – ROCm v4.3 and Prior<a class="headerlink" href="#amd-rocm-legacy-documentation-links-rocm-v4-3-and-prior" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>For AMD ROCm documentation, see <a class="reference external" href="https://rocmdocs.amd.com/en/latest/">https://rocmdocs.amd.com/en/latest/</a></p></li>
+<li><p>For installation instructions on supported platforms, see
+<a class="reference external" href="https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html">https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html</a></p></li>
+<li><p>For AMD ROCm binary structure, see
+<a class="reference external" href="https://rocmdocs.amd.com/en/latest/Installation_Guide/Software-Stack-for-AMD-GPU.html">https://rocmdocs.amd.com/en/latest/Installation_Guide/Software-Stack-for-AMD-GPU.html</a></p></li>
+<li><p>For AMD ROCm release history, see
+<a class="reference external" href="https://rocmdocs.amd.com/en/latest/Current_Release_Notes/ROCm-Version-History.html">https://rocmdocs.amd.com/en/latest/Current_Release_Notes/ROCm-Version-History.html</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="what-s-new-in-this-release">
+<h2>What’s New in This Release<a class="headerlink" href="#what-s-new-in-this-release" title="Permalink to this headline">#</a></h2>
+<div class="section" id="hip-enhancements">
+<h3>HIP Enhancements<a class="headerlink" href="#hip-enhancements" title="Permalink to this headline">#</a></h3>
+<p>The ROCm v5.0 release consists of the following HIP enhancements.</p>
+<div class="section" id="hip-installation-guide-updates">
+<h4>HIP Installation Guide Updates<a class="headerlink" href="#hip-installation-guide-updates" title="Permalink to this headline">#</a></h4>
+<p>The HIP Installation Guide is updated to include building HIP from source on the
+NVIDIA platform.</p>
+<p>Refer to the HIP Installation Guide v5.0 for more details.</p>
+</div>
+<div class="section" id="managed-memory-allocation">
+<h4>Managed Memory Allocation<a class="headerlink" href="#managed-memory-allocation" title="Permalink to this headline">#</a></h4>
+<p>Managed memory, including the <code class="docutils literal notranslate"><span class="pre">__managed__</span></code> keyword, is now supported in the HIP
+combined host/device compilation. Through unified memory allocation, managed
+memory allows data to be shared and accessible to both the CPU and GPU using a
+single pointer. The allocation is managed by the AMD GPU driver using the Linux
+Heterogeneous Memory Management (HMM) mechanism. The user can call managed
+memory API <code class="docutils literal notranslate"><span class="pre">hipMallocManaged</span></code> to allocate a large chunk of HMM memory, execute
+kernels on a device, and fetch data between the host and device as needed.</p>
+<p><strong>Note:</strong> In a HIP application, it is recommended to do a capability check
+before calling the managed memory APIs. For example,</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">managed_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">HIPCHECK</span><span class="p">(</span><span class="n">hipDeviceGetAttribute</span><span class="p">(</span><span class="o">&amp;</span><span class="n">managed_memory</span><span class="p">,</span><span class="w"> </span><span class="n">hipDeviceAttributeManagedMemory</span><span class="p">,</span><span class="w"> </span><span class="n">p_gpuDevice</span><span class="p">));</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">managed_memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;info: managed memory access not supported on the device %d</span><span class="se">\n</span><span class="s"> Skipped</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p_gpuDevice</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">HIPCHECK</span><span class="p">(</span><span class="n">hipSetDevice</span><span class="p">(</span><span class="n">p_gpuDevice</span><span class="p">));</span>
+<span class="w">  </span><span class="n">HIPCHECK</span><span class="p">(</span><span class="n">hipMallocManaged</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Hmm</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)));</span>
+<span class="w">  </span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="p">.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> The managed memory capability check may not be necessary; however, if
+HMM is not supported, managed <code class="docutils literal notranslate"><span class="pre">malloc</span></code> will fall back to using system memory.</p>
+<p>Refer to the HIP API documentation for more details on managed memory APIs.</p>
+<p>For the application, see
+<a class="reference external" href="https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp">hipMallocManaged.cpp</a></p>
+</div>
+</div>
+<div class="section" id="new-environment-variable">
+<h3>New Environment Variable<a class="headerlink" href="#new-environment-variable" title="Permalink to this headline">#</a></h3>
+<p>The following new environment variable is added in this release:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p><strong>Environment Variable</strong></p></th>
+<th class="text-center head"><p><strong>Value</strong></p></th>
+<th class="text-left head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">HSA_COOP_CU_COUNT</span></code></p></td>
+<td class="text-center"><p>0 or 1 (default is 0)</p></td>
+<td class="text-left"><p>Some processors support more compute units than can reliably be used in a cooperative dispatch. Setting the environment variable <code class="docutils literal notranslate"><span class="pre">HSA_COOP_CU_COUNT</span></code> to 1 will cause ROCr to return the correct CU count for cooperative groups through the <code class="docutils literal notranslate"><span class="pre">HSA_AMD_AGENT_INFO_COOPERATIVE_COMPUTE_UNIT_COUNT</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">hsa_agent_get_info()</span></code>. Setting <code class="docutils literal notranslate"><span class="pre">HSA_COOP_CU_COUNT</span></code> to other values, or leaving it unset, will cause ROCr to return the same CU count for the attributes <code class="docutils literal notranslate"><span class="pre">HSA_AMD_AGENT_INFO_COOPERATIVE_COMPUTE_UNIT_COUNT</span></code> and <code class="docutils literal notranslate"><span class="pre">HSA_AMD_AGENT_INFO_COMPUTE_UNIT_COUNT</span></code>. Future ROCm releases will make <code class="docutils literal notranslate"><span class="pre">HSA_COOP_CU_COUNT</span> <span class="pre">=</span> <span class="pre">1</span></code> the default.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rocm-math-and-communication-libraries">
+<h3>ROCm Math and Communication Libraries<a class="headerlink" href="#rocm-math-and-communication-libraries" title="Permalink to this headline">#</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p><strong>Library</strong></p></th>
+<th class="text-left head"><p><strong>Changes</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><strong>rocBLAS</strong></p></td>
+<td class="text-left"><p><strong>Added</strong> <ul><li>Added <code class="docutils literal notranslate"><span class="pre">rocblas_get_version_string_size</span></code> convenience function</li><li>Added <code class="docutils literal notranslate"><span class="pre">rocblas_xtrmm_outofplace</span></code>, an out-of-place version of <code class="docutils literal notranslate"><span class="pre">rocblas_xtrmm</span></code></li><li>Added hpl and trig initialization for <code class="docutils literal notranslate"><span class="pre">gemm_ex</span></code> to <code class="docutils literal notranslate"><span class="pre">rocblas-bench</span></code></li><li>Added source code gemm. It can be used as an alternative to Tensile for debugging and development</li><li>Added option <code class="docutils literal notranslate"><span class="pre">ROCM_MATHLIBS_API_USE_HIP_COMPLEX</span></code> to opt-in to use <code class="docutils literal notranslate"><span class="pre">hipFloatComplex</span></code> and <code class="docutils literal notranslate"><span class="pre">hipDoubleComplex</span></code></li></ul> <strong>Optimizations</strong> <ul><li>Improved performance of non-batched and batched single-precision GER for size m &gt; 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.</li><li>Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU.</li></ul> <strong>Changed</strong> <ul><li>Instantiate templated rocBLAS functions to reduce size of librocblas.so</li><li>Removed static library dependency on msgpack</li><li>Removed boost dependencies for clients</li></ul> <strong>Fixed</strong> <ul><li>Option to install script to build only rocBLAS clients with a pre-built rocBLAS library</li><li>Correctly set output of <code class="docutils literal notranslate"><span class="pre">nrm2_batched_ex</span></code> and <code class="docutils literal notranslate"><span class="pre">nrm2_strided_batched_ex</span></code> when given bad input</li><li>Fix for dgmm with side == <code class="docutils literal notranslate"><span class="pre">rocblas_side_left</span></code> and a negative incx</li><li>Fixed out-of-bounds read for small trsm</li><li>Fixed numerical checking for <code class="docutils literal notranslate"><span class="pre">tbmv_strided_batched</span></code></li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>hipBLAS</strong></p></td>
+<td class="text-left"><p><strong>Added</strong> <ul><li>Added rocSOLVER functions to hipblas-bench</li><li>Added option <code class="docutils literal notranslate"><span class="pre">ROCM_MATHLIBS_API_USE_HIP_COMPLEX</span></code> to opt-in to use <code class="docutils literal notranslate"><span class="pre">hipFloatComplex</span></code> and <code class="docutils literal notranslate"><span class="pre">hipDoubleComplex</span></code></li><li>Added compilation warning for future trmm changes</li><li>Added documentation to <code class="docutils literal notranslate"><span class="pre">hipblas.h</span></code></li><li>Added option to forgo pivoting for getrf and getri when ipiv is <code class="docutils literal notranslate"><span class="pre">nullptr</span></code></li><li>Added code coverage option</li></ul> <strong>Fixed</strong> <ul><li>Fixed use of incorrect <code class="docutils literal notranslate"><span class="pre">HIP_PATH</span></code> when building from source.</li><li>Fixed windows packaging</li><li>Allowing negative increments in hipblas-bench</li><li>Removed boost dependency</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>rocFFT</strong></p></td>
+<td class="text-left"><p><strong>Changed</strong> <ul><li>Enabled runtime compilation of single FFT kernels &gt; length 1024.</li><li>Re-aligned split device library into 4 roughly equal libraries.</li><li>Implemented the FuseShim framework to replace the original OptimizePlan</li><li>Implemented the generic buffer-assignment framework. The buffer assignment is no longer performed by each node. A generic algorithm is designed to test and pick the best assignment path. With the help of FuseShim, more kernel-fusions are achieved.</li><li>Do not read the imaginary part of the DC and Nyquist modes for even-length complex-to-real transforms.</li></ul> <strong>Optimizations</strong> <ul><li>Optimized twiddle-conjugation; complex-to-complex inverse transforms have similar performance to foward transforms now.</li><li>Improved performance of single-kernel small 2D transforms.</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>hipFFT</strong></p></td>
+<td class="text-left"><p><strong>Fixed</strong> <ul><li>Fixed incorrect reporting of rocFFT version.</li></ul> <strong>Changed</strong> <ul><li>Unconditionally enabled callback functionality. On the CUDA backend, callbacks only run correctly when hipFFT is built as a static library, and is linked against the static cuFFT library.</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>rocSPARSE</strong></p></td>
+<td class="text-left"><p><strong>Added</strong> <ul><li>csrmv, coomv, ellmv, hybmv for (conjugate) transposed matricescsrmv for symmetric matrices</li></ul> <strong>Changed</strong> <ul><li><code class="docutils literal notranslate"><span class="pre">spmm_ex</span></code> is now deprecated and will be removed in the next major release</li></ul> <strong>Improved</strong> <ul><li>Optimization for gtsv</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>hipSPARSE</strong></p></td>
+<td class="text-left"><p><strong>Added</strong> <ul><li>Added (conjugate) transpose support for csrmv, hybmv and spmv routines</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>rocALUTION</strong></p></td>
+<td class="text-left"><p><strong>Changed</strong> <ul><li>Removed deprecated GlobalPairwiseAMG class, please use PairwiseAMG instead.</li></ul> <strong>Improved</strong> <ul><li>Improved documentation</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>rocTHRUST</strong></p></td>
+<td class="text-left"><p><strong>Updates</strong> <ul><li>Updated to match upstream Thrust 1.13.0</li><li>Updated to match upstream Thrust 1.14.0</li><li>Added async scan</li></ul> <strong>Changed</strong> <ul><li>Scan algorithms: <code class="docutils literal notranslate"><span class="pre">inclusive_scan</span></code> now uses the input-type as accumulator-type, <code class="docutils literal notranslate"><span class="pre">exclusive_scan</span></code> uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. <code class="docutils literal notranslate"><span class="pre">short</span></code> input, <code class="docutils literal notranslate"><span class="pre">int</span></code> output). And low-res input with high-res output (e.g. float input, double output)</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>rocSOLVER</strong></p></td>
+<td class="text-left"><p><strong>Added</strong> <ul><li>Symmetric matrix factorizations: <ul><li>LASYF</li><li>SYTF2, SYTRF (with <code class="docutils literal notranslate"><span class="pre">batched</span></code> and <code class="docutils literal notranslate"><span class="pre">strided_batched</span></code> versions)</li></ul><li>Added <code class="docutils literal notranslate"><span class="pre">rocsolver_get_version_string_size</span></code> to help with version string queries</li><li>Added <code class="docutils literal notranslate"><span class="pre">rocblas_layer_mode_ex</span></code> and the ability to print kernel calls in the trace and profile logs</li><li>Expanded batched and <code class="docutils literal notranslate"><span class="pre">strided_batched</span></code> sample programs.</li></ul> <strong>Optimizations</strong> <ul><li>Improved general performance of LU factorization</li><li>Increased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems.</li></ul> <strong>Changed</strong> <ul><li>The rocsolver-test client now prints the rocSOLVER version used to run the tests, rather than the version used to build them</li><li>The rocsolver-bench client now prints the rocSOLVER version used in the benchmark</li></ul> <strong>Fixed</strong> <ul><li>Added missing <code class="docutils literal notranslate"><span class="pre">stdint.h</span></code> include to <code class="docutils literal notranslate"><span class="pre">rocsolver.h</span></code></li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>hipSOLVER</strong></p></td>
+<td class="text-left"><p><strong>Added</strong> <ul><li>Added SYTRF functions: <code class="docutils literal notranslate"><span class="pre">hipsolverSsytrf_bufferSize</span></code>, <code class="docutils literal notranslate"><span class="pre">hipsolverDsytrf_bufferSize</span></code>, <code class="docutils literal notranslate"><span class="pre">hipsolverCsytrf_bufferSize</span></code>, <code class="docutils literal notranslate"><span class="pre">hipsolverZsytrf_bufferSize</span></code>, <code class="docutils literal notranslate"><span class="pre">hipsolverSsytrf</span></code>, <code class="docutils literal notranslate"><span class="pre">hipsolverDsytrf</span></code>, <code class="docutils literal notranslate"><span class="pre">hipsolverCsytrf</span></code>, <code class="docutils literal notranslate"><span class="pre">hipsolverZsytrf</span></code></li></ul> <strong>Fixed</strong> <ul><li>Fixed use of incorrect <code class="docutils literal notranslate"><span class="pre">HIP_PATH</span></code> when building from source</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>RCCL</strong></p></td>
+<td class="text-left"><p><strong>Added</strong> <ul><li>Compatibility with NCCL 2.10.3</li></ul> <strong>Known issues</strong> <ul><li>Managed memory is not currently supported for clique-based kernels</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>hipCUB</strong></p></td>
+<td class="text-left"><p><strong>Fixed</strong> <ul><li>Added missing includes to <code class="docutils literal notranslate"><span class="pre">hipcub.hpp</span></code></li></ul> <strong>Added</strong> <ul><li>Bfloat16 support to test cases (<code class="docutils literal notranslate"><span class="pre">device_reduce</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">device_radix_sort</span></code>)</li><li>Device merge sort</li><li>Block merge sort</li><li>API update to CUB 1.14.0</li></ul> <strong>Changed</strong> <ul><li>The <code class="docutils literal notranslate"><span class="pre">SetupNVCC.cmake</span></code> automatic target selector select all of the capabalities of all available card for NVIDIA backend.</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>rocPRIM</strong></p></td>
+<td class="text-left"><p><strong>Fixed</strong> <ul><li>Enable <code class="docutils literal notranslate"><span class="pre">bfloat16</span></code> tests and reduce threshold for <code class="docutils literal notranslate"><span class="pre">bfloat16</span></code></li><li>Fix device scan <code class="docutils literal notranslate"><span class="pre">limit_size</span></code> feature</li><li>Non-optimized builds no longer trigger local memory limit errors</li></ul> <strong>Added</strong> <ul><li>Scan size limit feature</li><li>Reduce size limit feature</li><li>Transform size limit feature</li><li>Add <code class="docutils literal notranslate"><span class="pre">block_load_striped</span></code> and <code class="docutils literal notranslate"><span class="pre">block_store_striped</span></code></li><li>Add <code class="docutils literal notranslate"><span class="pre">gather_to_blocked</span></code> to gather values from other threads into a blocked arrangement</li><li>The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config (the block sort step supports multiple items per thread)</li></ul> <strong>Changed</strong> <ul><li><code class="docutils literal notranslate"><span class="pre">size_limit</span></code> for scan, reduce and transform can now be set in the config struct instead of a parameter</li><li><code class="docutils literal notranslate"><span class="pre">device_scan</span></code> and <code class="docutils literal notranslate"><span class="pre">device_segmented_scan</span></code>: <code class="docutils literal notranslate"><span class="pre">inclusive_scan</span></code> now uses the input-type as accumulator-type, <code class="docutils literal notranslate"><span class="pre">exclusive_scan</span></code> uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. <code class="docutils literal notranslate"><span class="pre">short</span></code> input, <code class="docutils literal notranslate"><span class="pre">int</span></code> output) and low-res input with high-res output (e.g. <code class="docutils literal notranslate"><span class="pre">float</span></code> input, <code class="docutils literal notranslate"><span class="pre">double</span></code> output)</li><li>Revert old Fiji workaround, because the issue was solved at compiler side</li><li>Update <code class="docutils literal notranslate"><span class="pre">README</span></code> cmake minimum version number</li><li>Block sort support multiple items per thread. Currently only powers of two block sizes, and items per threads are supported and only for full blocks</li><li>Bumped the minimum required version of CMake to 3.16</li></ul> <strong>Known issues</strong> <ul><li>Unit tests may soft hang on MI200 when running in <code class="docutils literal notranslate"><span class="pre">hipMallocManaged</span></code> mode.</li><li><code class="docutils literal notranslate"><span class="pre">device_segmented_radix_sort</span></code>, <code class="docutils literal notranslate"><span class="pre">device_scan</span></code> unit tests failing for HIP on <code class="docutils literal notranslate"><span class="pre">WindowsReduceEmptyInput</span></code> cause random failure with <code class="docutils literal notranslate"><span class="pre">bfloat16</span></code></li><li>Managed memory is not currently supported for clique-based kernels</li></ul></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="system-management-interface">
+<h3>System Management Interface<a class="headerlink" href="#system-management-interface" title="Permalink to this headline">#</a></h3>
+<div class="section" id="clock-throttling-for-gpu-events">
+<h4>Clock Throttling for GPU Events<a class="headerlink" href="#clock-throttling-for-gpu-events" title="Permalink to this headline">#</a></h4>
+<p>This feature lists GPU events as they occur in real-time and can be used with
+<code class="docutils literal notranslate"><span class="pre">kfdtest</span></code> to produce <code class="docutils literal notranslate"><span class="pre">vm_fault</span></code> events for testing.</p>
+<p>The command can be called with either <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--showevents</span></code> like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-e<span class="w"> </span><span class="o">[</span>EVENT<span class="w"> </span><span class="o">[</span>EVENT<span class="w"> </span>...<span class="o">]]</span>,<span class="w"> </span>--showevents<span class="w"> </span><span class="o">[</span>EVENT<span class="w"> </span><span class="o">[</span>EVENT<span class="w"> </span>...<span class="o">]]</span><span class="w">  </span>Show<span class="w"> </span>event<span class="w"> </span>list
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">EVENT</span></code> is any list combination of <code class="docutils literal notranslate"><span class="pre">VM_FAULT</span></code>, <code class="docutils literal notranslate"><span class="pre">THERMAL_THROTTLE</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">GPU_RESET</span></code> and is <strong>NOT</strong> case sensitive.</p>
+<p><strong>Note:</strong> If no event arguments are passed, all events will be watched by
+default.</p>
+<div class="section" id="cli-commands">
+<h5>CLI Commands<a class="headerlink" href="#cli-commands" title="Permalink to this headline">#</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rocm-smi<span class="w"> </span>--showevents<span class="w"> </span>vm_fault<span class="w"> </span>thermal_throttle<span class="w"> </span><span class="nv">gpu_reset</span>
+
+<span class="o">=======================</span><span class="w"> </span>ROCm<span class="w"> </span>System<span class="w"> </span>Management<span class="w"> </span><span class="nv">Interface</span><span class="w"> </span><span class="o">=======================</span>
+<span class="o">=================================</span><span class="w"> </span>Show<span class="w"> </span><span class="nv">Events</span><span class="w"> </span><span class="o">==================================</span>
+press<span class="w"> </span><span class="s1">&#39;q&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;ctrl + c&#39;</span><span class="w"> </span>to<span class="w"> </span>quit
+DEVICE<span class="w">    </span>TIME<span class="w">    </span>TYPE<span class="w">    </span><span class="nv">DESCRIPTION</span>
+
+<span class="o">=============================</span><span class="w"> </span>End<span class="w"> </span>of<span class="w"> </span>ROCm<span class="w"> </span>SMI<span class="w"> </span><span class="nv">Log</span><span class="w"> </span><span class="o">==============================</span>
+</pre></div>
+</div>
+<p>(Run <code class="docutils literal notranslate"><span class="pre">kfdtest</span></code> in another window to test for <code class="docutils literal notranslate"><span class="pre">vm_fault</span></code> events.)</p>
+<p><strong>Note:</strong> Unlike other rocm-smi CLI commands, this command does not quit unless
+specified by the user. Users may press either <code class="docutils literal notranslate"><span class="pre">q</span></code> or <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">c</span></code> to quit.</p>
+</div>
+</div>
+<div class="section" id="display-xgmi-bandwidth-between-nodes">
+<h4>Display XGMI Bandwidth Between Nodes<a class="headerlink" href="#display-xgmi-bandwidth-between-nodes" title="Permalink to this headline">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">rsmi_minmax_bandwidth_get</span></code> API reads the HW Topology file and displays
+bandwidth (min-max) between any two NUMA nodes in a matrix format.</p>
+<p>The Command Line Interface (CLI) command can be called as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rocm-smi<span class="w"> </span>--shownodesbw
+
+<span class="o">=======================</span><span class="w"> </span>ROCm<span class="w"> </span>System<span class="w"> </span>Management<span class="w"> </span><span class="nv">Interface</span><span class="w"> </span><span class="o">=======================</span>
+<span class="o">==================================</span><span class="w"> </span><span class="nv">Bandwidth</span><span class="w"> </span><span class="o">===================================</span>
+GPU0<span class="w"> </span>GPU1<span class="w"> </span>GPU2<span class="w"> </span>GPU3<span class="w"> </span>GPU4<span class="w"> </span>GPU5<span class="w"> </span>GPU6<span class="w"> </span>GPU7
+GPU0<span class="w"> </span>N/A<span class="w"> </span><span class="m">50000</span>-200000<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-100000<span class="w"> </span><span class="m">0</span>-0
+GPU1<span class="w"> </span><span class="m">50000</span>-200000<span class="w"> </span>N/A<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0
+GPU2<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span>N/A<span class="w"> </span><span class="m">50000</span>-200000<span class="w"> </span><span class="m">50000</span>-100000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0
+GPU3<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">50000</span>-200000<span class="w"> </span>N/A<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000
+GPU4<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-100000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span>N/A<span class="w"> </span><span class="m">50000</span>-200000<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0
+GPU5<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-200000<span class="w"> </span>N/A<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000
+GPU6<span class="w"> </span><span class="m">50000</span>-100000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span>N/A<span class="w"> </span><span class="m">50000</span>-200000
+GPU7<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">0</span>-0<span class="w"> </span><span class="m">50000</span>-50000<span class="w"> </span><span class="m">50000</span>-200000<span class="w"> </span>N/A
+Format:<span class="w"> </span>min-max<span class="p">;</span><span class="w"> </span>Units:<span class="w"> </span><span class="nv">mps</span>
+<span class="o">=============================</span><span class="w"> </span>End<span class="w"> </span>of<span class="w"> </span>ROCm<span class="w"> </span>SMI<span class="w"> </span><span class="nv">Log</span><span class="w"> </span><span class="o">==============================</span>
+</pre></div>
+</div>
+<p>The sample output above shows the maximum theoretical xgmi bandwidth between 2
+numa nodes,</p>
+<p><strong>Note:</strong> “0-0” min-max bandwidth indicates devices are not connected directly.</p>
+</div>
+<div class="section" id="p2p-connection-status">
+<h4>P2P Connection Status<a class="headerlink" href="#p2p-connection-status" title="Permalink to this headline">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">rsmi_is_p2p_accessible</span></code> API returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if P2P can be implemented
+between two nodes, and returns <code class="docutils literal notranslate"><span class="pre">False</span></code> if P2P cannot be implemented between the
+two nodes.</p>
+<p>The Command Line Interface command can be called as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rocm-smi<span class="w"> </span>--showtopoaccess
+</pre></div>
+</div>
+<p>Sample Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rocm-smi<span class="w"> </span>--showtopoaccess
+<span class="o">=======================</span><span class="w"> </span>ROCm<span class="w"> </span>System<span class="w"> </span>Management<span class="w"> </span><span class="nv">Interface</span><span class="w"> </span><span class="o">=======================</span>
+<span class="o">=====================</span><span class="w"> </span>Link<span class="w"> </span>accessibility<span class="w"> </span>between<span class="w"> </span>two<span class="w"> </span><span class="nv">GPUs</span><span class="w"> </span><span class="o">======================</span>
+GPU0<span class="w"> </span>GPU1
+GPU0<span class="w"> </span>True<span class="w"> </span>True
+GPU1<span class="w"> </span>True<span class="w"> </span><span class="nv">True</span>
+<span class="o">=============================</span><span class="w"> </span>End<span class="w"> </span>of<span class="w"> </span>ROCm<span class="w"> </span>SMI<span class="w"> </span><span class="nv">Log</span><span class="w"> </span><span class="o">==============================</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="breaking-changes">
+<h2>Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">#</a></h2>
+<div class="section" id="runtime-breaking-change">
+<h3>Runtime Breaking Change<a class="headerlink" href="#runtime-breaking-change" title="Permalink to this headline">#</a></h3>
+<p>Re-ordering of the enumerated type in <code class="docutils literal notranslate"><span class="pre">hip_runtime_api.h</span></code> to better match CUDA.
+See below for the difference in enumerated types.</p>
+<p>ROCm software will be affected if any of the defined enums listed below are used
+in the code. Applications built with ROCm v5.0 enumerated types will work with a
+ROCm 4.5.2 driver. However, an undefined behavior error will occur with a ROCm
+v4.5.2 application that uses these enumerated types with a ROCm 5.0 runtime.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">hipDeviceAttribute_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxThreadsPerBlock</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum number of threads per block.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxBlockDimX</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum x-dimension of a block.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxBlockDimY</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum y-dimension of a block.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxBlockDimZ</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum z-dimension of a block.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxGridDimX</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum x-dimension of a grid.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxGridDimY</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum y-dimension of a grid.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxGridDimZ</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum z-dimension of a grid.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSharedMemoryPerBlock</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum shared memory available per block in bytes.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTotalConstantMemory</span><span class="p">,</span><span class="w"> </span><span class="c1">// Constant memory size in bytes.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeWarpSize</span><span class="p">,</span><span class="w"> </span><span class="c1">// Warp size in threads.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxRegistersPerBlock</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum number of 32-bit registers available to a</span>
+<span class="w">                                          </span><span class="c1">// thread block. This number is shared by all thread</span>
+<span class="w">                                          </span><span class="c1">// blocks simultaneously resident on a</span>
+<span class="w">                                          </span><span class="c1">// multiprocessor.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeClockRate</span><span class="p">,</span><span class="w"> </span><span class="c1">// Peak clock frequency in kilohertz.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMemoryClockRate</span><span class="p">,</span><span class="w"> </span><span class="c1">// Peak memory clock frequency in kilohertz.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMemoryBusWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Global memory bus width in bits.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMultiprocessorCount</span><span class="p">,</span><span class="w"> </span><span class="c1">// Number of multiprocessors on the device.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeComputeMode</span><span class="p">,</span><span class="w"> </span><span class="c1">// Compute mode that device is currently in.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeL2CacheSize</span><span class="p">,</span><span class="w"> </span><span class="c1">// Size of L2 cache in bytes. 0 if the device doesn&#39;t have L2</span>
+<span class="w">                                 </span><span class="c1">// cache.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxThreadsPerMultiProcessor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum resident threads per</span>
+<span class="w">                                                 </span><span class="c1">// multiprocessor.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeComputeCapabilityMajor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Major compute capability version number.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeComputeCapabilityMinor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Minor compute capability version number.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeConcurrentKernels</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device can possibly execute multiple kernels</span>
+<span class="w">                                       </span><span class="c1">// concurrently.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePciBusId</span><span class="p">,</span><span class="w"> </span><span class="c1">// PCI Bus ID.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePciDeviceId</span><span class="p">,</span><span class="w"> </span><span class="c1">// PCI Device ID.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSharedMemoryPerMultiprocessor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum Shared Memory Per</span>
+<span class="w">                                                      </span><span class="c1">// Multiprocessor.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeIsMultiGpuBoard</span><span class="p">,</span><span class="w"> </span><span class="c1">// Multiple GPU devices.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeIntegrated</span><span class="p">,</span><span class="w"> </span><span class="c1">// iGPU</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeLaunch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Support cooperative launch</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceLaunch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Support cooperative launch on multiple devices</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture1DWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum number of elements in 1D images</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension width of 2D images in image elements</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DHeight</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension height of 2D images in image elements</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture3DWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension width of 3D images in image elements</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture3DHeight</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimensions height of 3D images in image elements</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture3DDepth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimensions depth of 3D images in image elements</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCudaCompatibleBegin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeHdpMemFlushCntl</span><span class="p">,</span><span class="w"> </span><span class="c1">// Address of the HDP\_MEM\_COHERENCY\_FLUSH\_CNTL register</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeHdpRegFlushCntl</span><span class="p">,</span><span class="w"> </span><span class="c1">// Address of the HDP\_REG\_COHERENCY\_FLUSH\_CNTL register</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeEccEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hipDeviceAttributeCudaCompatibleBegin</span><span class="p">,</span><span class="w"> </span><span class="c1">// Whether ECC support is enabled.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeAccessPolicyMaxWindowSize</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. The maximum size of the window policy in bytes.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeAsyncEngineCount</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Asynchronous engines number.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCanMapHostMemory</span><span class="p">,</span><span class="w"> </span><span class="c1">// Whether host memory can be mapped into device address space</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCanUseHostPointerForRegisteredMem</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Device can access host registered memory</span>
+<span class="w">  </span><span class="c1">// at the same virtual address as the CPU</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeClockRate</span><span class="p">,</span><span class="w"> </span><span class="c1">// Peak clock frequency in kilohertz.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeComputeMode</span><span class="p">,</span><span class="w"> </span><span class="c1">// Compute mode that device is currently in.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeComputePreemptionSupported</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Device supports Compute Preemption.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeConcurrentKernels</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device can possibly execute multiple kernels concurrently.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeConcurrentManagedAccess</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device can coherently access managed memory concurrently with the CPU</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeLaunch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Support cooperative launch</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceLaunch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Support cooperative launch on multiple devices</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeDeviceOverlap</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Device can concurrently copy memory and execute a kernel.</span>
+<span class="w">                                   </span><span class="c1">// Deprecated. Use instead asyncEngineCount.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeDirectManagedMemAccessFromHost</span><span class="p">,</span><span class="w"> </span><span class="c1">// Host can directly access managed memory on</span>
+<span class="w">                                                    </span><span class="c1">// the device without migration</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeGlobalL1CacheSupported</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Device supports caching globals in L1</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeHostNativeAtomicSupported</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Link between the device and the host supports native atomic operations</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeIntegrated</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device is integrated GPU</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeIsMultiGpuBoard</span><span class="p">,</span><span class="w"> </span><span class="c1">// Multiple GPU devices.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeKernelExecTimeout</span><span class="p">,</span><span class="w"> </span><span class="c1">// Run time limit for kernels executed on the device</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeL2CacheSize</span><span class="p">,</span><span class="w"> </span><span class="c1">// Size of L2 cache in bytes. 0 if the device doesn&amp;#39;t have L2 cache.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeLocalL1CacheSupported</span><span class="p">,</span><span class="w"> </span><span class="c1">// caching locals in L1 is supported</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeLuid</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. 8-byte locally unique identifier in 8 bytes. Undefined on TCC and non-Windows platforms</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeLuidDeviceNodeMask</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Luid device node mask. Undefined on TCC and non-Windows platforms</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeComputeCapabilityMajor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Major compute capability version number.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeManagedMemory</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device supports allocating managed memory on this system</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxBlocksPerMultiProcessor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Max block size per multiprocessor</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxBlockDimX</span><span class="p">,</span><span class="w"> </span><span class="c1">// Max block size in width.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxBlockDimY</span><span class="p">,</span><span class="w"> </span><span class="c1">// Max block size in height.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxBlockDimZ</span><span class="p">,</span><span class="w"> </span><span class="c1">// Max block size in depth.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxGridDimX</span><span class="p">,</span><span class="w"> </span><span class="c1">// Max grid size in width.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxGridDimY</span><span class="p">,</span><span class="w"> </span><span class="c1">// Max grid size in height.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxGridDimZ</span><span class="p">,</span><span class="w"> </span><span class="c1">// Max grid size in depth.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSurface1D</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum size of 1D surface.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSurface1DLayered</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of 1D layered surface.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSurface2D</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension (width, height) of 2D surface.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSurface2DLayered</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of 2D layered surface.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSurface3D</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension (width, height, depth) of 3D surface.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSurfaceCubemap</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of Cubemap surface.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSurfaceCubemapLayered</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimension of Cubemap layered surface.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture1DWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum size of 1D texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture1DLayered</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of 1D layered texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture1DLinear</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum number of elements allocatable in a 1D linear texture.</span>
+<span class="w">                                        </span><span class="c1">// Use cudaDeviceGetTexture1DLinearMaxWidth() instead on Cuda.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture1DMipmap</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum size of 1D mipmapped texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension width of 2D texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DHeight</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension hight of 2D texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DGather</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of 2D texture if gather operations performed.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DLayered</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of 2D layered texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DLinear</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions (width, height, pitch) of 2D textures bound to pitched memory.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture2DMipmap</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of 2D mipmapped texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture3DWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension width of 3D texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture3DHeight</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension height of 3D texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture3DDepth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension depth of 3D texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTexture3DAlt</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of alternate 3D texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTextureCubemap</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of Cubemap texture</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxTextureCubemapLayered</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum dimensions of Cubemap layered texture.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxThreadsDim</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum dimension of a block</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxThreadsPerBlock</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum number of threads per block.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxThreadsPerMultiProcessor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum resident threads per multiprocessor.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxPitch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum pitch in bytes allowed by memory copies</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMemoryBusWidth</span><span class="p">,</span><span class="w"> </span><span class="c1">// Global memory bus width in bits.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMemoryClockRate</span><span class="p">,</span><span class="w"> </span><span class="c1">// Peak memory clock frequency in kilohertz.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeComputeCapabilityMinor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Minor compute capability version number.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMultiGpuBoardGroupID</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Unique ID of device group on the same multi-GPU board</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMultiprocessorCount</span><span class="p">,</span><span class="w"> </span><span class="c1">// Number of multiprocessors on the device.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeName</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device name.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePageableMemoryAccess</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device supports coherently accessing pageable memory</span>
+<span class="w">                                          </span><span class="c1">// without calling hipHostRegister on it</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePageableMemoryAccessUsesHostPageTables</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device accesses pageable memory via the host&amp;#39;s page tables</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePciBusId</span><span class="p">,</span><span class="w"> </span><span class="c1">// PCI Bus ID.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePciDeviceId</span><span class="p">,</span><span class="w"> </span><span class="c1">// PCI Device ID.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePciDomainID</span><span class="p">,</span><span class="w"> </span><span class="c1">// PCI Domain ID.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePersistingL2CacheMaxSize</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda11 only. Maximum l2 persisting lines capacity in bytes</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxRegistersPerBlock</span><span class="p">,</span><span class="w"> </span><span class="c1">// 32-bit registers available to a thread block. This number is shared</span>
+<span class="w">                                          </span><span class="c1">// by all thread blocks simultaneously resident on a multiprocessor.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxRegistersPerMultiprocessor</span><span class="p">,</span><span class="w"> </span><span class="c1">// 32-bit registers available per block.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeReservedSharedMemPerBlock</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda11 only. Shared memory reserved by CUDA driver per block.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSharedMemoryPerBlock</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum shared memory available per block in bytes.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeSharedMemPerBlockOptin</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Maximum shared memory per block usable by special opt in.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeSharedMemPerMultiprocessor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Shared memory available per multiprocessor.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeSingleToDoublePrecisionPerfRatio</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Performance ratio of single precision to double precision.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeStreamPrioritiesSupported</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Whether to support stream priorities.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeSurfaceAlignment</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Alignment requirement for surfaces</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTccDriver</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Whether device is a Tesla device using TCC driver</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTextureAlignment</span><span class="p">,</span><span class="w"> </span><span class="c1">// Alignment requirement for textures</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTexturePitchAlignment</span><span class="p">,</span><span class="w"> </span><span class="c1">// Pitch alignment requirement for 2D texture references bound to pitched memory;</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTotalConstantMemory</span><span class="p">,</span><span class="w"> </span><span class="c1">// Constant memory size in bytes.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTotalGlobalMem</span><span class="p">,</span><span class="w"> </span><span class="c1">// Global memory available on devicice.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeUnifiedAddressing</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. An unified address space shared with the host.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeUuid</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cuda only. Unique ID in 16 byte.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeWarpSize</span><span class="p">,</span><span class="w"> </span><span class="c1">// Warp size in threads.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxPitch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum pitch in bytes allowed by memory copies</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTextureAlignment</span><span class="p">,</span><span class="w"> </span><span class="c1">//Alignment requirement for textures</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeTexturePitchAlignment</span><span class="p">,</span><span class="w"> </span><span class="c1">//Pitch alignment requirement for 2D texture references bound to pitched memory;</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeKernelExecTimeout</span><span class="p">,</span><span class="w"> </span><span class="c1">//Run time limit for kernels executed on the device</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCanMapHostMemory</span><span class="p">,</span><span class="w"> </span><span class="c1">//Device can map host memory into device address space</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeEccEnabled</span><span class="p">,</span><span class="w"> </span><span class="c1">//Device has ECC support enabled</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCudaCompatibleEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9999</span><span class="p">,</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeAmdSpecificBegin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedFunc</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                         </span><span class="c1">// devices with unmatched functions</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedGridDim</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                            </span><span class="c1">// devices with unmatched grid dimensions</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                             </span><span class="c1">// devices with unmatched block dimensions</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                              </span><span class="c1">// devices with unmatched shared memories</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeAsicRevision</span><span class="p">,</span><span class="w"> </span><span class="c1">// Revision of the GPU in this device</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeManagedMemory</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device supports allocating managed memory on this system</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeDirectManagedMemAccessFromHost</span><span class="p">,</span><span class="w"> </span><span class="c1">// Host can directly access managed memory on</span>
+<span class="w">                                                    </span><span class="c1">//  the device without migration</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeConcurrentManagedAccess</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device can coherently access managed memory</span>
+<span class="w">                                             </span><span class="c1">// concurrently with the CPU</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePageableMemoryAccess</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device supports coherently accessing pageable memory</span>
+<span class="w">                                          </span><span class="c1">// without calling hipHostRegister on it</span>
+<span class="w">  </span><span class="n">hipDeviceAttributePageableMemoryAccessUsesHostPageTables</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device accesses pageable memory via</span>
+<span class="w">                                                            </span><span class="c1">// the host&#39;s page tables</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCanUseStreamWaitValue</span><span class="w"> </span><span class="c1">// &#39;1&#39; if Device supports hipStreamWaitValue32() and</span>
+<span class="w">                                          </span><span class="c1">// hipStreamWaitValue64(), &#39;0&#39; otherwise.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeClockInstructionRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hipDeviceAttributeAmdSpecificBegin</span><span class="p">,</span><span class="w"> </span><span class="c1">// Frequency in khz of the timer used by the device-side &quot;clock&quot;</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeArch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device architecture</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeMaxSharedMemoryPerMultiprocessor</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum Shared Memory PerMultiprocessor.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeGcnArch</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device gcn architecture</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeGcnArchName</span><span class="p">,</span><span class="w"> </span><span class="c1">// Device gcnArch name in 256 bytes</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeHdpMemFlushCntl</span><span class="p">,</span><span class="w"> </span><span class="c1">// Address of the HDP_MEM_COHERENCY_FLUSH_CNTL register</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeHdpRegFlushCntl</span><span class="p">,</span><span class="w"> </span><span class="c1">// Address of the HDP_REG_COHERENCY_FLUSH_CNTL register</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedFunc</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                         </span><span class="c1">// devices with unmatched functions</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedGridDim</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                            </span><span class="c1">// devices with unmatched grid dimensions</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                             </span><span class="c1">// devices with unmatched block dimensions</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem</span><span class="p">,</span><span class="w"> </span><span class="c1">// Supports cooperative launch on multiple</span>
+<span class="w">                                                              </span><span class="c1">// devices with unmatched shared memories</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeIsLargeBar</span><span class="p">,</span><span class="w"> </span><span class="c1">// Whether it is LargeBar</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeAsicRevision</span><span class="p">,</span><span class="w"> </span><span class="c1">// Revision of the GPU in this device</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeCanUseStreamWaitValue</span><span class="p">,</span><span class="w"> </span><span class="c1">// &#39;1&#39; if Device supports hipStreamWaitValue32() and</span>
+<span class="w">                                           </span><span class="c1">// hipStreamWaitValue64() , &#39;0&#39; otherwise.</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeAmdSpecificEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">19999</span><span class="p">,</span>
+<span class="w">  </span><span class="n">hipDeviceAttributeVendorSpecificBegin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span><span class="w">   </span><span class="c1">// Extended attributes for vendors</span>
+<span class="p">}</span><span class="w"> </span><span class="n">hipDeviceAttribute_t</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="known-issues-in-this-release">
+<h2>Known Issues in This Release<a class="headerlink" href="#known-issues-in-this-release" title="Permalink to this headline">#</a></h2>
+<div class="section" id="incorrect-dgpu-behavior-when-using-amdvbflash-tool">
+<h3>Incorrect dGPU Behavior When Using AMDVBFlash Tool<a class="headerlink" href="#incorrect-dgpu-behavior-when-using-amdvbflash-tool" title="Permalink to this headline">#</a></h3>
+<p>The AMDVBFlash tool, used for flashing the VBIOS image to dGPU, does not
+communicate with the ROM Controller specifically when the driver is present.
+This is because the driver, as part of its runtime power management feature,
+puts the dGPU to a sleep state.</p>
+<p>As a workaround, users can run <code class="docutils literal notranslate"><span class="pre">amdgpu.runpm=0</span></code>, which temporarily disables the
+runtime power management feature from the driver and dynamically changes some
+power control-related sysfs files.</p>
+</div>
+<div class="section" id="issue-with-start-timestamp-in-rocprofiler">
+<h3>Issue with START Timestamp in ROCProfiler<a class="headerlink" href="#issue-with-start-timestamp-in-rocprofiler" title="Permalink to this headline">#</a></h3>
+<p>Users may encounter an issue with the enabled timestamp functionality for
+monitoring one or multiple counters. ROCProfiler outputs the following four
+timestamps for each kernel:</p>
+<ul class="simple">
+<li><p>Dispatch</p></li>
+<li><p>Start</p></li>
+<li><p>End</p></li>
+<li><p>Complete</p></li>
+</ul>
+<div class="section" id="issue">
+<h4>Issue<a class="headerlink" href="#issue" title="Permalink to this headline">#</a></h4>
+<p>This defect is related to the Start timestamp functionality, which incorrectly
+shows an earlier time than the Dispatch timestamp.</p>
+<p>To reproduce the issue,</p>
+<ol class="arabic simple">
+<li><p>Enable timing using the <code class="docutils literal notranslate"><span class="pre">--timestamp</span> <span class="pre">on</span></code> flag.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">-i</span></code> option with the input filename that contains the name of the
+counter(s) to monitor.</p></li>
+<li><p>Run the program.</p></li>
+<li><p>Check the output result file.</p></li>
+</ol>
+<div class="section" id="current-behavior">
+<h5>Current behavior<a class="headerlink" href="#current-behavior" title="Permalink to this headline">#</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">BeginNS</span></code> is lower than <code class="docutils literal notranslate"><span class="pre">DispatchNS</span></code>, which is incorrect.</p>
+</div>
+<div class="section" id="expected-behavior">
+<h5>Expected behavior<a class="headerlink" href="#expected-behavior" title="Permalink to this headline">#</a></h5>
+<p>The correct order is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Dispatch</span> <span class="pre">&lt;</span> <span class="pre">Start</span> <span class="pre">&lt;</span> <span class="pre">End</span> <span class="pre">&lt;</span> <span class="pre">Complete</span></code></p>
+<p>Users cannot use ROCProfiler to measure the time spent on each kernel because of
+the incorrect timestamp with counter collection enabled.</p>
+</div>
+<div class="section" id="recommended-workaround">
+<h5>Recommended Workaround<a class="headerlink" href="#recommended-workaround" title="Permalink to this headline">#</a></h5>
+<p>Users are recommended to collect kernel execution timestamps without monitoring
+counters, as follows:</p>
+<ol class="arabic simple">
+<li><p>Enable timing using the <code class="docutils literal notranslate"><span class="pre">--timestamp</span> <span class="pre">on</span></code> flag, and run the application.</p></li>
+<li><p>Rerun the application using the <code class="docutils literal notranslate"><span class="pre">-i</span></code> option with the input filename that
+contains the name of the counter(s) to monitor, and save this to a different
+output file using the <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag.</p></li>
+<li><p>Check the output result file from step 1.</p></li>
+<li><p>The order of timestamps correctly displays as:</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">DispathNS</span> <span class="pre">&lt;</span> <span class="pre">BeginNS</span> <span class="pre">&lt;</span> <span class="pre">EndNS</span> <span class="pre">&lt;</span> <span class="pre">CompleteNS</span></code></p>
+<ol class="arabic simple">
+<li><p>Users can find the values of the collected counters in the output file
+generated in step 2.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="no-support-for-smi-and-rocdebugger-on-sriov">
+<h3>No Support for SMI and ROCDebugger on SRIOV<a class="headerlink" href="#no-support-for-smi-and-rocdebugger-on-sriov" title="Permalink to this headline">#</a></h3>
+<p>System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV
+environment on any GPU, including the
+<strong>Radeon Pro V620 and W6800 Workstation GPUs</strong>. For more information, refer to
+the Systems Management Interface documentation.</p>
+</div>
+</div>
+<div class="section" id="deprecations-and-warnings-in-this-release">
+<h2>Deprecations and Warnings in This Release<a class="headerlink" href="#deprecations-and-warnings-in-this-release" title="Permalink to this headline">#</a></h2>
+<div class="section" id="rocm-libraries-changes-deprecations-and-deprecation-removal">
+<h3>ROCm Libraries Changes – Deprecations and Deprecation Removal<a class="headerlink" href="#rocm-libraries-changes-deprecations-and-deprecation-removal" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">hipfft.h</span></code> header is now provided only by the <code class="docutils literal notranslate"><span class="pre">hipfft</span></code> package. Up to ROCm
+5.0, users would get <code class="docutils literal notranslate"><span class="pre">hipfft.h</span></code> in the rocfft package too.</p></li>
+<li><p>The GlobalPairwiseAMG class is now entirely removed, users should use the
+PairwiseAMG class instead.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code> signature in 5.0 was changed to match that of
+<code class="docutils literal notranslate"><span class="pre">rocsparse_spmm_ex</span></code>. In 5.0, <code class="docutils literal notranslate"><span class="pre">rocsparse_spmm_ex</span></code> is still present, but
+deprecated. Signature diff for <code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code></p></li>
+</ul>
+<div class="section" id="rocsparse-spmm-in-5-0">
+<h4><code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code> in 5.0<a class="headerlink" href="#rocsparse-spmm-in-5-0" title="Permalink to this headline">#</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">rocsparse_status</span><span class="w"> </span><span class="nf">rocsparse_spmm</span><span class="p">(</span><span class="n">rocsparse_handle</span><span class="w">            </span><span class="n">handle</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_operation</span><span class="w">         </span><span class="n">trans_A</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_operation</span><span class="w">         </span><span class="n">trans_B</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w">                 </span><span class="n">alpha</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">rocsparse_spmat_descr</span><span class="w"> </span><span class="n">mat_A</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">rocsparse_dnmat_descr</span><span class="w"> </span><span class="n">mat_B</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w">                 </span><span class="n">beta</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">rocsparse_dnmat_descr</span><span class="w"> </span><span class="n">mat_C</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_datatype</span><span class="w">          </span><span class="n">compute_type</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_spmm_alg</span><span class="w">          </span><span class="n">alg</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_spmm_stage</span><span class="w">        </span><span class="n">stage</span><span class="p">,</span>
+<span class="w">                                </span><span class="kt">size_t</span><span class="o">*</span><span class="w">                     </span><span class="n">buffer_size</span><span class="p">,</span>
+<span class="w">                                </span><span class="kt">void</span><span class="o">*</span><span class="w">                       </span><span class="n">temp_buffer</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rocsparse-spmm-in-4-0">
+<h3><code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code> in 4.0<a class="headerlink" href="#rocsparse-spmm-in-4-0" title="Permalink to this headline">#</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">rocsparse_status</span><span class="w"> </span><span class="nf">rocsparse_spmm</span><span class="p">(</span><span class="n">rocsparse_handle</span><span class="w">            </span><span class="n">handle</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_operation</span><span class="w">         </span><span class="n">trans_A</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_operation</span><span class="w">         </span><span class="n">trans_B</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w">                 </span><span class="n">alpha</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">rocsparse_spmat_descr</span><span class="w"> </span><span class="n">mat_A</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">rocsparse_dnmat_descr</span><span class="w"> </span><span class="n">mat_B</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w">                 </span><span class="n">beta</span><span class="p">,</span>
+<span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">rocsparse_dnmat_descr</span><span class="w"> </span><span class="n">mat_C</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_datatype</span><span class="w">          </span><span class="n">compute_type</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">rocsparse_spmm_alg</span><span class="w">          </span><span class="n">alg</span><span class="p">,</span>
+<span class="w">                                </span><span class="kt">size_t</span><span class="o">*</span><span class="w">                     </span><span class="n">buffer_size</span><span class="p">,</span>
+<span class="w">                                </span><span class="kt">void</span><span class="o">*</span><span class="w">                       </span><span class="n">temp_buffer</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hip-api-deprecations-and-warnings">
+<h3>HIP API Deprecations and Warnings<a class="headerlink" href="#hip-api-deprecations-and-warnings" title="Permalink to this headline">#</a></h3>
+<div class="section" id="warning-arithmetic-operators-of-hip-complex-and-vector-types">
+<h4>Warning - Arithmetic Operators of HIP Complex and Vector Types<a class="headerlink" href="#warning-arithmetic-operators-of-hip-complex-and-vector-types" title="Permalink to this headline">#</a></h4>
+<p>In this release, arithmetic operators of HIP complex and vector types are
+deprecated.</p>
+<ul class="simple">
+<li><p>As alternatives to arithmetic operators of HIP complex types, users can use
+arithmetic operators of <code class="docutils literal notranslate"><span class="pre">std::complex</span></code> types.</p></li>
+<li><p>As alternatives to arithmetic operators of HIP vector types, users can use the
+operators of the native clang vector type associated with the data member of
+HIP vector types.</p></li>
+</ul>
+<p>During the deprecation, two macros <code class="docutils literal notranslate"><span class="pre">__HIP_ENABLE_COMPLEX_OPERATORS</span></code> and
+<code class="docutils literal notranslate"><span class="pre">__HIP_ENABLE_VECTOR_OPERATORS</span></code> are provided to allow users to conditionally
+enable arithmetic operators of HIP complex or vector types.</p>
+<p>Note, the two macros are mutually exclusive and, by default, set to off.</p>
+<p>The arithmetic operators of HIP complex and vector types will be removed in a
+future release.</p>
+<p>Refer to the HIP API Guide for more information.</p>
+</div>
+<div class="section" id="hipcc-hipconfig-refactoring">
+<h4>HIPCC/HIPCONFIG Refactoring<a class="headerlink" href="#hipcc-hipconfig-refactoring" title="Permalink to this headline">#</a></h4>
+<p>In prior ROCm releases, by default, the <code class="docutils literal notranslate"><span class="pre">hipcc</span></code>/<code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> Perl scripts were
+used to identify and set target compiler options, target platform, compiler, and
+runtime appropriately.</p>
+<p>In ROCm v5.0, <code class="docutils literal notranslate"><span class="pre">hipcc.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig.bin</span></code> have been added as the compiled
+binary implementations of the <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig</span></code>. These new binaries are
+currently a work-in-progress, considered, and marked as experimental. ROCm plans
+to fully transition to <code class="docutils literal notranslate"><span class="pre">hipcc.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig.bin</span></code> in the a future ROCm
+release. The existing <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> Perl scripts are renamed to
+<code class="docutils literal notranslate"><span class="pre">hipcc.pl</span></code> and <code class="docutils literal notranslate"><span class="pre">hipconfig.pl</span></code> respectively. New top-level <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> Perl scripts are created, which can switch between the Perl script
+or the compiled binary based on the environment variable
+<code class="docutils literal notranslate"><span class="pre">HIPCC_USE_PERL_SCRIPT</span></code>.</p>
+<p>In ROCm 5.0, by default, this environment variable is set to use <code class="docutils literal notranslate"><span class="pre">hipcc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">hipconfig</span></code> through the Perl scripts.</p>
+<p>Subsequently, Perl scripts will no longer be available in ROCm in a future
+release.</p>
+</div>
+</div>
+<div class="section" id="warning-compiler-generated-code-object-version-4-deprecation">
+<h3>Warning - Compiler-Generated Code Object Version 4 Deprecation<a class="headerlink" href="#warning-compiler-generated-code-object-version-4-deprecation" title="Permalink to this headline">#</a></h3>
+<p>Support for loading compiler-generated code object version 4 will be deprecated
+in a future release with no release announcement and replaced with code object 5
+as the default version.</p>
+<p>The current default is code object version 4.</p>
+</div>
+<div class="section" id="warning-miopentensile-deprecation">
+<h3>Warning - MIOpenTensile Deprecation<a class="headerlink" href="#warning-miopentensile-deprecation" title="Permalink to this headline">#</a></h3>
+<p>MIOpenTensile will be deprecated in a future release.</p>
+</div>
+</div>
+<div class="section" id="archived-documentation">
+<h2>Archived Documentation<a class="headerlink" href="#archived-documentation" title="Permalink to this headline">#</a></h2>
+<p>Older rocm documentation is archived at <a class="reference external" href="https://rocmdocs.amd.com">https://rocmdocs.amd.com</a>.</p>
+</div>
+<div class="section" id="disclaimer">
+<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">#</a></h2>
+<p>The information presented in this document is for informational purposes only
+and may contain technical inaccuracies, omissions, and typographical errors.
+The information contained herein is subject to change and may be rendered
+inaccurate for many reasons, including but not limited to product and roadmap
+changes, component and motherboard versionchanges, new model and/or product
+releases, product differences between differing manufacturers, software changes,
+BIOS flashes, firmware upgrades, or the like. Any computer system has risks of
+security vulnerabilities that cannot be completely prevented or mitigated.
+AMD assumes no obligation to update or otherwise correct or revise this
+information. However, AMD reserves the right to revise this information and to
+make changes from time to time to the content hereof without obligation of AMD
+to notify any person of such revisions or changes. THIS INFORMATION IS PROVIDED
+“AS IS.” AMD MAKES NO REPRESENTATIONS OR WARRANTIES WITH RESPECT TO THE CONTENTS
+HEREOF AND ASSUMES NO RESPONSIBILITY FOR ANY INACCURACIES, ERRORS, OR OMISSIONS
+THAT MAY APPEAR IN THIS INFORMATION. AMD SPECIFICALLY DISCLAIMS ANY IMPLIED
+WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR ANY PARTICULAR
+PURPOSE. IN NO EVENT WILL AMD BE LIABLE TO ANY PERSON FOR ANY RELIANCE, DIRECT,
+INDIRECT, SPECIAL, OR OTHER CONSEQUENTIAL DAMAGES ARISING FROM THE USE OF ANY
+INFORMATION CONTAINED HEREIN, EVEN IF AMD IS EXPRESSLY ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.AMD, the AMD Arrow logo, and combinations thereof
+are trademarks of Advanced Micro Devices, Inc. Other product names used in this
+publication are for identification purposes only and may be trademarks of their
+respective  companies. ©[2021]Advanced Micro Devices, Inc.All rights reserved.</p>
+<div class="section" id="third-party-disclaimer">
+<h3>Third-party Disclaimer<a class="headerlink" href="#third-party-disclaimer" title="Permalink to this headline">#</a></h3>
+<p>Third-party content is licensed to you directly by the third party that owns the
+content and is not licensed to you by AMD. ALL LINKED THIRD-PARTY CONTENT IS
+PROVIDED “AS IS” WITHOUT A WARRANTY OF ANY KIND. USE OF SUCH THIRD-PARTY CONTENT
+IS DONE AT YOUR SOLE DISCRETION AND UNDER NO CIRCUMSTANCES WILL AMD BE LIABLE TO
+YOU FOR ANY THIRD-PARTY CONTENT. YOU ASSUME ALL RISK AND ARE SOLELY RESPONSIBLE
+FOR ANY DAMAGES THAT MAY ARISE FROM YOUR USE OF THIRD-PARTY CONTENT.</p>
+</div>
+</div>
+</div>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-releases">AMD ROCm™ Releases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-2-release">AMD  ROCm™ V5.2 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-1-3-release">AMD  ROCm™ V5.1.3 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-1-1-release">AMD  ROCm™ V5.1.1 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-1-release">AMD  ROCm™ V5.1 Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-2-release-notes">AMD ROCm™ v5.0.2 Release Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-defects-in-this-release">Fixed Defects in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-with-hostcall-facility-in-hip-runtime">Issue with hostcall Facility in HIP Runtime</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibility-matrix-updates-to-rocm-deep-learning-guide">Compatibility Matrix Updates to ROCm Deep Learning Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-1-release-notes">AMD ROCm™ v5.0.1 Release Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecations-and-warnings">Deprecations and Warnings</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-of-hipcc-hipconfig">Refactor of HIPCC/HIPCONFIG</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-documentation-updates-for-rocm-5-0-1">ROCM DOCUMENTATION UPDATES FOR ROCM 5.0.1</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-release-notes">AMD ROCm™ v5.0 Release Notes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-installation-updates">ROCm Installation Updates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notice-for-open-source-and-closed-source-rocm-repositories-in-future-releases">Notice for Open-source and Closed-source ROCm Repositories in Future Releases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-supported-operating-systems">List of Supported Operating Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-rhel-v8-5">Support for RHEL v8.5</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-gpus">Supported GPUs</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#radeon-pro-v620-and-w6800-workstation-gpus">Radeon Pro V620 and W6800 Workstation GPUs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-installation-updates-for-rocm-v5-0">ROCm Installation Updates for ROCm v5.0</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-kernel-mode-driver">Support for Kernel Mode Driver</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-multi-version-rocm-installation-and-uninstallation">Support for Multi-version ROCm Installation and Uninstallation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-updating-information-on-local-repositories">Support for Updating Information on Local Repositories</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#support-for-release-upgrades">Support for Release Upgrades</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-v5-0-documentation-updates">AMD ROCm V5.0 Documentation Updates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-amd-rocm-information-portal-rocm-v4-5-and-above">New AMD ROCm Information Portal – ROCm v4.5 and Above</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-updates-for-rocm-5-0">Documentation Updates for ROCm 5.0</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-tools">Deployment Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-data-center-tool-documentation-updates">ROCm Data Center Tool Documentation Updates</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-system-management-interface-updates">ROCm System Management Interface Updates</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-command-line-interface-updates">ROCm Command Line Interface Updates</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-ai-documentation-updates">Machine Learning/AI Documentation Updates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-libraries-documentation-updates">ROCm Libraries Documentation Updates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers-and-tools">Compilers and Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocdebugger-documentation-updates">ROCDebugger Documentation Updates</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#roctracer">ROCTracer</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers">Compilers</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#hipify-documentation">HIPify Documentation</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-debug-agent">ROCm Debug Agent</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-models-documentation">Programming Models Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-documentation">HIP Documentation</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#openmp-documentation">OpenMP Documentation</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-glossary">ROCm Glossary</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amd-rocm-legacy-documentation-links-rocm-v4-3-and-prior">AMD ROCm Legacy Documentation Links – ROCm v4.3 and Prior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-new-in-this-release">What’s New in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-enhancements">HIP Enhancements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-installation-guide-updates">HIP Installation Guide Updates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#managed-memory-allocation">Managed Memory Allocation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-environment-variable">New Environment Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-math-and-communication-libraries">ROCm Math and Communication Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-management-interface">System Management Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clock-throttling-for-gpu-events">Clock Throttling for GPU Events</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-commands">CLI Commands</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#display-xgmi-bandwidth-between-nodes">Display XGMI Bandwidth Between Nodes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#p2p-connection-status">P2P Connection Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breaking-changes">Breaking Changes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-breaking-change">Runtime Breaking Change</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#known-issues-in-this-release">Known Issues in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorrect-dgpu-behavior-when-using-amdvbflash-tool">Incorrect dGPU Behavior When Using AMDVBFlash Tool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-with-start-timestamp-in-rocprofiler">Issue with START Timestamp in ROCProfiler</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#issue">Issue</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#current-behavior">Current behavior</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-behavior">Expected behavior</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-workaround">Recommended Workaround</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-support-for-smi-and-rocdebugger-on-sriov">No Support for SMI and ROCDebugger on SRIOV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecations-and-warnings-in-this-release">Deprecations and Warnings in This Release</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocm-libraries-changes-deprecations-and-deprecation-removal">ROCm Libraries Changes – Deprecations and Deprecation Removal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rocsparse-spmm-in-5-0"><code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code> in 5.0</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rocsparse-spmm-in-4-0"><code class="docutils literal notranslate"><span class="pre">rocsparse_spmm</span></code> in 4.0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hip-api-deprecations-and-warnings">HIP API Deprecations and Warnings</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-arithmetic-operators-of-hip-complex-and-vector-types">Warning - Arithmetic Operators of HIP Complex and Vector Types</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hipcc-hipconfig-refactoring">HIPCC/HIPCONFIG Refactoring</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-compiler-generated-code-object-version-4-deprecation">Warning - Compiler-Generated Code Object Version 4 Deprecation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warning-miopentensile-deprecation">Warning - MIOpenTensile Deprecation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archived-documentation">Archived Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disclaimer">Disclaimer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-party-disclaimer">Third-party Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"><p>
+  </p></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+<div class="rocm-footer"><!-- Copied from pydata-sphinx-theme --><ul id="navbar-icon-links"
+    class="navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://www.github.com/AMD" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://www.facebook.com/amd" title="Facebook" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-facebook-f"></i></span>
+            <label class="sr-only">Facebook</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://www.twitter.com/amd" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://www.instagram.com/amd" title="Instagram" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-instagram"></i></span>
+            <label class="sr-only">Instagram</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://www.linkedin.com/company/amd" title="LinkedIn" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-linkedin"></i></span>
+            <label class="sr-only">LinkedIn</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.amd.com/en/corporate/subscriptions" title="Mail" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-envelope"></i></span>
+            <label class="sr-only">Mail</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/user/amd?sub_confirmation=1" title="Youtube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube"></i></span>
+            <label class="sr-only">Youtube</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.twitch.tv/amd" title="Twitch" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-twitch"></i></span>
+            <label class="sr-only">Twitch</label></a>
+        </li></ul>
+  <div class="copyright">
+    
+      © Copyright 2022-2023, Advanced Micro Devices Ltd..
+      <br/>
+    
+  </div>
+
+    <div class="rocm-footer-links">
+        <ul>
+            <li><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions (AMD)</a></li>
+            <li><a href="#">Terms and Conditions (ROCm)</a></li>
+            <li><a href="https://www.amd.com/en/corporate/privacy">Privacy</a></li>
+            <li><a href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a></li>
+            <li><a href="https://www.amd.com/en/corporate/trademarks">Trademarks</a></li>
+            <li><a href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a></li>
+            <li><a href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a></li>
+            <li><a href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="rdc-watermark-container">
+    <img id="rdc-watermark" src="rdc-watermark.svg" alt="DRAFT watermark"/>
+</div>
+  </body>
+</html>
