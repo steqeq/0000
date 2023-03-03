@@ -159,7 +159,7 @@ Instead of using a prebuilt base Docker image, you can build a custom base Docke
 
 Follow these steps:
 
-1.     Clone the PyTorch repository on the host.
+1. Clone the PyTorch repository on the host.
 ```
 cd ~
 git clone https://github.com/pytorch/pytorch.git
@@ -167,3 +167,10 @@ cd pytorch
 git submodule update --init –recursive
 ```
 
+2. Build the PyTorch Docker image.
+```
+cd.circleci/docker
+  ./build.sh pytorch-linux-bionic-rocm<version>-py3.7 
+  # eg. ./build.sh pytorch-linux-bionic-rocm3.10-py3.7
+```
+This should be complete with a message "Successfully build &lt;image_id&gt;."
