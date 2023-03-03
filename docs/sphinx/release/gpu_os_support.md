@@ -1,4 +1,4 @@
-# GPU and OS Support
+ GPU and OS Support
 
 ## OS Support
 
@@ -27,7 +27,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 :::{tab-item} Instinct™
 :sync: instinct
-
+Use Driver Shipped with ROCm
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
 |:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
 |Instinct™ MI250X  | CDNA2          |All |gfx90a                                                               |Supported                                  |Unsupported  |
@@ -42,6 +42,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 :::{tab-item} Radeon Pro™
 :sync: radeonpro
 
+[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
 |:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
 |Radeon™ Pro W6800 | RDNA2          |All |gfx1030                                                              |Supported                            |Supported|
@@ -55,6 +56,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 :::{tab-item} Radeon™
 :sync: radeon
 
+[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 |GPU               |Architecture    |Product|[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows |
 |:----------------:|:--------------:|:----:|:--------------------------------------------------------------------:|:------------------------------------:|:-------:|
 |Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |Supported                             |Supported|
