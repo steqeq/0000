@@ -201,3 +201,8 @@ By default in the rocm/pytorch:latest-base, PyTorch builds for these architectur
 - gfx90a
 - gfx1030
 :::
+
+6. To determine your AMD uarch, run:
+```
+rocminfo | grep gfx
+```
