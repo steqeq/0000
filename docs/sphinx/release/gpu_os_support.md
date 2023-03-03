@@ -28,21 +28,28 @@ ROCm supports virtualization for select GPUs only as shown below.
 |Instinct™ MI250X  | CDNA2          |ROCm |gfx90a                                                               |Supported                                  |Unsupported  |
 |Instinct™ MI250   | CDNA2          |ROCm |gfx90a                                                               |Supported                                  |Unsupported  |
 |Instinct™ MI210   | CDNA2          |ROCm |gfx90a                                                               |Supported                             |Unsupported   |
-|Instinct™ MI100   | CDNA           |     |gfx908                                                               |                                      |Unsupported  |
-|Instinct™ MI50    | Vega           |     |gfx906                                                               |                                      |Unsupported  |
-|Radeon™ Pro W6800 | RDNA2          |ROCm |gfx1030                                                              |                                      |             |
-|Radeon™ Pro V620  | RDNA2          |     |gfx1030                                                              |                                      |         |
-|Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |Supported                             |         |
-|Radeon™ RX 6600   | RDNA2          |HIP|gfx1031                                                              |                                      |         |
-|Radeon™ R9 Fury   | Fiji           |     |gfx803                                                               |Community                            |         |
+|Instinct™ MI100   | CDNA           |ROCm|gfx908                                                               |Supported                             |Unsupported  |
+|Instinct™ MI50    | Vega           |ROCm|gfx906                                                               |Supported                             |Unsupported  |
+|Radeon™ Pro W6800 | RDNA2          |ROCm |gfx1030                                                              |Supported                            |Supported|
+|Radeon™ Pro V620  | RDNA2          |ROCm|gfx1030                                                              |Supported                            |Unsupported|
+|Radeon™ RX 6900 XT| RDNA2          |HIP SDK|gfx1030                                                              |Supported                             |Supported|
+|Radeon™ RX 6600   | RDNA2          |HIP|gfx1031                                                              |Supported|Supported|
+|Radeon™ R9 Fury   | Fiji           |ROCm|gfx803                                                               |Community                            |Unsupported|
+
+### Products in ROCm
+
+- ROCm software product include all software that is part of the ROCm ecosystem. Please see [article](link) for details of ROCm.
+- HIP SDK software products includes the HIP Runtime and a selection of GPU libraries for compute. Please see [article](link) for details of HIP SDK.
+- HIP software product supported GPUs enable use of the HIP Runtime
+
 
 ### GPU Support Levels
 
 GPU support levels in ROCm:
 
 - Supported
-- Unsupported
-- Deprecated
+- Unsupported - This configuration 
+- Deprecated - support will be removed in a future release. 
 - Community
 
 
