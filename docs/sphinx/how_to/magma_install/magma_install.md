@@ -242,3 +242,5 @@ python3 -c 'import torch' 2> /dev/null && echo 'Success' || echo 'Failure'
 ```
 python3 -c 'import torch; print(torch.cuda.is_available())'
 ```
+
+3. Run the unit tests to validate the PyTorch installation fully. Run the following command from the PyTorch home directory:
