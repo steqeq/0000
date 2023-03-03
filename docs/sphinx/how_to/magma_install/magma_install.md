@@ -239,3 +239,6 @@ python3 -c 'import torch' 2> /dev/null && echo 'Success' || echo 'Failure'
 ```
 
 2. Test if the GPU is accessible from PyTorch. In the PyTorch framework, torch.cuda is a generic mechanism to access the GPU; it will access an AMD GPU only if available.
+```
+python3 -c 'import torch; print(torch.cuda.is_available())'
+```
