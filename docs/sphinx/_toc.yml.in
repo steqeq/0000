@@ -118,11 +118,14 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-          - file: reference/dev_tools
-            subtrees:
-              - entries:
-                - url: http://profiler
-                  title: rocprof
+          - url: http://profiler
+            title: ROCGDB
+          - url: http://profiler
+            title: rocprof
+          - url: http://profiler
+            title: roctracer
+          - url: http://profiler
+            title: ROCdbgapi             
     - file: reference/management_tools
       title: Management Tools
       subtrees:
