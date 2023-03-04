@@ -298,3 +298,6 @@ python3 main.py
 Matrix Algebra on GPU and Multicore Architectures, abbreviated as MAGMA, is a collection of next-generation dense linear algebra libraries that is designed for heterogeneous architectures, such as multiple GPUs and multi- or many-core CPUs.
 
 MAGMA provides implementations for CUDA, HIP, Intel Xeon Phi, and OpenCL™. For more information, refer to [https://icl.utk.edu/magma/index.html](https://icl.utk.edu/magma/index.html).
+
+### Using MAGMA for PyTorch
+Tensor is fundamental to Deep Learning techniques because it provides extensive representational functionalities and math operations. This data structure is represented as a multidimensional matrix. MAGMA accelerates tensor operations with a variety of solutions including driver routines, computational routines, BLAS routines, auxiliary routines, and utility routines.
