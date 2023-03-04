@@ -364,3 +364,6 @@ docker run -it --network=host --device=/dev/kfd --device=/dev/dri
 --ipc=host --shm-size 16G --group-add video --cap-add=SYS\_PTRACE 
 --security-opt seccomp=unconfined rocm/tensorflow:latest
 ```
+
+#### Option 2: Install TensorFlow Using Wheels Package
+To install TensorFlow using the wheels package, follow these steps:
