@@ -264,3 +264,10 @@ test_nn.py can be replaced with any other test set.
 
 ### Run a Basic PyTorch Example
 The PyTorch examples repository provides basic examples that exercise the functionality of the framework. MNIST (Modified National Institute of Standards and Technology) database is a collection of handwritten digits that may be used to train a Convolutional Neural Network for handwriting recognition. Alternatively, ImageNet is a database of images used to train a network for visual object recognition.
+
+Follow these steps:
+
+1. Clone the PyTorch examples repository.
+```
+git clone https://github.com/pytorch/examples.git
+```
