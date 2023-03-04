@@ -309,3 +309,4 @@ To build MAGMA from the source, follow these steps:
 ```
 export PYTORCH_ROCM_ARCH=<uarch>
 ```
+\<uarch\> is the architecture reported by the rocminfo command.
