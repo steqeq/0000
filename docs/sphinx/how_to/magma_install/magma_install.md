@@ -282,3 +282,8 @@ cd examples/mnist
 pip3 install -r requirements.txt
 python3 main.py
 ```
+
+4. Run the ImageNet example.
+```
+cd examples/imagenet
+```
