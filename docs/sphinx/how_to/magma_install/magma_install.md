@@ -304,3 +304,8 @@ Tensor is fundamental to Deep Learning techniques because it provides extensive 
 
 ### Build MAGMA from Source
 To build MAGMA from the source, follow these steps:
+
+1. In the event you want to compile only for your uarch, use:
+```
+export PYTORCH_ROCM_ARCH=<uarch>
+```
