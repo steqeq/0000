@@ -271,3 +271,8 @@ Follow these steps:
 ```
 git clone https://github.com/pytorch/examples.git
 ```
+
+2. Run the MNIST example.
+```
+cd examples/mnist
+```
