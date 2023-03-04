@@ -349,10 +349,18 @@ The following sections contain options for installing TensorFlow.
 
 #### Option 1: Install TensorFlow Using Docker Image
 To install ROCm on bare metal, follow the section [ROCm Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60). The recommended option to get a TensorFlow environment is through Docker.
+
 Using Docker provides portability and access to a prebuilt Docker container that has been rigorously tested within AMD. This might also save compilation time and should perform as tested without facing potential installation issues.
 Follow these steps:
 
 1. Pull the latest public TensorFlow Docker image.
 ```
 docker pull rocm/tensorflow:latest
+```
+
+2. Once you have pulled the image, run it by using the command below:
+```
+docker run -it --network=host --device=/dev/kfd --device=/dev/dri 
+--ipc=host --shm-size 16G --group-add video --cap-add=SYS\_PTRACE 
+--security-opt seccomp=unconfined rocm/tensorflow:latest
 ```
