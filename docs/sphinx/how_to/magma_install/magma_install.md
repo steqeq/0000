@@ -293,3 +293,5 @@ cd examples/imagenet
 pip3 install -r requirements.txt
 python3 main.py
 ```
+
+## MAGMA for ROCm
