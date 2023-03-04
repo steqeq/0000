@@ -367,3 +367,9 @@ docker run -it --network=host --device=/dev/kfd --device=/dev/dri
 
 #### Option 2: Install TensorFlow Using Wheels Package
 To install TensorFlow using the wheels package, follow these steps:
+
+1. Check the Python version.
+```
+python3 –version
+```
+   
