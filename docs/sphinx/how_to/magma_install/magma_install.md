@@ -295,3 +295,4 @@ python3 main.py
 ```
 
 ## MAGMA for ROCm
+Matrix Algebra on GPU and Multicore Architectures, abbreviated as MAGMA, is a collection of next-generation dense linear algebra libraries that is designed for heterogeneous architectures, such as multiple GPUs and multi- or many-core CPUs.
