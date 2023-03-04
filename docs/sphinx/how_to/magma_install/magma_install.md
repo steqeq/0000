@@ -287,3 +287,9 @@ python3 main.py
 ```
 cd examples/imagenet
 ```
+
+5. Follow the instructions in the README file in this folder. In this case:
+```
+pip3 install -r requirements.txt
+python3 main.py
+```
