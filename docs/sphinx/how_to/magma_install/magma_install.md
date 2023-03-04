@@ -276,3 +276,9 @@ git clone https://github.com/pytorch/examples.git
 ```
 cd examples/mnist
 ```
+
+3. Follow the instructions in the README file in this folder. In this case:
+```
+pip3 install -r requirements.txt
+python3 main.py
+```
