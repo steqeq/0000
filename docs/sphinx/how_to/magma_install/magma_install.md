@@ -301,3 +301,6 @@ MAGMA provides implementations for CUDA, HIP, Intel Xeon Phi, and OpenCL™. For
 
 ### Using MAGMA for PyTorch
 Tensor is fundamental to Deep Learning techniques because it provides extensive representational functionalities and math operations. This data structure is represented as a multidimensional matrix. MAGMA accelerates tensor operations with a variety of solutions including driver routines, computational routines, BLAS routines, auxiliary routines, and utility routines.
+
+### Build MAGMA from Source
+To build MAGMA from the source, follow these steps:
