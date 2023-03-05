@@ -403,3 +403,6 @@ sudo update-alternatives --config python3
 3. Follow the screen prompts, and select the Python version installed in Step 2.
 
 4. Install or upgrade PIP.
+```
+sudo apt install python3-pip
+```
