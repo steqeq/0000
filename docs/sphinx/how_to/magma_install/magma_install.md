@@ -416,3 +416,6 @@ sudo pip3 install --upgrade pip
 ```
 
 5. Install TensorFlow for the Python version as indicated in Step 2.
+```
+/usr/bin/python[version] -m pip install --user tensorflow-rocm==[wheel-version] –upgrade
+```
