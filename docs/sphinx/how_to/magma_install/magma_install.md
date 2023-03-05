@@ -439,3 +439,10 @@ export PYTHONPATH="./.local/lib/python[version]/site-packages:$PYTHONPATH"  #Use
 ```
 sudo apt install rocm-libs rccl
 ```
+
+9. Test installation.
+```
+python3 -c 'import tensorflow' 2> /dev/null && echo 'Success' || echo 'Failure'
+```
+
+
