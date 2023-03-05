@@ -458,3 +458,8 @@ python3 -c 'import tensorflow' 2> /dev/null && echo ‘Success’ || echo ‘Fai
 The TensorFlow examples repository provides basic examples that exercise the framework's functionality. The MNIST database is a collection of handwritten digits that may be used to train a Convolutional Neural Network for handwriting recognition.
 
 Follow these steps:
+1. Clone the TensorFlow example repository.
+```
+cd ~
+git clone https://github.com/tensorflow/models.git
+```
