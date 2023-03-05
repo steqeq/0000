@@ -448,3 +448,8 @@ python3 -c 'import tensorflow' 2> /dev/null && echo 'Success' || echo 'Failure'
 For details on tensorflow-rocm wheels and ROCm version compatibility, see: [https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md](https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md)
 :::
 
+### Test the TensorFlow Installation
+To test the installation of TensorFlow, run the container image as specified in the previous section Installing TensorFlow. Ensure you have access to the Python shell in the Docker container.
+```
+python3 -c 'import tensorflow' 2> /dev/null && echo ‘Success’ || echo ‘Failure’
+```
