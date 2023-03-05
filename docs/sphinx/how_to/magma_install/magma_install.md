@@ -463,3 +463,9 @@ Follow these steps:
 cd ~
 git clone https://github.com/tensorflow/models.git
 ```
+
+2. Install the dependencies of the code, and run the code.
+```
+#pip3 install requirement.txt
+#python mnist\_tf.py
+```
