@@ -414,3 +414,5 @@ Upgrade PIP for Python version installed in step 2:
 ```
 sudo pip3 install --upgrade pip
 ```
+
+5. Install TensorFlow for the Python version as indicated in Step 2.
