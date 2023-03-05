@@ -453,3 +453,8 @@ To test the installation of TensorFlow, run the container image as specified in 
 ```
 python3 -c 'import tensorflow' 2> /dev/null && echo ‘Success’ || echo ‘Failure’
 ```
+
+### Run a Basic TensorFlow Example
+The TensorFlow examples repository provides basic examples that exercise the framework's functionality. The MNIST database is a collection of handwritten digits that may be used to train a Convolutional Neural Network for handwriting recognition.
+
+Follow these steps:
