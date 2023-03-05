@@ -423,3 +423,9 @@ For a valid wheel version for a ROCm release, refer to the instruction below:
  ```
 sudo apt install rocm-libs rccl
  ```
+
+6. Update protobuf to 3.19 or lower.
+```
+/usr/bin/python3.7  -m pip install protobuf=3.19.0
+sudo pip3 install tensorflow
+```
