@@ -376,3 +376,13 @@ python3 –version
 | ----------- | ----------- |
 | The Python version is less than 3.7      | Upgrade Python.       |
 | The Python version is more than 3.7   | Skip this step and go to Step 3.        |
+:::{note}
+The supported Python versions are:
+- 3.7
+- 3.8
+- 3.9
+- 3.10
+:::
+```
+sudo apt-get install python3.7 # or python3.8 or python 3.9 or python 3.10
+```
