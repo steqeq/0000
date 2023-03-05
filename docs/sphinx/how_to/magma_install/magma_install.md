@@ -419,3 +419,7 @@ sudo pip3 install --upgrade pip
 ```
 /usr/bin/python[version] -m pip install --user tensorflow-rocm==[wheel-version] –upgrade
 ```
+For a valid wheel version for a ROCm release, refer to the instruction below:
+ ```
+sudo apt install rocm-libs rccl
+ ```
