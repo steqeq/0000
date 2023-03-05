@@ -399,3 +399,5 @@ Follow the instruction in Step 2 for incompatible Python versions.
 ```
 sudo update-alternatives --config python3
 ```
+
+3. Follow the screen prompts, and select the Python version installed in Step 2.
