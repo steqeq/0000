@@ -393,3 +393,9 @@ update-alternatives --query python3
 sudo update-alternatives --install
 /usr/bin/python3 python3 /usr/bin/python[version] [priority]
 ```
+:::{note}
+Follow the instruction in Step 2 for incompatible Python versions.
+:::
+```
+sudo update-alternatives --config python3
+```
