@@ -372,4 +372,7 @@ To install TensorFlow using the wheels package, follow these steps:
 ```
 python3 –version
 ```
-   
+| If:      | Then: |
+| ----------- | ----------- |
+| The Python version is less than 3.7      | Upgrade Python.       |
+| The Python version is more than 3.7   | Skip this step and go to Step 3.        |
