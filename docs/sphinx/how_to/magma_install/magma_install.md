@@ -434,3 +434,8 @@ sudo pip3 install tensorflow
 ```
 export PYTHONPATH="./.local/lib/python[version]/site-packages:$PYTHONPATH"  #Use same python version as in step 2
 ```
+
+8. Install libraries.
+```
+sudo apt install rocm-libs rccl
+```
