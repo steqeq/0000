@@ -429,3 +429,8 @@ sudo apt install rocm-libs rccl
 /usr/bin/python3.7  -m pip install protobuf=3.19.0
 sudo pip3 install tensorflow
 ```
+
+7. Set the environment variable PYTHONPATH.
+```
+export PYTHONPATH="./.local/lib/python[version]/site-packages:$PYTHONPATH"  #Use same python version as in step 2
+```
