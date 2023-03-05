@@ -386,3 +386,10 @@ The supported Python versions are:
 ```
 sudo apt-get install python3.7 # or python3.8 or python 3.9 or python 3.10
 ```
+
+2. Set up multiple Python versions using update-alternatives.
+```
+update-alternatives --query python3
+sudo update-alternatives --install
+/usr/bin/python3 python3 /usr/bin/python[version] [priority]
+```
