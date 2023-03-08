@@ -5,3 +5,9 @@ ROCmCC is a Clang/LLVM-based compiler. It is optimized for high-performance comp
 ROCmCC is made available via two packages: rocm-llvm and rocm-llvm-alt. The differences are shown in this table:
 
 | <b>Table 1. rocm-llvm vs. rocm-llvm-alt</b>|
+| rocm-llvm | rocm-llvm-alt |
+| ----------- | ----------- |
+| Installed by default when ROCm™ itself is installed | An optional package |
+| Provides an open-source compiler | Provides an additional closed-source compiler for users interested in additional CPU optimizations not available in rocm-llvm |
+
+For more details, follow this table:
