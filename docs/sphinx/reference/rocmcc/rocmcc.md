@@ -13,4 +13,11 @@ ROCmCC is made available via two packages: rocm-llvm and rocm-llvm-alt. The diff
 For more details, follow this table:
 
 | <b>Table 2. Details Table</b>|
+| For | See |
+| ----------- | ----------- |
+| The latest usage information for AMD GPU |[https://llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html) |
+|Usage information for a specific ROCm release | [https://llvm.org/docs/AMDGPUUsage.html] (https://llvm.org/docs/AMDGPUUsage.html)|
+| Source code for rocm-llvm | [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
+
+
 
