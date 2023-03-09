@@ -35,15 +35,15 @@ The installer will begin to load and detect your system's configuration and
 compatibility, as shown in Figure 2. A completely loaded AMD HIP SDK Installer
 window will appear, as shown in Figure 3.
 
-| ![Setup](image/Setup-Icon.png) |
+| ![Setup](../hip_sdk_install_win/image/Setup-Icon.png) |
 |:------------------------------:|
 | **Figure 1. Setup Icon**       |
 
-| ![Loading Window](image/Loading-Window.png) |
+| ![Loading Window](../hip_sdk_install_win/image/Loading-Window.png) |
 |:-------------------------------------------:|
 | **Figure 2. AMD HIP SDK Loading Window**    |
 
-| ![Installer Window](image/Installer-Window.png) |
+| ![Installer Window](../hip_sdk_install_win/image/Installer-Window.png) |
 |:-----------------------------------------------:|
 | **Figure 3. AMD HIP SDK Installer Window**      |
 
@@ -76,7 +76,7 @@ in the upper right corner of the installer window, as seen in Figure 3. Figure 4
 demonstrates the installer window once the installation components are all
 deselected.
 
-| ![DeSelect All](image/DeSelectAll.png) |
+| ![DeSelect All](../hip_sdk_install_win/image/DeSelectAll.png) |
 |:--------------------------------------:|
 | **Figure 4. Deselect All Selection**   |
 
@@ -95,23 +95,23 @@ Figures 4 through 8 demonstrate the options available to you when you click
 **Note** You can manually select installation locations for the HIP SDK Core, as
 shown in Figure 5.
 
-| ![HIP SDK Core](image/HIP-SDK-Core.png) |
+| ![HIP SDK Core](../hip_sdk_install_win/image/HIP-SDK-Core.png) |
 |:---------------------------------------:|
 | **Figure 5. HIP SDK Core Option**       |
 
-| ![HIP Libraries](image/HIP-Libraries.png) |
+| ![HIP Libraries](../hip_sdk_install_win/image/HIP-Libraries.png) |
 |:-----------------------------------------:|
 | **Figure 6. HIP Libraries Option**        |
 
-| ![HIP Runtime Compiler](image/HIP-Runtime-Compiler.png) |
+| ![HIP Runtime Compiler](../hip_sdk_install_win/image/HIP-Runtime-Compiler.png) |
 |:-------------------------------------------------------:|
 | **Figure 7. HIP Runtime Compiler Option**               |
 
-| ![HIP Ray Tracing](image/HIP-Ray-Tracing.png) |
+| ![HIP Ray Tracing](../hip_sdk_install_win/image/HIP-Ray-Tracing.png) |
 |:---------------------------------------------:|
 | **Figure 8. HIP Ray Tracing**                 |
 
-| ![BitCode Profiler](image/BitCode-Profiler.png) |
+| ![BitCode Profiler](../hip_sdk_install_win/image/BitCode-Profiler.png) |
 |:-----------------------------------------------:|
 | **Figure 9. BitCode Profiler**                  |
 
@@ -148,7 +148,7 @@ previously installed drivers.
 
 Please wait for the installation to complete during as shown in Figure 11.
 
-| ![Installing](image/Installation.png) |
+| ![Installing](../hip_sdk_install_win/image/Installation.png) |
 |:-------------------------------------:|
 | **Figure 11. Active Installation**    |
 
@@ -157,7 +157,7 @@ Please wait for the installation to complete during as shown in Figure 11.
 Once the installation is complete, the installer window may prompt you for a
 system restart. Click **Restart** at the lower right corner, shown in Figure 12.
 
-| ![Installation Complete](image/Installation-Complete.png) |
+| ![Installation Complete](../hip_sdk_install_win/image/Installation-Complete.png) |
 |:---------------------------------------------------------:|
 | **Figure 12. Installation Complete**                      |
 
