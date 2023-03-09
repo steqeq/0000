@@ -11,3 +11,5 @@ ROCmCC is made available via two packages: rocm-llvm and rocm-llvm-alt. The diff
 | Provides an open-source compiler | Provides an additional closed-source compiler for users interested in additional CPU optimizations not available in rocm-llvm |
 
 For more details, follow this table:
+
+| <b>Table 2. Details Table</b>|
