@@ -1,4 +1,4 @@
- GPU and OS Support
+# GPU and OS Support
 
 ## OS Support
 
