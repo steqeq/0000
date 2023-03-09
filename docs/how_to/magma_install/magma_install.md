@@ -9,7 +9,7 @@ each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
 [/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html](/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html).
 
-| ![Figure 5](figures/image.005.png)|
+| ![Figure 5](../../data/how_to/magma_install/figures/image.005.png)|
 |:--:|
 | <b>Figure 5. ROCm Compatible Frameworks Flowchart</b>|
 
@@ -47,7 +47,7 @@ This will automatically download the image if it does not exist on the host. You
 PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, refer to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/) and choose the "ROCm" compute platform. Figure 6 is a matrix from pytroch.org that illustrates the installation compatibility between ROCm and the PyTorch build.
 
 
-| ![Figure 6](figures/image.006.png)|
+| ![Figure 6](../../data/how_to/magma_install/figures/image.006.png)|
 |:--:|
 | <b>Figure 6.  Installation Matrix from Pytorch.org</b>|
 
