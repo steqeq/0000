@@ -131,14 +131,16 @@ GPU support levels for Radeon Pro™
 :::{tab-item} Radeon™
 :sync: radeon
 
-:::
-
 Support levels for Radeon™ GPUs:
 
 - Supported - AMD enables these GPUs in our software distributions for the corresponding ROCm product.
 - Unsupported - This configuration is not enabled in our software distributions. 
 - Deprecated - Support will be removed in a future release. 
 - Community - AMD does not enable these GPUs in our software distributions but end users are free to enable these GPUs themselves.
+
+:::
+
+
 
 ::::
 
