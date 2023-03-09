@@ -90,14 +90,12 @@ ROCm software support varies by GPU type and Operating System. ROCm ecosystem pr
 
 :::{tab-item} Radeon™
 :sync: radeon
-
-:::
-
 ROCm software support varies by GPU type and Operating System. ROCm ecosystem products are three software stack enablement levels that correspond as described below:
 
 - Full includes all software that is part of the ROCm ecosystem. Please see [article](link) for details of ROCm.
 - HIP SDK includes the HIP Runtime and a selection of GPU libraries for compute. Please see [article](link) for details of HIP SDK.
 - HIP enables the use of the HIP Runtime only. 
+:::
 
 ::::
 
