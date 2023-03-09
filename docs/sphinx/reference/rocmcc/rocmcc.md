@@ -13,3 +13,4 @@ ROCmCC is made available via two packages: rocm-llvm and rocm-llvm-alt. The diff
 For more details, follow this table:
 
 | <b>Table 2. Details Table</b>|
+
