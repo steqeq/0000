@@ -79,7 +79,7 @@ ROCm software support varies by GPU type and Operating System. ROCm ecosystem pr
 - HIP enables the use of the HIP Runtime only. 
 
 
-### GPU Support Levels
+### Support Status
 
 GPU support levels in ROCm:
 
