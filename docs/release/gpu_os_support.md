@@ -140,8 +140,6 @@ Support levels for Radeon™ GPUs:
 
 :::
 
-
-
 ::::
 
 ## CPU Support
