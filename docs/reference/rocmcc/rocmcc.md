@@ -20,7 +20,12 @@ For more details, follow this table:
 | Source code for rocm-llvm | [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
 
 ## ROCm Compiler Interfaces
+ROCm currently provides two compiler interfaces for compiling HIP programs:
+- /opt/rocm/bin/hipcc
+- /opt/rocm/bin/amdclang++
 
+Both leverage the same LLVM compiler technology with the AMD GCN GPU support; however, they offer a slightly different user experience. The hipcc command-line interface aims to provide a more familiar user interface to users who are experienced in CUDA but relatively new to the ROCm/HIP development environment. On the other hand, amdclang++ provides a user interface identical to the clang++ compiler. It is more suitable for experienced developers who want to directly interact with the clang compiler and gain full control of their application’s build process.
 
+The major differences between hipcc and amdclang++ are listed below:
 
 
