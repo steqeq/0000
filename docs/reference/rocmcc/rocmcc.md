@@ -40,3 +40,9 @@ The major differences between hipcc and amdclang++ are listed below:
 
 
 # Compiler Options and Features
+
+This chapter discusses compiler options and features.
+
+## AMD GPU Compilation
+This table provides the most commonly used compiler options for GPU code.
+
