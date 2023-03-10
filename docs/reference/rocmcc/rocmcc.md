@@ -32,3 +32,4 @@ The major differences between hipcc and amdclang++ are listed below:
 || Hipcc | amdclang++ |
 | ----------- | ----------- | ----------- |
 | Compiling HIP source files | Treats all source files as HIP language source files | Enables the HIP language support for files with the “.hip” extension or through the -x hip compiler option |
+| Automatic GPU architecture detection | Auto-detects the GPUs available on the system and generates code for those devices when no GPU architecture is specified | Has AMD GCN gfx803 as the default GPU architecture. The --offload-arch compiler option may be used to target other GPU architectures |
