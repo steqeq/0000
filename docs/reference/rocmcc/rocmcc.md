@@ -37,3 +37,6 @@ The major differences between hipcc and amdclang++ are listed below:
 | Linking to the HIP runtime library | Is configured to automatically link to the HIP runtime from the detected HIP installation | Requires the --hip-link flag to be specified to link to the HIP runtime. Alternatively, users can use the -l\<dir\> -lamdhip64 option to link to a HIP runtime library. |
 | Device function inlining | Inlines all GPU device functions, which provide greater performance and compatibility for codes that contain file scoped or device function scoped \_\_shared\_\_ variables. However, it may increase compile time. | Relies on inlining heuristics to control inlining. Users experiencing performance or compilation issues with code using file scoped or device function scoped \_\_shared\_\_ variables could try -mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false to work around the issue. There are plans to address these issues with future compiler improvements. |
 | Source code location | Developed at [https://github.com/ROCm-Developer-Tools/HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC) | Developed at [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
+
+
+# Compiler Options and Features
