@@ -65,3 +65,9 @@ This table provides the most commonly used compiler options for GPU code.
 ## AMD Optimizations for Zen Architectures
 The CPU compiler optimizations described in this chapter originate from the AMD Optimizing C/C++ Compiler (AOCC) compiler. They are available in ROCmCC if the optional rocm-llvm-alt package is installed. The user’s interaction with the compiler does not change once rocm-llvm-alt is installed. The user should use the same compiler entry point, provided AMD provides high-performance compiler optimizations for Zen-based processors in AOCC. 
 
+For more information, refer to [https://developer.amd.com/amd-aocc/](https://developer.amd.com/amd-aocc/).
+
+### -famd-opt
+Enables a default set of AMD proprietary optimizations for the AMD Zen CPU architectures.
+-fno-amd-opt disables the AMD proprietary optimizations.
+The -famd-opt flag is useful when a user wants to build with the proprietary optimization compiler and not have to depend on setting any of the other proprietary optimization flags.
