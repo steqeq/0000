@@ -55,6 +55,8 @@ This table provides the most commonly used compiler options for GPU code.
 | -fopenmp-targets=\<gpu\> | Enables the OpenMP target offload support of the specified GPU architecture |
 | --gpu-max-threads-per-block=\<value\> | Sets default launch bounds for kernels |
 | -munsafe-fp-atomics | Enables unsafe floating point atomic instructions (AMDGPU only) |
+| -ffast-math | Allows aggressive, lossy floating-point optimizations |
+| -mwavefrontsize64/-mno-wavefrontsize64 | Sets wavefront size to be 64 or 32 on RDNA architectures |
 
 
 
