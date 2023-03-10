@@ -51,3 +51,6 @@ This table provides the most commonly used compiler options for GPU code.
 | Option | Description |
 | ----------- | ----------- |
 | -x hip | Compiles the source file as a HIP program |
+| -fopenmp | Enables the OpenMP support |
+| -fopenmp-targets=\<gpu\> | Enables the OpenMP target offload support of the specified GPU architecture |
+
