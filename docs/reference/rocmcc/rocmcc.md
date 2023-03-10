@@ -28,4 +28,5 @@ Both leverage the same LLVM compiler technology with the AMD GCN GPU support; ho
 
 The major differences between hipcc and amdclang++ are listed below:
 
+| <b>Table 3. Differences Between hipcc and amdclang++</b>|
 
