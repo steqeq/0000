@@ -31,3 +31,4 @@ The major differences between hipcc and amdclang++ are listed below:
 | <b>Table 3. Differences Between hipcc and amdclang++</b>|
 || Hipcc | amdclang++ |
 | ----------- | ----------- | ----------- |
+| Compiling HIP source files | Treats all source files as HIP language source files | Enables the HIP language support for files with the “.hip” extension or through the -x hip compiler option |
