@@ -63,5 +63,5 @@ This table provides the most commonly used compiler options for GPU code.
 | -fgpu-rdc/-fno-gpu-rdc | Generates relocatable device code, also known as separate compilation mode |
 
 ## AMD Optimizations for Zen Architectures
-
+The CPU compiler optimizations described in this chapter originate from the AMD Optimizing C/C++ Compiler (AOCC) compiler. They are available in ROCmCC if the optional rocm-llvm-alt package is installed. The user’s interaction with the compiler does not change once rocm-llvm-alt is installed. The user should use the same compiler entry point, provided AMD provides high-performance compiler optimizations for Zen-based processors in AOCC. 
 
