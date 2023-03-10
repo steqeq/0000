@@ -58,6 +58,6 @@ This table provides the most commonly used compiler options for GPU code.
 | -ffast-math | Allows aggressive, lossy floating-point optimizations |
 | -mwavefrontsize64/-mno-wavefrontsize64 | Sets wavefront size to be 64 or 32 on RDNA architectures |
 | -mcumode | Switches between CU and WGP modes on RDNA architectures |
-| --offload-arch=<gpu> | HIP offloading target ID in the form of a device architecture followed by target ID features delimited by a colon. Each target ID feature is a predefined string followed by a plus or minus sign (e.g. gfx908:xnack+:sramecc-). May be specified more than once |
+| --offload-arch=\<gpu\> | HIP offloading target ID in the form of a device architecture followed by target ID features delimited by a colon. Each target ID feature is a predefined string followed by a plus or minus sign (e.g. gfx908:xnack+:sramecc-). May be specified more than once |
 
 
