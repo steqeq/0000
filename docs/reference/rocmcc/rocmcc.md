@@ -39,6 +39,7 @@ The major differences between hipcc and amdclang++ are listed below:
 | Source code location | Developed at [https://github.com/ROCm-Developer-Tools/HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC) | Developed at [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
 
 
+
 # Compiler Options and Features
 
 This chapter discusses compiler options and features.
@@ -46,3 +47,7 @@ This chapter discusses compiler options and features.
 ## AMD GPU Compilation
 This table provides the most commonly used compiler options for GPU code.
 
+| <b>Table 4. Compiler Options</b>|
+| Option | Description |
+| ----------- | ----------- |
+| -x hip | Compiles the source file as a HIP program |
