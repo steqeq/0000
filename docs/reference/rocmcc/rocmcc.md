@@ -114,4 +114,5 @@ This is effective only under flto, as the whole program analysis is required to 
 
 ### -fitodcalls
 Promotes indirect-to-direct calls by placing conditional calls. Application or benchmarks that have a small and deterministic set of target functions for function pointers passed as call parameters benefit from this optimization. Indirect-to-direct call promotion transforms the code to use all possible determined targets under runtime checks and falls back to the original code for all the other cases. Runtime checks are introduced by the compiler for each of these possible function pointer targets followed by direct calls to the targets.
+
 This is a link time optimization, which is invoked as -flto -fitodcalls
