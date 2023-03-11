@@ -116,3 +116,9 @@ This is effective only under flto, as the whole program analysis is required to 
 Promotes indirect-to-direct calls by placing conditional calls. Application or benchmarks that have a small and deterministic set of target functions for function pointers passed as call parameters benefit from this optimization. Indirect-to-direct call promotion transforms the code to use all possible determined targets under runtime checks and falls back to the original code for all the other cases. Runtime checks are introduced by the compiler for each of these possible function pointer targets followed by direct calls to the targets.
 
 This is a link time optimization, which is invoked as -flto -fitodcalls
+
+### -fitodcallsbyclone
+Performs value specialization for functions with function pointers passed as an argument. It does this specialization by generating a clone of the function. The cloning of the function happens in the call chain as needed, to allow conversion of indirect function call to direct call.
+
+This complements -fitodcalls optimization and is also a link time optimization, which is invoked as -flto -fitodcallsbyclone.
+
