@@ -83,8 +83,8 @@ Analyzes the whole program to determine if the structures in the code can be pee
 
 This is effective only under flto, as the whole program analysis is required to perform this optimization. Users can choose different levels of aggressiveness with which this optimization can be applied to the application, with 1 being the least aggressive and 7 being the most aggressive level.
 
+|:--:|
 | <b>Table 5. -fstruct-layout Values and Their Effects</b>|
-
 | -fstruct-layout value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | 1 | Enabled | NA | NA | NA |
