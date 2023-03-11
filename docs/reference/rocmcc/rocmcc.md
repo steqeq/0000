@@ -113,3 +113,5 @@ This is effective only under flto, as the whole program analysis is required to 
 | 7 | Enabled | 16-bit | 64-bit signed int or unsigned int. Users must ensure that the values assigned to 64-bit signed int fields are in range -(2^31 - 1) to +(2^31 - 1) and 64-bit unsigned int fields are in the range 0 to +(2^31 - 1). Otherwise, you may obtain incorrect results. | No. Users must ensure the safety based on the program compiled. |
 
 ### -fitodcalls
+Promotes indirect-to-direct calls by placing conditional calls. Application or benchmarks that have a small and deterministic set of target functions for function pointers passed as call parameters benefit from this optimization. Indirect-to-direct call promotion transforms the code to use all possible determined targets under runtime checks and falls back to the original code for all the other cases. Runtime checks are introduced by the compiler for each of these possible function pointer targets followed by direct calls to the targets.
+This is a link time optimization, which is invoked as -flto -fitodcalls
