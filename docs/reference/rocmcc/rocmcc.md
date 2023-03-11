@@ -77,3 +77,13 @@ The -famd-opt flag is useful when a user wants to build with the proprietary opt
 :::{note}
 -famd-opt can be used in addition to the other proprietary CPU optimization flags. The table of optimizations below implicitly enables the invocation of the AMD proprietary optimizations compiler, whereas the -famd-opt flag requires this to be handled explicitly.
 :::
+
+### -fstruct-layout=[1,2,3,4,5,6,7]
+Analyzes the whole program to determine if the structures in the code can be peeled and the pointer or integer fields in the structure can be compressed. If feasible, this optimization transforms the code to enable these improvements. This transformation is likely to improve cache utilization and memory bandwidth. It is expected to improve the scalability of programs executed on multiple cores.
+
+This is effective only under flto, as the whole program analysis is required to perform this optimization. Users can choose different levels of aggressiveness with which this optimization can be applied to the application, with 1 being the least aggressive and 7 being the most aggressive level.
+
+| <b>Table 5. -fstruct-layout Values and Their Effects</b>|
+| -fstruct-layout value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+
