@@ -85,6 +85,7 @@ This is effective only under flto, as the whole program analysis is required to 
 
 |:--:|
 | <b>Table 5. -fstruct-layout Values and Their Effects</b>|
+
 | -fstruct-layout value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | 1 | Enabled | NA | NA | NA |
