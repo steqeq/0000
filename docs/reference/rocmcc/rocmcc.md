@@ -73,3 +73,7 @@ Enables a default set of AMD proprietary optimizations for the AMD Zen CPU archi
 -fno-amd-opt disables the AMD proprietary optimizations.
 
 The -famd-opt flag is useful when a user wants to build with the proprietary optimization compiler and not have to depend on setting any of the other proprietary optimization flags.
+
+:::{note}
+-famd-opt can be used in addition to the other proprietary CPU optimization flags. The table of optimizations below implicitly enables the invocation of the AMD proprietary optimizations compiler, whereas the -famd-opt flag requires this to be handled explicitly.
+:::
