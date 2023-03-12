@@ -249,6 +249,9 @@ Enables heuristic for finding the best possible interchange order for a loop nes
 ##### -convert-pow-exp-to-int={true,false}
 Converts the call to floating point exponent version of pow to its integer exponent version if the floating-point exponent can be converted to integer. This option is set to **true** by default.
 
+##### -do-lock-reordering={none,normal,aggressive}
+Reorders the control predicates in increasing order of complexity from outer predicate to inner when it is safe. The **normal** mode reorders simple expressions, while the **aggressive** mode reorders predicates involving function calls if no side effects are determined. This option is set to **normal** by default.
+
 
 
 # Table 9 Draft - ESC Special CHR
