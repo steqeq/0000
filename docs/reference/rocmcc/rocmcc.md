@@ -218,6 +218,14 @@ This optimization is effective with flto as the whole program needs to be analyz
 ##### -global-vectorize-slp={true,false}
 Vectorizes the straight-line code inside a basic block with data reordering vector operations. This option is set to **true** by default.
 
+##### -region-vectorize
+Experimental flag for enabling vectorization on certain loops with complex control flow, which the normal vectorizer cannot handle.
+
+This optimization is effective with flto as the whole program needs to be analyzed to perform this optimization, which can be invoked as -flto -region-vectorize.
+
+##### -enable-x86-prefetching
+Enables the generation of x86 prefetch instruction for the memory references inside a loop or inside an innermost loop of a loop nest to prefetch the second dimension of multidimensional array/memory references in the innermost loop of a loop nest. This is an experimental pass; its profitability is being improved.
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
