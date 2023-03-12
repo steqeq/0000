@@ -241,6 +241,12 @@ Enables splitting of loops into multiple loops to eliminate the branches, which 
 ##### -compute-interchange-order
 Enables heuristic for finding the best possible interchange order for a loop nest. To enable this option, use -enable-loopinterchange. This option is set to **false** by default.
 
+**Usage:**
+```
+-mllvm -enable-loopinterchange -mllvm -compute-interchange-order
+```
+
+##### -convert-pow-exp-to-int={true,false}
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
