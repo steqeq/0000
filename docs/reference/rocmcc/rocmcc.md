@@ -165,6 +165,8 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-cxx-isystem <directory>|Supported|Adds a directory to the C++ SYSTEM include search path| 
  |-C|Supported|Includes comments in the preprocessed output| 
  |-c|Supported|Runs only preprocess, compile, and assemble steps| 
+
+ 
  |-dD|Supported|Prints macro definitions in -E mode in addition to the normal output| 
  |-dependency-dot <value>|Supported|Writes DOT-formatted header dependencies to the specified filename| 
  |-dependency-file <value>|Supported|Writes dependency output to the specified filename (or -)| 
