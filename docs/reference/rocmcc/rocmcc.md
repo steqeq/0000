@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft -print-libgcc-file-name
+# Table 9 Draft -Q
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -819,6 +819,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-print-effective-triple|Supported|Prints the effective target triple| 
  |-print-file-name=<file>|Supported|Prints the full library path of the given <file>| 
  |-print-ivar-layout|Unsupported|Enables Objective-C Ivar layout bitmap print trace| 
+ |-print-libgcc-file-name|Supported|"Prints the library path for the currently used compiler runtime library (""libgcc.a"" or ""libclang_rt.builtins.*.a"")"|
  |-print-prog-name=<name>|Supported|Prints the full program path of the given <name>| 
  |-print-resource-dir|Supported|Prints the resource directory pathname| 
  |-print-search-dirs|Supported|Prints the paths used for finding libraries and programs| 
@@ -828,6 +829,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-pthread|Supported|Supports POSIX threads in the generated code| 
  |--ptxas-path=<value>|Unsupported|Specifies the path to ptxas (used for compiling CUDA code)| 
  |-P|Supported|Disables linemarker output in -E mode| 
+
  |-Qn|Supported|Prohibits emitting metadata containing compiler name and version| 
  |-Qunused-arguments|Supported|Prohibits emitting warning for unused driver arguments| 
  |-Qy|Supported|Emits metadata containing compiler name and version| 
