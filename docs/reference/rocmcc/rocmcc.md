@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - U
+# Table 9 Draft - M
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -644,6 +644,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-I <dir>|Supported|Adds directory to include search path. If there are multiple -I options, these directories are searched in the order they are given before the standard system directories are searched. If the same directory is in the SYSTEM include search paths, for example, if also specified with -isystem, the -I option is ignored.| 
  |--libomptarget-nvptx-path=<value>|Unsupported|Specifies path to libomptarget-nvptx libraries| 
  |-L <dir>|Supported|Adds directory to library search path| 
+
  |-mabicalls|Unsupported|Enables SVR4-style position-independent code (Mips only)| 
  |-maix-struct-return|Unsupported|Returns all structs in memory (PPC32 only)| 
  |-malign-branch-boundary=<value>|Supported|Specifies the boundary's size to align branches| 
@@ -865,8 +866,6 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-trigraphs|Supported|Processes trigraph sequences| 
  |-Ttext <addr>|Supported|Sets starting address of TEXT to the given <addr>| 
  |-T <script>|Unsupported|Specifies the given. <script> as linker script| 
-
-
  |-undef|Supported|undefs all system defines| 
  |-unwindlib=<value>|Supported|Specifies the unwind library to be used| 
  |-U <macro>|Supported|Undefines the given <macro>| 
