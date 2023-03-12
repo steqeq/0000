@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - M
+# Table 9 Draft - PRINT
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -644,7 +644,6 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-I <dir>|Supported|Adds directory to include search path. If there are multiple -I options, these directories are searched in the order they are given before the standard system directories are searched. If the same directory is in the SYSTEM include search paths, for example, if also specified with -isystem, the -I option is ignored.| 
  |--libomptarget-nvptx-path=<value>|Unsupported|Specifies path to libomptarget-nvptx libraries| 
  |-L <dir>|Supported|Adds directory to library search path| 
-
  |-mabicalls|Unsupported|Enables SVR4-style position-independent code (Mips only)| 
  |-maix-struct-return|Unsupported|Returns all structs in memory (PPC32 only)| 
  |-malign-branch-boundary=<value>|Supported|Specifies the boundary's size to align branches| 
@@ -820,6 +819,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-print-effective-triple|Supported|Prints the effective target triple| 
  |-print-file-name=<file>|Supported|Prints the full library path of the given <file>| 
  |-print-ivar-layout|Unsupported|Enables Objective-C Ivar layout bitmap print trace| 
+
  |-print-libgcc-file-name|Supported|"Prints the library path for the currently used compiler runtime library (""libgcc.a"" or ""libclang_rt.builtins.*.a"")"| 
  |-print-prog-name=<name>|Supported|Prints the full program path of the given <name>| 
  |-print-resource-dir|Supported|Prints the resource directory pathname| 
