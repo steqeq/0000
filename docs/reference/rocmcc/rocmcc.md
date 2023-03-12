@@ -176,6 +176,15 @@ Attempts to promote frequently occurring constants to registers. The aim is to r
 ##### -function-specialize
 Optimizes the functions with compile time constant formal arguments.
 
+##### -lv-function-specialization
+Generates specialized function versions when the loops inside function are vectorizable and the arguments are not aliased with each other.
+
+##### -enable-vectorize-compares
+Enables vectorization on certain loops with conditional breaks assuming the memory accesses are safely bound within the page boundary.
+
+##### -inline-recursion=[1,2,3,4]
+Enables inlining for recursive functions based on heuristics where the aggressiveness of heuristics increases with the level (1-4). The default level is 2. Higher levels may lead to code bloat due to expansion of recursive functions at call sites.
+
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
 
