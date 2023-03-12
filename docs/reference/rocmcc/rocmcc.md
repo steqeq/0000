@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - T rm
+# Table 9 Draft - T Script_rm
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -857,6 +857,13 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-sycl-std=<value>|Unsupported|Specifies the SYCL language standard to compile for| 
  |--system-header-prefix=<prefix>|Supported|Assumes all #include paths starting with the given <prefix> to include a system header| 
  |-S|Supported|Runs only preprocess and compilation steps| 
+ |--target=<value>|Supported|Generates code for the given target| 
+ |-Tbss <addr>|Supported|Sets the starting address of BSS to the given <addr>| 
+ |-Tdata <addr>|Supported|Sets the starting address of DATA to the given <addr>| 
+ |-time|Supported|Times individual commands| 
+ |-traditional-cpp|Unsupported|Enables some traditional CPP emulation| 
+ |-trigraphs|Supported|Processes trigraph sequences| 
+ |-Ttext <addr>|Supported|Sets starting address of TEXT to the given <addr>| 
  |-undef|Supported|undefs all system defines| 
  |-unwindlib=<value>|Supported|Specifies the unwind library to be used| 
  |-U <macro>|Supported|Undefines the given <macro>| 
