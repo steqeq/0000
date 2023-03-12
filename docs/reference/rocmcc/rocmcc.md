@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - T--Z
+# Table 9 Draft - T--W
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -872,6 +872,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-verify-pch|Unsupported|Loads and verifies if a precompiled header file is stale| 
  |--version|Supported|Prints version information| 
  |-v|Supported|Shows commands to be run, and uses verbose output| 
+
  |-Wa,<arg>|Supported|Passes the comma-separated arguments in the given <arg> to the assembler| 
  |-Wdeprecated|Supported|Enables warnings for deprecated constructs and defines_DEPRECATED| 
  |-Wl,<arg>|Supported|Passes comma-separated arguments in <arg> to the linker.| 
@@ -891,7 +892,4 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-Xopenmp-target <arg>|Supported|Passes <arg> to the target offloading toolchain| 
  |-Xpreprocessor <arg>|Supported|Passes <arg> to the preprocessor| 
  |-x <language>|Supported|Assumes subsequent input files to have the given type <language>| 
-
  |-z <arg>|Supported|Passes -z <arg> to the linker| 
-
-# END
