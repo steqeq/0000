@@ -185,6 +185,24 @@ Enables vectorization on certain loops with conditional breaks assuming the memo
 ##### -inline-recursion=[1,2,3,4]
 Enables inlining for recursive functions based on heuristics where the aggressiveness of heuristics increases with the level (1-4). The default level is 2. Higher levels may lead to code bloat due to expansion of recursive functions at call sites.
 
+||
+|:--:|
+| **Table 6. -inline-recursion Values and Their Effects**|
+||
+
+| -inline-recursion value | Inline depth of heuristics used to enable inlining for recursive functions | 
+| ----------- | ----------- | 
+| 1 | 1 |
+| 2 | 1 |
+| 3 | 1 |
+| 4 | 10 |
+
+This is more effective with flto as the whole program needs to be analyzed to perform this optimization, which can be invoked as -flto -inline-recursion=[1,2,3,4].
+
+##### -reduce-array-computations=[1,2,3]
+Performs array dataflow analysis and optimizes the unused array computations.
+
+
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
 
