@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - T--W
+# Table 9 Draft - T
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -864,7 +864,8 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-traditional-cpp|Unsupported|Enables some traditional CPP emulation| 
  |-trigraphs|Supported|Processes trigraph sequences| 
  |-Ttext <addr>|Supported|Sets starting address of TEXT to the given <addr>| 
- |-T <script>|Unsupported|Specifies the given. <script> as linker script| 
+ |-T <script>|Unsupported|Specifies the given. <script> as linker script|
+
  |-undef|Supported|undefs all system defines| 
  |-unwindlib=<value>|Supported|Specifies the unwind library to be used| 
  |-U <macro>|Supported|Undefines the given <macro>| 
@@ -872,7 +873,6 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-verify-pch|Unsupported|Loads and verifies if a precompiled header file is stale| 
  |--version|Supported|Prints version information| 
  |-v|Supported|Shows commands to be run, and uses verbose output| 
-
  |-Wa,<arg>|Supported|Passes the comma-separated arguments in the given <arg> to the assembler| 
  |-Wdeprecated|Supported|Enables warnings for deprecated constructs and defines_DEPRECATED| 
  |-Wl,<arg>|Supported|Passes comma-separated arguments in <arg> to the linker.| 
