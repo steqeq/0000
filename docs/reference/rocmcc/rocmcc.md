@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - T Script_ESC
+# Table 9 Draft - ESC Special CHR
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
