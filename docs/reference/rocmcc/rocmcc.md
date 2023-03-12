@@ -164,6 +164,17 @@ These options may facilitate more unswitching under some workloads. Since loop-u
 ##### -enable-strided-vectorization
 Enables strided memory vectorization as an enhancement to the interleaved vectorization framework present in LLVM. It enables the effective use of gather and scatter kind of instruction patterns. This flag must be used along with the interleave vectorization flag.
 
+##### -enable-epilog-vectorization
+Enables vectorization of epilog-iterations as an enhancement to existing vectorization framework. This enables generation of an additional epilog vector loop version for the remainder iterations of the original vector loop. The vector size or factor of the original loop should be large enough to allow an effective epilog vectorization of the remaining iterations. This optimization takes place only when the original vector loop is vectorized with a vector width or factor of 16. This vectorization width of 16 may be overwritten by -min-width-epilog-vectorization command-line option.
+
+##### -enable-redundant-movs
+Removes any redundant mov operations including redundant loads from memory and stores to memory. This can be invoked using -Wl,-plugin-opt=-enable-redundant-movs.
+
+##### -merge-constant
+Attempts to promote frequently occurring constants to registers. The aim is to reduce the size of the instruction encoding for instructions using constants and obtain a performance improvement.
+
+##### -function-specialize
+Optimizes the functions with compile time constant formal arguments.
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
