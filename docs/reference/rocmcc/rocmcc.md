@@ -157,6 +157,12 @@ Where, n is a positive integer and lower value of \<n\> facilitates more unswitc
 
 Where, n is a positive integer and higher value of \<n\> facilitates more unswitching.
 
+:::{note}
+These options may facilitate more unswitching under some workloads. Since loop-unswitching inherently leads to code bloat, facilitating more unswitching may significantly increase the code size. Hence, it may also lead to longer compilation times.
+:::
+
+##### -enable-strided-vectorization
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
