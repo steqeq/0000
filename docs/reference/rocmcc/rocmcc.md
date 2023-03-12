@@ -154,6 +154,7 @@ Where, n is a positive integer and lower value of \<n\> facilitates more unswitc
     - Enables unswitching of a loop with respect to a branch conditional value (B), where B appears in at most <n> compares in the loop. This option is enabled with -aggressive-loop-unswitch. The default value is 6.
 
 **Usage:** -mllvm -aggressive-loop-unswitch -mllvm -unswitch-identical-branches-max-count=\<n\>
+
 Where, n is a positive integer and higher value of \<n\> facilitates more unswitching.
 
 
