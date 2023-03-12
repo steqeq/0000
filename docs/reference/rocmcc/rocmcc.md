@@ -133,7 +133,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
-|-###|Supported|Prints (but does not run) the commands to run for this compilation| 
+| -### | Supported | Prints (but does not run) the commands to run for this compilation | 
  |--analyzer-output <value>|Supported|"Static analyzer report output format (html\|plist\|plist-multi-file\|plist-html\|sarif\|text)"| 
  |--analyze|Supported|Runs the static analyzer| 
  |-arcmt-migrate-emit-errors|Unsupported|Emits ARC errors even if the migrator can fix them| 
