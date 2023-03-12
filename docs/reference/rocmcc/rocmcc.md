@@ -147,6 +147,15 @@ Experimental option that enables aggressive loop unswitching heuristic (includin
 - -unswitch-identical-branches-min-count=\<n\>
     - Enables unswitching of a loop with respect to a branch conditional value (B), where B appears in at least \<n\> compares in the loop. This option is enabled with -aggressive-loop-unswitch. The default value is 3.
 
+**Usage:** -mllvm -aggressive-loop-unswitch -mllvm -unswitch-identical-branches-min-count=\<n\>
+
+Where, n is a positive integer and lower value of \<n\> facilitates more unswitching.
+- -unswitch-identical-branches-max-count=\<n\>
+    - Enables unswitching of a loop with respect to a branch conditional value (B), where B appears in at most <n> compares in the loop. This option is enabled with -aggressive-loop-unswitch. The default value is 6.
+
+**Usage:** -mllvm -aggressive-loop-unswitch -mllvm -unswitch-identical-branches-max-count=\<n\>
+Where, n is a positive integer and higher value of \<n\> facilitates more unswitching.
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
