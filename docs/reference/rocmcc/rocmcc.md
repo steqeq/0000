@@ -19,7 +19,7 @@ For more details, follow this table:
 
 ||
 |:--:|
-| <b>Table 2. Details Table</b>|
+| **Table 2. Details Table**|
 ||
 
 | For | See |
@@ -38,7 +38,7 @@ Both leverage the same LLVM compiler technology with the AMD GCN GPU support; ho
 The major differences between hipcc and amdclang++ are listed below:
 ||
 |:--:|
-| <b>Table 3. Differences Between hipcc and amdclang++</b>|
+| **Table 3. Differences Between hipcc and amdclang++**|
 ||
 
 || Hipcc | amdclang++ |
@@ -61,7 +61,7 @@ This table provides the most commonly used compiler options for GPU code.
 
 ||
 |:--:|
-| <b>Table 4. Compiler Options</b>|
+| **Table 4. Compiler Options**|
 ||
 
 | Option | Description |
@@ -101,7 +101,7 @@ This is effective only under flto, as the whole program analysis is required to 
 
 ||
 |:--:|
-| <b>Table 5. -fstruct-layout Values and Their Effects</b>|
+| **Table 5. -fstruct-layout Values and Their Effects**|
 ||
 
 | -fstruct-layout value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |
