@@ -1,11 +1,13 @@
-# Introduction to Compiler Reference Guide
+# Compiler Reference Guide
+
+## Introduction to Compiler Reference Guide
 
 ROCmCC is a Clang/LLVM-based compiler. It is optimized for high-performance computing on AMD GPUs and CPUs and supports various heterogenous programming models such as HIP, OpenMP, and OpenCL.
 
 ROCmCC is made available via two packages: rocm-llvm and rocm-llvm-alt. The differences are shown in this table:
 ||
 |:--:|
-| <b>Table 1. rocm-llvm vs. rocm-llvm-alt</b>|
+| **Table 1. rocm-llvm vs. rocm-llvm-alt**|
 ||
 
 | rocm-llvm | rocm-llvm-alt |
@@ -26,7 +28,7 @@ For more details, follow this table:
 |Usage information for a specific ROCm release | [https://llvm.org/docs/AMDGPUUsage.html] (https://llvm.org/docs/AMDGPUUsage.html)|
 | Source code for rocm-llvm | [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
 
-## ROCm Compiler Interfaces
+### ROCm Compiler Interfaces
 ROCm currently provides two compiler interfaces for compiling HIP programs:
 - /opt/rocm/bin/hipcc
 - /opt/rocm/bin/amdclang++
@@ -50,11 +52,11 @@ The major differences between hipcc and amdclang++ are listed below:
 
 
 
-# Compiler Options and Features
+## Compiler Options and Features
 
 This chapter discusses compiler options and features.
 
-## AMD GPU Compilation
+### AMD GPU Compilation
 This table provides the most commonly used compiler options for GPU code.
 
 ||
@@ -76,12 +78,12 @@ This table provides the most commonly used compiler options for GPU code.
 | -g | Generates source-level debug information |
 | -fgpu-rdc/-fno-gpu-rdc | Generates relocatable device code, also known as separate compilation mode |
 
-## AMD Optimizations for Zen Architectures
+### AMD Optimizations for Zen Architectures
 The CPU compiler optimizations described in this chapter originate from the AMD Optimizing C/C++ Compiler (AOCC) compiler. They are available in ROCmCC if the optional rocm-llvm-alt package is installed. The user’s interaction with the compiler does not change once rocm-llvm-alt is installed. The user should use the same compiler entry point, provided AMD provides high-performance compiler optimizations for Zen-based processors in AOCC. 
 
 For more information, refer to [https://developer.amd.com/amd-aocc/](https://developer.amd.com/amd-aocc/).
 
-### -famd-opt
+#### -famd-opt
 Enables a default set of AMD proprietary optimizations for the AMD Zen CPU architectures.
 
 -fno-amd-opt disables the AMD proprietary optimizations.
@@ -92,7 +94,7 @@ The -famd-opt flag is useful when a user wants to build with the proprietary opt
 -famd-opt can be used in addition to the other proprietary CPU optimization flags. The table of optimizations below implicitly enables the invocation of the AMD proprietary optimizations compiler, whereas the -famd-opt flag requires this to be handled explicitly.
 :::
 
-### -fstruct-layout=[1,2,3,4,5,6,7]
+#### -fstruct-layout=[1,2,3,4,5,6,7]
 Analyzes the whole program to determine if the structures in the code can be peeled and the pointer or integer fields in the structure can be compressed. If feasible, this optimization transforms the code to enable these improvements. This transformation is likely to improve cache utilization and memory bandwidth. It is expected to improve the scalability of programs executed on multiple cores.
 
 This is effective only under flto, as the whole program analysis is required to perform this optimization. Users can choose different levels of aggressiveness with which this optimization can be applied to the application, with 1 being the least aggressive and 7 being the most aggressive level.
@@ -112,20 +114,20 @@ This is effective only under flto, as the whole program analysis is required to 
 | 6 | Enabled | 32-bit | 64-bit signed int or unsigned int. Users must ensure that the values assigned to 64-bit signed int fields are in range -(2^31 - 1) to +(2^31 - 1) and 64-bit unsigned int fields are in the range 0 to +(2^31 - 1). Otherwise, you may obtain incorrect results. | No. Users must ensure the safety based on the program compiled. |
 | 7 | Enabled | 16-bit | 64-bit signed int or unsigned int. Users must ensure that the values assigned to 64-bit signed int fields are in range -(2^31 - 1) to +(2^31 - 1) and 64-bit unsigned int fields are in the range 0 to +(2^31 - 1). Otherwise, you may obtain incorrect results. | No. Users must ensure the safety based on the program compiled. |
 
-### -fitodcalls
+#### -fitodcalls
 Promotes indirect-to-direct calls by placing conditional calls. Application or benchmarks that have a small and deterministic set of target functions for function pointers passed as call parameters benefit from this optimization. Indirect-to-direct call promotion transforms the code to use all possible determined targets under runtime checks and falls back to the original code for all the other cases. Runtime checks are introduced by the compiler for each of these possible function pointer targets followed by direct calls to the targets.
 
 This is a link time optimization, which is invoked as -flto -fitodcalls
 
-### -fitodcallsbyclone
+#### -fitodcallsbyclone
 Performs value specialization for functions with function pointers passed as an argument. It does this specialization by generating a clone of the function. The cloning of the function happens in the call chain as needed, to allow conversion of indirect function call to direct call.
 
 This complements -fitodcalls optimization and is also a link time optimization, which is invoked as -flto -fitodcallsbyclone.
 
-### -fremap-arrays
+#### -fremap-arrays
 Transforms the data layout of a single dimensional array to provide better cache locality. This optimization is effective only under flto, as the whole program needs to be analyzed to perform this optimization, which can be invoked as -flto -fremap-arrays.
 
-### -finline-aggressive
+#### -finline-aggressive
 Enables improved inlining capability through better heuristics. This optimization is more effective when used with flto, as the whole program analysis is required to perform this optimization, which can be invoked as -flto -finline-aggressive.
 
 
