@@ -202,6 +202,22 @@ This is more effective with flto as the whole program needs to be analyzed to pe
 ##### -reduce-array-computations=[1,2,3]
 Performs array dataflow analysis and optimizes the unused array computations.
 
+||
+|:--:|
+| **Table 7. -reduce-array-computations Values and Their Effects**|
+||
+
+| -reduce-array-computations value | Array elements eligible for elimination of computations | 
+| ----------- | ----------- | 
+| 1 | Unused |
+| 2 | Zero valued |
+| 3 | Both unused and zero valued |
+
+This optimization is effective with flto as the whole program needs to be analyzed to perform this optimization, which can be invoked as -flto -reduce-array-computations=[1,2,3].
+
+##### -global-vectorize-slp={true,false}
+Vectorizes the straight-line code inside a basic block with data reordering vector operations. This option is set to **true** by default.
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
