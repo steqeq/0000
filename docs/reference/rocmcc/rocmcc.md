@@ -129,7 +129,7 @@ Transforms the data layout of a single dimensional array to provide better cache
 Enables improved inlining capability through better heuristics. This optimization is more effective when used with flto, as the whole program analysis is required to perform this optimization, which can be invoked as -flto -finline-aggressive.
 
 
-# Table 9 Draft
+# Table 9 Draft - D
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -166,7 +166,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-C|Supported|Includes comments in the preprocessed output| 
  |-c|Supported|Runs only preprocess, compile, and assemble steps| 
 
- 
+
  |-dD|Supported|Prints macro definitions in -E mode in addition to the normal output| 
  |-dependency-dot <value>|Supported|Writes DOT-formatted header dependencies to the specified filename| 
  |-dependency-file <value>|Supported|Writes dependency output to the specified filename (or -)| 
