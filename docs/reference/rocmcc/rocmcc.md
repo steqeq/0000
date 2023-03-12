@@ -124,3 +124,6 @@ This complements -fitodcalls optimization and is also a link time optimization, 
 
 ### -fremap-arrays
 Transforms the data layout of a single dimensional array to provide better cache locality. This optimization is effective only under flto, as the whole program needs to be analyzed to perform this optimization, which can be invoked as -flto -fremap-arrays.
+
+### -finline-aggressive
+Enables improved inlining capability through better heuristics. This optimization is more effective when used with flto, as the whole program analysis is required to perform this optimization, which can be invoked as -flto -finline-aggressive.
