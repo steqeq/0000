@@ -129,6 +129,7 @@ Transforms the data layout of a single dimensional array to provide better cache
 Enables improved inlining capability through better heuristics. This optimization is more effective when used with flto, as the whole program analysis is required to perform this optimization, which can be invoked as -flto -finline-aggressive.
 
 
+
 # Table 9 Draft - U
 
 | Option | Support Status | Description |
