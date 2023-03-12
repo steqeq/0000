@@ -129,7 +129,7 @@ Transforms the data layout of a single dimensional array to provide better cache
 Enables improved inlining capability through better heuristics. This optimization is more effective when used with flto, as the whole program analysis is required to perform this optimization, which can be invoked as -flto -finline-aggressive.
 
 
-# Table 9 Draft - L
+# Table 9 Draft - U
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -641,8 +641,6 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-iwithprefix <dir>|Supported|Sets the directory to SYSTEM include search path with prefix| 
  |-iwithsysroot <directory>|Supported|Adds directory to SYSTEM include search path; absolute paths are relative to -isysroot| 
  |-I <dir>|Supported|Adds directory to include search path. If there are multiple -I options, these directories are searched in the order they are given before the standard system directories are searched. If the same directory is in the SYSTEM include search paths, for example, if also specified with -isystem, the -I option is ignored.| 
-
-
  |--libomptarget-nvptx-path=<value>|Unsupported|Specifies path to libomptarget-nvptx libraries| 
  |-L <dir>|Supported|Adds directory to library search path| 
  |-mabicalls|Unsupported|Enables SVR4-style position-independent code (Mips only)| 
@@ -866,6 +864,8 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-trigraphs|Supported|Processes trigraph sequences| 
  |-Ttext <addr>|Supported|Sets starting address of TEXT to the given <addr>| 
  |-T <script>|Unsupported|Specifies the given. <script> as linker script| 
+
+
  |-undef|Supported|undefs all system defines| 
  |-unwindlib=<value>|Supported|Specifies the unwind library to be used| 
  |-U <macro>|Supported|Undefines the given <macro>| 
