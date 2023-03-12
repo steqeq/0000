@@ -246,8 +246,10 @@ Enables heuristic for finding the best possible interchange order for a loop nes
 -mllvm -enable-loopinterchange -mllvm -compute-interchange-order
 ```
 
-
 ##### -convert-pow-exp-to-int={true,false}
+Converts the call to floating point exponent version of pow to its integer exponent version if the floating-point exponent can be converted to integer. This option is set to **true** by default.
+
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
