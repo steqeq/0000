@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - S--T
+# Table 9 Draft - T--Z
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -857,7 +857,6 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-sycl-std=<value>|Unsupported|Specifies the SYCL language standard to compile for| 
  |--system-header-prefix=<prefix>|Supported|Assumes all #include paths starting with the given <prefix> to include a system header| 
  |-S|Supported|Runs only preprocess and compilation steps| 
-
  |--target=<value>|Supported|Generates code for the given target| 
  |-Tbss <addr>|Supported|Sets the starting address of BSS to the given <addr>| 
  |-Tdata <addr>|Supported|Sets the starting address of DATA to the given <addr>| 
@@ -892,6 +891,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-Xopenmp-target <arg>|Supported|Passes <arg> to the target offloading toolchain| 
  |-Xpreprocessor <arg>|Supported|Passes <arg> to the preprocessor| 
  |-x <language>|Supported|Assumes subsequent input files to have the given type <language>| 
+
  |-z <arg>|Supported|Passes -z <arg> to the linker| 
 
 # END
