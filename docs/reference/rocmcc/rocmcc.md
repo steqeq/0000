@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft -Q
+# Table 9 Draft -S
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -829,7 +829,6 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-pthread|Supported|Supports POSIX threads in the generated code| 
  |--ptxas-path=<value>|Unsupported|Specifies the path to ptxas (used for compiling CUDA code)| 
  |-P|Supported|Disables linemarker output in -E mode| 
-
  |-Qn|Supported|Prohibits emitting metadata containing compiler name and version| 
  |-Qunused-arguments|Supported|Prohibits emitting warning for unused driver arguments| 
  |-Qy|Supported|Emits metadata containing compiler name and version| 
@@ -843,6 +842,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-Rpass=<value>|Supported|Reports transformations by optimization passes whose names match the given POSIX regular expression| 
  |-rtlib=<value>|Unsupported|Specifies the compiler runtime library to be used| 
  |-R<remark>|Unsupported|Enables the specified remark| 
+
  |-save-stats=<value>|Supported|Saves llvm statistics| 
  |-save-stats|Supported|Saves llvm statistics| 
  |-save-temps=<value>|Supported|Saves intermediate compilation results| 
@@ -893,3 +893,5 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-Xpreprocessor <arg>|Supported|Passes <arg> to the preprocessor| 
  |-x <language>|Supported|Assumes subsequent input files to have the given type <language>| 
  |-z <arg>|Supported|Passes -z <arg> to the linker| 
+
+# END
