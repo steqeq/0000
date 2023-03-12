@@ -129,7 +129,7 @@ Transforms the data layout of a single dimensional array to provide better cache
 Enables improved inlining capability through better heuristics. This optimization is more effective when used with flto, as the whole program analysis is required to perform this optimization, which can be invoked as -flto -finline-aggressive.
 
 
-# Table 9 Draft - D
+# Table 9 Draft - L
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -164,9 +164,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |--cuda-path=<value>|Unsupported|CUDA installation path| 
  |-cxx-isystem <directory>|Supported|Adds a directory to the C++ SYSTEM include search path| 
  |-C|Supported|Includes comments in the preprocessed output| 
- |-c|Supported|Runs only preprocess, compile, and assemble steps| 
-
-
+ |-c|Supported|Runs only preprocess, compile, and assemble steps|
  |-dD|Supported|Prints macro definitions in -E mode in addition to the normal output| 
  |-dependency-dot <value>|Supported|Writes DOT-formatted header dependencies to the specified filename| 
  |-dependency-file <value>|Supported|Writes dependency output to the specified filename (or -)| 
@@ -643,6 +641,8 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-iwithprefix <dir>|Supported|Sets the directory to SYSTEM include search path with prefix| 
  |-iwithsysroot <directory>|Supported|Adds directory to SYSTEM include search path; absolute paths are relative to -isysroot| 
  |-I <dir>|Supported|Adds directory to include search path. If there are multiple -I options, these directories are searched in the order they are given before the standard system directories are searched. If the same directory is in the SYSTEM include search paths, for example, if also specified with -isystem, the -I option is ignored.| 
+
+
  |--libomptarget-nvptx-path=<value>|Unsupported|Specifies path to libomptarget-nvptx libraries| 
  |-L <dir>|Supported|Adds directory to library search path| 
  |-mabicalls|Unsupported|Enables SVR4-style position-independent code (Mips only)| 
