@@ -122,3 +122,5 @@ Performs value specialization for functions with function pointers passed as an 
 
 This complements -fitodcalls optimization and is also a link time optimization, which is invoked as -flto -fitodcallsbyclone.
 
+### -fremap-arrays
+Transforms the data layout of a single dimensional array to provide better cache locality. This optimization is effective only under flto, as the whole program needs to be analyzed to perform this optimization, which can be invoked as -flto -fremap-arrays.
