@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft -S
+# Table 9 Draft - S--T
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -842,7 +842,6 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-Rpass=<value>|Supported|Reports transformations by optimization passes whose names match the given POSIX regular expression| 
  |-rtlib=<value>|Unsupported|Specifies the compiler runtime library to be used| 
  |-R<remark>|Unsupported|Enables the specified remark| 
-
  |-save-stats=<value>|Supported|Saves llvm statistics| 
  |-save-stats|Supported|Saves llvm statistics| 
  |-save-temps=<value>|Supported|Saves intermediate compilation results| 
@@ -858,6 +857,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-sycl-std=<value>|Unsupported|Specifies the SYCL language standard to compile for| 
  |--system-header-prefix=<prefix>|Supported|Assumes all #include paths starting with the given <prefix> to include a system header| 
  |-S|Supported|Runs only preprocess and compilation steps| 
+
  |--target=<value>|Supported|Generates code for the given target| 
  |-Tbss <addr>|Supported|Sets the starting address of BSS to the given <addr>| 
  |-Tdata <addr>|Supported|Sets the starting address of DATA to the given <addr>| 
