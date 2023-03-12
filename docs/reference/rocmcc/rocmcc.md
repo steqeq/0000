@@ -144,6 +144,9 @@ Enables partial loop unswitching, which is an enhancement to the existing loop u
 ##### -aggressive-loop-unswitch
 Experimental option that enables aggressive loop unswitching heuristic (including -enable-partial-unswitch) based on the usage of the branch conditional values. Loop unswitching leads to code bloat. Code bloat can be minimized if the hoisted condition is executed more often. This heuristic prioritizes the conditions based on the number of times they are used within the loop. The heuristic can be controlled with the following options:
 
+- -unswitch-identical-branches-min-count=\<n\>
+    - Enables unswitching of a loop with respect to a branch conditional value (B), where B appears in at least \<n\> compares in the loop. This option is enabled with -aggressive-loop-unswitch. The default value is 3
+    
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
