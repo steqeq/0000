@@ -239,7 +239,7 @@ Enables splitting of loops into multiple loops to eliminate the branches, which 
 Enables splitting of loops into multiple loops to eliminate the branches, which compares the loop induction with a constant expression. This constant expression can be derived through inter-procedural analysis. This option is enabled under -O3 by default. To disable this optimization, use -enable-ipo-loop-split=false.
 
 ##### -compute-interchange-order
-nables heuristic for finding the best possible interchange order for a loop nest. To enable this option, use -enable-loopinterchange. This option is set to **false** by default.
+Enables heuristic for finding the best possible interchange order for a loop nest. To enable this option, use -enable-loopinterchange. This option is set to **false** by default.
 
 
 # Table 9 Draft - ESC Special CHR
