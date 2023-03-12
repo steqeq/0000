@@ -130,7 +130,7 @@ Enables improved inlining capability through better heuristics. This optimizatio
 
 
 
-# Table 9 Draft - T Script_rm
+# Table 9 Draft - T Script_ESC
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
@@ -863,7 +863,8 @@ Enables improved inlining capability through better heuristics. This optimizatio
  |-time|Supported|Times individual commands| 
  |-traditional-cpp|Unsupported|Enables some traditional CPP emulation| 
  |-trigraphs|Supported|Processes trigraph sequences| 
- |-Ttext <addr>|Supported|Sets starting address of TEXT to the given <addr>| 
+ |-Ttext <addr>|Supported|Sets starting address of TEXT to the given <addr>|
+ |-T \<script\>|Unsupported|Specifies the given. \<script\> as linker script|
  |-undef|Supported|undefs all system defines| 
  |-unwindlib=<value>|Supported|Specifies the unwind library to be used| 
  |-U <macro>|Supported|Undefines the given <macro>| 
