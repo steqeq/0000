@@ -51,7 +51,6 @@ The major differences between hipcc and amdclang++ are listed below:
 | Source code location | Developed at [https://github.com/ROCm-Developer-Tools/HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC) | Developed at [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
 
 
-
 ## Compiler Options and Features
 
 This chapter discusses compiler options and features.
@@ -130,9 +129,22 @@ Transforms the data layout of a single dimensional array to provide better cache
 #### -finline-aggressive
 Enables improved inlining capability through better heuristics. This optimization is more effective when used with flto, as the whole program analysis is required to perform this optimization, which can be invoked as -flto -finline-aggressive.
 
+#### -fnt-store (non-temporal store)
+Generates a non-temporal store instruction for array accesses in a loop with a large trip count.
+
+#### -fnt-store=aggressive
+This is an experimental option to generate non-temporal store instruction for array accesses in a loop, whose iteration count cannot be determined at compile time. In this case, the compiler assumes the iteration count to be huge.
+
+#### Optimizations Through Driver -mllvm \<options\>
+The following optimization options must be invoked through driver -mllvm \<options\>:
+
+##### -enable-partial-unswitch
+Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
 
 
 # Table 9 Draft - ESC Special CHR
+Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
+
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
