@@ -162,6 +162,7 @@ These options may facilitate more unswitching under some workloads. Since loop-u
 :::
 
 ##### -enable-strided-vectorization
+Enables strided memory vectorization as an enhancement to the interleaved vectorization framework present in LLVM. It enables the effective use of gather and scatter kind of instruction patterns. This flag must be used along with the interleave vectorization flag.
 
 
 # Table 9 Draft - ESC Special CHR
