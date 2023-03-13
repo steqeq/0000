@@ -252,6 +252,11 @@ Converts the call to floating point exponent version of pow to its integer expon
 ##### -do-lock-reordering={none,normal,aggressive}
 Reorders the control predicates in increasing order of complexity from outer predicate to inner when it is safe. The **normal** mode reorders simple expressions, while the **aggressive** mode reorders predicates involving function calls if no side effects are determined. This option is set to **normal** by default.
 
+##### -fuse-tile-inner-loop
+Enables fusion of adjacent tiled loops as a part of loop tiling transformation. This option is set to false by default.
+
+##### -Hz,1,0x1 [Fortran]
+Helps to preserve array index information for array access expressions which get linearized in the compiler frontend. The preserved information is used by the compiler optimization phase in performing optimizations such as loop transformations. It is recommended that any user who is using optimizations such as loop transformations and other optimizations requiring de-linearized index expressions should use the Hz option. This option has no impact on any other aspects of the Flang frontend.
 
 
 # Table 9 Draft - ESC Special CHR
