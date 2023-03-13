@@ -322,6 +322,7 @@ There are symbolic link aliases amdgpu-offload-arch and nvidia-arch for offload-
 
 #### Command-Line Simplification Using offload-arch Flag
 Legacy mechanism of specifying offloading target for OpenMP involves using three flags, -fopenmp-targets, -Xopenmp-target, and -march. The first two flags take a target triple (like amdgcn-amd-amdhsa or nvptx64-nvidia-cuda), while the last flag takes device name (like gfx908 or sm_70) as input. Alternatively, users of ROCmCC compiler can use the flag —offload-arch for a combined effect of the above three flags.
+
 **Example:**
 ```
 // Legacy mechanism
@@ -330,6 +331,15 @@ clang -fopenmp -target x86_64-linux-gnu \
 -march=gfx906 helloworld.c -o helloworld
 ```
 
+**Example:**
+```
+// Using offload-arch flag
+clang -fopenmp -target x86_64-linux-gnu \
+--offload-arch=gfx906 helloworld.c -o helloworld.
+```
+To ensure backward compatibility, both styles are supported. This option is compatible with TargetID support and multi-image fat binaries.
+
+#### TargetID Support for OpenMP
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
