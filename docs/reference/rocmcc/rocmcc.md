@@ -369,6 +369,12 @@ clang -fopenmp -target x86_64-linux-gnu \
 The TargetID specified on the command line is passed to the clang driver using target-feature flag, to the LLVM optimizer and backend using -mattr flag, and to linker using -plugin-opt=-mattr flag. This feature is compatible with offload-arch command-line option and multi-image binaries for multiple architectures.
 
 #### Multi-image Fat Binary for OpenMP
+The ROCmCC compiler is enhanced to generate binaries that can contain heterogenous images. This heterogeneity could be in terms of:
+- Images of different architectures, like amdgcn and nvptx
+- Images of same architectures but for different GPUs, like gfx906 and gfx908
+- Images of same architecture and same GPU but for different target features, like gfx908:xnack+ and gfx908:xnack-
+
+An appropriate image is selected by the OpenMP device runtime for execution depending on the capability of the current system. This feature is compatible with TargetID support and offload-arch command-line options and uses offload-arch tool to determine capability of the current system.
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
