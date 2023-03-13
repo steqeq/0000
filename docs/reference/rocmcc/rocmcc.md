@@ -321,6 +321,15 @@ The options are listed below:
 There are symbolic link aliases amdgpu-offload-arch and nvidia-arch for offload-arch. These aliases return 1 if no amdgcn GPU or cuda GPU is found. These aliases are useful in determining whether architecture-specific tests should be run or to conditionally load architecture-specific software.
 
 #### Command-Line Simplification Using offload-arch Flag
+Legacy mechanism of specifying offloading target for OpenMP involves using three flags, -fopenmp-targets, -Xopenmp-target, and -march. The first two flags take a target triple (like amdgcn-amd-amdhsa or nvptx64-nvidia-cuda), while the last flag takes device name (like gfx908 or sm_70) as input. Alternatively, users of ROCmCC compiler can use the flag —offload-arch for a combined effect of the above three flags.
+**Example:**
+```
+// Legacy mechanism
+clang -fopenmp -target x86_64-linux-gnu \
+-fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa \
+-march=gfx906 helloworld.c -o helloworld
+```
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
