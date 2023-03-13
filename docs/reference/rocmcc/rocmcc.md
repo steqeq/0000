@@ -151,7 +151,7 @@ Experimental option that enables aggressive loop unswitching heuristic (includin
 
 Where, n is a positive integer and lower value of \<n\> facilitates more unswitching.
 - -unswitch-identical-branches-max-count=\<n\>
-    - Enables unswitching of a loop with respect to a branch conditional value (B), where B appears in at most <n> compares in the loop. This option is enabled with -aggressive-loop-unswitch. The default value is 6.
+    - Enables unswitching of a loop with respect to a branch conditional value (B), where B appears in at most \<n\> compares in the loop. This option is enabled with -aggressive-loop-unswitch. The default value is 6.
 
 **Usage:** -mllvm -aggressive-loop-unswitch -mllvm -unswitch-identical-branches-max-count=\<n\>
 
@@ -428,12 +428,12 @@ The following table lists the other Clang options and their support status.
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
 |-###|Supported|Prints (but does not run) the commands to run for this compilation| 
- |--analyzer-output <value>|Supported|"Static analyzer report output format (html\|plist\|plist-multi-file\|plist-html\|sarif\|text)"| 
+ |--analyzer-output  \<value\>|Supported|"Static analyzer report output format (html\|plist\|plist-multi-file\|plist-html\|sarif\|text)"| 
  |--analyze|Supported|Runs the static analyzer| 
  |-arcmt-migrate-emit-errors|Unsupported|Emits ARC errors even if the migrator can fix them| 
- |-arcmt-migrate-report-output <value>|Unsupported|Output path for the plist report| 
+ |-arcmt-migrate-report-output  \<value\>|Unsupported|Output path for the plist report| 
  |-byteswapio|Supported|Swaps byte-order for unformatted input/output| 
- |-B <dir>|Supported|Adds <dir> to search path for binaries and object files used implicitly| 
+ |-B  \<dir\>|Supported|Adds  \<dir\> to search path for binaries and object files used implicitly| 
  |-CC|Supported|Includes comments from within the macros in the preprocessed output| 
  |-cl-denorms-are-zero|Supported|OpenCL only. Allows denormals to be flushed to zero| 
  |-cl-fast-relaxed-math|Supported|OpenCL only. Sets -cl-finite-math-only and -cl-unsafe-math-optimizations and defines __FAST_RELAXED_MATH__| 
@@ -444,28 +444,28 @@ The following table lists the other Clang options and their support status.
  |-cl-no-signed-zeros|Supported|OpenCL only. Allows use of less precise no-signed-zeros computations in the generated binary| 
  |-cl-opt-disable|Supported|OpenCL only. Disables all optimizations. By default, optimizations are enabled.| 
  |-cl-single-precision-constant|Supported|OpenCL only. Treats double-precision floating-point constant as single precision constant| 
- |-cl-std=<value>|Supported|OpenCL language standard to compile for| 
+ |-cl-std= \<value\>|Supported|OpenCL language standard to compile for| 
  |-cl-strict-aliasing|Supported|OpenCL only. This option is added for compatibility with OpenCL 1.0.| 
  |-cl-uniform-work-group-size|Supported|OpenCL only. Defines the global work-size to be a multiple of the work-group size specified for clEnqueueNDRangeKernel| 
  |-cl-unsafe-math-optimizations|Supported|OpenCL only. Allows unsafe floating-point optimizations. Also implies -cl-no-signed-zeros and -cl-mad-enable| 
- |--config <value>|Supported|Specifies configuration file| 
+ |--config  \<value\>|Supported|Specifies configuration file| 
  |--cuda-compile-host-device|Supported|Compiles CUDA code for both host and device (default). Has no effect on non-CUDA compilations| 
  |--cuda-device-only|Supported|Compiles CUDA code for device only| 
  |--cuda-host-only|Supported|Compiles CUDA code for host only. Has no effect on non-CUDA compilations| 
- |--cuda-include-ptx=<value>|Unsupported|Includes PTX for the following GPU architecture (e.g. sm_35) or �all.� May be specified more than once| 
+ |--cuda-include-ptx= \<value\>|Unsupported|Includes PTX for the following GPU architecture (e.g. sm_35) or �all.� May be specified more than once| 
  |--cuda-noopt-device-debug|Unsupported|Enables device-side debug info generation. Disables ptxas optimizations| 
  |--cuda-path-ignore-env|Unsupported|Ignores environment variables to detect CUDA installation| 
- |--cuda-path=<value>|Unsupported|CUDA installation path| 
- |-cxx-isystem <directory>|Supported|Adds a directory to the C++ SYSTEM include search path| 
+ |--cuda-path= \<value\>|Unsupported|CUDA installation path| 
+ |-cxx-isystem  \<directory\>|Supported|Adds a directory to the C++ SYSTEM include search path| 
  |-C|Supported|Includes comments in the preprocessed output| 
  |-c|Supported|Runs only preprocess, compile, and assemble steps|
  |-dD|Supported|Prints macro definitions in -E mode in addition to the normal output| 
- |-dependency-dot <value>|Supported|Writes DOT-formatted header dependencies to the specified filename| 
- |-dependency-file <value>|Supported|Writes dependency output to the specified filename (or -)| 
+ |-dependency-dot  \<value\>|Supported|Writes DOT-formatted header dependencies to the specified filename| 
+ |-dependency-file  \<value\>|Supported|Writes dependency output to the specified filename (or -)| 
  |-dI|Supported|Prints include directives in -E mode in addition to the normal output| 
  |-dM|Supported|Prints macro definitions in -E mode instead of the normal output| 
- |-dsym-dir <dir>|Unsupported|Outputs dSYMs (if any) to the specified directory| 
- |-D <macro>|Supported|=<value>. Defines <macro> to <value> (or 1 if <value> omitted)| 
+ |-dsym-dir  \<dir\>|Unsupported|Outputs dSYMs (if any) to the specified directory| 
+ |-D  \<macro\>|Supported|= \<value\>. Defines  \<macro\> to  \<value\> (or 1 if  \<value\> omitted)| 
  |-emit-ast|Supported|Emits Clang AST files for source inputs| 
  |-emit-interface-stubs|Supported|Generates interface stub files| 
  |-emit-llvm|Supported|Uses the LLVM representation for assembler and object files| 
@@ -484,11 +484,11 @@ The following table lists the other Clang options and their support status.
  |-fapple-pragma-pack|Unsupported|Enables Apple gcc-compatible #pragma pack handling| 
  |-fapplication-extension|Unsupported|Restricts code to those available for App Extensions| 
  |-fbackslash|Supported|Treats backslash as C-style escape character| 
- |-fbasic-block-sections=<value>|Supported|"Places each function's basic blocks in unique sections (ELF Only) : all \| labels \| none \| list=<file>"| 
+ |-fbasic-block-sections= \<value\>|Supported|"Places each function's basic blocks in unique sections (ELF Only) : all \| labels \| none \| list= \<file\>"| 
  |-fblocks|Supported|Enables the 'blocks' language feature| 
  |-fborland-extensions|Unsupported|Accepts non-standard constructs supported by the Borland compile| 
- |-fbuild-session-file=<file>|Supported|Uses the last modification time of <file> as the build session timestamp| 
- |-fbuild-session-timestamp=<time since Epoch in seconds>|Supported|Specifies starting time of the current build session| 
+ |-fbuild-session-file= \<file\>|Supported|Uses the last modification time of  \<file\> as the build session timestamp| 
+ |-fbuild-session-timestamp= \<time since Epoch in seconds\>|Supported|Specifies starting time of the current build session| 
  |-fbuiltin-module-map|Unsupported|Loads the Clang built-ins module map file| 
  |-fcall-saved-x10|Unsupported|Makes the x10 register call-saved (AArch64 only)| 
  |-fcall-saved-x11|Unsupported|Makes the x11 register call-saved (AArch64 only)| 
@@ -499,50 +499,50 @@ The following table lists the other Clang options and their support status.
  |-fcall-saved-x18|Unsupported|Makes the x18 register call-saved (AArch64 only)| 
  |-fcall-saved-x8|Unsupported|Makes the x8 register call-saved (AArch64 only)| 
  |-fcall-saved-x9|Unsupported|Makes the x9 register call-saved (AArch64 only)| 
- |-fcf-protection=<value>|Unsupported|Specifies the instrument control-flow architecture protection using options: return, branch, full, none| 
+ |-fcf-protection= \<value\>|Unsupported|Specifies the instrument control-flow architecture protection using options: return, branch, full, none| 
  |-fcf-protection|Unsupported|Enables cf-protection in 'full' mode| 
  |-fchar8_t|Supported|Enables C++ built-in type char8_t| 
- |-fclang-abi-compat=<version>|Supported|Attempts to match the ABI of Clang <version>| 
+ |-fclang-abi-compat= \<version\>|Supported|Attempts to match the ABI of Clang  \<version\>| 
  |-fcolor-diagnostics|Supported|Enables colors in diagnostics| 
- |-fcomment-block-commands=<arg>|Supported|Treats each comma-separated argument in <arg> as a documentation comment block command| 
+ |-fcomment-block-commands= \<arg\>|Supported|Treats each comma-separated argument in  \<arg\> as a documentation comment block command| 
  |-fcommon|Supported|Places uninitialized global variables in a common block| 
  |-fcomplete-member-pointers|Supported|Requires member pointer base types to be complete if they are significant under the Microsoft ABI| 
  |-fconvergent-functions|Supported|Assumes functions to be convergent| 
  |-fcoroutines-ts|Supported|Enables support for the C++ Coroutines TS| 
  |-fcoverage-mapping|Unsupported|Generates coverage mapping to enable code coverage analysis| 
- |-fcs-profile-generate=<directory>|Unsupported|Generates instrumented code to collect context-sensitive execution counts into <directory>/default.profraw (overridden by LLVM_PROFILE_FILE env var)| 
+ |-fcs-profile-generate= \<directory\>|Unsupported|Generates instrumented code to collect context-sensitive execution counts into  \<directory\>/default.profraw (overridden by LLVM_PROFILE_FILE env var)| 
  |-fcs-profile-generate|Unsupported|Generates instrumented code to collect context-sensitive execution counts into default.profraw (overridden by LLVM_PROFILE_FILE env var)| 
  |-fcuda-approx-transcendentals|Unsupported|Uses approximate transcendental functions| 
  |-fcuda-flush-denormals-to-zero|Supported|Flushes denormal floating-point values to zero in CUDA device mode| 
  |-fcuda-short-ptr|Unsupported|Uses 32-bit pointers for accessing const/local/shared address spaces| 
  |-fcxx-exceptions|Supported|Enables C++ exceptions| 
  |-fdata-sections|Supported|Places each data in its section| 
- |-fdebug-compilation-dir <value>|Supported|Specifies the compilation directory for embedding the debug info| 
- |-fdebug-default-version=<value>|Supported|Specifies the default DWARF version to use, if a -g option caused DWARF debug info to be produced| 
+ |-fdebug-compilation-dir  \<value\>|Supported|Specifies the compilation directory for embedding the debug info| 
+ |-fdebug-default-version= \<value\>|Supported|Specifies the default DWARF version to use, if a -g option caused DWARF debug info to be produced| 
  |-fdebug-info-for-profiling|Supported|Emits extra debug info to make the sample profile more accurate| 
  |-fdebug-macro|Supported|Emits macro debug information| 
- |-fdebug-prefix-map=<value>|Supported|Remaps file source paths in debug info| 
+ |-fdebug-prefix-map= \<value\>|Supported|Remaps file source paths in debug info| 
  |-fdebug-ranges-base-address|Supported|Uses DWARF base address selection entries in .debug ranges| 
  |-fdebug-types-section|Supported|Places debug types in their section (ELF only)| 
  |-fdeclspec|Supported|Allows __declspec as a keyword| 
  |-fdelayed-template-parsing|Supported|Parses templated function definitions at the end of the translation unit| 
  |-fdelete-null-pointer-checks|Supported|Treats usage of null pointers as undefined behavior (default)| 
  |-fdiagnostics-absolute-paths|Supported|Prints absolute paths in diagnostics| 
- |-fdiagnostics-hotness-threshold=<number>|Unsupported|Prevents optimization remarks from being output if they do not have at least the specified number of profile count| 
+ |-fdiagnostics-hotness-threshold= \<number\>|Unsupported|Prevents optimization remarks from being output if they do not have at least the specified number of profile count| 
  |-fdiagnostics-parseable-fixits|Supported|Prints fix-its in machine parseable form| 
  |-fdiagnostics-print-source-range-info|Supported|Prints source range spans in numeric form| 
  |-fdiagnostics-show-hotness|Unsupported|Enables profile hotness information in diagnostic line| 
  |-fdiagnostics-show-note-include-stack|Supported|Displays include stacks for diagnostic notes| 
  |-fdiagnostics-show-option|Supported|Prints option name with mappable diagnostics| 
  |-fdiagnostics-show-template-tree|Supported|Prints a template comparison tree for differing templates| 
- |-fdigraphs|Supported|Enables alternative token representations '<:', ':>', '<%', '%>', '%:', '%:%:' (default)| 
+ |-fdigraphs|Supported|Enables alternative token representations ' \<:', ':\>', ' \<%', '%\>', '%:', '%:%:' (default)| 
  |-fdiscard-value-names|Supported|Discards value names in LLVM IR| 
  |-fdollars-in-identifiers|Supported|Allows �$� in identifiers| 
  |-fdouble-square-bracket-attributes|Supported|Enables '[[]]' attributes in all C and C++ language modes| 
  |-fdwarf-exceptions|Unsupported|Uses DWARF style exceptions| 
  |-feliminate-unused-debug-types|Supported|Eliminates debug info for defined but unused types| 
  |-fembed-bitcode-marker|Supported|Embeds placeholder LLVM IR data as a marker| 
- |-fembed-bitcode=<option>|Supported|Embeds LLVM bitcode (option: off, all, bitcode, marker)| 
+ |-fembed-bitcode= \<option\>|Supported|Embeds LLVM bitcode (option: off, all, bitcode, marker)| 
  |-fembed-bitcode|Supported|Embeds LLVM IR bitcode as data| 
  |-femit-all-decls|Supported|Emits all declarations, even if unused| 
  |-femulated-tls|Supported|Uses emutls functions to access thread_local variables| 
@@ -553,7 +553,7 @@ The following table lists the other Clang options and their support status.
  |-fexperimental-relative-c++-abi-vtables|Supported|Uses the experimental C++ class ABI for classes with virtual tables| 
  |-fexperimental-strict-floating-point|Supported|Enables experimental strict floating point in LLVM| 
  |-ffast-math|Supported|Allows aggressive, lossy floating-point optimizations| 
- |-ffile-prefix-map=<value>|Supported|Remaps file source paths in debug info and predefined preprocessor macros| 
+ |-ffile-prefix-map= \<value\>|Supported|Remaps file source paths in debug info and predefined preprocessor macros| 
  |-ffine-grained-bitfield-accesses|Supported|Uses separate accesses for consecutive bitfield runs with legal widths and alignments| 
  |-ffixed-form|Supported|Enables fixed-form format for Fortran| 
  |-ffixed-point|Supported|Enables fixed point types| 
@@ -593,9 +593,9 @@ The following table lists the other Clang options and their support status.
  |-fforce-dwarf-frame|Supported|Mandatorily emits a debug frame section| 
  |-fforce-emit-vtables|Supported|Emits more virtual tables to improve devirtualization| 
  |-fforce-enable-int128|Supported|Enables support for int128_t type| 
- |-ffp-contract=<value>|Supported|Forms fused FP ops (e.g. FMAs): fast (everywhere) \ on (according to FP_CONTRACT pragma) \ off (never fuse). Default is �fast� for CUDA/HIP and �on� for others.| 
- |-ffp-exception-behavior=<value>|Supported|Specifies the exception behavior of floating-point operations| 
- |-ffp-model=<value>|Supported|Controls the semantics of floating-point calculations| 
+ |-ffp-contract= \<value\>|Supported|Forms fused FP ops (e.g. FMAs): fast (everywhere) \ on (according to FP_CONTRACT pragma) \ off (never fuse). Default is �fast� for CUDA/HIP and �on� for others.| 
+ |-ffp-exception-behavior= \<value\>|Supported|Specifies the exception behavior of floating-point operations| 
+ |-ffp-model= \<value\>|Supported|Controls the semantics of floating-point calculations| 
  |-ffree-form|Supported|Enables free-form format for Fortran| 
  |-ffreestanding|Supported|Asserts the compilation to take place in a freestanding environment| 
  |-ffunc-args-alias|Supported|Allows the function arguments aliases (equivalent to ansi alias)| 
@@ -604,7 +604,7 @@ The following table lists the other Clang options and their support status.
  |-fgnu-keywords|Supported|Allows GNU-extension keywords regardless of a language standard| 
  |-fgnu-runtime|Unsupported|Generates output compatible with the standard GNU Objective-C runtime| 
  |-fgnu89-inline|Unsupported|Uses the gnu89 inline semantics| 
- |-fgnuc-version=<value>|Supported|Sets various macros to claim compatibility with the given GCC version (default is 4.2.1)| 
+ |-fgnuc-version= \<value\>|Supported|Sets various macros to claim compatibility with the given GCC version (default is 4.2.1)| 
  |-fgpu-allow-device-init|Supported|Allows device-side init function in HIP| 
  |-fgpu-rdc|Supported|Generates relocatable device code, also known as separate compilation mode| 
  |-fhip-new-launch-api|Supported|Uses new kernel launching API for HIP| 
@@ -619,45 +619,45 @@ The following table lists the other Clang options and their support status.
  |-fintegrated-cc1|Supported|Runs cc1 in-process| 
  |-fjump-tables|Supported|Uses jump tables for lowering switches| 
  |-fkeep-static-consts|Supported|Keeps static const variables if unused| 
- |-flax-vector-conversions=<value>|Supported|Enables implicit vector bit-casts| 
- |-flto-jobs=<value>|Unsupported|Controls the backend parallelism of -flto=thin (A default value of 0 means the number of threads will be derived from the number of CPUs detected.)| 
- |-flto=<value>|Unsupported|Sets LTO mode to either �full� or �thin�| 
+ |-flax-vector-conversions= \<value\>|Supported|Enables implicit vector bit-casts| 
+ |-flto-jobs= \<value\>|Unsupported|Controls the backend parallelism of -flto=thin (A default value of 0 means the number of threads will be derived from the number of CPUs detected.)| 
+ |-flto= \<value\>|Unsupported|Sets LTO mode to either �full� or �thin�| 
  |-flto|Unsupported|Enables LTO in �full� mode| 
- |-fmacro-prefix-map=<value>|Supported|Remaps file source paths in predefined preprocessor macros| 
+ |-fmacro-prefix-map= \<value\>|Supported|Remaps file source paths in predefined preprocessor macros| 
  |-fmath-errno|Supported|Requires math functions to indicate errors by setting errno| 
- |-fmax-tokens=<value>|Supported|Specifies max total number of preprocessed tokens for -Wmax-tokens| 
- |-fmax-type-align=<value>|Supported|Specifies the maximum alignment to enforce on pointers lacking an explicit alignment| 
+ |-fmax-tokens= \<value\>|Supported|Specifies max total number of preprocessed tokens for -Wmax-tokens| 
+ |-fmax-type-align= \<value\>|Supported|Specifies the maximum alignment to enforce on pointers lacking an explicit alignment| 
  |-fmemory-profile|Supported|Enables heap memory profiling| 
  |-fmerge-all-constants|Supported|Allows merging of constants| 
- |-fmessage-length=<value>|Supported|Formats message diagnostics to fit within N columns| 
- |-fmodule-file=[<name>=]<file>|Unsupported|Specifies the mapping of module name to precompiled module file. Loads a module file if name is omitted| 
- |-fmodule-map-file=<file>|Unsupported|Loads the specified module map file| 
- |-fmodule-name=<name>|Unsupported|Specifies the name of the module to build| 
- |-fmodules-cache-path=<directory>|Unsupported|Specifies the module cache path| 
+ |-fmessage-length= \<value\>|Supported|Formats message diagnostics to fit within N columns| 
+ |-fmodule-file=[ \<name\>=] \<file\>|Unsupported|Specifies the mapping of module name to precompiled module file. Loads a module file if name is omitted| 
+ |-fmodule-map-file= \<file\>|Unsupported|Loads the specified module map file| 
+ |-fmodule-name= \<name\>|Unsupported|Specifies the name of the module to build| 
+ |-fmodules-cache-path= \<directory\>|Unsupported|Specifies the module cache path| 
  |-fmodules-decluse|Unsupported|Asserts declaration of modules used within a module| 
  |-fmodules-disable-diagnostic-validation|Unsupported|Disables validation of the diagnostic options when loading the module| 
- |-fmodules-ignore-macro=<value>|Unsupported|Ignores the definition of the specified macro when building and loading modules| 
- |-fmodules-prune-after=<seconds>|Unsupported|Specifies the interval (in seconds) after which a module file is to be considered unused| 
- |-fmodules-prune-interval=<seconds>|Unsupported|Specifies the interval (in seconds) between attempts to prune the module cache| 
+ |-fmodules-ignore-macro= \<value\>|Unsupported|Ignores the definition of the specified macro when building and loading modules| 
+ |-fmodules-prune-after= \<seconds\>|Unsupported|Specifies the interval (in seconds) after which a module file is to be considered unused| 
+ |-fmodules-prune-interval= \<seconds\>|Unsupported|Specifies the interval (in seconds) between attempts to prune the module cache| 
  |-fmodules-search-all|Unsupported|Searches even non-imported modules to resolve references| 
  |-fmodules-strict-decluse|Unsupported|Similar to -fmodules-decluse option but requires all headers to be in the modules| 
  |-fmodules-ts|Unsupported|Enables support for the C++ Modules TS| 
- |-fmodules-user-build-path <directory>|Unsupported|Specifies the module user build path| 
+ |-fmodules-user-build-path  \<directory\>|Unsupported|Specifies the module user build path| 
  |-fmodules-validate-input-files-content|Supported|Validates PCM input files based on content if mtime differs| 
  |-fmodules-validate-once-per-build-session|Unsupported|Prohibits verification of input files for the modules if the module has been successfully validated or loaded during the current build session| 
  |-fmodules-validate-system-headers|Supported|Validates the system headers that a module depends on when loading the module| 
  |-fmodules|Unsupported|Enables the �modules� language feature| 
- |-fms-compatibility-version=<value>|Supported|Specifies the dot-separated value representing the Microsoft compiler version number to report in _MSC_VER (0 = do not define it (default))| 
+ |-fms-compatibility-version= \<value\>|Supported|Specifies the dot-separated value representing the Microsoft compiler version number to report in _MSC_VER (0 = do not define it (default))| 
  |-fms-compatibility|Supported|Enables full Microsoft Visual C++ compatibility| 
  |-fms-extensions|Supported|Accepts some non-standard constructs supported by the Microsoft compiler| 
- |-fmsc-version=<value>|Supported|Specifies the Microsoft compiler version number to report in _MSC_VER (0 = do not define it (default))| 
- |-fnew-alignment=<align>|Supported|Specifies the largest alignment guaranteed by �::operator new(size_t)�| 
+ |-fmsc-version= \<value\>|Supported|Specifies the Microsoft compiler version number to report in _MSC_VER (0 = do not define it (default))| 
+ |-fnew-alignment= \<align\>|Supported|Specifies the largest alignment guaranteed by �::operator new(size_t)�| 
  |-fno-addrsig|Supported|Prohibits emitting an address-significance table| 
  |-fno-allow-fortran-gnu-ext|Supported|Allows Fortran GNU extensions| 
  |-fno-assume-sane-operator-new|Supported|Prohibits the assumption that C++'s global operator new cannot alias any pointer| 
  |-fno-autolink|Supported|Disables generation of linker directives for automatic library linking| 
  |-fno-backslash|Supported|Allows treatment of backslash like any other character in character strings| 
- |-fno-builtin-<value>|Supported|Disables implicit built-in knowledge of a specific function| 
+ |-fno-builtin- \<value\>|Supported|Disables implicit built-in knowledge of a specific function| 
  |-fno-builtin|Supported|Disables implicit built-in knowledge of functions| 
  |-fno-c++-static-destructors|Supported|Disables C++ static destructor registration| 
  |-fno-char8_t|Supported|Disables C++ built-in type char8_t| 
@@ -673,7 +673,7 @@ The following table lists the other Clang options and their support status.
  |-fno-delayed-template-parsing|Supported|Disables delayed template parsing| 
  |-fno-delete-null-pointer-checks|Supported|Prohibits the treatment of null pointers as undefined behavior| 
  |-fno-diagnostics-fixit-info|Supported|Prohibits including fixit information in diagnostics| 
- |-fno-digraphs|Supported|Disallows alternative token representations �<:', ':>', '<%', '%>', '%:', '%:%:�| 
+ |-fno-digraphs|Supported|Disallows alternative token representations � \<:', ':\>', ' \<%', '%\>', '%:', '%:%:�| 
  |-fno-discard-value-names|Supported|Prohibits discarding value names in LLVM IR| 
  |-fno-dollars-in-identifiers|Supported|Disallows '$' in identifiers| 
  |-fno-double-square-bracket-attributes|Supported|Disables '[[]]' attributes in all C and C++ language modes| 
@@ -721,15 +721,15 @@ The following table lists the other Clang options and their support status.
  |-fno-sanitize-blacklist|Supported on Host only|Prohibits using blacklist file for sanitizers| 
  |-fno-sanitize-cfi-canonical-jump-tables|Supported on Host only|Prohibits making the jump table addresses canonical in the symbol table| 
  |-fno-sanitize-cfi-cross-dso|Supported on Host only|Disables control flow integrity (CFI) checks for cross-DSO calls| 
- |-fno-sanitize-coverage=<value>|Supported on Host only|Disables specified features of coverage instrumentation for Sanitizers| 
+ |-fno-sanitize-coverage= \<value\>|Supported on Host only|Disables specified features of coverage instrumentation for Sanitizers| 
  |-fno-sanitize-memory-track-origins|Supported on Host only|Disables origins tracking in MemorySanitizer| 
  |-fno-sanitize-memory-use-after-dtor|Supported on Host only|Disables use-after-destroy detection in MemorySanitizer| 
- |-fno-sanitize-recover=<value>|Supported on Host only|Disables recovery for specified sanitizers| 
+ |-fno-sanitize-recover= \<value\>|Supported on Host only|Disables recovery for specified sanitizers| 
  |-fno-sanitize-stats|Supported on Host only|Disables sanitizer statistics gathering| 
  |-fno-sanitize-thread-atomics|Supported on Host only|Disables atomic operations instrumentation in ThreadSanitizer| 
  |-fno-sanitize-thread-func-entry-exit|Supported on Host only|Disables function entry/exit instrumentation in ThreadSanitizer| 
  |-fno-sanitize-thread-memory-access|Supported on Host only|Disables memory access instrumentation in ThreadSanitizer| 
- |-fno-sanitize-trap=<value>|Supported on Host only|Disables trapping for specified sanitizers| 
+ |-fno-sanitize-trap= \<value\>|Supported on Host only|Disables trapping for specified sanitizers| 
  |-fno-sanitize-trap|Supported on Host only|Disables trapping for all sanitizers| 
  |-fno-short-wchar|Supported|Forces wchar_t to be an unsigned int| 
  |-fno-show-column|Supported|Prohibits including column number on diagnostics| 
@@ -758,36 +758,36 @@ The following table lists the other Clang options and their support status.
  |-fobjc-arc-exceptions|Unsupported|Asserts using EH-safe code when synthesizing retains and releases in -fobjc-arc| 
  |-fobjc-arc|Unsupported|Synthesizes retain and release calls for Objective-C pointers| 
  |-fobjc-exceptions|Unsupported|Enables Objective-C exceptions| 
- |-fobjc-runtime=<value>|Unsupported|Specifies the target Objective-C runtime kind and version| 
+ |-fobjc-runtime= \<value\>|Unsupported|Specifies the target Objective-C runtime kind and version| 
  |-fobjc-weak|Unsupported|Enables ARC-style weak references in Objective-C| 
  |-fopenmp-simd|Unsupported|Emits OpenMP code only for SIMD-based constructs| 
- |-fopenmp-targets=<value>|Unsupported|Specifies a comma-separated list of triples OpenMP offloading targets to be supported| 
+ |-fopenmp-targets= \<value\>|Unsupported|Specifies a comma-separated list of triples OpenMP offloading targets to be supported| 
  |-fopenmp|Unsupported|Parses OpenMP pragmas and generates parallel code| 
- |-foptimization-record-file=<file>|Supported|Specifies the output name of the file containing the optimization remarks. Implies -fsave-optimization-record. On Darwin platforms, this cannot be used with multiple -arch <arch> options.| 
- |-foptimization-record-passes=<regex>|Supported|Exclusively allows the inclusion of passes that match a specified regular expression in the generated optimization record (By default, include all passes.)| 
+ |-foptimization-record-file= \<file\>|Supported|Specifies the output name of the file containing the optimization remarks. Implies -fsave-optimization-record. On Darwin platforms, this cannot be used with multiple -arch  \<arch\> options.| 
+ |-foptimization-record-passes= \<regex\>|Supported|Exclusively allows the inclusion of passes that match a specified regular expression in the generated optimization record (By default, include all passes.)| 
  |-forder-file-instrumentation|Supported|Generates instrumented code to collect order file into default.profraw file (overridden by '=' form of option or LLVM_PROFILE_FILE env var)| 
- |-fpack-struct=<value>|Unsupported|Specifies the default maximum struct packing alignment| 
+ |-fpack-struct= \<value\>|Unsupported|Specifies the default maximum struct packing alignment| 
  |-fpascal-strings|Supported|Recognizes and constructs Pascal-style string literals| 
- |-fpass-plugin=<dsopath>|Supported|Loads pass plugin from a dynamic shared object file (only with new pass manager)| 
- |-fpatchable-function-entry=<N,M>|Supported|Generates M NOPs before function entry and N-M NOPs after function entry| 
+ |-fpass-plugin= \<dsopath\>|Supported|Loads pass plugin from a dynamic shared object file (only with new pass manager)| 
+ |-fpatchable-function-entry= \<N,M\>|Supported|Generates M NOPs before function entry and N-M NOPs after function entry| 
  |-fpcc-struct-return|Unsupported|Overrides the default ABI to return all structs on the stack| 
  |-fpch-codegen|Supported|Generates code for using this PCH that assumes building an explicit object file for the PCH| 
  |-fpch-debuginfo|Supported|Generates debug info for types exclusively in an object file built from this PCH| 
  |-fpch-instantiate-templates|Supported|Instantiates templates already while building a PCH| 
  |-fpch-validate-input-files-content|Supported|Validates PCH input files based on the content if mtime differs| 
- |-fplugin=<dsopath>|Supported|Loads the named plugin (dynamic shared object)| 
- |-fprebuilt-module-path=<directory>|Unsupported|Specifies the prebuilt module path| 
- |-fprofile-exclude-files=<value>|Unsupported|Exclusively instruments those functions from files where names do not match all the regexes separated by a semicolon| 
- |-fprofile-filter-files=<value>|Unsupported|Exclusively instruments those functions from files where names match any regex separated by a semicolon| 
- |-fprofile-generate=<directory>|Unsupported|Generates instrumented code to collect execution counts into <directory>/default.profraw (overridden by LLVM_PROFILE_FILE env var)| 
+ |-fplugin= \<dsopath\>|Supported|Loads the named plugin (dynamic shared object)| 
+ |-fprebuilt-module-path= \<directory\>|Unsupported|Specifies the prebuilt module path| 
+ |-fprofile-exclude-files= \<value\>|Unsupported|Exclusively instruments those functions from files where names do not match all the regexes separated by a semicolon| 
+ |-fprofile-filter-files= \<value\>|Unsupported|Exclusively instruments those functions from files where names match any regex separated by a semicolon| 
+ |-fprofile-generate= \<directory\>|Unsupported|Generates instrumented code to collect execution counts into  \<directory\>/default.profraw (overridden by LLVM_PROFILE_FILE env var)| 
  |-fprofile-generate|Unsupported|Generates instrumented code to collect execution counts into default.profraw (overridden by LLVM_PROFILE_FILE env var)| 
- |-fprofile-instr-generate=<file>|Unsupported|Generates instrumented code to collect execution counts into <file> (overridden by LLVM_PROFILE_FILE env var)| 
+ |-fprofile-instr-generate= \<file\>|Unsupported|Generates instrumented code to collect execution counts into  \<file\> (overridden by LLVM_PROFILE_FILE env var)| 
  |-fprofile-instr-generate|Unsupported|Generates instrumented code to collect execution counts into default.profraw file (overridden by '=' form of option or LLVM_PROFILE_FILE env var)| 
- |-fprofile-instr-use=<value>|Unsupported|Uses instrumentation data for profile-guided optimization| 
- |-fprofile-remapping-file=<file>|Unsupported|Uses the remappings described in <file> to match the profile data against the names in the program| 
+ |-fprofile-instr-use= \<value\>|Unsupported|Uses instrumentation data for profile-guided optimization| 
+ |-fprofile-remapping-file= \<file\>|Unsupported|Uses the remappings described in  \<file\> to match the profile data against the names in the program| 
  |-fprofile-sample-accurate|Unsupported|Specifies that the sample profile is accurate| 
- |-fprofile-sample-use=<value>|Unsupported|Enables sample-based profile-guided optimizations| 
- |-fprofile-use=<pathname>|Unsupported|Uses instrumentation data for profile-guided optimization. If pathname is a directory, it reads from <pathname>/default.profdata. Otherwise, it reads from file <pathname>.| 
+ |-fprofile-sample-use= \<value\>|Unsupported|Enables sample-based profile-guided optimizations| 
+ |-fprofile-use= \<pathname\>|Unsupported|Uses instrumentation data for profile-guided optimization. If pathname is a directory, it reads from  \<pathname\>/default.profdata. Otherwise, it reads from file  \<pathname\>.| 
  |-freciprocal-math|Supported|Allows division operations to be reassociated| 
  |-freg-struct-return|Unsupported|Overrides the default ABI to return small structs in registers| 
  |-fregister-global-dtors-with-atexit|Supported|Uses atexit or __cxa_atexit to register global destructors| 
@@ -796,40 +796,40 @@ The following table lists the other Clang options and their support status.
  |-fropi|Unsupported|Generates read-only position independent code (ARM only)| 
  |-frtlib-add-rpath|Supported|Adds -rpath with architecture-specific resource directory to the linker flags| 
  |-frwpi|Unsupported|Generates read-write position-independent code (ARM only)| 
- |-fsanitize-address-field-padding=<value>|Supported on Host only|Specifies the level of field padding for AddressSanitizer| 
+ |-fsanitize-address-field-padding= \<value\>|Supported on Host only|Specifies the level of field padding for AddressSanitizer| 
  |-fsanitize-address-globals-dead-stripping|Supported on Host only|Enables linker dead stripping of globals in AddressSanitizer| 
  |-fsanitize-address-poison-custom-array-cookie|Supported on Host only|Enables poisoning of array cookies when using custom operator new[] in AddressSanitizer| 
  |-fsanitize-address-use-after-scope|Supported on Host only|Enables use-after-scope detection in AddressSanitizer| 
  |-fsanitize-address-use-odr-indicator|Supported on Host only|Enables ODR indicator globals to avoid false ODR violation reports in partially sanitized programs at the cost of an increase in binary size| 
- |-fsanitize-blacklist=<value>|Supported on Host only|Specifies the path to blacklisted files for sanitizers| 
+ |-fsanitize-blacklist= \<value\>|Supported on Host only|Specifies the path to blacklisted files for sanitizers| 
  |-fsanitize-cfi-canonical-jump-tables|Supported on Host only|Makes the jump table addresses canonical in the symbol table| 
  |-fsanitize-cfi-cross-dso|Supported on Host only|Enables control flow integrity (CFI) checks for cross-DSO calls| 
  |-fsanitize-cfi-icall-generalize-pointers|Supported on Host only|Generalizes pointers in CFI indirect call type signature checks| 
- |-fsanitize-coverage-allowlist=<value>|Supported on Host only|Restricts sanitizer coverage instrumentation exclusively to modules and functions that match the provided special case list, except the blocked ones| 
- |-fsanitize-coverage-blacklist=<value>|Supported on Host only|Deprecated; use -fsanitize-coverage-blocklist= instead.| 
- |-fsanitize-coverage-blocklist=<value>|Supported on Host only|Disables sanitizer coverage instrumentation for modules and functions that match the provided special case list, even the allowed ones| 
- |-fsanitize-coverage-whitelist=<value>|Supported on Host only|Deprecated; use -fsanitize-coverage-allowlist= instead.| 
- |-fsanitize-coverage=<value>|Supported on Host only|Specifies the type of coverage instrumentation for Sanitizers| 
- |-fsanitize-hwaddress-abi=<value>|Supported on Host only|Selects the HWAddressSanitizer ABI to target (interceptor or platform, default interceptor). This option is currently unused.| 
- |-fsanitize-memory-track-origins=<value>|Supported on Host only|Enables origins tracking in MemorySanitizer| 
+ |-fsanitize-coverage-allowlist= \<value\>|Supported on Host only|Restricts sanitizer coverage instrumentation exclusively to modules and functions that match the provided special case list, except the blocked ones| 
+ |-fsanitize-coverage-blacklist= \<value\>|Supported on Host only|Deprecated; use -fsanitize-coverage-blocklist= instead.| 
+ |-fsanitize-coverage-blocklist= \<value\>|Supported on Host only|Disables sanitizer coverage instrumentation for modules and functions that match the provided special case list, even the allowed ones| 
+ |-fsanitize-coverage-whitelist= \<value\>|Supported on Host only|Deprecated; use -fsanitize-coverage-allowlist= instead.| 
+ |-fsanitize-coverage= \<value\>|Supported on Host only|Specifies the type of coverage instrumentation for Sanitizers| 
+ |-fsanitize-hwaddress-abi= \<value\>|Supported on Host only|Selects the HWAddressSanitizer ABI to target (interceptor or platform, default interceptor). This option is currently unused.| 
+ |-fsanitize-memory-track-origins= \<value\>|Supported on Host only|Enables origins tracking in MemorySanitizer| 
  |-fsanitize-memory-track-origins|Supported on Host only|Enables origins tracking in MemorySanitizer| 
  |-fsanitize-memory-use-after-dtor|Supported on Host only|Enables use-after-destroy detection in MemorySanitizer| 
- |-fsanitize-recover=<value>|Supported on Host only|Enables recovery for specified sanitizers| 
+ |-fsanitize-recover= \<value\>|Supported on Host only|Enables recovery for specified sanitizers| 
  |-fsanitize-stats|Supported on Host only|Enables sanitizer statistics gathering| 
- |-fsanitize-system-blacklist=<value>|Supported on Host only|Specifies the path to system blacklist files for sanitizers| 
+ |-fsanitize-system-blacklist= \<value\>|Supported on Host only|Specifies the path to system blacklist files for sanitizers| 
  |-fsanitize-thread-atomics|Supported on Host only|Enables atomic operations instrumentation in ThreadSanitizer (default)| 
  |-fsanitize-thread-func-entry-exit|Supported on Host only|Enables function entry/exit instrumentation in ThreadSanitizer (default)| 
  |-fsanitize-thread-memory-access|Supported on Host only|Enables memory access instrumentation in ThreadSanitizer (default)| 
- |-fsanitize-trap=<value>|Supported on Host only|Enables trapping for specified sanitizers| 
+ |-fsanitize-trap= \<value\>|Supported on Host only|Enables trapping for specified sanitizers| 
  |-fsanitize-trap|Supported on Host only|Enables trapping for all sanitizers| 
- |-fsanitize-undefined-strip-path-components=<number>|Supported on Host only|Strips (or keeps only, if negative) the given number of path components when emitting check metadata| 
- |-fsanitize=<check>|Supported on Host only|Turns on runtime checks for various forms of undefined or suspicious behavior. See user manual for available checks.| 
- |-fsave-optimization-record=<format>|Supported|Generates an optimization record file in the specified format| 
+ |-fsanitize-undefined-strip-path-components= \<number\>|Supported on Host only|Strips (or keeps only, if negative) the given number of path components when emitting check metadata| 
+ |-fsanitize= \<check\>|Supported on Host only|Turns on runtime checks for various forms of undefined or suspicious behavior. See user manual for available checks.| 
+ |-fsave-optimization-record= \<format\>|Supported|Generates an optimization record file in the specified format| 
  |-fsave-optimization-record|Supported|Generates a YAML optimization record file| 
  |-fseh-exceptions|Supported|Uses SEH style exceptions| 
  |-fshort-enums|Supported|Allocates to an enum type only as many bytes as it needs for the declared range of possible values| 
  |-fshort-wchar|Unsupported|Forces wchar_t to be a short unsigned int| 
- |-fshow-overloads=<value>|Supported|Specifies which overload candidates are shown when overload resolution fails. Values = best\all; default value = �all�| 
+ |-fshow-overloads= \<value\>|Supported|Specifies which overload candidates are shown when overload resolution fails. Values = best\all; default value = �all�| 
  |-fsigned-char|Supported|Asserts that the char is signed| 
  |-fsized-deallocation|Supported|Enables C++14 sized global deallocation functions| 
  |-fsjlj-exceptions|Supported|Uses SjLj style exceptions| 
@@ -848,23 +848,23 @@ The following table lists the other Clang options and their support status.
  |-fstrict-vtable-pointers|Supported|Enables optimizations based on the strict rules for overwriting polymorphic C++ objects| 
  |-fsycl|Unsupported|Enables SYCL kernels compilation for device| 
  |-fsystem-module|u|Builds this module as a system module. Only used with -emit-module| 
- |-fthin-link-bitcode=<value>|Supported|Writes minimized bitcode to <file> for the ThinLTO thin link only| 
- |-fthinlto-index=<value>|Unsupported|Performs ThinLTO import using the provided function summary index| 
- |-ftime-trace-granularity=<value>|Supported|Specifies the minimum time granularity (in microseconds) traced by time profiler| 
+ |-fthin-link-bitcode= \<value\>|Supported|Writes minimized bitcode to  \<file\> for the ThinLTO thin link only| 
+ |-fthinlto-index= \<value\>|Unsupported|Performs ThinLTO import using the provided function summary index| 
+ |-ftime-trace-granularity= \<value\>|Supported|Specifies the minimum time granularity (in microseconds) traced by time profiler| 
  |-ftime-trace|Supported|Turns on time profiler. Generates JSON file based on output filename| 
- |-ftrap-function=<value>|Unsupported|Issues call to specified function rather than a trap instruction| 
- |-ftrapv-handler=<function name>|Unsupported|Specifies the function to be called on overflow| 
+ |-ftrap-function= \<value\>|Unsupported|Issues call to specified function rather than a trap instruction| 
+ |-ftrapv-handler= \<function name\>|Unsupported|Specifies the function to be called on overflow| 
  |-ftrapv|Unsupported|Traps on integer overflow| 
  |-ftrigraphs|Supported|Processes trigraph sequences| 
- |-ftrivial-auto-var-init-stop-after=<value>|Supported|Stops initializing trivial automatic stack variables after the specified number of instances| 
- |-ftrivial-auto-var-init=<value>|Supported|Initializes trivial automatic stack variables. Values: uninitialized (default) / pattern| 
+ |-ftrivial-auto-var-init-stop-after= \<value\>|Supported|Stops initializing trivial automatic stack variables after the specified number of instances| 
+ |-ftrivial-auto-var-init= \<value\>|Supported|Initializes trivial automatic stack variables. Values: uninitialized (default) / pattern| 
  |-funique-basic-block-section-names|Supported|Uses unique names for basic block sections (ELF only)| 
  |-funique-internal-linkage-names|Supported|Makes the Internal Linkage Symbol names unique by appending the MD5 hash of the module path| 
  |-funroll-loops|Supported|Turns on loop unroller| 
  |-fuse-flang-math-libs|Supported|Uses Flang internal runtime math library instead of LLVM math intrinsics| 
  |-fuse-line-directives|Supported|Uses #line in preprocessed output| 
  |-fvalidate-ast-input-files-content|Supported|Computes and stores the hash of input files used to build an AST. Files with mismatching mtimes are considered valid if both have identical contents.| 
- |-fveclib=<value>|Unsupported|Uses the given vector functions library| 
+ |-fveclib= \<value\>|Unsupported|Uses the given vector functions library| 
  |-fvectorize|Unsupported|Enables the loop vectorization passes| 
  |-fverbose-asm|Supported|Generates verbose assembly output| 
  |-fvirtual-function-elimination|Supported|Enables dead virtual function elimination optimization. Requires -flto=full| 
@@ -872,25 +872,25 @@ The following table lists the other Clang options and their support status.
  |-fvisibility-inlines-hidden-static-local-var|Supported|Marks the visibility of static variables in inline C++ member functions as hidden by default when -fvisibility-inlines-hidden is enabled| 
  |-fvisibility-inlines-hidden|Supported|Marks the visibility of inline C++ member functions as hidden by default| 
  |-fvisibility-ms-compat|Supported|Marks the visibility of global types as default and global functions and variables as hidden by default| 
- |-fvisibility=<value>|Supported|Sets the default symbol visibility for all global declarations to the specified value| 
+ |-fvisibility= \<value\>|Supported|Sets the default symbol visibility for all global declarations to the specified value| 
  |-fwasm-exceptions|Unsupported|Uses WebAssembly style exceptions| 
  |-fwhole-program-vtables|Unsupported|Enables whole program vtable optimization. Requires -flto| 
  |-fwrapv|Supported|Treats signed integer overflow as two's complement| 
  |-fwritable-strings|Supported|Stores string literals as writable data| 
  |-fxray-always-emit-customevents|Unsupported|Mandates emitting __xray_customevent(...) calls even if the containing function is not always instrumented| 
  |-fxray-always-emit-typedevents|Unsupported|Mandates emitting __xray_typedevent(...) calls even if the containing function is not always instrumented| 
- |-fxray-always-instrument= <value>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the �always instrument� XRay attribute| 
- |-fxray-attr-list= <value>|Unsupported|Specifies the filename defining the list of functions/types for imbuing XRay attributes| 
+ |-fxray-always-instrument=  \<value\>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the �always instrument� XRay attribute| 
+ |-fxray-attr-list=  \<value\>|Unsupported|Specifies the filename defining the list of functions/types for imbuing XRay attributes| 
  |-fxray-ignore-loops|Unsupported|Prohibits instrumenting functions with loops unless they also meet the minimum function size| 
- |-fxray-instruction-threshold= <value>|Unsupported|Sets the minimum function size to instrument with Xray| 
- |-fxray-instrumentation-bundle= <value>|Unsupported|Specifies which XRay instrumentation points to emit. Values: all/ none/ function-entry/ function-exit/ function/ custom. Default is �all,� and �function� includes both �function-entry� and �function-exit.�| 
+ |-fxray-instruction-threshold=  \<value\>|Unsupported|Sets the minimum function size to instrument with Xray| 
+ |-fxray-instrumentation-bundle=  \<value\>|Unsupported|Specifies which XRay instrumentation points to emit. Values: all/ none/ function-entry/ function-exit/ function/ custom. Default is �all,� and �function� includes both �function-entry� and �function-exit.�| 
  |-fxray-instrument|Unsupported|Generates XRay instrumentation sleds on function entry and exit| 
  |-fxray-link-deps|Unsupported|Informs Clang to add the link dependencies for XRay| 
- |-fxray-modes= <value>|Unsupported|Specifies the list of modes to link in by default into the XRay instrumented binaries| 
- |-fxray-never-instrument= <value>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the �never instrument� XRay attribute| 
+ |-fxray-modes=  \<value\>|Unsupported|Specifies the list of modes to link in by default into the XRay instrumented binaries| 
+ |-fxray-never-instrument=  \<value\>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the �never instrument� XRay attribute| 
  |-fzvector|Supported|Enables System z vector language extension| 
- |-F <value>|Unsupported|Adds directory to the framework include search path| 
- |--gcc-toolchain=<value>|Supported|Uses the gcc toolchain at the given directory| 
+ |-F  \<value\>|Unsupported|Adds directory to the framework include search path| 
+ |--gcc-toolchain= \<value\>|Supported|Uses the gcc toolchain at the given directory| 
  |-gcodeview-ghash|Supported|Emits type record hashes in a .debug$H section| 
  |-gcodeview|Supported|Generates code view debug information| 
  |-gdwarf-2|Supported|Generates source-level debug information with dwarf version 2| 
@@ -904,84 +904,84 @@ The following table lists the other Clang options and their support status.
  |-gmodules|Supported|Generates debug info with external references to clang modules or precompiled headers| 
  |-gno-embed-source|Supported|Restores the default behavior of not embedding the source text in DWARF debug sections| 
  |-gno-inline-line-tables|Supported|Prohibits emitting inline line tables| 
- |--gpu-max-threads-per-block=<value>|Supported|Specifies the default max threads per block for kernel launch bounds for HIP| 
- |-gsplit-dwarf=<value>|Supported|Sets DWARF fission mode to values: �split�/ �single�| 
- |-gz=<value>|Supported|Specifies DWARF debug section�s compression type| 
+ |--gpu-max-threads-per-block= \<value\>|Supported|Specifies the default max threads per block for kernel launch bounds for HIP| 
+ |-gsplit-dwarf= \<value\>|Supported|Sets DWARF fission mode to values: �split�/ �single�| 
+ |-gz= \<value\>|Supported|Specifies DWARF debug section�s compression type| 
  |-gz|Supported|Shows DWARF debug section�s compression type| 
- |-G <size>|Unsupported|Puts objects of maximum <size> bytes into small data section (MIPS / Hexagon)| 
+ |-G  \<size\>|Unsupported|Puts objects of maximum  \<size\> bytes into small data section (MIPS / Hexagon)| 
  |-g|Supported|Generates source-level debug information| 
  |--help-hidden|Supported|Displays help for hidden options| 
  |-help|Supported|Displays available options| 
- |--hip-device-lib=<value>|Supported|Specifies the HIP device library| 
+ |--hip-device-lib= \<value\>|Supported|Specifies the HIP device library| 
  |--hip-link|Supported|Links clang-offload-bundler bundles for HIP| 
- |--hip-version=<value>|Supported|Allows specification of HIP version in the format: major/minor/patch| 
+ |--hip-version= \<value\>|Supported|Allows specification of HIP version in the format: major/minor/patch| 
  |-H|Supported|Shows header �includes� and nesting depth| 
  |-I-|Supported|Restricts all prior -I flags to double-quoted inclusion and removes the current directory from include path| 
  |-ibuiltininc|Supported|Enables built-in #include directories even when -nostdinc is used before or after -ibuiltininc. Using -nobuiltininc after the option disables it| 
- |-idirafter <value>|Supported|Adds the directory to AFTER include search path| 
- |-iframeworkwithsysroot <directory>|Unsupported|Adds the directory to SYSTEM framework search path; absolute paths are relative to -isysroot| 
- |-iframework <value>|Unsupported|Adds the directory to SYSTEM framework search path| 
- |-imacros <file>|Supported|Specifies the file containing macros to be included before parsing| 
- |-include-pch <file>|Supported|Includes the specified precompiled header file| 
- |-include <file>|Supported|Includes the specified file before parsing| 
+ |-idirafter  \<value\>|Supported|Adds the directory to AFTER include search path| 
+ |-iframeworkwithsysroot  \<directory\>|Unsupported|Adds the directory to SYSTEM framework search path; absolute paths are relative to -isysroot| 
+ |-iframework  \<value\>|Unsupported|Adds the directory to SYSTEM framework search path| 
+ |-imacros  \<file\>|Supported|Specifies the file containing macros to be included before parsing| 
+ |-include-pch  \<file\>|Supported|Includes the specified precompiled header file| 
+ |-include  \<file\>|Supported|Includes the specified file before parsing| 
  |-index-header-map|Supported|Makes the next included directory (-I or -F) an indexer header map| 
- |-iprefix <dir>|Supported|Sets the -iwithprefix/-iwithprefixbefore prefix| 
- |-iquote <directory>|Supported|Adds the directory to QUOTE include search path| 
- |-isysroot <dir>|Supported|Sets the system root directory (usually /)| 
- |-isystem-after <directory>|Supported|Adds the directory to end of the SYSTEM include search path| 
- |-isystem <directory>|Supported|Adds the directory to SYSTEM include search path| 
- |-ivfsoverlay <value>|Supported|Overlays the virtual filesystem described by the specified file over the real file system| 
- |-iwithprefixbefore <dir>|Supported|Sets the directory to include search path with prefix| 
- |-iwithprefix <dir>|Supported|Sets the directory to SYSTEM include search path with prefix| 
- |-iwithsysroot <directory>|Supported|Adds directory to SYSTEM include search path; absolute paths are relative to -isysroot| 
- |-I <dir>|Supported|Adds directory to include search path. If there are multiple -I options, these directories are searched in the order they are given before the standard system directories are searched. If the same directory is in the SYSTEM include search paths, for example, if also specified with -isystem, the -I option is ignored.| 
- |--libomptarget-nvptx-path=<value>|Unsupported|Specifies path to libomptarget-nvptx libraries| 
- |-L <dir>|Supported|Adds directory to library search path| 
+ |-iprefix  \<dir\>|Supported|Sets the -iwithprefix/-iwithprefixbefore prefix| 
+ |-iquote  \<directory\>|Supported|Adds the directory to QUOTE include search path| 
+ |-isysroot  \<dir\>|Supported|Sets the system root directory (usually /)| 
+ |-isystem-after  \<directory\>|Supported|Adds the directory to end of the SYSTEM include search path| 
+ |-isystem  \<directory\>|Supported|Adds the directory to SYSTEM include search path| 
+ |-ivfsoverlay  \<value\>|Supported|Overlays the virtual filesystem described by the specified file over the real file system| 
+ |-iwithprefixbefore  \<dir\>|Supported|Sets the directory to include search path with prefix| 
+ |-iwithprefix  \<dir\>|Supported|Sets the directory to SYSTEM include search path with prefix| 
+ |-iwithsysroot  \<directory\>|Supported|Adds directory to SYSTEM include search path; absolute paths are relative to -isysroot| 
+ |-I  \<dir\>|Supported|Adds directory to include search path. If there are multiple -I options, these directories are searched in the order they are given before the standard system directories are searched. If the same directory is in the SYSTEM include search paths, for example, if also specified with -isystem, the -I option is ignored.| 
+ |--libomptarget-nvptx-path= \<value\>|Unsupported|Specifies path to libomptarget-nvptx libraries| 
+ |-L  \<dir\>|Supported|Adds directory to library search path| 
  |-mabicalls|Unsupported|Enables SVR4-style position-independent code (Mips only)| 
  |-maix-struct-return|Unsupported|Returns all structs in memory (PPC32 only)| 
- |-malign-branch-boundary=<value>|Supported|Specifies the boundary's size to align branches| 
- |-malign-branch=<value>|Supported|Specifies the types of branches to align| 
+ |-malign-branch-boundary= \<value\>|Supported|Specifies the boundary's size to align branches| 
+ |-malign-branch= \<value\>|Supported|Specifies the types of branches to align| 
  |-malign-double|Supported|Aligns doubles to two words in structs (x86 only)| 
- |-Mallocatable=<value>|Unsupported|Provides semantics for assignments to allocatables. Value: F03/ F95.| 
+ |-Mallocatable= \<value\>|Unsupported|Provides semantics for assignments to allocatables. Value: F03/ F95.| 
  |-mbackchain|Unsupported|Links stack frames through backchain on System Z| 
- |-mbranch-protection=<value>|Unsupported|Enforces targets of indirect branches and function returns| 
+ |-mbranch-protection= \<value\>|Unsupported|Enforces targets of indirect branches and function returns| 
  |-mbranches-within-32B-boundaries|Supported|Aligns selected branches (fused, jcc, jmp) within 32-byte boundary| 
  |-mcmodel=medany|Unsupported|Equivalent to -mcmodel=medium, compatible with RISC-V gcc| 
  |-mcmodel=medlow|Unsupported|Equivalent to -mcmodel=small, compatible with RISC-V gcc| 
  |-mcmse|Unsupported|Allows use of CMSE (Armv8-M Security Extensions)| 
  |-mcode-object-v3|Supported|Legacy option to specify code object ABI V2 (-mnocode-object-v3) or V3 (-mcode-object-v3) (AMDGPU only)| 
- |-mcode-object-version=<version>|Supported|Specifies code object ABI version. Default value: 4. (AMDGPU only).| 
+ |-mcode-object-version= \<version\>|Supported|Specifies code object ABI version. Default value: 4. (AMDGPU only).| 
  |-mcrc|Unsupported|Allows use of CRC instructions (ARM/Mips only)| 
  |-mcumode|Supported|Specifies CU (-mcumode) or WGP (-mno-cumode) wavefront execution mode (AMDGPU only)| 
- |-mdouble=<value>|Supported|Forces double to be 32 bits or 64 bits| 
+ |-mdouble= \<value\>|Supported|Forces double to be 32 bits or 64 bits| 
  |-MD|Supported|Writes a depfile containing user and system headers| 
- |-meabi <value>|Supported|Sets EABI type. Value: 4/ 5/ gnu. Default depends on triple| 
- |-membedded-data|Unsupported|Places constants in the .rodata section instead of the .sdata section even if they meet the -G <size> threshold (MIPS)| 
+ |-meabi  \<value\>|Supported|Sets EABI type. Value: 4/ 5/ gnu. Default depends on triple| 
+ |-membedded-data|Unsupported|Places constants in the .rodata section instead of the .sdata section even if they meet the -G  \<size\> threshold (MIPS)| 
  |-menable-experimental-extensions|Unsupported|Enables usage of experimental RISC-V extensions.| 
- |-mexec-model=<value>|Unsupported|Specifies the execution model (WebAssembly only)| 
+ |-mexec-model= \<value\>|Unsupported|Specifies the execution model (WebAssembly only)| 
  |-mexecute-only|Unsupported|Disallows generation of data access to code sections (ARM only)| 
- |-mextern-sdata|Unsupported|Assumes externally defined data to be in the small data if it meets the -G <size> threshold (MIPS)| 
+ |-mextern-sdata|Unsupported|Assumes externally defined data to be in the small data if it meets the -G  \<size\> threshold (MIPS)| 
  |-mfentry|Unsupported|Inserts calls to fentry at function entry (x86/SystemZ only)| 
  |-mfix-cortex-a53-835769|Unsupported|Workaround Cortex-A53 erratum 835769 (AArch64 only)| 
  |0|Unsupported|Asserts usage of 32-bit floating point registers (MIPS only)| 
  |0|Unsupported|Asserts usage of 64-bit floating point registers (MIPS only)| 
- |-MF <file>|Supported|Writes depfile output from -MMD, -MD, -MM, or -M to <file>| 
+ |-MF  \<file\>|Supported|Writes depfile output from -MMD, -MD, -MM, or -M to  \<file\>| 
  |-mgeneral-regs-only|Unsupported|Generates code that exclusively uses the general-purpose registers (AArch64 only)| 
  |-mglobal-merge|Supported|Enables merging of globals| 
  |-mgpopt|Unsupported|Allows using GP relative accesses for symbols known to be in a small data section (MIPS)| 
  |-MG|Supported|Adds missing headers to depfile| 
- |-mharden-sls=<value>|Unsupported|Sets straight-line speculation hardening scope| 
- |-mhvx-length=<value>|Unsupported|Sets Hexagon Vector Length| 
- |-mhvx=<value>|Unsupported|Sets Hexagon Vector eXtensions| 
+ |-mharden-sls= \<value\>|Unsupported|Sets straight-line speculation hardening scope| 
+ |-mhvx-length= \<value\>|Unsupported|Sets Hexagon Vector Length| 
+ |-mhvx= \<value\>|Unsupported|Sets Hexagon Vector eXtensions| 
  |-mhvx|Unsupported|Enables Hexagon Vector eXtensions| 
  |-miamcu|Unsupported|Allows using Intel MCU ABI| 
  |--migrate|Unsupported|Runs the migrator| 
  |-mincremental-linker-compatible|Supported|(integrated-as) Emits an object file that can be used with an incremental linker| 
- |-mindirect-jump=<value>|Unsupported|Changes indirect jump instructions to inhibit speculation| 
- |-Minform=<value>|Supported|Sets error level of messages to display| 
- |-mios-version-min=<value>|Unsupported|Sets iOS deployment target| 
- |-MJ <value>|Unsupported|Writes a compilation database entry per input| 
- |-mllvm <value>|Supported|Specifies additional arguments to forward to LLVM's option processing| 
+ |-mindirect-jump= \<value\>|Unsupported|Changes indirect jump instructions to inhibit speculation| 
+ |-Minform= \<value\>|Supported|Sets error level of messages to display| 
+ |-mios-version-min= \<value\>|Unsupported|Sets iOS deployment target| 
+ |-MJ  \<value\>|Unsupported|Writes a compilation database entry per input| 
+ |-mllvm  \<value\>|Supported|Specifies additional arguments to forward to LLVM's option processing| 
  |-mlocal-sdata|Unsupported|Extends the -G behavior to object local data (MIPS)| 
  |-mlong-calls|Supported|Generates branches with extended addressability, usually via indirect jumps| 
  |-mlong-double-128|Supported on Host only|Forces long double to be 128 bits| 
@@ -989,7 +989,7 @@ The following table lists the other Clang options and their support status.
  |-mlong-double-80|Supported on Host only|Forces long double to be 80 bits, padded to 128 bits for storage| 
  |-mlvi-cfi|Supported on Host only|Enables only control-flow mitigations for Load Value Injection (LVI)| 
  |-mlvi-hardening|Supported on Host only|Enables all mitigations for Load Value Injection (LVI)| 
- |-mmacosx-version-min=<value>|Unsupported|Sets Mac OS X deployment target| 
+ |-mmacosx-version-min= \<value\>|Unsupported|Sets Mac OS X deployment target| 
  |-mmadd4|Supported|Enables the generation of 4-operand madd.s, madd.d, and related instructions| 
  |-mmark-bti-property|Unsupported|Adds .note.gnu.property with BTI to assembly files (AArch64 only)| 
  |-MMD|Supported|Writes a depfile containing user headers| 
@@ -1000,9 +1000,9 @@ The following table lists the other Clang options and their support status.
  |-MM|Supported|Similar to -MMD but also implies -E and writes to stdout by default| 
  |-mno-abicalls|Unsupported|Disables SVR4-style position-independent code (Mips only)| 
  |-mno-crc|Unsupported|Disallows use of CRC instructions (MIPS only)| 
- |-mno-embedded-data|Unsupported|Prohibits placing constants in the .rodata section instead of the .sdata if they meet the -G <size> threshold (MIPS)| 
+ |-mno-embedded-data|Unsupported|Prohibits placing constants in the .rodata section instead of the .sdata if they meet the -G  \<size\> threshold (MIPS)| 
  |-mno-execute-only|Unsupported|Allows generation of data access to code sections (ARM only)| 
- |-mno-extern-sdata|Unsupported|Prohibits assuming the externally defined data to be in the small data if it meets the -G <size> threshold (MIPS)| 
+ |-mno-extern-sdata|Unsupported|Prohibits assuming the externally defined data to be in the small data if it meets the -G  \<size\> threshold (MIPS)| 
  |-mno-fix-cortex-a53-835769|Unsupported|Disallows workaround Cortex-A53 erratum 835769 (AArch64 only)| 
  |-mno-global-merge|Supported|Disables merging of globals| 
  |-mno-gpopt|Unsupported|Prohibits using GP relative accesses for symbols known to be in a small data section (MIPS)| 
@@ -1036,18 +1036,18 @@ The following table lists the other Clang options and their support status.
  |-mnop-mcount|Supported|Generates mcount/__fentry__ calls as nops. To activate, they need to be patched in| 
  |-mnvj|Supported|Enables generation of new-value jumps| 
  |-mnvs|Supported|Enables generation of new-value stores| 
- |-module-dependency-dir <value>|Unsupported|Specifies directory for dumping module dependencies| 
+ |-module-dependency-dir  \<value\>|Unsupported|Specifies directory for dumping module dependencies| 
  |-module-file-info|Unsupported|Provides information about a particular module file| 
  |-momit-leaf-frame-pointer|Supported|Omits frame pointer setup for leaf functions| 
  |-moutline|Unsupported|Enables function outlining (AArch64 only)| 
  |-mpacked-stack|Unsupported|Asserts the usage of packed stack layout (SystemZ only)| 
  |-mpackets|Supported|Enables generation of instruction packets| 
- |-mpad-max-prefix-size=<value>|Supported|Specifies maximum number of prefixes to use for padding| 
+ |-mpad-max-prefix-size= \<value\>|Supported|Specifies maximum number of prefixes to use for padding| 
  |-mpie-copy-relocations|Supported|Asserts the usage of copy relocations support for PIE builds| 
- |-mprefer-vector-width=<value>|Unsupported|Specifies preferred vector width for auto-vectorization. Default value: �none,� which allows target specific decisions.| 
+ |-mprefer-vector-width= \<value\>|Unsupported|Specifies preferred vector width for auto-vectorization. Default value: �none,� which allows target specific decisions.| 
  |-MP|Supported|Creates phony target for each dependency (other than the main file)| 
  |-mqdsp6-compat|Unsupported|Enables hexagon-qdsp6 backward compatibility| 
- |-MQ <value>|Supported|Specifies the name of the main file output to quote in depfile| 
+ |-MQ  \<value\>|Supported|Specifies the name of the main file output to quote in depfile| 
  |-mrecord-mcount|Supported|Generates a __mcount_loc section entry for each fentry call| 
  |-mrelax-all|Supported|(integrated-as) Relaxes all machine instructions| 
  |-mrelax|Supported|Enables linker relaxation| 
@@ -1055,32 +1055,32 @@ The following table lists the other Clang options and their support status.
  |-mrtd|Unsupported|Makes StdCall calling the default convention| 
  |-msave-restore|Unsupported|Enables using library calls for save and restore| 
  |-mseses|Unsupported|Enables speculative execution side effect suppression (SESES). Includes LVI control flow integrity mitigations.| 
- |-msign-return-address=<value>|Unsupported|Specifies the return address signing scope| 
- |-msmall-data-limit=<value>|Supported|Puts global and static data smaller than the specified limit into a special section| 
+ |-msign-return-address= \<value\>|Unsupported|Specifies the return address signing scope| 
+ |-msmall-data-limit= \<value\>|Supported|Puts global and static data smaller than the specified limit into a special section| 
  |-msoft-float|Supported|Uses software floating point| 
  |-msram-ecc|Supported|Legacy option to specify SRAM ECC mode (AMDGPU only). Should use --offload-arch with sramecc+ instead.| 
- |-mstack-alignment=<value>|Unsupported|Sets the stack alignment| 
+ |-mstack-alignment= \<value\>|Unsupported|Sets the stack alignment| 
  |-mstack-arg-probe|Unsupported|Enables stack probes| 
- |-mstack-probe-size=<value>|Unsupported|Sets the stack probe size| 
+ |-mstack-probe-size= \<value\>|Unsupported|Sets the stack probe size| 
  |-mstackrealign|Unsupported|Forces realign the stack at entry on every function| 
- |-msve-vector-bits=<value>|Unsupported|Specifies the size in bits of an SVE vector register. Defaults to the vector length agnostic value of �scalable� (AArch64 only).| 
+ |-msve-vector-bits= \<value\>|Unsupported|Specifies the size in bits of an SVE vector register. Defaults to the vector length agnostic value of �scalable� (AArch64 only).| 
  |-msvr4-struct-return|Unsupported|Returns small structs in registers (PPC32 only)| 
- |-mthread-model <value>|Supported|Specifies the thread model to use. Value: posix/single. Default: posix.| 
+ |-mthread-model  \<value\>|Supported|Specifies the thread model to use. Value: posix/single. Default: posix.| 
  |-mtls-direct-seg-refs|Supported|Enables direct TLS access through segment registers (default)| 
- |-mtls-size=<value>|Unsupported|Specifies the bit size of immediate TLS offsets (AArch64 ELF only). Value: 12 (for 4KB) \ 24 (for 16MB, default) \ 32 (for 4GB) \ 48 (for 256TB, needs -mcmodel=large).| 
- |-mtp=<value>|Unsupported|Specifies the thread pointer access method. Value: AArch32/AArch64 only| 
- |-mtune=<value>|Supported on Host only|Supported on X86 only. Otherwise accepted for compatibility with GCC.| 
- |-MT <value>|Unsupported|Specifies the name of main file output in depfile| 
+ |-mtls-size= \<value\>|Unsupported|Specifies the bit size of immediate TLS offsets (AArch64 ELF only). Value: 12 (for 4KB) \ 24 (for 16MB, default) \ 32 (for 4GB) \ 48 (for 256TB, needs -mcmodel=large).| 
+ |-mtp= \<value\>|Unsupported|Specifies the thread pointer access method. Value: AArch32/AArch64 only| 
+ |-mtune= \<value\>|Supported on Host only|Supported on X86 only. Otherwise accepted for compatibility with GCC.| 
+ |-MT  \<value\>|Unsupported|Specifies the name of main file output in depfile| 
  |-munaligned-access|Unsupported|Allows memory accesses to be unaligned (AArch32/AArch64 only)| 
  |-MV|Supported|Uses NMake/Jom format for the depfile| 
  |-mwavefrontsize64|Supported|Asserts wavefront size of 64 (AMDGPU only)| 
  |-mxnack|Supported|Legacy option to specify XNACK mode (AMDGPU only). Use --offload-arch with :xnack+ instead.| 
  |-M|Supported|Similar to -MD but also implies -E and writes to stdout by default| 
- |--no-cuda-include-ptx=<value>|Supported|Prohibits including PTX for the specified GPU architecture (e.g. sm_35) or �all�. May be specified more than once.| 
+ |--no-cuda-include-ptx= \<value\>|Supported|Prohibits including PTX for the specified GPU architecture (e.g. sm_35) or �all�. May be specified more than once.| 
  |--no-cuda-version-check|Supported|Disallows erroring out if the detected version of the CUDA install is too low for the requested CUDA GPU architecture| 
  |-no-flang-libs|Supported|Prohibits linking against Flang libraries| 
- |--no-offload-arch=<value>|Supported|Removes CUDA/HIP offloading device architecture (e.g. sm_35, gfx906) from the list of devices to compile for. �all� resets the list to its default value| 
- |--no-system-header-prefix=<prefix>|Supported|Assumes no system header for all #include paths starting with the given <prefix>| 
+ |--no-offload-arch= \<value\>|Supported|Removes CUDA/HIP offloading device architecture (e.g. sm_35, gfx906) from the list of devices to compile for. �all� resets the list to its default value| 
+ |--no-system-header-prefix= \<prefix\>|Supported|Assumes no system header for all #include paths starting with the given  \<prefix\>| 
  |-nobuiltininc|Supported|Disables built-in #include directories| 
  |-nogpuinc|Supported|Prohibits adding CUDA/HIP include paths and includes default CUDA/HIP wrapper header files| 
  |-nogpulib|Supported|Prohibits linking device library for CUDA/HIP device compilation| 
@@ -1101,26 +1101,26 @@ The following table lists the other Clang options and their support status.
  |-objcmt-migrate-subscripting|Unsupported|Enables migration to modern ObjC subscripting| 
  |-objcmt-ns-nonatomic-iosonly|Unsupported|Enables migration to use NS_NONATOMIC_IOSONLY macro for setting property's �atomic� attribute| 
  |-objcmt-returns-innerpointer-property|Unsupported|Enables migration to annotate property with NS_RETURNS_INNER_POINTER| 
- |-objcmt-whitelist-dir-path=<value>|Unsupported|Modifies exclusively the files with the filename present in the given directory| 
+ |-objcmt-whitelist-dir-path= \<value\>|Unsupported|Modifies exclusively the files with the filename present in the given directory| 
  |-ObjC|Unsupported|Treats source input files as Objective-C inputs| 
- |--offload-arch=<value>|Supported|Specifies CUDA offloading device architecture (e.g. sm_35), or HIP offloading target ID in the form of a device architecture followed by target ID features delimited by a colon. Each target ID feature is a predefined string followed by a plus or minus sign (e.g. gfx908:xnack+:sramecc-). May be specified more than once.| 
- |-o <file>|Supported|Writes output to the given <file>| 
- |-parallel-jobs=<value>|Supported|Specifies the number of parallel jobs allowed| 
+ |--offload-arch= \<value\>|Supported|Specifies CUDA offloading device architecture (e.g. sm_35), or HIP offloading target ID in the form of a device architecture followed by target ID features delimited by a colon. Each target ID feature is a predefined string followed by a plus or minus sign (e.g. gfx908:xnack+:sramecc-). May be specified more than once.| 
+ |-o  \<file\>|Supported|Writes output to the given  \<file\>| 
+ |-parallel-jobs= \<value\>|Supported|Specifies the number of parallel jobs allowed| 
  |-pg|Supported|Enables mcount instrumentation| 
  |-pipe|Supported|Asserts using pipes between commands, when possible.| 
  |--precompile|Supported|Only precompiles the input| 
  |-print-effective-triple|Supported|Prints the effective target triple| 
- |-print-file-name=<file>|Supported|Prints the full library path of the given <file>| 
+ |-print-file-name= \<file\>|Supported|Prints the full library path of the given  \<file\>| 
  |-print-ivar-layout|Unsupported|Enables Objective-C Ivar layout bitmap print trace| 
  |-print-libgcc-file-name|Supported|"Prints the library path for the currently used compiler runtime library (""libgcc.a"" or ""libclang_rt.builtins.*.a"")"|
- |-print-prog-name=<name>|Supported|Prints the full program path of the given <name>| 
+ |-print-prog-name= \<name\>|Supported|Prints the full program path of the given  \<name\>| 
  |-print-resource-dir|Supported|Prints the resource directory pathname| 
  |-print-search-dirs|Supported|Prints the paths used for finding libraries and programs| 
  |-print-supported-cpus|Supported|Prints the supported CPU models for the given target. If target is not specified, it prints the supported CPUs for the default target.| 
  |-print-target-triple|Supported|Prints the normalized target triple| 
  |-print-targets|Supported|Prints the registered targets| 
  |-pthread|Supported|Supports POSIX threads in the generated code| 
- |--ptxas-path=<value>|Unsupported|Specifies the path to ptxas (used for compiling CUDA code)| 
+ |--ptxas-path= \<value\>|Unsupported|Specifies the path to ptxas (used for compiling CUDA code)| 
  |-P|Supported|Disables linemarker output in -E mode| 
  |-Qn|Supported|Prohibits emitting metadata containing compiler name and version| 
  |-Qunused-arguments|Supported|Prohibits emitting warning for unused driver arguments| 
@@ -1128,60 +1128,60 @@ The following table lists the other Clang options and their support status.
  |-relocatable-pch|Supported|Allows to build a relocatable precompiled header| 
  |-rewrite-legacy-objc|Unsupported|Rewrites Legacy Objective-C source to C++| 
  |-rewrite-objc|Unsupported|Rewrites Objective-C source to C++| 
- |--rocm-device-lib-path=<value>|Supported|Specifies ROCm device library path. Alternative to rocm-path| 
- |--rocm-path=<value>|Supported|Specifies ROCm installation path that is used for finding and automatically linking required bitcode libraries| 
- |-Rpass-analysis=<value>|Supported|Reports transformation analysis by optimization passes whose names match the given POSIX regular expression| 
- |-Rpass-missed=<value>|Supported|Reports missed transformations by optimization passes whose names match the given POSIX regular expression| 
- |-Rpass=<value>|Supported|Reports transformations by optimization passes whose names match the given POSIX regular expression| 
- |-rtlib=<value>|Unsupported|Specifies the compiler runtime library to be used| 
- |-R<remark>|Unsupported|Enables the specified remark| 
- |-save-stats=<value>|Supported|Saves llvm statistics| 
+ |--rocm-device-lib-path= \<value\>|Supported|Specifies ROCm device library path. Alternative to rocm-path| 
+ |--rocm-path= \<value\>|Supported|Specifies ROCm installation path that is used for finding and automatically linking required bitcode libraries| 
+ |-Rpass-analysis= \<value\>|Supported|Reports transformation analysis by optimization passes whose names match the given POSIX regular expression| 
+ |-Rpass-missed= \<value\>|Supported|Reports missed transformations by optimization passes whose names match the given POSIX regular expression| 
+ |-Rpass= \<value\>|Supported|Reports transformations by optimization passes whose names match the given POSIX regular expression| 
+ |-rtlib= \<value\>|Unsupported|Specifies the compiler runtime library to be used| 
+ |-R \<remark\>|Unsupported|Enables the specified remark| 
+ |-save-stats= \<value\>|Supported|Saves llvm statistics| 
  |-save-stats|Supported|Saves llvm statistics| 
- |-save-temps=<value>|Supported|Saves intermediate compilation results| 
+ |-save-temps= \<value\>|Supported|Saves intermediate compilation results| 
  |-save-temps|Supported|Saves intermediate compilation results| 
- |-serialize-diagnostics= <value>|Supported|Serializes compiler diagnostics to the specified file| 
+ |-serialize-diagnostics=  \<value\>|Supported|Serializes compiler diagnostics to the specified file| 
  |-shared-libsan|Unsupported|Dynamically links the sanitizer runtime| 
  |-static-flang-libs|Supported|Asserts linking using static Flang libraries| 
  |-static-libsan|Unsupported|Statically links the sanitizer runtime| 
  |-static-openmp|Supported|Asserts using the static host OpenMP runtime while linking| 
- |-std=<value>|Supported|Specifies the language standard to compile for.| 
- |-stdlib++-isystem <directory>|Supported|Specifies the directory to be used as the C++ standard library include path| 
- |-stdlib=<value>|Supported|Specifies the C++ standard library to be used| 
- |-sycl-std=<value>|Unsupported|Specifies the SYCL language standard to compile for| 
- |--system-header-prefix=<prefix>|Supported|Assumes all #include paths starting with the given <prefix> to include a system header| 
+ |-std= \<value\>|Supported|Specifies the language standard to compile for.| 
+ |-stdlib++-isystem  \<directory\>|Supported|Specifies the directory to be used as the C++ standard library include path| 
+ |-stdlib= \<value\>|Supported|Specifies the C++ standard library to be used| 
+ |-sycl-std= \<value\>|Unsupported|Specifies the SYCL language standard to compile for| 
+ |--system-header-prefix= \<prefix\>|Supported|Assumes all #include paths starting with the given  \<prefix\> to include a system header| 
  |-S|Supported|Runs only preprocess and compilation steps| 
- |--target=<value>|Supported|Generates code for the given target| 
- |-Tbss <addr>|Supported|Sets the starting address of BSS to the given <addr>| 
- |-Tdata <addr>|Supported|Sets the starting address of DATA to the given <addr>| 
+ |--target= \<value\>|Supported|Generates code for the given target| 
+ |-Tbss  \<addr\>|Supported|Sets the starting address of BSS to the given  \<addr\>| 
+ |-Tdata  \<addr\>|Supported|Sets the starting address of DATA to the given  \<addr\>| 
  |-time|Supported|Times individual commands| 
  |-traditional-cpp|Unsupported|Enables some traditional CPP emulation| 
  |-trigraphs|Supported|Processes trigraph sequences| 
- |-Ttext <addr>|Supported|Sets starting address of TEXT to the given <addr>|
- |-T \<script\>|Unsupported|Specifies the given. \<script\> as linker script|
+ |-Ttext  \<addr\>|Supported|Sets starting address of TEXT to the given  \<addr\>|
+ |-T \ \<script\\>|Unsupported|Specifies the given. \ \<script\\> as linker script|
  |-undef|Supported|undefs all system defines| 
- |-unwindlib=<value>|Supported|Specifies the unwind library to be used| 
- |-U <macro>|Supported|Undefines the given <macro>| 
+ |-unwindlib= \<value\>|Supported|Specifies the unwind library to be used| 
+ |-U  \<macro\>|Supported|Undefines the given  \<macro\>| 
  |--verify-debug-info|Supported|Verifies the binary representation of the debug output| 
  |-verify-pch|Unsupported|Loads and verifies if a precompiled header file is stale| 
  |--version|Supported|Prints version information| 
  |-v|Supported|Shows commands to be run, and uses verbose output| 
- |-Wa,<arg>|Supported|Passes the comma-separated arguments in the given <arg> to the assembler| 
+ |-Wa, \<arg\>|Supported|Passes the comma-separated arguments in the given  \<arg\> to the assembler| 
  |-Wdeprecated|Supported|Enables warnings for deprecated constructs and defines_DEPRECATED| 
- |-Wl,<arg>|Supported|Passes comma-separated arguments in <arg> to the linker.| 
- |-working-directory <value>|Supported|Resolves file paths relative to the specified directory| 
- |-Wp,<arg>|Supported|Passes comma-separated arguments in <arg> to the preprocessor| 
- |-W<warning>|Supported|Enables the specified warning| 
+ |-Wl, \<arg\>|Supported|Passes comma-separated arguments in  \<arg\> to the linker.| 
+ |-working-directory  \<value\>|Supported|Resolves file paths relative to the specified directory| 
+ |-Wp, \<arg\>|Supported|Passes comma-separated arguments in  \<arg\> to the preprocessor| 
+ |-W \<warning\>|Supported|Enables the specified warning| 
  |-w|Supported|Suppresses all warnings| 
- |-Xanalyzer <arg>|Supported|Passes <arg> to the static analyzer| 
- |-Xarch_device <arg>|Supported|Passes <arg> to the CUDA/HIP device compilation| 
- |-Xarch_host <arg>|Supported|Passes <arg> to the CUDA/HIP host compilation| 
- |-Xassembler <arg>|Supported|Passes <arg> to the assembler| 
- |-Xclang <arg>|Supported|Passes <arg> to the clang compiler| 
- |-Xcuda-fatbinary <arg>|Supported|Passes <arg> to fatbinary invocation| 
- |-Xcuda-ptxas <arg>|Supported|Passes <arg> to the ptxas assembler| 
- |-Xlinker <arg>|Supported|Passes <arg> to the linker| 
- |-Xopenmp-target=<triple> <arg>|Supported|Passes <arg> to the target offloading toolchain identified by <triple>| 
- |-Xopenmp-target <arg>|Supported|Passes <arg> to the target offloading toolchain| 
- |-Xpreprocessor <arg>|Supported|Passes <arg> to the preprocessor| 
- |-x <language>|Supported|Assumes subsequent input files to have the given type <language>| 
- |-z <arg>|Supported|Passes -z <arg> to the linker| 
+ |-Xanalyzer  \<arg\>|Supported|Passes  \<arg\> to the static analyzer| 
+ |-Xarch_device  \<arg\>|Supported|Passes  \<arg\> to the CUDA/HIP device compilation| 
+ |-Xarch_host  \<arg\>|Supported|Passes  \<arg\> to the CUDA/HIP host compilation| 
+ |-Xassembler  \<arg\>|Supported|Passes  \<arg\> to the assembler| 
+ |-Xclang  \<arg\>|Supported|Passes  \<arg\> to the clang compiler| 
+ |-Xcuda-fatbinary  \<arg\>|Supported|Passes  \<arg\> to fatbinary invocation| 
+ |-Xcuda-ptxas  \<arg\>|Supported|Passes  \<arg\> to the ptxas assembler| 
+ |-Xlinker  \<arg\>|Supported|Passes  \<arg\> to the linker| 
+ |-Xopenmp-target= \<triple\>  \<arg\>|Supported|Passes  \<arg\> to the target offloading toolchain identified by  \<triple\>| 
+ |-Xopenmp-target  \<arg\>|Supported|Passes  \<arg\> to the target offloading toolchain| 
+ |-Xpreprocessor  \<arg\>|Supported|Passes  \<arg\> to the preprocessor| 
+ |-x  \<language\>|Supported|Assumes subsequent input files to have the given type  \<language\>| 
+ |-z  \<arg\>|Supported|Passes -z  \<arg\> to the linker| 
