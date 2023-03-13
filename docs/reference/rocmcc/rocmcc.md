@@ -261,6 +261,18 @@ Helps to preserve array index information for array access expressions which get
 ### Inline ASM Statements
 Inline assembly (ASM) statements allow a developer to include assembly instructions directly in either host or device code. While the ROCm compiler supports ASM statements, their use is not recommended for the following reasons:
 
+- The compiler's ability to produce both correct code and to optimize surrounding code is impeded.
+
+- The compiler does not parse the content of the ASM statements and so cannot "see" its contents.
+
+- The compiler must make conservative assumptions in an effort to retain correctness.
+
+- The conservative assumptions may yield code that, on the whole, is less performant compared to code without ASM statements. It is possible that a syntactically correct ASM statement may cause incorrect runtime behavior.
+
+- ASM statements are often ASIC-specific; code containing them is less portable and adds a maintenance burden to the developer if different ASICs are targeted.
+
+- Writing correct ASM statements is often difficult; we strongly recommend thorough testing of any use of ASM statements.
+
 
 
 # Table 9 Draft - ESC Special CHR
