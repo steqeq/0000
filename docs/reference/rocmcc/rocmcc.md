@@ -274,7 +274,7 @@ Inline assembly (ASM) statements allow a developer to include assembly instructi
 - Writing correct ASM statements is often difficult; we strongly recommend thorough testing of any use of ASM statements.
 
 :::{note}
-For developers who choose to include ASM statements in the code, AMD is interested in understanding the use case and appreciates feedback at [https://github.com/RadeonOpenCompute/ROCm/issues] (https://github.com/RadeonOpenCompute/ROCm/issues)
+For developers who choose to include ASM statements in the code, AMD is interested in understanding the use case and appreciates feedback at [https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)
 :::
 
 ### Miscellaneous OpenMP Compiler Features
