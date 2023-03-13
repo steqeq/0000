@@ -280,6 +280,15 @@ For developers who choose to include ASM statements in the code, AMD is interest
 ### Miscellaneous OpenMP Compiler Features
 This section discusses features that have been added or enhanced in the OpenMP compiler.  
 
+#### Offload-arch Tool
+An LLVM library and tool that is used to query the execution capability of the current system as well as to query requirements of a binary file. It is used by OpenMP device runtime to ensure compatibility of an image with the current system while loading it. It is compatible with TargetID support and multi-image fat binary support.
+
+**Usage:**
+```
+offload-arch [Options] [Optional lookup-value]
+```
+
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
