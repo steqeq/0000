@@ -406,10 +406,24 @@ helloworld.c -o helloworld
 
 The ROCmCC compiler creates an instance of toolchain for each unique combination of target triple and the target GPU (along with the associated target features). Clang-offload-wrapper tool is modified to insert a new structure __tgt_image_info along with each image in the binary. Device runtime is also modified to query this structure to identify a compatible image based on the capability of the current system.
 
+#### Unified Shared Memory (USM)
+The following OpenMP pragma is available on MI200, and it must be executed with xnack+ support.
 
-# Table 9 Draft - ESC Special CHR
-Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
+```
+omp requires unified_shared_memory
+```
 
+For more details on [USM](https://docs.amd.com/bundle/OpenMP-Support-Guide-v5.4/page/OpenMP_Features.html#d90e61), refer to the OpenMP Support Guide at [https://docs.amd.com](https://docs.amd.com).   
+
+
+### Support Status of Other Clang Options
+The following table lists the other Clang options and their support status.
+
+
+||
+|:--:|
+| **Table 9. Clang Options**|
+||
 
 | Option | Support Status | Description |
 | ----------- | ----------- | ----------- |
