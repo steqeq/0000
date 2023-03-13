@@ -288,7 +288,14 @@ An LLVM library and tool that is used to query the execution capability of the c
 offload-arch [Options] [Optional lookup-value]
 ```
 
+When used without an option, offload-arch prints the value of the first offload arch found in the underlying system. This can be used by various clang frontends. For example, to compile for OpenMP offloading on your current system, invoke clang with the following command:
+```
+clang -fopenmp -fopenmp-targets=`offload-arch` foo.c
+```
 
+If an optional lookup-value is specified, offload-arch will check if the value is either a valid offload-arch or a codename and look up requested additional information.
+
+The following command provides all the information for offload-arch gfx906:
 
 
 # Table 9 Draft - ESC Special CHR
