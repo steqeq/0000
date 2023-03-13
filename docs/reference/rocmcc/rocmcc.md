@@ -452,7 +452,7 @@ The following table lists the other Clang options and their support status.
  |--cuda-compile-host-device|Supported|Compiles CUDA code for both host and device (default). Has no effect on non-CUDA compilations| 
  |--cuda-device-only|Supported|Compiles CUDA code for device only| 
  |--cuda-host-only|Supported|Compiles CUDA code for host only. Has no effect on non-CUDA compilations| 
- |--cuda-include-ptx= \<value\>|Unsupported|Includes PTX for the following GPU architecture (e.g. sm_35) or �all.� May be specified more than once| 
+ |--cuda-include-ptx= \<value\>|Unsupported|Includes PTX for the following GPU architecture (e.g. sm_35) or "all." May be specified more than once| 
  |--cuda-noopt-device-debug|Unsupported|Enables device-side debug info generation. Disables ptxas optimizations| 
  |--cuda-path-ignore-env|Unsupported|Ignores environment variables to detect CUDA installation| 
  |--cuda-path= \<value\>|Unsupported|CUDA installation path| 
@@ -537,7 +537,7 @@ The following table lists the other Clang options and their support status.
  |-fdiagnostics-show-template-tree|Supported|Prints a template comparison tree for differing templates| 
  |-fdigraphs|Supported|Enables alternative token representations ' \<:', ':\>', ' \<%', '%\>', '%:', '%:%:' (default)| 
  |-fdiscard-value-names|Supported|Discards value names in LLVM IR| 
- |-fdollars-in-identifiers|Supported|Allows �$� in identifiers| 
+ |-fdollars-in-identifiers|Supported|Allows "$" in identifiers| 
  |-fdouble-square-bracket-attributes|Supported|Enables '[[]]' attributes in all C and C++ language modes| 
  |-fdwarf-exceptions|Unsupported|Uses DWARF style exceptions| 
  |-feliminate-unused-debug-types|Supported|Eliminates debug info for defined but unused types| 
@@ -593,7 +593,7 @@ The following table lists the other Clang options and their support status.
  |-fforce-dwarf-frame|Supported|Mandatorily emits a debug frame section| 
  |-fforce-emit-vtables|Supported|Emits more virtual tables to improve devirtualization| 
  |-fforce-enable-int128|Supported|Enables support for int128_t type| 
- |-ffp-contract= \<value\>|Supported|Forms fused FP ops (e.g. FMAs): fast (everywhere) \ on (according to FP_CONTRACT pragma) \ off (never fuse). Default is �fast� for CUDA/HIP and �on� for others.| 
+ |-ffp-contract= \<value\>|Supported|Forms fused FP ops (e.g. FMAs): fast (everywhere) \ on (according to FP_CONTRACT pragma) \ off (never fuse). Default is "fast" for CUDA/HIP and "on" for others.| 
  |-ffp-exception-behavior= \<value\>|Supported|Specifies the exception behavior of floating-point operations| 
  |-ffp-model= \<value\>|Supported|Controls the semantics of floating-point calculations| 
  |-ffree-form|Supported|Enables free-form format for Fortran| 
@@ -621,8 +621,8 @@ The following table lists the other Clang options and their support status.
  |-fkeep-static-consts|Supported|Keeps static const variables if unused| 
  |-flax-vector-conversions= \<value\>|Supported|Enables implicit vector bit-casts| 
  |-flto-jobs= \<value\>|Unsupported|Controls the backend parallelism of -flto=thin (A default value of 0 means the number of threads will be derived from the number of CPUs detected.)| 
- |-flto= \<value\>|Unsupported|Sets LTO mode to either �full� or �thin�| 
- |-flto|Unsupported|Enables LTO in �full� mode| 
+ |-flto= \<value\>|Unsupported|Sets LTO mode to either "full" or "thin"| 
+ |-flto|Unsupported|Enables LTO in "full" mode| 
  |-fmacro-prefix-map= \<value\>|Supported|Remaps file source paths in predefined preprocessor macros| 
  |-fmath-errno|Supported|Requires math functions to indicate errors by setting errno| 
  |-fmax-tokens= \<value\>|Supported|Specifies max total number of preprocessed tokens for -Wmax-tokens| 
@@ -646,12 +646,12 @@ The following table lists the other Clang options and their support status.
  |-fmodules-validate-input-files-content|Supported|Validates PCM input files based on content if mtime differs| 
  |-fmodules-validate-once-per-build-session|Unsupported|Prohibits verification of input files for the modules if the module has been successfully validated or loaded during the current build session| 
  |-fmodules-validate-system-headers|Supported|Validates the system headers that a module depends on when loading the module| 
- |-fmodules|Unsupported|Enables the �modules� language feature| 
+ |-fmodules|Unsupported|Enables the "modules" language feature| 
  |-fms-compatibility-version= \<value\>|Supported|Specifies the dot-separated value representing the Microsoft compiler version number to report in _MSC_VER (0 = do not define it (default))| 
  |-fms-compatibility|Supported|Enables full Microsoft Visual C++ compatibility| 
  |-fms-extensions|Supported|Accepts some non-standard constructs supported by the Microsoft compiler| 
  |-fmsc-version= \<value\>|Supported|Specifies the Microsoft compiler version number to report in _MSC_VER (0 = do not define it (default))| 
- |-fnew-alignment= \<align\>|Supported|Specifies the largest alignment guaranteed by �::operator new(size_t)�| 
+ |-fnew-alignment= \<align\>|Supported|Specifies the largest alignment guaranteed by "::operator new(size_t)"| 
  |-fno-addrsig|Supported|Prohibits emitting an address-significance table| 
  |-fno-allow-fortran-gnu-ext|Supported|Allows Fortran GNU extensions| 
  |-fno-assume-sane-operator-new|Supported|Prohibits the assumption that C++'s global operator new cannot alias any pointer| 
@@ -673,7 +673,7 @@ The following table lists the other Clang options and their support status.
  |-fno-delayed-template-parsing|Supported|Disables delayed template parsing| 
  |-fno-delete-null-pointer-checks|Supported|Prohibits the treatment of null pointers as undefined behavior| 
  |-fno-diagnostics-fixit-info|Supported|Prohibits including fixit information in diagnostics| 
- |-fno-digraphs|Supported|Disallows alternative token representations � \<:', ':\>', ' \<%', '%\>', '%:', '%:%:�| 
+ |-fno-digraphs|Supported|Disallows alternative token representations " \<:', ':\>', ' \<%', '%\>', '%:', '%:%:"| 
  |-fno-discard-value-names|Supported|Prohibits discarding value names in LLVM IR| 
  |-fno-dollars-in-identifiers|Supported|Disallows '$' in identifiers| 
  |-fno-double-square-bracket-attributes|Supported|Disables '[[]]' attributes in all C and C++ language modes| 
@@ -829,7 +829,7 @@ The following table lists the other Clang options and their support status.
  |-fseh-exceptions|Supported|Uses SEH style exceptions| 
  |-fshort-enums|Supported|Allocates to an enum type only as many bytes as it needs for the declared range of possible values| 
  |-fshort-wchar|Unsupported|Forces wchar_t to be a short unsigned int| 
- |-fshow-overloads= \<value\>|Supported|Specifies which overload candidates are shown when overload resolution fails. Values = best\all; default value = �all�| 
+ |-fshow-overloads= \<value\>|Supported|Specifies which overload candidates are shown when overload resolution fails. Values = best\all; default value = "all"| 
  |-fsigned-char|Supported|Asserts that the char is signed| 
  |-fsized-deallocation|Supported|Enables C++14 sized global deallocation functions| 
  |-fsjlj-exceptions|Supported|Uses SjLj style exceptions| 
@@ -868,7 +868,7 @@ The following table lists the other Clang options and their support status.
  |-fvectorize|Unsupported|Enables the loop vectorization passes| 
  |-fverbose-asm|Supported|Generates verbose assembly output| 
  |-fvirtual-function-elimination|Supported|Enables dead virtual function elimination optimization. Requires -flto=full| 
- |-fvisibility-global-new-delete-hidden|Supported|Marks the visibility of global C++ operators �new� and �delete� as hidden| 
+ |-fvisibility-global-new-delete-hidden|Supported|Marks the visibility of global C++ operators "new" and "delete" as hidden| 
  |-fvisibility-inlines-hidden-static-local-var|Supported|Marks the visibility of static variables in inline C++ member functions as hidden by default when -fvisibility-inlines-hidden is enabled| 
  |-fvisibility-inlines-hidden|Supported|Marks the visibility of inline C++ member functions as hidden by default| 
  |-fvisibility-ms-compat|Supported|Marks the visibility of global types as default and global functions and variables as hidden by default| 
@@ -879,15 +879,15 @@ The following table lists the other Clang options and their support status.
  |-fwritable-strings|Supported|Stores string literals as writable data| 
  |-fxray-always-emit-customevents|Unsupported|Mandates emitting __xray_customevent(...) calls even if the containing function is not always instrumented| 
  |-fxray-always-emit-typedevents|Unsupported|Mandates emitting __xray_typedevent(...) calls even if the containing function is not always instrumented| 
- |-fxray-always-instrument=  \<value\>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the �always instrument� XRay attribute| 
+ |-fxray-always-instrument=  \<value\>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the "always instrument" XRay attribute| 
  |-fxray-attr-list=  \<value\>|Unsupported|Specifies the filename defining the list of functions/types for imbuing XRay attributes| 
  |-fxray-ignore-loops|Unsupported|Prohibits instrumenting functions with loops unless they also meet the minimum function size| 
  |-fxray-instruction-threshold=  \<value\>|Unsupported|Sets the minimum function size to instrument with Xray| 
- |-fxray-instrumentation-bundle=  \<value\>|Unsupported|Specifies which XRay instrumentation points to emit. Values: all/ none/ function-entry/ function-exit/ function/ custom. Default is �all,� and �function� includes both �function-entry� and �function-exit.�| 
+ |-fxray-instrumentation-bundle=  \<value\>|Unsupported|Specifies which XRay instrumentation points to emit. Values: all/ none/ function-entry/ function-exit/ function/ custom. Default is "all," and "function" includes both "function-entry" and "function-exit."| 
  |-fxray-instrument|Unsupported|Generates XRay instrumentation sleds on function entry and exit| 
  |-fxray-link-deps|Unsupported|Informs Clang to add the link dependencies for XRay| 
  |-fxray-modes=  \<value\>|Unsupported|Specifies the list of modes to link in by default into the XRay instrumented binaries| 
- |-fxray-never-instrument=  \<value\>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the �never instrument� XRay attribute| 
+ |-fxray-never-instrument=  \<value\>|Unsupported|Deprecated: Specifies the filename defining the whitelist for imbuing the "never instrument" XRay attribute| 
  |-fzvector|Supported|Enables System z vector language extension| 
  |-F  \<value\>|Unsupported|Adds directory to the framework include search path| 
  |--gcc-toolchain= \<value\>|Supported|Uses the gcc toolchain at the given directory| 
@@ -905,9 +905,9 @@ The following table lists the other Clang options and their support status.
  |-gno-embed-source|Supported|Restores the default behavior of not embedding the source text in DWARF debug sections| 
  |-gno-inline-line-tables|Supported|Prohibits emitting inline line tables| 
  |--gpu-max-threads-per-block= \<value\>|Supported|Specifies the default max threads per block for kernel launch bounds for HIP| 
- |-gsplit-dwarf= \<value\>|Supported|Sets DWARF fission mode to values: �split�/ �single�| 
- |-gz= \<value\>|Supported|Specifies DWARF debug section�s compression type| 
- |-gz|Supported|Shows DWARF debug section�s compression type| 
+ |-gsplit-dwarf= \<value\>|Supported|Sets DWARF fission mode to values: "split"/ "single"| 
+ |-gz= \<value\>|Supported|Specifies DWARF debug section's compression type| 
+ |-gz|Supported|Shows DWARF debug section"s compression type| 
  |-G  \<size\>|Unsupported|Puts objects of maximum  \<size\> bytes into small data section (MIPS / Hexagon)| 
  |-g|Supported|Generates source-level debug information| 
  |--help-hidden|Supported|Displays help for hidden options| 
@@ -915,7 +915,7 @@ The following table lists the other Clang options and their support status.
  |--hip-device-lib= \<value\>|Supported|Specifies the HIP device library| 
  |--hip-link|Supported|Links clang-offload-bundler bundles for HIP| 
  |--hip-version= \<value\>|Supported|Allows specification of HIP version in the format: major/minor/patch| 
- |-H|Supported|Shows header �includes� and nesting depth| 
+ |-H|Supported|Shows header "includes" and nesting depth| 
  |-I-|Supported|Restricts all prior -I flags to double-quoted inclusion and removes the current directory from include path| 
  |-ibuiltininc|Supported|Enables built-in #include directories even when -nostdinc is used before or after -ibuiltininc. Using -nobuiltininc after the option disables it| 
  |-idirafter  \<value\>|Supported|Adds the directory to AFTER include search path| 
@@ -1044,7 +1044,7 @@ The following table lists the other Clang options and their support status.
  |-mpackets|Supported|Enables generation of instruction packets| 
  |-mpad-max-prefix-size= \<value\>|Supported|Specifies maximum number of prefixes to use for padding| 
  |-mpie-copy-relocations|Supported|Asserts the usage of copy relocations support for PIE builds| 
- |-mprefer-vector-width= \<value\>|Unsupported|Specifies preferred vector width for auto-vectorization. Default value: �none,� which allows target specific decisions.| 
+ |-mprefer-vector-width= \<value\>|Unsupported|Specifies preferred vector width for auto-vectorization. Default value: "none," which allows target specific decisions.| 
  |-MP|Supported|Creates phony target for each dependency (other than the main file)| 
  |-mqdsp6-compat|Unsupported|Enables hexagon-qdsp6 backward compatibility| 
  |-MQ  \<value\>|Supported|Specifies the name of the main file output to quote in depfile| 
@@ -1063,7 +1063,7 @@ The following table lists the other Clang options and their support status.
  |-mstack-arg-probe|Unsupported|Enables stack probes| 
  |-mstack-probe-size= \<value\>|Unsupported|Sets the stack probe size| 
  |-mstackrealign|Unsupported|Forces realign the stack at entry on every function| 
- |-msve-vector-bits= \<value\>|Unsupported|Specifies the size in bits of an SVE vector register. Defaults to the vector length agnostic value of �scalable� (AArch64 only).| 
+ |-msve-vector-bits= \<value\>|Unsupported|Specifies the size in bits of an SVE vector register. Defaults to the vector length agnostic value of "scalable" (AArch64 only).| 
  |-msvr4-struct-return|Unsupported|Returns small structs in registers (PPC32 only)| 
  |-mthread-model  \<value\>|Supported|Specifies the thread model to use. Value: posix/single. Default: posix.| 
  |-mtls-direct-seg-refs|Supported|Enables direct TLS access through segment registers (default)| 
@@ -1076,17 +1076,17 @@ The following table lists the other Clang options and their support status.
  |-mwavefrontsize64|Supported|Asserts wavefront size of 64 (AMDGPU only)| 
  |-mxnack|Supported|Legacy option to specify XNACK mode (AMDGPU only). Use --offload-arch with :xnack+ instead.| 
  |-M|Supported|Similar to -MD but also implies -E and writes to stdout by default| 
- |--no-cuda-include-ptx= \<value\>|Supported|Prohibits including PTX for the specified GPU architecture (e.g. sm_35) or �all�. May be specified more than once.| 
+ |--no-cuda-include-ptx= \<value\>|Supported|Prohibits including PTX for the specified GPU architecture (e.g. sm_35) or "all". May be specified more than once.| 
  |--no-cuda-version-check|Supported|Disallows erroring out if the detected version of the CUDA install is too low for the requested CUDA GPU architecture| 
  |-no-flang-libs|Supported|Prohibits linking against Flang libraries| 
- |--no-offload-arch= \<value\>|Supported|Removes CUDA/HIP offloading device architecture (e.g. sm_35, gfx906) from the list of devices to compile for. �all� resets the list to its default value| 
+ |--no-offload-arch= \<value\>|Supported|Removes CUDA/HIP offloading device architecture (e.g. sm_35, gfx906) from the list of devices to compile for. "all" resets the list to its default value| 
  |--no-system-header-prefix= \<prefix\>|Supported|Assumes no system header for all #include paths starting with the given  \<prefix\>| 
  |-nobuiltininc|Supported|Disables built-in #include directories| 
  |-nogpuinc|Supported|Prohibits adding CUDA/HIP include paths and includes default CUDA/HIP wrapper header files| 
  |-nogpulib|Supported|Prohibits linking device library for CUDA/HIP device compilation| 
  |-nostdinc++|Unsupported|Disables standard #include directories for the C++ standard library| 
  |-ObjC++|Unsupported|Treats source input files as Objective-C++ inputs| 
- |-objcmt-atomic-property|Unsupported|Enables migration to �atomic� properties| 
+ |-objcmt-atomic-property|Unsupported|Enables migration to "atomic" properties| 
  |-objcmt-migrate-all|Unsupported|Enables migration to modern ObjC| 
  |-objcmt-migrate-annotation|Unsupported|Enables migration to property and method annotations| 
  |-objcmt-migrate-designated-init|Unsupported|Enables migration to infer NS_DESIGNATED_INITIALIZER for initializer methods| 
@@ -1099,7 +1099,7 @@ The following table lists the other Clang options and their support status.
  |-objcmt-migrate-readonly-property|Unsupported|Enables migration to modern ObjC readonly property| 
  |-objcmt-migrate-readwrite-property|Unsupported|Enables migration to modern ObjC readwrite property| 
  |-objcmt-migrate-subscripting|Unsupported|Enables migration to modern ObjC subscripting| 
- |-objcmt-ns-nonatomic-iosonly|Unsupported|Enables migration to use NS_NONATOMIC_IOSONLY macro for setting property's �atomic� attribute| 
+ |-objcmt-ns-nonatomic-iosonly|Unsupported|Enables migration to use NS_NONATOMIC_IOSONLY macro for setting property's "atomic" attribute| 
  |-objcmt-returns-innerpointer-property|Unsupported|Enables migration to annotate property with NS_RETURNS_INNER_POINTER| 
  |-objcmt-whitelist-dir-path= \<value\>|Unsupported|Modifies exclusively the files with the filename present in the given directory| 
  |-ObjC|Unsupported|Treats source input files as Objective-C inputs| 
