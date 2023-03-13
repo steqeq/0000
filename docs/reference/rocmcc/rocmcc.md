@@ -340,6 +340,35 @@ clang -fopenmp -target x86_64-linux-gnu \
 To ensure backward compatibility, both styles are supported. This option is compatible with TargetID support and multi-image fat binaries.
 
 #### TargetID Support for OpenMP
+The ROCmCC compiler supports specification of target features along with the GPU name while specifying a target offload device in the command line, using -march or --offload-arch options. The compiled image in such cases is specialized for a given configuration of device and target features (TargetID).
+
+**Example:**
+```
+// compiling for a gfx908 device with XNACK paging support turned ON
+clang -fopenmp -target x86_64-linux-gnu \
+-fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa \
+-march=gfx908:xnack+ helloworld.c -o helloworld
+```
+
+**Example:**
+```
+// compiling for a gfx908 device with SRAMECC support turned OFF
+clang -fopenmp -target x86_64-linux-gnu \
+-fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa \
+-march=gfx908:sramecc- helloworld.c -o helloworld
+```
+
+**Example:**
+```
+// compiling for a gfx908 device with SRAMECC support turned ON and XNACK paging support turned OFF
+clang -fopenmp -target x86_64-linux-gnu \
+-fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa \
+-march=gfx908:sramecc+:xnack- helloworld.c -o helloworld
+```
+
+The TargetID specified on the command line is passed to the clang driver using target-feature flag, to the LLVM optimizer and backend using -mattr flag, and to linker using -plugin-opt=-mattr flag. This feature is compatible with offload-arch command-line option and multi-image binaries for multiple architectures.
+
+#### Multi-image Fat Binary for OpenMP
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
