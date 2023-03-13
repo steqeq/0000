@@ -1,3 +1,10 @@
 .vscode
 build
-_build
+
+# documentation artifacts
+_build/
+_images/
+_static/
+_templates/
+_toc.yml
+docBin/
