@@ -314,11 +314,13 @@ The options are listed below:
 | m | Prints device code name (often found in pci.ids file) |
 | n | Prints numeric pci-id |
 | t | Prints clang offload triple to use for the offload arch |
-| v | Verbose = -a -m -n -t. For all devices, prints codename, numeric value, and triple |
+| v | Verbose = -a -m -n -t. For: all devices, prints codename, numeric value, and triple |
 | f \<filename\> | Prints offload requirements including offload-arch for each compiled offload image built into an application binary file |
 | c | Prints offload capabilities of the underlying system. This option is used by the language runtime to select an image when multiple images are available. A capability must exist for each requirement of the selected image. |
 
 There are symbolic link aliases amdgpu-offload-arch and nvidia-arch for offload-arch. These aliases return 1 if no amdgcn GPU or cuda GPU is found. These aliases are useful in determining whether architecture-specific tests should be run or to conditionally load architecture-specific software.
+
+#### Command-Line Simplification Using offload-arch Flag
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
