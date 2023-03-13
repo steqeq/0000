@@ -376,6 +376,37 @@ The ROCmCC compiler is enhanced to generate binaries that can contain heterogeno
 
 An appropriate image is selected by the OpenMP device runtime for execution depending on the capability of the current system. This feature is compatible with TargetID support and offload-arch command-line options and uses offload-arch tool to determine capability of the current system.
 
+**Example:**
+```
+clang -fopenmp -target x86_64-linux-gnu \
+-fopenmp-targets=amdgcn-amd-amdhsa,amdgcn-amd-amdhsa \
+-Xopenmp-target=amdgcn-amd-amdhsa -march=gfx906 \
+-Xopenmp-target=amdgcn-amd-amdhsa -march=gfx908 \
+helloworld.c -o helloworld
+```
+
+**Example:**
+```
+clang -fopenmp -target x86_64-linux-gnu \
+--offload-arch=gfx906 \
+--offload-arch=gfx908 \
+helloworld.c -o helloworld
+```
+
+**Example:**
+```
+clang -fopenmp -target x86_64-linux-gnu \
+-fopenmp-targets=amdgcn-amd-amdhsa,amdgcn-amd-amdhsa,amdgcn-amd-amdhsa,amdgcn-amd-amdhsa \
+-Xopenmp-target=amdgcn-amd-amdhsa -march=gfx908:sramecc+:xnack+ \
+-Xopenmp-target=amdgcn-amd-amdhsa -march=gfx908:sramecc-:xnack+ \
+-Xopenmp-target=amdgcn-amd-amdhsa -march=gfx908:sramecc+:xnack- \
+-Xopenmp-target=amdgcn-amd-amdhsa -march=gfx908:sramecc-:xnack- \
+helloworld.c -o helloworld
+```
+
+The ROCmCC compiler creates an instance of toolchain for each unique combination of target triple and the target GPU (along with the associated target features). Clang-offload-wrapper tool is modified to insert a new structure __tgt_image_info along with each image in the binary. Device runtime is also modified to query this structure to identify a compatible image based on the capability of the current system.
+
+
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
 
