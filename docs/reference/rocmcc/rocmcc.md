@@ -258,6 +258,10 @@ Enables fusion of adjacent tiled loops as a part of loop tiling transformation. 
 ##### -Hz,1,0x1 [Fortran]
 Helps to preserve array index information for array access expressions which get linearized in the compiler frontend. The preserved information is used by the compiler optimization phase in performing optimizations such as loop transformations. It is recommended that any user who is using optimizations such as loop transformations and other optimizations requiring de-linearized index expressions should use the Hz option. This option has no impact on any other aspects of the Flang frontend.
 
+### Inline ASM Statements
+Inline assembly (ASM) statements allow a developer to include assembly instructions directly in either host or device code. While the ROCm compiler supports ASM statements, their use is not recommended for the following reasons:
+
+
 
 # Table 9 Draft - ESC Special CHR
 Enables partial loop unswitching, which is an enhancement to the existing loop unswitching optimization in LLVM. Partial loop unswitching hoists a condition inside a loop from a path for which the execution condition remains invariant, whereas the original loop unswitching works for a condition that is completely loop invariant. The condition inside the loop gets hoisted out from the invariant path, and the original loop is retained for the path where the condition is variant.
