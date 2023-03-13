@@ -278,6 +278,7 @@ For developers who choose to include ASM statements in the code, AMD is interest
 :::
 
 ### Miscellaneous OpenMP Compiler Features
+This section discusses features that have been added or enhanced in the OpenMP compiler.  
 
 
 # Table 9 Draft - ESC Special CHR
