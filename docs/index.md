@@ -1,4 +1,4 @@
-# AMD ROCm
+# AMD ROCm Documentation
 
 Welcome to AMD ROCm's documentation!
 

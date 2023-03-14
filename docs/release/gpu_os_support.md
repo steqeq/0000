@@ -23,34 +23,130 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 ## GPU Support Table
 
-|GPU               |Architecture    | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | [Support Level](#gpu-support-levels) |
-|:----------------:|:--------------:|:--------------------------------------------------------------------:|:------------------------------------:|
-|Instinct™ MI250X  | CDNA2          | gfx90a                                                               | Full                                 |
-|Instinct™ MI250   | CDNA2          | gfx90a                                                               | Full                                 |
-|Instinct™ MI210   | CDNA2          | gfx90a                                                               | Full                                 |
-|Instinct™ MI100   | CDNA           | gfx908                                                               | Full                                 |
-|Instinct™ MI50    | Vega           | gfx906                                                               | Maintenance                          |
-|Radeon™ Pro W6800 | RDNA2          | gfx1030                                                              | Full                                 |
-|Radeon™ Pro V620  | RDNA2          | gfx1030                                                              | Full                                 |
-|Radeon™ RX 6900 XT| RDNA2          | gfx1030                                                              | Non-commercial                       |
-|Radeon™ RX 6600   | RDNA2          | gfx1031                                                              | HIP                                  |
-|Radeon™ R9 Fury   | Fiji           | gfx803                                                               | Community                            |
+::::{tab-set}
 
-### GPU Support Levels
+:::{tab-item} Instinct™
+:sync: instinct
+Use Driver Shipped with ROCm
+| GPU               | Architecture    | Product | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows     |
+|:-=---------------:|:---------------:|:-------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
+| Instinct™ MI250X  | CDNA2           | Full    | gfx90a                                                               | Supported                            | Unsupported |
+| Instinct™ MI250   | CDNA2           | Full    | gfx90a                                                               | Supported                            | Unsupported |
+| Instinct™ MI210   | CDNA2           | Full    | gfx90a                                                               | Supported                            | Unsupported |
+| Instinct™ MI100   | CDNA            | Full    | gfx908                                                               | Supported                            | Unsupported |
+| Instinct™ MI50    | Vega            | Full    | gfx906                                                               | Supported                            | Unsupported |
 
-GPU support levels in ROCm:
+:::
 
-- Full - AMD provides full support for all software that is part of ROCm
-- Non-commercial - AMD enables all software that is part of ROCm. However,
-  commercial usage is not supported.
-- HIP SDK - AMD supports select GPU libraries and the HIP Runtime on these
-  products. The HIP SDK contents are described [here]().
-- HIP - AMD supports the HIP Runtime only for these products.
-- Maintenance - This GPUs is now in maintenance mode. No new features will be
-  enabled on this product.
-- Community - Packages distributed by AMD have dropped support for these GPUs or
-  never enabled support for the GPUs. Builds from source are not disabled. AMD
-  encourages the open source community to enable functionality for these cards.
+:::{tab-item} Radeon Pro™
+:sync: radeonpro
+
+[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+| GPU               | Architecture    | SW Level | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows     |
+|:-----------------:|:---------------:|:--------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
+| Radeon™ Pro W6800 | RDNA2           | Full     | gfx1030                                                              | Supported                            | Supported   |
+| Radeon™ Pro V620  | RDNA2           | Full     | gfx1030                                                              | Supported                            | Unsupported |
+
+:::
+
+:::{tab-item} Radeon™
+:sync: radeon
+
+[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+| GPU                | Architecture   | SW Level   | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows     |
+|:------------------:|:--------------:|:----------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
+| Radeon™ RX 6900 XT | RDNA2          |HIP SDK     | gfx1030                                                              | Supported                            | Supported   |
+| Radeon™ RX 6600    | RDNA2          |HIP Runtime | gfx1031                                                              | Supported                            | Supported   |
+| Radeon™ R9 Fury    | Fiji           |Full        | gfx803                                                               | Community                            | Unsupported |
+
+:::
+
+::::
+
+### Software Enablement Level
+
+::::{tab-set}
+
+:::{tab-item} Instinct™
+:sync: instinct
+
+Instinct™ products support the full stack available in ROCm.
+
+:::
+
+:::{tab-item} Radeon Pro™
+:sync: radeonpro
+
+ROCm software support varies by GPU type and Operating System. ROCm ecosystem
+products are three software stack enablement levels that correspond as
+described below:
+
+- Full includes all software that is part of the ROCm ecosystem. Please see
+  [article](link) for details of ROCm.
+- HIP SDK includes the HIP Runtime and a selection of GPU libraries for compute.
+  Please see [article](link) for details of HIP SDK.
+- HIP Runtime enables the use of the HIP Runtime only.
+
+:::
+
+:::{tab-item} Radeon™
+:sync: radeon
+ROCm software support varies by GPU type and Operating System. ROCm ecosystem
+products are three software stack enablement levels that correspond as described
+below:
+
+- Full includes all software that is part of the ROCm ecosystem. Please see
+  [article](link) for details of ROCm.
+- HIP SDK includes the HIP Runtime and a selection of GPU libraries for compute.
+  Please see [article](link) for details of HIP SDK.
+- HIP enables the use of the HIP Runtime only.
+:::
+
+::::
+
+### Support Status
+
+::::{tab-set}
+
+:::{tab-item} Instinct™
+:sync: instinct
+
+- Supported - AMD enables these GPUs in our software distributions for the
+  corresponding ROCm product.
+- Unsupported - This configuration is not enabled in our software distributions.
+- Deprecated - Support will be removed in a future release.
+
+:::
+
+:::{tab-item} Radeon Pro™
+:sync: radeonpro
+
+GPU support levels for Radeon Pro™
+
+- Supported - AMD enables these GPUs in our software distributions for the
+  corresponding ROCm product.
+- Unsupported - This configuration is not enabled in our software distributions.
+- Deprecated - Support will be removed in a future release.
+- Community - AMD does not enable these GPUs in our software distributions but
+  end users are free to enable these GPUs themselves.
+
+:::
+
+:::{tab-item} Radeon™
+:sync: radeon
+
+Support levels for Radeon™ GPUs:
+
+- Supported - AMD enables these GPUs in our software distributions for the
+  corresponding ROCm product.
+- Unsupported - This configuration is not enabled in our software distributions.
+- Deprecated - Support will be removed in a future release.
+- Community - AMD does not enable these GPUs in our software distributions but
+  end users are free to enable these GPUs themselves.
+
+:::
+
+::::
 
 ## CPU Support
 
