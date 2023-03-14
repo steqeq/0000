@@ -294,7 +294,7 @@ Alternatively, build PyTorch by issuing the following commands:
 
 ```bash
 python3 tools/amd_build/build_amd.py
-USE\_ROCM=1 MAX_JOBS=4 python3 setup.py install --user
+USE_ROCM=1 MAX_JOBS=4 python3 setup.py install --user
 ```
 
 ### Test the PyTorch Installation
@@ -503,7 +503,7 @@ Follow these steps:
 
    ```bash
    docker run -it --network=host --device=/dev/kfd --device=/dev/dri
-   --ipc=host --shm-size 16G --group-add video --cap-add=SYS\_PTRACE
+   --ipc=host --shm-size 16G --group-add video --cap-add=SYS_PTRACE
    --security-opt seccomp=unconfined rocm/tensorflow:latest
    ```
 
