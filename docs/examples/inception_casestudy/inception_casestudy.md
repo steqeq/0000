@@ -52,3 +52,9 @@ Convolution Neural Networks are forms of artificial neural networks commonly use
 The implementation uses PyTorch as a framework. This case study utilizes torchvision [2], a repository of popular datasets and model architectures, for obtaining the model. Torchvision also provides pretrained weights as a starting point to develop new models or fine-tune the model for a new task.
 
 #### Evaluating a Pretrained Model
+
+The Inception v3 model introduces a simple image classification task with the pretrained model. This does not involve training but utilizes an already pretrained model from torchvision.
+
+This example is adapted from the PyTorch research hub page on Inception v3 [3].
+
+Follow these steps:
