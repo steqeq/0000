@@ -14,3 +14,15 @@ Training also includes the choice of an optimization algorithm that reduces the 
 
 ## Training Phases
 Training occurs in multiple phases for every batch of training data. Table 2 provides an explanation of the types of training phases.
+
+||
+|:--:|
+| **Table 2.  Types of Training Phases**|
+||
+
+| Types of Phases |  | 
+| ----------- | ----------- | 
+| Forward Pass | The input features are fed into the model, whose parameters may be randomly initialized initially. Activations (outputs) of each layer are retained during this pass to help in the loss gradient computation during the backward pass. |
+| Loss Computation | The output is compared against the target outputs, and the loss is computed. |
+| Backward Pass | The loss is propagated backward, and the model's error gradients are computed and stored for each trainable parameter. |
+| Optimization Pass | The optimization algorithm updates the model parameters using the stored error gradients. |
