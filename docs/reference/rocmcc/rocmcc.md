@@ -1231,7 +1231,7 @@ The following table lists the other Clang options and their support status.
  |-mno-unaligned-access|Unsupported|Forces all memory accesses to be aligned (AArch32/AArch64 only)|
  |-mno-wavefrontsize64|Supported|Asserts wavefront size to 32 (AMDGPU only)|
  |-mnocrc|Unsupported|Disallows usage of CRC instructions (ARM only)|
- |-mnop-mcount|Supported|Generates mcount/__fentry__ calls as nops. To activate, they need to be patched in|
+ |-mnop-mcount|Supported|Generates `mcount`/`__fentry__` calls as nops. To activate, they need to be patched in|
  |-mnvj|Supported|Enables generation of new-value jumps|
  |-mnvs|Supported|Enables generation of new-value stores|
  |-module-dependency-dir  \<value\>|Unsupported|Specifies directory for dumping module dependencies|
