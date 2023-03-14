@@ -45,3 +45,10 @@ Different quantization data types are typically chosen between training (FP32, B
 
 ## Case Studies
 The following sections contain case studies for the Inception v3 model.
+
+### Inception v3 with PyTorch
+Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3 [1] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
+
+The implementation uses PyTorch as a framework. This case study utilizes torchvision [2], a repository of popular datasets and model architectures, for obtaining the model. Torchvision also provides pretrained weights as a starting point to develop new models or fine-tune the model for a new task.
+
+#### Evaluating a Pretrained Model
