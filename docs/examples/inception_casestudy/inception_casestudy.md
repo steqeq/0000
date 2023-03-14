@@ -58,3 +58,4 @@ The Inception v3 model introduces a simple image classification task with the pr
 This example is adapted from the PyTorch research hub page on Inception v3 [3].
 
 Follow these steps:
+1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
