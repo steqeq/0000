@@ -146,3 +146,5 @@ for i in range(top5_prob.size(0)):
 The previous section focused on downloading and using the Inception v3 model for a simple image classification task. This section walks through training the model on a new dataset.
 
 Follow these steps:
+
+1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
