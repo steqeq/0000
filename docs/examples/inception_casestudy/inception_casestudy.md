@@ -195,3 +195,16 @@ for path in paths:
 rmdir('./tiny-imagenet-200/val/images')
 ```
 
+5. Open a Python shell.
+
+6. Import dependencies, including torch, OS, and torchvision.
+
+```
+import torch
+import os
+import torchvision 
+from torchvision import transforms
+from torchvision.transforms.functional import InterpolationMode
+```
+
+7. Set parameters to guide the training process.
