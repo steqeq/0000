@@ -63,3 +63,10 @@ Follow these steps:
 ```
 docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
 ```
+
+2. Run the Python shell and import packages and libraries for model creation.
+
+```
+import torch
+import torchvision
+```
