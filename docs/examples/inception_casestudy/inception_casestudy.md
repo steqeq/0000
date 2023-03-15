@@ -115,3 +115,13 @@ if torch.cuda.is_available():
     input_batch = input_batch.to('cuda')
     model.to('cuda')
 ```
+
+8. Find out probabilities.
+
+```
+with torch.no_grad():
+    output = model(input_batch)
+print(output[0])
+probabilities = torch.nn.functional.softmax(output[0], dim=0)
+print(probabilities)
+```
