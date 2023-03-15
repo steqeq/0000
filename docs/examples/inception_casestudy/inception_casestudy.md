@@ -222,3 +222,9 @@ device = "cuda"
 ```
 data_path = "tiny-imagenet-200"
 ```
+
+The training image size is cropped for input into Inception v3.
+
+```
+train_crop_size = 299
+```
