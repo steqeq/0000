@@ -153,3 +153,11 @@ Follow these steps:
 docker pull rocm/pytorch:latest
 docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
 ```
+
+2. Download an imagenet database. For this example, the tiny-imagenet-200 [4], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
+
+```
+wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
+```
+
+3. Process the database to set the validation directory to the format expected by PyTorch DataLoader.
