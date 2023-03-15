@@ -86,3 +86,11 @@ url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "do
 try: urllib.URLopener().retrieve(url, filename)
 except: urllib.request.urlretrieve(url, filename)
 ```
+
+5. Import torchvision and PIL Image support libraries.
+
+```
+from PIL import Image
+from torchvision import transforms
+input_image = Image.open(filename)
+```
