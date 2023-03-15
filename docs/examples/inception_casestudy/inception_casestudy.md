@@ -141,3 +141,8 @@ top5_prob, top5_catid = torch.topk(probabilities, 5)
 for i in range(top5_prob.size(0)):
     print(categories[top5_catid[i]], top5_prob[i].item())
 ```
+
+#### Training Inception v3
+The previous section focused on downloading and using the Inception v3 model for a simple image classification task. This section walks through training the model on a new dataset.
+
+Follow these steps:
