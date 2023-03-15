@@ -208,3 +208,13 @@ from torchvision.transforms.functional import InterpolationMode
 ```
 
 7. Set parameters to guide the training process.
+
+:::{note}
+The device is set to "cuda". In PyTorch, "cuda" is a generic keyword to denote a GPU. 
+:::
+
+```
+device = "cuda"
+```
+
+8. Set the data_path to the location of the training and validation data. In this case, the tiny-imagenet-200 is present as a subdirectory to the current directory.
