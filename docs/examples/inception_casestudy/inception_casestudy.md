@@ -218,3 +218,7 @@ device = "cuda"
 ```
 
 8. Set the data_path to the location of the training and validation data. In this case, the tiny-imagenet-200 is present as a subdirectory to the current directory.
+
+```
+data_path = "tiny-imagenet-200"
+```
