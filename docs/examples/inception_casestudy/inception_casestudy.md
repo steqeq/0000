@@ -126,3 +126,8 @@ probabilities = torch.nn.functional.softmax(output[0], dim=0)
 print(probabilities)
 ```
 
+9. To understand the probabilities, download and examine the Imagenet labels.
+
+```
+wget https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt
+```
