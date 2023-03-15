@@ -70,3 +70,10 @@ docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconf
 import torch
 import torchvision
 ```
+
+3. Set the model in evaluation mode. Evaluation mode directs PyTorch not to store intermediate data, which would have been used in training.
+
+```
+model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3', pretrained=True)
+model.eval()
+```
