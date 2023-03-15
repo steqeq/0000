@@ -77,3 +77,12 @@ import torchvision
 model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3', pretrained=True)
 model.eval()
 ```
+
+4. Download a sample image for inference.
+
+```
+import urllib
+url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
+try: urllib.URLopener().retrieve(url, filename)
+except: urllib.request.urlretrieve(url, filename)
+```
