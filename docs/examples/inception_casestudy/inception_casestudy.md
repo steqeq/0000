@@ -59,3 +59,7 @@ This example is adapted from the PyTorch research hub page on Inception v3 [3].
 
 Follow these steps:
 1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
+
+```
+docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
+```
