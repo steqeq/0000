@@ -1,0 +1,36 @@
+pipeline {
+    agent {
+        docker {
+            image 'python:3.10'
+            label 'cpuonly'
+            args '--network=host'
+        }
+    }
+    parameters {
+        string(name: 'MANIFEST', defaultValue: params?.MANIFEST ?: "", description: 'The URL of the manifest file.')
+        string(name: 'VERSION', defaultValue: params?.VERSION ?: "", description: 'The ROCm version to check the changelogs for.')
+        booleanParam(name: 'PREVIOUS', defaultValue: false, description: 'Whether to use previous versions\' changelog.')
+    }
+    environment {
+        TOKEN = credentials("ROCmMathLibrariesBot-PAT")
+    }
+    triggers { cron('H H * * *') }
+    stages {
+        stage ("Download dependencies") {
+            steps {
+                sh("python3 -m pip install --no-cache-dir -t \$PWD/deps -r requirements.txt")
+            }
+        }
+        stage ("Run script"){
+            steps{
+                sh("""
+                    export PYTHONPATH=\$PWD/deps:\$PYTHONPATH
+                    ./tag_script.py \
+                        ${params?.MANIFEST ? '--manifest-url ' + params.MANIFEST : ''} \
+                        ${params?.PREVIOUS ? '--do-previous' : '--no-previous'} \
+                        --no-pulls --no-release  -t \$TOKEN --pr-token \$TOKEN ${params.VERSION}
+                """)
+            }
+        }
+    }
+}
