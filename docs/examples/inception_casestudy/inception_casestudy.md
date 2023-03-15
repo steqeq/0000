@@ -228,3 +228,18 @@ The training image size is cropped for input into Inception v3.
 ```
 train_crop_size = 299
 ```
+
+9. To smooth the image, use bilinear interpolation, a resampling method that uses the distance weighted average of the four nearest pixel values to estimate a new pixel value.
+
+```
+interpolation = "bilinear" 
+```
+
+The next parameters control the size to which the validation image is cropped and resized.
+
+```
+val_crop_size = 299
+val_resize_size = 342
+```
+
+The pretrained Inception v3 model is chosen to be downloaded from torchvision.
