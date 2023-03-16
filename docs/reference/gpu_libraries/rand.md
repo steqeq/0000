@@ -17,8 +17,8 @@ hipRAND is a compatiblity layer for GPU accelerated FFT optimized for AMD GPUs
 using rocFFT. hipFFT allows for a common interface for other non AMD GPU
 FFT libraries.
 
-- [API Reference Manual](https://rocmdocs.amd.com/projects/hipFFT/en/rtd/)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/hipFFT/blob/develop/CHANGELOG.md)
+- [API Reference Manual](https://rocmdocs.amd.com/projects/hipRAND/en/rtd/)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/hipRAND/blob/develop/CHANGELOG.md)
 
 :::
 
