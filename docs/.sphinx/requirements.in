@@ -1,1 +1,1 @@
-git+https://github.com/RadeonOpenCompute/rocm-docs-core.git
+rocm-docs-core @ git+https://github.com/RadeonOpenCompute/rocm-docs-core.git@13dca510bccaf1850314886a554fb76cbcad5a08
