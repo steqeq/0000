@@ -243,3 +243,10 @@ val_resize_size = 342
 ```
 
 The pretrained Inception v3 model is chosen to be downloaded from torchvision.
+
+```
+model_name = "inception_v3" 
+pretrained = True
+```
+
+During each training step, a batch of images is processed to compute the loss gradient and perform the optimization. In the following setting, the size of the batch is determined.
