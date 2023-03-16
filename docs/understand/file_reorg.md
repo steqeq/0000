@@ -39,7 +39,7 @@
                   | -- architecture independent misc files -->
 
 ## Changes from earlier ROCm versions
-    ROCm with the file reorganization is going to have a much lean structure. Following table gives the comparison with new and old folder structure.
+    ROCm with the file reorganization is going to have a lean structure. Following table gives the comparison with new and old folder structure.
 
      _________________________________________________________________________________
     |     New File Structure                     |     Old File Structure             |
@@ -105,7 +105,7 @@
 
 
 ## Changes required from applications using ROCm
-    Applications using ROCm is advised to use the new file paths. As the old files will be deprecated in a future release. Application has to make sure to include correct header file and use correct search paths.
+    Applications using ROCm are advised to use the new file paths. As the old files will be deprecated in a future release. Application have to make sure to include correct header file and use correct search paths.
         1. #include<header_file.h> needs to be changed to #include <component/header_file.h> 
            For eg: #include <hip.h> needs to change to #include <hip/hip.h>
         2. Any variable in cmake or makefiles pointing to component folder needs to changed. 
@@ -116,5 +116,5 @@
 
 ## References:
  - ROCm Release Notes         : https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/About_This_Document.html
- - ROCm depriciation warning  : https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/Deprecations_and_Warnings.html
+ - ROCm deprecation warning  : https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/Deprecations_and_Warnings.html
  - Linux File System Standard : https://refspecs.linuxfoundation.org/fhs.shtml
