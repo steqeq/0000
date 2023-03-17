@@ -7,7 +7,7 @@ HIP is both AMD's GPU programming langauge extension and the GPU runtime. This p
 :::{grid-item-card} HIP Runtime
 The HIP Runtime is used to enable GPU acceleration for all HIP language based products.
 
-- [API Reference Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
+- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
 
 :::
@@ -34,13 +34,11 @@ ROCm template libraries for C++ primitives and algorithms are as follows:
 
 :::
 
-:::{grid-item-card} Communication Libraries
-AMD's C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA)
-operations leveraging AMD GPU hardware.
+:::{grid-item-card} [Communication Libraries](gpu_libraries/communication))
+Inter and intra node communication is supported by the following projects:
 
-- [API Reference Manual](https://docs.amd.com/bundle/rocWMMA-release-rocm-rel-5.2/page/API_Reference_Guide.html)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/ROCmSoftwarePlatform/rocWMMA/tree/develop/samples)
+- [RCCL](https://rocmdocs.amd.com/projects/rccl/en/latest/)
+
 
 :::
 
@@ -55,6 +53,16 @@ operations leveraging AMD GPU hardware.
 :::
 
 :::{grid-item-card} MIGraphX
+AMD's C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA)
+operations leveraging AMD GPU hardware.
+
+- [API Reference Manual](https://docs.amd.com/bundle/rocWMMA-release-rocm-rel-5.2/page/API_Reference_Guide.html)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
+- [Examples](https://github.com/ROCmSoftwarePlatform/rocWMMA/tree/develop/samples)
+
+:::
+
+:::{grid-item-card} [Computer Vision](./computer_vision)
 AMD's C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA)
 operations leveraging AMD GPU hardware.
 
