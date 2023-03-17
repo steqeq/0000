@@ -3,6 +3,15 @@
 The value of documentation being open-source is that it is open for contribution to all. We encourage everyone to contribute: if something was unclear to you, it may be unclear to others too. If you know some piece of information made sense being mentioned at a given point, add a link or excerpt. Don't know how to address a shortcoming you sense: open an issue. Community-driven documentation will surely tailor to a wider audience than those written centrally.
 
 Be polite and respectful in your contributions, content or otherwise. Authors, maintainers of these docs act on good intentions and to the best of their knowledge. Keep that in mind while you engage. Should you have issues with contributing itself, refer to [discussions](https://github.com/RadeonOpenCompute/ROCm/discussions) on the GitHub repository.
+
+## Guidelines on format
+
+This documentation strives to follow the [Writing Markdown on GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/quickstart-for-writing-on-github) guidelines. Additionally, there are ROCm-specific style guides helping to maintain a unified look and feel of the resulting documents.
+
+While there isn't a comprehensive set of style guides yet, here's a non-exhaustive list to keep in mind to reduce friction while contributing:
+
+- Following the title, use one level of header nesting for describing content structure for both Markdown and Restructured Text.
+
 ## Build the docs using VS Code
 
 One can put together a productive environment to author documentation and also test it locally using VS Code with only a handful of extensions. Even though the extension landscape of VS Code is ever changing, here is one example setup that proved useful at the time of writing. In it, one can change/add content, build a new version of the docs using a single VS Code Task (or hotkey), see all errors/warnings emitted by Sphinx in the Problems pane and immediately see the resulting website show up on a locally serving web server.
@@ -16,13 +25,13 @@ One can put together a productive environment to author documentation and also t
 
 2. Add the following entries in `.vscode/settings.json`
 
-    ```json
-    {
-    	"liveServer.settings.root": "/.vscode/build/html",
-    	"liveServer.settings.wait": 1000,
-    	"python.terminal.activateEnvInCurrentTerminal": true
-    }
-    ```
+	```json
+	{
+	  "liveServer.settings.root": "/.vscode/build/html",
+	  "liveServer.settings.wait": 1000,
+	  "python.terminal.activateEnvInCurrentTerminal": true
+	}
+	```
 
     The settings in order are set for the following reasons:
     - Sets the root of the output website for live previews. Must be changed alongside the `tasks.json` command.
@@ -30,63 +39,62 @@ One can put together a productive environment to author documentation and also t
     - Automatic virtual env activation is a nice touch, should you want to build the site from the integrated terminal.
 
 3. Add the following tasks in `.vscode/tasks.json`
-
-    ```json
-    {
-    	"version": "2.0.0",
-    	"tasks": [
-    		{
-    			"label": "Build Docs",
-    			"type": "process",
-    			"windows": {
-    				"command": "${workspaceFolder}/.venv/Scripts/python.exe"
-    			},
-    			"command": "${workspaceFolder}/.venv/bin/python3",
-    			"args": [
-    				"-m",
-    				"sphinx",
-    				"-j",
-    				"auto",
-    				"-T",
-    				"-b",
-    				"html",
-    				"-d",
-    				"${workspaceFolder}/.vscode/build/doctrees",
-    				"-D",
-    				"language=en",
-    				"${workspaceFolder}/docs",
-    				"${workspaceFolder}/.vscode/build/html"
-    			],
-    			"problemMatcher": [
-    				{
-    					"owner": "sphinx",
-    					"fileLocation": "absolute",
-    					"pattern": {
-    						"regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):(\\d+):\\s+(WARNING|ERROR):\\s+(.*)$",
-    						"file": 1,
-    						"line": 2,
-    						"severity": 3,
-    						"message": 4
-    					},
-    				},
-    				{
-    					"owner": "sphinx",
-    					"fileLocation": "absolute",
-    					"pattern": {
-    						"regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):{1,2}\\s+(WARNING|ERROR):\\s+(.*)$",
-    						"file": 1,
-    						"severity": 2,
-    						"message": 3
-    					}
-    				}
-    			],
-    			"group": {
-    				"kind": "build",
-    				"isDefault": true
-    			}
-    		},
-    	],
-    }
+	```json
+	{
+	  "version": "2.0.0",
+	  "tasks": [
+	    {
+	      "label": "Build Docs",
+	      "type": "process",
+	      "windows": {
+	        "command": "${workspaceFolder}/.venv/Scripts/python.exe"
+	      },
+	      "command": "${workspaceFolder}/.venv/bin/python3",
+	      "args": [
+	        "-m",
+	        "sphinx",
+	        "-j",
+	        "auto",
+	        "-T",
+	        "-b",
+	        "html",
+	        "-d",
+	        "${workspaceFolder}/.vscode/build/doctrees",
+	        "-D",
+	        "language=en",
+	        "${workspaceFolder}/docs",
+	        "${workspaceFolder}/.vscode/build/html"
+	      ],
+	      "problemMatcher": [
+	        {
+	          "owner": "sphinx",
+	          "fileLocation": "absolute",
+	          "pattern": {
+	            "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):(\\d+):\\s+(WARNING|ERROR):\\s+(.*)$",
+	            "file": 1,
+	            "line": 2,
+	            "severity": 3,
+	            "message": 4
+	          },
+	        },
+	        {
+	          "owner": "sphinx",
+	          "fileLocation": "absolute",
+	          "pattern": {
+	            "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):{1,2}\\s+(WARNING|ERROR):\\s+(.*)$",
+	            "file": 1,
+	            "severity": 2,
+	            "message": 3
+	          }
+	        }
+	      ],
+	      "group": {
+	        "kind": "build",
+	        "isDefault": true
+	      }
+	    },
+	  ],
+	}
     ```
 
     _(Implementation detail: two problem matchers were needed to be defined, because VS Code doesn't tolerate some problem information being potentially absent. While a single regex could match all types of errors, if a capture group remains empty (the line number doesn't show up in all warning/error messages) but the `pattern` references said empty capture group, VS Code discards the message completely.)_
