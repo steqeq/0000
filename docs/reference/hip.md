@@ -43,19 +43,17 @@ Inter and intra node communication is supported by the following projects:
 :::{grid-item-card} MIOpen
 AMD's library for high performance machine learning primitives. 
 
-- [API Reference Manual]((https://rocmdocs.amd.com/projects/MIOpen/en/develop/)
+- [API Reference Manual](https://rocmdocs.amd.com/projects/MIOpen/en/develop/)
 - [Changelog](https://github.com/ROCmSoftwarePlatform/MIOpen/blob/develop/CHANGELOG.md)
 
 
 :::
 
 :::{grid-item-card} MIGraphX
-AMD's C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA)
-operations leveraging AMD GPU hardware.
+AMD's graph optimization engine. 
 
-- [API Reference Manual](https://docs.amd.com/bundle/rocWMMA-release-rocm-rel-5.2/page/API_Reference_Guide.html)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/ROCmSoftwarePlatform/rocWMMA/tree/develop/samples)
+- [API Reference Manual](https://rocmdocs.amd.com/projects/AMDMIGraphX/en/develop/)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/MIGraphX/blob/develop/CHANGELOG.md)
 
 :::
 
