@@ -5,9 +5,12 @@
 The driver package uses
 [`DKMS`](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support) to build
 the amdgpu module (driver) for the installed kernels. This requires the linux
-kernel headers and modules to be installed for each.
+kernel headers and modules to be installed for each. Usually these are
+automatically installed with the kernel, but if you have multiple kernel
+versions or you have downloaded the kernel images and not the kernel
+meta-packages then they must be manually installed.
 
-To install these for the currently active kernel run the command corresponding
+To install for the currently active kernel run the command corresponding
 to your distribution.
 ::::{tab-set}
 :::{tab-item} Ubuntu
