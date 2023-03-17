@@ -1,6 +1,6 @@
 # HIP
-
-
+HIP is both AMD's GPU programming langauge extension and the GPU runtime. This page introduces the HIP runtime and other HIP libraries and tools.
+## HIP Runtime and Libraries
 :::::{grid} 1 1 2 2
 :gutter: 1
 
@@ -12,15 +12,9 @@ The HIP Runtime is used to enable GPU acceleration for all HIP language based pr
 
 :::
 
-:::{grid-item-card} HIPify
-HIPify assists with porting applications from based on CUDA to the HIP Runtime. Supported
-CUDA APIs are documented here as well.
 
-- [Reference Manual](https://rocmdocs.amd.com/projects/rocBLAS/en/rtd/)
 
-:::
-
-:::{grid-item-card} Math Libraries
+:::{grid-item-card} [Math Libraries](./gpu_libraries/math)
 HIP Math Libraries support the following domains:
 
 - [API Reference Manual](./gpu_libraries/blas)
@@ -29,7 +23,7 @@ HIP Math Libraries support the following domains:
 
 :::
 
-:::{grid-item-card} [C++ Primitives](./c++_primitives)
+:::{grid-item-card} [C++ Primitives](./gpu_libraries/c++_primitives)
 ROCm template libraries for C++ primitives and algorithms are as follows:
 
 - [API Reference Manual](https://rocprim.readthedocs.io/en/latest/)
@@ -68,5 +62,20 @@ operations leveraging AMD GPU hardware.
 
 :::
 
+
+:::::
+
+## Porting tools
+
+:::::{grid} 1 1 1 1
+:gutter: 1
+
+:::{grid-item-card} HIPify
+HIPify assists with porting applications from based on CUDA to the HIP Runtime. Supported
+CUDA APIs are documented here as well.
+
+- [Reference Manual](https://rocmdocs.amd.com/projects/rocBLAS/en/rtd/)
+
+:::
 
 :::::
