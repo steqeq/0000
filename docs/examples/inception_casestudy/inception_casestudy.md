@@ -382,3 +382,23 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=lr_step_size
 ```
 
 16. Iterate over epochs. Each epoch is a complete pass through the training data.
+
+```
+print("Start training")
+for epoch in range(epochs):
+    model.train()
+    epoch_loss = 0
+    len_dataset = 0
+```
+
+17. Iterate over steps. The data is processed in batches, and each step passes through a full batch.
+
+```
+for step, (image, target) in enumerate(data_loader):
+```
+
+18. Pass the image and target to the GPU device.
+
+```
+image, target = image.to(device), target.to(device)
+```
