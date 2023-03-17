@@ -12,8 +12,6 @@ The HIP Runtime is used to enable GPU acceleration for all HIP language based pr
 
 :::
 
-
-
 :::{grid-item-card} [Math Libraries](./gpu_libraries/math)
 HIP Math Libraries support the following domains:
 
@@ -34,7 +32,7 @@ ROCm template libraries for C++ primitives and algorithms are as follows:
 
 :::
 
-:::{grid-item-card} [Communication Libraries](gpu_libraries/communication))
+:::{grid-item-card} [Communication Libraries](gpu_libraries/communication)
 Inter and intra node communication is supported by the following projects:
 
 - [RCCL](https://rocmdocs.amd.com/projects/rccl/en/latest/)
@@ -43,12 +41,11 @@ Inter and intra node communication is supported by the following projects:
 :::
 
 :::{grid-item-card} MIOpen
-AMD's C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA)
-operations leveraging AMD GPU hardware.
+AMD's library for high performance machine learning primitives. 
 
-- [API Reference Manual](https://docs.amd.com/bundle/rocWMMA-release-rocm-rel-5.2/page/API_Reference_Guide.html)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/ROCmSoftwarePlatform/rocWMMA/tree/develop/samples)
+- [API Reference Manual]((https://rocmdocs.amd.com/projects/MIOpen/en/develop/)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/MIOpen/blob/develop/CHANGELOG.md)
+
 
 :::
 
@@ -63,12 +60,10 @@ operations leveraging AMD GPU hardware.
 :::
 
 :::{grid-item-card} [Computer Vision](./computer_vision)
-AMD's C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA)
-operations leveraging AMD GPU hardware.
+Computer vision related projects.
 
-- [API Reference Manual](https://docs.amd.com/bundle/rocWMMA-release-rocm-rel-5.2/page/API_Reference_Guide.html)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/ROCmSoftwarePlatform/rocWMMA/tree/develop/samples)
+- [MIVisionX](https://rocmdocs.amd.com/projects/MIVisionX/en/develop)
+- [rocAL](https://rocmdocs.amd.com/projects/rocAL/en/develop)
 
 :::
 
