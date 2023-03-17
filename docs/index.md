@@ -46,6 +46,7 @@ Welcome to AMD ROCm's documentation!
 - [Compilers and Tools](reference/compilers)
 - [Management Tools](reference/management_tools)
 - [GPU Architecture](reference/gpu_arch)
+- [ROCR-Runtime](./reference/rocr/rocr.md)
 
 :::
 

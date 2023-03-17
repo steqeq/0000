@@ -13,23 +13,28 @@ to your distribution.
 :::{tab-item} Ubuntu
 :sync: ubuntu
 
-```shell  
+```shell
 sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 ```
+
 :::
 
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
+
 ```shell
 # TODO
 ```
+
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
+
 ```shell
 # TODO
 ```
+
 :::
 ::::
 
@@ -63,6 +68,7 @@ rm -f "$TMPRING" rocm.gpg.key
 ::::{tab-set}
 :::{tab-item} Ubuntu 20.04
 :sync: ubuntu-20.04
+
 ```shell
 # Kernel driver repository for focal
 sudo tee /etc/apt/sources.list.d/amdgpu.list <<'EOF'
@@ -73,9 +79,11 @@ sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
 deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian focal main
 EOF
 ```
+
 :::
 :::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
+
 ```shell
 # Kernel driver repository for jammy
 sudo tee /etc/apt/sources.list.d/amdgpu.list <<'EOF'
@@ -86,11 +94,13 @@ sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
 echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
 EOF
 ```
+
 :::
 ::::
 
 ::::{rubric} 3. Update the list of packages
 ::::
+
 ```shell
 sudo apt update
 ```
@@ -105,16 +115,20 @@ TODO
 ::::{tab-set}
 :::{tab-item} RHEL8
 :sync: RHEL8
+
 ```shell
 # TODO
 ```
+
 :::
 
 :::{tab-item} RHEL9
 :sync: RHEL9
+
 ```shell
 # TODO
 ```
+
 :::
 ::::
 :::::
@@ -127,16 +141,20 @@ TODO
 ::::{tab-set}
 :::{tab-item} SLES15 SP3
 :sync: SLES15-SP3
+
 ```shell
 # TODO
 ```
+
 :::
 
 :::{tab-item} SLES15 SP4
 :sync: SLES15-SP4
+
 ```shell
 # TODO
 ```
+
 :::
 
 ::::
@@ -151,23 +169,29 @@ Install the amdgpu kernel module, aka driver, on your system.
 
 :::{tab-item} Ubuntu
 :sync: ubuntu
+
 ```shell
 sudo apt install amdgpu-dkms
 ```
+
 :::
 
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
+
 ```shell
 sudo yum install amdgpu-dkms
 ```
+
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
+
 ```shell
 sudo zypper --gpg-auto-import-keys install amdgpu-dkms
 ```
+
 :::
 
 ::::
@@ -180,23 +204,29 @@ common ROCm applications.
 ::::{tab-set}
 :::{tab-item} Ubuntu
 :sync: ubuntu
-```console shell
+
+```shell
 sudo apt install rocm-hip-libraries
 ```
+
 :::
 
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
-```console shell
+
+```shell
 sudo yum install rocm-hip-libraries
 ```
+
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
-```console shell
+
+```shell
 sudo zypper --gpg-auto-import-keys install rocm-hip-libraries
 ```
+
 :::
 ::::
 
