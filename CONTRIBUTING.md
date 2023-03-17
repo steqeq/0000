@@ -17,10 +17,14 @@ One can put together a productive environment to author documentation and also t
     {
     	"liveServer.settings.root": "/.vscode/build/html",
     	"liveServer.settings.wait": 1000,
-    	"python.terminal.activateEnvInCurrentTerminal": true,
-    	"liveServer.settings.port": 3500
+    	"python.terminal.activateEnvInCurrentTerminal": true
     }
     ```
+
+    The settings in order are set for the following reasons:
+    - Sets the root of the output website for live previews. Must be changed alongside the `tasks.json` command.
+    - Tells live server to wait with the update to give time for Sphinx to regenerate site contents and not refresh before all is don. (Empirical value)
+    - Automatic virtual env activation is a nice touch, should you want to build the site from the integrated terminal.
 
 3. Add the following tasks in `.vscode/tasks.json`
 
