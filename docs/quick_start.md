@@ -174,7 +174,7 @@ sudo zypper --gpg-auto-import-keys install amdgpu-dkms
 
 ## Install ROCm Runtimes
 
-Install the `rocm-hip-runtime` metapackage. This contains depedencies for most
+Install the `rocm-hip-libraries` meta-package. This contains dependencies for most
 common ROCm applications.
 
 ::::{tab-set}
