@@ -402,3 +402,34 @@ for step, (image, target) in enumerate(data_loader):
 ```
 image, target = image.to(device), target.to(device)
 ```
+
+The following is the core training logic:
+
+a. The image is fed into the model.
+
+b. The output is compared with the target in the training data to obtain the loss.
+
+c. This loss is back propagated to all parameters that require optimization.
+
+d. The optimizer updates the parameters based on the selected optimization algorithm.
+
+```
+        output = model(image)
+        loss = criterion(output, target)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+```
+
+The epoch loss is updated, and the step loss prints.
+
+```
+        epoch_loss += output.shape[0] * loss.item()
+        len_dataset += output.shape[0];
+        if step % 10 == 0:
+            print('Epoch: ', epoch, '| step : %d' % step, '| train loss : %0.4f' % loss.item() )
+    epoch_loss = epoch_loss / len_dataset
+    print('Epoch: ', epoch, '| train loss :  %0.4f' % epoch_loss )
+```
+
+The learning rate is updated at the end of each epoch.
