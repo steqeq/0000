@@ -363,3 +363,22 @@ model.to(device)
 ```
 criterion = torch.nn.CrossEntropyLoss()
 ```
+
+14. Set the optimizer to Stochastic Gradient Descent.
+
+```
+optimizer = torch.optim.SGD(
+    model.parameters(),
+    lr=learning_rate,
+    momentum=momentum,
+    weight_decay=weight_decay
+)
+```
+
+15. Set the learning rate scheduler.
+
+```
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=lr_step_size, gamma=lr_gamma)
+```
+
+16. Iterate over epochs. Each epoch is a complete pass through the training data.
