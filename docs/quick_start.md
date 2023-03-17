@@ -24,14 +24,14 @@ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 ```shell
-# TODO
+sudo yum install kernel-headers kernel-devel
 ```
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 ```shell
-# TODO
+sudo zypper install kernel-default-devel
 ```
 :::
 ::::
@@ -80,7 +80,7 @@ deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/am
 EOF
 # ROCm repository for jammy
 sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
 EOF
 ```
 :::
@@ -91,52 +91,138 @@ EOF
 ```shell
 sudo apt update
 ```
-
 :::::
 
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-TODO
+::::{rubric} 1. Add the repositories
+::::
 
 ::::{tab-set}
-:::{tab-item} RHEL8
-:sync: RHEL8
+:::{tab-item} RHEL 8.6
+:sync: RHEL-8.6
 ```shell
-# TODO
+# Add the amdgpu module repository for RHEL 8.6
+sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.6/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for RHEL 8
+sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
 ```
 :::
 
-:::{tab-item} RHEL9
-:sync: RHEL9
+:::{tab-item} RHEL 8.7
+:sync: RHEL-8.7
 ```shell
-# TODO
+# Add the amdgpu module repository for RHEL 8.7
+sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.7/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for RHEL 8
+sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+```
+:::
+
+:::{tab-item} RHEL 9.1
+:sync: RHEL-9.1
+```shell
+# Add the amdgpu module repository for RHEL 9.1
+sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/rhel/9.1/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for RHEL 9
+sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/rhel9/latest/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
 ```
 :::
 ::::
+
+::::{rubric} 2. Clean cached files from enabled repositories
+::::
+
+```shell
+sudo yum clean all
+```
 :::::
 
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
-TODO
+::::{rubric} 1. Add the repositories
+::::
 
 ::::{tab-set}
-:::{tab-item} SLES15 SP3
-:sync: SLES15-SP3
-```shell
-# TODO
-```
-:::
-
-:::{tab-item} SLES15 SP4
+:::{tab-item} Service Pack 4
 :sync: SLES15-SP4
 ```shell
-# TODO
+# Add the amdgpu module repository for SLES 15.4
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/sle/15.4/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for SLES
+sudo tee /etc/zypp/repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/zyp/zypper
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
 ```
 :::
-
 ::::
+
+::::{rubric} 2. Update the new repository
+::::
+```shell
+sudo zypper ref
+```
+
 :::::
 ::::::
 
@@ -163,7 +249,7 @@ sudo yum install amdgpu-dkms
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 ```shell
-sudo zypper --gpg-auto-import-keys install amdgpu-dkms
+sudo zypper install amdgpu-dkms
 ```
 :::
 
@@ -192,7 +278,7 @@ sudo yum install rocm-hip-libraries
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 ```console shell
-sudo zypper --gpg-auto-import-keys install rocm-hip-libraries
+sudo zypper install rocm-hip-libraries
 ```
 :::
 ::::
