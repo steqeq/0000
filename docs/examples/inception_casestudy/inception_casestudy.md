@@ -343,3 +343,23 @@ print("Creating model")
 print("Num classes = ", len(dataset.classes))
 model = torchvision.models.__dict__[model_name](pretrained=pretrained)
 ```
+
+11. Adapt Inception v3 for the current dataset. Tiny-imagenet-200 contains only 200 classes, whereas Inception v3 is designed for 1,000-class output. The last layer of Inception v3 is replaced to match the output features required.
+
+```
+model.fc = torch.nn.Linear(model.fc.in_features, len(dataset.classes))
+model.aux_logits = False
+model.AuxLogits = None
+```
+
+12. Move the model to the GPU device.
+
+```
+model.to(device)
+```
+
+13. Set the loss criteria. For this example, Cross Entropy Loss [5] is used.
+
+```
+criterion = torch.nn.CrossEntropyLoss()
+```
