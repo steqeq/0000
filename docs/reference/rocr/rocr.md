@@ -302,4 +302,4 @@ Micro Devices, Inc. Other product names used in this publication are for
 identification purposes only and may be trademarks of their respective
 companies.
 
-Copyright © 2014-2021 Advanced Micro Devices, Inc. All rights reserved.
+Copyright © 2014-2023 Advanced Micro Devices, Inc. All rights reserved.
