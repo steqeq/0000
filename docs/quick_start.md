@@ -44,20 +44,14 @@ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 
 ::::{rubric} 1. Download and convert the package signing key
 ::::
-
 ```shell
-# Download the key
-wget https://repo.radeon.com/rocm/rocm.gpg.key
 # Make the directory if it doesn't exist yet.
 # This location is recommended by the distribution maintainers.
-mkdir --parents --mode=0755 /etc/apt/keyrings
-# Convert the signing-key to a full keyring required
-# by apt and store in the keyring directory
-TMPRING="$(mktemp --suffix=.gpg --quiet)"
-gpg --keyring="$TMPRING" --no-default-keyring --import rocm.gpg.key
-gpg --keyring="$TMPRING" --no-default-keyring --export --output /etc/apt/keyrings/rocm.gpg
-# Remove the key and the temporary keyring used for the conversion
-rm -f "$TMPRING" rocm.gpg.key
+sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+# Download the key, convert the signing-key to a full
+# keyring required by apt and store in the keyring directory
+wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | \
+    gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
 ```
 
 ::::{rubric} 2. Add the repositories
