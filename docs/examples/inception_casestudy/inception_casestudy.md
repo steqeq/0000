@@ -337,3 +337,9 @@ data_loader_test = torch.utils.data.DataLoader(
 :::{note}
 Use torchvision to obtain the Inception v3 model. Use the pretrained model weights to speed up training.
 :::
+
+```
+print("Creating model")
+print("Num classes = ", len(dataset.classes))
+model = torchvision.models.__dict__[model_name](pretrained=pretrained)
+```
