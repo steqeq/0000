@@ -270,3 +270,13 @@ weight_decay = 1e-4
 lr_step_size = 30
 lr_gamma = 0.1
 ```
+
+:::{note}
+One training epoch is when the neural network passes an entire dataset forward and backward. 
+:::
+
+```
+epochs = 90
+```
+
+ The train and validation directories are determined.
