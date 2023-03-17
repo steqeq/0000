@@ -280,3 +280,60 @@ epochs = 90
 ```
 
  The train and validation directories are determined.
+
+```
+train_dir = os.path.join(data_path, "train")
+val_dir = os.path.join(data_path, "val")
+```
+
+10. Set up the training and testing data loaders.
+
+```
+interpolation = InterpolationMode(interpolation)
+ 
+TRAIN_TRANSFORM_IMG = transforms.Compose([
+Normalizaing and standardardizing the image    
+transforms.RandomResizedCrop(train_crop_size, interpolation=interpolation),
+    transforms.PILToTensor(),
+    transforms.ConvertImageDtype(torch.float),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                         std=[0.229, 0.224, 0.225] )
+    ])
+dataset = torchvision.datasets.ImageFolder(
+    train_dir,
+    transform=TRAIN_TRANSFORM_IMG
+)
+TEST_TRANSFORM_IMG = transforms.Compose([
+    transforms.Resize(val_resize_size, interpolation=interpolation),
+    transforms.CenterCrop(val_crop_size),
+    transforms.PILToTensor(),
+    transforms.ConvertImageDtype(torch.float),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                         std=[0.229, 0.224, 0.225] )
+    ])
+ 
+dataset_test = torchvision.datasets.ImageFolder( 
+    val_dir, 
+    transform=TEST_TRANSFORM_IMG
+)
+ 
+print("Creating data loaders")
+train_sampler = torch.utils.data.RandomSampler(dataset)
+test_sampler = torch.utils.data.SequentialSampler(dataset_test)
+ 
+data_loader = torch.utils.data.DataLoader(
+    dataset,
+    batch_size=batch_size,
+    sampler=train_sampler,
+    num_workers=num_workers,
+    pin_memory=True
+)
+ 
+data_loader_test = torch.utils.data.DataLoader(
+    dataset_test, batch_size=batch_size, sampler=test_sampler, num_workers=num_workers, pin_memory=True
+)
+```
+
+:::{note}
+Use torchvision to obtain the Inception v3 model. Use the pretrained model weights to speed up training.
+:::
