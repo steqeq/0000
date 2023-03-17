@@ -433,3 +433,26 @@ The epoch loss is updated, and the step loss prints.
 ```
 
 The learning rate is updated at the end of each epoch.
+
+```
+lr_scheduler.step()
+```
+
+After training for the epoch, the model evaluates against the validation dataset. 
+
+```
+model.eval()
+    with torch.inference_mode():
+        running_loss = 0
+        for step, (image, target) in enumerate(data_loader_test):
+            image, target = image.to(device), target.to(device)
+            
+            output = model(image)
+            loss = criterion(output, target)
+ 
+            running_loss += loss.item()
+    running_loss = running_loss / len(data_loader_test)
+    print('Epoch: ', epoch, '| test loss : %0.4f' % running_loss )
+```
+
+19. Save the model for use in inferencing tasks.
