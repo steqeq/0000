@@ -255,3 +255,18 @@ During each training step, a batch of images is processed to compute the loss gr
 batch_size = 32
 ```
 
+This refers to the number of CPU threads the data loader uses to perform efficient multiprocess data loading.
+
+```
+num_workers = 16
+```
+
+The PyTorch optim package provides methods to adjust the learning rate as the training progresses. This example uses the StepLR scheduler, which decays the learning rate by lr_gamma at every lr_step_size number of epochs.
+
+```
+learning_rate = 0.1
+momentum = 0.9
+weight_decay = 1e-4
+lr_step_size = 30
+lr_gamma = 0.1
+```
