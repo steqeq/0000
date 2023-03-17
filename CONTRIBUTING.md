@@ -98,3 +98,7 @@ One can put together a productive environment to author documentation and also t
     - Launch the default build Task using either:
       - a hotkey _(default is 'Ctrl+Shift+B')_ or
       - by issuing the `Tasks: Run Build Task` from the Command Palette.
+
+6. Open the live preview
+
+    - Navigate to the output of the site within VS Code, right-click on `.vscode/build/html/index.html` and select `Open with Live Server`. The contents should update on every rebuild without having to refresh the browser.
