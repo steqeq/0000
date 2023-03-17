@@ -17,18 +17,20 @@ The HIP Runtime is used to enable GPU acceleration for all HIP language based pr
 :::{grid-item-card} [Math Libraries](./gpu_libraries/math)
 HIP Math Libraries support the following domains:
 
-- [API Reference Manual](./gpu_libraries/blas)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocBLAS)
+- [Matrix Multiplication](./gpu_libraries/blas)
+- [Fast Fourier Transforms](./gpu_libraries/fft)
+- [Random Numbers](./gpu_libraries/rand)
+- [Linear Solvers](./gpu_libraries/solver)
+- [Sparse Matrix Solvers](./gpu_libraries/sparse)
 
 :::
 
 :::{grid-item-card} [C++ Primitives](./gpu_libraries/c++_primitives)
 ROCm template libraries for C++ primitives and algorithms are as follows:
 
-- [API Reference Manual](https://rocprim.readthedocs.io/en/latest/)
-- [API Reference Manual](https://rocthrust.readthedocs.io/en/latest/)
-- [API Reference Manual](https://hipcub.readthedocs.io/en/latest/)
+- [rocPRIM](https://rocprim.readthedocs.io/en/latest/)
+- [rocThrust](https://rocthrust.readthedocs.io/en/latest/)
+- [hipCUB](https://hipcub.readthedocs.io/en/latest/)
 
 :::
 
