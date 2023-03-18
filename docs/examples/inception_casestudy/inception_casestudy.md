@@ -456,3 +456,10 @@ model.eval()
 ```
 
 19. Save the model for use in inferencing tasks.
+
+```
+# save model
+torch.save(model.state_dict(), "trained_inception_v3.pt")
+```
+
+Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in Figure 7.
