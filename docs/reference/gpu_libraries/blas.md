@@ -1,6 +1,6 @@
 # Linear Algebra Libraries
 
-ROCm libraries for BLAS are as follows:
+ROCm libraries for linear algebra are as follows:
 
 :::::{grid} 1 1 2 2
 :gutter: 1
