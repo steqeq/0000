@@ -1,4 +1,4 @@
-# Matrix Multiplication
+# Linear Algebra Libraries
 
 ROCm libraries for BLAS are as follows:
 
@@ -24,15 +24,27 @@ rocBLAS is an AMD GPU optimized library for BLAS.
 
 :::
 
-:::{grid-item-card} Tensile
-Tensile is a tool for creating benchmark-driven backend libraries for GEMMs,
-GEMM-like problems and general N-dimensional tensor contractions on a GPU.
-The Tensile library is mainly used as backend library to rocBLAS. Tensile acts as the
-performance backbone for a wide variety of 'compute' applications running on AMD GPUs.
+:::{grid-item-card} rocSPARSE
+rocSPARSE is a sparse matrix solver for AMD GPU backends.
 
-- [API Reference Manual](https://rocmdocs.amd.com/projects/rocBLAS/en/rtd/)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocBLAS)
+- [API Reference Manual](https://rocmdocs.amd.com/projects/rocSPARSE/en/rtd/)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/rocSPARSE/blob/develop/CHANGELOG.md)
+
+:::
+
+:::{grid-item-card} hipSPARSE
+hipSPARSE is sparse matrix solver library that support AMD and NVIDIA GPU backends.
+
+- [API Reference Manual](https://rocmdocs.amd.com/projects/hipSPARSE/en/rtd/)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/hipSPARSE/blob/develop/CHANGELOG.md)
+
+:::
+
+:::{grid-item-card} rocALUTION
+rocBLAS is an AMD GPU optimized library for BLAS.
+
+- [API Reference Manual](https://rocmdocs.amd.com/projects/rocALUTION/en/rtd/)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/CHANGELOG.md)
 
 :::
 
