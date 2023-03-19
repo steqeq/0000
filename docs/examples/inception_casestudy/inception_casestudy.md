@@ -742,3 +742,23 @@ plt.show()
 | ![Image 8](../../data/understand/deep_learning/mnist1.png)|
 
 10. From the above picture, you can see that values are from zero to 255. Before training this on the neural network, you must bring them in the range of zero to one. Hence, divide the values by 255.
+
+```
+train_images = train_images / 255.0
+ 
+test_images = test_images / 255.0
+```
+
+11. To ensure the data is in the correct format and ready to build and train the network, display the first 25 images from the training set and the class name below each image.
+
+```
+plt.figure(figsize=(10,10))
+for i in range(25):
+    plt.subplot(5,5,i+1)
+    plt.xticks([])
+    plt.yticks([])
+    plt.grid(False)
+    plt.imshow(train_images[i], cmap=plt.cm.binary)
+    plt.xlabel(class_names[train_labels[i]])
+plt.show()
+```
