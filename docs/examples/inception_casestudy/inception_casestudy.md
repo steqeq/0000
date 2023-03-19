@@ -921,3 +921,12 @@ print(img.shape)
 ```
 
 11. tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
+
+```
+# Add the image to a batch where it's the only member.
+img = (np.expand_dims(img,0))
+ 
+print(img.shape)
+```
+
+12. Predict the correct label for this image.
