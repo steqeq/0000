@@ -730,3 +730,13 @@ print(train_labels)
 ```
 
 9. Preprocess the data before training the network, and you can start inspecting the first image, as its pixels will fall in the range of zero to 255.
+
+```
+plt.figure()
+plt.imshow(train_images[0])
+plt.colorbar()
+plt.grid(False)
+plt.show()
+```
+
+| !Image 8](../../data/understand/deep_learning/mnist1.png) |
