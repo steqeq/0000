@@ -132,7 +132,7 @@ subtrees:
           - url: https://rocmdocs.amd.com/projects/rvs/en/{branch}/
             title: RVS
           - url: https://rocmdocs.amd.com/projects/rdc/en/{branch}/
-            title: ROCM Datacenter Tool
+            title: ROCm Datacenter Tool
     - file: reference/gpu_arch
 - caption: Understand ROCm
   entries:
