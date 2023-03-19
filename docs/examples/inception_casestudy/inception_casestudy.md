@@ -665,3 +665,13 @@ for classname, correct_count in correct_pred.items():
     accuracy = 100 * float(correct_count) / total_pred[classname]
     print("Accuracy for class {:5s} is: {:.1f} %".format(classname,accuracy))
 ```
+
+### Case Study: TensorFlow with Fashion MNIST
+
+Fashion MNIST is a dataset that contains 70,000 grayscale images in 10 categories.
+
+Implement and train a neural network model using the TensorFlow framework to classify images of clothing, like sneakers and shirts.
+
+The dataset has 60,000 images you will use to train the network and 10,000 to evaluate how accurately the network learned to classify images. The Fashion MNIST dataset can be accessed via TensorFlow internal libraries.
+
+Access the source code from the following repository:
