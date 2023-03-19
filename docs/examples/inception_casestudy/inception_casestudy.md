@@ -793,3 +793,27 @@ model.compile(optimizer='adam',
 - Metrics —This is used to monitor the training and testing steps.
 
 The following example uses accuracy, the fraction of the correctly classified images.
+
+To train the neural network model, follow these steps:
+
+1. Feed the training data to the model. The training data is in the train_images and train_labels arrays in this example. The model learns to associate images and labels.
+
+2. Ask the model to make predictions about a test set—in this example, the test_images array.
+
+3. Verify that the predictions match the labels from the test_labels array.
+
+4. To start training, call the model.fit method because it "fits" the model to the training data.
+
+```
+model.fit(train_images, train_labels, epochs=10)
+```
+
+5. Compare how the model will perform on the test dataset.
+
+```
+test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
+ 
+print('\nTest accuracy:', test_acc)
+```
+
+6. With the model trained, you can use it to make predictions about some images: the model's linear outputs and logits. Attach a softmax layer to convert the logits to probabilities, making it easier to interpret.
