@@ -740,3 +740,5 @@ plt.show()
 ```
 
 | ![Image 8](../../data/understand/deep_learning/mnist1.png)|
+
+10. From the above picture, you can see that values are from zero to 255. Before training this on the neural network, you must bring them in the range of zero to one. Hence, divide the values by 255.
