@@ -15,7 +15,7 @@ Training also includes the choice of an optimization algorithm that reduces the 
 ## Training Phases
 Training occurs in multiple phases for every batch of training data. Table 2 provides an explanation of the types of training phases.
 
-:::{table} Table 2. Types of Training Phases
+:::{table} **Table 2. Types of Training Phases**
 :widths: auto
 | Types of Phases |  | 
 | ----------- | ----------- | 
