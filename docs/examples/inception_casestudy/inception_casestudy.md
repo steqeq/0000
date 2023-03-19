@@ -704,3 +704,15 @@ fashion_mnist = tf.keras.datasets.fashion_mnist
 ```
 
 Since you have 10 types of images in the dataset, assign labels from zero to nine. Each image is assigned one label. The images are 28x28 NumPy arrays, with pixel values ranging from zero to 255.
+
+5. Each image is mapped to a single label. Since the class names are not included with the dataset, store them, and later use them when plotting the images:
+
+```
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat','Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+```
+
+6. Use this code to explore the dataset by knowing its dimensions:
+
+```
+train_images.shape
+```
