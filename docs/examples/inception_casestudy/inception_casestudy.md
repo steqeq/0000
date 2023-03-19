@@ -765,7 +765,11 @@ for i in range(25):
 plt.show()
 ```
 
-| ![Image 9](../../data/understand/deep_learning/mnist2.png)|
+```{figure} ../../data/understand/deep_learning/mnist2.png
+---
+align: center
+---
+```
 
 The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Deep Learning consists of chaining together simple layers. Most layers, such as tf.keras.layers.Dense, have parameters that are learned during training.
 
