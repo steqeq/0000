@@ -507,3 +507,39 @@ train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shu
 ```
 
 4. Follow the same procedure for the testing set.
+
+```
+test_set = TorchVision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
+test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=2)
+print ("teast set and test loader")
+```
+
+5. Specify the defined classes of images belonging to this dataset.
+
+```
+classes = ('Aeroplane', 'motorcar', 'bird', 'cat', 'deer', 'puppy', 'frog', 'stallion', 'cruise', 'truck')
+print("defined classes")
+```
+
+6. Unnormalize the images and then iterate over them.
+
+```
+global image_number
+image_number = 0
+def show_image(img):
+    global image_number
+    image_number = image_number + 1
+    img = img / 2 + 0.5     # de-normalizing input image
+    npimg = img.numpy()
+    plot.imshow(np.transpose(npimg, (1, 2, 0)))
+    plot.savefig("fig{}.jpg".format(image_number))
+    print("fig{}.jpg".format(image_number))
+    plot.show()
+data_iter = iter(train_loader)
+images, labels = data_iter.next()
+show_image(torchvision.utils.make_grid(images))
+print(' '.join('%5s' % classes[labels[j]] for j in range(batch_size)))
+print("image created and saved ")
+```
+
+7. Import the torch.nn for constructing neural networks and torch.nn.functional to use the convolution functions.
