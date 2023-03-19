@@ -688,10 +688,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-
+2. To verify that TensorFlow is installed, print the version of TensorFlow by using the below print statement:
 
 ```
 print(tf._version__) r
 ```
 
 3. Load the dataset from the available internal libraries to analyze and train a neural network upon the MNIST Fashion Dataset. Loading the dataset returns four NumPy arrays. The model uses the training set arrays, train_images and train_labels, to learn.
+
+4. The model is tested against the test set, test_images, and test_labels arrays.
+
+```
+fashion_mnist = tf.keras.datasets.fashion_mnist 
+(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+```
+
+Since you have 10 types of images in the dataset, assign labels from zero to nine. Each image is assigned one label. The images are 28x28 NumPy arrays, with pixel values ranging from zero to 255.
