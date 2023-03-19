@@ -462,7 +462,6 @@ Plotting the train and test loss shows both metrics reducing over training epoch
 
 ```{figure} ../../data/understand/deep_learning/inceptionv3.png
 ---
-scale: 100%
 align: center
 ---
 Figure 7. Inception v3 Train and Loss Graph
