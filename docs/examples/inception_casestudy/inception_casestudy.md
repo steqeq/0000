@@ -688,7 +688,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-2. To verify that TensorFlow is installed, print the version of TensorFlow by using the below print statement:
+
 
 ```
 print(tf._version__) r
