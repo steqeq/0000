@@ -890,7 +890,11 @@ plot_value_array(i, predictions[i],  test_labels)
 plt.show()
 ```
 
-| ![Image 10](../../data/understand/deep_learning/mnist3.png)|
+```{figure} ../../data/understand/deep_learning/mnist3.png
+---
+align: center
+---
+```
 
 ```
 i = 12
