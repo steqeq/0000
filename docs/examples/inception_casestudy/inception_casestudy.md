@@ -905,3 +905,19 @@ plt.subplot(1,2,2)
 plot_value_array(i, predictions[i],  test_labels)
 plt.show()
 ```
+
+```{figure} ../../data/understand/deep_learning/mnist4.png
+---
+align: center
+---
+```
+
+10. Use the trained model to predict a single image.
+
+```
+# Grab an image from the test dataset.
+img = test_images[1]
+print(img.shape)
+```
+
+11. tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
