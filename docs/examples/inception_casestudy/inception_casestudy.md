@@ -739,4 +739,4 @@ plt.grid(False)
 plt.show()
 ```
 
-| !Image 8](../../data/understand/deep_learning/mnist1.png) |
+| ![Image 8](../../data/understand/deep_learning/mnist1.png)|
