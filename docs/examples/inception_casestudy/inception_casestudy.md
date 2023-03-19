@@ -817,3 +817,24 @@ print('\nTest accuracy:', test_acc)
 ```
 
 6. With the model trained, you can use it to make predictions about some images: the model's linear outputs and logits. Attach a softmax layer to convert the logits to probabilities, making it easier to interpret.
+
+```
+probability_model = tf.keras.Sequential([model, 
+                                         tf.keras.layers.Softmax()])
+ 
+predictions = probability_model.predict(test_images)
+```
+
+7. The model has predicted the label for each image in the testing set. Look at the first prediction:
+
+```
+predictions[0]
+```
+
+A prediction is an array of 10 numbers. They represent the model's "confidence" that the image corresponds to each of the 10 different articles of clothing. You can see which label has the highest confidence value:
+
+```
+np.argmax(predictions[0])
+```
+
+8. Plot a graph to look at the complete set of 10 class predictions.
