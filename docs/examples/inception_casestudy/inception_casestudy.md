@@ -682,3 +682,14 @@ To understand the code step by step, follow these steps:
 
 1. Import libraries like TensorFlow, Numpy, and Matplotlib to train the neural network and calculate and plot graphs.
 
+```
+import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+2.     To verify that TensorFlow is installed, print the version of TensorFlow by using the below print statement:
+
+```
+print(tf._version__) r
+```
