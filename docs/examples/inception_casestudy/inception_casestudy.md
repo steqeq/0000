@@ -469,3 +469,10 @@ Plotting the train and test loss shows both metrics reducing over training epoch
 | Figure 7. Inception v3 Train and Loss Graph |
 
 
+### Custom Model with CIFAR-10 on PyTorch
+
+The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of the Tiny Images dataset (which contains 80 million images of 32x32 collected from the Internet) and consists of 60,000 32x32 color images. The images are labeled with one of 10 mutually exclusive classes: airplane, motor car, bird, cat, deer, dog, frog, cruise ship, stallion, and truck (but not pickup truck). There are 6,000 images per class, with 5,000 training and 1,000 testing images per class. Let us prepare a custom model for classifying these images using the PyTorch framework and go step-by-step as illustrated below.
+
+Follow these steps:
+
+1. Import dependencies, including torch, OS, and torchvision.
