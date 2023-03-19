@@ -780,3 +780,16 @@ model = tf.keras.Sequential([
 - After the pixels are flattened, the network consists of a sequence of two tf.keras.layers.Dense layers. These are densely connected or fully connected neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer returns a logits array with a length of 10. Each node contains a score that indicates the current image belongs to one of the 10 classes.
 
 12. You must add the Loss function, Metrics, and Optimizer at the time of model compilation.
+
+```
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+```
+- Loss function —This measures how accurate the model is during training when you are looking to minimize this function to "steer" the model in the right direction.
+
+- Optimizer —This is how the model is updated based on the data it sees and its loss function.
+
+- Metrics —This is used to monitor the training and testing steps.
+
+The following example uses accuracy, the fraction of the correctly classified images.
