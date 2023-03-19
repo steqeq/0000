@@ -716,3 +716,17 @@ class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat','Sandal', '
 ```
 train_images.shape
 ```
+
+7. Use this code to print the size of this training set:
+
+```
+print(len(train_labels))
+```
+
+8. Use this code to print the labels of this training set:
+
+```
+print(train_labels)
+```
+
+9. Preprocess the data before training the network, and you can start inspecting the first image, as its pixels will fall in the range of zero to 255.
