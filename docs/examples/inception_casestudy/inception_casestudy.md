@@ -488,6 +488,14 @@ import numpy as np
 2. The output of torchvision datasets is PILImage images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
 
 ```
+transform = transforms.Compose(
+        [transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+```
+
+During each training step, a batch of images is processed to compute the loss gradient and perform the optimization. In the following setting, the size of the batch is determined.
+
+```
 batch_size = 4
 ```
 
