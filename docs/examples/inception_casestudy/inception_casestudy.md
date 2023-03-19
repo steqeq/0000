@@ -464,7 +464,7 @@ torch.save(model.state_dict(), "trained_inception_v3.pt")
 
 Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in Figure 7.
 
-| ![Figure 7](../../data/understand/deep_learning/inception v3.png) |
+| ![Figure 7](../../data/understand/deep_learning/inceptionv3.png) |
 |:------------------------------------------------------------------:|
 | Figure 7. Inception v3 Train and Loss Graph |
 
