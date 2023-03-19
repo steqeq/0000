@@ -27,17 +27,15 @@ Training occurs in multiple phases for every batch of training data. Table 2 pro
 
 Training is different from inference, particularly from the hardware perspective. Table 3 shows the contrast between training and inference.
 
-||
-|:--:|
-| **Table 3.  Training vs. Inference**|
-||
-
+:::{table} **Table 3. Training vs. Inference**
+:widths: auto
 | Training | Inference | 
 | ----------- | ----------- | 
 | Training is measured in hours/days. | The inference is measured in minutes. |
 | Training is generally run offline in a data center or cloud setting. | The inference is made on edge devices. |
 | The memory requirements for training are higher than inference due to storing intermediate data, such as activations and error gradients. | The memory requirements are lower for inference than training. |
 | Data for training is available on the disk before the training process and is generally significant. The training performance is measured by how fast the data batches can be processed. | Inference data usually arrive stochastically, which may be batched to improve performance. Inference performance is generally measured in throughput speed to process the batch of data and the delay in responding to the input (latency). |
+:::
 
 Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other datatypes, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
 
