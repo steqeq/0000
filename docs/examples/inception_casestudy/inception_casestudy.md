@@ -675,3 +675,10 @@ Implement and train a neural network model using the TensorFlow framework to cla
 The dataset has 60,000 images you will use to train the network and 10,000 to evaluate how accurately the network learned to classify images. The Fashion MNIST dataset can be accessed via TensorFlow internal libraries.
 
 Access the source code from the following repository:
+
+[https://github.com/ROCmSoftwarePlatform/tensorflow_fashionmnist/blob/main/fashion_mnist.py](https://github.com/ROCmSoftwarePlatform/tensorflow_fashionmnist/blob/main/fashion_mnist.py)
+
+To understand the code step by step, follow these steps:
+
+1. Import libraries like TensorFlow, Numpy, and Matplotlib to train the neural network and calculate and plot graphs.
+
