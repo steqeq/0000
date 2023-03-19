@@ -476,3 +476,26 @@ The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of t
 Follow these steps:
 
 1. Import dependencies, including torch, OS, and torchvision.
+
+```
+import torch
+import torchvision
+import torchvision.transforms as transforms
+import matplotlib.pyplot as plot
+import numpy as np
+```
+
+2. The output of torchvision datasets is PILImage images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
+
+```
+batch_size = 4
+```
+
+3. Download the dataset train and test datasets as follows. Specify the batch size, shuffle the dataset once, and specify the number of workers to the number of CPU threads used by the data loader to perform efficient multiprocess data loading. 
+
+```
+train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=2)
+```
+
+4. Follow the same procedure for the testing set.
