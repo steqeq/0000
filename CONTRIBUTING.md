@@ -14,7 +14,9 @@ ROCm documentation adds additional requirements to markdown and rst based files 
 - Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via our automated github action on a Pull Request (PR).
 
 ## How to submit your change request?
+
 ### Pull Request
+
 All contributions to ROCm documentation should arrive via the [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) targetting the develop branch of the repository. If you are unable to contribute via the GitHub Flow, feel free to email us. TODO, confirm email address.
 
 ### GitHub Issue
@@ -22,6 +24,7 @@ All contributions to ROCm documentation should arrive via the [GitHub Flow](http
 ### Email Feedback
 
 ## Language and Style
+
 Adopting Microsoft CPP-Docs guidelines for [Voice and Tone](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md).
 
 ROCm documentation templates to be made public shortly. ROCm templates dictate the recommended structure and flow of the documentation. Guidelines on how to integrate figures, equations, and tables are all based off [MyST](https://myst-parser.readthedocs.io/en/latest/intro.html).
