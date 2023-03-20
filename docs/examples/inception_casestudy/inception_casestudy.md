@@ -1023,3 +1023,18 @@ with open(sample_file) as f:
 ```
 
 6. As the IMDB dataset contains additional folders, remove them before using this utility.
+
+```
+remove_dir = os.path.join(train_dir, 'unsup')
+shutil.rmtree(remove_dir)
+batch_size = 32
+seed = 42
+```
+
+7. The IMDB dataset has already been divided into train and test but lacks a validation set. Create a validation set using an 80:20 split of the training data by using the validation_split argument below:
+
+```
+raw_train_ds=tf.keras.utils.text_dataset_from_directory('aclImdb/train',batch_size=batch_size, validation_split=0.2,subset='training', seed=seed)
+```
+
+8. As you will see in a moment, you can train a model by passing a dataset directly to model.fit. If you are new to tf.data, you can also iterate over the dataset and print a few examples as follows:
