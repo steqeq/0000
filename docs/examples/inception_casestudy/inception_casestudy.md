@@ -952,3 +952,11 @@ align: center
 ```
 np.argmax(predictions_single[0])
 ```
+
+### Case Study: TensorFlow with Text Classification
+
+This procedure demonstrates text classification starting from plain text files stored on disk. You will train a binary classifier to perform sentiment analysis on an IMDB dataset. At the end of the notebook, there is an exercise for you to try in which you will train a multiclass classifier to predict the tag for a programming question on Stack Overflow.
+
+Follow these steps:
+
+1. Import the necessary libraries.
