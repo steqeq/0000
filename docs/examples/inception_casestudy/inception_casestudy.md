@@ -1117,3 +1117,21 @@ align: center
 ```
 
 5. As you can see above, each token has been replaced by an integer. Look up the token (string) that each integer corresponds to by calling get_vocabulary() on the layer.
+
+```
+print("1287 ---> ",vectorize_layer.get_vocabulary()[1287])
+print(" 313 ---> ",vectorize_layer.get_vocabulary()[313])
+print('Vocabulary size: {}'.format(len(vectorize_layer.get_vocabulary())))
+```
+
+6. You are nearly ready to train your model. As a final preprocessing step, apply the TextVectorization layer we created earlier to train, validate, and test the dataset.
+
+```
+train_ds = raw_train_ds.map(vectorize_text)
+val_ds = raw_val_ds.map(vectorize_text)
+test_ds = raw_test_ds.map(vectorize_text)
+```
+
+The cache() function keeps data in memory after it is loaded off disk. This ensures the dataset does not become a bottleneck while training your model. If your dataset is too large to fit into memory, you can also use this method to create a performant on-disk cache, which is more efficient to read than many small files.
+
+The prefetch() function overlaps data preprocessing and model execution while training.
