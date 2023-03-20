@@ -1135,3 +1135,20 @@ test_ds = raw_test_ds.map(vectorize_text)
 The cache() function keeps data in memory after it is loaded off disk. This ensures the dataset does not become a bottleneck while training your model. If your dataset is too large to fit into memory, you can also use this method to create a performant on-disk cache, which is more efficient to read than many small files.
 
 The prefetch() function overlaps data preprocessing and model execution while training.
+
+```
+AUTOTUNE = tf.data.AUTOTUNE
+ 
+train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
+val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
+```
+
+7. Create your neural network.
+
+```
+embedding_dim = 16
+model = tf.keras.Sequential([layers.Embedding(max_features + 1, embedding_dim),layers.Dropout(0.2),layers.GlobalAveragePooling1D(),
+layers.Dropout(0.2),layers.Dense(1)])
+model.summary()
+```
