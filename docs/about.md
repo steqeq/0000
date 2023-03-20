@@ -34,7 +34,7 @@ team prior to selecting rst.
 
 ### MyST
 [Markedly Structured Text (MyST)](https://myst-tools.org/docs/spec) is an extended 
-flavour of Markdown ([https://commonmark.org/](CommonMark)) influenced by ReStructured 
+flavor of Markdown ([https://commonmark.org/](CommonMark)) influenced by ReStructured 
 Text (RST) and Sphinx.
 It is intergrated via [`myst-parser`](https://myst-parser.readthedocs.io/en/latest/).
 A cheat sheet that showcases how to use the MyST syntax is available over at [the Jupyter
