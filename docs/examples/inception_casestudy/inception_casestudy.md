@@ -1109,3 +1109,11 @@ print("Review", first_review)
 print("Label", raw_train_ds.class_names[first_label])
 print("Vectorized review", vectorize_text(first_review, first_label))
 ```
+
+```{figure} ../../data/understand/deep_learning/TextClassification3.png
+---
+align: center
+---
+```
+
+5. As you can see above, each token has been replaced by an integer. Look up the token (string) that each integer corresponds to by calling get_vocabulary() on the layer.
