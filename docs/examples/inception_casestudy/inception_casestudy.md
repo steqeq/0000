@@ -946,3 +946,9 @@ plt.show()
 align: center
 ---
 ```
+
+13. tf.keras.Model.predict returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
+
+```
+np.argmax(predictions_single[0])
+```
