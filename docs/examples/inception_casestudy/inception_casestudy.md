@@ -930,3 +930,19 @@ print(img.shape)
 ```
 
 12. Predict the correct label for this image.
+
+```
+predictions_single = probability_model.predict(img)
+ 
+print(predictions_single)
+ 
+plot_value_array(1, predictions_single[0], test_labels)
+_ = plt.xticks(range(10), class_names, rotation=45)
+plt.show()
+```
+
+```{figure} ../../data/understand/deep_learning/mnist5.png
+---
+align: center
+---
+```
