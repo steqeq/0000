@@ -960,3 +960,33 @@ This procedure demonstrates text classification starting from plain text files s
 Follow these steps:
 
 1. Import the necessary libraries.
+
+```
+import matplotlib.pyplot as plt
+import os
+import re
+import shutil
+import string
+import tensorflow as tf
+ 
+from tensorflow.keras import layers
+from tensorflow.keras import losses
+```
+
+2. Get the data for the text classification, and extract the database from the given link of IMDB.
+
+```
+url = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
+ 
+dataset = tf.keras.utils.get_file("aclImdb_v1", url,
+                                    untar=True, cache_dir='.',
+                                    cache_subdir='')
+```
+
+```
+Downloading data from https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz
+84131840/84125825 [==============================] – 1s 0us/step
+84149932/84125825 [==============================] – 1s 0us/step
+```
+
+3. Fetch the data from the directory.
