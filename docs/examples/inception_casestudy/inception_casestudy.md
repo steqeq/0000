@@ -990,3 +990,10 @@ Downloading data from https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.t
 ```
 
 3. Fetch the data from the directory.
+
+```
+dataset_dir = os.path.join(os.path.dirname(dataset), 'aclImdb')
+print(os.listdir(dataset_dir))
+```
+
+4. Load the data for training purposes.
