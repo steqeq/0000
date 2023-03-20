@@ -997,3 +997,29 @@ print(os.listdir(dataset_dir))
 ```
 
 4. Load the data for training purposes.
+
+```
+train_dir = os.path.join(dataset_dir, 'train')
+os.listdir(train_dir)
+```
+
+```
+['labeledBow.feat',
+'urls_pos.txt',
+'urls_unsup.txt',
+'unsup',
+'pos',
+'unsupBow.feat',
+'urls_neg.txt',
+'neg']
+```
+
+5. The directories contain many text files, each of which is a single movie review. To look at one of them, use the following:
+
+```
+sample_file = os.path.join(train_dir, 'pos/1181_9.txt')
+with open(sample_file) as f:
+  print(f.read())
+```
+
+6. As the IMDB dataset contains additional folders, remove them before using this utility.
