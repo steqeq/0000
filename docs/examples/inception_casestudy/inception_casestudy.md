@@ -1180,3 +1180,21 @@ align: center
 ```
 
 10. See how the model performs. Two values are returned: loss (a number representing our error; lower values are better) and accuracy.
+
+```
+loss, accuracy = model.evaluate(test_ds)
+ 
+print("Loss: ", loss)
+print("Accuracy: ", accuracy)
+```
+
+:::{note}
+model.fit() returns a History object that contains a dictionary with everything that happened during training. 
+:::
+
+```
+history_dict = history.history
+history_dict.keys()
+```
+
+11. Four entries are for each monitored metric during training and validation. Use these to plot the training and validation loss for comparison, as well as the training and validation accuracy:
