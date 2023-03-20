@@ -33,9 +33,31 @@ Font size and selection, page layout, white space control, and other formatting 
 
 ## Building Documentation
 
+While contributing, one may build the documentation locally on the command-line or rely on Continuous Integration for previewing the resulting HTML pages in a browser.
+
 ### Command line documentation builds
 
+To build the docs locally using Python Virtual Environment (`venv`), execute the following commands from the project root:
+
+```sh
+python3 -mvenv .venv
+# Windows
+.venv/Scripts/python -m pip install -r docs/.sphinx/requirements.txt
+.venv/Scripts/python -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
+# Linux
+.venv/bin/python     -m pip install -r docs/.sphinx/requirements.txt
+.venv/bin/python     -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
+```
+
+Then open up `_build/html/index.html` in your favorite browser.
+
 ### Pull Requests documentation builds
+
+When opening a PR to the `develop` branch on GitHub, the page corresponding to the PR (`https://github.com/RadeonOpenCompute/ROCm/pull/<pr_number>`) will have a summary at the bottom.
+
+- There, click `Show all checks` and `Details` of the Read the Docs pipeline. It will take you to `https://readthedocs.com/projects/advanced-micro-devices-rocm/builds/<some_build_num>/`
+  - The list of commands shown are the exact ones used by CI to produce a render of the documentation.
+- There, click on the small blue link `View docs` (which is not the same as the bigger button with the same text). It will take you to the built HTML site with a URL of the form `https://advanced-micro-devices-demo--<pr_number>.com.readthedocs.build/projects/alpha/en/<pr_number>/`.
 
 ### Build the docs using VS Code
 
