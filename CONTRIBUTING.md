@@ -21,6 +21,8 @@ All contributions to ROCm documentation should arrive via the [GitHub Flow](http
 
 ### GitHub Issue
 
+Issues on existing or absent docs can be filed as [GitHub issues](https://github.com/RadeonOpenCompute/ROCm/issues).
+
 ### Email Feedback
 
 ## Language and Style
@@ -53,7 +55,7 @@ Then open up `_build/html/index.html` in your favorite browser.
 
 ### Pull Requests documentation builds
 
-When opening a PR to the `develop` branch on GitHub, the page corresponding to the PR (`https://github.com/RadeonOpenCompute/ROCm/pull/<pr_number>`) will have a summary at the bottom.
+When opening a PR to the `develop` branch on GitHub, the page corresponding to the PR (`https://github.com/RadeonOpenCompute/ROCm/pull/<pr_number>`) will have a summary at the bottom. This requires the user be logged in to GitHub.
 
 - There, click `Show all checks` and `Details` of the Read the Docs pipeline. It will take you to `https://readthedocs.com/projects/advanced-micro-devices-rocm/builds/<some_build_num>/`
   - The list of commands shown are the exact ones used by CI to produce a render of the documentation.
