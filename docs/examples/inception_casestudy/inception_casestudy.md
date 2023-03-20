@@ -1038,3 +1038,29 @@ raw_train_ds=tf.keras.utils.text_dataset_from_directory('aclImdb/train',batch_si
 ```
 
 8. As you will see in a moment, you can train a model by passing a dataset directly to model.fit. If you are new to tf.data, you can also iterate over the dataset and print a few examples as follows:
+
+```
+for text_batch, label_batch in raw_train_ds.take(1):
+  for i in range(3):
+    print("Review", text_batch.numpy()[i])
+    print("Label", label_batch.numpy()[i])
+```
+
+9. The labels are zero or one. To see which of these correspond to positive and negative movie reviews, check the class_names property on the dataset.
+
+```
+print("Label 0 corresponds to", raw_train_ds.class_names[0])
+print("Label 1 corresponds to", raw_train_ds.class_names[1])
+```
+
+10. Next, create validation and test the dataset. Use the remaining 5,000 reviews from the training set for validation into two classes of 2,500 reviews each.
+
+```
+raw_val_ds = tf.keras.utils.text_dataset_from_directory('aclImdb/train', 
+batch_size=batch_size,validation_split=0.2,subset='validation', seed=seed)
+ 
+raw_test_ds = 
+tf.keras.utils.text_dataset_from_directory(
+    'aclImdb/test', 
+    batch_size=batch_size)
+```
