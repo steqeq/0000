@@ -1234,3 +1234,33 @@ align: center
 ---
 Figure 9. Training and Validation Accuracy
 ```
+
+12. Export the model.
+
+```
+export_model = tf.keras.Sequential([
+vectorize_layer,
+model,
+  layers.Activation('sigmoid')
+])
+ 
+export_model.compile(
+    loss=losses.BinaryCrossentropy(from_logits=False), optimizer="adam", metrics=['accuracy']
+)
+ 
+# Test it with `raw_test_ds`, which yields raw strings
+loss, accuracy = export_model.evaluate(raw_test_ds)
+print(accuracy)
+```
+
+13. To get predictions for new examples, call model.predict().
+
+```
+examples = [
+  "The movie was great!",
+  "The movie was okay.",
+  "The movie was terrible..."
+]
+ 
+export_model.predict(examples)
+```
