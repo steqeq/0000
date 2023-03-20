@@ -8,7 +8,7 @@ While interacting with ROCm Documentation, we encourage you to be polite and res
 
 Our documentation supports both markdown and rst files. Markdown is encouraged over rst due to lower barrier to participation. Sphinx supports the [MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) flavor of markdown. That is the preferred standard for markdown for ROCm documentation. We accept GitHub flavored markdown as well. Please see [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github)'s guide on writing and formatting on GitHub as a starting point.
 
-ROCm documentation adds additional requirements to markdown and rst based files as follows: 
+ROCm documentation adds additional requirements to markdown and rst based files as follows:
 
 - Level one headers are only used for page titles. There must be only one level 1 header per file for both Markdown and Restructured Text.
 - Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via our automated github action on a Pull Request (PR).
