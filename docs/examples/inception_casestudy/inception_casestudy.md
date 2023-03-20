@@ -1158,3 +1158,25 @@ model.summary()
 align: center
 ---
 ```
+
+8. A model needs a loss function and an optimizer for training. Since this is a binary classification problem and the model outputs a probability (a single-unit layer with a sigmoid activation), use [losses.BinaryCrossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy) loss function.
+
+```
+model.compile(loss=losses.BinaryCrossentropy(from_logits=True),
+optimizer='adam',metrics=tf.metrics.BinaryAccuracy(threshold=0.0))
+```
+
+9. Train the model by passing the dataset object to the fit method.
+
+```
+epochs = 10
+history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
+```
+
+```{figure} ../../data/understand/deep_learning/TextClassification5.png
+---
+align: center
+---
+```
+
+10. See how the model performs. Two values are returned: loss (a number representing our error; lower values are better) and accuracy.
