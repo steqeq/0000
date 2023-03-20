@@ -1198,3 +1198,39 @@ history_dict.keys()
 ```
 
 11. Four entries are for each monitored metric during training and validation. Use these to plot the training and validation loss for comparison, as well as the training and validation accuracy:
+
+```
+acc = history_dict['binary_accuracy']
+val_acc = history_dict['val_binary_accuracy']
+loss = history_dict['loss']
+val_loss = history_dict['val_loss']
+ 
+epochs = range(1, len(acc) + 1)
+ 
+# "bo" is for "blue dot"
+plt.plot(epochs, loss, 'bo', label='Training loss')
+# b is for "solid blue line"
+plt.plot(epochs, val_loss, 'b', label='Validation loss')
+plt.title('Training and validation loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+ 
+plt.show()
+```
+
+Figures 8 and 9 illustrate the training and validation loss and the training and validation accuracy.
+
+```{figure} ../../data/understand/deep_learning/TextClassification6.png
+---
+align: center
+---
+Figure 8. Training and Validation Loss
+```
+
+```{figure} ../../data/understand/deep_learning/TextClassification7.png
+---
+align: center
+---
+Figure 9. Training and Validation Accuracy
+```
