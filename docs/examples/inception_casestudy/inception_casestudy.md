@@ -1152,3 +1152,9 @@ model = tf.keras.Sequential([layers.Embedding(max_features + 1, embedding_dim),l
 layers.Dropout(0.2),layers.Dense(1)])
 model.summary()
 ```
+
+```{figure} ../../data/understand/deep_learning/TextClassification4.png
+---
+align: center
+---
+```
