@@ -6,30 +6,32 @@ ROCmCC is a Clang/LLVM-based compiler. It is optimized for high-performance
 computing on AMD GPUs and CPUs and supports various heterogeneous programming
 models such as HIP, OpenMP, and OpenCL.
 
-ROCmCC is made available via two packages: rocm-llvm and rocm-llvm-alt. The
-differences are shown in this table:
+ROCmCC is made available via two packages: `rocm-llvm` and `rocm-llvm-alt`.
+The differences are listed in [the table below](rocm-llvm-vs-alt).
 
-| **Table 1. rocm-llvm vs. rocm-llvm-alt**            |                                                                                                                               |
-|:---------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
-| **rocm-llvm**                                       | **rocm-llvm-alt**                                                                                                             |
-| Installed by default when ROCm™ itself is installed | An optional package                                                                                                           |
-| Provides an open-source compiler                    | Provides an additional closed-source compiler for users interested in additional CPU optimizations not available in rocm-llvm |
+:::{list-table} Differences between `rocm-llvm` and `rocm-llvm-alt`
+:header-rows: 1
+:name: rocm-llvm-vs-alt
 
-For more details, follow this table:
+* - **rocm-llvm**
+  - **rocm-llvm-alt**
+* - Installed by default with ROCm™
+  - Optional Package
+* - Open-source compiler
+  - Closed-source compiler with additional CPU optimizations
+   not available in rocm-llvm
+:::
 
-| **Table 2. Details Table**                    |                                                                                                        |
-|:---------------------------------------------:|:------------------------------------------------------------------------------------------------------:|
-| **For**                                       | **See**                                                                                                |
-| The latest usage information for AMD GPU      | [https://llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)                       |
-| Usage information for a specific ROCm release | [https://llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)                       |
-| Source code for rocm-llvm                     | [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
+For more details, see:
+- AMD GPU usage: [llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)
+- Releases and source: <https://github.com/RadeonOpenCompute/llvm-project>
 
 ### ROCm Compiler Interfaces
 
 ROCm currently provides two compiler interfaces for compiling HIP programs:
 
-- /opt/rocm/bin/hipcc
-- /opt/rocm/bin/amdclang++
+- `/opt/rocm/bin/hipcc`
+- `/opt/rocm/bin/amdclang++`
 
 Both leverage the same LLVM compiler technology with the AMD GCN GPU support;
 however, they offer a slightly different user experience. The hipcc command-line
@@ -42,15 +44,55 @@ build process.
 
 The major differences between hipcc and amdclang++ are listed below:
 
-| **Table 3. Differences Between hipcc and amdclang++** |                                                                                                                          |                |
-|:-----------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:--------------:|
-| *                                                     | **hipcc**                                                                                                                | **amdclang++** |
-| Compiling HIP source files                            | Treats all source files as HIP language source files                                                                     | Enables the HIP language support for files with the “.hip” extension or through the -x hip compiler option |
-| Automatic GPU architecture detection                  | Auto-detects the GPUs available on the system and generates code for those devices when no GPU architecture is specified | Has AMD GCN gfx803 as the default GPU architecture. The --offload-arch compiler option may be used to target other GPU architectures |
-| Finding a HIP installation                            | Finds the HIP installation based on its own location and its knowledge about the ROCm directory structure                | First looks for HIP under the same parent directory as its own LLVM directory and then falls back on /opt/rocm. Users can use the --rocm-path option to instruct the compiler to use HIP from the specified ROCm installation. |
-| Linking to the HIP runtime library                    | Is configured to automatically link to the HIP runtime from the detected HIP installation                                | Requires the --hip-link flag to be specified to link to the HIP runtime. Alternatively, users can use the -l`<dir>` -lamdhip64 option to link to a HIP runtime library. |
-| Device function inlining                              | Inlines all GPU device functions, which provide greater performance and compatibility for codes that contain file scoped or device function scoped `__shared__` variables. However, it may increase compile time. | Relies on inlining heuristics to control inlining. Users experiencing performance or compilation issues with code using file scoped or device function scoped `__shared__` variables could try -mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false to work around the issue. There are plans to address these issues with future compiler improvements. |
-| Source code location                                  | Developed at [https://github.com/ROCm-Developer-Tools/HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC)              | Developed at [https://github.com/RadeonOpenCompute/llvm-project](https://github.com/RadeonOpenCompute/llvm-project) |
+::::{list-table} Differences between hipcc and amdclang++
+:header-rows: 1
+:name: hipcc-vs-amdclang
+:widths: 16 42 42
+
+* - Feature
+  - `hipcc`
+  - `amdclang++`
+
+* - **Compiling HIP source files**
+  - Treats all source files as HIP language source files.
+  - Enables the HIP language support for files with the “.hip” extension or
+    through the -x hip compiler option.
+
+* - **Detecting GPU architecture**
+  - Auto-detects the GPUs available on the system and generates code for those
+    devices when no GPU architecture is specified.
+  - Has AMD GCN gfx803 as the default GPU architecture. The `--offload-arch`
+    compiler option may be used to target other GPU architectures.
+
+* - **Locating HIP installation**
+  - Locates based on its own location and its knowledge about the ROCm
+    directory structure.
+  - First looks for HIP under the same parent directory as its own LLVM
+    directory and then falls back on `/opt/rocm`. Users can use the
+    `--rocm-path` option to instruct the compiler to use HIP from the
+    specified ROCm installation.
+
+* - **Linking HIP runtime library**
+  - Automatically links to the HIP runtime from the detected HIP installation
+  - Requires the `--hip-link` flag to be specified to link to the HIP runtime.
+    Alternatively, users can use the -l`<dir>` -lamdhip64 option to link to a
+    HIP runtime library.
+
+* - **Inlining device functions**
+  - Inlines all GPU device functions, which provide greater performance and
+    compatibility for codes that contain file scoped or device function scoped
+    `__shared__` variables. However, it may increase compile time.
+  - Relies on inlining heuristics to control inlining. Users experiencing
+    performance or compilation issues with code using file scoped or device
+    function scoped `__shared__` variables could try
+    `-mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false`
+    to work around the issue. There are plans to address these issues with
+    future compiler improvements.
+
+* - Repository
+  - <https://github.com/ROCm-Developer-Tools/HIPCC>
+  - <https://github.com/RadeonOpenCompute/llvm-project>
+::::
 
 ## Compiler Options and Features
 
@@ -118,11 +160,8 @@ to perform this optimization. Users can choose different levels of
 aggressiveness with which this optimization can be applied to the application,
 with 1 being the least aggressive and 7 being the most aggressive level.
 
-||
-|:--:|
-| **Table 5. -fstruct-layout Values and Their Effects**|
-||
 
+:::{table} -fstruct-layout Values and Their Effects
 | -fstruct-layout value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | 1 | Enabled | NA | NA | NA |
@@ -132,6 +171,7 @@ with 1 being the least aggressive and 7 being the most aggressive level.
 | 5 | Enabled | 16-bit | Integer | Yes |
 | 6 | Enabled | 32-bit | 64-bit signed int or unsigned int. Users must ensure that the values assigned to 64-bit signed int fields are in range -(2^31 - 1) to +(2^31 - 1) and 64-bit unsigned int fields are in the range 0 to +(2^31 - 1). Otherwise, you may obtain incorrect results. | No. Users must ensure the safety based on the program compiled. |
 | 7 | Enabled | 16-bit | 64-bit signed int or unsigned int. Users must ensure that the values assigned to 64-bit signed int fields are in range -(2^31 - 1) to +(2^31 - 1) and 64-bit unsigned int fields are in the range 0 to +(2^31 - 1). Otherwise, you may obtain incorrect results. | No. Users must ensure the safety based on the program compiled. |
+:::
 
 #### `-fitodcalls`
 
@@ -280,13 +320,14 @@ aggressiveness of heuristics increases with the level (1-4). The default level
 is 2. Higher levels may lead to code bloat due to expansion of recursive
 functions at call sites.
 
-| **Table 6. -inline-recursion Values and Their Effects**|                                                                                |
-|:------------------------------------------------------:|:------------------------------------------------------------------------------:|
-| `-inline-recursion` **value**                          | **Inline depth of heuristics used to enable inlining for recursive functions** |
-| 1                                                      | 1                                                                              |
-| 2                                                      | 1                                                                              |
-| 3                                                      | 1                                                                              |
-| 4                                                      | 10                                                                             |
+:::{table} -inline-recursion Level and Their Effects
+| `-inline-recursion` **value** | **Inline depth of heuristics used to enable inlining for recursive functions** |
+|:-----------------------------:|:------------------------------------------------------------------------------:|
+| 1                             | 1                                                                              |
+| 2                             | 1                                                                              |
+| 3                             | 1                                                                              |
+| 4                             | 10                                                                             |
+:::
 
 This is more effective with flto as the whole program needs to be analyzed to
 perform this optimization, which can be invoked as
@@ -296,16 +337,13 @@ perform this optimization, which can be invoked as
 
 Performs array dataflow analysis and optimizes the unused array computations.
 
-||
-|:--:|
-| **Table 7. -reduce-array-computations Values and Their Effects**|
-||
-
+:::{table} -reduce-array-computations Values and Their Effects
 | -reduce-array-computations value | Array elements eligible for elimination of computations |
-| ----------- | ----------- |
-| 1 | Unused |
-| 2 | Zero valued |
-| 3 | Both unused and zero valued |
+| -------------------------------- | --------------------------- |
+| 1                                | Unused                      |
+| 2                                | Zero valued                 |
+| 3                                | Both unused and zero valued |
+:::
 
 This optimization is effective with flto as the whole program needs to be
 analyzed to perform this optimization, which can be invoked as
@@ -622,9 +660,13 @@ refer to the OpenMP Support Guide at [https://docs.amd.com](https://docs.amd.com
 
 The following table lists the other Clang options and their support status.
 
-| **Table 9. Clang Options**               |                    |                                                                                                                                |
-|:----------------------------------------:|:------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
+:::{table} Clang Options
+:name: clang-options
+:widths: auto
+:align: center
+
 | **Option**                               | **Support Status** | **Description**                                                                                                                |
+|------------------------------------------|:------------------:|--------------------------------------------------------------------------------------------------------------------------------|
 | `-###`                                   | Supported          | Prints (but does not run) the commands to run for this compilation                                                             |
 | `--analyzer-output <value>`              | Supported          | "Static analyzer report output format (`html|plist|plist-multi-file|plist-html|sarif|text`)"                                   |
 | `--analyze`                              | Supported          | Runs the static analyzer                                                                                                       |
@@ -1383,3 +1425,4 @@ The following table lists the other Clang options and their support status.
  |-Xpreprocessor  \<arg\>|Supported|Passes  \<arg\> to the preprocessor|
  |-x  \<language\>|Supported|Assumes subsequent input files to have the given type  \<language\>|
  |-z  \<arg\>|Supported|Passes -z  \<arg\> to the linker|
+:::
