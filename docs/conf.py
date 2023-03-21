@@ -5,7 +5,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import shutil
-shutil.copy2('../../CONTRIBUTING.md','./contributing.md')
+shutil.copy2('../CONTRIBUTING.md','./contributing.md')
 
 from rocm_docs import ROCmDocs
 
