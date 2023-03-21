@@ -100,22 +100,58 @@ This chapter discusses compiler options and features.
 
 ### AMD GPU Compilation
 
-This table provides the most commonly used compiler options for GPU code.
+This section outlines commonly used compiler flags for `hipcc` and `amdclang++`.
+:::{option} -x hip
+  Compiles the source file as a HIP program.
+:::
 
-| **Table 4. Compiler Options**            |                                                                             |
-|:----------------------------------------:|:---------------------------------------------------------------------------:|
-| **Option**                               | **Description**                                                             |
-| `-x hip`                                 | Compiles the source file as a HIP program                                   |
-| `-fopenmp`                               | Enables the OpenMP support                                                  |
-| `-fopenmp-targets=<gpu>`                 | Enables the OpenMP target offload support of the specified GPU architecture |
-| `--gpu-max-threads-per-block=<value>`    | Sets default launch bounds for kernels                                      |
-| `-munsafe-fp-atomics`                    | Enables unsafe floating point atomic instructions (AMDGPU only)             |
-| `-ffast-math`                            | Allows aggressive, lossy floating-point optimizations                       |
-| `-mwavefrontsize64/-mno-wavefrontsize64` | Sets wavefront size to be 64 or 32 on RDNA architectures                    |
-| `-mcumode`                               | Switches between CU and WGP modes on RDNA architectures                     |
-| `--offload-arch=<gpu>`                   | HIP offloading target ID in the form of a device architecture followed by target ID features delimited by a colon. Each target ID feature is a predefined string followed by a plus or minus sign (e.g. gfx908:xnack+:sramecc-). May be specified more than once |
-| `-g`                                     | Generates source-level debug information                                    |
-| `-fgpu-rdc`/`-fno-gpu-rdc`               | Generates relocatable device code, also known as separate compilation mode  |
+:::{option} -fopenmp
+  Enables the OpenMP support.
+:::
+
+:::{option} -fopenmp-targets=<gpu>
+  Enables the OpenMP target offload support of the specified GPU architecture.
+
+  :gpu: The GPU architecture. E.g. gfx908.
+:::
+
+:::{option} --gpu-max-threads-per-block=<value>:
+  Sets the default limit of threads per block. Also referred to as the launch bounds.
+
+  :value: The default maximum amount of threads per block.
+:::
+
+:::{option} -munsafe-fp-atomics
+  Enables unsafe floating point atomic instructions (AMDGPU only).
+:::
+
+:::{option} -ffast-math
+  Allows aggressive, lossy floating-point optimizations.
+:::
+
+:::{option} -mwavefrontsize64, -mno-wavefrontsize64
+  Sets wavefront size to be 64 or 32 on RDNA architectures.
+:::
+
+:::{option} -mcumode
+  Switches between CU and WGP modes on RDNA architectures.
+:::
+
+:::{option} --offload-arch=<gpu>
+  HIP offloading target ID. May be specified more than once.
+
+  :gpu: The a device architecture followed by target ID features
+    delimited by a colon. Each target ID feature is a predefined 
+    string followed by a plus or minus sign (e.g. `gfx908:xnack+:sramecc-`).
+:::
+
+:::{option} -g
+  Generates source-level debug information.
+:::
+
+:::{option} -fgpu-rdc, -fno-gpu-rdc
+  Generates relocatable device code, also known as separate compilation mode.
+:::
 
 ### AMD Optimizations for Zen Architectures
 
@@ -504,17 +540,38 @@ offload-arch gfx906 -v
 
 The options are listed below:
 
-| **Table 8. offload-arch Command-line Options** |                                                                                                                          |
-|:----------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
-| **Option**                                     | **Description**                                                                                                          |
-| `h`                                            | Prints the help message                                                                                                  |
-| `a`                                            | Prints values for all devices. Do not stop at the first device found.                                                    |
-| `m`                                            | Prints device code name (often found in pci.ids file)                                                                    |
-| `n`                                            | Prints numeric pci-id                                                                                                    |
-| `t`                                            | Prints clang offload triple to use for the offload arch                                                                  |
-| `v`                                            | Verbose = `-a -m -n -t`. For: all devices, prints codename, numeric value, and triple                                    |
-| `f <filename>`                                 | Prints offload requirements including offload-arch for each compiled offload image built into an application binary file |
-| `c`                                            | Prints offload capabilities of the underlying system. This option is used by the language runtime to select an image when multiple images are available. A capability must exist for each requirement of the selected image. |
+:::{program} offload-arch
+:::{option} -h
+  Prints the help message.
+:::
+
+:::{option} -a
+  Prints values for all devices. Do not stop at the first device found.
+:::
+
+:::{option} -m
+  Prints device code name (often found in pci.ids file).
+:::
+
+:::{option} -n
+  Prints numeric pci-id.
+:::
+
+:::{option} -t
+   Prints clang offload triple to use for the offload arch.
+:::
+
+:::{option} -v
+  Verbose. Implies: `-a -m -n -t`. For: all devices, prints codename, numeric value, and triple.
+:::
+
+:::{option} -f <file>
+   Prints offload requirements including offload-arch for each compiled offload image built into an application binary file.
+:::
+
+:::{option} -c
+  Prints offload capabilities of the underlying system. This option is used by the language runtime to select an image when multiple images are available. A capability must exist for each requirement of the selected image.
+:::
 
 There are symbolic link aliases amdgpu-offload-arch and nvidia-arch for
 offload-arch. These aliases return 1 if no amdgcn GPU or cuda GPU is found.
