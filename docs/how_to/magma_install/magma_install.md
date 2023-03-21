@@ -11,6 +11,7 @@ framework's most current release notes at
 
 
 :::{figure-md} rocm-compat-frameworks-flowchart
+
 <img src="../../data/how_to/magma_install/image.005.png" alt="ROCm Compatible Frameworks Flowchart">
 
 ROCm Compatible Frameworks Flowchart
