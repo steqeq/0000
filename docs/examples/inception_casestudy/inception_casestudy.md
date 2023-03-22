@@ -941,7 +941,7 @@ _ = plt.xticks(range(10), class_names, rotation=45)
 plt.show()
 ```
 
-```{figure} ../../data/understand/deep_learning/mnist5.png
+```{figure} ../../data/understand/deep_learning/mnist_5.png
 ---
 align: center
 ---
@@ -1110,7 +1110,7 @@ print("Label", raw_train_ds.class_names[first_label])
 print("Vectorized review", vectorize_text(first_review, first_label))
 ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification3.png
+```{figure} ../../data/understand/deep_learning/TextClassification_3.png
 ---
 align: center
 ---
