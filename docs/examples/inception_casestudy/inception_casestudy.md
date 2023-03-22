@@ -15,7 +15,7 @@ Training also includes the choice of an optimization algorithm that reduces the 
 ## Training Phases
 Training occurs in multiple phases for every batch of training data. Table 2 provides an explanation of the types of training phases.
 
-:::{table} Table 2. Types of Training Phases
+:::{table} Types of Training Phases
 :widths: auto
 | Types of Phases |  | 
 | ----------- | ----------- | 
@@ -27,7 +27,7 @@ Training occurs in multiple phases for every batch of training data. Table 2 pro
 
 Training is different from inference, particularly from the hardware perspective. Table 3 shows the contrast between training and inference.
 
-:::{table} Table 3. Training vs. Inference
+:::{table} Training vs. Inference
 :widths: auto
 | Training | Inference | 
 | ----------- | ----------- | 
