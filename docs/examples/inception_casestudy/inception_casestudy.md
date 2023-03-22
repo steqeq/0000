@@ -1219,20 +1219,20 @@ plt.legend()
 plt.show()
 ```
 
-Figures 8 and 9 illustrate the training and validation loss and the training and validation accuracy.
+Figures 3 and 4 illustrate the training and validation loss and the training and validation accuracy.
 
 ```{figure} ../../data/understand/deep_learning/TextClassification_6.png
 ---
 align: center
 ---
-Figure 8. Training and Validation Loss
+Training and Validation Loss
 ```
 
 ```{figure} ../../data/understand/deep_learning/TextClassification_7.png
 ---
 align: center
 ---
-Figure 9. Training and Validation Accuracy
+Training and Validation Accuracy
 ```
 
 12. Export the model.
