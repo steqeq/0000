@@ -737,7 +737,7 @@ plt.grid(False)
 plt.show()
 ```
 
-```{figure} ../../data/understand/deep_learning/mnist1.png
+```{figure} ../../data/understand/deep_learning/mnist_1.png
 ---
 align: center
 ---
