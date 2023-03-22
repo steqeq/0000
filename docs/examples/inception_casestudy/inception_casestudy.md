@@ -906,7 +906,7 @@ plot_value_array(i, predictions[i],  test_labels)
 plt.show()
 ```
 
-```{figure} ../../data/understand/deep_learning/mnist4.png
+```{figure} ../../data/understand/deep_learning/mnist_4.png
 ---
 align: center
 ---
