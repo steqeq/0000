@@ -1153,7 +1153,7 @@ layers.Dropout(0.2),layers.Dense(1)])
 model.summary()
 ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification4.png
+```{figure} ../../data/understand/deep_learning/TextClassification_4.png
 ---
 align: center
 ---
@@ -1173,7 +1173,7 @@ epochs = 10
 history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
 ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification5.png
+```{figure} ../../data/understand/deep_learning/TextClassification_5.png
 ---
 align: center
 ---
@@ -1221,14 +1221,14 @@ plt.show()
 
 Figures 8 and 9 illustrate the training and validation loss and the training and validation accuracy.
 
-```{figure} ../../data/understand/deep_learning/TextClassification6.png
+```{figure} ../../data/understand/deep_learning/TextClassification_6.png
 ---
 align: center
 ---
 Figure 8. Training and Validation Loss
 ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification7.png
+```{figure} ../../data/understand/deep_learning/TextClassification_7.png
 ---
 align: center
 ---
