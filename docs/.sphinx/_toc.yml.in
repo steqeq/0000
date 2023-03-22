@@ -128,6 +128,10 @@ subtrees:
           - url: http://smi
             title: rocmsmi
     - file: reference/gpu_arch
+      subtrees:
+        - entries:
+            - file: reference/gpu_arch/mi250
+              title: MI250
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
