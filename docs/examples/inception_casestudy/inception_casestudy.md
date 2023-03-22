@@ -765,7 +765,7 @@ for i in range(25):
 plt.show()
 ```
 
-```{figure} ../../data/understand/deep_learning/mnist2.png
+```{figure} ../../data/understand/deep_learning/mnist_2.png
 ---
 align: center
 ---
@@ -890,7 +890,7 @@ plot_value_array(i, predictions[i],  test_labels)
 plt.show()
 ```
 
-```{figure} ../../data/understand/deep_learning/mnist3.png
+```{figure} ../../data/understand/deep_learning/mnist_3.png
 ---
 align: center
 ---
