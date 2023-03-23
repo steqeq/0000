@@ -159,8 +159,8 @@ subtrees:
 
 - caption: Examples
   entries:
-    - title: rocm-examples
-      url: https://github.com/
+    - title: ROCm Examples
+      url: https://github.com/amd/rocm-examples
     - file: examples/ai_ml_inferencing
       title: AI/ML/Inferencing
       subtrees:
