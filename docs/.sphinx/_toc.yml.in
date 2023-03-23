@@ -49,12 +49,16 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
               - title: hipBLAS
                 url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
+              - title: hipBLASLt
+                url: https://rocmdocs.amd.com/projects/hipBLASLt/en/{branch}/
               - title: rocWMMA
                 url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
               - title: rocSPARSE
                 url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
               - title: hipSPARSE
                 url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
+              - title: hipSPARSELt
+                url: https://rocmdocs.amd.com/projects/hipSPARSELt/en/{branch}/
               - title: rocALUTION
                 url: https://rocmdocs.amd.com/projects/rocALUTION/en/{branch}/
               - title: rocSOLVER
@@ -79,24 +83,30 @@ subtrees:
       title: C++ Primitives
       subtrees:
         - entries:
-          - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
-            title: rocPRIM
+          - title: rocPRIM
+            url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
         - entries:
-          - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
-            title: hipCUB 
+          - title: hipCUB 
+            url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
         - entries:
-          - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
-            title: rocThrust
+          - title: rocThrust
+            url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
     - file: reference/gpu_libraries/communication
       title: Communication Libraries
       subtrees:
         - entries:
-          - url: https://rocmdocs.amd.com/projects/rccl/en/{branch}/
-            title: RCCL
-    - url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
-      title: MIOpen - Machine Intelligence
-    - url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
-      title: MIGraphX - Graph Optimization
+          - title: RCCL
+            url: https://rocmdocs.amd.com/projects/rccl/en/{branch}/
+    - file: reference/ai_tools
+      title: AI Tools
+      subtrees:
+        - entries:
+          - title: MIOpen - Machine Intelligence
+            url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
+          - title: Composable Kernel
+            url: https://rocmdocs.amd.com/projects/composable_kernel/en/{branch}/
+    - title: MIGraphX - Graph Optimization
+      url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
     - file: reference/computer_vision
       subtrees:
         - entries:
@@ -141,7 +151,7 @@ subtrees:
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
-      file: understand/compiler_disabiguation
+      file: understand/compiler_disambiguation
     - file: isv_deployment_win
     - file: understand/deep_learning/deep_learning
     - file: understand/cmake_packages
