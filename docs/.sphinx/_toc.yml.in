@@ -96,7 +96,7 @@ subtrees:
     - url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
       title: MIOpen - Machine Intelligence
     - url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
-      title: MIGraphX- Graph Optimization
+      title: MIGraphX - Graph Optimization
     - file: reference/computer_vision
       subtrees:
         - entries:
