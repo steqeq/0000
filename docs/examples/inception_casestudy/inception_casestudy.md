@@ -4,6 +4,8 @@ Pull content from
 <https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4.1/page/Deep_Learning_Training.html>.
 Ignore training description.
 
+TEST
+
 # Deep Learning Training
 
 Deep Learning models are designed to capture the complexity of the problem and the underlying data. These models are "deep," comprising multiple component layers. Training is finding the best parameters for each model layer to achieve a well-defined objective.
@@ -460,14 +462,12 @@ torch.save(model.state_dict(), "trained_inception_v3.pt")
 
 Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in Figure 2.
 
-
 ```{figure} ../../data/understand/deep_learning/inception_v3.png
 ---
 align: center
 ---
 Inception v3 Train and Loss Graph
 ```
-TEST
 
 ### Custom Model with CIFAR-10 on PyTorch
 
