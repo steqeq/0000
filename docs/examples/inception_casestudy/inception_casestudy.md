@@ -4,10 +4,7 @@ Pull content from
 <https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4.1/page/Deep_Learning_Training.html>.
 Ignore training description.
 
-TEST
 # Deep Learning Training
-
-TEST
 
 Deep Learning models are designed to capture the complexity of the problem and the underlying data. These models are "deep," comprising multiple component layers. Training is finding the best parameters for each model layer to achieve a well-defined objective.
 
