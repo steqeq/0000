@@ -460,13 +460,13 @@ torch.save(model.state_dict(), "trained_inception_v3.pt")
 
 Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in Figure 2.
 
-:::{figure-md} inception-v3
 
-<img src="../../data/understand/deep_learning/inception_v3.png" alt="Inception v3 Train and Loss Graph"> 
-
+```{figure} ../../data/understand/deep_learning/inception_v3.png
+---
+align: center
+---
 Inception v3 Train and Loss Graph
-:::
-TEST
+```
 
 ### Custom Model with CIFAR-10 on PyTorch
 
