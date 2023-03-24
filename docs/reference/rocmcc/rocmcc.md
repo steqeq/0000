@@ -9,17 +9,12 @@ models such as HIP, OpenMP, and OpenCL.
 ROCmCC is made available via two packages: `rocm-llvm` and `rocm-llvm-alt`.
 The differences are listed in [the table below](rocm-llvm-vs-alt).
 
-:::{list-table} Differences between `rocm-llvm` and `rocm-llvm-alt`
-:header-rows: 1
+:::{table} Differences between `rocm-llvm` and `rocm-llvm-alt`
 :name: rocm-llvm-vs-alt
-
-* - **rocm-llvm**
-  - **rocm-llvm-alt**
-* - Installed by default with ROCm™
-  - Optional Package
-* - Open-source compiler
-  - Closed-source compiler with additional CPU optimizations
-   not available in rocm-llvm
+| **rocm-llvm**                                       | **rocm-llvm-alt**                                                                                                             |
+|:---------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+| Installed by default when ROCm™ itself is installed | An optional package                                                                                                           |
+| Provides an open-source compiler                    | Provides an additional closed-source compiler for users interested in additional CPU optimizations not available in rocm-llvm |
 :::
 
 For more details, see:
@@ -44,54 +39,16 @@ build process.
 
 The major differences between hipcc and amdclang++ are listed below:
 
-::::{list-table} Differences between hipcc and amdclang++
-:header-rows: 1
+::::{table} Differences between hipcc and amdclang++
 :name: hipcc-vs-amdclang
-:widths: 16 42 42
-
-* - Feature
-  - `hipcc`
-  - `amdclang++`
-
-* - **Compiling HIP source files**
-  - Treats all source files as HIP language source files.
-  - Enables the HIP language support for files with the “.hip” extension or
-    through the -x hip compiler option.
-
-* - **Detecting GPU architecture**
-  - Auto-detects the GPUs available on the system and generates code for those
-    devices when no GPU architecture is specified.
-  - Has AMD GCN gfx803 as the default GPU architecture. The `--offload-arch`
-    compiler option may be used to target other GPU architectures.
-
-* - **Locating HIP installation**
-  - Locates based on its own location and its knowledge about the ROCm
-    directory structure.
-  - First looks for HIP under the same parent directory as its own LLVM
-    directory and then falls back on `/opt/rocm`. Users can use the
-    `--rocm-path` option to instruct the compiler to use HIP from the
-    specified ROCm installation.
-
-* - **Linking HIP runtime library**
-  - Automatically links to the HIP runtime from the detected HIP installation
-  - Requires the `--hip-link` flag to be specified to link to the HIP runtime.
-    Alternatively, users can use the -l`<dir>` -lamdhip64 option to link to a
-    HIP runtime library.
-
-* - **Inlining device functions**
-  - Inlines all GPU device functions, which provide greater performance and
-    compatibility for codes that contain file scoped or device function scoped
-    `__shared__` variables. However, it may increase compile time.
-  - Relies on inlining heuristics to control inlining. Users experiencing
-    performance or compilation issues with code using file scoped or device
-    function scoped `__shared__` variables could try
-    `-mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false`
-    to work around the issue. There are plans to address these issues with
-    future compiler improvements.
-
-* - Repository
-  - <https://github.com/ROCm-Developer-Tools/HIPCC>
-  - <https://github.com/RadeonOpenCompute/llvm-project>
+| *                                  | **hipcc**                                                                                                                | **amdclang++** |
+|:----------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:--------------:|
+| Compiling HIP source files         | Treats all source files as HIP language source files                                                                     | Enables the HIP language support for files with the “.hip” extension or through the -x hip compiler option |
+| Detecting GPU architecture         | Auto-detects the GPUs available on the system and generates code for those devices when no GPU architecture is specified | Has AMD GCN gfx803 as the default GPU architecture. The --offload-arch compiler option may be used to target other GPU architectures |
+| Finding a HIP installation         | Finds the HIP installation based on its own location and its knowledge about the ROCm directory structure                | First looks for HIP under the same parent directory as its own LLVM directory and then falls back on /opt/rocm. Users can use the --rocm-path option to instruct the compiler to use HIP from the specified ROCm installation. |
+| Linking to the HIP runtime library | Is configured to automatically link to the HIP runtime from the detected HIP installation                                | Requires the --hip-link flag to be specified to link to the HIP runtime. Alternatively, users can use the -l`<dir>` -lamdhip64 option to link to a HIP runtime library. |
+| Device function inlining           | Inlines all GPU device functions, which provide greater performance and compatibility for codes that contain file scoped or device function scoped `__shared__` variables. However, it may increase compile time. | Relies on inlining heuristics to control inlining. Users experiencing performance or compilation issues with code using file scoped or device function scoped `__shared__` variables could try -mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false to work around the issue. There are plans to address these issues with future compiler improvements. |
+| Source code location               | <https://github.com/ROCm-Developer-Tools/HIPCC>                                                                          | <https://github.com/RadeonOpenCompute/llvm-project> |
 ::::
 
 ## Compiler Options and Features
@@ -141,7 +98,7 @@ This section outlines commonly used compiler flags for `hipcc` and `amdclang++`.
   HIP offloading target ID. May be specified more than once.
 
   :gpu: The a device architecture followed by target ID features
-    delimited by a colon. Each target ID feature is a predefined 
+    delimited by a colon. Each target ID feature is a predefined
     string followed by a plus or minus sign (e.g. `gfx908:xnack+:sramecc-`).
 :::
 
