@@ -129,4 +129,5 @@ Applications using ROCm are advised to use the new file paths. As the old files 
 ## References
 
 ROCm deprecation warning   : https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/Deprecations_and_Warnings.html
+
 Linux File System Standard : https://refspecs.linuxfoundation.org/fhs.shtml
