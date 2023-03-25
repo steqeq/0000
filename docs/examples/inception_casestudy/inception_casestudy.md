@@ -441,7 +441,7 @@ Follow these steps:
     lr_scheduler.step()
     ```
 
-    After training for the epoch, the model evaluates against the validation dataset. 
+    After training for the epoch, the model evaluates against the validation dataset.
 
     ```py
     model.eval()
@@ -505,7 +505,7 @@ Follow these steps:
     batch_size = 4
     ```
 
-3. Download the dataset train and test datasets as follows. Specify the batch size, shuffle the dataset once, and specify the number of workers to the number of CPU threads used by the data loader to perform efficient multiprocess data loading. 
+3. Download the dataset train and test datasets as follows. Specify the batch size, shuffle the dataset once, and specify the number of workers to the number of CPU threads used by the data loader to perform efficient multiprocess data loading.
 
     ```py
     train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
@@ -1198,7 +1198,7 @@ To prepare the data for training, follow these steps:
     ```
 
     :::{note}
-    model.fit() returns a History object that contains a dictionary with everything that happened during training. 
+    model.fit() returns a History object that contains a dictionary with everything that happened during training.
     :::
 
     ```py
