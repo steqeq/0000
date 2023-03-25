@@ -9,15 +9,15 @@ each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
 [/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html](/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html).
 
+```{figure} ../../data/how_to/magma_install/image.005.png
+   alt="ROCm Compatible Frameworks Flowchart
+    :name: rocm-compat-frameworks-flowchart
+    ---
+    align: center
+    ---
+    ROCm Compatible Frameworks Flowchart
+    ```
 
-TEST
-
-:::{figure-md} rocm-compat-frameworks-flowchart
-
-<img src="../../data/how_to/magma_install/image.005.png" alt="ROCm Compatible Frameworks Flowchart">
-
-ROCm Compatible Frameworks Flowchart
-:::
 
 ## MAGMA for ROCm
 
