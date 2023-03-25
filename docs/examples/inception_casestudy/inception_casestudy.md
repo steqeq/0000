@@ -212,82 +212,82 @@ Follow these steps:
 
 7. Set parameters to guide the training process.
 
-:::{note}
-The device is set to "cuda". In PyTorch, "cuda" is a generic keyword to denote a GPU. 
-:::
+    :::{note}
+    The device is set to "cuda". In PyTorch, "cuda" is a generic keyword to denote a GPU.
+    :::
 
-```
-device = "cuda"
-```
+    ```py
+    device = "cuda"
+    ```
 
 8. Set the data_path to the location of the training and validation data. In this case, the tiny-imagenet-200 is present as a subdirectory to the current directory.
 
-```
-data_path = "tiny-imagenet-200"
-```
+    ```py
+    data_path = "tiny-imagenet-200"
+    ```
 
-The training image size is cropped for input into Inception v3.
+    The training image size is cropped for input into Inception v3.
 
-```
-train_crop_size = 299
-```
+    ```py
+    train_crop_size = 299
+    ```
 
 9. To smooth the image, use bilinear interpolation, a resampling method that uses the distance weighted average of the four nearest pixel values to estimate a new pixel value.
 
-```
-interpolation = "bilinear" 
-```
+    ```py
+    interpolation = "bilinear" 
+    ```
 
-The next parameters control the size to which the validation image is cropped and resized.
+    The next parameters control the size to which the validation image is cropped and resized.
 
-```
-val_crop_size = 299
-val_resize_size = 342
-```
+    ```py
+    val_crop_size = 299
+    val_resize_size = 342
+    ```
 
-The pretrained Inception v3 model is chosen to be downloaded from torchvision.
+    The pretrained Inception v3 model is chosen to be downloaded from torchvision.
 
-```
-model_name = "inception_v3" 
-pretrained = True
-```
+    ```py
+    model_name = "inception_v3" 
+    pretrained = True
+    ```
 
-During each training step, a batch of images is processed to compute the loss gradient and perform the optimization. In the following setting, the size of the batch is determined.
+    During each training step, a batch of images is processed to compute the loss gradient and perform the optimization. In the following setting, the size of the batch is determined.
 
-```
-batch_size = 32
-```
+    ```py
+    batch_size = 32
+    ```
 
-This refers to the number of CPU threads the data loader uses to perform efficient multiprocess data loading.
+    This refers to the number of CPU threads the data loader uses to perform efficient multiprocess data loading.
 
-```
-num_workers = 16
-```
+    ```py
+    num_workers = 16
+    ```
 
-The PyTorch optim package provides methods to adjust the learning rate as the training progresses. This example uses the StepLR scheduler, which decays the learning rate by lr_gamma at every lr_step_size number of epochs.
+    The PyTorch optim package provides methods to adjust the learning rate as the training progresses. This example uses the StepLR scheduler, which decays the learning rate by lr_gamma at every lr_step_size number of epochs.
 
-```
-learning_rate = 0.1
-momentum = 0.9
-weight_decay = 1e-4
-lr_step_size = 30
-lr_gamma = 0.1
-```
+    ```py
+    learning_rate = 0.1
+    momentum = 0.9
+    weight_decay = 1e-4
+    lr_step_size = 30
+    lr_gamma = 0.1
+    ```
 
-:::{note}
-One training epoch is when the neural network passes an entire dataset forward and backward. 
-:::
+    :::{note}
+    One training epoch is when the neural network passes an entire dataset forward and backward.
+    :::
 
-```
-epochs = 90
-```
+    ```py
+    epochs = 90
+    ```
 
- The train and validation directories are determined.
+    The train and validation directories are determined.
 
-```
-train_dir = os.path.join(data_path, "train")
-val_dir = os.path.join(data_path, "val")
-```
+    ```py
+    train_dir = os.path.join(data_path, "train")
+    val_dir = os.path.join(data_path, "val")
+    ```
 
 10. Set up the training and testing data loaders.
 
