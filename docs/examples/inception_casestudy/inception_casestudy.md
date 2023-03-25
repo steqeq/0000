@@ -29,7 +29,7 @@ Training occurs in multiple phases for every batch of training data. Table 2 pro
 Training is different from inference, particularly from the hardware perspective. {numref}`TrainingVsInference` shows the contrast between training and inference.
 
 :::{table} Training vs. Inference
-{numref}'TrainingVsInference'
+:name: TrainingVsInference
 :widths: auto
 | Training | Inference |
 | ----------- | ----------- |
