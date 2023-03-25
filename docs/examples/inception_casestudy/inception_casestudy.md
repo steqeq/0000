@@ -840,21 +840,21 @@ To understand the code step by step, follow these steps:
         predictions = probability_model.predict(test_images)
         ```
 
-        7. The model has predicted the label for each image in the testing set. Look at the first prediction:
+    7. The model has predicted the label for each image in the testing set. Look at the first prediction:
 
-        ```
+        ```py
         predictions[0]
         ```
 
         A prediction is an array of 10 numbers. They represent the model's "confidence" that the image corresponds to each of the 10 different articles of clothing. You can see which label has the highest confidence value:
 
-        ```
+        ```py
         np.argmax(predictions[0])
         ```
 
-        8. Plot a graph to look at the complete set of 10 class predictions.
+    8. Plot a graph to look at the complete set of 10 class predictions.
 
-        ```
+        ```py
         def plot_image(i, predictions_array, true_label, img):
         true_label, img = true_label[i], img[i]
         plt.grid(False)
@@ -887,9 +887,9 @@ To understand the code step by step, follow these steps:
         thisplot[true_label].set_color('blue')
         ```
 
-        9. With the model trained, you can use it to make predictions about some images. Review the 0th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
+    9. With the model trained, you can use it to make predictions about some images. Review the 0th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
 
-        ```
+        ```py
         i = 0
         plt.figure(figsize=(6,3))
         plt.subplot(1,2,1)
@@ -905,7 +905,7 @@ To understand the code step by step, follow these steps:
         ---
         ```
 
-        ```
+        ```py
         i = 12
         plt.figure(figsize=(6,3))
         plt.subplot(1,2,1)
@@ -921,26 +921,26 @@ To understand the code step by step, follow these steps:
         ---
         ```
 
-        10. Use the trained model to predict a single image.
+    10. Use the trained model to predict a single image.
 
-        ```
+        ```py
         # Grab an image from the test dataset.
         img = test_images[1]
         print(img.shape)
         ```
 
-        11. tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
+    11. tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
 
-        ```
+        ```py
         # Add the image to a batch where it's the only member.
         img = (np.expand_dims(img,0))
         
         print(img.shape)
         ```
 
-        12. Predict the correct label for this image.
+    12. Predict the correct label for this image.
 
-        ```
+        ```py
         predictions_single = probability_model.predict(img)
         
         print(predictions_single)
@@ -956,9 +956,9 @@ To understand the code step by step, follow these steps:
         ---
         ```
 
-        13. tf.keras.Model.predict returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
+    13. tf.keras.Model.predict returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
 
-        ```
+        ```py
         np.argmax(predictions_single[0])
         ```
 
@@ -970,168 +970,168 @@ Follow these steps:
 
 1. Import the necessary libraries.
 
-```
-import matplotlib.pyplot as plt
-import os
-import re
-import shutil
-import string
-import tensorflow as tf
- 
-from tensorflow.keras import layers
-from tensorflow.keras import losses
-```
+    ```py
+    import matplotlib.pyplot as plt
+    import os
+    import re
+    import shutil
+    import string
+    import tensorflow as tf
+    
+    from tensorflow.keras import layers
+    from tensorflow.keras import losses
+    ```
 
 2. Get the data for the text classification, and extract the database from the given link of IMDB.
 
-```
-url = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
- 
-dataset = tf.keras.utils.get_file("aclImdb_v1", url,
-                                    untar=True, cache_dir='.',
-                                    cache_subdir='')
-```
+    ```py
+    url = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
+    
+    dataset = tf.keras.utils.get_file("aclImdb_v1", url,
+                                        untar=True, cache_dir='.',
+                                        cache_subdir='')
+    ```
 
-```
-Downloading data from https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz
-84131840/84125825 [==============================] – 1s 0us/step
-84149932/84125825 [==============================] – 1s 0us/step
-```
+    ```py
+    Downloading data from https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz
+    84131840/84125825 [==============================] – 1s 0us/step
+    84149932/84125825 [==============================] – 1s 0us/step
+    ```
 
 3. Fetch the data from the directory.
 
-```
-dataset_dir = os.path.join(os.path.dirname(dataset), 'aclImdb')
-print(os.listdir(dataset_dir))
-```
+    ```py
+    dataset_dir = os.path.join(os.path.dirname(dataset), 'aclImdb')
+    print(os.listdir(dataset_dir))
+    ```
 
 4. Load the data for training purposes.
 
-```
-train_dir = os.path.join(dataset_dir, 'train')
-os.listdir(train_dir)
-```
+    ```py
+    train_dir = os.path.join(dataset_dir, 'train')
+    os.listdir(train_dir)
+    ```
 
-```
-['labeledBow.feat',
-'urls_pos.txt',
-'urls_unsup.txt',
-'unsup',
-'pos',
-'unsupBow.feat',
-'urls_neg.txt',
-'neg']
-```
+    ```py
+    ['labeledBow.feat',
+    'urls_pos.txt',
+    'urls_unsup.txt',
+    'unsup',
+    'pos',
+    'unsupBow.feat',
+    'urls_neg.txt',
+    'neg']
+    ```
 
 5. The directories contain many text files, each of which is a single movie review. To look at one of them, use the following:
 
-```
-sample_file = os.path.join(train_dir, 'pos/1181_9.txt')
-with open(sample_file) as f:
-  print(f.read())
-```
+    ```py
+    sample_file = os.path.join(train_dir, 'pos/1181_9.txt')
+    with open(sample_file) as f:
+    print(f.read())
+    ```
 
 6. As the IMDB dataset contains additional folders, remove them before using this utility.
 
-```
-remove_dir = os.path.join(train_dir, 'unsup')
-shutil.rmtree(remove_dir)
-batch_size = 32
-seed = 42
-```
+    ```py
+    remove_dir = os.path.join(train_dir, 'unsup')
+    shutil.rmtree(remove_dir)
+    batch_size = 32
+    seed = 42
+    ```
 
 7. The IMDB dataset has already been divided into train and test but lacks a validation set. Create a validation set using an 80:20 split of the training data by using the validation_split argument below:
 
-```
-raw_train_ds=tf.keras.utils.text_dataset_from_directory('aclImdb/train',batch_size=batch_size, validation_split=0.2,subset='training', seed=seed)
-```
+    ```py
+    raw_train_ds=tf.keras.utils.text_dataset_from_directory('aclImdb/train',batch_size=batch_size, validation_split=0.2,subset='training', seed=seed)
+    ```
 
 8. As you will see in a moment, you can train a model by passing a dataset directly to model.fit. If you are new to tf.data, you can also iterate over the dataset and print a few examples as follows:
 
-```
-for text_batch, label_batch in raw_train_ds.take(1):
-  for i in range(3):
-    print("Review", text_batch.numpy()[i])
-    print("Label", label_batch.numpy()[i])
-```
+    ```py
+    for text_batch, label_batch in raw_train_ds.take(1):
+    for i in range(3):
+        print("Review", text_batch.numpy()[i])
+        print("Label", label_batch.numpy()[i])
+    ```
 
 9. The labels are zero or one. To see which of these correspond to positive and negative movie reviews, check the class_names property on the dataset.
 
-```
-print("Label 0 corresponds to", raw_train_ds.class_names[0])
-print("Label 1 corresponds to", raw_train_ds.class_names[1])
-```
+    ```py
+    print("Label 0 corresponds to", raw_train_ds.class_names[0])
+    print("Label 1 corresponds to", raw_train_ds.class_names[1])
+    ```
 
 10. Next, create validation and test the dataset. Use the remaining 5,000 reviews from the training set for validation into two classes of 2,500 reviews each.
 
-```
-raw_val_ds = tf.keras.utils.text_dataset_from_directory('aclImdb/train', 
-batch_size=batch_size,validation_split=0.2,subset='validation', seed=seed)
- 
-raw_test_ds = 
-tf.keras.utils.text_dataset_from_directory(
-    'aclImdb/test', 
-    batch_size=batch_size)
-```
+    ```py
+    raw_val_ds = tf.keras.utils.text_dataset_from_directory('aclImdb/train', 
+    batch_size=batch_size,validation_split=0.2,subset='validation', seed=seed)
+    
+    raw_test_ds = 
+    tf.keras.utils.text_dataset_from_directory(
+        'aclImdb/test', 
+        batch_size=batch_size)
+    ```
 
 To prepare the data for training, follow these steps:
 
 1. Standardize, tokenize, and vectorize the data using the helpful tf.keras.layers.TextVectorization layer.
 
-```
-def custom_standardization(input_data):
-  lowercase = tf.strings.lower(input_data)
-  stripped_html = tf.strings.regex_replace(lowercase, '<br/>', ' ')
-  return tf.strings.regex_replace(stripped_html,                                 '[%s]' % re.escape(string.punctuation),'')
-```
+    ```py
+    def custom_standardization(input_data):
+    lowercase = tf.strings.lower(input_data)
+    stripped_html = tf.strings.regex_replace(lowercase, '<br/>', ' ')
+    return tf.strings.regex_replace(stripped_html,                                 '[%s]' % re.escape(string.punctuation),'')
+    ```
 
 2. Create a TextVectorization layer. Use this layer to standardize, tokenize, and vectorize our data. Set the output_mode to int to create unique integer indices for each token. Note that we are using the default split function and the custom standardization function you defined above. You will also define some constants for the model, like an explicit maximum sequence_length, which will cause the layer to pad or truncate sequences to exactly sequence_length values.
 
-```
-max_features = 10000
-sequence_length = 250
-vectorize_layer = layers.TextVectorization(
-    standardize=custom_standardization,
-    max_tokens=max_features,
-    output_mode='int',
-    output_sequence_length=sequence_length)
-```
+    ```py
+    max_features = 10000
+    sequence_length = 250
+    vectorize_layer = layers.TextVectorization(
+        standardize=custom_standardization,
+        max_tokens=max_features,
+        output_mode='int',
+        output_sequence_length=sequence_length)
+    ```
 
 3. Call adapt to fit the state of the preprocessing layer to the dataset. This causes the model to build an index of strings to integers.
 
-```
-# Make a text-only dataset (without labels), then call adapt
-train_text = raw_train_ds.map(lambda x, y: x)
-vectorize_layer.adapt(train_text)
-```
+    ```py
+    # Make a text-only dataset (without labels), then call adapt
+    train_text = raw_train_ds.map(lambda x, y: x)
+    vectorize_layer.adapt(train_text)
+    ```
 
 4. Create a function to see the result of using this layer to preprocess some data.
 
-```
-def vectorize_text(text, label):
-  text = tf.expand_dims(text, -1)
-  return vectorize_layer(text), label
- 
-text_batch, label_batch = next(iter(raw_train_ds))
-first_review, first_label = text_batch[0], label_batch[0]
-print("Review", first_review)
-print("Label", raw_train_ds.class_names[first_label])
-print("Vectorized review", vectorize_text(first_review, first_label))
-```
+    ```py
+    def vectorize_text(text, label):
+    text = tf.expand_dims(text, -1)
+    return vectorize_layer(text), label
+    
+    text_batch, label_batch = next(iter(raw_train_ds))
+    first_review, first_label = text_batch[0], label_batch[0]
+    print("Review", first_review)
+    print("Label", raw_train_ds.class_names[first_label])
+    print("Vectorized review", vectorize_text(first_review, first_label))
+    ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification_3.png
----
-align: center
----
-```
+    ```{figure} ../../data/understand/deep_learning/TextClassification_3.png
+    ---
+    align: center
+    ---
+    ```
 
 5. As you can see above, each token has been replaced by an integer. Look up the token (string) that each integer corresponds to by calling get_vocabulary() on the layer.
 
-```
-print("1287 ---> ",vectorize_layer.get_vocabulary()[1287])
-print(" 313 ---> ",vectorize_layer.get_vocabulary()[313])
-print('Vocabulary size: {}'.format(len(vectorize_layer.get_vocabulary())))
-```
+    ```py
+    print("1287 ---> ",vectorize_layer.get_vocabulary()[1287])
+    print(" 313 ---> ",vectorize_layer.get_vocabulary()[313])
+    print('Vocabulary size: {}'.format(len(vectorize_layer.get_vocabulary())))
+    ```
 
 6. You are nearly ready to train your model. As a final preprocessing step, apply the TextVectorization layer we created earlier to train, validate, and test the dataset.
 
