@@ -1135,143 +1135,143 @@ To prepare the data for training, follow these steps:
 
 6. You are nearly ready to train your model. As a final preprocessing step, apply the TextVectorization layer we created earlier to train, validate, and test the dataset.
 
-```
-train_ds = raw_train_ds.map(vectorize_text)
-val_ds = raw_val_ds.map(vectorize_text)
-test_ds = raw_test_ds.map(vectorize_text)
-```
+    ```py
+    train_ds = raw_train_ds.map(vectorize_text)
+    val_ds = raw_val_ds.map(vectorize_text)
+    test_ds = raw_test_ds.map(vectorize_text)
+    ```
 
-The cache() function keeps data in memory after it is loaded off disk. This ensures the dataset does not become a bottleneck while training your model. If your dataset is too large to fit into memory, you can also use this method to create a performant on-disk cache, which is more efficient to read than many small files.
+    The cache() function keeps data in memory after it is loaded off disk. This ensures the dataset does not become a bottleneck while training your model. If your dataset is too large to fit into memory, you can also use this method to create a performant on-disk cache, which is more efficient to read than many small files.
 
-The prefetch() function overlaps data preprocessing and model execution while training.
+    The prefetch() function overlaps data preprocessing and model execution while training.
 
-```
-AUTOTUNE = tf.data.AUTOTUNE
- 
-train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
-val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
-test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
-```
+    ```py
+    AUTOTUNE = tf.data.AUTOTUNE
+    
+    train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
+    val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+    test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
+    ```
 
 7. Create your neural network.
 
-```
-embedding_dim = 16
-model = tf.keras.Sequential([layers.Embedding(max_features + 1, embedding_dim),layers.Dropout(0.2),layers.GlobalAveragePooling1D(),
-layers.Dropout(0.2),layers.Dense(1)])
-model.summary()
-```
+    ```py
+    embedding_dim = 16
+    model = tf.keras.Sequential([layers.Embedding(max_features + 1, embedding_dim),layers.Dropout(0.2),layers.GlobalAveragePooling1D(),
+    layers.Dropout(0.2),layers.Dense(1)])
+    model.summary()
+    ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification_4.png
----
-align: center
----
-```
+    ```{figure} ../../data/understand/deep_learning/TextClassification_4.png
+    ---
+    align: center
+    ---
+    ```
 
 8. A model needs a loss function and an optimizer for training. Since this is a binary classification problem and the model outputs a probability (a single-unit layer with a sigmoid activation), use [losses.BinaryCrossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy) loss function.
 
-```
-model.compile(loss=losses.BinaryCrossentropy(from_logits=True),
-optimizer='adam',metrics=tf.metrics.BinaryAccuracy(threshold=0.0))
-```
+    ```py
+    model.compile(loss=losses.BinaryCrossentropy(from_logits=True),
+    optimizer='adam',metrics=tf.metrics.BinaryAccuracy(threshold=0.0))
+    ```
 
 9. Train the model by passing the dataset object to the fit method.
 
-```
-epochs = 10
-history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
-```
+    ```py
+    epochs = 10
+    history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
+    ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification_5.png
----
-align: center
----
-```
+    ```{figure} ../../data/understand/deep_learning/TextClassification_5.png
+    ---
+    align: center
+    ---
+    ```
 
 10. See how the model performs. Two values are returned: loss (a number representing our error; lower values are better) and accuracy.
 
-```
-loss, accuracy = model.evaluate(test_ds)
- 
-print("Loss: ", loss)
-print("Accuracy: ", accuracy)
-```
+    ```py
+    loss, accuracy = model.evaluate(test_ds)
+    
+    print("Loss: ", loss)
+    print("Accuracy: ", accuracy)
+    ```
 
-:::{note}
-model.fit() returns a History object that contains a dictionary with everything that happened during training. 
-:::
+    :::{note}
+    model.fit() returns a History object that contains a dictionary with everything that happened during training. 
+    :::
 
-```
-history_dict = history.history
-history_dict.keys()
-```
+    ```py
+    history_dict = history.history
+    history_dict.keys()
+    ```
 
 11. Four entries are for each monitored metric during training and validation. Use these to plot the training and validation loss for comparison, as well as the training and validation accuracy:
 
-```
-acc = history_dict['binary_accuracy']
-val_acc = history_dict['val_binary_accuracy']
-loss = history_dict['loss']
-val_loss = history_dict['val_loss']
- 
-epochs = range(1, len(acc) + 1)
- 
-# "bo" is for "blue dot"
-plt.plot(epochs, loss, 'bo', label='Training loss')
-# b is for "solid blue line"
-plt.plot(epochs, val_loss, 'b', label='Validation loss')
-plt.title('Training and validation loss')
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.legend()
- 
-plt.show()
-```
+    ```py
+    acc = history_dict['binary_accuracy']
+    val_acc = history_dict['val_binary_accuracy']
+    loss = history_dict['loss']
+    val_loss = history_dict['val_loss']
+    
+    epochs = range(1, len(acc) + 1)
+    
+    # "bo" is for "blue dot"
+    plt.plot(epochs, loss, 'bo', label='Training loss')
+    # b is for "solid blue line"
+    plt.plot(epochs, val_loss, 'b', label='Validation loss')
+    plt.title('Training and validation loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    
+    plt.show()
+    ```
 
-{numref}`TextClassification6` and {numref}`TextClassification7` illustrate the training and validation loss and the training and validation accuracy.
+    {numref}`TextClassification6` and {numref}`TextClassification7` illustrate the training and validation loss and the training and validation accuracy.
 
-```{figure} ../../data/understand/deep_learning/TextClassification_6.png
-:name: TextClassification6
----
-align: center
----
-Training and Validation Loss
-```
+    ```{figure} ../../data/understand/deep_learning/TextClassification_6.png
+    :name: TextClassification6
+    ---
+    align: center
+    ---
+    Training and Validation Loss
+    ```
 
-```{figure} ../../data/understand/deep_learning/TextClassification_7.png
-:name: TextClassification7
----
-align: center
----
-Training and Validation Accuracy
-```
+    ```{figure} ../../data/understand/deep_learning/TextClassification_7.png
+    :name: TextClassification7
+    ---
+    align: center
+    ---
+    Training and Validation Accuracy
+    ```
 
 12. Export the model.
 
-```
-export_model = tf.keras.Sequential([
-vectorize_layer,
-model,
-  layers.Activation('sigmoid')
-])
- 
-export_model.compile(
-    loss=losses.BinaryCrossentropy(from_logits=False), optimizer="adam", metrics=['accuracy']
-)
- 
-# Test it with `raw_test_ds`, which yields raw strings
-loss, accuracy = export_model.evaluate(raw_test_ds)
-print(accuracy)
-```
+    ```py
+    export_model = tf.keras.Sequential([
+    vectorize_layer,
+    model,
+    layers.Activation('sigmoid')
+    ])
+    
+    export_model.compile(
+        loss=losses.BinaryCrossentropy(from_logits=False), optimizer="adam", metrics=['accuracy']
+    )
+    
+    # Test it with `raw_test_ds`, which yields raw strings
+    loss, accuracy = export_model.evaluate(raw_test_ds)
+    print(accuracy)
+    ```
 
 13. To get predictions for new examples, call model.predict().
 
-```
-examples = [
-  "The movie was great!",
-  "The movie was okay.",
-  "The movie was terrible..."
-]
- 
-export_model.predict(examples)
-```
+    ```py
+    examples = [
+    "The movie was great!",
+    "The movie was okay.",
+    "The movie was terrible..."
+    ]
+    
+    export_model.predict(examples)
+    ```
