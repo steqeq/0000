@@ -6,7 +6,6 @@ Ignore training description.
 
 # Deep Learning Training
 
-Test
 
 Deep Learning models are designed to capture the complexity of the problem and the underlying data. These models are "deep," comprising multiple component layers. Training is finding the best parameters for each model layer to achieve a well-defined objective.
 
@@ -27,10 +26,11 @@ Training occurs in multiple phases for every batch of training data. Table 2 pro
 | Optimization Pass | The optimization algorithm updates the model parameters using the stored error gradients. |
 :::
 
-Training is different from inference, particularly from the hardware perspective. Table 3 shows the contrast between training and inference.
+Training is different from inference, particularly from the hardware perspective. {numref}`TrainingVsInference` shows the contrast between training and inference.
 
 :::{table} Training vs. Inference
 :widths: auto
+{numref}'TrainingVsInference'
 | Training | Inference | 
 | ----------- | ----------- | 
 | Training is measured in hours/days. | The inference is measured in minutes. |
