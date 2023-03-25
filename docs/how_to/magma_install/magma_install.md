@@ -1,5 +1,7 @@
 # Magma Installation for ROCm
 
+[]: #First section is general to all three installations, should be moved to how_to.md once YAML is configured properly
+
 Pull content from
 <https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4.1/page/Frameworks_Installation.html>
 
