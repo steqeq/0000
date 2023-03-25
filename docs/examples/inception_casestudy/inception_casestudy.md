@@ -291,172 +291,172 @@ Follow these steps:
 
 10. Set up the training and testing data loaders.
 
-```
-interpolation = InterpolationMode(interpolation)
- 
-TRAIN_TRANSFORM_IMG = transforms.Compose([
-Normalizaing and standardardizing the image    
-transforms.RandomResizedCrop(train_crop_size, interpolation=interpolation),
-    transforms.PILToTensor(),
-    transforms.ConvertImageDtype(torch.float),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                         std=[0.229, 0.224, 0.225] )
-    ])
-dataset = torchvision.datasets.ImageFolder(
-    train_dir,
-    transform=TRAIN_TRANSFORM_IMG
-)
-TEST_TRANSFORM_IMG = transforms.Compose([
-    transforms.Resize(val_resize_size, interpolation=interpolation),
-    transforms.CenterCrop(val_crop_size),
-    transforms.PILToTensor(),
-    transforms.ConvertImageDtype(torch.float),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                         std=[0.229, 0.224, 0.225] )
-    ])
- 
-dataset_test = torchvision.datasets.ImageFolder( 
-    val_dir, 
-    transform=TEST_TRANSFORM_IMG
-)
- 
-print("Creating data loaders")
-train_sampler = torch.utils.data.RandomSampler(dataset)
-test_sampler = torch.utils.data.SequentialSampler(dataset_test)
- 
-data_loader = torch.utils.data.DataLoader(
-    dataset,
-    batch_size=batch_size,
-    sampler=train_sampler,
-    num_workers=num_workers,
-    pin_memory=True
-)
- 
-data_loader_test = torch.utils.data.DataLoader(
-    dataset_test, batch_size=batch_size, sampler=test_sampler, num_workers=num_workers, pin_memory=True
-)
-```
+    ```py
+    interpolation = InterpolationMode(interpolation)
+    
+    TRAIN_TRANSFORM_IMG = transforms.Compose([
+    Normalizaing and standardardizing the image    
+    transforms.RandomResizedCrop(train_crop_size, interpolation=interpolation),
+        transforms.PILToTensor(),
+        transforms.ConvertImageDtype(torch.float),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                            std=[0.229, 0.224, 0.225] )
+        ])
+    dataset = torchvision.datasets.ImageFolder(
+        train_dir,
+        transform=TRAIN_TRANSFORM_IMG
+    )
+    TEST_TRANSFORM_IMG = transforms.Compose([
+        transforms.Resize(val_resize_size, interpolation=interpolation),
+        transforms.CenterCrop(val_crop_size),
+        transforms.PILToTensor(),
+        transforms.ConvertImageDtype(torch.float),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                            std=[0.229, 0.224, 0.225] )
+        ])
+    
+    dataset_test = torchvision.datasets.ImageFolder( 
+        val_dir, 
+        transform=TEST_TRANSFORM_IMG
+    )
+    
+    print("Creating data loaders")
+    train_sampler = torch.utils.data.RandomSampler(dataset)
+    test_sampler = torch.utils.data.SequentialSampler(dataset_test)
+    
+    data_loader = torch.utils.data.DataLoader(
+        dataset,
+        batch_size=batch_size,
+        sampler=train_sampler,
+        num_workers=num_workers,
+        pin_memory=True
+    )
+    
+    data_loader_test = torch.utils.data.DataLoader(
+        dataset_test, batch_size=batch_size, sampler=test_sampler, num_workers=num_workers, pin_memory=True
+    )
+    ```
 
-:::{note}
-Use torchvision to obtain the Inception v3 model. Use the pretrained model weights to speed up training.
-:::
+    :::{note}
+    Use torchvision to obtain the Inception v3 model. Use the pretrained model weights to speed up training.
+    :::
 
-```
-print("Creating model")
-print("Num classes = ", len(dataset.classes))
-model = torchvision.models.__dict__[model_name](pretrained=pretrained)
-```
+    ```py
+    print("Creating model")
+    print("Num classes = ", len(dataset.classes))
+    model = torchvision.models.__dict__[model_name](pretrained=pretrained)
+    ```
 
 11. Adapt Inception v3 for the current dataset. Tiny-imagenet-200 contains only 200 classes, whereas Inception v3 is designed for 1,000-class output. The last layer of Inception v3 is replaced to match the output features required.
 
-```
-model.fc = torch.nn.Linear(model.fc.in_features, len(dataset.classes))
-model.aux_logits = False
-model.AuxLogits = None
-```
+    ```py
+    model.fc = torch.nn.Linear(model.fc.in_features, len(dataset.classes))
+    model.aux_logits = False
+    model.AuxLogits = None
+    ```
 
 12. Move the model to the GPU device.
 
-```
-model.to(device)
-```
+    ```py
+    model.to(device)
+    ```
 
 13. Set the loss criteria. For this example, Cross Entropy Loss [5] is used.
 
-```
-criterion = torch.nn.CrossEntropyLoss()
-```
+    ```py
+    criterion = torch.nn.CrossEntropyLoss()
+    ```
 
 14. Set the optimizer to Stochastic Gradient Descent.
 
-```
-optimizer = torch.optim.SGD(
-    model.parameters(),
-    lr=learning_rate,
-    momentum=momentum,
-    weight_decay=weight_decay
-)
-```
+    ```py
+    optimizer = torch.optim.SGD(
+        model.parameters(),
+        lr=learning_rate,
+        momentum=momentum,
+        weight_decay=weight_decay
+    )
+    ```
 
 15. Set the learning rate scheduler.
 
-```
-lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=lr_step_size, gamma=lr_gamma)
-```
+    ```py
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=lr_step_size, gamma=lr_gamma)
+    ```
 
 16. Iterate over epochs. Each epoch is a complete pass through the training data.
 
-```
-print("Start training")
-for epoch in range(epochs):
-    model.train()
-    epoch_loss = 0
-    len_dataset = 0
-```
+    ```py
+    print("Start training")
+    for epoch in range(epochs):
+        model.train()
+        epoch_loss = 0
+        len_dataset = 0
+    ```
 
 17. Iterate over steps. The data is processed in batches, and each step passes through a full batch.
 
-```
-for step, (image, target) in enumerate(data_loader):
-```
+    ```py
+    for step, (image, target) in enumerate(data_loader):
+    ```
 
 18. Pass the image and target to the GPU device.
 
-```
-image, target = image.to(device), target.to(device)
-```
+    ```py
+    image, target = image.to(device), target.to(device)
+    ```
 
-The following is the core training logic:
+    The following is the core training logic:
 
-a. The image is fed into the model.
+    a. The image is fed into the model.
 
-b. The output is compared with the target in the training data to obtain the loss.
+    b. The output is compared with the target in the training data to obtain the loss.
 
-c. This loss is back propagated to all parameters that require optimization.
+    c. This loss is back propagated to all parameters that require optimization.
 
-d. The optimizer updates the parameters based on the selected optimization algorithm.
+    d. The optimizer updates the parameters based on the selected optimization algorithm.
 
-```
-        output = model(image)
-        loss = criterion(output, target)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-```
-
-The epoch loss is updated, and the step loss prints.
-
-```
-        epoch_loss += output.shape[0] * loss.item()
-        len_dataset += output.shape[0];
-        if step % 10 == 0:
-            print('Epoch: ', epoch, '| step : %d' % step, '| train loss : %0.4f' % loss.item() )
-    epoch_loss = epoch_loss / len_dataset
-    print('Epoch: ', epoch, '| train loss :  %0.4f' % epoch_loss )
-```
-
-The learning rate is updated at the end of each epoch.
-
-```
-lr_scheduler.step()
-```
-
-After training for the epoch, the model evaluates against the validation dataset. 
-
-```
-model.eval()
-    with torch.inference_mode():
-        running_loss = 0
-        for step, (image, target) in enumerate(data_loader_test):
-            image, target = image.to(device), target.to(device)
-            
+    ```py
             output = model(image)
             loss = criterion(output, target)
- 
-            running_loss += loss.item()
-    running_loss = running_loss / len(data_loader_test)
-    print('Epoch: ', epoch, '| test loss : %0.4f' % running_loss )
-```
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+    ```
+
+    The epoch loss is updated, and the step loss prints.
+
+    ```
+            epoch_loss += output.shape[0] * loss.item()
+            len_dataset += output.shape[0];
+            if step % 10 == 0:
+                print('Epoch: ', epoch, '| step : %d' % step, '| train loss : %0.4f' % loss.item() )
+        epoch_loss = epoch_loss / len_dataset
+        print('Epoch: ', epoch, '| train loss :  %0.4f' % epoch_loss )
+    ```
+
+    The learning rate is updated at the end of each epoch.
+
+    ```
+    lr_scheduler.step()
+    ```
+
+    After training for the epoch, the model evaluates against the validation dataset. 
+
+    ```
+    model.eval()
+        with torch.inference_mode():
+            running_loss = 0
+            for step, (image, target) in enumerate(data_loader_test):
+                image, target = image.to(device), target.to(device)
+                
+                output = model(image)
+                loss = criterion(output, target)
+    
+                running_loss += loss.item()
+        running_loss = running_loss / len(data_loader_test)
+        print('Epoch: ', epoch, '| test loss : %0.4f' % running_loss )
+    ```
 
 19. Save the model for use in inferencing tasks.
 
