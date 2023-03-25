@@ -152,7 +152,6 @@ subtrees:
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
     - file: isv_deployment_win
-    - file: understand/deep_learning/deep_learning
     - file: understand/cmake_packages
 
 - caption: How to Guides
