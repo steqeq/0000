@@ -18,8 +18,8 @@ Training occurs in multiple phases for every batch of training data. Table 2 pro
 
 :::{table} Types of Training Phases
 :widths: auto
-| Types of Phases |  | 
-| ----------- | ----------- | 
+| Types of Phases |  |
+| ----------- | ----------- |
 | Forward Pass | The input features are fed into the model, whose parameters may be randomly initialized initially. Activations (outputs) of each layer are retained during this pass to help in the loss gradient computation during the backward pass. |
 | Loss Computation | The output is compared against the target outputs, and the loss is computed. |
 | Backward Pass | The loss is propagated backward, and the model's error gradients are computed and stored for each trainable parameter. |
@@ -29,10 +29,10 @@ Training occurs in multiple phases for every batch of training data. Table 2 pro
 Training is different from inference, particularly from the hardware perspective. {numref}`TrainingVsInference` shows the contrast between training and inference.
 
 :::{table} Training vs. Inference
-:widths: auto
 {numref}'TrainingVsInference'
-| Training | Inference | 
-| ----------- | ----------- | 
+:widths: auto
+| Training | Inference |
+| ----------- | ----------- |
 | Training is measured in hours/days. | The inference is measured in minutes. |
 | Training is generally run offline in a data center or cloud setting. | The inference is made on edge devices. |
 | The memory requirements for training are higher than inference due to storing intermediate data, such as activations and error gradients. | The memory requirements are lower for inference than training. |
@@ -42,9 +42,11 @@ Training is different from inference, particularly from the hardware perspective
 Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other datatypes, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
 
 ## Case Studies
+
 The following sections contain case studies for the Inception v3 model.
 
 ### Inception v3 with PyTorch
+
 Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3 [1] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
 The implementation uses PyTorch as a framework. This case study utilizes torchvision [2], a repository of popular datasets and model architectures, for obtaining the model. Torchvision also provides pretrained weights as a starting point to develop new models or fine-tune the model for a new task.
@@ -56,9 +58,10 @@ The Inception v3 model introduces a simple image classification task with the pr
 This example is adapted from the PyTorch research hub page on Inception v3 [3].
 
 Follow these steps:
+
 1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
 
-```
+```py
 docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
 ```
 
