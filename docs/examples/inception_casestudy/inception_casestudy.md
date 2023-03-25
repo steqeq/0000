@@ -688,278 +688,279 @@ To understand the code step by step, follow these steps:
 
 1. Import libraries like TensorFlow, Numpy, and Matplotlib to train the neural network and calculate and plot graphs.
 
-```
-import tensorflow as tf
-import numpy as np
-import matplotlib.pyplot as plt
-```
+    ```py
+    import tensorflow as tf
+    import numpy as np
+    import matplotlib.pyplot as plt
+    ```
 
 2. To verify that TensorFlow is installed, print the version of TensorFlow by using the below print statement:
 
-```
-print(tf._version__) r
-```
+    ```py
+    print(tf._version__) r
+    ```
 
 3. Load the dataset from the available internal libraries to analyze and train a neural network upon the MNIST Fashion Dataset. Loading the dataset returns four NumPy arrays. The model uses the training set arrays, train_images and train_labels, to learn.
 
 4. The model is tested against the test set, test_images, and test_labels arrays.
 
-```
-fashion_mnist = tf.keras.datasets.fashion_mnist 
-(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
-```
+    ```py
+    fashion_mnist = tf.keras.datasets.fashion_mnist 
+    (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+    ```
 
-Since you have 10 types of images in the dataset, assign labels from zero to nine. Each image is assigned one label. The images are 28x28 NumPy arrays, with pixel values ranging from zero to 255.
+    Since you have 10 types of images in the dataset, assign labels from zero to nine. Each image is assigned one label. The images are 28x28 NumPy arrays, with pixel values ranging from zero to 255.
 
 5. Each image is mapped to a single label. Since the class names are not included with the dataset, store them, and later use them when plotting the images:
 
-```
-class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat','Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
-```
+    ```py
+    class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat','Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+    ```
 
 6. Use this code to explore the dataset by knowing its dimensions:
 
-```
-train_images.shape
-```
+    ```py
+    train_images.shape
+    ```
 
 7. Use this code to print the size of this training set:
 
-```
-print(len(train_labels))
-```
+    ```py
+    print(len(train_labels))
+    ```
 
 8. Use this code to print the labels of this training set:
 
-```
-print(train_labels)
-```
+    ```py
+    print(train_labels)
+    ```
 
 9. Preprocess the data before training the network, and you can start inspecting the first image, as its pixels will fall in the range of zero to 255.
 
-```
-plt.figure()
-plt.imshow(train_images[0])
-plt.colorbar()
-plt.grid(False)
-plt.show()
-```
+    ```py
+    plt.figure()
+    plt.imshow(train_images[0])
+    plt.colorbar()
+    plt.grid(False)
+    plt.show()
+    ```
 
-```{figure} ../../data/understand/deep_learning/mnist_1.png
----
-align: center
----
-```
+    ```{figure} ../../data/understand/deep_learning/mnist_1.png
+    ---
+    align: center
+    ---
+    ```
 
 10. From the above picture, you can see that values are from zero to 255. Before training this on the neural network, you must bring them in the range of zero to one. Hence, divide the values by 255.
 
-```
-train_images = train_images / 255.0
- 
-test_images = test_images / 255.0
-```
+    ```py
+    train_images = train_images / 255.0
+    
+    test_images = test_images / 255.0
+    ```
 
 11. To ensure the data is in the correct format and ready to build and train the network, display the first 25 images from the training set and the class name below each image.
 
-```
-plt.figure(figsize=(10,10))
-for i in range(25):
-    plt.subplot(5,5,i+1)
-    plt.xticks([])
-    plt.yticks([])
-    plt.grid(False)
-    plt.imshow(train_images[i], cmap=plt.cm.binary)
-    plt.xlabel(class_names[train_labels[i]])
-plt.show()
-```
+    ```py
+    plt.figure(figsize=(10,10))
+    for i in range(25):
+        plt.subplot(5,5,i+1)
+        plt.xticks([])
+        plt.yticks([])
+        plt.grid(False)
+        plt.imshow(train_images[i], cmap=plt.cm.binary)
+        plt.xlabel(class_names[train_labels[i]])
+    plt.show()
+    ```
 
-```{figure} ../../data/understand/deep_learning/mnist_2.png
----
-align: center
----
-```
+    ```{figure} ../../data/understand/deep_learning/mnist_2.png
+    ---
+    align: center
+    ---
+    ```
 
-The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Deep Learning consists of chaining together simple layers. Most layers, such as tf.keras.layers.Dense, have parameters that are learned during training.
+    The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Deep Learning consists of chaining together simple layers. Most layers, such as tf.keras.layers.Dense, have parameters that are learned during training.
 
-```
-model = tf.keras.Sequential([
-    tf.keras.layers.Flatten(input_shape=(28, 28)),
-    tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dense(10)
-])
-```
+    ```py
+    model = tf.keras.Sequential([
+        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dense(10)
+    ])
+    ```
 
-- The first layer in this network tf.keras.layers.Flatten transforms the format of the images from a two-dimensional array (of 28 x 28 pixels) to a one-dimensional array (of 28 * 28 = 784 pixels). Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data.
+    - The first layer in this network tf.keras.layers.Flatten transforms the format of the images from a two-dimensional array (of 28 x 28 pixels) to a one-dimensional array (of 28 * 28 = 784 pixels). Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data.
 
-- After the pixels are flattened, the network consists of a sequence of two tf.keras.layers.Dense layers. These are densely connected or fully connected neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer returns a logits array with a length of 10. Each node contains a score that indicates the current image belongs to one of the 10 classes.
+    - After the pixels are flattened, the network consists of a sequence of two tf.keras.layers.Dense layers. These are densely connected or fully connected neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer returns a logits array with a length of 10. Each node contains a score that indicates the current image belongs to one of the 10 classes.
 
 12. You must add the Loss function, Metrics, and Optimizer at the time of model compilation.
 
-```
-model.compile(optimizer='adam',
-              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-              metrics=['accuracy'])
-```
-- Loss function —This measures how accurate the model is during training when you are looking to minimize this function to "steer" the model in the right direction.
+    ```py
+    model.compile(optimizer='adam',
+                loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                metrics=['accuracy'])
+    ```
 
-- Optimizer —This is how the model is updated based on the data it sees and its loss function.
+    - Loss function —This measures how accurate the model is during training when you are looking to minimize this function to "steer" the model in the right direction.
 
-- Metrics —This is used to monitor the training and testing steps.
+    - Optimizer —This is how the model is updated based on the data it sees and its loss function.
 
-The following example uses accuracy, the fraction of the correctly classified images.
+    - Metrics —This is used to monitor the training and testing steps.
 
-To train the neural network model, follow these steps:
+    The following example uses accuracy, the fraction of the correctly classified images.
 
-1. Feed the training data to the model. The training data is in the train_images and train_labels arrays in this example. The model learns to associate images and labels.
+    To train the neural network model, follow these steps:
 
-2. Ask the model to make predictions about a test set—in this example, the test_images array.
+    1. Feed the training data to the model. The training data is in the train_images and train_labels arrays in this example. The model learns to associate images and labels.
 
-3. Verify that the predictions match the labels from the test_labels array.
+    2. Ask the model to make predictions about a test set—in this example, the test_images array.
 
-4. To start training, call the model.fit method because it "fits" the model to the training data.
+    3. Verify that the predictions match the labels from the test_labels array.
 
-```
-model.fit(train_images, train_labels, epochs=10)
-```
+    4. To start training, call the model.fit method because it "fits" the model to the training data.
 
-5. Compare how the model will perform on the test dataset.
+        ```py
+        model.fit(train_images, train_labels, epochs=10)
+        ```
 
-```
-test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
- 
-print('\nTest accuracy:', test_acc)
-```
+    5. Compare how the model will perform on the test dataset.
 
-6. With the model trained, you can use it to make predictions about some images: the model's linear outputs and logits. Attach a softmax layer to convert the logits to probabilities, making it easier to interpret.
+        ```py
+        test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
+        
+        print('\nTest accuracy:', test_acc)
+        ```
 
-```
-probability_model = tf.keras.Sequential([model, 
-                                         tf.keras.layers.Softmax()])
- 
-predictions = probability_model.predict(test_images)
-```
+    6. With the model trained, you can use it to make predictions about some images: the model's linear outputs and logits. Attach a softmax layer to convert the logits to probabilities, making it easier to interpret.
 
-7. The model has predicted the label for each image in the testing set. Look at the first prediction:
+        ```py
+        probability_model = tf.keras.Sequential([model, 
+                                                tf.keras.layers.Softmax()])
+        
+        predictions = probability_model.predict(test_images)
+        ```
 
-```
-predictions[0]
-```
+        7. The model has predicted the label for each image in the testing set. Look at the first prediction:
 
-A prediction is an array of 10 numbers. They represent the model's "confidence" that the image corresponds to each of the 10 different articles of clothing. You can see which label has the highest confidence value:
+        ```
+        predictions[0]
+        ```
 
-```
-np.argmax(predictions[0])
-```
+        A prediction is an array of 10 numbers. They represent the model's "confidence" that the image corresponds to each of the 10 different articles of clothing. You can see which label has the highest confidence value:
 
-8. Plot a graph to look at the complete set of 10 class predictions.
+        ```
+        np.argmax(predictions[0])
+        ```
 
-```
-def plot_image(i, predictions_array, true_label, img):
-  true_label, img = true_label[i], img[i]
-  plt.grid(False)
-  plt.xticks([])
-  plt.yticks([])
- 
-  plt.imshow(img, cmap=plt.cm.binary)
- 
-  predicted_label = np.argmax(predictions_array)
-  if predicted_label == true_label:
-    color = 'blue'
-  else:
-    color = 'red'
- 
-  plt.xlabel("{} {:2.0f}% ({})".format(class_names[predicted_label],
-                                100*np.max(predictions_array),
-                                class_names[true_label]),
-                                color=color)
- 
-def plot_value_array(i, predictions_array, true_label):
-  true_label = true_label[i]
-  plt.grid(False)
-  plt.xticks(range(10))
-  plt.yticks([])
-  thisplot = plt.bar(range(10), predictions_array, color="#777777")
-  plt.ylim([0, 1])
-  predicted_label = np.argmax(predictions_array)
- 
-  thisplot[predicted_label].set_color('red')
-  thisplot[true_label].set_color('blue')
-```
+        8. Plot a graph to look at the complete set of 10 class predictions.
 
-9. With the model trained, you can use it to make predictions about some images. Review the 0th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
+        ```
+        def plot_image(i, predictions_array, true_label, img):
+        true_label, img = true_label[i], img[i]
+        plt.grid(False)
+        plt.xticks([])
+        plt.yticks([])
+        
+        plt.imshow(img, cmap=plt.cm.binary)
+        
+        predicted_label = np.argmax(predictions_array)
+        if predicted_label == true_label:
+            color = 'blue'
+        else:
+            color = 'red'
+        
+        plt.xlabel("{} {:2.0f}% ({})".format(class_names[predicted_label],
+                                        100*np.max(predictions_array),
+                                        class_names[true_label]),
+                                        color=color)
+        
+        def plot_value_array(i, predictions_array, true_label):
+        true_label = true_label[i]
+        plt.grid(False)
+        plt.xticks(range(10))
+        plt.yticks([])
+        thisplot = plt.bar(range(10), predictions_array, color="#777777")
+        plt.ylim([0, 1])
+        predicted_label = np.argmax(predictions_array)
+        
+        thisplot[predicted_label].set_color('red')
+        thisplot[true_label].set_color('blue')
+        ```
 
-```
-i = 0
-plt.figure(figsize=(6,3))
-plt.subplot(1,2,1)
-plot_image(i, predictions[i], test_labels, test_images)
-plt.subplot(1,2,2)
-plot_value_array(i, predictions[i],  test_labels)
-plt.show()
-```
+        9. With the model trained, you can use it to make predictions about some images. Review the 0th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
 
-```{figure} ../../data/understand/deep_learning/mnist_3.png
----
-align: center
----
-```
+        ```
+        i = 0
+        plt.figure(figsize=(6,3))
+        plt.subplot(1,2,1)
+        plot_image(i, predictions[i], test_labels, test_images)
+        plt.subplot(1,2,2)
+        plot_value_array(i, predictions[i],  test_labels)
+        plt.show()
+        ```
 
-```
-i = 12
-plt.figure(figsize=(6,3))
-plt.subplot(1,2,1)
-plot_image(i, predictions[i], test_labels, test_images)
-plt.subplot(1,2,2)
-plot_value_array(i, predictions[i],  test_labels)
-plt.show()
-```
+        ```{figure} ../../data/understand/deep_learning/mnist_3.png
+        ---
+        align: center
+        ---
+        ```
 
-```{figure} ../../data/understand/deep_learning/mnist_4.png
----
-align: center
----
-```
+        ```
+        i = 12
+        plt.figure(figsize=(6,3))
+        plt.subplot(1,2,1)
+        plot_image(i, predictions[i], test_labels, test_images)
+        plt.subplot(1,2,2)
+        plot_value_array(i, predictions[i],  test_labels)
+        plt.show()
+        ```
 
-10. Use the trained model to predict a single image.
+        ```{figure} ../../data/understand/deep_learning/mnist_4.png
+        ---
+        align: center
+        ---
+        ```
 
-```
-# Grab an image from the test dataset.
-img = test_images[1]
-print(img.shape)
-```
+        10. Use the trained model to predict a single image.
 
-11. tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
+        ```
+        # Grab an image from the test dataset.
+        img = test_images[1]
+        print(img.shape)
+        ```
 
-```
-# Add the image to a batch where it's the only member.
-img = (np.expand_dims(img,0))
- 
-print(img.shape)
-```
+        11. tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
 
-12. Predict the correct label for this image.
+        ```
+        # Add the image to a batch where it's the only member.
+        img = (np.expand_dims(img,0))
+        
+        print(img.shape)
+        ```
 
-```
-predictions_single = probability_model.predict(img)
- 
-print(predictions_single)
- 
-plot_value_array(1, predictions_single[0], test_labels)
-_ = plt.xticks(range(10), class_names, rotation=45)
-plt.show()
-```
+        12. Predict the correct label for this image.
 
-```{figure} ../../data/understand/deep_learning/mnist_5.png
----
-align: center
----
-```
+        ```
+        predictions_single = probability_model.predict(img)
+        
+        print(predictions_single)
+        
+        plot_value_array(1, predictions_single[0], test_labels)
+        _ = plt.xticks(range(10), class_names, rotation=45)
+        plt.show()
+        ```
 
-13. tf.keras.Model.predict returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
+        ```{figure} ../../data/understand/deep_learning/mnist_5.png
+        ---
+        align: center
+        ---
+        ```
 
-```
-np.argmax(predictions_single[0])
-```
+        13. tf.keras.Model.predict returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
+
+        ```
+        np.argmax(predictions_single[0])
+        ```
 
 ### Case Study: TensorFlow with Text Classification
 
