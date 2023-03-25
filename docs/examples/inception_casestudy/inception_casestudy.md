@@ -426,7 +426,7 @@ Follow these steps:
 
     The epoch loss is updated, and the step loss prints.
 
-    ```
+    ```py
             epoch_loss += output.shape[0] * loss.item()
             len_dataset += output.shape[0];
             if step % 10 == 0:
@@ -437,13 +437,13 @@ Follow these steps:
 
     The learning rate is updated at the end of each epoch.
 
-    ```
+    ```py
     lr_scheduler.step()
     ```
 
     After training for the epoch, the model evaluates against the validation dataset. 
 
-    ```
+    ```py
     model.eval()
         with torch.inference_mode():
             running_loss = 0
@@ -460,7 +460,7 @@ Follow these steps:
 
 19. Save the model for use in inferencing tasks.
 
-```
+```py
 # save model
 torch.save(model.state_dict(), "trained_inception_v3.pt")
 ```
@@ -483,194 +483,194 @@ Follow these steps:
 
 1. Import dependencies, including torch, OS, and torchvision.
 
-```
-import torch
-import torchvision
-import torchvision.transforms as transforms
-import matplotlib.pyplot as plot
-import numpy as np
-```
+    ```py
+    import torch
+    import torchvision
+    import torchvision.transforms as transforms
+    import matplotlib.pyplot as plot
+    import numpy as np
+    ```
 
 2. The output of torchvision datasets is PILImage images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
 
-```
-transform = transforms.Compose(
-        [transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-```
+    ```py
+    transform = transforms.Compose(
+            [transforms.ToTensor(),
+                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    ```
 
-During each training step, a batch of images is processed to compute the loss gradient and perform the optimization. In the following setting, the size of the batch is determined.
+    During each training step, a batch of images is processed to compute the loss gradient and perform the optimization. In the following setting, the size of the batch is determined.
 
-```
-batch_size = 4
-```
+    ```py
+    batch_size = 4
+    ```
 
 3. Download the dataset train and test datasets as follows. Specify the batch size, shuffle the dataset once, and specify the number of workers to the number of CPU threads used by the data loader to perform efficient multiprocess data loading. 
 
-```
-train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
-train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=2)
-```
+    ```py
+    train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+    train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=2)
+    ```
 
 4. Follow the same procedure for the testing set.
 
-```
-test_set = TorchVision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
-test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=2)
-print ("teast set and test loader")
-```
+    ```py
+    test_set = TorchVision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
+    test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=2)
+    print ("teast set and test loader")
+    ```
 
 5. Specify the defined classes of images belonging to this dataset.
 
-```
-classes = ('Aeroplane', 'motorcar', 'bird', 'cat', 'deer', 'puppy', 'frog', 'stallion', 'cruise', 'truck')
-print("defined classes")
-```
+    ```py
+    classes = ('Aeroplane', 'motorcar', 'bird', 'cat', 'deer', 'puppy', 'frog', 'stallion', 'cruise', 'truck')
+    print("defined classes")
+    ```
 
 6. Unnormalize the images and then iterate over them.
 
-```
-global image_number
-image_number = 0
-def show_image(img):
+    ```py
     global image_number
-    image_number = image_number + 1
-    img = img / 2 + 0.5     # de-normalizing input image
-    npimg = img.numpy()
-    plot.imshow(np.transpose(npimg, (1, 2, 0)))
-    plot.savefig("fig{}.jpg".format(image_number))
-    print("fig{}.jpg".format(image_number))
-    plot.show()
-data_iter = iter(train_loader)
-images, labels = data_iter.next()
-show_image(torchvision.utils.make_grid(images))
-print(' '.join('%5s' % classes[labels[j]] for j in range(batch_size)))
-print("image created and saved ")
-```
+    image_number = 0
+    def show_image(img):
+        global image_number
+        image_number = image_number + 1
+        img = img / 2 + 0.5     # de-normalizing input image
+        npimg = img.numpy()
+        plot.imshow(np.transpose(npimg, (1, 2, 0)))
+        plot.savefig("fig{}.jpg".format(image_number))
+        print("fig{}.jpg".format(image_number))
+        plot.show()
+    data_iter = iter(train_loader)
+    images, labels = data_iter.next()
+    show_image(torchvision.utils.make_grid(images))
+    print(' '.join('%5s' % classes[labels[j]] for j in range(batch_size)))
+    print("image created and saved ")
+    ```
 
 7. Import the torch.nn for constructing neural networks and torch.nn.functional to use the convolution functions.
 
-```
-import torch.nn as nn
-import torch.nn.functional as F  
-```
+    ```py
+    import torch.nn as nn
+    import torch.nn.functional as F  
+    ```
 
 8. Define the CNN (Convolution Neural Networks) and relevant activation functions.
 
-```
-class Net(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.conv1 = nn.Conv2d(3, 6, 5)
-        self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
-   self.pool = nn.MaxPool2d(2, 2)
-   self.conv3 = nn.Conv2d(3, 6, 5)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
- 
-    def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        x = torch.flatten(x, 1) # flatten all dimensions except batch
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
-        return x
-net = Net()
-print("created Net() ")
-```
+    ```py
+    class Net(nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.conv1 = nn.Conv2d(3, 6, 5)
+            self.pool = nn.MaxPool2d(2, 2)
+            self.conv2 = nn.Conv2d(6, 16, 5)
+    self.pool = nn.MaxPool2d(2, 2)
+    self.conv3 = nn.Conv2d(3, 6, 5)
+            self.fc2 = nn.Linear(120, 84)
+            self.fc3 = nn.Linear(84, 10)
+    
+        def forward(self, x):
+            x = self.pool(F.relu(self.conv1(x)))
+            x = self.pool(F.relu(self.conv2(x)))
+            x = torch.flatten(x, 1) # flatten all dimensions except batch
+            x = F.relu(self.fc1(x))
+            x = F.relu(self.fc2(x))
+            x = self.fc3(x)
+            return x
+    net = Net()
+    print("created Net() ")
+    ```
 
 9. Set the optimizer to Stochastic Gradient Descent.
 
-```
-import torch.optim as optim
-```
+    ```py
+    import torch.optim as optim
+    ```
 
 10. Set the loss criteria. For this example, Cross Entropy Loss [5] is used.
 
-```
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
-```
+    ```py
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    ```
 
 11. Iterate over epochs. Each epoch is a complete pass through the training data.
 
-```
-for epoch in range(2):  # loop over the dataset multiple times
- 
-    running_loss = 0.0
-    for i, data in enumerate(train_loader, 0):
-        # get the inputs; data is a list of [inputs, labels]
-        inputs, labels = data
- 
-        # zero the parameter gradients
-        optimizer.zero_grad()
- 
-        # forward + backward + optimize
-        outputs = net(inputs)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
- 
-        # print statistics
-        running_loss += loss.item()
-        if i % 2000 == 1999:    # print every 2000 mini-batches
-            print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
-            running_loss = 0.0
-print('Finished Training')
-```
+    ```py
+    for epoch in range(2):  # loop over the dataset multiple times
+    
+        running_loss = 0.0
+        for i, data in enumerate(train_loader, 0):
+            # get the inputs; data is a list of [inputs, labels]
+            inputs, labels = data
+    
+            # zero the parameter gradients
+            optimizer.zero_grad()
+    
+            # forward + backward + optimize
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+    
+            # print statistics
+            running_loss += loss.item()
+            if i % 2000 == 1999:    # print every 2000 mini-batches
+                print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
+                running_loss = 0.0
+    print('Finished Training')
+    ```
 
-```
-PATH = './cifar_net.pth'
-torch.save(net.state_dict(), PATH)
-print("saved model to path :",PATH)
-net = Net()
-net.load_state_dict(torch.load(PATH))
-print("loding back saved model")
-outputs = net(images)
-_, predicted = torch.max(outputs, 1)
-print('Predicted: ', ' '.join('%5s' % classes[predicted[j]] for j in range(4)))
-correct = 0
-total = 0
-```
+    ```py
+    PATH = './cifar_net.pth'
+    torch.save(net.state_dict(), PATH)
+    print("saved model to path :",PATH)
+    net = Net()
+    net.load_state_dict(torch.load(PATH))
+    print("loding back saved model")
+    outputs = net(images)
+    _, predicted = torch.max(outputs, 1)
+    print('Predicted: ', ' '.join('%5s' % classes[predicted[j]] for j in range(4)))
+    correct = 0
+    total = 0
+    ```
 
-As this is not training, calculating the gradients for outputs is not required.
+    As this is not training, calculating the gradients for outputs is not required.
 
-```
-# calculate outputs by running images through the network
-with torch.no_grad():
-    for data in test_loader:
-        images, labels = data
-        # calculate outputs by running images through the network
-        outputs = net(images)
-        # the class with the highest energy is what you can choose as prediction
-        _, predicted = torch.max(outputs.data, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
-print('Accuracy of the network on the 10000 test images: %d %%' % ( 100 * correct / total))
-# prepare to count predictions for each class
-correct_pred = {classname: 0 for classname in classes}
-total_pred = {classname: 0 for classname in classes}
-```
+    ```py
+    # calculate outputs by running images through the network
+    with torch.no_grad():
+        for data in test_loader:
+            images, labels = data
+            # calculate outputs by running images through the network
+            outputs = net(images)
+            # the class with the highest energy is what you can choose as prediction
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+    print('Accuracy of the network on the 10000 test images: %d %%' % ( 100 * correct / total))
+    # prepare to count predictions for each class
+    correct_pred = {classname: 0 for classname in classes}
+    total_pred = {classname: 0 for classname in classes}
+    ```
 
-```
-# again no gradients needed
-with torch.no_grad():
-    for data in test_loader:
-        images, labels = data
-        outputs = net(images)
-        _, predictions = torch.max(outputs, 1)
-        # collect the correct predictions for each class
-        for label, prediction in zip(labels, predictions):
-            if label == prediction:
-                correct_pred[classes[label]] += 1
-            total_pred[classes[label]] += 1
-# print accuracy for each class
-for classname, correct_count in correct_pred.items():
-    accuracy = 100 * float(correct_count) / total_pred[classname]
-    print("Accuracy for class {:5s} is: {:.1f} %".format(classname,accuracy))
-```
+    ```py
+    # again no gradients needed
+    with torch.no_grad():
+        for data in test_loader:
+            images, labels = data
+            outputs = net(images)
+            _, predictions = torch.max(outputs, 1)
+            # collect the correct predictions for each class
+            for label, prediction in zip(labels, predictions):
+                if label == prediction:
+                    correct_pred[classes[label]] += 1
+                total_pred[classes[label]] += 1
+    # print accuracy for each class
+    for classname, correct_count in correct_pred.items():
+        accuracy = 100 * float(correct_count) / total_pred[classname]
+        print("Accuracy for class {:5s} is: {:.1f} %".format(classname,accuracy))
+    ```
 
 ### Case Study: TensorFlow with Fashion MNIST
 
