@@ -14,9 +14,10 @@ Training also includes the choice of an optimization algorithm that reduces the 
 
 ## Training Phases
 
-Training occurs in multiple phases for every batch of training data. Table 2 provides an explanation of the types of training phases.
+Training occurs in multiple phases for every batch of training data. {numref}`TypesOfTrainingPhases` provides an explanation of the types of training phases.
 
 :::{table} Types of Training Phases
+:name: TypesOfTrainingPhases
 :widths: auto
 | Types of Phases |  |
 | ----------- | ----------- |
@@ -61,9 +62,9 @@ Follow these steps:
 
 1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
 
-```py
-docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
-```
+    ```dockerfile
+    docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
+    ```
 
 2. Run the Python shell and import packages and libraries for model creation.
 
