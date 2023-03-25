@@ -1227,9 +1227,10 @@ plt.legend()
 plt.show()
 ```
 
-Figures 3 and 4 illustrate the training and validation loss and the training and validation accuracy.
+{numref}`TextClassification6` and {numref}`TextClassification7` illustrate the training and validation loss and the training and validation accuracy.
 
 ```{figure} ../../data/understand/deep_learning/TextClassification_6.png
+:name: TextClassification6
 ---
 align: center
 ---
@@ -1237,6 +1238,7 @@ Training and Validation Loss
 ```
 
 ```{figure} ../../data/understand/deep_learning/TextClassification_7.png
+:name: TextClassification7
 ---
 align: center
 ---
