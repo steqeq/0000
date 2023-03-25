@@ -4,8 +4,7 @@ Pull content from
 <https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4.1/page/Deep_Learning_Training.html>.
 Ignore training description.
 
-# Deep Learning Training
-
+## Deep Learning Training
 
 Deep Learning models are designed to capture the complexity of the problem and the underlying data. These models are "deep," comprising multiple component layers. Training is finding the best parameters for each model layer to achieve a well-defined objective.
 
@@ -14,6 +13,7 @@ The training data consists of input features in supervised learning, similar to 
 Training also includes the choice of an optimization algorithm that reduces the loss by adjusting the model's parameters. Training is an iterative process where training data is fed in, usually split into different batches, with the entirety of the training data passed during one training epoch. Training usually is run for multiple epochs.
 
 ## Training Phases
+
 Training occurs in multiple phases for every batch of training data. Table 2 provides an explanation of the types of training phases.
 
 :::{table} Types of Training Phases
