@@ -68,146 +68,147 @@ Follow these steps:
 
 2. Run the Python shell and import packages and libraries for model creation.
 
-```
-import torch
-import torchvision
-```
+    ```py
+    import torch
+    import torchvision
+    ```
 
 3. Set the model in evaluation mode. Evaluation mode directs PyTorch not to store intermediate data, which would have been used in training.
 
-```
-model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3', pretrained=True)
-model.eval()
-```
+    ```py
+    model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3', pretrained=True)
+    model.eval()
+    ```
 
 4. Download a sample image for inference.
 
-```
-import urllib
-url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
-try: urllib.URLopener().retrieve(url, filename)
-except: urllib.request.urlretrieve(url, filename)
-```
+    ```py
+    import urllib
+    url, filename = ("https://github.com/pytorch/hub/raw/master/images/dog.jpg", "dog.jpg")
+    try: urllib.URLopener().retrieve(url, filename)
+    except: urllib.request.urlretrieve(url, filename)
+    ```
 
 5. Import torchvision and PIL Image support libraries.
 
-```
-from PIL import Image
-from torchvision import transforms
-input_image = Image.open(filename)
-```
+    ```py
+    from PIL import Image
+    from torchvision import transforms
+    input_image = Image.open(filename)
+    ```
 
 6. Apply preprocessing and normalization.
 
-```
-preprocess = transforms.Compose([
-    transforms.Resize(299),
-    transforms.CenterCrop(299),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
-```
+    ```py
+    preprocess = transforms.Compose([
+        transforms.Resize(299),
+        transforms.CenterCrop(299),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ])
+    ```
 
 7. Use input tensors and unsqueeze them later.
 
-```
-input_tensor = preprocess(input_image)
-input_batch = input_tensor.unsqueeze(0)
-if torch.cuda.is_available():
-    input_batch = input_batch.to('cuda')
-    model.to('cuda')
-```
+    ```py
+    input_tensor = preprocess(input_image)
+    input_batch = input_tensor.unsqueeze(0)
+    if torch.cuda.is_available():
+        input_batch = input_batch.to('cuda')
+        model.to('cuda')
+    ```
 
 8. Find out probabilities.
 
-```
-with torch.no_grad():
-    output = model(input_batch)
-print(output[0])
-probabilities = torch.nn.functional.softmax(output[0], dim=0)
-print(probabilities)
-```
+    ```py
+    with torch.no_grad():
+        output = model(input_batch)
+    print(output[0])
+    probabilities = torch.nn.functional.softmax(output[0], dim=0)
+    print(probabilities)
+    ```
 
 9. To understand the probabilities, download and examine the Imagenet labels.
 
-```
-wget https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt
-```
+    ```py
+    wget https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt
+    ```
 
 10. Read the categories and show the top categories for the image.
 
-```
-with open("imagenet_classes.txt", "r") as f:
-    categories = [s.strip() for s in f.readlines()]
-top5_prob, top5_catid = torch.topk(probabilities, 5)
-for i in range(top5_prob.size(0)):
-    print(categories[top5_catid[i]], top5_prob[i].item())
-```
+    ```py
+    with open("imagenet_classes.txt", "r") as f:
+        categories = [s.strip() for s in f.readlines()]
+    top5_prob, top5_catid = torch.topk(probabilities, 5)
+    for i in range(top5_prob.size(0)):
+        print(categories[top5_catid[i]], top5_prob[i].item())
+    ```
 
 #### Training Inception v3
+
 The previous section focused on downloading and using the Inception v3 model for a simple image classification task. This section walks through training the model on a new dataset.
 
 Follow these steps:
 
 1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
 
-```
-docker pull rocm/pytorch:latest
-docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
-```
+    ```dockerfile
+    docker pull rocm/pytorch:latest
+    docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
+    ```
 
 2. Download an imagenet database. For this example, the tiny-imagenet-200 [4], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
 
-```
-wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
-```
+    ```py
+    wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
+    ```
 
 3. Process the database to set the validation directory to the format expected by PyTorch DataLoader.
 
 4. Run the following script:
 
-```
-import io
-import glob
-import os
-from shutil import move
-from os.path import join
-from os import listdir, rmdir
-target_folder = './tiny-imagenet-200/val/'
-val_dict = {}
-with open('./tiny-imagenet-200/val/val_annotations.txt', 'r') as f:
-    for line in f.readlines():
-        split_line = line.split('\t')
-        val_dict[split_line[0]] = split_line[1]
- 
-paths = glob.glob('./tiny-imagenet-200/val/images/*')
-for path in paths:
-    file = path.split('/')[-1]
-    folder = val_dict[file]
-    if not os.path.exists(target_folder + str(folder)):
-        os.mkdir(target_folder + str(folder))
-        os.mkdir(target_folder + str(folder) + '/images')
- 
-for path in paths:
-    file = path.split('/')[-1]
-    folder = val_dict[file]
-    dest = target_folder + str(folder) + '/images/' + str(file)
-    move(path, dest)
- 
-rmdir('./tiny-imagenet-200/val/images')
-```
+    ```py
+    import io
+    import glob
+    import os
+    from shutil import move
+    from os.path import join
+    from os import listdir, rmdir
+    target_folder = './tiny-imagenet-200/val/'
+    val_dict = {}
+    with open('./tiny-imagenet-200/val/val_annotations.txt', 'r') as f:
+        for line in f.readlines():
+            split_line = line.split('\t')
+            val_dict[split_line[0]] = split_line[1]
+    
+    paths = glob.glob('./tiny-imagenet-200/val/images/*')
+    for path in paths:
+        file = path.split('/')[-1]
+        folder = val_dict[file]
+        if not os.path.exists(target_folder + str(folder)):
+            os.mkdir(target_folder + str(folder))
+            os.mkdir(target_folder + str(folder) + '/images')
+    
+    for path in paths:
+        file = path.split('/')[-1]
+        folder = val_dict[file]
+        dest = target_folder + str(folder) + '/images/' + str(file)
+        move(path, dest)
+    
+    rmdir('./tiny-imagenet-200/val/images')
+    ```
 
 5. Open a Python shell.
 
 6. Import dependencies, including torch, OS, and torchvision.
 
-```
-import torch
-import os
-import torchvision 
-from torchvision import transforms
-from torchvision.transforms.functional import InterpolationMode
-```
+    ```py
+    import torch
+    import os
+    import torchvision 
+    from torchvision import transforms
+    from torchvision.transforms.functional import InterpolationMode
+    ```
 
 7. Set parameters to guide the training process.
 
