@@ -1,30 +1,5 @@
 # PyTorch Installation for ROCm
 
-Pull content from
-<https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4.1/page/Frameworks_Installation.html>
-
-TEST
-
-
-# Magma Installation for ROCm
-
-Pull content from
-<https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4.1/page/Frameworks_Installation.html>
-
-The following sections cover the different framework installations for ROCm and
-Deep Learning applications. {numref}`rocm-compat-frameworks-flowchart` provides the sequential flow for the use of
-each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
-framework's most current release notes at
-[/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html](/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html).
-
-
-:::{figure-md} rocm-compat-frameworks-flowchart
-
-<img src="../../data/how_to/magma_install/image.005.png" alt="ROCm Compatible Frameworks Flowchart">
-
-ROCm Compatible Frameworks Flowchart
-:::
-
 ## PyTorch
 
 PyTorch is an open source Machine Learning Python library, primarily
