@@ -83,9 +83,15 @@ To install PyTorch using the wheels package, follow these installation steps:
 
    or
 
-   c.  Install on bare metal. Skip to Step 3.
+   c. Install on bare metal. Skip to Step 3.
 
-   ```bash
+      ```bash
+      docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
+      ```
+
+2. Start the Docker container, if not installing on bare metal.
+
+   ```dockerfile
    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
    ```
 
