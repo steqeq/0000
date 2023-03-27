@@ -46,3 +46,11 @@ Obtain the value of gpu-arch by running the following command:
 ```bash
 % /opt/rocm-{version}/bin/rocminfo | grep gfx
 ```
+
+[//]: # (dated link below, needs upading)
+
+See the complete list of compiler command-line references [here](https://github.com/RadeonOpenCompute/llvm-project/blob/amd-stg-open/clang/docs/ClangCommandLineReference.rst).
+
+### Using rocprof with OpenMP
+
+The following steps describe a typical workflow for using rocprof with OpenMP code compiled with AOMP:
