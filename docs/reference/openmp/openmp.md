@@ -22,3 +22,17 @@ bin: Compilers (flang and clang) and other binaries.
 - lib: Libraries including those required for target offload.
 
 - lib-debug: Debug versions of the above libraries.
+
+## OpenMP: Usage
+
+The example programs can be compiled and run by pointing the environment variable AOMP to the OpenMP install directory.
+
+**Example:**
+
+```bash
+% export AOMP=/opt/rocm-{version}/llvm
+% cd $AOMP/examples/openmp/veccopy
+% make run
+```
+
+The above invocation of Make compiles and runs the program. Note the options that are required for target offload from an OpenMP program:
