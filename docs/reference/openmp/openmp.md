@@ -36,3 +36,13 @@ The example programs can be compiled and run by pointing the environment variabl
 ```
 
 The above invocation of Make compiles and runs the program. Note the options that are required for target offload from an OpenMP program:
+
+```bash
+-target x86_64-pc-linux-gnu -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch>
+```
+
+Obtain the value of gpu-arch by running the following command:
+
+```bash
+% /opt/rocm-{version}/bin/rocminfo | grep gfx
+```
