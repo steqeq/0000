@@ -137,7 +137,7 @@ subtrees:
           - url: https://rocmdocs.amd.com/projects/amdsmi/en/{branch}/
             title: AMD SMI
           - url: https://rocmdocs.amd.com/projects/rocmsmi/en/{branch}/
-            title: rocmsmi
+            title: ROCm SMI
           - url: https://rocmdocs.amd.com/projects/rdc/en/{branch}/
             title: ROCm Datacenter Tool
     - file: reference/validation_tools
