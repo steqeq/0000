@@ -76,3 +76,13 @@ The following steps describe a typical workflow for using rocprof with OpenMP co
 3. After learning about the required kernels, the user can take a detailed look at each one of them. rocprof has support for hardware counters: a set of basic and a set of derived ones. See the complete list of counters using options --list-basic and --list-derived. rocprof accepts either a text or an XML file as an input.
 
 For more details on rocprof, refer to the ROCm Profiling Tools document on [https://docs.amd.com](https://docs.amd.com).
+
+### Using Tracing Options
+
+**Prerequisite:** When using the --sys-trace option, compile the OpenMP program with:
+
+```bash
+    -Wl,–rpath,/opt/rocm-{version}/lib -lamdhip64 
+```
+
+The following tracing options are widely used to generate useful information:
