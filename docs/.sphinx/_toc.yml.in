@@ -52,14 +52,14 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
               - title: hipBLASLt
                 url: https://rocmdocs.amd.com/projects/hipBLASLt/en/{branch}/
-              - title: rocWMMA
-                url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
               - title: rocSPARSE
                 url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
               - title: hipSPARSE
                 url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
               - title: rocALUTION
                 url: https://rocmdocs.amd.com/projects/rocALUTION/en/{branch}/
+              - title: rocWMMA
+                url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
               - title: rocSOLVER
                 url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
               - title: hipSOLVER
