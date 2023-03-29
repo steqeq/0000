@@ -2,24 +2,29 @@
 
 from dataclasses import dataclass, field
 import os
+import re
 import shutil
-from typing import Optional, Union
+from typing import Optional, Union, Dict, List, Tuple
 from github import Github, UnknownObjectException
 from github.Repository import Repository
 from github.Organization import Organization
 from github.NamedUser import NamedUser
+from github.Tag import Tag
 from git import Repo
+from packaging.version import Version
 
 from util.util import get_yn_input
 
+# - `ReleaseBundle` has one per library:
+#   - `ReleaseLib` has exactly one:
+#     - `ReleaseData`
 
 @dataclass
 class ReleaseData:
     """Store Github data for a release."""
-
     message: str = ""
     notes: str = ""
-
+    changes: Dict[str, str] = field(default_factory=dict)
 
 @dataclass
 class ReleaseLib:
@@ -31,6 +36,7 @@ class ReleaseLib:
     data: ReleaseData = field(default_factory=ReleaseData)
     commit: str = ""
     rocm_version: str = ""
+    lib_version: str = ""
 
     @property
     def qualified_repo(self) -> str:
@@ -56,6 +62,11 @@ class ReleaseLib:
             if self.rocm_version.count(".") > 1
             else self.rocm_version + ".0"
         )
+
+    @property
+    def release_url(self) -> str:
+        """The Github URL of the release."""
+        return f"https://github.com/{self.qualified_repo}/releases/tag/{self.tag}"
 
     @property
     def message(self) -> str:
@@ -155,6 +166,9 @@ class ReleaseLib:
 class ReleaseDataFactory:
     """A factory for ReleaseData objects."""
 
+    lib_versions: Dict[str, str] = { }
+    """A map of commit hashes to lib versions."""
+
     def __init__(
         self, org_name: Optional[str], version: str, gh: Github, pr_gh: Github
     ):
@@ -166,7 +180,7 @@ class ReleaseDataFactory:
         else:
             self.org, self.pr_org = self.get_org_or_user(org_name)
 
-    def get_org_or_user(self, name: str):
+    def get_org_or_user(self, name: str) -> Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]:
         """Get a Github organization or user by name."""
         gh_ns: Union[NamedUser, Organization]
         pr_ns: Union[NamedUser, Organization]
@@ -207,4 +221,137 @@ class ReleaseDataFactory:
             commit=commit,
             rocm_version=self.rocm_version,
         )
+        return data
+
+@dataclass
+class ReleaseBundle:
+    """Stores data about all the libraries bundled in this release."""
+
+    version: str = ""
+
+    libraries   : Dict[str, ReleaseLib] = field(default_factory=ReleaseLib)
+
+class ReleaseBundleFactory:
+
+    gh: Github = None
+    pr_gh: Github = None
+
+    default_remote: str = ""
+    orgs       : Dict[str, str] = { }
+
+    tags: Dict[str, Dict[Version, Tag]] = { }
+
+    def __init__(
+        self,
+        rocm_repo: str,
+        gh: Github,
+        pr_gh: Github,
+        default_remote: str,
+        remotes: Dict[str, str],
+        branch: Optional[str]
+    ):
+        # Store Github data
+        self.gh    = gh
+        self.pr_gh = pr_gh
+
+        self.default_remote = default_remote
+        self.orgs        = remotes
+        self.branch         = branch
+
+        # Get the main repository:
+        self.rocm_repo = gh.get_repo(rocm_repo)
+
+    def get_org(self, remote: str):
+        if remote in self.orgs:
+            return self.orgs[remote]
+        return self.default_remote
+
+    def get_repo(self, name: str, remote: str) -> Repo:
+        path = f"{self.get_org(remote)}/{name}"
+        try:
+            return self.gh.get_repo(path)
+        except Exception as e:
+            print(f"Could not get repository {path}.")
+            raise e
+
+    def get_tag(self, name: str, remote: str, version: str) -> Tag:
+        repo = self.get_repo(name, remote)
+        if name not in self.tags:
+            self.tags[name] = { }
+            for tag in repo.get_tags():
+                if not tag.name.startswith("rocm-"):
+                    continue
+                tag_version = tag.name.lstrip("rocm-")
+                tag_version += ".0" * (2 - tag_version.count("."))
+                self.tags[name][tag_version] = tag
+
+        if version not in self.tags[name]:
+            return None
+
+        return self.tags[name][version]
+
+    def create_data(
+        self,
+        version: str,
+        names_and_remotes: List[Tuple[str, str]]
+    ) -> ReleaseBundle:
+        """Create a release bundle of libraries."""
+
+        release_factory = ReleaseDataFactory(
+            None,
+            version,
+            self.gh,
+            self.pr_gh
+        )
+
+        libraries = { }
+        print(f"\nLibraries for rocm-{version}:")
+        for name, remote in names_and_remotes:
+            repo     = self.get_repo(name, remote)
+            tag_name = f"rocm-{version}"
+
+            # Find the tag and otherwise 
+            tag = self.get_tag(name, remote, version)
+            if tag:
+                commit = tag.commit.sha
+            else:
+                print(f"- Could not find tag '{tag_name}' in '{name}'")
+                continue
+            print(f"- {name} {tag_name} {commit}")
+            libraries[name] = release_factory.create_data(
+                name=name,
+                commit=commit,
+                org=self.get_org(remote)
+            )
+
+        data = ReleaseBundle(
+            version=version,
+            libraries=libraries
+        )
+
+        return data
+
+    def create_data_dict(
+        self,
+        up_to_version: str,
+        names_and_remotes: List[Tuple[str, str]],
+        min_version: str = "5.0.0"
+    ) -> Dict[str, ReleaseBundle]:
+        """Create a map of versions and release bundles."""
+
+        # Get the tags and versions
+        tags = list(tag for tag in self.rocm_repo.get_tags() if tag.name.startswith("rocm-"))
+        versions = list(tag.name.replace("rocm-", "") for tag in tags)
+
+        if up_to_version not in versions:
+            versions.append(up_to_version)
+        versions.sort()
+
+        # Create
+        data = {}
+        for version in versions:
+            if Version(version) >= Version(min_version):
+
+                data[version] = self.create_data(version, names_and_remotes)
+
         return data
