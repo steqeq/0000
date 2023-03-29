@@ -19,20 +19,25 @@ to your distribution.
 ```shell  
 sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 ```
+
 :::
 
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
+
 ```shell
 sudo yum install kernel-headers kernel-devel
 ```
+
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
+
 ```shell
 sudo zypper install kernel-default-devel
 ```
+
 :::
 ::::
 
@@ -44,6 +49,7 @@ sudo zypper install kernel-default-devel
 
 ::::{rubric} 1. Download and convert the package signing key
 ::::
+
 ```shell
 # Make the directory if it doesn't exist yet.
 # This location is recommended by the distribution maintainers.
@@ -60,6 +66,7 @@ wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | \
 ::::{tab-set}
 :::{tab-item} Ubuntu 20.04
 :sync: ubuntu-20.04
+
 ```shell
 # Kernel driver repository for focal
 sudo tee /etc/apt/sources.list.d/amdgpu.list <<'EOF'
@@ -70,9 +77,11 @@ sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
 deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian focal main
 EOF
 ```
+
 :::
 :::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
+
 ```shell
 # Kernel driver repository for jammy
 sudo tee /etc/apt/sources.list.d/amdgpu.list <<'EOF'
@@ -83,14 +92,17 @@ sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
 deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
 EOF
 ```
+
 :::
 ::::
 
 ::::{rubric} 3. Update the list of packages
 ::::
+
 ```shell
 sudo apt update
 ```
+
 :::::
 
 :::::{tab-item} Red Hat Enterprise Linux
@@ -102,6 +114,7 @@ sudo apt update
 ::::{tab-set}
 :::{tab-item} RHEL 8.6
 :sync: RHEL-8.6
+
 ```shell
 # Add the amdgpu module repository for RHEL 8.6
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
@@ -123,10 +136,12 @@ gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 ```
+
 :::
 
 :::{tab-item} RHEL 8.7
 :sync: RHEL-8.7
+
 ```shell
 # Add the amdgpu module repository for RHEL 8.7
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
@@ -148,10 +163,12 @@ gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 ```
+
 :::
 
 :::{tab-item} RHEL 9.1
 :sync: RHEL-9.1
+
 ```shell
 # Add the amdgpu module repository for RHEL 9.1
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
@@ -173,6 +190,7 @@ gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 ```
+
 :::
 ::::
 
@@ -182,6 +200,7 @@ EOF
 ```shell
 sudo yum clean all
 ```
+
 :::::
 
 :::::{tab-item} SUSE Linux Enterprise Server 15
@@ -193,7 +212,9 @@ sudo yum clean all
 ::::{tab-set}
 :::{tab-item} Service Pack 4
 :sync: SLES15-SP4
+
 ```shell
+
 # Add the amdgpu module repository for SLES 15.4
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
@@ -214,11 +235,13 @@ gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 ```
+
 :::
 ::::
 
 ::::{rubric} 2. Update the new repository
 ::::
+
 ```shell
 sudo zypper ref
 ```
@@ -234,23 +257,29 @@ Install the amdgpu kernel module, aka driver, on your system.
 
 :::{tab-item} Ubuntu
 :sync: ubuntu
+
 ```shell
 sudo apt install amdgpu-dkms
 ```
+
 :::
 
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
+
 ```shell
 sudo yum install amdgpu-dkms
 ```
+
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
+
 ```shell
 sudo zypper install amdgpu-dkms
 ```
+
 :::
 
 ::::
@@ -263,23 +292,29 @@ common ROCm applications.
 ::::{tab-set}
 :::{tab-item} Ubuntu
 :sync: ubuntu
+
 ```console shell
 sudo apt install rocm-hip-libraries
 ```
+
 :::
 
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
+
 ```console shell
 sudo yum install rocm-hip-libraries
 ```
+
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
+
 ```console shell
 sudo zypper install rocm-hip-libraries
 ```
+
 :::
 ::::
 
