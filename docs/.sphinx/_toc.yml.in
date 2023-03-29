@@ -138,10 +138,16 @@ subtrees:
             title: AMD SMI
           - url: https://rocmdocs.amd.com/projects/rocmsmi/en/{branch}/
             title: rocmsmi
-          - url: https://rocmdocs.amd.com/projects/rvs/en/{branch}/
-            title: RVS
           - url: https://rocmdocs.amd.com/projects/rdc/en/{branch}/
             title: ROCm Datacenter Tool
+    - file: reference/validation_tools
+      title: Validation Tools
+      subtrees:
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/rvs/en/{branch}/
+            title: RVS
+          - url: https://rocmdocs.amd.com/projects/TransferBench/en/{branch}/
+            title: TransferBench
     - file: reference/gpu_arch
       subtrees:
         - entries:
