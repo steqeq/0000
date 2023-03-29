@@ -126,7 +126,7 @@ subtrees:
             title: ROCmCC
           - url: http://profiler
             title: ROCGDB
-          - url: http://profiler
+          - url: https://rocmdocs.amd.com/projects/ROCgdb/en/{branch}/
             title: rocprof
           - url: http://profiler
             title: roctracer
