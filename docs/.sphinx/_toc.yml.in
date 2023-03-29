@@ -122,13 +122,13 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-          - url: http://profiler
-            title: ROCGDB
+          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
+            title: ROCgdb
           - url: https://rocmdocs.amd.com/projects/ROCgdb/en/{branch}/
-            title: rocprof
-          - url: http://profiler
+            title: rocprofiler
+          - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
             title: roctracer
-          - url: http://profiler
+          - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
             title: ROCdbgapi             
     - file: reference/management_tools
       title: Management Tools
