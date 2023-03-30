@@ -133,3 +133,13 @@ Unified Shared Memory (USM) provides a pointer-based approach to memory manageme
 #### Xnack Capability
 
 When enabled, Xnack capability allows programmers to handle page faults at runtime gracefully. When executing the binaries compiled with Xnack replay enabled, any page fault at runtime leads to a repeated attempt to access the memory.
+
+```bash
+xnack+ --offload-arch=gfx908:xnack+
+```
+
+The programmer must write offloading kernels carefully to avoid any page faults on the GPU at runtime when choosing to disable Xnack replay.
+
+```bash
+xnack- with –offload-arch=gfx908:xnack-
+```
