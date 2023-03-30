@@ -102,3 +102,29 @@ For more details on tracing, refer to the ROCm Profiling Tools document on [http
 | LIBOMPTARGET_INFO | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
 | LIBOMPTARGET_DEBUG | If a debug version of the device library is present, setting this environment variable to 1 and using that library emits further detailed debugging information about data transfer operations and kernel launch. |
 | GPU_MAX_HW_QUEUES | This environment variable is used to set the number of HSA queues in the OpenMP runtime. |
+
+## OpenMP: Features
+
+The OpenMP programming model is greatly enhanced with the following new features implemented in the past releases.
+
+### Asynchronous Behavior in OpenMP Target Regions
+
+- Multithreaded offloading on the same device
+
+The libomptarget plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
+
+- Parallel memory copy invocations
+
+Implicit asynchronous execution of single target region enables parallel memory copy invocations.
+
+### Unified Shared Memory
+
+Unified Shared Memory (USM) provides a pointer-based approach to memory management. To implement USM, fulfill the following system requirements along with Xnack capability.
+
+#### Prerequisites
+
+- Linux Kernel versions above 5.14
+
+- Latest KFD driver packaged in ROCm stack
+
+- Xnack, as USM support can only be tested with applications compiled with Xnack capability
