@@ -143,3 +143,43 @@ The programmer must write offloading kernels carefully to avoid any page faults 
 ```bash
 xnack- with –offload-arch=gfx908:xnack-
 ```
+
+#### Unified Shared Memory Pragma
+
+This OpenMP pragma is available on MI200 through xnack+ support.
+
+```bash
+omp requires unified_shared_memory
+```
+
+As stated in the OpenMP specifications, this pragma makes the map clause on target constructs optional. By default, on MI200, all memory allocated on the host is fine grain. Using the map clause on a target clause is allowed, which transforms the access semantics of the associated memory to coarse grain.
+
+```bash
+A simple program demonstrating the use of this feature is:
+$ cat parallel_for.cpp
+#include <stdlib.h>
+#include <stdio.h>
+ 
+#define N 64
+#pragma omp requires unified_shared_memory
+int main() {
+  int n = N;
+  int *a = new int[n];
+  int *b = new int[n];
+ 
+  for(int i = 0; i < n; i++)
+    b[i] = i;
+ 
+  #pragma omp target parallel for map(to:b[:n])
+  for(int i = 0; i < n; i++)
+    a[i] = b[i];
+ 
+  for(int i = 0; i < n; i++)
+    if(a[i] != i)
+      printf("error at %d: expected %d, got %d\n", i, i+1, a[i]);
+ 
+  return 0;
+}
+$ clang++ -O2 -target x86_64-pc-linux-gnu -fopenmp --offload-arch=gfx90a:xnack+ parallel_for.cpp
+$ HSA_XNACK=1 ./a.out
+```
