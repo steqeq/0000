@@ -7,7 +7,6 @@ framework's most current release notes at
 [/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html](/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html).
 
 ```{figure} ../data/how_to/magma_install/image.005.png
-   alt="ROCm Compatible Frameworks Flowchart
     :name: rocm-compat-frameworks-flowchart
     ---
     align: center
