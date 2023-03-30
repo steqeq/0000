@@ -84,7 +84,7 @@ The following tracing options are widely used to generate useful information:
 
 - **--hsa-trace**: This option is used to get a JSON output file with the HSA API execution traces and a flat profile in a CSV file.
 
-- **--sys-trace**: This allows programmers to trace both HIP and HSA calls. Since this option results in loading 'libamdhip64.so', follow the prerequisite as mentioned above.
+- **--sys-trace**: This allows programmers to trace both HIP and HSA calls. Since this option results in loading ``libamdhip64.so``, follow the prerequisite as mentioned above.
 
 A CSV and a JSON file are produced by the above trace options. The CSV file presents the data in a tabular format, and the JSON file can be visualized using Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/). Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the HSA calls.
 
@@ -92,8 +92,10 @@ For more details on tracing, refer to the ROCm Profiling Tools document on [http
 
 ### Environment Variables
 
-:::{table} 
+:::{table}
 :widths: auto
 | Environment Variable | Description |
 | ----------- | ----------- |
 | OMP_NUM_TEAMS | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
+| OMPX_DISABLE_MAPS | Under USM mode, the implementation automatically checks for correctness of the map clauses without performing any copying. The user can disable this check by setting this environment variable to 1. |
+| LIBOMPTARGET_KERNEL_TRACE | This environment variable is used to print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
