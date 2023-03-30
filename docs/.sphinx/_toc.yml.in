@@ -23,7 +23,6 @@ subtrees:
   - file: how_to/quick_start_linux
   - file: how_to/quick_start_windows
   - file: deploy/docker
-  - file: deploy/install
   - file: deploy/multi
   - file: deploy/spack
   - file: deploy/build_source
@@ -149,6 +148,10 @@ subtrees:
               title: MI250
 - caption: Understand ROCm
   entries:
+    - file: understand/installing_linux
+      subtrees:
+        - entries:
+          - file: understand/installing_linux/package_manager_integration
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
     - file: isv_deployment_win
