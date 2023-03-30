@@ -157,8 +157,10 @@ pure-eval==0.2.2
     # via stack-data
 pycparser==2.21
     # via cffi
-pydata-sphinx-theme==0.13.0rc5
-    # via sphinx-book-theme
+pydata-sphinx-theme==0.13.3
+    # via
+    #   rocm-docs-core
+    #   sphinx-book-theme
 pygithub==1.57
     # via rocm-docs-core
 pygments==2.14.0
@@ -191,7 +193,7 @@ requests==2.28.1
     # via
     #   pygithub
     #   sphinx
-rocm-docs-core @ git+https://github.com/RadeonOpenCompute/rocm-docs-core.git
+rocm-docs-core @ git+https://github.com/RadeonOpenCompute/rocm-docs-core.git@refs/pull/48/head
     # via -r requirements.in
 six==1.16.0
     # via
@@ -214,6 +216,7 @@ sphinx==4.3.1
     #   sphinx-copybutton
     #   sphinx-design
     #   sphinx-external-toc
+    #   sphinx-notfound-page
 sphinx-book-theme==1.0.0rc2
     # via rocm-docs-core
 sphinx-copybutton==0.5.1
@@ -221,6 +224,8 @@ sphinx-copybutton==0.5.1
 sphinx-design==0.3.0
     # via rocm-docs-core
 sphinx-external-toc==0.3.1
+    # via rocm-docs-core
+sphinx-notfound-page==0.8.3
     # via rocm-docs-core
 sphinxcontrib-applehelp==1.0.4
     # via sphinx
@@ -258,6 +263,7 @@ typing-extensions==4.5.0
     # via
     #   myst-nb
     #   myst-parser
+    #   pydata-sphinx-theme
 uc-micro-py==1.0.1
     # via linkify-it-py
 urllib3==1.26.13
