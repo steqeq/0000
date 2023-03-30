@@ -91,3 +91,9 @@ A CSV and a JSON file are produced by the above trace options. The CSV file pres
 For more details on tracing, refer to the ROCm Profiling Tools document on [https://docs.amd.com](https://docs.amd.com).
 
 ### Environment Variables
+
+:::{table} 
+:widths: auto
+| Environment Variable | Description |
+| ----------- | ----------- |
+| OMP_NUM_TEAMS | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
