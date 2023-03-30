@@ -186,8 +186,7 @@ def run_tagging():
 
     if args.manifest_url is None:
         manifest_url = (
-            f"http://rocm-ci.amd.com/job/compute-rocm-rel-{args.version}"
-            "/lastSuccessfulBuild/artifact/manifest.xml"
+            "https://github.com/RadeonOpenCompute/ROCm/raw/develop/default.xml"
         )
     else:
         manifest_url = args.manifest_url
