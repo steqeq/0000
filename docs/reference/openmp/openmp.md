@@ -310,3 +310,21 @@ for(int i=0; i<N; i++){
 ```
 
 See the complete sample code for global buffer overflow [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
+
+### No-loop Kernel Generation
+
+The No-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP Target Constructs such as target teams distribute parallel for. The specialized kernel generation assumes that every thread executes a single iteration of the user loop, which implies that the runtime launches a total number of GPU threads equal to or greater than the iteration space size of the target region loop. This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
+
+To enable the generation of the specialized kernel, follow these guidelines:
+
+- Do not specify teams, threads, and schedule-related environment variables. The num_teams or a thread_limit clause in an OpenMP target construct acts as an override and prevents the generation of the specialized kernel. As the user is unable to specify the number of teams and threads used within target regions in the absence of the above-mentioned environment variables, the runtime will select the best values for the launch configuration based on runtime knowledge of the program.
+
+- Assert the absence of the above-mentioned environment variables by adding the command-line option fopenmp-target-ignore-env-vars. This option also allows programmers to enable the No-loop functionality at lower optimization levels.
+
+- Also, the No-loop functionality is automatically enabled when -O3 or -Ofast is used for compilation. To disable this feature, use -fno-openmp-target-ignore-env-vars.
+
+Note The compiler might not generate the No-loop kernel in certain scenarios where the performance improvement is not substantial.
+
+### Cross-Team Optimized Reductions
+
+In scenarios where a No-loop kernel is generated but the OpenMP construct has a reduction clause, the compiler may generate optimized code utilizing efficient Cross-Team (Xteam) communication. No separate user option is required, and there is a significant performance improvement with Xteam reduction. New APIs for Xteam reduction are implemented in the device runtime, and clang generates these APIs automatically.
