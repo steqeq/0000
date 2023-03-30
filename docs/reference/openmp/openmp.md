@@ -84,9 +84,9 @@ The following tracing options are widely used to generate useful information:
 
 - **--hsa-trace**: This option is used to get a JSON output file with the HSA API execution traces and a flat profile in a CSV file.
 
-- **--sys-trace**: This allows programmers to trace both HIP and HSA calls. Since this option results in loading `libamdhip64.so`, follow the prerequisite as mentioned above.
+- **--sys-trace**: This allows programmers to trace both HIP and HSA calls. Since this option results in loading 'libamdhip64.so', follow the prerequisite as mentioned above.
 
-A CSV and a JSON file are produced by the above trace options. The CSV file presents the data in a tabular format, and the JSON file can be visualized using Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/). Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the HSA calls. 
+A CSV and a JSON file are produced by the above trace options. The CSV file presents the data in a tabular format, and the JSON file can be visualized using Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/). Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the HSA calls.
 
 For more details on tracing, refer to the ROCm Profiling Tools document on [https://docs.amd.com](https://docs.amd.com).
 
