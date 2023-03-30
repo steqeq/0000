@@ -128,3 +128,7 @@ Unified Shared Memory (USM) provides a pointer-based approach to memory manageme
 - Latest KFD driver packaged in ROCm stack
 
 - Xnack, as USM support can only be tested with applications compiled with Xnack capability
+
+#### Xnack Capability
+
+When enabled, Xnack capability allows programmers to handle page faults at runtime gracefully. When executing the binaries compiled with Xnack replay enabled, any page fault at runtime leads to a repeated attempt to access the memory.
