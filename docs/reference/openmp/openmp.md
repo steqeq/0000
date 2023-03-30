@@ -1,10 +1,5 @@
 # OpenMP Support in ROCm
 
-Pull from
-<https://docs.amd.com/bundle/OpenMP-Support-Guide-v5.4/page/Introduction_to_OpenMP_Support_Guide.html>
-
-[//]: # (Unifying "Introduction to OpenMP Support Guide", "OpenMP: Usage" and "OpenMP: Features" into a single page, excluding "Legal Disclaimer and Copyright Information" to be handled centrally)
-
 ## Introduction to OpenMP Support Guide
 
 he ROCm™ installation includes an LLVM-based implementation that fully supports the OpenMP 4.5 standard and a subset of OpenMP 5.0, 5.1, and 5.2 standards. Fortran, C/C++ compilers, and corresponding runtime libraries are included. Along with host APIs, the OpenMP compilers support offloading code and data onto GPU devices. This document briefly describes the installation location of the OpenMP toolchain, example usage of device offloading, and usage of rocprof with OpenMP applications. The GPUs supported are the same as those supported by this ROCm release. See the list of supported GPUs in the installation guide at [https://docs.amd.com/](https://docs.amd.com/).
