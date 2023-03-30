@@ -102,6 +102,7 @@ For more details on tracing, refer to the ROCm Profiling Tools document on [http
 | LIBOMPTARGET_INFO | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
 | LIBOMPTARGET_DEBUG | If a debug version of the device library is present, setting this environment variable to 1 and using that library emits further detailed debugging information about data transfer operations and kernel launch. |
 | GPU_MAX_HW_QUEUES | This environment variable is used to set the number of HSA queues in the OpenMP runtime. |
+:::
 
 ## OpenMP: Features
 
