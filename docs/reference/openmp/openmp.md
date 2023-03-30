@@ -258,3 +258,14 @@ Address Sanitizer is a memory error detector tool utilized by applications to de
 - Use-after-scope
 
 - Initialization order bugs
+
+**Features Supported on AMDGPU Platform (amdgcn-amd-amdhsa):**
+- Heap buffer overflow
+
+- Global buffer overflow
+
+**Software (Kernel/OS) Requirements:** Unified Shared Memory support with Xnack capability. See the section on [Unified Shared Memory](#unified-shared-memory) for prerequisites and details on Xnack. 
+
+**Example:**
+
+- Heap buffer overflow
