@@ -43,6 +43,11 @@ subtrees:
       title: Math Libraries
       subtrees:
         - entries:
+          - file: reference/gpu_libraries/matrix_multiplication
+            subtrees:
+            - entries: 
+              - title: rocWMMA
+                url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
           - file: reference/gpu_libraries/linear_algebra
             subtrees:
             - entries: 
@@ -52,18 +57,22 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
               - title: hipBLASLt
                 url: https://rocmdocs.amd.com/projects/hipBLASLt/en/{branch}/
-              - title: rocSPARSE
-                url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
-              - title: hipSPARSE
-                url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
               - title: rocALUTION
                 url: https://rocmdocs.amd.com/projects/rocALUTION/en/{branch}/
-              - title: rocWMMA
-                url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
+          - file: reference/gpu_libraries/linear_solvers
+            subtrees:
+            - entries: 
               - title: rocSOLVER
                 url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
               - title: hipSOLVER
                 url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
+          - file: reference/gpu_libraries/sparse
+            subtrees:
+            - entries: 
+              - title: rocSPARSE
+                url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
+              - title: hipSPARSE
+                url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
           - file: reference/gpu_libraries/fft
             subtrees:
             - entries: 

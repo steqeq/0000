@@ -15,28 +15,43 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 :::::{grid} 1 1 3 3
 :gutter: 1
 
-:::{grid-item-card} Linear Algebra Libraries
+:::{grid-item-card} [Matrix Multiplication](matrix_multiplication)
+
+- [rocWMMA](https://rocmdocs.amd.com/projects/rocWMMA/en/develop/)
+
+:::
+
+:::{grid-item-card} [Linear Algebra](linear_algebra)
 
 - [rocBLAS](https://rocmdocs.amd.com/projects/rocBLAS/en/develop/)
 - [hipBLAS](https://rocmdocs.amd.com/projects/hipBLAS/en/develop/)
 - [hipBLASLt](https://rocmdocs.amd.com/projects/hipBLASLt/en/develop/)
-- [rocSPARSE](https://rocmdocs.amd.com/projects/rocSPARSE/en/develop/)
-- [hipSPARSE](https://rocmdocs.amd.com/projects/hipSPARSE/en/develop/)
 - [rocALUTION](https://rocmdocs.amd.com/projects/rocALUTION/en/develop/)
-- [rocWMMA](https://rocmdocs.amd.com/projects/rocWMMA/en/develop/)
+
+:::
+
+:::{grid-item-card} [Linear Solvers](linear_solvers)
+
 - [rocSOLVER](https://rocmdocs.amd.com/projects/rocSOLVER/en/develop/)
 - [hipSOLVER](https://rocmdocs.amd.com/projects/hipSOLVER/en/develop/)
 
 :::
 
-:::{grid-item-card} Fast Fourier Transforms
+:::{grid-item-card} [Sparse Matrix Solvers](sparse)
+
+- [rocSPARSE](https://rocmdocs.amd.com/projects/rocSPARSE/en/develop/)
+- [hipSPARSE](https://rocmdocs.amd.com/projects/hipSPARSE/en/develop/)
+
+:::
+
+:::{grid-item-card} [Fast Fourier Transforms](fft)
 
 - [rocFFT](https://rocmdocs.amd.com/projects/rocFFT/en/develop/)
 - [hipFFT](https://rocmdocs.amd.com/projects/hipFFT/en/develop/)
 
 :::
 
-:::{grid-item-card} Random Numbers
+:::{grid-item-card} [Random Numbers](rand)
 
 - [rocRAND](https://rocmdocs.amd.com/projects/rocRAND/en/develop/)
 - [hipRAND](https://rocmdocs.amd.com/projects/hipRAND/en/develop/)
