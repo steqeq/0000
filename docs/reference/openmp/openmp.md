@@ -240,3 +240,21 @@ b = b + 1.0;
 ### Address Sanitizer (ASan) Tool
 
 Address Sanitizer is a memory error detector tool utilized by applications to detect various errors ranging from spatial issues such as out-of-bound access to temporal issues such as use-after-free. The AOMP compiler supports ASan for AMDGPUs with applications written in both HIP and OpenMP.
+
+**Features Supported on Host Platform (Target x86_64):**
+
+- Use-after-free
+
+- Buffer overflows
+
+- Heap buffer overflow
+
+- Stack buffer overflow
+
+- Global buffer overflow
+
+- Use-after-return
+
+- Use-after-scope
+
+- Initialization order bugs
