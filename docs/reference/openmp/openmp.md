@@ -81,3 +81,7 @@ For more details on rocprof, refer to the ROCm Profiling Tools document on [http
 ```
 
 The following tracing options are widely used to generate useful information:
+
+- **--hsa-trace**: This option is used to get a JSON output file with the HSA API execution traces and a flat profile in a CSV file.
+
+- **--sys-trace**: This allows programmers to trace both HIP and HSA calls. Since this option results in loading libamdhip64.so, follow the prerequisite as mentioned above.
