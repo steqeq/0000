@@ -206,3 +206,37 @@ The file veccopy-ompt-target-tracing.c simulates how a tool initiates device act
 The MI200-series GPUs support the generation of hardware floating-point atomics using the OpenMP atomic pragma. The support includes single- and double-precision floating-point atomic operations. The programmer must ensure that the memory subjected to the atomic operation is in coarse-grain memory by mapping it explicitly with the help of map clauses when not implicitly mapped by the compiler as per the [OpenMP specifications](https://www.openmp.org/specifications/). This makes these hardware floating-point atomic instructions “fast,” as they are faster than using a default compare-and-swap loop scheme, but at the same time “unsafe,” as they are not supported on fine-grain memory. The operation in unified_shared_memory mode also requires programmers to map the memory explicitly when not implicitly mapped by the compiler.
 
 To request fast floating-point atomic instructions at the file level, use compiler flag -munsafe-fp-atomics or a hint clause on a specific pragma:
+
+```bash
+double a = 0.0;
+#pragma omp atomic hint(AMD_fast_fp_atomics)
+a = a + 1.0;
+```
+
+NOTE AMD_unsafe_fp_atomics is an alias for AMD_fast_fp_atomics, and AMD_safe_fp_atomics is implemented with a compare-and-swap loop.
+
+To disable the generation of fast floating-point atomic instructions at the file level, build using the option -msafe-fp-atomics or use a hint clause on a specific pragma:
+
+```bash
+double a = 0.0;
+#pragma omp atomic hin.t(AMD_safe_fp_atomics)
+a = a + 1.0;
+```
+
+The hint clause value always has a precedence over the compiler flag, which allows programmers to create atomic constructs with a different behavior than the rest of the file.
+
+See the example below, where the user builds the program using -msafe-fp-atomics to select a file-wide “safe atomic” compilation. However, the fast atomics hint clause over variable “a” takes precedence and operates on “a” using a fast/unsafe floating-point atomic, while the variable “b” in the absence of a hint clause is operated upon using safe floating-point atomics as per the compiler flag.
+
+```bash
+double a = 0.0;.
+#pragma omp atomic hint(AMD_fast_fp_atomics)
+a = a + 1.0;
+ 
+double b = 0.0;
+#pragma omp atomic
+b = b + 1.0;
+```
+
+### Address Sanitizer (ASan) Tool
+
+Address Sanitizer is a memory error detector tool utilized by applications to detect various errors ranging from spatial issues such as out-of-bound access to temporal issues such as use-after-free. The AOMP compiler supports ASan for AMDGPUs with applications written in both HIP and OpenMP.
