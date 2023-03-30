@@ -269,3 +269,20 @@ Address Sanitizer is a memory error detector tool utilized by applications to de
 **Example:**
 
 - Heap buffer overflow
+
+```bash
+void  main() {
+.......  // Some program statements
+.......  // Some program statements
+#pragma omp target map(to : A[0:N], B[0:N]) map(from: C[0:N])
+{
+#pragma omp parallel for 
+    for(int i =0 ; i < N; i++){
+    C[i+10] = A[i] + B[i];
+  }   // end of for loop
+}
+.......   // Some program statements
+}// end of main
+```
+
+See the complete sample code for heap buffer overflow [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/heap_buffer_overflow/openmp/vecadd-HBO.cpp).
