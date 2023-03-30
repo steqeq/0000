@@ -286,3 +286,27 @@ void  main() {
 ```
 
 See the complete sample code for heap buffer overflow [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/heap_buffer_overflow/openmp/vecadd-HBO.cpp).
+
+- Global buffer overflow
+
+```bash
+#pragma omp declare target   
+   int A[N],B[N],C[N];
+#pragma omp end declare target
+void main(){
+......  // some program statements
+......  // some program statements
+#pragma omp target data map(to:A[0:N],B[0:N]) map(from: C[0:N])
+{
+#pragma omp target update to(A,B)
+#pragma omp target parallel for
+for(int i=0; i<N; i++){              
+    C[i]=A[i*100]+B[i+22];
+} // end of for loop
+#pragma omp target update from(C)
+}
+........  // some program statements
+} // end of main
+```
+
+See the complete sample code for global buffer overflow [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
