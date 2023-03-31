@@ -9,7 +9,6 @@ subtrees:
   entries:
   - file: release
   - file: release/gpu_os_support
-  - file: release/licensing
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
   - file: release/compatibility
@@ -17,6 +16,7 @@ subtrees:
       - entries:
         - file: reference/framework_compatiblity/framework_compatiblity
         - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
+  - file: release/licensing
 
 - caption: Deploy ROCm
   entries:
