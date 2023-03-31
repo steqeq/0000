@@ -164,7 +164,7 @@ subtrees:
           - file: understand/installing_linux/package_manager_integration
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
-    - file: isv_deployment_win
+    - file: understand/isv_deployment_win
     - file: understand/cmake_packages
     - file: understand/file_reorg
 
