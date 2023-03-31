@@ -2,19 +2,6 @@
 
 Welcome to AMD ROCm's documentation!
 
-## What is ROCm?
-
-ROCm is a brand name for the ROCm open software platform (for software) or the
-ROCm open platform ecosystem (includes hardware like FPGAs or other CPU
-architectures).
-
-```{note}
-ROCm no longer functions as an acronym.
-```
-
-This documentation describes both the software (languages, copilers, APIs,
-libraries, etc.) and the hardware comprising the ROCm ecosystem.
-
 :::::{grid} 1 1 2 2
 :gutter: 1
 

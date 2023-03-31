@@ -151,6 +151,7 @@ subtrees:
     - file: understand/installing_linux
       subtrees:
         - entries:
+          - file: understand/installing_linux/prerequisites
           - file: understand/installing_linux/package_manager_integration
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
