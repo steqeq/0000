@@ -38,7 +38,7 @@ Welcome to AMD ROCm's documentation!
 
 :::{grid-item-card}
 :padding: 2
-[APIs and Reference](https://example.com)
+[APIs and Reference](reference/all)
 ^^^
 
 - [HIP](reference/hip)

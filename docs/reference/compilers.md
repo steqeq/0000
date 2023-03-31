@@ -24,7 +24,7 @@ ROC profiler library. Profiling with perf-counters and derived metrics. Library 
 
 :::
 
-:::{grid-item-card} roctracer
+:::{grid-item-card} ROCTracer
 Callback/Activity Library for Performance tracing AMD GPU's 
 
 - [API Reference Manual](https://rocmdocs.amd.com/projects/roctracer/en/latest/)

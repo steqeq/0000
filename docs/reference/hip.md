@@ -1,6 +1,6 @@
 # HIP
 
-HIP is both AMD's GPU programming langauge extension and the GPU runtime. This page introduces the HIP runtime and other HIP libraries and tools.
+HIP is both AMD's GPU programming language extension and the GPU runtime. This page introduces the HIP runtime and other HIP libraries and tools.
 
 ## HIP Runtime
 
