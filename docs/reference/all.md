@@ -54,7 +54,9 @@ Computer vision related projects.
 
 :::
 
-:::{grid-item-card} [OpenMP Support Guide]()
+:::{grid-item-card} [OpenMP](openmp/openmp)
+
+- [OpenMP Support Guide](openmp/openmp)
 
 :::
 
