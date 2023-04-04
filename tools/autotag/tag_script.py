@@ -246,7 +246,8 @@ def run_tagging():
             PROCESSORS[library.name](
                 library,
                 TEMPLATES[library.name],
-                False if Version(version) is not Version(args.version) else args.previous
+                args.previous,
+                Version(version) < Version(args.version)
             )
 
     Changelog(releases).write_to_file()

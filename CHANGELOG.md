@@ -6,33 +6,8 @@
 <!-- markdownlint-disable blanks-around-headers             -->
 <!-- markdownlint-disable no-duplicate-header               -->
 <!-- markdownlint-disable no-blanks-blockquote              -->
+<!-- markdownlint-disable ul-indent                         -->
 The release notes for the ROCm platform.
-
--------------------
-
-## ROCm 5.4.4
-
-
-### Library Changes
-
-| Library | Version |
-|---------|---------|
-| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.4.4) |
-| hipCUB | [2.13.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.4.4) |
-| hipFFT | [1.0.10](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.4.4) |
-| hipSOLVER | [1.6.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.4.4) |
-| hipSPARSE | [2.3.3](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.4.4) |
-| rccl | [2.13.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.4.4) |
-| rocALUTION | [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.4) |
-| rocBLAS | [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.4) |
-| rocFFT | [1.0.21](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.4) |
-| rocPRIM | [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.4) |
-| rocRAND | [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.4) |
-| rocSOLVER | [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.4) |
-| rocSPARSE | [2.4.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.4.4) |
-| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.4.4) |
-| rocWMMA | [0.9](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.4.4) |
-| Tensile | [4.35.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.4.4) |
 
 -------------------
 
@@ -160,7 +135,7 @@ Some users may encounter a “Cannot find Symbol” error at runtime when using 
 
 This issue is under investigation, and the known workaround is not to use -save-temps when the error appears.
 
-### Library Changes
+### Library Changes in ROCM 5.4.3
 
 | Library | Version |
 |---------|---------|
@@ -223,7 +198,7 @@ Under certain circumstances typified by high register pressure, users may encoun
 
 This is a known issue and will be fixed in a future release.
 
-### Library Changes
+### Library Changes in ROCM 5.4.2
 
 | Library | Version |
 |---------|---------|
@@ -312,7 +287,7 @@ Instructions on how to download and apply MI200 maintenance updates are availabl
 
 Maintenance update #3, combined with ROCm 5.4.1, now provides SRIOV virtualization support for all AMD Instinct™ MI200 devices.
 
-### Library Changes
+### Library Changes in ROCM 5.4.1
 
 | Library | Version |
 |---------|---------|
@@ -571,7 +546,7 @@ The HIP language device IDs are not the same as the GPU IDs reported by the tool
 
 GPU IDs reported by ROCTracer and ROCProfiler or ROCm Tools are HSA Driver Node ID of that GPU, as it is a unique ID for that device in that particular node.
 
-### Library Changes
+### Library Changes in ROCM 5.4.0
 
 | Library | Version |
 |---------|---------|
@@ -898,7 +873,7 @@ This issue is resolved with the following fixes to compilation failures:
 - rocPRIM: in device_merge if the two key iterators do not match.
 - rocTHRUST: in thrust::merge if the two key iterators do not match.
 
-### Library Changes
+### Library Changes in ROCM 5.3.3
 
 | Library | Version |
 |---------|---------|
@@ -967,7 +942,7 @@ There is a known known issue with rocThrust and rocPRIM libraries supporting ite
 
 This issue is currently under investigation and will be resolved in a future release.
 
-### Library Changes
+### Library Changes in ROCM 5.3.2
 
 | Library | Version |
 |---------|---------|
@@ -1150,7 +1125,7 @@ If IOMMU is enabled in SBIOS and ROCm is installed, the system may report the fo
 
 Workaround: To avoid the system crash, add `amd_iommu=on iommu=pt` as the kernel bootparam, as indicated in the warning message.
 
-### Library Changes
+### Library Changes in ROCM 5.3.0
 
 | Library | Version |
 |---------|---------|
@@ -1215,7 +1190,9 @@ hipFFT 1.0.9 for ROCm 5.3.0
 
 ##### Changed
 
-
+- Clean up build warnings.
+- GNUInstall Dir enhancements.
+- Requires gtest 1.11.
 
 #### hipSOLVER 1.5.0
 
@@ -1537,7 +1514,7 @@ Older ROCm Releases
 
 For release information for older ROCm releases, refer to <https://github.com/RadeonOpenCompute/ROCm/blob/master/CHANGELOG.md>
 
-### Library Changes
+### Library Changes in ROCM 5.2.3
 
 | Library | Version |
 |---------|---------|
@@ -1584,7 +1561,7 @@ RCCL 2.12.10 for ROCm 5.2.3
 ## ROCm 5.2.1
 
 
-### Library Changes
+### Library Changes in ROCM 5.2.1
 
 | Library | Version |
 |---------|---------|
@@ -2100,7 +2077,7 @@ There is a known issue with applications that trigger oversubscription. A hardwa
 
 This issue is under investigation and will be fixed in a future release.
 
-### Library Changes
+### Library Changes in ROCM 5.2.0
 
 | Library | Version |
 |---------|---------|
@@ -2380,7 +2357,7 @@ Tensile 4.33.0 for ROCm 5.2.0
 ## ROCm 5.1.3
 
 
-### Library Changes
+### Library Changes in ROCM 5.1.3
 
 | Library | Version |
 |---------|---------|
@@ -2405,7 +2382,7 @@ Tensile 4.33.0 for ROCm 5.2.0
 ## ROCm 5.1.1
 
 
-### Library Changes
+### Library Changes in ROCM 5.1.1
 
 | Library | Version |
 |---------|---------|
@@ -2643,7 +2620,7 @@ Random error messages are generated by unsupported functions or commands.
 
 This is a known issue and will be fixed in a future release.
 
-### Library Changes
+### Library Changes in ROCM 5.1.0
 
 | Library | Version |
 |---------|---------|
@@ -2711,7 +2688,7 @@ hipFFT 1.0.7 for ROCm 5.1.0
 
 ##### Changed
 
-
+- Use fft_params struct for accuracy and benchmark clients.
 
 #### hipSOLVER 1.3.0
 
@@ -3000,7 +2977,7 @@ Compatibility Matrix Updates to ROCm Deep Learning Guide
 
 The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0.2.
 
-### Library Changes
+### Library Changes in ROCM 5.0.2
 
 | Library | Version |
 |---------|---------|
@@ -3036,7 +3013,7 @@ In ROCm 5.0.1, by default, this environment variable is set to use hipcc and hip
 
 Subsequently, Perl scripts will no longer be available in ROCm in a future release.
 
-### Library Changes
+### Library Changes in ROCM 5.0.1
 
 | Library | Version |
 |---------|---------|
@@ -3460,7 +3437,7 @@ The current default is code object version 4.
 
 MIOpenTensile will be deprecated in a future release.
 
-### Library Changes
+### Library Changes in ROCM 5.0.0
 
 | Library | Version |
 |---------|---------|
@@ -3525,11 +3502,12 @@ hipFFT 1.0.4 for ROCm 5.0.0
 
 ##### Fixed
 
-
+- Add calls to rocFFT setup/cleanup.
+- Cmake fixes for clients and backend support.
 
 ##### Added
 
-
+- Added support for Windows 10 as a build target.
 
 #### hipSOLVER 1.2.0
 

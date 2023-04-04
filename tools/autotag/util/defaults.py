@@ -23,7 +23,7 @@ def processor_factory():
     """A dictionary for regex processors by library, with default."""
 
     def default_processor(
-        data: ReleaseLib, template: str, unchanged: Optional[bool] = None
+        data: ReleaseLib, template: str, unchanged: Optional[bool] = None, ignore_unreleased = False
     ) -> bool:
         # Get the changelog for the provided library release.
         changelog = data.repo.get_contents("CHANGELOG.md", data.commit)
@@ -41,9 +41,11 @@ def processor_factory():
 
             if not rocm_version:
                 print(match[0])
+                if ignore_unreleased:
+                    continue
                 if not get_yn_input(
-                    "ROCm version not detected, release these changes for ROCm"
-                    f" {data.full_version}?"
+                    f"ROCm version not detected, release these ({lib_name}"
+                    f"{lib_version}) changes for ROCm {data.full_version}?"
                 ):
                     continue
             elif vparse(match["rocm_version"]) > vparse(data.full_version):
@@ -58,7 +60,11 @@ def processor_factory():
             data.notes = match["body"]
             data.lib_version = lib_version
 
-            change_pattern = re.compile(r"^#+ +(?P<type>[^\n]+)$\n(?P<change>(^(?!#)(.+\n?))*)", re.RegexFlag.MULTILINE)
+            change_pattern = re.compile(
+                r"^#+ +(?P<type>[^\n]+)$\n*(?P<change>(^(?!#).*\n*)*)",
+                re.RegexFlag.MULTILINE
+            )
+            
             for match in change_pattern.finditer(data.notes):
                 data.data.changes[match["type"]] = match["change"]
             return True

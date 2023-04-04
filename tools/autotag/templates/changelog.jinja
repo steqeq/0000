@@ -6,6 +6,7 @@
 <!-- markdownlint-disable blanks-around-headers             -->
 <!-- markdownlint-disable no-duplicate-header               -->
 <!-- markdownlint-disable no-blanks-blockquote              -->
+<!-- markdownlint-disable ul-indent                         -->
 {#-
 <!-- Disable lints that conflict with jinja.                -->
 <!-- markdownlint-disable reference-links-images            -->
@@ -22,7 +23,7 @@ The release notes for the ROCm platform.
 {%- set rocm_changes = "./rocm_changes/" ~ version ~ ".md" %}
 {% include rocm_changes ignore missing %}
 
-### Library Changes
+### Library Changes in ROCM {{version}}
 
 | Library | Version |
 |---------|---------|
