@@ -1,4 +1,4 @@
-# Installation (Linux)
+# Installation Overview (Linux)
 
 This chapter provides an overview of ROCm™ installation.
 
