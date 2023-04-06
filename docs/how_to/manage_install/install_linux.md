@@ -494,9 +494,6 @@ install the packages:
 
 1. Add GPG Key for AMDGPU and ROCm Stack
 
-   - amdgpu base URL = `https://repo.radeon.com/amdgpu/5.4.3/ubuntu`
-   - rocm base URL = `https://repo.radeon.com/rocm/apt/5.4.3`
-
    Add the GPG key for AMDGPU and ROCm repositories. For Debian-based systems
    like Ubuntu, configure the Debian ROCm repository as follows:
 
@@ -518,6 +515,8 @@ install the packages:
    If you have a version of the kernel-mode driver installed, you may skip this
    section.
    ```
+
+   To add the AMDGPU stack repository, follow these steps:
 
 ::::{tab-set}
 :::{tab-item} Ubuntu 20.04
@@ -646,6 +645,123 @@ packages does not exist on the system, execute the command below to install:
 
    ```shell
    sudo yum install kernel-headers-`uname -r` kernel-devel-`uname -r`
+   ```
+
+::::{rubric} Adding the AMDGPU and ROCm Stack Repositories
+::::
+
+1. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
+
+   ```{attention}
+   If you have a version of the kernel-mode driver installed, you may skip this
+   section.
+   ```
+
+::::{tab-set}
+:::{tab-item} RHEL 8.6
+:sync: RHEL-8.6
+
+   ```shell
+   sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
+   [amdgpu]
+   Name=amdgpu
+   baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/8.6/main/x86_64/
+   enabled=1
+   priority=50
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   sudo yum clean all
+   ```
+
+:::
+
+:::{tab-item} RHEL 8.7
+:sync: RHEL-8.7
+
+   ```shell
+   sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
+   [amdgpu]
+   Name=amdgpu
+   baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/8.7/main/x86_64/
+   enabled=1
+   priority=50
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   sudo yum clean all
+   ```
+
+:::
+
+:::{tab-item} RHEL 9.1
+:sync: RHEL-9.1
+
+   ```shell
+   sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
+   [amdgpu]
+   Name=amdgpu
+   baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/9.2/main/x86_64/
+   enabled=1
+   priority=50
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   sudo yum clean all
+   ```
+
+:::
+::::
+
+   Install the kernel mode driver and reboot the system using the following
+   commands:
+
+   ```shell
+   sudo yum install amdgpu-dkms
+   sudo reboot
+   ```
+
+2. Add the ROCm Stack Repository and Install Meta-packages
+
+   To add the ROCm repository, use the following steps:
+
+   ```shell
+   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+   [ROCm-$ver]
+   Name=ROCm$ver
+   baseurl=https://repo.radeon.com/rocm/$ver/main
+   enabled=1
+   priority=50
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   done
+   sudo yum clean all
+   ```
+
+   Install packages of your choice in a single-version ROCm install or
+   in a multi-version ROCm install fashion. For more information on what
+   single/multi-version installations are, refer to {ref}`installation-types`.
+   For a comprehensive list of meta-packages, refer to
+   {ref}`meta-package-desc`.
+
+- Sample Single-version installation
+
+   ```shell
+   sudo yum install rocm-hip-sdk
+   ```
+
+- Sample Multi-version installation
+
+   ```{important}
+   If the existing ROCm release contains non-versioned ROCm packages, you must
+   uninstall those packages before proceeding to the multiversion installation
+   to avoid conflicts.
+   ```
+
+   ```shell
+   sudo yum install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
    ```
 
 :::::
