@@ -431,11 +431,13 @@ Users installing multiple versions of the ROCm stack must use the
 release-specific base URL.
 ```
 
+#### Using the Package Manager
+
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
-::::{rubrik} Installation of Kernel Headers and Development Packages
+::::{rubric} Installation of Kernel Headers and Development Packages
 ::::
 
 The following instructions to install kernel headers and development packages
@@ -487,11 +489,125 @@ install the packages:
    sudo apt install linux-headers-`uname -r` linux-modules-extra-`uname -r`
    ```
 
+::::{rubric} Adding the AMDGPU and ROCm Stack Repositories
+::::
+
+1. Add GPG Key for AMDGPU and ROCm Stack
+
+   - amdgpu base URL = `https://repo.radeon.com/amdgpu/5.4.3/ubuntu`
+   - rocm base URL = `https://repo.radeon.com/rocm/apt/5.4.3`
+
+   Add the GPG key for AMDGPU and ROCm repositories. For Debian-based systems
+   like Ubuntu, configure the Debian ROCm repository as follows:
+
+   ```shell
+   curl -fsSL https://repo.radeon.com/rocm/rocm.gpg.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/rocm-keyring.gpg
+   ```
+
+   ```{note}
+   The gpg key may change; ensure it is updated when installing a new release. If
+   the key signature verification fails while updating, re-add the key from the
+   ROCm to the apt repository as mentioned above. The current rocm.gpg.key is not
+   available in a standard key ring distribution but has the following sha1sum
+   hash: `73f5d8100de6048aa38a8b84cd9a87f05177d208 rocm.gpg.key`
+   ```
+
+2. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
+
+   ```{attention}
+   If you have a version of the kernel-mode driver installed, you may skip this
+   section.
+   ```
+
+::::{tab-set}
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
+
+   ```shell
+   echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.4.3/ubuntu focal main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
+   sudo apt update
+   ```
+
+:::
+:::{tab-item} Ubuntu 22.04
+:sync: ubuntu-22.04
+
+   ```shell
+   echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.4.3/ubuntu jammy main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
+   sudo apt update
+   ```
+
+:::
+::::
+
+   Install the kernel mode driver and reboot the system using the following
+   commands:
+
+   ```shell
+   sudo apt install amdgpu-dkms
+   sudo reboot
+   ```
+
+3. Add the ROCm Stack Repository and Install Meta-packages
+
+   To add the ROCm repository, use the following steps:
+
+::::{tab-set}
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
+
+   ```shell
+   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+   done
+   echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+   sudo apt update
+   ```
+
+:::
+:::{tab-item} Ubuntu 22.04
+:sync: ubuntu-22.04
+
+   ```shell
+   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+   done
+   echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+   sudo apt update
+   ```
+
+:::
+::::
+
+   Install packages of your choice in a single-version ROCm install or
+   in a multi-version ROCm install fashion. For more information on what
+   single/multi-version installations are, refer to {ref}`installation-types`.
+   For a comprehensive list of meta-packages, refer to
+   {ref}`meta-package-desc`.
+
+- Sample Single-version installation
+
+   ```shell
+   sudo apt install rocm-hip-sdk
+   ```
+
+- Sample Multi-version installation
+
+   ```{important}
+   If the existing ROCm release contains non-versioned ROCm packages, you must
+   uninstall those packages before proceeding to the multiversion installation
+   to avoid conflicts.
+   ```
+
+   ```shell
+   sudo apt install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   ```
+
 :::::
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-::::{rubrik} Installation of Kernel Headers and Development Packages
+::::{rubric} Installation of Kernel Headers and Development Packages
 ::::
 
 The ROCm installation requires that you install the kernel headers and
@@ -536,7 +652,7 @@ packages does not exist on the system, execute the command below to install:
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
-::::{rubrik} Installation of Kernel Headers and Development Packages
+::::{rubric} Installation of Kernel Headers and Development Packages
 ::::
 
 ROCm installation requires you to install `linux-headers` and
