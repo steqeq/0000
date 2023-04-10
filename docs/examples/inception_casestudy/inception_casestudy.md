@@ -1304,3 +1304,15 @@ To implement a workaround, follow these steps:
 :::{note}
     Recompile PyTorch with the right gfx target if compiling from the source if the hardware is not supported. For wheels or Docker installation, contact ROCm support [6].
 :::
+
+**Q: Why am I unable to access Docker or GPU in user accounts?**
+
+Ans: Ensure that the user is added to docker, video, and render Linux groups as described in the ROCm Installation Guide at [https://docs.amd.com](https://docs.amd.com).
+
+**Q: Which consumer GPUs does ROCm support?**
+
+Ans: ROCm supports gfx1030, which is the Navi 21 series.
+
+**Q: Can I install PyTorch directly on bare metal?**
+
+Ans: Bare-metal installation of PyTorch is supported through wheels. Refer to Option 2: Install PyTorch Using Wheels Package in the section [Installing PyTorch](/ROCm/docs/how_to/pytorch_install/pytorch_install) of this guide for more information.
