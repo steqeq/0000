@@ -1276,4 +1276,14 @@ To prepare the data for training, follow these steps:
 
 **Q: What do I do if I get this error when trying to run PyTorch:**
 
+```psl
+hipErrorNoBinaryForGPU: Unable to find code object for all current devices!
+```
 
+Ans: The error denotes that the installation of PyTorch and/or other dependencies or libraries do not support the current GPU.
+
+**Workaround:**
+
+To implement a workaround, follow these steps:
+
+1. Confirm that the hardware supports the ROCm stack. Refer to the Hardware and Software Support document at [https://docs.amd.com](https://docs.amd.com).
