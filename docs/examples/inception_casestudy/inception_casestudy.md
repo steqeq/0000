@@ -1287,3 +1287,20 @@ Ans: The error denotes that the installation of PyTorch and/or other dependencie
 To implement a workaround, follow these steps:
 
 1. Confirm that the hardware supports the ROCm stack. Refer to the Hardware and Software Support document at [https://docs.amd.com](https://docs.amd.com).
+
+2. Determine the gfx target.
+
+    ```py
+    rocminfo | grep gfx
+    ```
+
+3. Check if PyTorch is compiled with the correct gfx target.
+
+    ```py
+    TORCHDIR=$( dirname $( python3 -c 'import torch; print(torch.__file__)' ) )
+    roc-obj-ls -v $TORCHDIR/lib/libtorch_hip.so # check for gfx target
+    ```
+
+:::{note}
+    Recompile PyTorch with the right gfx target if compiling from the source if the hardware is not supported. For wheels or Docker installation, contact ROCm support [6].
+:::
