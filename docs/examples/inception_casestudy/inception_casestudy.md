@@ -1316,3 +1316,11 @@ Ans: ROCm supports gfx1030, which is the Navi 21 series.
 **Q: Can I install PyTorch directly on bare metal?**
 
 Ans: Bare-metal installation of PyTorch is supported through wheels. Refer to Option 2: Install PyTorch Using Wheels Package in the section [Installing PyTorch](/ROCm/docs/how_to/pytorch_install/pytorch_install) of this guide for more information.
+
+**Q: How do I profile PyTorch workloads?**
+
+Ans: Use the PyTorch Profiler \[6\] to profile GPU kernels on ROCm.
+
+**Q: Can I run ROCm on Windows?**
+
+Ans: ROCm is not supported on Windows.
