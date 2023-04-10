@@ -1324,3 +1324,13 @@ Ans: Use the PyTorch Profiler \[6\] to profile GPU kernels on ROCm.
 **Q: Can I run ROCm on Windows?**
 
 Ans: ROCm is not supported on Windows.
+
+## References
+
+C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," CoRR, p. abs/1512.00567, 2015
+
+PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](https://pytorch.org/vision/stable/index.html)
+
+PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
+
+Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
