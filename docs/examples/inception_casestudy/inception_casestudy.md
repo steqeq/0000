@@ -1375,6 +1375,16 @@ torch.onnx.export(inception,torch.randn(1,3,299,299), "inceptioni1.onnx")
 
 This will create inceptioni1.onnx, which can be imported in MIGraphX using C++ or Python API.
 
+### MIGraphX Python API
+
+Follow these steps:
+
+1. To import the migraphx module in Python script, set PYTHONPATH to migraphx libs installation. If binaries are installed using steps mentioned in [Option 1: Installing Binaries](#option-1-installing-binaries), perform the following action:
+
+```py
+export PYTHONPATH=$PYTHONPATH:/opt/rocm/
+```
+
 ## Troubleshooting
 
 **Q: What do I do if I get this error when trying to run PyTorch:**
