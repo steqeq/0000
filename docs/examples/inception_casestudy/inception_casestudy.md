@@ -1286,12 +1286,100 @@ Taking our previous example of MNIST, the DNN can be fed new images of handwritt
 
 MIGraphX is a graph compiler focused on accelerating the Machine Learning inference that can target AMD GPUs and CPUs. MIGraphX accelerates the Machine Learning models by leveraging several graph-level transformations and optimizations. These optimizations include:
 
+- Operator fusion
+
+- Arithmetic simplifications
+
+- Dead-code elimination
+
+- Common subexpression elimination (CSE)
+
+- Constant propagation
+
+After doing all these transformations, MIGraphX emits code for the AMD GPU by calling to MIOpen or rocBLAS or creating HIP kernels for a particular operator. MIGraphX can also target CPUs using DNNL or ZenDNN libraries. 
+
+MIGraphX provides easy-to-use APIs in C++ and Python to import machine models in ONNX or TensorFlow. Users can compile, save, load, and run these models using MIGraphX's C++ and Python APIs. Internally, MIGraphX parses ONNX or TensorFlow models into internal graph representation where each operator in the model gets mapped to an operator within MIGraphX. Each of these operators defines various attributes such as:
+
+- Number of arguments
+
+- Type of arguments
+
+- Shape of arguments
+
+After optimization passes, all these operators get mapped to different kernels on GPUs or CPUs.
+
+After importing a model into MIGraphX, the model is represented as migraphx::program. migraphx::program is made up of migraphx::module. The program can consist of several modules, but it always has one main_module. Modules are made up of migraphx::instruction_ref. Instructions contain the migraphx::op and arguments to the operator.  
+
+### MIGraphX Installation
+
+There are three options to get started with MIGraphX installation. MIGraphX depends on ROCm libraries; assume that the machine has ROCm installed.
+
+#### Option 1: Installing Binaries
+
+To install MIGraphX on Debian-based systems like Ubuntu, use the following command:
+
+```bash
+sudo apt update && sudo apt install -y migraphx
+```
+
+The header files and libs are installed under /opt/rocm-\<version\>, where \<version\> is the ROCm version.
+
+#### Option 2: Building from Source
+
+There are two ways to build the MIGraphX sources.
+
+- [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses [rbuild](https://github.com/RadeonOpenCompute/rbuild) to install the prerequisites and build the libs with just one command.
+
+ or
+
+- [Use CMake](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
+
+For detailed steps on building from source and installing dependencies, refer to the following README file:
+
+[https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source)
+
+#### Option 3: Use Docker
+
+To use Docker, follow these steps:
+
+1. The easiest way to set up the development environment is to use Docker. To build Docker from scratch, first clone the MIGraphX repo by running:
+
+    ```bash
+    git clone --recursive https://github.com/ROCmSoftwarePlatform/AMDMIGraphX
+    ```
+
+2. The repo contains a Dockerfile from which you can build a Docker image as:
+
+    ```bash
+    docker build -t migraphx . 
+    ```
+
+3. Then to enter the development environment, use Docker run:
+
+    ```bash
+    docker run --device='/dev/kfd' --device='/dev/dri' -v=`pwd`:/code/AMDMIGraphX -w /code/AMDMIGraphX --group-add video -it migraphx
+    ```
+
+The Docker image contains all the prerequisites required for the installation, so users can go to the folder /code/AMDMIGraphX and follow the steps mentioned in [Option 2: Building from Source](#option-2-building-from-source).
+
+### MIGraphX Example
+
+MIGraphX provides both C++ and Python APIs. The following sections show examples of both using the Inception v3 model. To walk through the examples, fetch the Inception v3 ONNX model by running the following:
+
+```py
+import torch
+import torchvision.models as models
+inception = models.inception_v3(pretrained=True)
+torch.onnx.export(inception,torch.randn(1,3,299,299), "inceptioni1.onnx")
+```
+
+This will create inceptioni1.onnx, which can be imported in MIGraphX using C++ or Python API.
 
 ## Troubleshooting
 
 **Q: What do I do if I get this error when trying to run PyTorch:**
 
-```psl
+```bash
 hipErrorNoBinaryForGPU: Unable to find code object for all current devices!
 ```
 
