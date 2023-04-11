@@ -1595,7 +1595,7 @@ For example, to generate .mxr file from the onnx model, use the following:
 ./path/to/migraphx-driver compile --onnx resnet50.onnx --enable-offload-copy --binary --output resnet50.mxr
 ```
 
-To run generated .mxr files through `migraphx-driver`, use the following:
+To run generated .mxr files through \`migraphx-driver\`, use the following:
 
 ```bash
 ./path/to/migraphx-driver run --migraphx resnet50.mxr --enable-offload-copy
