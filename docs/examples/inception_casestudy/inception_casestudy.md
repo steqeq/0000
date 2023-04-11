@@ -1461,6 +1461,51 @@ Follow these steps:
     }
     ```
 
+2. To compile this program, you can use CMake and you only need to link the migraphx::c library to use MIGraphX's C++ API. The following is the CMakeLists.txt file that can build the earlier example:
+
+    ```py
+    cmake_minimum_required(VERSION 3.5)
+    project (CAI)
+    
+    set (CMAKE_CXX_STANDARD 14)
+    set (EXAMPLE inception_inference)
+    
+    list (APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
+    find_package (migraphx)
+    
+    message("source file: " ${EXAMPLE}.cpp " ---> bin: " ${EXAMPLE})
+    add_executable(${EXAMPLE} ${EXAMPLE}.cpp)
+    
+    target_link_libraries(${EXAMPLE} migraphx::c)
+    ```
+
+3. To build the executable file, run the following from the directory containing the inception_inference.cpp file:
+
+    ```py
+    mkdir build
+    cd build
+    cmake ..
+    make -j$(nproc)
+    ./inception_inference
+    ```
+
+:::{note}
+    Set LD_LIBRARY_PATH to /opt/rocm/lib if required during the build. Additional examples can be found in the MIGraphX repo under the examples/ directory.
+:::
+
+### Tuning MIGraphX
+
+MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGraphX, tune MIOpen to pick the best possible kernel implementation. The MIOpen tuning results in a significant performance boost. Tuning can be done by setting the environment variable MIOPEN_FIND_ENFORCE=3.
+
+:::{note}
+    The tuning process can take a long time to finish.
+:::
+
+**Example:** The average inference time of the inception model example shown previously over 100 iterations using untuned kernels is 0.01383ms. After tuning, it reduces to 0.00459ms, which is a 3x improvement. This result is from ROCm v4.5 on a MI100 GPU.
+
+
+
+
 
 
 
