@@ -1409,6 +1409,61 @@ Follow these steps:
 
     Find additional examples of Python API in the /examples directory of the MIGraphX repo.
 
+### MIGraphX C++ API
+
+Follow these steps:
+
+1. The following is a minimalist example that shows the usage of MIGraphX C++ API to load ONNX file, compile it for the GPU, and run inference on it. To use MIGraphX C++ API, you only need to load the migraphx.hpp file. This example runs inference on the Inception v3 model.
+
+    ```c++
+    #include <vector>
+    #include <string>
+    #include <algorithm>
+    #include <ctime>
+    #include <random>
+    #include <migraphx/migraphx.hpp>
+    
+    int main(int argc, char** argv)
+    {
+        migraphx::program prog;
+        migraphx::onnx_options onnx_opts;
+        // import and parse onnx file into migraphx::program
+        prog = parse_onnx("inceptioni1.onnx", onnx_opts);
+        // print imported model
+        prog.print();
+        migraphx::target targ = migraphx::target("gpu");
+        migraphx::compile_options comp_opts;
+        comp_opts.set_offload_copy();
+        // compile for the GPU
+        prog.compile(targ, comp_opts);
+        // print the compiled program
+        prog.print();
+        // randomly generate input image 
+        // of shape (1, 3, 299, 299)
+        std::srand(unsigned(std::time(nullptr)));
+        std::vector<float> input_image(1*299*299*3);
+        std::generate(input_image.begin(), input_image.end(), std::rand);
+        // users need to provide data for the input 
+        // parameters in order to run inference
+        // you can query into migraph program for the parameters
+        migraphx::program_parameters prog_params;
+        auto param_shapes = prog.get_parameter_shapes();
+        auto input        = param_shapes.names().front();
+        // create argument for the parameter
+        prog_params.add(input, migraphx::argument(param_shapes[input], input_image.data()));
+        // run inference
+        auto outputs = prog.eval(prog_params);
+        // read back the output 
+        float* results = reinterpret_cast<float*>(outputs[0].data());
+        float* max     = std::max_element(results, results + 1000);
+        int answer = max - results;
+        std::cout << "answer: " << answer << std::endl;
+    }
+    ```
+
+
+
+
 ## Troubleshooting
 
 **Q: What do I do if I get this error when trying to run PyTorch:**
