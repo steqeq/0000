@@ -1503,10 +1503,105 @@ MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGr
 
 **Example:** The average inference time of the inception model example shown previously over 100 iterations using untuned kernels is 0.01383ms. After tuning, it reduces to 0.00459ms, which is a 3x improvement. This result is from ROCm v4.5 on a MI100 GPU.
 
+:::{note}
+    The results may vary depending on the system configurations.
+:::
 
+For reference, the following code snippet shows inference runs for only the first 10 iterations for both tuned and untuned kernels:
 
+```py
+### UNTUNED ###
+iterator : 0
+Inference complete
+Inference time: 0.063ms
+iterator : 1
+Inference complete
+Inference time: 0.008ms
+iterator : 2
+Inference complete
+Inference time: 0.007ms
+iterator : 3
+Inference complete
+Inference time: 0.007ms
+iterator : 4
+Inference complete
+Inference time: 0.007ms
+iterator : 5
+Inference complete
+Inference time: 0.008ms
+iterator : 6
+Inference complete
+Inference time: 0.007ms
+iterator : 7
+Inference complete
+Inference time: 0.028ms
+iterator : 8
+Inference complete
+Inference time: 0.029ms
+iterator : 9
+Inference complete
+Inference time: 0.029ms
+ 
+### TUNED ###
+iterator : 0
+Inference complete
+Inference time: 0.063ms
+iterator : 1
+Inference complete
+Inference time: 0.004ms
+iterator : 2
+Inference complete
+Inference time: 0.004ms
+iterator : 3
+Inference complete
+Inference time: 0.004ms
+iterator : 4
+Inference complete
+Inference time: 0.004ms
+iterator : 5
+Inference complete
+Inference time: 0.004ms
+iterator : 6
+Inference complete
+Inference time: 0.004ms
+iterator : 7
+Inference complete
+Inference time: 0.004ms
+iterator : 8
+Inference complete
+Inference time: 0.004ms
+iterator : 9
+Inference complete
+Inference time: 0.004ms
+```
 
+#### YModel
 
+The best inference performance through MIGraphX is conditioned upon having tuned kernel configs stored in a /home local User Database (DB). If a user were to move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configs and corresponding solvers.
+
+Tuning is time consuming, and if the users have not performed tuning, they would see discrepancies between expected or claimed inference performance and actual inference performance. This has led to repetitive and time-consuming tuning tasks for each user.
+
+MIGraphX introduces a feature, known as YModel, that stores the kernel config parameters found during tuning into a .mxr file. This ensures the same level of expected performance, even when a model is copied to a different user/system.   
+
+The YModel feature is available starting from ROCm 5.4.1 and UIF 1.1.
+
+##### YModel Example
+
+Through the \`migraphx-driver\` functionality, you can generate .mxr files with tuning information stored inside it by passing additional --binary --output model.mxr to \`migraphx-driver\` along with the rest of the necessary flags.
+
+For example, to generate .mxr file from the onnx model, use the following:
+
+```bash
+./path/to/migraphx-driver compile --onnx resnet50.onnx --enable-offload-copy --binary --output resnet50.mxr
+```
+
+To run generated .mxr files through `migraphx-driver`, use the following:
+
+```bash
+./path/to/migraphx-driver run --migraphx resnet50.mxr --enable-offload-copy
+```
+
+Alternatively, you can use MIGraphX’s C++ or Python API to generate .mxr file. Refer to Figure 10 for an example.
 
 
 ## Troubleshooting
