@@ -804,5 +804,175 @@ with the command below:
    sudo zypper install kernel-default-devel or kernel-default
    ```
 
+::::{rubric} Adding the AMDGPU and ROCm Stack Repositories
+::::
+
+1. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
+
+   ```{attention}
+   If you have a version of the kernel-mode driver installed, you may skip this
+   section.
+   ```
+
+   ```shell
+   sudo tee --append /etc/zypp/repos.d/amdgpu.repo <<EOF
+   [amdgpu]
+   name=amdgpu
+   baseurl=https://repo.radeon.com/amdgpu/5.4.3/sle/15.4/main/x86_64
+   enabled=1
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   sudo zypper ref
+   ```
+
+   Install the kernel mode driver and reboot the system using the following
+   commands:
+
+   ```shell
+   sudo zypper --gpg-auto-import-keys install amdgpu-dkms
+   sudo reboot
+   ```
+
+2. Add the ROCm Stack Repository and Install Meta-packages
+
+   To add the ROCm repository, use the following steps:
+
+   ```shell
+   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
+   name=rocm
+   baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
+   enabled=1
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   done
+   sudo zypper ref
+   ```
+
+   Install packages of your choice in a single-version ROCm install or
+   in a multi-version ROCm install fashion. For more information on what
+   single/multi-version installations are, refer to {ref}`installation-types`.
+   For a comprehensive list of meta-packages, refer to
+   {ref}`meta-package-desc`.
+
+- Sample Single-version installation
+
+   ```shell
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk
+   ```
+
+- Sample Multi-version installation
+
+   ```{important}
+   If the existing ROCm release contains non-versioned ROCm packages, you must
+   uninstall those packages before proceeding to the multiversion installation
+   to avoid conflicts.
+   ```
+
+   ```shell
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   ```
+
 :::::
 ::::::
+
+## Post-install Actions and Verification Process
+
+The post-install actions listed here are optional and depend on your use case,
+but are generally useful. Verification of the install is advised.
+
+### Post-install Actions
+
+1. Instruct the system linker where to find the shared objects (`.so` files) for
+ROCm applications.
+
+   ```shell
+   sudo tee --append /etc/ld.so.conf.d/rocm.conf <<EOF
+   /opt/rocm/lib
+   /opt/rocm/lib64
+   EOF
+   sudo ldconfig
+   ```
+
+   ```{note}
+   Multi-version installations require extra care. Having multiple versions on
+   the system linker library search path is unadvised. One must take care both
+   at compile-time and at run-time to assure that the proper libraries are
+   picked up. You can override `ld.so.conf` entries on a case-by-case basis
+   using the `LD_LIBRARY_PATH` environmental variable.
+   ```
+
+2. Add binary paths to the `PATH` environment variable.
+
+   ```shell
+   export PATH=$PATH:/opt/rocm-5.4.3/bin:/opt/rocm-5.4.3/opencl/bin
+   ```
+
+   ```{attention}
+   When using CMake to build applications, having the ROCm install location on
+   the PATH subtly affects how ROCm libraries are searched for. See [Config Mode
+   Search Procedure](https://cmake.org/cmake/help/latest/command/find_package.html#config-mode-search-procedure)
+   and [CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH](https://cmake.org/cmake/help/latest/variable/CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH.html)
+   for details.
+
+   (Entries in the `PATH` minus `bin` and `sbin` are added to library search
+   paths, therefore this convenience will affect builds and result in ROCm libs
+   almost always being found. This may be an issue when you're developing these
+   libraries or want to use self-built versions of them.)
+   ```
+
+### Verifying Kernel-mode Driver Installation
+
+Check the installation of the kernel-mode driver by typing the command given
+below:
+
+```shell
+dkms status
+```
+
+### Verifying ROCm Installation
+
+After completing the ROCm installation, execute the following commands on the
+system to verify if the installation is successful. If you see your GPUs listed
+by both commands, the installation is considered successful:
+
+```shell
+/opt/rocm/bin/rocminfo
+# OR
+/opt/rocm/opencl/bin/clinfo
+```
+
+### Verifying Package Installation
+
+To ensure the packages are installed successfully, use the following commands:
+
+::::{tab-set}
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
+```shell  
+sudo apt list --installed
+```
+
+:::
+
+:::{tab-item} Red Hat Enterprise Linux
+:sync: RHEL
+
+```shell
+sudo yum list installed
+```
+
+:::
+
+:::{tab-item} SUSE Linux Enterprise Server 15
+:sync: SLES15
+
+```shell
+sudo zypper search --installed-only
+```
+
+:::
+::::
