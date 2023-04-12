@@ -44,6 +44,7 @@ script for installing use cases.
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
+<!-- markdownlint-disable-next-line MD013 -->
 ::::{rubric} To download the amdgpu-install script on the system, use the following commands.
 ::::
 
@@ -73,6 +74,7 @@ sudo apt install ./amdgpu-install_5.4.50403-1_all.deb
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
+<!-- markdownlint-disable-next-line MD013 -->
 ::::{rubric} To download the amdgpu-install script on the system, use the following commands.
 ::::
 
@@ -106,6 +108,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.4.3/rhel/9.1/amdgpu-in
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
+<!-- markdownlint-disable-next-line MD013 -->
 ::::{rubric} To download the amdgpu-install script on the system, use the following commands.
 ::::
 
