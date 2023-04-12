@@ -416,7 +416,7 @@ version corresponding to the kernel's version.
 
 **Example:** If the system is running the Linux kernel version
 `5.15.0-41-generic`, you must install the identical versions of Linux-headers
-and development packages. Refer to the [Kernel Information]() section to check
+and development packages. Refer to {ref}`check-kernel-info` on to how to check
 the system's kernel version.
 
 To check the `kernel-headers` and `linux-modules-extra` package versions,
@@ -584,8 +584,8 @@ kernel's version.
 
 **Example:** If the system is running Linux kernel version
 `3.10.0-1160.el7.x86_64`, you must install the identical versions of kernel
-headers and development packages. To check the kernel version on your system,
-refer to the [Kernel Information]() section.
+headers and development packages. Refer to {ref}`check-kernel-info` on to how to
+check the system's kernel version.
 
 To check the kernel headers and `linux-modules-extra` package versions,
 follow these steps:
@@ -746,7 +746,7 @@ kernel's version.
 
 **Example:** If the system is running the Linux kernel version
 `5.3.18-57_11.0.18`, you must install the same versions of linux-headers and
-development packages. Refer to the [Kernel Information]() section to check
+development packages. Refer to {ref}`check-kernel-info` on to how to check
 the system's kernel version.
 
 To check the `kernel-headers` and `linux-modules-extra` package versions, follow

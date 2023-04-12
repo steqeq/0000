@@ -38,6 +38,8 @@ with [System Requirements](/release/gpu_os_support#os-support).
    DISTRIB_DESCRIPTION="Ubuntu 20.04.5 LTS"
    ```
 
+(check-kernel-info)=
+
 #### Kernel Information
 
 Verify the kernel version using the following steps:
