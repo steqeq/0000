@@ -238,17 +238,14 @@ required repositories for the latest release.
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
-Add the ROCm repositories for the releases you want to install by choosing
-`<Release-1 specific rocm baseurl>` and `<Release-2 specific rocm baseurl>` from
-the given [Base URLs for AMDGPU and ROCm Stack Repositories]().
-
 ::::{tab-set}
 :::{tab-item} Ubuntu 20.04
 :sync: ubuntu-20.04
 
 ```shell
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-1 specific rocm baseurl> focal main' | sudo tee /etc/apt/sources.list.d/rocm.list
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-2 specific rocm baseurl> focal main' | sudo tee /etc/apt/sources.list.d/rocm.list
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
@@ -258,8 +255,9 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-1 specific rocm baseurl> jammy main' | sudo tee /etc/apt/sources.list.d/rocm.list
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-2 specific rocm baseurl> jammy main' | sudo tee /etc/apt/sources.list.d/rocm.list
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
@@ -270,66 +268,37 @@ sudo apt update
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-1. Create a `/etc/yum.repos.d/rocm.repo` file with the following content:
-
-   Provide the `<Release-1 specific rocm baseurl>` and
-   `<Release-2 specific rocm baseurl>` baseurl from the given
-   [Base URLs for AMDGPU and ROCm Stack Repositories]().
-
-   ```shell
-   [ROCm-1]
-   Name=ROCm<Release version 1>
-   baseurl=<Release-1 specific rocm baseurl>
-   enabled=1
-   priority=50
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   [ROCm-2]
-   Name=ROCm<Release version 2>
-   baseurl=<Release-2 specific rocm baseurl>
-   enabled=1
-   priority=50
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   ```
-
-2. To clean the cached files from enabled repositories, execute the command
-below:
-
-   ```shell
-   sudo yum clean all
-   ```
+```shell
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+Name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/$ver/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo yum clean all
+```
 
 :::::
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
-1. Create a `/etc/zypp/repos.d/amdgpu.repo` file with the following content:
-
-   Select the `<Release-1 specific rocm baseurl>` and
-   `<Release-2 specific rocm baseurl>` from
-   [Base URLs for AMDGPU and ROCm Stack Repositories]().
-
-   ```shell
-   [rocm]
-   name=rocm<Release version 1>
-   baseurl=<Release-1 specific rocm baseurl>
-   enabled=1
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   [rocm]
-   name=rocm<Release version 2>
-   baseurl=<Release-2 specific rocm baseurl>
-   enabled=1
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   ```
-
-2. To update the added repositories, use the following command:
-
-   ```shell
-   sudo zypper ref
-   ```
+```shell
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
+name=rocm
+baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo zypper ref
+```
 
 :::::
 ::::::
