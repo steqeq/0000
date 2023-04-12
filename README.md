@@ -9,11 +9,16 @@ The default.xml file uses the repo Manifest format.
 The develop branch of this repository contains content for the next
 ROCm major or minor release. 
 
-ROCm is versioned centrally per ROCm release and per individual component. ROCm components follow semantic versioning for the individual ROCm projects. For example, HIP and rocBLAS follow semantic versionig. ROCm releases do not follow semantic versioning. ROCm deviates from semantic versioning in the behavior of PATCH releases. ROCm is version
-numbered based on MAJOR.MINOR.PATCH where
+ROCm is versioned centrally per ROCm release and per individual component. ROCm
+components follow semantic versioning for the individual ROCm projects. For
+example, HIP and rocBLAS follow semantic versionig. ROCm releases do not follow
+semantic versioning. ROCm deviates from semantic versioning in the behavior of 
+PATCH releases. ROCm is version numbered based on MAJOR.MINOR.PATCH where:
  - MAJOR version is a incompatible API change has occured in a ROCm component
  - MINOR version is the addition functionality in a backwards compatible manner.
- - PATCH version is the addition of functionality or bug fixes in a backwards compatible manner. Automatic upgrades to patch number releases are not enabled by default.
+ - PATCH version is the addition of functionality or bug fixes in a backwards 
+ compatible manner. Automatic upgrades to patch number releases are not enabled
+ by default in repositories on repo.radeon.com.
 
 Derived from [semver](https://semver.org/).
 
