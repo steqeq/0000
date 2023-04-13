@@ -25,6 +25,7 @@ subtrees:
     subtrees:
       - entries:
         - file: how_to/manage_install/upgrade_linux
+        - file: how_to/manage_install/uninstall_linux
   - file: how_to/quick_start_windows
   - file: deploy/docker
   - file: deploy/multi
