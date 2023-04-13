@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Dict, List, Tuple
+from typing import Dict, List, TextIO, Tuple
 from jinja2 import Environment, FileSystemLoader
 from util.release_data import ReleaseBundle
 from packaging.version import Version
@@ -42,7 +42,7 @@ class Changelog():
                 prev_version = lib_version
         self.prev_lib_ver = prev_lib_ver
 
-    def write_to_file(self, output_path="CHANGELOG.md"):
+    def write_to_file(self, output: TextIO):
         env = Environment(loader=FileSystemLoader("templates/"))
         template = env.get_template("changelog.jinja")
 
@@ -52,5 +52,4 @@ class Changelog():
             prev_lib_ver=self.prev_lib_ver
         )
 
-        with open(output_path, mode="w") as file:
-            file.write(content)
+        output.write(content)

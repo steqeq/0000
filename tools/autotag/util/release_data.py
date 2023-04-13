@@ -9,15 +9,11 @@ from github import Github, UnknownObjectException
 from github.Repository import Repository
 from github.Organization import Organization
 from github.NamedUser import NamedUser
-from github.Tag import Tag
 from git import Repo
+from git.cmd import Git
 from packaging.version import Version
 
 from util.util import get_yn_input
-
-# - `ReleaseBundle` has one per library:
-#   - `ReleaseLib` has exactly one:
-#     - `ReleaseData`
 
 @dataclass
 class ReleaseData:
@@ -162,7 +158,6 @@ class ReleaseLib:
         print(f"Pull request created: {pr.html_url}")
         return pr
 
-
 class ReleaseDataFactory:
     """A factory for ReleaseData objects."""
 
@@ -174,7 +169,7 @@ class ReleaseDataFactory:
     ):
         self.gh: Github = gh
         self.pr_gh: Github = pr_gh
-        self.rocm_version: str = version
+        self.rocm_version: Version = version
         if org_name is None:
             self.org = self.pr_org = None
         else:
@@ -219,7 +214,7 @@ class ReleaseDataFactory:
             repo=repo,
             pr_repo=pr_repo,
             commit=commit,
-            rocm_version=self.rocm_version,
+            rocm_version=str(self.rocm_version),
         )
         return data
 
@@ -228,8 +223,7 @@ class ReleaseBundle:
     """Stores data about all the libraries bundled in this release."""
 
     version: str = ""
-
-    libraries   : Dict[str, ReleaseLib] = field(default_factory=ReleaseLib)
+    libraries: Dict[str, ReleaseLib] = field(default_factory=ReleaseLib)
 
 class ReleaseBundleFactory:
 
@@ -237,9 +231,11 @@ class ReleaseBundleFactory:
     pr_gh: Github = None
 
     default_remote: str = ""
-    orgs       : Dict[str, str] = { }
+    remotes: Dict[str, str] = { }
+    tags: Dict[str, Dict[Version, str]] = { }
 
-    tags: Dict[str, Dict[Version, Tag]] = { }
+    orgs_and_users: Dict[str, Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]] = { }
+    pr_repos: Dict[str, Tuple[Repo, Repo]] = { }
 
     def __init__(
         self,
@@ -255,18 +251,52 @@ class ReleaseBundleFactory:
         self.pr_gh = pr_gh
 
         self.default_remote = default_remote
-        self.orgs        = remotes
+        self.remotes        = remotes
         self.branch         = branch
 
         # Get the main repository:
         self.rocm_repo = gh.get_repo(rocm_repo)
 
     def get_org(self, remote: str):
-        if remote in self.orgs:
-            return self.orgs[remote]
+        """Find the org associated with the remote, or use the fallback."""
+        if remote in self.remotes:
+            return self.remotes[remote]
         return self.default_remote
+    
+    def get_org_or_user(self, remote: str) -> Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]:
+        if remote not in self.orgs_and_users:
+            try:
+                gh_ns = self.gh.get_organization(remote)
+                pr_ns = self.pr_gh.get_organization(remote)
+            except UnknownObjectException:
+                try:
+                    gh_ns = self.gh.get_user(remote)
+                    pr_ns = self.pr_gh.get_user(remote)
+                except UnknownObjectException as err:
+                    raise ValueError(
+                        f"Could not find organization/user {remote}."
+                    ) from err
+            self.orgs_and_users[remote] = (gh_ns, pr_ns)
+
+        return self.orgs_and_users[remote]
+
+    def get_repos(self, name: str, remote: str = None) -> Tuple[Repo, Repo]:
+        org = self.get_org(remote)
+        if name not in self.pr_repos:
+            print(f"Getting remote info for {org}/{name}:")
+            gh_ns, pr_ns = self.get_org_or_user(org)
+            repo = gh_ns.get_repo(name)
+            print(f"  Repo: {repo.url}")
+            try:
+                pr_repo = pr_ns.get_repo(name + "-internal")
+            except UnknownObjectException:
+                pr_repo = pr_ns.get_repo(name)
+            self.pr_repos[name] = (repo, pr_repo)
+
+        return self.pr_repos[name]
 
     def get_repo(self, name: str, remote: str) -> Repo:
+        """Gets the repository at a remote."""
         path = f"{self.get_org(remote)}/{name}"
         try:
             return self.gh.get_repo(path)
@@ -274,55 +304,66 @@ class ReleaseBundleFactory:
             print(f"Could not get repository {path}.")
             raise e
 
-    def get_tag(self, name: str, remote: str, version: str) -> Tag:
-        repo = self.get_repo(name, remote)
+    def get_tag(self, name: str, version: Version) -> Optional[str]:
+        """Finds the Github tag for a library at a ROCm version."""
         if name not in self.tags:
-            self.tags[name] = { }
-            for tag in repo.get_tags():
-                if not tag.name.startswith("rocm-"):
-                    continue
-                tag_version = tag.name.lstrip("rocm-")
-                tag_version += ".0" * (2 - tag_version.count("."))
-                self.tags[name][tag_version] = tag
+            print(f"Fetching tags for {name}.")
+            repo, _ = self.get_repos(name)
+            self.tags[name] = self.fetch_tags(repo.clone_url)
 
         if version not in self.tags[name]:
             return None
 
         return self.tags[name][version]
 
+    def fetch_tags(self, url: str) -> Dict[Version, str]:
+        result: Dict[Version, str] = { }
+        for line in Git().ls_remote("--tags", url).split("\n"):
+            column = line.split("\t")
+            sha = column[0]
+            tag = column[1]
+
+            tag_match = re.search(r"(?P<rocm_tag>rocm-(?P<rocm_ver>\d+(\.\d+)+))", tag)
+            if not tag_match:
+                continue
+
+            rocm_ver = tag_match["rocm_ver"]
+            rocm_ver += ".0" * (2 - rocm_ver.count("."))
+            result[Version(rocm_ver)] = sha
+        return result
+
     def create_data(
         self,
-        version: str,
-        names_and_remotes: List[Tuple[str, str]]
+        version: Version,
+        names_and_remotes: List[Tuple[str, str]],
+        is_untagged: bool=False
     ) -> ReleaseBundle:
         """Create a release bundle of libraries."""
-
-        release_factory = ReleaseDataFactory(
-            None,
-            version,
-            self.gh,
-            self.pr_gh
-        )
-
+        tag_name = f"rocm-{version}"
         libraries = { }
+        
         print(f"\nLibraries for rocm-{version}:")
         for name, remote in names_and_remotes:
-            repo     = self.get_repo(name, remote)
-            tag_name = f"rocm-{version}"
+            repo, pr_repo = self.get_repos(name, remote)
 
-            # Find the tag and otherwise 
-            tag = self.get_tag(name, remote, version)
-            if tag:
-                commit = tag.commit.sha
-            else:
+            # Find the tag and otherwise
+            commit = self.get_tag(name, version)
+            if not commit:
                 print(f"- Could not find tag '{tag_name}' in '{name}'")
-                continue
-            print(f"- {name} {tag_name} {commit}")
-            libraries[name] = release_factory.create_data(
+                if not is_untagged:
+                    continue
+
+                print(f"  Defaulting to branch: {self.branch}")
+                commit = repo.get_branch(self.branch).commit.sha
+            
+            libraries[name] = ReleaseLib(
                 name=name,
+                repo=repo,
+                pr_repo=pr_repo,
                 commit=commit,
-                org=self.get_org(remote)
+                rocm_version=str(version),
             )
+            print(f"- {name:11} {commit}")
 
         data = ReleaseBundle(
             version=version,
@@ -340,18 +381,19 @@ class ReleaseBundleFactory:
         """Create a map of versions and release bundles."""
 
         # Get the tags and versions
-        tags = list(tag for tag in self.rocm_repo.get_tags() if tag.name.startswith("rocm-"))
-        versions = list(tag.name.replace("rocm-", "") for tag in tags)
+        max_version = Version(up_to_version)
+        rocm_tags = self.fetch_tags(self.rocm_repo.clone_url)
+        versions = list(rocm_tags.keys())
 
         if up_to_version not in versions:
-            versions.append(up_to_version)
+            versions.append(max_version)
         versions.sort()
 
-        # Create
+        # For each ROCm release, create a bundle.
         data = {}
         for version in versions:
-            if Version(version) >= Version(min_version):
-
-                data[version] = self.create_data(version, names_and_remotes)
+            if version >= Version(min_version) and version <= max_version:
+                can_be_untagged = version == max_version
+                data[str(version)] = self.create_data(version, names_and_remotes, can_be_untagged)
 
         return data

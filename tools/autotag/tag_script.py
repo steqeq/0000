@@ -4,14 +4,14 @@
 from dataclasses import dataclass
 import dbm
 import sys
-from typing import Dict, List, Optional, TextIO, Union
+from typing import Dict, List, Optional, TextIO, Tuple, Union
 import xml.etree.ElementTree as ET
 import urllib.request
 import argparse
 from github import Github, NamedUser
 from packaging.version import Version
 
-from util.release_data import ReleaseDataFactory, ReleaseLib, ReleaseBundleFactory, ReleaseBundle
+from util.release_data import ReleaseBundleFactory, ReleaseDataFactory
 from util.changelog import Changelog
 from util.util import get_yn_input
 from util import PROCESSORS, TEMPLATES
@@ -221,13 +221,12 @@ def run_tagging():
     remote_map: Dict[str, str] = { }
 
     # Fill the remote map with the remotes defined in the manifest.
-    print("Mapping manifest remotes to URLs:")
     for entry in manifest_tree.findall(".//remote"):
         remote_name = entry.get("name")
         remote_url  = entry.get("fetch").lstrip("https://github.com/").rstrip("/")
         remote_map[remote_name] = remote_url
-        print(f"- {remote_name} => {remote_url}")
 
+    # Creates a collection of ROCm libraries grouped by release.
     release_bundle_factory = ReleaseBundleFactory(
         "RadeonOpenCompute/ROCm",
         Github(**gh_args), Github(**pr_args),
@@ -236,30 +235,42 @@ def run_tagging():
         args.branch
     )
 
+    # Find all the math libraries and their remotes.
     names_and_remotes = list(
         (entry.get("name"), entry.get("remote")) for entry in manifest_tree.findall(".//project[@groups='mathlibs']")
     )
-    releases = release_bundle_factory.create_data_dict(args.version, names_and_remotes, "5.0.0")
 
+    # Get all the relevant ROCm releases, and only the last version if not doing previous.
+    minimum_version = "5.0.0" if args.previous else args.version
+    releases = release_bundle_factory.create_data_dict(args.version, names_and_remotes, minimum_version)
+
+    # Process the individual releases.
+    failed: List[Tuple[str, str]] = []
     for (version, release) in releases.items():
         for (_, library) in release.libraries.items():
-            PROCESSORS[library.name](
+            # Parse the changelog for each library and each version
+            success = PROCESSORS[library.name](
                 library,
                 TEMPLATES[library.name],
                 args.previous,
                 Version(version) < Version(args.version)
             )
+            if not success:
+                print(f"Error processing {library.name} for ROCm {version}")
+                failed.append((version, library.name))
 
-    Changelog(releases).write_to_file()
+    # Compile and write changelog.
+    if args.compile_file:
+        Changelog(releases).write_to_file(args.compile_file)
 
-    # Fetch the GitHub data for every library.
+    # Handle release and PRs.
     data_factory = ReleaseDataFactory(
         args.org, args.version, Github(**gh_args), Github(**pr_args)
     )
-    return
-    libraries = max(releases, key=lambda v, l: Version(v))[1].libraries
-    failed: list[str] = []
-    for data in libraries:
+
+    # In the last release...
+    libraries = releases[max(releases, key=lambda v: Version(v))].libraries
+    for data in libraries.values():
         try:
             print(f"{data.name} commit revision = {data.commit}")
             print(
@@ -267,16 +278,7 @@ def run_tagging():
                 f"https://github.com/{data.qualified_repo}/commit/{data.commit}"
             )
 
-            if not PROCESSORS[data.name](
-                data, TEMPLATES[data.name], args.previous
-            ):
-                failed.append(data.name)
-                continue
-
-            if args.compile_file is not None:
-                print("# " + data.repo.name, file=args.compile_file)
-                print(file=args.compile_file)
-                print(data.notes, file=args.compile_file)
+            # Create a PR (rocm-x.x.x -> develop) to bring hotfixes into develop.
             data.do_release(args.release)
             pr = data.do_create_pull(args.pulls, pr_args["login_or_token"])
             if pr is not None:
@@ -287,8 +289,8 @@ def run_tagging():
 
     if failed:
         print("Error processing the following libraries:", file=sys.stderr)
-        for lib in failed:
-            print("\t" + lib, file=sys.stderr)
+        for ver, lib in failed:
+            print(f"- {lib} for ROCm {ver}", file=sys.stderr)
         sys.exit(1)
 
 

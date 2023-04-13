@@ -7,6 +7,7 @@
 <!-- markdownlint-disable no-duplicate-header               -->
 <!-- markdownlint-disable no-blanks-blockquote              -->
 <!-- markdownlint-disable ul-indent                         -->
+<!-- markdownlint-disable no-trailing-spaces                -->
 The release notes for the ROCm platform.
 
 -------------------
@@ -1393,22 +1394,6 @@ rocThrust 2.16.0 for ROCm 5.3.0
 
 rocWMMA 0.8 for ROCm 5.3.0
 
-##### Added
-
-- Added runtime checks to disable tests on non-target GPUS
-- Added workgroup aware gemm kernels
-- Added workgroup aware validation and benchmark test suite
-- Added warmup run to existing tests
-
-##### Changed
-
-- Refactored lds_mapping_util into gemm global, local mapping, gemm driver, gemm config and scheduling classes
-- Modified resource allocation and tracking of gemm and dlrm buffers
-- Improved low-level data loading patterns
-- Reduced branching on cooperative load and store
-- Updated gemv sample
-- Updated gemm sample
-
 #### Tensile 4.34.0
 
 Tensile 4.34.0 for ROCm 5.3.0
@@ -1753,6 +1738,7 @@ The new HIP Graph Management APIs are as follows:
   ```
 
 - Swaps the stream capture mode of a thread
+
   ```h
   hipError_t hipThreadExchangeStreamCaptureMode(hipStreamCaptureMode* mode);
   ```

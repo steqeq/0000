@@ -44,7 +44,7 @@ def processor_factory():
                 if ignore_unreleased:
                     continue
                 if not get_yn_input(
-                    f"ROCm version not detected, release these ({lib_name}"
+                    f"ROCm version not detected, release these ({lib_name}-"
                     f"{lib_version}) changes for ROCm {data.full_version}?"
                 ):
                     continue
