@@ -1,4 +1,4 @@
-# Prerequisites (Linux)
+# Prerequisites
 
 You must perform the following steps before installing ROCm and check if the
 system meets all the requirements to proceed with the installation.
