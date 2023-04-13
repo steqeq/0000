@@ -43,6 +43,7 @@ class Changelog():
         self.prev_lib_ver = prev_lib_ver
 
     def write_to_file(self, output: TextIO):
+        """Writes the changelog to a text file."""
         env = Environment(loader=FileSystemLoader("templates/"))
         template = env.get_template("changelog.jinja")
 

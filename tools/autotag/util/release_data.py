@@ -231,11 +231,19 @@ class ReleaseBundleFactory:
     pr_gh: Github = None
 
     default_remote: str = ""
+    """The default fallback remote."""
+
     remotes: Dict[str, str] = { }
+    """A dictionary translating the manifest remote shorthand to the full name."""
+
     tags: Dict[str, Dict[Version, str]] = { }
+    """A dictionary with all the ROCm version numbers and commit sha for each library."""
 
     orgs_and_users: Dict[str, Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]] = { }
+    """A dictionary containing the base and PR user or organization for each project."""
+
     pr_repos: Dict[str, Tuple[Repo, Repo]] = { }
+    """A dictionary containing the base and PR repo for each project."""
 
     def __init__(
         self,
@@ -264,6 +272,7 @@ class ReleaseBundleFactory:
         return self.default_remote
     
     def get_org_or_user(self, remote: str) -> Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]:
+        """Gets the base and PR organization or user associated to a remote."""
         if remote not in self.orgs_and_users:
             try:
                 gh_ns = self.gh.get_organization(remote)
@@ -281,6 +290,7 @@ class ReleaseBundleFactory:
         return self.orgs_and_users[remote]
 
     def get_repos(self, name: str, remote: str = None) -> Tuple[Repo, Repo]:
+        """Gets the base and PR repository associated to a remote."""
         org = self.get_org(remote)
         if name not in self.pr_repos:
             print(f"Getting remote info for {org}/{name}:")
@@ -317,6 +327,7 @@ class ReleaseBundleFactory:
         return self.tags[name][version]
 
     def fetch_tags(self, url: str) -> Dict[Version, str]:
+        """Fetches a version-sha map for a given Git URL."""
         result: Dict[Version, str] = { }
         for line in Git().ls_remote("--tags", url).split("\n"):
             column = line.split("\t")
