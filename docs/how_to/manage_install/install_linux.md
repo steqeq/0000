@@ -10,6 +10,8 @@ For information on installing ROCm on devices with NVIDIA GPUs, refer to the HIP
 Installation Guide.
 ```
 
+(install-script-method)=
+
 ## Installer Script Method
 
 The installer script method automates the installation process for the AMDGPU
@@ -849,6 +851,8 @@ with the command below:
 
 :::::
 ::::::
+
+(post-install-actions-linux)=
 
 ## Post-install Actions and Verification Process
 

@@ -22,6 +22,9 @@ subtrees:
 - caption: Deploy ROCm
   entries:
   - file: how_to/quick_start_linux
+    subtrees:
+      - entries:
+        - file: how_to/manage_install/upgrade_linux
   - file: how_to/quick_start_windows
   - file: deploy/docker
   - file: deploy/multi
