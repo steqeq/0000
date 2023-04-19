@@ -9,7 +9,19 @@ shutil.copy2('../CONTRIBUTING.md','./contributing.md')
 
 from rocm_docs import ROCmDocs
 
-linkcheck_anchors_ignore = ['d90e61', 'd1667e113', 'd2999e60', 'building-from-source', 'use-the-rocm-build-tool-rbuild', 'use-cmake-to-build-migraphx', 'example']
+linkcheck_timeout = 1
+linkcheck_anchors_ignore = [
+    'd90e61', 
+    'd1667e113', 
+    'd2999e60', 
+    'building-from-source', 
+    'use-the-rocm-build-tool-rbuild', 
+    'use-cmake-to-build-migraphx', 
+    'example'
+]
+linkcheck_request_headers = {
+    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0'}
+}
 
 docs_core = ROCmDocs("ROCm Docs 5.6.0 Alpha")
 docs_core.setup()
