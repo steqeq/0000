@@ -10,7 +10,7 @@ HIP is both AMD's GPU programming language extension and the GPU runtime. This p
 :::{grid-item-card} [HIP Runtime](https://rocmdocs.amd.com/projects/HIP/en/develop/)
 The HIP Runtime is used to enable GPU acceleration for all HIP language based products.
 
-- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
+- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/HIP/en/develop/)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
 
 :::
