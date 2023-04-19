@@ -18,4 +18,4 @@ build:
       python: "3.8"
    jobs:
       pre_build:
-         - python -m sphinx -b linkcheck -D linkcheck_timeout=1 docs/ _build/linkcheck
+         - python -m sphinx -b linkcheck docs/ _build/linkcheck
