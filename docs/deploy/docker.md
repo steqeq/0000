@@ -51,6 +51,19 @@ like:
 docker run --device /dev/kfd --device /dev/dri/renderD128 --device /dev/dri/renderD130 <image>
 ```
 
+### Additional Options
+
+The performance of an application can vary depending on the assignment of GPUs and CPUs to the task. Typically, numactl is installed as part of many 
+HPC applications to provide GPU/CPU mappings. This Docker runtime option supports memory mapping and can improve performance
+
+```--security-opt seccomp=unconfined```
+  
+This option is recommened for Docker Containers running HPC applications.
+
+```shell
+docker run --device /dev/kfd --device /dev/dri --security-opt seccomp=unconfined ...
+```
+
 ## Docker images in the ROCm ecosystem
 
 ### Base images
@@ -64,4 +77,4 @@ applications, but does not include any libraries.
 ### Applications
 
 AMD provides pre-built images for various GPU-ready applications through its
-Infinity Hub at <https://www.amd.com/en/technologies/infinity-hub>.
+Infinity Hub at <https://www.amd.com/en/technologies/infinity-hub>. There are also examples of invocating each application and suggested parameters used for benchmarking.
