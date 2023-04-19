@@ -8,7 +8,7 @@
 :::{grid-item-card} [HIP](./hip)
 HIP is both AMD's GPU programming language extension and the GPU runtime.
 
-- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
+- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/latest/)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
 
 :::
