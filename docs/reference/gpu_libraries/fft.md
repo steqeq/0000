@@ -10,7 +10,6 @@ rocFFT is an AMD GPU optimized library for FFT.
 
 - [Documentation](https://rocmdocs.amd.com/projects/rocFFT/en/rtd/)
 - [Changelog](https://github.com/ROCmSoftwarePlatform/rocFFT/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocFFT)
 
 :::
 
