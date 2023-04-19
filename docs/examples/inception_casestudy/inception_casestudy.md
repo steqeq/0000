@@ -156,7 +156,7 @@ Follow these steps:
 2. Download an imagenet database. For this example, the tiny-imagenet-200 [4], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
 
     ```py
-    wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
+    wget https://cs231n.stanford.edu/tiny-imagenet-200.zip
     ```
 
 3. Process the database to set the validation directory to the format expected by PyTorch DataLoader.
@@ -1672,7 +1672,7 @@ PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](h
 
 PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
 
-Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
+Stanford, \[Online\]. Available: [https://cs231n.stanford.edu/](https://cs231n.stanford.edu/)
 
 Wikipedia, \[Online\]. Available: [https://en.wikipedia.org/wiki/Cross_entropy](https://en.wikipedia.org/wiki/Cross_entropy)
 

@@ -50,8 +50,8 @@ Libraries related to AI.
 :::{grid-item-card} [Computer Vision](./computer_vision)
 Computer vision related projects.
 
-- [MIVisionX](https://rocmdocs.amd.com/projects/MIVisionX/en/develop)
-- [rocAL](https://rocmdocs.amd.com/projects/rocAL/en/develop)
+- [MIVisionX](https://rocmdocs.amd.com/projects/MIVisionX/en/latest)
+- [rocAL](https://rocmdocs.amd.com/projects/rocAL/en/latest)
 
 :::
 
