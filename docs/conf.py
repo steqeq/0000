@@ -9,7 +9,7 @@ shutil.copy2('../CONTRIBUTING.md','./contributing.md')
 
 from rocm_docs import ROCmDocs
 
-linkcheck_timeout = 5
+linkcheck_timeout = 10
 linkcheck_request_headers = {
     r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:112.0) Gecko/20100101 Firefox/112.0'}
 }
@@ -31,6 +31,8 @@ linkcheck_ignore = [
     "https://rocmdocs.amd.com/projects/roctracer/en/latest/",
     "https://rocmdocs.amd.com/projects/MIGraphX/en/latest/",
     "https://rocmdocs.amd.com/projects/rocprofiler/en/latest/",
+    "https://github.com/ROCm-Developer-Tools/HIP-VS/blob/master/README.md",
+    r"https://www.amd.com/system/files/.*.pdf"
 ]
 
 docs_core = ROCmDocs("ROCm Docs 5.6.0 Alpha")
