@@ -79,7 +79,7 @@ To install PyTorch using the wheels package, follow these installation steps:
       installation directions in the section
       [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60).
       ROCm 5.2 is installed in this example, as supported by the installation
-      matrix from pytorch.org.
+      matrix from pytorch.
 
    or
 

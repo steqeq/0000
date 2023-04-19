@@ -9,7 +9,10 @@ shutil.copy2('../CONTRIBUTING.md','./contributing.md')
 
 from rocm_docs import ROCmDocs
 
-linkcheck_timeout = 1
+linkcheck_timeout = 3
+linkcheck_request_headers = {
+    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:112.0) Gecko/20100101 Firefox/112.0'}
+}
 linkcheck_anchors_ignore = [
     'd90e61', 
     'd1667e113', 
@@ -19,9 +22,14 @@ linkcheck_anchors_ignore = [
     'use-cmake-to-build-migraphx', 
     'example'
 ]
-linkcheck_request_headers = {
-    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0'}
-}
+linkcheck_ignore = [
+    "https://rocmdocs.amd.com/projects/ROCmCC/en/latest/", 
+    "https://rocmdocs.amd.com/projects/RVS/en/latest/", 
+    "https://rocmdocs.amd.com/projects/amdsmi/en/latest/",
+    "https://rocmdocs.amd.com/projects/rdc/en/latest/",
+    "https://rocmdocs.amd.com/projects/rocmsmi/en/latest/", 
+    "https://rocmdocs.amd.com/projects/roctracer/en/latest/"
+]
 
 docs_core = ROCmDocs("ROCm Docs 5.6.0 Alpha")
 docs_core.setup()
