@@ -28,7 +28,7 @@ Kernel options to avoid: the ethernet port getting renamed every time you change
 
 ## Debug Flags
 
-Debug messages when developing/debugging base ROCm driver. You could enable the printing from libhsakmt.so by setting an environment variable, HSAKMT_DEBUG_LEVEL. Available debug levels are 3-7. The higher level you set, the more messages will print.
+Debug messages when developing/debugging base ROCm driver. You could enable the printing from `libhsakmt.so` by setting an environment variable, HSAKMT_DEBUG_LEVEL. Available debug levels are 3-7. The higher level you set, the more messages will print.
 
 - export HSAKMT_DEBUG_LEVEL=3 : Only pr_err() prints.
 
@@ -65,10 +65,4 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 ## PCle-Debug
 
 Refer to ROCm PCIe Debug, <a href="https://rocmdocs.amd.com/en/latest/Other_Solutions/PCIe-Debug.html#pcie-debug" target="_blank">https://rocmdocs.amd.com/en/latest/Other_Solutions/PCIe-Debug.html#pcie-debug</a>.
-For information on how to debug and profile HIP applications, see the following:
-
-- HIP-Debugging,
-http://rocm-documentation.readthedocs.io/en/latest/Programming_Guides/HIP_Debugging.html#hip-debugging
-
-- HIP-Profiling,
-http://rocm-documentation.readthedocs.io/en/latest/Programming_Guides/hip_profiling.html#hip-profiling
+For information on how to debug and profile HIP applications, see <a href="https://rocmdocs.amd.com/projects/HIP/en/latest/how_to_guides/debugging.html" target="_blank">https://rocmdocs.amd.com/projects/HIP/en/latest/how_to_guides/debugging.html</a>
