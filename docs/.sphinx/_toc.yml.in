@@ -32,7 +32,6 @@ subtrees:
     title: Windows
   - file: deploy/docker
 
-
 - caption: APIs and Reference
   entries:
     - file: reference/all
