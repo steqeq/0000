@@ -34,6 +34,7 @@ linkcheck_ignore = [
     "https://rocmdocs.amd.com/projects/MIGraphX/en/latest/",
     "https://rocmdocs.amd.com/projects/rocprofiler/en/latest/",
     "https://github.com/ROCm-Developer-Tools/HIP-VS/blob/master/README.md",
+    "https://rocmdocs.amd.com/projects/HIPIFY/en/develop/",
     # correct links that linkcheck times out on
     r"https://www.amd.com/system/files/.*.pdf",
     "https://www.amd.com/en/developer/aocc.html",
