@@ -31,7 +31,6 @@ subtrees:
   - file: how_to/quick_start_windows
     title: Windows
   - file: deploy/docker
-  - file: deploy/build_source
 
 
 - caption: APIs and Reference
