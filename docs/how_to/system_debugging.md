@@ -39,7 +39,7 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 - export HSAKMT_DEBUG_LEVEL=6 : pr_err(), pr_warn(), and pr_info print.
 
 - export HSAKMT_DEBUG_LEVEL=7 : Everything including pr_debug prints.
- 
+
 ## ROCr Level Env Variable for Debug
 
 `HSA_ENABLE_SDMA=0`

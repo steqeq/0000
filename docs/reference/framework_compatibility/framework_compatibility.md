@@ -24,14 +24,13 @@ The ROCm 5.4 platform supports the following frameworks:
 
 •       TensorFlow v2.10.0
 
-### PyTorch  
+### PyTorch
 
 For the latest release of Pytorch, refer to <a href="https://github.com/pytorch/pytorch/releases/" target="_blank">https://github.com/pytorch/pytorch/releases/</a>
 
 ### MAGMA
 
 For the latest release of MAGMA, refer to <a href="https://icl.utk.edu/magma/index.html" target="_blank">https://icl.utk.edu/magma/index.html</a>
-
 
 ### TensorFlow
 
