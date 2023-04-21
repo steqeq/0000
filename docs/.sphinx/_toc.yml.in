@@ -15,7 +15,6 @@ subtrees:
       - entries:
         - file: release/docker_support_matrix
         - file: reference/framework_compatibility/framework_compatibility
-        - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
   - file: release/licensing
 
 - caption: Deploy ROCm
