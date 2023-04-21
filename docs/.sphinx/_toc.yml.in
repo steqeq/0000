@@ -7,7 +7,6 @@ root: index
 subtrees:
 - caption: Release Info
   entries:
-  - file: release
   - file: release/gpu_os_support
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
