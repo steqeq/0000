@@ -9,10 +9,6 @@ shutil.copy2('../CONTRIBUTING.md','./contributing.md')
 
 from rocm_docs import ROCmDocs
 
-linkcheck_timeout = 10
-linkcheck_request_headers = {
-    r'https://docs.github.com/': {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:112.0) Gecko/20100101 Firefox/112.0'}
-}
 # working anchors that linkcheck cannot find
 linkcheck_anchors_ignore = [
     'd90e61', 
@@ -40,6 +36,8 @@ linkcheck_ignore = [
     "https://www.amd.com/en/developer/aocc.html",
     "https://www.amd.com/en/support/linux-drivers",
     "https://www.amd.com/en/technologies/infinity-hub",
+    r"https://bitbucket.org/icl/magma/*",
+    "http://cs231n.stanford.edu/"
 ]
 
 docs_core = ROCmDocs("ROCm Docs 5.6.0 Alpha")
