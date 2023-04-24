@@ -1,4 +1,4 @@
-# Upgrade
+# Upgrade (Linux)
 
 This section explains how to upgrade the existing kernel-mode driver and ROCm
 packages to the latest version. The assumption is that you already have a
@@ -8,8 +8,7 @@ the system.
 ```{note}
 Package upgrade is applicable to single-version packages only. If the preference
 is to install an updated version of the ROCm stack along with the currently
-installed version, refer to the How to [Install ROCm](./install_linux.md)
-section.
+installed version, refer to the [](install_linux) page.
 ```
 
 You may use the following upgrade methods to upgrade ROCm:

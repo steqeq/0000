@@ -1,4 +1,4 @@
-# Docker
+# Deploy ROCm Docker containers
 
 ## Prerequisites
 

@@ -20,13 +20,9 @@ Welcome to AMD ROCm™ Platform's documentation!
 ::::{grid-item}
 :::{dropdown} [Deploy ROCm](deploy)
 
-- [Quick Start (Linux)](how_to/quick_start_linux)
-- [Quick Start (Windows)](how_to/quick_start_windows)
-- [Docker](deploy/docker)
-- [Basic Installation Guide](deploy/install)
-- [Multi-ROCm Installation](deploy/multi.md)
-- [Spack](deploy/spack)
-- [Build from source](deploy/build_source)
+- {doc}`/deploy/linux`
+- {doc}`/how_to/quick_start_windows`
+- {doc}`/deploy/docker`
 
 :::
 ::::

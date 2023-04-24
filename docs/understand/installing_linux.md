@@ -1,16 +1,7 @@
 # Installation Overview (Linux)
 
-This chapter provides an overview of ROCm™ installation.
-
-## About This Document
-
-This document is intended for users familiar with Linux® and discusses the
-installation/uninstallation of ROCm on the various Linux distributions.
-
-```{note}
-The rest of this document refers to _Radeon™ Software for Linux_ as the AMDGPU
-stack and `amdgpu-dkms` driver as the kernel-mode driver.
-```
+This document is intended for users familiar with Linux and discusses the
+installation of ROCm on various distributions.
 
 The guide provides instructions for the following:
 
@@ -19,6 +10,11 @@ The guide provides instructions for the following:
 - ROCm and kernel-mode driver version upgrade
 - ROCm single-version and multi-version uninstallation
 - Kernel-mode driver uninstallation
+
+```{note}
+The rest of this document refers to _Radeon™ Software for Linux_ as the `amdgpu`
+stack and `amdgpu-dkms` driver as the kernel-mode driver.
+```
 
 ## Installation Methods
 
