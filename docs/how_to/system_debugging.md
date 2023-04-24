@@ -2,7 +2,7 @@
 
 ## ROCm Language and System Level Debug, Flags, and Environment Variables
 
-Kernel options to avoid: the ethernet port getting renamed every time you change graphics cards, net.ifnames=0 biosdevname=0
+Kernel options to avoid: the Ethernet port getting renamed every time you change graphics cards, `net.ifnames=0 biosdevname=0`
 
 ## ROCr Error Code
 
@@ -28,19 +28,19 @@ Kernel options to avoid: the ethernet port getting renamed every time you change
 
 ## Debug Flags
 
-Debug messages when developing/debugging base ROCm driver. You could enable the printing from `libhsakmt.so` by setting an environment variable, HSAKMT_DEBUG_LEVEL. Available debug levels are 3-7. The higher level you set, the more messages will print.
+Debug messages when developing/debugging base ROCm driver. You could enable the printing from `libhsakmt.so` by setting an environment variable, `HSAKMT_DEBUG_LEVEL`. Available debug levels are 3-7. The higher level you set, the more messages will print.
 
-- export HSAKMT_DEBUG_LEVEL=3 : Only pr_err() prints.
+- `export HSAKMT_DEBUG_LEVEL=3` : Only pr_err() prints.
 
-- export HSAKMT_DEBUG_LEVEL=4 : pr_err() and pr_warn() print.
+- `export HSAKMT_DEBUG_LEVEL=4` : pr_err() and pr_warn() print.
 
-- export HSAKMT_DEBUG_LEVEL=5 : We currently do not implement “notice”. Setting to 5 is same as setting to 4.
+- `export HSAKMT_DEBUG_LEVEL=5` : We currently do not implement “notice”. Setting to 5 is same as setting to 4.
 
-- export HSAKMT_DEBUG_LEVEL=6 : pr_err(), pr_warn(), and pr_info print.
+- `export HSAKMT_DEBUG_LEVEL=6` : pr_err(), pr_warn(), and pr_info print.
 
-- export HSAKMT_DEBUG_LEVEL=7 : Everything including pr_debug prints.
+- `export HSAKMT_DEBUG_LEVEL=7` : Everything including pr_debug prints.
 
-## ROCr Level Env Variable for Debug
+## ROCr Level Environment Variables for Debug
 
 `HSA_ENABLE_SDMA=0`
 
@@ -62,7 +62,7 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 
 `AMD_OCL_WAIT_COMMAND=1 (0 = OFF, 1 = On)`
 
-## PCle-Debug
+## PCIe-Debug
 
 Refer to ROCm PCIe Debug, <a href="https://rocmdocs.amd.com/en/latest/Other_Solutions/PCIe-Debug.html#pcie-debug" target="_blank">https://rocmdocs.amd.com/en/latest/Other_Solutions/PCIe-Debug.html#pcie-debug</a>.
 For information on how to debug and profile HIP applications, see <a href="https://rocmdocs.amd.com/projects/HIP/en/latest/how_to_guides/debugging.html" target="_blank">https://rocmdocs.amd.com/projects/HIP/en/latest/how_to_guides/debugging.html</a>

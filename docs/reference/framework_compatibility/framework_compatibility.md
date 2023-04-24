@@ -8,9 +8,9 @@ Blue: Shows compatibility tested versions
 
 Gray: Not tested
 
-![With Pytorch](../../data/framework_compatibility/with_pytorch.png)
+![With PyTorch](../../data/framework_compatibility/with_pytorch.png)
 
-![With Tensorflow](../../data/framework_compatibility/with_tensorflow.png)
+![With TensorFlow](../../data/framework_compatibility/with_tensorflow.png)
 
 ## Supported Frameworks
 
@@ -26,7 +26,7 @@ The ROCm 5.4 platform supports the following frameworks:
 
 ### PyTorch
 
-For the latest release of Pytorch, refer to <a href="https://github.com/pytorch/pytorch/releases/" target="_blank">https://github.com/pytorch/pytorch/releases/</a>
+For the latest release of PyTorch, refer to <a href="https://github.com/pytorch/pytorch/releases/" target="_blank">https://github.com/pytorch/pytorch/releases/</a>
 
 ### MAGMA
 
