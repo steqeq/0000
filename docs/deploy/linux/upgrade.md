@@ -8,7 +8,7 @@ the system.
 ```{note}
 Package upgrade is applicable to single-version packages only. If the preference
 is to install an updated version of the ROCm stack along with the currently
-installed version, refer to the [](install_linux) page.
+installed version, refer to the [](install) page.
 ```
 
 You may use the following upgrade methods to upgrade ROCm:
@@ -279,4 +279,4 @@ to the {ref}`install-script-method` section on the exact procedure to follow.
 
 To verify if the upgrade is successful, refer to the
 {ref}`post-install-actions-linux` given in the
-[Installation](./install_linux.md) section.
+[Installation](install) section.

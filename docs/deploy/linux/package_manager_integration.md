@@ -21,7 +21,7 @@ All meta-packages exist in both versioned and non-versioned forms.
 
 ```{figure-md} package-naming
 
-<img src="../../data/understand/installing_linux/image.002.png" alt="">
+<img src="/data/deploy/linux/image.002.png" alt="">
 
 ROCm Release Package Naming
 ```
@@ -66,7 +66,7 @@ of required packages and libraries.
 
 ```{figure-md} meta-packages
 
-<img src="../../data/understand/installing_linux/image.003.png" alt="">
+<img src="/data/deploy/linux/image.003.png" alt="">
 
 ROCm Meta Packages
 ```
@@ -102,7 +102,7 @@ ROCm programming model.
 
 ```{figure-md} assoc-packages
 
-<img src="../../data/understand/installing_linux/image.004.png" alt="">
+<img src="/data/deploy/linux/image.004.png" alt="">
 
 Associated Packages
 ```

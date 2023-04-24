@@ -20,8 +20,8 @@ Welcome to AMD ROCm™ Platform's documentation!
 ::::{grid-item}
 :::{dropdown} [Deploy ROCm](deploy)
 
-- {doc}`/deploy/linux`
-- {doc}`/how_to/quick_start_windows`
+- {doc}`/deploy/linux/index`
+- {doc}`/deploy/quick_start_windows`
 - {doc}`/deploy/docker`
 
 :::
@@ -56,7 +56,6 @@ Welcome to AMD ROCm™ Platform's documentation!
 Understand ROCm
 ^^^
 
-- [Installation (Linux)](understand/installing_linux)
 - [Compiler Disambiguation](understand/compiler_disambiguation)
 - [ISV Deployment Guide (Windows)](understand/isv_deployment_win)
 - [Using CMake](understand/cmake_packages)
