@@ -7,7 +7,7 @@
 :::{tab-item} Navi 2 Series
 :sync: navi2x
 
-| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP Runtime | HIP SDK |
+| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Name | HIP Runtime | HIP SDK |
 |:---------:|:---------:|:--------------------------------------------------------------------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
 | Navi21 Pro-XL  | 73A3 | gfx1030 | AMD Radeon Pro™ W6800   | ✅ | ❌ |
 | Navi23 WKS-XL  | 73E3 | gfx1032 | AMD Radeon Pro™ W6600   | ✅ | ❌ |
@@ -17,7 +17,7 @@
 :::{tab-item} Navi 3 Series
 :sync: navi3x
 
-| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP Runtime | HIP SDK |
+| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Name | HIP Runtime | HIP SDK |
 |:---------:|:---------:|:--------------------------------------------------------------------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
 
 :::
@@ -31,7 +31,7 @@
 :::{tab-item} Navi 2 Series 
 :sync: navi2x
 
-| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP Runtime | HIP SDK |
+| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Name | HIP Runtime | HIP SDK |
 |:---------:|:---------:|:--------------------------------------------------------------------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
 | Navi21 Pro-XTA | 73A2 | gfx1030 | AMD Radeon™ Graphics    | ✅ | ❌ |
 | Navi21 Pro-XL  | 73A3 | gfx1030 | AMD Radeon Pro™ W6800   | ✅ | ✅ |
@@ -78,7 +78,7 @@
 :::{tab-item} Navi 3 Series
 :sync: navi3x
 
-| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP | Math Libraries |
+| Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Name | HIP | Math Libraries |
 |:---------:|:---------:|:--------------------------------------------------------------------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
 | Navi31 XTX     | 73A2 | gfx1100 | AMD Radeon™ RX 7900 XTX | ✅ | ❌ |
 | Navi31 XT      | 73A3 | gfx1100 | AMD Radeon™ RX 7900 XT  | ✅ | ❌ |
