@@ -1,6 +1,14 @@
-===========================
+***********
 Using CMake
-===========================
+***********
+
+Most components in ROCm support CMake. Porjects depnding on header-only or
+library components typically require CMake 3.5 or higher whereas those wanting
+to make use of CMake's HIP language support will require CMake 3.21 or higher.
+
+Most components in ROCm support detection, consumption by CMake builds. They do
+so via shipping config files searched by CMake's ``find_package`` command. ROCm
+also supports driving CMake's HIP language.
 
 Most components in ROCm support CMake 3.5 or higher out-of-the-box and do not
 require any special Find modules. A Find module is often used by downstream to
@@ -13,31 +21,75 @@ ROCm provides the respective *config-file* packages, and this enables
 the *config-file* packages are shipped with the upstream projects.
 
 Finding Dependencies
---------------------
+====================
 
-When dependencies are not found in standard locations such as */usr* or
-*/usr/local*, then the ``CMAKE_PREFIX_PATH`` variable can be set to the
-installation prefixes. This can be set to multiple locations with a semicolon
-separating the entries.
+.. note::
+   For a complete
+   reference on how to deal with dependencies in CMake, refer to the CMake docs
+   on `find_package
+   <https://cmake.org/cmake/help/latest/command/find_package.html>`_ and the
+   `Using Dependencies Guide
+   <https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html>`_
+   to get an overview of CMake's related facilities.
 
-There are two ways to set this variable:
+In short, CMake supports finding dependencies in two ways:
 
--  Pass the flag when configuring with ``-DCMAKE_PREFIX_PATH=....`` This
-   approach is preferred when users install the components in custom locations.
+-  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to
+   find the component in typical install locations and layouts. CMake ships a
+   few dozen such scripts, but users and projects may ship them as well.
+-  In Config mode, it locates a file named ``<packagename>-config.cmake`` or
+   ``<PackageName>Config.cmake`` which describes the installed component in all
+   regards needed to consume it.
 
--  Append the variable in the CMakeLists.txt file. This is useful if the
-   dependencies are found in a common location. For example, when the binaries
-   provided on `repo.radeon.com <http://repo.radeon.com>`_ are installed to
-   */opt/rocm*, you can add the following line to a CMakeLists.txt file
+ROCm dominantly relies on Config mode, one notable exception being the Module
+driving the compilation of HIP programs on Nvidia runtimes. As such, when
+dependencies are not found in standard system locations, one either has to
+instruct CMake to search for package config files in additional folders using
+the ``CMAKE_PREFIX_PATH`` variable (a semi-colon separated list of filesystem
+paths), or using ``<PackageName>_ROOT`` variable on a project-specific basis.
 
-   ::
+There are nearly a dozen ways to set these variables. One may be more convenient
+over the other depending on your workflow. Conceptually the simplest is adding
+it to your CMake configuration command on the command-line via
+``-D CMAKE_PREFIX_PATH=....`` . AMD packaged ROCm installs can typically be
+added to the config file search paths such as:
 
-    list (APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
+-  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
+
+-  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
+
+For a complete guide on where and how ROCm may be installed on a system, refer
+to the installation guides in these docs (Windows, Linux).
 
 Using HIP in CMake
---------------------
+==================
 
-There are two ways to use HIP in CMake:
+ROCm componenents providing a C/C++ interface support being consumed using any
+C/C++ toolchain that CMake knows how to drive. ROCm also supports CMake's HIP
+language features, allowing users to program using the HIP single-source
+programming model. The HIP API without compiling GPU device code behaves as a
+C/C++ library.
+
+Consuming ROCm C/C++ Libraries
+------------------------------
+
+Libraries such as rocBLAS, rocFFT, MIOpen, etc. behave as C/C++ libraries.
+Illustrated in the example below is a C++ application using MIOpen from CMake.
+It calls ``find_package(miopen)``, which provides the ``MIOpen`` imported
+target. This can be linked with ``target_link_libraries``::
+
+    project(myProj LANGUAGES CXX)
+    find_package(miopen)
+    add_library(myLib ...)
+    target_link_libraries(myLib PUBLIC MIOpen)
+
+.. note::
+    Most libraries are designed as host-only API, so using a GPU device
+    compiler is not necessary for downstream projects unless they use GPU device
+    code.
+
+Consuming the HIP API
+---------------------
 
 -  Use the HIP API without compiling the GPU device code. As there is no GPU
    code, any C or C++ compiler can be used. The ``find_package(hip)`` provides
@@ -45,14 +97,10 @@ There are two ways to use HIP in CMake:
 
 ::
 
-   # Search for rocm in common locations
-   list(APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
-   # Find hip
-   find_package(hip)
-   # Create the library
-   add_library(myLib ...)
-   # Link with HIP
-   target_link_libraries(myLib hip::host)
+   project(myProj)
+   find_package(hip REQUIRED)
+   add_executable(myApp ...)
+   target_link_libraries(myApp PRIVATE hip::host)
 
 .. note::
     The ``hip::host`` target provides all the usage requirements needed to use
@@ -106,30 +154,6 @@ set in the CMakeLists.txt as a cached variable before calling
     list(APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
     # Find hip
     find_package(hip)
-
-Using ROCm Libraries
----------------------------
-
-Libraries such as rocBLAS, MIOpen, and others support CMake users as
-well.
-
-As illustrated in the example below, to use MIOpen from CMake, you can
-call ``find_package(miopen)``, which provides the ``MIOpen`` CMake target. This
-can be linked with ``target_link_libraries``::
-
-    # Search for rocm in common locations
-    list(APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
-    # Find miopen
-    find_package(miopen)
-    # Create library
-    add_library(myLib ...)
-    # Link with miopen
-    target_link_libraries(myLib MIOpen)
-
-.. note::
-    Most libraries are designed as host-only API, so using a GPU device
-    compiler is not necessary for downstream projects unless it uses the GPU
-    device code.
 
 
 ROCm CMake Packages
