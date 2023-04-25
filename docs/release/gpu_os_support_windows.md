@@ -1,10 +1,10 @@
 # GPU and OS Support (Windows)
 
-## Windows Server 2016 & 2019
+## Windows Server 2022
 
 ::::{tab-set}
 
-:::{tab-item} Navi 20
+:::{tab-item} Navi 2 Series
 :sync: navi2x
 
 | Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP | Math Libraries |
@@ -14,7 +14,7 @@
 
 :::
 
-:::{tab-item} Navi 30
+:::{tab-item} Navi 3 Series
 :sync: navi3x
 
 | Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP | Math Libraries |
@@ -28,7 +28,7 @@
 
 ::::{tab-set}
 
-:::{tab-item} Navi 20
+:::{tab-item} Navi 2 Series 
 :sync: navi2x
 
 | Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP | Math Libraries |
@@ -75,7 +75,7 @@
 
 :::
 
-:::{tab-item} Navi 30
+:::{tab-item} Navi 3 Series
 :sync: navi3x
 
 | Device ID | ASIC Name | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Marketing Product Name | HIP | Math Libraries |
