@@ -40,37 +40,28 @@ linkcheck_ignore = [
     "http://cs231n.stanford.edu/"
 ]
 
-linux_pages = {
-    "release/gpu_os_support",
-    "deploy/linux/index",
-    "deploy/linux/install_overview",
-    "deploy/linux/prerequisites",
-    "deploy/linux/quick_start",
-    "deploy/linux/install",
-    "deploy/linux/upgrade",
-    "deploy/linux/uninstall",
-    "deploy/linux/package_manager_integration",
-}
+article_pages = [
+    {"file":"release/gpu_os_support", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/index", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/install_overview", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/prerequisites", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/quick_start", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/install", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/upgrade", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/uninstall", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy/linux/package_manager_integration", "os":["linux"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    
+    {"file":"deploy/quick_start_windows", "os":["windows"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"understand/isv_deployment_win", "os":["windows"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
 
-windows_pages = {
-    "deploy/quick_start_windows",
-    "understand/isv_deployment_win"
-}
-
-linux_and_windows_pages = {
-    "about",
-    "deploy"
-}
+    {"file":"about", "os":["linux", "windows"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+    {"file":"deploy", "os":["linux", "windows"], "author":"", "date":"April 25, 2023", "read-time":"5 min read"},
+]
 
 docs_core = ROCmDocs("ROCm Docs 5.6.0 Alpha")
 docs_core.setup()
 docs_core.disable_main_doc_link()
-docs_core.set_page_article_info(
-    "_build/html/", 
-    linux_pages=linux_pages, 
-    windows_pages=windows_pages, 
-    linux_and_windows_pages=linux_and_windows_pages
-)
+docs_core.set_page_article_info("_build/html/", article_pages)
 
 for sphinx_var in ROCmDocs.SPHINX_VARS:
     globals()[sphinx_var] = getattr(docs_core, sphinx_var)
