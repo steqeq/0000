@@ -40,30 +40,38 @@ linkcheck_ignore = [
     "http://cs231n.stanford.edu/"
 ]
 
-# html_output_directory = "_build/html" # same as default
+html_output_directory = "_build/html"
 setting_all_article_info = True
-# all_article_info_os = ["linux"] # same as default
-all_article_info_author = "ROCm" # default is empty string
-all_article_info_date = "May 1, 2023" # default is 2023
-all_article_info_read_time = "10 min" # default is 5 min
+all_article_info_os = ["linux", "windows"]
+all_article_info_author = ""
+all_article_info_date = "May 1, 2023"
+all_article_info_read_time = "5-10 min read"
 
 # pages with specific settings
 article_pages = [
-    {"file":"release/gpu_os_support", "date":"April 25, 2023"},
-    {"file":"deploy/linux/index", "date":"April 25, 2023"},
-    {"file":"deploy/linux/install_overview", "date":"April 25, 2023"},
-    {"file":"deploy/linux/prerequisites", "date":"April 25, 2023"},
-    {"file":"deploy/linux/quick_start", "date":"April 25, 2023"},
-    {"file":"deploy/linux/install", "date":"April 25, 2023"},
-    {"file":"deploy/linux/upgrade", "date":"April 25, 2023"},
-    {"file":"deploy/linux/uninstall", "date":"April 25, 2023"},
-    {"file":"deploy/linux/package_manager_integration", "date":"April 25, 2023"},
+    {"file":"release/gpu_os_support", "date":"May 1, 2023"},
+    {"file":"deploy/linux/index", "date":"May 1, 2023"},
+    {"file":"deploy/linux/install_overview", "date":"May 1, 2023"},
+    {"file":"deploy/linux/prerequisites", "date":"May 1, 2023"},
+    {"file":"deploy/linux/quick_start", "date":"May 1, 2023"},
+    {"file":"deploy/linux/install", "date":"May 1, 2023"},
+    {"file":"deploy/linux/upgrade", "date":"May 1, 2023"},
+    {"file":"deploy/linux/uninstall", "date":"May 1, 2023"},
+    {"file":"deploy/linux/package_manager_integration", "date":"May 1, 2023"},
+    {"file":"deploy/docker", "date":"May 1, 2023"},
+    {"file":"reference/gpu_libraries/communication", "date":"May 1, 2023"},
+    {"file":"reference/ai_tools", "date":"May 1, 2023"},
+    {"file":"reference/management_tools", "date":"May 1, 2023"},
+    {"file":"reference/validation_tools", "date":"May 1, 2023"},
+    {"file":"how_to/deep_learning_rocm", "date":"May 1, 2023"},
+    {"file":"how_to/magma_install/magma_install", "date":"May 1, 2023"},
+    {"file":"how_to/pytorch_install/pytorch_install", "date":"May 1, 2023"},
+    {"file":"how_to/tensorflow_install/tensorflow_install", "date":"May 1, 2023"},
+    {"file":"examples/ai_ml_inferencing", "date":"May 1, 2023", "read-time":"1 min read"},
+    {"file":"examples/inception_casestudy/inception_casestudy", "date":"May 1, 2023"},
     
-    {"file":"deploy/quick_start_windows", "os":["windows"], "date":"April 25, 2023"},
-    {"file":"understand/isv_deployment_win", "os":["windows"], "date":"April 25, 2023"},
-
-    {"file":"about", "os":["linux", "windows"], "date":"April 25, 2023"},
-    {"file":"deploy", "os":["linux", "windows"], "date":"April 25, 2023"},
+    {"file":"deploy/quick_start_windows", "os":["windows"], "date":"May 1, 2023"},
+    {"file":"understand/isv_deployment_win", "os":["windows"], "date":"May 1, 2023"},
 ]
 
 docs_core = ROCmDocs("ROCm Docs 5.6.0 Alpha")
