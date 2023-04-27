@@ -2,19 +2,9 @@
 Using CMake
 ***********
 
-Most components in ROCm support CMake. Porjects depnding on header-only or
+Most components in ROCm support CMake. Projects depnding on header-only or
 library components typically require CMake 3.5 or higher whereas those wanting
 to make use of CMake's HIP language support will require CMake 3.21 or higher.
-
-Most components in ROCm support detection, consumption by CMake builds. They do
-so via shipping config files searched by CMake's ``find_package`` command. ROCm
-also supports driving CMake's HIP language.
-
-Most components in ROCm support CMake 3.5 or higher out-of-the-box and do not
-require any special Find modules. A Find module is often used by downstream to
-find the files by guessing locations of files with platform-specific hints.
-Typically, the Find module is required when the upstream is not built with CMake
-or the package configuration files are not available.
 
 ROCm provides the respective *config-file* packages, and this enables
 ``find_package`` to be used directly. ROCm does not require any Find module as
@@ -70,6 +60,38 @@ language features, allowing users to program using the HIP single-source
 programming model. The HIP API without compiling GPU device code behaves as a
 C/C++ library.
 
+Using the HIP single-source programming model
+---------------------------------------------
+
+Source code written in the HIP dialect of C++ typically use the `.hip`
+extension. When the HIP CMake language is enabled, it will automatically
+associate such source files with the HIP toolchain being used. Because HIP
+itself relies on a C++ Standard Template Library (among other C++ toolchain
+fragments), enabling the C++ language is also recommended.
+
+    cmake_minimum_required(VERSION 3.21) # enable_language(HIP)
+    cmake_policy(VERSION 3.21...3.27)
+    project(MyProj LANGUAGES CXX HIP)
+    add_executable(MyApp Main.hip)
+
+CMake itself only hosts part of the HIP language support, such as defining
+HIP-specific properties, etc. while the other half ships with the HIP
+implementation, such as ROCm. CMake will search for a file
+`hip-lang-config.cmake` describing how the the properties defined by CMake
+translate to toolchain invocations. If one installs CMake into non-standard
+locations or has multiple HIP toolchains installed side-by-side and wants to
+instruct CMake to choose a specific one, it can be done by setting
+``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` to the root of the ROCm installation.
+
+.. note::
+   Enabling the HIP language automatically adds the inferred or user-provided
+   ROCm install root to ``CMAKE_PREFIX_PATH``.
+
+If the user doesn't provide a semi-colon delimited list of device architectures
+via ``CMAKE_HIP_ARCHITECTURES``, CMake will select some sensible default. It is
+advised though that if a user knows what devices they wish to target, then set
+this variable explicitly.
+
 Consuming ROCm C/C++ Libraries
 ------------------------------
 
@@ -78,83 +100,82 @@ Illustrated in the example below is a C++ application using MIOpen from CMake.
 It calls ``find_package(miopen)``, which provides the ``MIOpen`` imported
 target. This can be linked with ``target_link_libraries``::
 
-    project(myProj LANGUAGES CXX)
+    cmake_minimum_required(VERSION 3.5) # find_package(miopen)
+    cmake_policy(VERSION 3.5...3.27)
+    project(MyProj LANGUAGES CXX)
     find_package(miopen)
-    add_library(myLib ...)
-    target_link_libraries(myLib PUBLIC MIOpen)
+    add_library(MyLib ...)
+    target_link_libraries(MyLib PUBLIC MIOpen)
 
 .. note::
     Most libraries are designed as host-only API, so using a GPU device
     compiler is not necessary for downstream projects unless they use GPU device
     code.
 
-Consuming the HIP API
----------------------
+Consuming the HIP API in C++ code
+---------------------------------
 
--  Use the HIP API without compiling the GPU device code. As there is no GPU
-   code, any C or C++ compiler can be used. The ``find_package(hip)`` provides
-   the ``hip::host`` target to use HIP in this context
+Use the HIP API without compiling the GPU device code. As there is no GPU code,
+any C or C++ compiler can be used. The ``find_package(hip)`` provides the
+``hip::host`` imported target to use HIP in this context.
 
 ::
 
-   project(myProj)
-   find_package(hip REQUIRED)
-   add_executable(myApp ...)
-   target_link_libraries(myApp PRIVATE hip::host)
+    cmake_minimum_required(VERSION 3.5) # find_package(hip)
+    cmake_policy(VERSION 3.5...3.27)
+    project(MyProj LANGUAGES CXX)
+    find_package(hip REQUIRED)
+    add_executable(MyApp ...)
+    target_link_libraries(MyApp PRIVATE hip::host)
+
+Compiling device code in C++ language mode
+------------------------------------------
+
+.. attention::
+    The workflow detailed here is considered legacy and is shown for
+    understanding's sake. It pre-dates the existence of HIP language support in
+    CMake. If source code has HIP device code in it, it is a HIP source file
+    and should be compiled as such. Only resort to the method below if your
+    HIP-enabled CMake codepath can't mandate CMake version 3.21.
+
+If code uses the HIP API and compiles GPU device code, it requires using a
+device compiler. The compiler for CMake can be set using either the
+``CMAKE_C_COMPILER`` and ``CMAKE_CXX_COMPILER`` variable or using the ``CC``
+and ``CXX`` environment variables. This can be set when configuring CMake or
+put into a CMake toolchain file. The device compiler must be set to a
+compiler that supports AMD GPU targets, which is usually Clang.
+
+The ``find_package(hip)`` provides the ``hip::device`` imported target to add
+all the flags necessary for device compilation.
+
+::
+
+    cmake_minimum_required(VERSION 3.8) # cxx_std_11
+    cmake_policy(VERSION 3.8...3.27)
+    project(MyProj LANGUAGES CXX)
+    find_package(hip REQUIRED)
+    add_library(MyLib ...)
+    target_link_libraries(MyLib PRIVATE hip::device)
+    target_compile_features(MyLib PRIVATE cxx_std_11)
 
 .. note::
-    The ``hip::host`` target provides all the usage requirements needed to use
-    HIP without compiling GPU device code.
+    Compiling for the GPU device requires at least C++11.
 
--  Use HIP API and compile GPU device code. This requires using a
-   device compiler. The compiler for CMake can be set using either the
-   ``CMAKE_C_COMPILER`` and ``CMAKE_CXX_COMPILER`` variable or using the ``CC``
-   and ``CXX`` environment variables. This can be set when configuring CMake or
-   put into a CMake toolchain file. The device compiler must be set to a
-   compiler that supports AMD GPU targets, which is usually Clang.
+This project can then be configured with for eg.
 
-The ``find_package(hip)`` provides the ``hip::device`` target to add all the
-flags for device compilation
+-  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
 
-::
+-  Linux: ``cmake -D CMAKE_CXX_COMPILER:PATH=/opt/rocm/bin/amdclang++``
 
-  # Search for rocm in common locations
-  list(APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
-  # Find hip
-  find_package(hip)
-  # Create library
-  add_library(myLib ...)
-  # Link with HIP
-  target_link_libraries(myLib hip::device)
+Which use the device compiler provided from the binary packages of
+`ROCm HIP SDK <https://www.amd.com/en/graphics/servers-solutions-rocm>`_ and
+`repo.radeon.com <https://repo.radeon.com>`_ respectively.
 
-This project can then be configured with
-
-::
-
-    cmake -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++ ..
-
-Which uses the device compiler provided from the binary packages from
-`repo.radeon.com <http://repo.radeon.com>`_.
-
-.. note::
-    Compiling for the GPU device requires at least C++11. This can be
-    enabled by setting ``CMAKE_CXX_STANDARD`` or setting the correct compiler flags
-    in the CMake toolchain.
-
-The GPU device code can be built for different GPU architectures by
-setting the ``GPU_TARGETS`` variable. By default, this is set to all the
-currently supported architectures for AMD ROCm. It can be set by passing
-the flag during configuration with ``-DGPU_TARGETS=gfx900``. It can also be
-set in the CMakeLists.txt as a cached variable before calling
-``find_package(hip)``::
-
-    # Set the GPU to compile for
-    set(GPU_TARGETS "gfx900" CACHE STRING "GPU targets to compile for")
-    # Search for rocm in common locations
-    list(APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
-    # Find hip
-    find_package(hip)
-
+When using the CXX language support to compile HIP device code, selecting the
+target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
+``CMAKE_HIP_ARCHITECTURES`` only exists when the HIP language is enabled. By
+default, this is set to some subset of the currently supported architectures of
+AMD ROCm. It can be set for eg. like ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
 ROCm CMake Packages
 --------------------
