@@ -70,7 +70,7 @@ cd build
     --with-rocm=/opt/rocm \
     --without-cuda -enable-optimizations -disable-logging \
     --disable-debug -disable-assertions \
-    --disable-params-check -without-java 
+    --disable-params-check -without-java
 make -j $(nproc)
 make -j $(nproc) install
 ```
@@ -103,7 +103,7 @@ is exposed when configured with `--enable-rocm` option. We can use the following
 steps to compile OMB:
 
 ```shell
-export OSU_DIR=$INSTALL_DIR/osu 
+export OSU_DIR=$INSTALL_DIR/osu
 cd $BUILD_DIR
 wget http://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-5.9.tar.gz
 tar xfz osu-micro-benchmarks-5.9.tar.gz
