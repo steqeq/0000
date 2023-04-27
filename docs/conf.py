@@ -70,7 +70,6 @@ article_pages = [
     {"file":"examples/ai_ml_inferencing", "date":"May 1, 2023", "read-time":"1 min read"},
     {"file":"examples/inception_casestudy/inception_casestudy", "date":"May 1, 2023"},
     
-    {"file":"deploy/quick_start_windows", "os":["windows"], "date":"May 1, 2023"},
     {"file":"understand/isv_deployment_win", "os":["windows"], "date":"May 1, 2023"},
 ]
 
