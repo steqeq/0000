@@ -13,7 +13,7 @@ The AMD kernel driver exposes Remote Direct Memory Access (RDMA) through the
 Network Interface Card or NIC) to directly read and write to the GPU device
 memory with RDMA capabilities. These interfaces are currently registered as a
 *peer_memory_client* with Mellanox’s OpenFabrics Enterprise Distribution (OFED)
-*ib_core* kernel module to allow high-speed DMA transfers between GPU and HCA.
+`ib_core` kernel module to allow high-speed DMA transfers between GPU and HCA.
 These interfaces are used to optimize inter-node MPI message communication.
 
 This chapter exemplifies how to set up Open MPI with the ROCm platform. The Open
