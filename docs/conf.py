@@ -40,7 +40,7 @@ linkcheck_ignore = [
     "http://cs231n.stanford.edu/"
 ]
 
-html_output_directory = "_build/html"
+html_output_directory = "../_readthedocs/html"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
