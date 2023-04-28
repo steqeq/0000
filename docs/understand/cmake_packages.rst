@@ -178,7 +178,7 @@ default, this is set to some subset of the currently supported architectures of
 AMD ROCm. It can be set for eg. like ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
 ROCm CMake Packages
---------------------
+-------------------
 
 +-----------+----------+--------------------------------------------------------+
 | Component | Package  | Targets                                                |
@@ -217,3 +217,116 @@ ROCm CMake Packages
 |           |          | ``migraphx::migraphx_cpu``, ``migraphx::migraphx_gpu``,|
 |           |          | ``migraphx::migraphx_onnx``, ``migraphx::migraphx_tf`` |
 +-----------+----------+--------------------------------------------------------+
+
+Using CMake Presets
+===================
+
+CMake command-lines depending on how specific users like to be when compiling
+code can grow to unwieldy lengths. This is the primary reason why projects tend
+to bake script snippets into their build definitions controlling compiler
+warning levels, changing CMake defaults (``CMAKE_BUILD_TYPE`` or
+``BUILD_SHARED_LIBS`` just to name a few) and all sorts anti-patterns, all in
+the name of convenience.
+
+Load on the command-line interface (CLI) starts immediately by selecting a
+toolchain, the set of utilities used to compile programs. To ease some of the
+toolchain related pains, CMake does consult the ``CC`` and ``CXX`` environmental
+variables when setting a default ``CMAKE_C[XX]_COMPILER`` respectively, but that
+is just the tip of the iceberg. There's a fair number of variables related to
+just the toolchain itself (typically supplied using
+`toolchain files <https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html>`_
+), and then we still haven't talked about user preference or project-specific
+options.
+
+IDEs supporting CMake (Visual Studio, Visual Studio Code, CLion, etc.) all came
+up with their own way to register command-line fragments of different purpose in
+a setup'n'forget fashion for quick assembly using graphical front-ends. This is
+all nice, but configurations aren't portable, nor can they be reused in
+Continuous Intergration (CI) pipelines. CMake has condensed existing practice
+into a portable JSON format that works in all IDEs and can be invoked from any
+command-line. This is
+`CMake Presets <https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html>`_
+.
+
+There are two types of preset files: one supplied by the project, called
+``CMakePresets.json`` which is meant to be committed to version control,
+typically used to drive CI; and one meant for the user to provide, called
+``CMakeUserPresets.json``, typically used to house user preference and adapting
+the build to the user's environment. These JSON files are allowed to include
+other JSON files and the user presets always implicitly includes the non-user
+variant.
+
+Using HIP with presets
+----------------------
+
+A typical project preset used in CI may look like the following:
+
+::
+
+    {
+        "version": 6,
+        "cmakeMinimumRequired": {
+            "major": 3,
+            "minor": 25,
+            "patch": 0
+        },
+        "configurePresets": [
+            {
+                "name": "layout",
+                "hidden": true,
+                "binaryDir": "${sourceDir}/build/${presetName}",
+                "installDir": "${sourceDir}/install/${presetName}"
+            },
+            {
+                "name": "generator-msbuild",
+                "hidden": true,
+                "generator": "Visual Studio 17 2022",
+                "architecture": {
+                    "value": "x64",
+                    "strategy": "set"
+                }
+            },
+            {
+                "name": "toolchain-msbuild-c/c++-msvc-v143",
+                "hidden": true,
+                "toolset": {
+                    "value": "v143,host=x64",
+                    "strategy": "set"
+                },
+                "cacheVariables": {
+                    "CMAKE_C_COMPILER": "cl.exe",
+                    "CMAKE_CXX_COMPILER": "cl.exe"
+                }
+            },
+            {
+                "name": "msvc-arch-native-strict-iso-high-warn-as-error",
+                "hidden": true,
+                "cacheVariables": {
+                    "CMAKE_CXX_FLAGS": "/arch:AVX2 /EHsc /permissive- /W4 /WX"
+                }
+            },
+            {
+                "name": "packaging-options",
+                "hidden": true,
+                "cacheVariables": {
+                    "CPACK_SOURCE_IGNORE_FILES": "/\\\\.git/;/\\\\.vscode/;/build/;/install/;/package/",
+                    "CPACK_SOURCE_PACKAGE_FILE_NAME": "CI-Test-Source",
+                    "CPACK_PACKAGE_FILE_NAME": "CI-Test-Win-x64"
+                }
+            },
+            {
+                "name": "msbuild-msvc-v143",
+                "displayName": "MSBuild MSVC v143",
+                "inherits": [
+                    "layout",
+                    "generator-msbuild",
+                    "toolchain-msbuild-c/c++-msvc-v143",
+                    "msvc-arch-native-strict-iso-high-warn-as-error",
+                    "packaging-options"
+                ],
+                "cacheVariables": {
+                    "BUILD_SHARED_LIBS": "ON"
+                }
+            }
+        ]
+    }
