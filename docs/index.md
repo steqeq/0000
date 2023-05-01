@@ -1,14 +1,16 @@
 # AMD ROCm™ Platform Documentation
-
-Welcome to AMD ROCm™ Platform's documentation!
-
+AMD ROCm Platform - Powering Your GPU Computational Needs
 :::::{grid} 1 1 3 3
 :gutter: 1
 
+::::{grid-item}
+[What is ROCm?](rocm)
+
+::::
 
 ::::{grid-item}
 :::{dropdown} [Deploy ROCm](deploy)
-
+ 
 - {doc}`/deploy/linux/index`
 - {doc}`/deploy/quick_start_windows`
 - {doc}`/deploy/docker`
