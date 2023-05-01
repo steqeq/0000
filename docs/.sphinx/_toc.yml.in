@@ -4,8 +4,9 @@ defaults:
   numbered: False
   maxdepth: 6
 root: index
-- file: rocm
 subtrees:
+- file: rocm
+
 - caption: Deploy ROCm
   entries:
   - file: deploy/linux/index
