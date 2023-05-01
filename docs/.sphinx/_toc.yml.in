@@ -4,6 +4,7 @@ defaults:
   numbered: False
   maxdepth: 6
 root: index
+- file: rocm
 subtrees:
 - caption: Release Info
   entries:
@@ -27,8 +28,8 @@ subtrees:
           title: Installation Overview
         - file: deploy/linux/prerequisites
           title: Prerequisites
-#        - file: deploy/linux/quick_start
-#          title: Quick Start
+        - file: deploy/linux/quick_start
+          title: Quick Start
         - file: deploy/linux/install
           title: Installation
         - file: deploy/linux/upgrade
@@ -36,8 +37,8 @@ subtrees:
         - file: deploy/linux/uninstall
           title: Uninstallation
         - file: deploy/linux/package_manager_integration
-  - file: deploy/quick_start_windows
-    title: Windows
+#  - file: deploy/quick_start_windows
+#    title: Windows
   - file: deploy/docker
     title: Docker
 
