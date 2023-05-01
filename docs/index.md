@@ -2,8 +2,19 @@
 
 Welcome to AMD ROCm™ Platform's documentation!
 
-:::::{grid} 1 1 2 2
+:::::{grid} 1 1 3 3
 :gutter: 1
+
+
+::::{grid-item}
+:::{dropdown} [Deploy ROCm](deploy)
+
+- {doc}`/deploy/linux/index`
+- {doc}`/deploy/quick_start_windows`
+- {doc}`/deploy/docker`
+
+:::
+::::
 
 ::::{grid-item}
 :::{dropdown} [Release Info](release)
@@ -17,15 +28,6 @@ Welcome to AMD ROCm™ Platform's documentation!
 :::
 ::::
 
-::::{grid-item}
-:::{dropdown} [Deploy ROCm](deploy)
-
-- {doc}`/deploy/linux/index`
-- {doc}`/deploy/quick_start_windows`
-- {doc}`/deploy/docker`
-
-:::
-::::
 
 :::::
 
