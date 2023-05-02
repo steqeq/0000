@@ -1,4 +1,5 @@
 # AMD ROCm™ Platform - Powering Your GPU Computational Needs
+
 :::::{grid} 1 1 3 3
 :gutter: 1
 
