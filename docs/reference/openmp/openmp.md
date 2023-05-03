@@ -2,7 +2,7 @@
 
 ## Introduction to OpenMP Support Guide
 
-The ROCm™ installation includes an LLVM-based implementation that fully supports the OpenMP 4.5 standard and a subset of OpenMP 5.0, 5.1, and 5.2 standards. Fortran, C/C++ compilers, and corresponding runtime libraries are included. Along with host APIs, the OpenMP compilers support offloading code and data onto GPU devices. This document briefly describes the installation location of the OpenMP toolchain, example usage of device offloading, and usage of rocprof with OpenMP applications. The GPUs supported are the same as those supported by this ROCm release. See the list of supported GPUs in the installation guide at [https://docs.amd.com/](https://docs.amd.com/).
+The ROCm™ installation includes an LLVM-based implementation that fully supports the OpenMP 4.5 standard and a subset of OpenMP 5.0, 5.1, and 5.2 standards. Fortran, C/C++ compilers, and corresponding runtime libraries are included. Along with host APIs, the OpenMP compilers support offloading code and data onto GPU devices. This document briefly describes the installation location of the OpenMP toolchain, example usage of device offloading, and usage of `rocprof` with OpenMP applications. The GPUs supported are the same as those supported by this ROCm release. See the list of supported GPUs in the installation guide at [https://docs.amd.com/](https://docs.amd.com/).
 
 ### Installation
 
@@ -20,21 +20,35 @@ bin: Compilers (`flang` and `clang`) and other binaries.
 
 ## OpenMP: Usage
 
-The example programs can be compiled and run by pointing the environment variable AOMP to the OpenMP install directory.
+The example programs can be compiled and run by pointing the environment variable `ROCM_PATH` to the ROCm install directory.
 
 **Example:**
 
 ```bash
-% export ROCM_PATH=/opt/rocm-{version}
-% cd $ROCM_PATH/share/openmp-extras/examples/openmp/veccopy
-% make run
+export ROCM_PATH=/opt/rocm-{version}
+cd $ROCM_PATH/share/openmp-extras/examples/openmp/veccopy
+sudo make run
 ```
+
+:::{note}
+`sudo` is required since we are building inside the `/opt` directory.
+Alternatively, copy the files to your home directory first.
+:::
 
 The above invocation of Make compiles and runs the program. Note the options that are required for target offload from an OpenMP program:
 
 ```bash
 -fopenmp --offload-arch=<gpu-arch>
 ```
+
+:::{note}
+The Makefile in the example above uses a more classical and verbose set of flags which can also be used:
+
+```bash
+-fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa
+```
+
+:::
 
 Obtain the value of `gpu-arch` by running the following command:
 
@@ -46,11 +60,11 @@ Obtain the value of `gpu-arch` by running the following command:
 
 See the complete list of compiler command-line references [here](https://github.com/RadeonOpenCompute/llvm-project/blob/amd-stg-open/clang/docs/CommandGuide/clang.rst).
 
-### Using rocprof with OpenMP
+### Using `rocprof` with OpenMP
 
-The following steps describe a typical workflow for using rocprof with OpenMP code compiled with AOMP:
+The following steps describe a typical workflow for using `rocprof` with OpenMP code compiled with AOMP:
 
-1. Run rocprof with the program command line:
+1. Run `rocprof` with the program command line:
 
     ```bash
     % rocprof <application> <args>
@@ -68,9 +82,9 @@ The following steps describe a typical workflow for using rocprof with OpenMP co
 
     Apart from `--stats`, the option `--timestamp` on produces a timestamp for the kernels.
 
-3. After learning about the required kernels, the user can take a detailed look at each one of them. rocprof has support for hardware counters: a set of basic and a set of derived ones. See the complete list of counters using options --list-basic and --list-derived. rocprof accepts either a text or an XML file as an input.
+3. After learning about the required kernels, the user can take a detailed look at each one of them. `rocprof` has support for hardware counters: a set of basic and a set of derived ones. See the complete list of counters using options --list-basic and --list-derived. `rocprof` accepts either a text or an XML file as an input.
 
-For more details on rocprof, refer to the ROCm Profiling Tools document on [https://docs.amd.com](https://docs.amd.com).
+For more details on `rocprof`, refer to the ROCm Profiling Tools document on [https://docs.amd.com](https://docs.amd.com).
 
 ### Using Tracing Options
 
@@ -97,7 +111,6 @@ For more details on tracing, refer to the ROCm Profiling Tools document on [http
 | Environment Variable        | Description |
 | --------------------------- | ----------- |
 | `OMP_NUM_TEAMS`             | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
-| `OMPX_DISABLE_MAPS`         | Under USM mode, the implementation automatically checks for correctness of the map clauses without performing any copying. The user can disable this check by setting this environment variable to 1. |
 | `LIBOMPTARGET_KERNEL_TRACE` | This environment variable is used to print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
 | `LIBOMPTARGET_INFO`         | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
 | `LIBOMPTARGET_DEBUG`        | If a debug version of the device library is present, setting this environment variable to 1 and using that library emits further detailed debugging information about data transfer operations and kernel launch. |
@@ -107,16 +120,6 @@ For more details on tracing, refer to the ROCm Profiling Tools document on [http
 ## OpenMP: Features
 
 The OpenMP programming model is greatly enhanced with the following new features implemented in the past releases.
-
-### Asynchronous Behavior in OpenMP Target Regions
-
-- Multi-threaded offloading on the same device
-
-The `libomptarget` plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
-
-- Parallel memory copy invocations
-
-Implicit asynchronous execution of single target region enables parallel memory copy invocations.
 
 ### Unified Shared Memory
 
@@ -132,17 +135,36 @@ Unified Shared Memory (USM) provides a pointer-based approach to memory manageme
 
 #### Xnack Capability
 
-When enabled, Xnack capability allows programmers to handle page faults at runtime gracefully. When executing the binaries compiled with Xnack replay enabled, any page fault at runtime leads to a repeated attempt to access the memory.
+When enabled, Xnack capability allows GPU threads to access CPU (system) memory, allocated with OS-allocators, such as `malloc`, `new`, and `mmap`.
+Xnack must be enabled both at compile- and run-time. To enable Xnack support at compile-time, the programmer should use
 
 ```bash
-xnack+ --offload-arch=gfx908:xnack+
+--offload-arch=gfx908:xnack+
 ```
 
-The programmer must write offloading kernels carefully to avoid any page faults on the GPU at runtime when choosing to disable Xnack replay.
+Or, equivalently
 
 ```bash
-xnack- with -–offload-arch=gfx908:xnack-
+--offload-arch=gfx908
 ```
+
+:::{note}
+The second case is called Xnack-any and it is functionally equivalent to the first case.
+:::
+
+At runtime, programmers enable Xnack functionality on a per-application basis using an environment variable:
+
+```bash
+HSA_XNACK=1
+```
+
+When Xnack support is not needed, then applications can be built to maximize resource utilization using:
+
+```bash
+--offload-arch=gfx908:xnack-
+```
+
+At runtime, the `HSA_XNACK` environment variable can be set to 0, as Xnack functionality is not needed.
 
 #### Unified Shared Memory Pragma
 
@@ -195,8 +217,8 @@ The OpenMP runtime in ROCm implements a subset of the OMPT device APIs, as descr
 The following example demonstrates how a tool uses the supported OMPT target APIs. The `README` in `/opt/rocm/llvm/examples/tools/ompt` outlines the steps to be followed, and the provided example can be run as shown below:
 
 ```bash
-% cd $ROCM_PATH/share/openmp-extras/examples/tools/ompt/veccopy-ompt-target-tracing
-% make run
+cd $ROCM_PATH/share/openmp-extras/examples/tools/ompt/veccopy-ompt-target-tracing
+make run
 ```
 
 The file `veccopy-ompt-target-tracing.c` simulates how a tool initiates device activity tracing. The file `callbacks.h` shows the callbacks registered and implemented by the tool.
@@ -314,15 +336,21 @@ See the complete sample code for global buffer overflow [here](https://github.co
 
 ### No-loop Kernel Generation
 
-The No-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP Target Constructs such as target teams distribute parallel for. The specialized kernel generation assumes that every thread executes a single iteration of the user loop, which implies that the runtime launches a total number of GPU threads equal to or greater than the iteration space size of the target region loop. This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
+The No-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP Target Constructs such as target teams distribute parallel for.
+The specialized kernel generation assumes that every thread executes a single iteration of the user loop, which implies that the runtime launches a total number of GPU threads equal to or greater than the iteration space size of the target region loop.
+This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
 
 To enable the generation of the specialized kernel, follow these guidelines:
 
-- Do not specify teams, threads, and schedule-related environment variables. The `num_teams` or a `thread_limit` clause in an OpenMP target construct acts as an override and prevents the generation of the specialized kernel. As the user is unable to specify the number of teams and threads used within target regions in the absence of the above-mentioned environment variables, the runtime will select the best values for the launch configuration based on runtime knowledge of the program.
+- Do not specify teams, threads, and schedule-related environment variables.
+The `num_teams` or a `thread_limit` clause in an OpenMP target construct acts as an override and prevents the generation of the specialized kernel.
+As the user is unable to specify the number of teams and threads used within target regions in the absence of the above-mentioned environment variables, the runtime will select the best values for the launch configuration based on runtime knowledge of the program.
 
-- Assert the absence of the above-mentioned environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`. This option also allows programmers to enable the No-loop functionality at lower optimization levels.
+- Assert the absence of the above-mentioned environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`.
+This option also allows programmers to enable the No-loop functionality at lower optimization levels.
 
-- Also, the No-loop functionality is automatically enabled when `-O3` or `-Ofast` is used for compilation. To disable this feature, use `-fno-openmp-target-ignore-env-vars`.
+- Also, the No-loop functionality is automatically enabled when `-O3` or `-Ofast` is used for compilation.
+To disable this feature, use `-fno-openmp-target-ignore-env-vars`.
 
 Note The compiler might not generate the No-loop kernel in certain scenarios where the performance improvement is not substantial.
 
