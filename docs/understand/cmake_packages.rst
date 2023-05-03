@@ -6,10 +6,6 @@ Most components in ROCm support CMake. Projects depnding on header-only or
 library components typically require CMake 3.5 or higher whereas those wanting
 to make use of CMake's HIP language support will require CMake 3.21 or higher.
 
-ROCm provides the respective *config-file* packages, and this enables
-``find_package`` to be used directly. ROCm does not require any Find module as
-the *config-file* packages are shipped with the upstream projects.
-
 Finding Dependencies
 ====================
 
@@ -47,6 +43,10 @@ added to the config file search paths such as:
 -  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
 
 -  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
+
+ROCm provides the respective *config-file* packages, and this enables
+``find_package`` to be used directly. ROCm does not require any Find module as
+the *config-file* packages are shipped with the upstream projects.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
 to the installation guides in these docs (Windows, Linux).
