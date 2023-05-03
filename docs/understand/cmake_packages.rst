@@ -69,6 +69,8 @@ associate such source files with the HIP toolchain being used. Because HIP
 itself relies on a C++ Standard Template Library (among other C++ toolchain
 fragments), enabling the C++ language is also recommended.
 
+::
+
     cmake_minimum_required(VERSION 3.21) # enable_language(HIP)
     cmake_policy(VERSION 3.21...3.27)
     project(MyProj LANGUAGES CXX HIP)
@@ -98,7 +100,9 @@ Consuming ROCm C/C++ Libraries
 Libraries such as rocBLAS, rocFFT, MIOpen, etc. behave as C/C++ libraries.
 Illustrated in the example below is a C++ application using MIOpen from CMake.
 It calls ``find_package(miopen)``, which provides the ``MIOpen`` imported
-target. This can be linked with ``target_link_libraries``::
+target. This can be linked with ``target_link_libraries``
+
+::
 
     cmake_minimum_required(VERSION 3.5) # find_package(miopen)
     cmake_policy(VERSION 3.5...3.27)
