@@ -259,74 +259,113 @@ variant.
 Using HIP with presets
 ----------------------
 
-A typical project preset used in CI may look like the following:
+Following is an example ``CMakeUserPresets.json`` file which actually compiles
+the `amd/rocm-examples <https://github.com/amd/rocm-examples>`_ suite of sample
+applications on a typical ROCm installation:
 
 ::
 
     {
-        "version": 6,
-        "cmakeMinimumRequired": {
-            "major": 3,
-            "minor": 25,
-            "patch": 0
+      "version": 3,
+      "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+      },
+      "configurePresets": [
+        {
+          "name": "layout",
+          "hidden": true,
+          "binaryDir": "${sourceDir}/build/${presetName}",
+          "installDir": "${sourceDir}/install/${presetName}"
         },
-        "configurePresets": [
-            {
-                "name": "layout",
-                "hidden": true,
-                "binaryDir": "${sourceDir}/build/${presetName}",
-                "installDir": "${sourceDir}/install/${presetName}"
-            },
-            {
-                "name": "generator-msbuild",
-                "hidden": true,
-                "generator": "Visual Studio 17 2022",
-                "architecture": {
-                    "value": "x64",
-                    "strategy": "set"
-                }
-            },
-            {
-                "name": "toolchain-msbuild-c/c++-msvc-v143",
-                "hidden": true,
-                "toolset": {
-                    "value": "v143,host=x64",
-                    "strategy": "set"
-                },
-                "cacheVariables": {
-                    "CMAKE_C_COMPILER": "cl.exe",
-                    "CMAKE_CXX_COMPILER": "cl.exe"
-                }
-            },
-            {
-                "name": "msvc-arch-native-strict-iso-high-warn-as-error",
-                "hidden": true,
-                "cacheVariables": {
-                    "CMAKE_CXX_FLAGS": "/arch:AVX2 /EHsc /permissive- /W4 /WX"
-                }
-            },
-            {
-                "name": "packaging-options",
-                "hidden": true,
-                "cacheVariables": {
-                    "CPACK_SOURCE_IGNORE_FILES": "/\\\\.git/;/\\\\.vscode/;/build/;/install/;/package/",
-                    "CPACK_SOURCE_PACKAGE_FILE_NAME": "CI-Test-Source",
-                    "CPACK_PACKAGE_FILE_NAME": "CI-Test-Win-x64"
-                }
-            },
-            {
-                "name": "msbuild-msvc-v143",
-                "displayName": "MSBuild MSVC v143",
-                "inherits": [
-                    "layout",
-                    "generator-msbuild",
-                    "toolchain-msbuild-c/c++-msvc-v143",
-                    "msvc-arch-native-strict-iso-high-warn-as-error",
-                    "packaging-options"
-                ],
-                "cacheVariables": {
-                    "BUILD_SHARED_LIBS": "ON"
-                }
-            }
-        ]
+        {
+          "name": "generator-ninja-multi-config",
+          "hidden": true,
+          "generator": "Ninja Multi-Config"
+        },
+        {
+          "name": "toolchain-makefiles-c/c++-amdclang",
+          "hidden": true,
+          "cacheVariables": {
+            "CMAKE_C_COMPILER": "/opt/rocm/bin/amdclang",
+            "CMAKE_CXX_COMPILER": "/opt/rocm/bin/amdclang++",
+            "CMAKE_HIP_COMPILER": "/opt/rocm/bin/amdclang++"
+          }
+        },
+        {
+          "name": "clang-strict-iso-high-warn",
+          "hidden": true,
+          "cacheVariables": {
+            "CMAKE_C_FLAGS": "-Wall -Wextra -pedantic",
+            "CMAKE_CXX_FLAGS": "-Wall -Wextra -pedantic",
+            "CMAKE_HIP_FLAGS": "-Wall -Wextra -pedantic"
+          }
+        },
+        {
+          "name": "ninja-mc-rocm",
+          "displayName": "Ninja Multi-Config ROCm",
+          "inherits": [
+            "layout",
+            "generator-ninja-multi-config",
+            "toolchain-makefiles-c/c++-amdclang",
+            "clang-strict-iso-high-warn"
+          ]
+        }
+      ],
+      "buildPresets": [
+        {
+          "name": "ninja-mc-rocm-debug",
+          "displayName": "Debug",
+          "configuration": "Debug",
+          "configurePreset": "ninja-mc-rocm"
+        },
+        {
+          "name": "ninja-mc-rocm-release",
+          "displayName": "Release",
+          "configuration": "Release",
+          "configurePreset": "ninja-mc-rocm"
+        },
+        {
+          "name": "ninja-mc-rocm-debug-verbose",
+          "displayName": "Debug (verbose)",
+          "configuration": "Debug",
+          "configurePreset": "ninja-mc-rocm",
+          "verbose": true
+        },
+        {
+          "name": "ninja-mc-rocm-release-verbose",
+          "displayName": "Release (verbose)",
+          "configuration": "Release",
+          "configurePreset": "ninja-mc-rocm",
+          "verbose": true
+        }
+      ],
+      "testPresets": [
+        {
+          "name": "ninja-mc-rocm-debug",
+          "displayName": "Debug",
+          "configuration": "Debug",
+          "configurePreset": "ninja-mc-rocm",
+          "execution": {
+            "jobs": 0
+          }
+        },
+        {
+          "name": "ninja-mc-rocm-release",
+          "displayName": "Release",
+          "configuration": "Release",
+          "configurePreset": "ninja-mc-rocm",
+          "execution": {
+            "jobs": 0
+          }
+        }
+      ]
     }
+
+.. note::
+    Getting presets to work reliably on Windows requires some CMake improvements
+    and/or support from compiler vendors. (Refer to 
+    `Add support to the Visual Studio generators <https://gitlab.kitware.com/cmake/cmake/-/issues/24245>`_
+    and `Sourcing environment scripts <https://gitlab.kitware.com/cmake/cmake/-/issues/21619>`_
+    .)
