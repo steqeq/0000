@@ -49,7 +49,7 @@ ROCm provides the respective *config-file* packages, and this enables
 the *config-file* packages are shipped with the upstream projects.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
-to the installation guides in these docs (Windows, Linux).
+to the installation guides in these docs (`Linux <../deploy/linux/index.html>`_).
 
 Using HIP in CMake
 ==================
