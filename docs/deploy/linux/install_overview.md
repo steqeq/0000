@@ -43,8 +43,9 @@ terms of this agreement, do not install, copy or use the AQL Profiler and/or the
 AOCC CPU Optimizations.
 ```
 
-For the rest of the ROCm packages, you can find the licensing information at the
-following location: `/opt/rocm/share/doc/<component-name>/`
+For the rest of the ROCm packages, you can find the licensing information at,
+
+https://www.amd.com/en/support/linux-eula
 
 For example, you can fetch the licensing information of the `_amd_comgr_`
 component (Code Object Manager) from the `amd_comgr` folder. A file named
