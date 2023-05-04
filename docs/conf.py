@@ -6,6 +6,8 @@
 
 import shutil
 shutil.copy2('../CONTRIBUTING.md','./contributing.md')
+shutil.copy2('../RELEASE.md','./release.md')
+
 
 from rocm_docs import ROCmDocs
 
