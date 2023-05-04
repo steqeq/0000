@@ -65,15 +65,13 @@ Using the HIP single-source programming model
 
 Source code written in the HIP dialect of C++ typically use the `.hip`
 extension. When the HIP CMake language is enabled, it will automatically
-associate such source files with the HIP toolchain being used. Because HIP
-itself relies on a C++ Standard Template Library (among other C++ toolchain
-fragments), enabling the C++ language is also recommended.
+associate such source files with the HIP toolchain being used.
 
 ::
 
     cmake_minimum_required(VERSION 3.21) # enable_language(HIP)
     cmake_policy(VERSION 3.21...3.27)
-    project(MyProj LANGUAGES CXX HIP)
+    project(MyProj LANGUAGES HIP)
     add_executable(MyApp Main.hip)
 
 CMake itself only hosts part of the HIP language support, such as defining
