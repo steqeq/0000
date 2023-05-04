@@ -84,10 +84,6 @@ locations or has multiple HIP toolchains installed side-by-side and wants to
 instruct CMake to choose a specific one, it can be done by setting
 ``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` to the root of the ROCm installation.
 
-.. note::
-   Enabling the HIP language automatically adds the inferred or user-provided
-   ROCm install root to ``CMAKE_PREFIX_PATH``.
-
 If the user doesn't provide a semi-colon delimited list of device architectures
 via ``CMAKE_HIP_ARCHITECTURES``, CMake will select some sensible default. It is
 advised though that if a user knows what devices they wish to target, then set
