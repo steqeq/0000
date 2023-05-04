@@ -2,7 +2,7 @@
 Using CMake
 ***********
 
-Most components in ROCm support CMake. Projects depnding on header-only or
+Most components in ROCm support CMake. Projects depending on header-only or
 library components typically require CMake 3.5 or higher whereas those wanting
 to make use of CMake's HIP language support will require CMake 3.21 or higher.
 
@@ -27,7 +27,7 @@ In short, CMake supports finding dependencies in two ways:
    ``<PackageName>Config.cmake`` which describes the installed component in all
    regards needed to consume it.
 
-ROCm dominantly relies on Config mode, one notable exception being the Module
+ROCm predominantly relies on Config mode, one notable exception being the Module
 driving the compilation of HIP programs on Nvidia runtimes. As such, when
 dependencies are not found in standard system locations, one either has to
 instruct CMake to search for package config files in additional folders using
@@ -63,7 +63,7 @@ C/C++ library.
 Using the HIP single-source programming model
 ---------------------------------------------
 
-Source code written in the HIP dialect of C++ typically use the `.hip`
+Source code written in the HIP dialect of C++ typically uses the `.hip`
 extension. When the HIP CMake language is enabled, it will automatically
 associate such source files with the HIP toolchain being used.
 
