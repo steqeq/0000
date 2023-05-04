@@ -71,7 +71,7 @@ associate such source files with the HIP toolchain being used.
 ::
 
     cmake_minimum_required(VERSION 3.21) # enable_language(HIP)
-    cmake_policy(VERSION 3.21...3.27)
+    cmake_policy(VERSION 3.21.3...3.27)
     project(MyProj LANGUAGES HIP)
     add_executable(MyApp Main.hip)
 
