@@ -100,6 +100,7 @@ guest from a Linux host.
 
 Setting up PCIe passthrough is specific to the hypervisor used. ROCm officially
 supports [VMware ESXi](https://www.vmware.com/products/esxi-and-esx.html)
+for select GPUs.
 
 <!--
 TODO: This should link to a page about virtualization that explains
