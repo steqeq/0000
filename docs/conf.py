@@ -51,7 +51,6 @@ all_article_info_read_time = "5-10 min read"
 
 # pages with specific settings
 article_pages = [
-    {"file":"release/gpu_os_support", "os":["linux"]},
     {"file":"deploy/linux/index", "os":["linux"]},
     {"file":"deploy/linux/install_overview", "os":["linux"]},
     {"file":"deploy/linux/prerequisites", "os":["linux"]},
@@ -61,17 +60,29 @@ article_pages = [
     {"file":"deploy/linux/uninstall", "os":["linux"]},
     {"file":"deploy/linux/package_manager_integration", "os":["linux"]},
     {"file":"deploy/docker", "os":["linux"]},
+    
+    {"file":"release/gpu_os_support", "os":["linux"]},
+    {"file":"release/docker_support_matrix", "os":["linux"]},
+    
     {"file":"reference/gpu_libraries/communication", "os":["linux"]},
     {"file":"reference/ai_tools", "os":["linux"]},
     {"file":"reference/management_tools", "os":["linux"]},
     {"file":"reference/validation_tools", "os":["linux"]},
+    {"file":"reference/framework_compatibility/framework_compatibility", "os":["linux"]},
+    {"file":"reference/computer_vision", "os":["linux"]},
+    
     {"file":"how_to/deep_learning_rocm", "os":["linux"]},
+    {"file":"how_to/gpu_aware_mpi", "os":["linux"]},
     {"file":"how_to/magma_install/magma_install", "os":["linux"]},
     {"file":"how_to/pytorch_install/pytorch_install", "os":["linux"]},
+    {"file":"how_to/system_debugging", "os":["linux"]},
     {"file":"how_to/tensorflow_install/tensorflow_install", "os":["linux"]},
+
     {"file":"examples/ai_ml_inferencing", "os":["linux"]},
     {"file":"examples/inception_casestudy/inception_casestudy", "os":["linux"]},
     
+    {"file":"understand/file_reorg", "os":["linux"]},
+
     {"file":"understand/isv_deployment_win", "os":["windows"]},
 ]
 
