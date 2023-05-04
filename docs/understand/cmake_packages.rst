@@ -57,8 +57,9 @@ Using HIP in CMake
 ROCm componenents providing a C/C++ interface support being consumed using any
 C/C++ toolchain that CMake knows how to drive. ROCm also supports CMake's HIP
 language features, allowing users to program using the HIP single-source
-programming model. The HIP API without compiling GPU device code behaves as a
-C/C++ library.
+programming model. When a program (or translation-unit) uses the HIP API without
+compiling any GPU device code, HIP can be treated in CMake as a simple C/C++
+library.
 
 Using the HIP single-source programming model
 ---------------------------------------------
