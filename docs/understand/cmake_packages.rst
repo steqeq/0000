@@ -174,7 +174,7 @@ When using the CXX language support to compile HIP device code, selecting the
 target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
 ``CMAKE_HIP_ARCHITECTURES`` only exists when the HIP language is enabled. By
 default, this is set to some subset of the currently supported architectures of
-AMD ROCm. It can be set for eg. like ``-D GPU_TARGETS="gfx1032;gfx1035"``.
+AMD ROCm. It can be set to eg. ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
 ROCm CMake Packages
 -------------------
