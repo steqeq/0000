@@ -155,7 +155,7 @@ Follow these steps:
 
 2. Download an ImageNet database. For this example, the `tiny-imagenet-200` [4], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
 
-    ```py
+    ```bash
     wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
     ```
 

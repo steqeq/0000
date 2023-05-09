@@ -17,13 +17,13 @@ To implement a workaround, follow these steps:
 
 2. Determine the gfx target.
 
-    ```py
+    ```bash
     rocminfo | grep gfx
     ```
 
 3. Check if PyTorch is compiled with the correct gfx target.
 
-    ```py
+    ```bash
     TORCHDIR=$( dirname $( python3 -c 'import torch; print(torch.__file__)' ) )
     roc-obj-ls -v $TORCHDIR/lib/libtorch_hip.so # check for gfx target
     ```

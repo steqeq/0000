@@ -107,7 +107,7 @@ Follow these steps:
 
 1. To import the MIGraphX module in Python script, set `PYTHONPATH` to the MIGraphX libraries installation. If binaries are installed using steps mentioned in [Option 1: Installing Binaries](#option-1-installing-binaries), perform the following action:
 
-    ```py
+    ```bash
     export PYTHONPATH=$PYTHONPATH:/opt/rocm/
     ```
 
@@ -189,7 +189,7 @@ Follow these steps:
 
 2. To compile this program, you can use CMake and you only need to link the `migraphx::c` library to use MIGraphX's C++ API. The following is the `CMakeLists.txt` file that can build the earlier example:
 
-    ```py
+    ```cmake
     cmake_minimum_required(VERSION 3.5)
     project (CAI)
 
@@ -207,7 +207,7 @@ Follow these steps:
 
 3. To build the executable file, run the following from the directory containing the `inception_inference.cpp` file:
 
-    ```py
+    ```bash
     mkdir build
     cd build
     cmake ..
@@ -235,7 +235,7 @@ MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGr
 
 For reference, the following code snippet shows inference runs for only the first 10 iterations for both tuned and untuned kernels:
 
-```py
+```console
 ### UNTUNED ###
 iterator : 0
 Inference complete
