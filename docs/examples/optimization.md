@@ -1,14 +1,14 @@
-## Optimization
+# Optimization
 
 The following sections cover inferencing and introduces MIGraphX.
 
-### Inferencing
+## Inferencing
 
 The inference is where capabilities learned during Deep Learning training are put to work. It refers to using a fully trained neural network to make conclusions (predictions) on unseen data that the model has never interacted with before. Deep Learning inferencing is achieved by feeding new data, such as new images, to the network, giving the Deep Neural Network a chance to classify the image.
 
 Taking our previous example of MNIST, the DNN can be fed new images of handwritten digit images, allowing the neural network to classify digits. A fully trained DNN should make accurate predictions about what an image represents, and inference cannot happen without training.
 
-### MIGraphX Introduction
+## MIGraphX Introduction
 
 MIGraphX is a graph compiler focused on accelerating the Machine Learning inference that can target AMD GPUs and CPUs. MIGraphX accelerates the Machine Learning models by leveraging several graph-level transformations and optimizations. These optimizations include:
 
@@ -36,11 +36,11 @@ After optimization passes, all these operators get mapped to different kernels o
 
 After importing a model into MIGraphX, the model is represented as `migraphx::program`. `migraphx::program` is made up of `migraphx::module`. The program can consist of several modules, but it always has one main_module. Modules are made up of `migraphx::instruction_ref`. Instructions contain the `migraphx::op` and arguments to the operator.  
 
-### MIGraphX Installation
+## MIGraphX Installation
 
 There are three options to get started with MIGraphX installation. MIGraphX depends on ROCm libraries; assume that the machine has ROCm installed.
 
-#### Option 1: Installing Binaries
+### Option 1: Installing Binaries
 
 To install MIGraphX on Debian-based systems like Ubuntu, use the following command:
 
@@ -50,7 +50,7 @@ sudo apt update && sudo apt install -y migraphx
 
 The header files and libraries are installed under `/opt/rocm-\<version\>`, where \<version\> is the ROCm version.
 
-#### Option 2: Building from Source
+### Option 2: Building from Source
 
 There are two ways to build the MIGraphX sources.
 
@@ -64,7 +64,7 @@ For detailed steps on building from source and installing dependencies, refer to
 
 [https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source)
 
-#### Option 3: Use Docker
+### Option 3: Use Docker
 
 To use Docker, follow these steps:
 
@@ -88,7 +88,7 @@ To use Docker, follow these steps:
 
 The Docker image contains all the prerequisites required for the installation, so users can go to the folder /code/AMDMIGraphX and follow the steps mentioned in [Option 2: Building from Source](#option-2-building-from-source).
 
-### MIGraphX Example
+## MIGraphX Example
 
 MIGraphX provides both C++ and Python APIs. The following sections show examples of both using the Inception v3 model. To walk through the examples, fetch the Inception v3 ONNX model by running the following:
 
@@ -135,7 +135,7 @@ Follow these steps:
 
     Find additional examples of Python API in the /examples directory of the MIGraphX repository.
 
-### MIGraphX C++ API
+## MIGraphX C++ API
 
 Follow these steps:
 
@@ -219,7 +219,7 @@ Follow these steps:
     Set `LD_LIBRARY_PATH` to `/opt/rocm/lib` if required during the build. Additional examples can be found in the MIGraphX repository under the `/examples/` directory.
 :::
 
-### Tuning MIGraphX
+## Tuning MIGraphX
 
 MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGraphX, tune MIOpen to pick the best possible kernel implementation. The MIOpen tuning results in a significant performance boost. Tuning can be done by setting the environment variable MIOPEN_FIND_ENFORCE=3.
 
@@ -301,7 +301,7 @@ Inference complete
 Inference time: 0.004ms
 ```
 
-#### YModel
+### YModel
 
 The best inference performance through MIGraphX is conditioned upon having tuned kernel configurations stored in a /home local User Database (DB). If a user were to move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configurations and corresponding solvers.
 
@@ -311,7 +311,7 @@ MIGraphX introduces a feature, known as YModel, that stores the kernel config pa
 
 The YModel feature is available starting from ROCm 5.4.1 and UIF 1.1.
 
-##### YModel Example
+#### YModel Example
 
 Through the `migraphx-driver` functionality, you can generate `.mxr` files with tuning information stored inside it by passing additional `--binary --output model.mxr` to `migraphx-driver` along with the rest of the necessary flags.
 
