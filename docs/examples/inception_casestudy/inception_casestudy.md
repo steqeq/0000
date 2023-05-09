@@ -1,4 +1,4 @@
-# Training and Inference Walkthrough: Inception V3 with PyTorch
+# Training and Inference Walk-through: Inception V3 with PyTorch
 
 ## Deep Learning Training
 
