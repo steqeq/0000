@@ -79,7 +79,7 @@ CMake itself only hosts part of the HIP language support, such as defining
 HIP-specific properties, etc. while the other half ships with the HIP
 implementation, such as ROCm. CMake will search for a file
 `hip-lang-config.cmake` describing how the the properties defined by CMake
-translate to toolchain invocations. If one installs CMake into non-standard
+translate to toolchain invocations. If one installs ROCm into non-standard
 locations or has multiple HIP toolchains installed side-by-side and wants to
 instruct CMake to choose a specific one, it can be done by setting
 ``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` to the root of the ROCm installation.
