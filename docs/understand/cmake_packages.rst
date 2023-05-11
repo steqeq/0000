@@ -46,7 +46,8 @@ added to the config file search paths such as:
 
 ROCm provides the respective *config-file* packages, and this enables
 ``find_package`` to be used directly. ROCm does not require any Find module as
-the *config-file* packages are shipped with the upstream projects.
+the *config-file* packages are shipped with the upstream projects, such as
+rocPRIM and other ROCm libraries.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
 to the installation guides in these docs (`Linux <../deploy/linux/index.html>`_).
@@ -70,19 +71,30 @@ associate such source files with the HIP toolchain being used.
 
 ::
 
-    cmake_minimum_required(VERSION 3.21) # enable_language(HIP)
+    cmake_minimum_required(VERSION 3.21) # HIP language support requires 3.21
     cmake_policy(VERSION 3.21.3...3.27)
     project(MyProj LANGUAGES HIP)
     add_executable(MyApp Main.hip)
+
+Should you have existing CUDA code that is from the source compatible subset of
+HIP, you can tell CMake that despite their `.cu` extension, they're HIP sources.
+Do note that this mostly facilitates compiling kernel code-only source files,
+as host-side CUDA API won't compile in this fashion.
+
+::
+
+    add_library(MyLib MyLib.cu)
+    set_source_files_properties(MyLib.cu PROPERTIES LANGUAGE HIP)
 
 CMake itself only hosts part of the HIP language support, such as defining
 HIP-specific properties, etc. while the other half ships with the HIP
 implementation, such as ROCm. CMake will search for a file
 `hip-lang-config.cmake` describing how the the properties defined by CMake
-translate to toolchain invocations. If one installs ROCm into non-standard
-locations or has multiple HIP toolchains installed side-by-side and wants to
-instruct CMake to choose a specific one, it can be done by setting
-``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` to the root of the ROCm installation.
+translate to toolchain invocations. If one installs ROCm using non-standard
+methods or layouts and CMake can't locate this file or detect parts of the SDK,
+there's a catch-all, last resort variable consulted locating this file,
+``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` which should be set the root of the
+ROCm installation.
 
 If the user doesn't provide a semi-colon delimited list of device architectures
 via ``CMAKE_HIP_ARCHITECTURES``, CMake will select some sensible default. It is
@@ -99,7 +111,7 @@ target. This can be linked with ``target_link_libraries``
 
 ::
 
-    cmake_minimum_required(VERSION 3.5) # find_package(miopen)
+    cmake_minimum_required(VERSION 3.5) # find_package(miopen) requires 3.5
     cmake_policy(VERSION 3.5...3.27)
     project(MyProj LANGUAGES CXX)
     find_package(miopen)
@@ -120,7 +132,7 @@ any C or C++ compiler can be used. The ``find_package(hip)`` provides the
 
 ::
 
-    cmake_minimum_required(VERSION 3.5) # find_package(hip)
+    cmake_minimum_required(VERSION 3.5) # find_package(hip) requires 3.5
     cmake_policy(VERSION 3.5...3.27)
     project(MyProj LANGUAGES CXX)
     find_package(hip REQUIRED)
@@ -149,7 +161,7 @@ all the flags necessary for device compilation.
 
 ::
 
-    cmake_minimum_required(VERSION 3.8) # cxx_std_11
+    cmake_minimum_required(VERSION 3.8) # cxx_std_11 requires 3.8
     cmake_policy(VERSION 3.8...3.27)
     project(MyProj LANGUAGES CXX)
     find_package(hip REQUIRED)
