@@ -39,7 +39,7 @@ subtrees:
     subtrees:
       - entries:
         - file: release/docker_support_matrix
-        - file: reference/framework_compatibility/framework_compatibility
+        - file: release/framework_compatibility
   - file: release/licensing
 
 
