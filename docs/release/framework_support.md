@@ -1,37 +1,39 @@
-# Framework Compatibility
+# Framework Support
 
-The ROCm release supports the most recent and two prior releases of PyTorch and TensorFlow.
+ROCm™ supports various 3rd party libraries and frameworks. Supported versions
+are tested and known to work. Non-supported versions of 3rd parties may also
+work, but aren't tested.
 
-Legends:
+## Deep Learning
 
-Blue: Shows compatibility tested versions
+ROCm releases support the most recent and two prior releases of PyTorch and
+TensorFlow
 
-Gray: Not tested
+| ROCm  | [PyTorch](https://github.com/pytorch/pytorch/releases/) | [TensorFlow](https://github.com/tensorflow/tensorflow/releases/) | [MAGMA](https://icl.utk.edu/magma/index.html) |
+|:------|:----------------:|:--------------:|:-----:|
+| 5.0.2 | 1.8,  1.9,  1.10 | 2.6, 2.7, 2.8  |       |
+| 5.1.3 | 1.9,  1.10, 1.11 | 2.7, 2.8, 2.9  |       |
+| 5.2.x | 1.10, 1.11, 1.12 | 2.8, 2.9, 2.9  |       |
+| 5.3.x | 1.11, 1.12, 1.13 | 2.8, 2.9, 2.10 |       |
+| 5.4.x | 1.11, 1.12, 1.13 | 2.8, 2.9, 2.10 | 2.5.4 |
+| 5.5.x |                  |                |       |
 
-![With PyTorch](../../data/framework_compatibility/with_pytorch.png)
+## Algorithm libraries
 
-![With TensorFlow](../../data/framework_compatibility/with_tensorflow.png)
+ROCm releases provide algorithm libraries with interfaces compatible with
+contemporary CUDA / Nvidia HPC SDK alternatives.
 
-## Supported Frameworks
+- Thrust → rocThrust
+- CUB → hipCUB
 
-This section contains the latest release notes for each framework compatible with ROCm™  and Deep Learning (DL) applications.
+| ROCm  | Thrust / CUB | HPC SDK |
+|:------|:------------:|:-------:|
+| 5.0.2 | 1.14         | 21.9       |
+| 5.1.3 | 1.15         | 22.1       |
+| 5.2.x | 1.15         | 22.2, 22.3 |
+| 5.3.x | 1.16         | 22.7       |
+| 5.4.x | 1.16         | 22.9       |
+| 5.5.x | 1.17         | 22.9       |
 
-The ROCm 5.4 platform supports the following frameworks:
-
-- PyTorch v1.12.1
-
-- MAGMA v2.5.4
-
-- TensorFlow v2.10.0
-
-### PyTorch
-
-For the latest release of PyTorch, refer to <a href="https://github.com/pytorch/pytorch/releases/" target="_blank">https://github.com/pytorch/pytorch/releases/</a>
-
-### MAGMA
-
-For the latest release of MAGMA, refer to <a href="https://icl.utk.edu/magma/index.html" target="_blank">https://icl.utk.edu/magma/index.html</a>
-
-### TensorFlow
-
-For the latest release of TensorFlow, refer to <a href="https://github.com/tensorflow/tensorflow/releases/" target="_blank">https://github.com/tensorflow/tensorflow/releases</a>
+For the latest documentation of these libraries, refer to the
+[associated documentation](../reference/gpu_libraries/c%2B%2B_primitives.md).
