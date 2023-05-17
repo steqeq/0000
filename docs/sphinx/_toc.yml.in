@@ -26,8 +26,6 @@ subtrees:
         - file: deploy/linux/uninstall
           title: Uninstallation
         - file: deploy/linux/package_manager_integration
-#  - file: deploy/quick_start_windows
-#    title: Windows
   - file: deploy/docker
     title: Docker
 
@@ -56,7 +54,7 @@ subtrees:
             - title: HIPify - Port Your Code
               url: https://advanced-micro-devices-demo--737.com.readthedocs.build/projects/HIPIFY/en/737/
     - file: reference/compilers
-      title: Compilers and Tools
+      title: Compilers and Development Tools
       subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
