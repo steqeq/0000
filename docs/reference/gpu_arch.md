@@ -27,7 +27,6 @@ accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs
 
 :::::
 
-
 ## ISA Documentation
 
 - [AMD Instinct MI200/CDNA2 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
@@ -45,4 +44,3 @@ accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs
 - [AMD CDNA Architecture White Paper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
 - [AMD Vega Architecture White Paper](https://en.wikichip.org/w/images/a/a1/vega-whitepaper.pdf)
 - [AMD RDNA Architecture White Paper](https://www.amd.com/system/files/documents/rdna-whitepaper.pdf)
-
