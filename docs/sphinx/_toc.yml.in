@@ -55,6 +55,21 @@ subtrees:
               url: https://rocmdocs.amd.com/projects/HIP/en/{branch}/
             - title: HIPify - Port Your Code
               url: https://advanced-micro-devices-demo--737.com.readthedocs.build/projects/HIPIFY/en/737/
+    - file: reference/compilers
+      title: Compilers and Tools
+      subtrees:
+        - entries:
+          - file: reference/rocmcc/rocmcc
+            title: ROCmCC
+          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
+            title: ROCgdb
+          - url: https://rocmdocs.amd.com/projects/ROCgdb/en/hybrid/
+            title: rocprofiler
+          - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
+            title: roctracer
+          - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
+            title: ROCdbgapi             
+
     - file: reference/gpu_libraries/math
       title: Math Libraries
       subtrees:
@@ -132,20 +147,6 @@ subtrees:
             title: rocAL 
     - file: reference/openmp/openmp
       title: OpenMP
-    - file: reference/compilers
-      title: Compilers and Tools
-      subtrees:
-        - entries:
-          - file: reference/rocmcc/rocmcc
-            title: ROCmCC
-          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
-            title: ROCgdb
-          - url: https://rocmdocs.amd.com/projects/ROCgdb/en/hybrid/
-            title: rocprofiler
-          - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
-            title: roctracer
-          - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
-            title: ROCdbgapi             
     - file: reference/management_tools
       title: Management Tools
       subtrees:
