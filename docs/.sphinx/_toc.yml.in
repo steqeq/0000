@@ -5,8 +5,35 @@ defaults:
   maxdepth: 6
 root: index
 subtrees:
+- entries:
+  - file: rocm
+- caption: Deploy ROCm
+  entries:
+  - file: deploy/linux/quick_start
+    title: Linux Quick Start
+  - file: deploy/linux/index
+    title: Linux Overview
+    subtrees:
+      - entries:
+        - file: deploy/linux/install_overview.md
+          title: Installation Overview
+        - file: deploy/linux/prerequisites
+          title: Prerequisites
+        - file: deploy/linux/install
+          title: Installation
+        - file: deploy/linux/upgrade
+          title: Upgrade
+        - file: deploy/linux/uninstall
+          title: Uninstallation
+        - file: deploy/linux/package_manager_integration
+#  - file: deploy/quick_start_windows
+#    title: Windows
+  - file: deploy/docker
+    title: Docker
+
 - caption: Release Info
   entries:
+  - file: release
   - file: release/gpu_os_support
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
@@ -16,30 +43,6 @@ subtrees:
         - file: release/docker_support_matrix
         - file: reference/framework_compatibility/framework_compatibility
   - file: release/licensing
-
-- caption: Deploy ROCm
-  entries:
-  - file: deploy/linux/index
-    title: Linux
-    subtrees:
-      - entries:
-        - file: deploy/linux/install_overview.md
-          title: Installation Overview
-        - file: deploy/linux/prerequisites
-          title: Prerequisites
-        - file: deploy/linux/quick_start
-          title: Quick Start
-        - file: deploy/linux/install
-          title: Installation
-        - file: deploy/linux/upgrade
-          title: Upgrade
-        - file: deploy/linux/uninstall
-          title: Uninstallation
-        - file: deploy/linux/package_manager_integration
-  - file: deploy/quick_start_windows
-    title: Windows
-  - file: deploy/docker
-    title: Docker
 
 
 - caption: APIs and Reference
@@ -168,6 +171,7 @@ subtrees:
               title: MI250
             - file: reference/gpu_arch/mi100
               title: MI100
+    - file: reference/gpu_isolation
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
@@ -178,12 +182,21 @@ subtrees:
 
 - caption: How to Guides
   entries:
+    - title: Tuning Guides
+      file: how_to/tuning_guides/index.md
+      subtrees:
+        - entries:
+          - title: MI200
+            file: how_to/tuning_guides/mi200.md
+          - title: MI100
+            file: how_to/tuning_guides/mi100.md
     - file: how_to/deep_learning_rocm
       subtrees:
         - entries:
           - file: how_to/magma_install/magma_install
           - file: how_to/pytorch_install/pytorch_install
           - file: how_to/tensorflow_install/tensorflow_install
+    - file: how_to/gpu_aware_mpi
     - file: how_to/system_debugging
 
 - caption: Examples

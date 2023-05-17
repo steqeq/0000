@@ -8,6 +8,8 @@ ROCm kernel-mode driver must be installed on the host. Please refer to
 (like the HIP-runtime or math libraries) of the ROCm stack will be loaded from
 the container image and don't need to be installed to the host.
 
+(docker-access-gpus-in-container)=
+
 ## Accessing GPUs in containers
 
 In order to access GPUs in a container (to run applications using HIP, OpenCL or
@@ -38,6 +40,8 @@ docker run --device /dev/kfd --device /dev/dri
 Note that this gives more access than strictly required, as it also exposes the
 other device files found in that folder to the container.
 
+(docker-restrict-gpus)=
+
 ### Restricting a container to a subset of the GPUs
 
 If a `/dev/dri/renderD` device is not exposed to a container then it cannot use
@@ -49,6 +53,23 @@ like:
 
 ```shell
 docker run --device /dev/kfd --device /dev/dri/renderD128 --device /dev/dri/renderD130 <image>
+```
+
+### Additional Options
+
+The performance of an application can vary depending on the assignment of GPUs
+and CPUs to the task. Typically, `numactl` is installed as part of many HPC
+applications to provide GPU/CPU mappings. This Docker runtime option supports
+memory mapping and can improve performance.
+
+```shell
+--security-opt seccomp=unconfined
+```
+
+This option is recommended for Docker Containers running HPC applications.
+
+```shell
+docker run --device /dev/kfd --device /dev/dri --security-opt seccomp=unconfined ...
 ```
 
 ## Docker images in the ROCm ecosystem
@@ -65,3 +86,5 @@ applications, but does not include any libraries.
 
 AMD provides pre-built images for various GPU-ready applications through its
 Infinity Hub at <https://www.amd.com/en/technologies/infinity-hub>.
+Examples for invoking each application and suggested parameters used for
+benchmarking are also provided there.

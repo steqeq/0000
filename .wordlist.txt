@@ -1,0 +1,29 @@
+# gpu_aware_mpi
+DMA
+GDR
+HCA
+MPI
+MVAPICH
+Mellanox's
+NIC
+OFED
+OSU
+OpenFabrics
+PeerDirect
+RDMA
+UCX
+ib_core
+# isv_deployment_win
+ABI
+# tuning_guides
+BMC
+DGEMM
+HPCG
+IOPM
+HPL
+# linear algebra
+LAPACK
+MMA
+backends
+cuSOLVER
+cuSPARSE

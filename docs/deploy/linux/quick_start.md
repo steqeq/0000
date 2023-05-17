@@ -3,12 +3,14 @@
 ## Install Prerequisites
 
 The driver package uses
-[`DKMS`](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support) to build
+[{abbr}`DKMS (Dynamic Kernel Module Support)`][DKMS-wiki] to build
 the `amdgpu-dkms` module (driver) for the installed kernels. This requires the Linux
 kernel headers and modules to be installed for each. Usually these are
 automatically installed with the kernel, but if you have multiple kernel
 versions or you have downloaded the kernel images and not the kernel
 meta-packages then they must be manually installed.
+
+[DKMS-wiki]: https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support
 
 To install for the currently active kernel run the command corresponding
 to your distribution.
@@ -31,8 +33,8 @@ sudo yum install kernel-headers kernel-devel
 
 :::
 
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper install kernel-default-devel
@@ -203,14 +205,14 @@ sudo yum clean all
 
 :::::
 
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ::::{rubric} 1. Add the repositories
 ::::
 
 ::::{tab-set}
-:::{tab-item} Service Pack 4
+:::{tab-item} SLES 15 SP4
 :sync: SLES15-SP4
 
 ```shell
@@ -273,8 +275,8 @@ sudo yum install amdgpu-dkms
 
 :::
 
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper install amdgpu-dkms
@@ -308,8 +310,8 @@ sudo yum install rocm-hip-libraries
 
 :::
 
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```console shell
 sudo zypper install rocm-hip-libraries

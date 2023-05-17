@@ -1,9 +1,27 @@
-# AMD ROCm™ Platform Documentation
+# AMD ROCm™ Platform - Powering Your GPU Computational Needs
 
-Welcome to AMD ROCm™ Platform's documentation!
-
-:::::{grid} 1 1 2 2
+:::::{grid} 1 1 3 3
 :gutter: 1
+
+::::{grid-item}
+:::{dropdown} [What is ROCm?](rocm)
+ROCm is an open-source stack for GPU computation. ROCm is primarily
+Open-Source Software (OSS) that allows developers the freedom to customize and
+tailor their GPU software for their own needs while collaborating with a
+community of other developers, and helping each other find solutions in an
+agile, flexible, rapid and secure manner. [more...](rocm)
+
+::::
+
+::::{grid-item}
+:::{dropdown} [Deploy ROCm](deploy)
+
+- {doc}`/deploy/linux/index`
+- {doc}`/deploy/quick_start_windows`
+- {doc}`/deploy/docker`
+
+:::
+::::
 
 ::::{grid-item}
 :::{dropdown} [Release Info](release)
@@ -13,16 +31,6 @@ Welcome to AMD ROCm™ Platform's documentation!
 - [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue)
 - [Compatibility](release/compatibility)
 - [Licensing](release/licensing)
-
-:::
-::::
-
-::::{grid-item}
-:::{dropdown} [Deploy ROCm](deploy)
-
-- {doc}`/deploy/linux/index`
-- {doc}`/deploy/quick_start_windows`
-- {doc}`/deploy/docker`
 
 :::
 ::::
@@ -39,7 +47,7 @@ Welcome to AMD ROCm™ Platform's documentation!
 
 - [HIP](reference/hip)
 - [Math Libraries](reference/gpu_libraries/math)
-- [C++ Primitives](reference/gpu_libraries/c++_primitives)
+- [C++ Primitives Libraries](reference/gpu_libraries/c++_primitives)
 - [Communication Libraries](reference/gpu_libraries/communication)
 - [AI Libraries](reference/ai_tools)
 - [Computer Vision](reference/computer_vision)
@@ -48,6 +56,7 @@ Welcome to AMD ROCm™ Platform's documentation!
 - [Management Tools](reference/management_tools)
 - [Validation Tools](reference/validation_tools)
 - [GPU Architecture](reference/gpu_arch)
+- [GPU Isolation Techniques](reference/gpu_isolation)
 
 :::
 
@@ -68,7 +77,6 @@ Understand ROCm
 How to Guides
 ^^^
 
-- [How to Isolate GPUs in Docker?](how_to/docker_gpu_isolation)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
   - [Magma Installation](how_to/magma_install/magma_install)
   - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
