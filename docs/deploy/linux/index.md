@@ -50,5 +50,5 @@ Information about (meta-)packages in the ROCm ecosystem.
 
 ## See Also
 
- * [Quick Start Linux](quick_start)
- * [GPU and OS Support Linux](../../gpu_os_support.md)
+- [Quick Start Linux](quick_start)
+- [GPU and OS Support Linux](../../gpu_os_support.md)
