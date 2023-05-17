@@ -17,14 +17,6 @@ Overview and comparison of the different ways to install ROCm.
 The prerequisites page lists the required steps *before* installation.
 :::
 
-:::{grid-item-card} Quick Start
-:link: quick_start
-:link-type: doc
-
-The quick start guide is intended as quick reference for users already familiar
-with installing ROCm.
-:::
-
 :::{grid-item-card} Installation
 :link: install
 :link-type: doc
@@ -55,3 +47,8 @@ Information about (meta-)packages in the ROCm ecosystem.
 :::
 
 ::::
+
+## See Also
+
+ * [Quick Start Linux](quick_start)
+ * [GPU and OS Support Linux](../../gpu_os_support.md)
