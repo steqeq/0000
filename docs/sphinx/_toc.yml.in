@@ -176,7 +176,6 @@ subtrees:
               title: MI250
             - file: understand/gpu_arch/mi100
               title: MI100
-	      
 - caption: How to Guides
   entries:
     - title: Tuning Guides
