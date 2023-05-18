@@ -162,7 +162,7 @@ subtrees:
             title: RVS
           - url: https://rocmdocs.amd.com/projects/TransferBench/en/{branch}/
             title: TransferBench
- caption: Understand ROCm
+- caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
