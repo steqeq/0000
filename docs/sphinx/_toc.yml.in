@@ -206,7 +206,6 @@ subtrees:
       subtrees:
         - entries:
             - file: examples/inception_casestudy/inception_casestudy
-            - file: examples/inception_casestudy_migraphx/inception_casestudy_migraphx
 
 - caption: About 
   entries:

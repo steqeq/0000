@@ -1,5 +1,7 @@
 # Tuning Guides
 
+## High Performance Computing
+
 High Performance Computing (HPC) workloads have unique requirements. The default
 hardware and BIOS configurations for OEM platforms may not provide optimal
 performance for HPC workloads. To enable optimal HPC settings on a per-platform
@@ -48,7 +50,7 @@ compute nodes to get the best performance out of them.
 
 - [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
 - [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
-- [Guide](./gpu_arch/mi250.md)
+- [Guide](./mi200.md)
 
 :::
 
@@ -58,6 +60,7 @@ accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs
 
 - [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
 - [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
+- [Guide](./mi100.md)
 
 :::
 
