@@ -76,6 +76,7 @@ Understand ROCm
 How to Guides
 ^^^
 
+- [System Tuning for Various Architectures](how_to/tuning_guides/index)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
   - [Magma Installation](how_to/magma_install/magma_install)
   - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
