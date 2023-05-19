@@ -18,10 +18,21 @@ TensorFlow
 | 5.4.x | 1.11, 1.12, 1.13 | 2.8, 2.9, 2.10 | 2.5.4 |
 | 5.5.x |                  |                |       |
 
+## Communication libraries
+
+ROCm supports [OpenUCX](https://openucx.org/) an "an open-source,
+production-grade communication framework for data-centric and high-performance
+applications".
+
+UCX version | ROCm 5.4 and older | ROCm 5.5 and newer |
+|:----------|:------------------:|:------------------:|
+| -1.14.0   | COMPATIBLE         | INCOMPATIBLE       |
+|  1.14.1+  | COMPATIBLE         | COMPATIBLE         |
+
 ## Algorithm libraries
 
 ROCm releases provide algorithm libraries with interfaces compatible with
-contemporary CUDA / Nvidia HPC SDK alternatives.
+contemporary CUDA / NVIDIA HPC SDK alternatives.
 
 - Thrust → rocThrust
 - CUB → hipCUB
