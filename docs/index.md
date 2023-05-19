@@ -44,14 +44,14 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 [APIs and Reference](reference/all)
 ^^^
 
+- [Compilers and Development Tools](reference/compilers)
 - [HIP](reference/hip)
+- [OpenMP](reference/openmp/openmp)
 - [Math Libraries](reference/gpu_libraries/math)
 - [C++ Primitives Libraries](reference/gpu_libraries/c++_primitives)
 - [Communication Libraries](reference/gpu_libraries/communication)
 - [AI Libraries](reference/ai_tools)
 - [Computer Vision](reference/computer_vision)
-- [OpenMP](reference/openmp/openmp)
-- [Compilers and Tools](reference/compilers)
 - [Management Tools](reference/management_tools)
 - [Validation Tools](reference/validation_tools)
 
