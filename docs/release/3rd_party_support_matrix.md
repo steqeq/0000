@@ -1,4 +1,4 @@
-# Framework Support
+# 3rd Party Support Matrix
 
 ROCm™ supports various 3rd party libraries and frameworks. Supported versions
 are tested and known to work. Non-supported versions of 3rd parties may also
