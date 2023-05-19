@@ -1,6 +1,6 @@
 # OpenMP Support in ROCm
 
-## Introduction to OpenMP Support Guide
+## Introduction
 
 The ROCm™ installation includes an LLVM-based implementation that fully supports
 the OpenMP 4.5 standard and a subset of OpenMP 5.0, 5.1, and 5.2 standards.
