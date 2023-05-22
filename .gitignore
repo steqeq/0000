@@ -1,0 +1,17 @@
+.venv
+.vscode
+build
+
+# documentation artifacts
+_build/
+_images/
+_static/
+_templates/
+_toc.yml
+docBin/
+_doxygen/
+_readthedocs/
+
+# avoid duplicating contributing.md due to conf.py
+docs/contributing.md
+docs/release.md

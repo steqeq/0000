@@ -1,103 +1,45 @@
-# ROCm™ Repository Updates
-This repository contains the manifest file for ROCm™ releases, changelogs, and release information. The file default.xml contains information for all repositories and the associated commit used to build the current ROCm release.
+# AMD ROCm™ Platform - Powering Your GPU Computational Needs
+
+ROCm™ is an open-source stack for GPU computation. ROCm is primarily Open-Source
+Software (OSS) that allows developers the freedom to customize and tailor their
+GPU software for their own needs while collaborating with a community of other
+developers, and helping each other find solutions in an agile, flexible, rapid
+and secure manner.
+
+ROCm is a collection of drivers, development tools and APIs enabling GPU
+programming from the low-level kernel to end-user applications. ROCm is powered
+by AMD’s Heterogeneous-computing Interface for Portability (HIP), an OSS C++ GPU
+programming environment and its corresponding runtime. HIP allows ROCm
+developers to create portable applications on different platforms by deploying
+code on a range of platforms, from dedicated gaming GPUs to exascale HPC
+clusters. ROCm supports programming models such as OpenMP and OpenCL, and
+includes all the necessary OSS compilers, debuggers and libraries. ROCm is fully
+integrated into ML frameworks such as PyTorch and TensorFlow. ROCm can be
+deployed in many ways, including through the use of containers such as Docker,
+Spack, and your own build from source.
+
+ROCm’s goal is to allow our users to maximize their GPU hardware investment.
+ROCm is designed to help develop, test and deploy GPU accelerated HPC, AI,
+scientific computing, CAD, and other applications in a free, open-source,
+integrated and secure software ecosystem.
+
+This repository contains the manifest file for ROCm™ releases, changelogs, and
+release information. The file default.xml contains information for all
+repositories and the associated commit used to build the current ROCm release.
 
 The default.xml file uses the repo Manifest format.
 
+## How to build documentation via Sphinx
 
-# ROCm v5.5 Release Notes
-ROCm v5.5 is now released. For ROCm v5.5 documentation, refer to https://docs.amd.com.
+```bash
+cd docs
 
-# ROCm v5.4.3 Release Notes
-ROCm v5.4.3 is now released. For ROCm v5.4.3 documentation, refer to https://docs.amd.com.
+pip3 install -r sphinx/requirements.txt
 
-# ROCm v5.4.2 Release Notes
-ROCm v5.4.2 is now released. For ROCm v5.4.2 documentation, refer to https://docs.amd.com.
-
-# ROCm v5.4.1 Release Notes
-ROCm v5.4.1 is now released. For ROCm v5.4.1 documentation, refer to https://docs.amd.com.
-
-# ROCm v5.4 Release Notes
-ROCm v5.4 is now released. For ROCm v5.4 documentation, refer to https://docs.amd.com.
-
-# ROCm v5.3.3 Release Notes
-ROCm v5.3.3 is now released. For ROCm v5.3.3 documentation, refer to https://docs.amd.com.
-
-# ROCm v5.3.2 Release Notes
-ROCm v5.3.2 is now released. For ROCm v5.3.2 documentation, refer to https://docs.amd.com.
-
-# ROCm v5.3 Release Notes
-ROCm v5.3 is now released. For ROCm v5.3 documentation, refer to https://docs.amd.com.
-
-# ROCm v5.2.3 Release Notes
-The ROCm v5.2.3 patch release is now available. The details are listed below. Highlights of this release include enhancements in RCCL version compatibility and minor bug fixes in the HIP Runtime.
-
-Additionally, ROCm releases will return to use of the [ROCm](https://github.com/RadeonOpenCompute/ROCm) repository for version-controlled release notes henceforth.
-
-**NOTE**: This release of ROCm is validated with the AMDGPU release v22.20.1.
-
-All users of the ROCm v5.2.1 release and below are encouraged to upgrade. Refer to https://docs.amd.com for documentation associated with this release.
-
-
-## Introducing Preview Support for Ubuntu 20.04.5 HWE
-
-Refer to the following article for information on the preview support for Ubuntu 20.04.5 HWE.
-
-https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-22-20
-
-
-## Changes in This Release
-
-### Ubuntu 18.04 End of Life
-
-Support for Ubuntu 18.04 ends in this release. Future releases of ROCm will not provide prebuilt packages for Ubuntu 18.04.
-
-
-### HIP and Other Runtimes
-
-#### HIP Runtime
-
-##### Fixes
-
- - A bug was discovered in the HIP graph capture implementation in the ROCm v5.2.0 release. If the same kernel is called twice (with different argument values) in a graph capture, the implementation only kept the argument values for the second kernel call.
-
-- A bug was introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the *hiprtcGetLoweredName* call to fail for named expressions with whitespace in it.
-
-**Example:** The named expression ```my_sqrt<complex<double>>``` passed but ```my_sqrt<complex<double>>``` failed.
-
-
-### ROCm Libraries
-
-#### RCCL
-
-##### Added
-- Compatibility with NCCL 2.12.10
-- Packages for test and benchmark executables on all supported OSes using CPack
-- Adding custom signal handler - opt-in with RCCL_ENABLE_SIGNALHANDLER=1
-  - Additional details provided if Binary File Descriptor library (BFD) is pre-installed.
-  - Adding experimental support for using multiple ranks per device
-    - Requires using a new interface to create communicator (ncclCommInitRankMulti),
-        refer to the interface documentation for details.
-	  - To avoid potential deadlocks, user might have to set an environment variables increasing
-	      the number of hardware queues. For example,
-
+python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
 ```
-    export GPU_MAX_HW_QUEUES=16
-
-```
-- Adding support for reusing ports in NET/IB channels
-  - Opt-in with NCCL_IB_SOCK_CLIENT_PORT_REUSE=1 and NCCL_IB_SOCK_SERVER_PORT_REUSE=1
-    - When "Call to bind failed: Address already in use" error happens in large-scale AlltoAll
-        (for example, >=64 MI200 nodes), users are suggested to opt-in either one or both of the options to resolve the massive port usage issue
-	  - Avoid using NCCL_IB_SOCK_SERVER_PORT_REUSE when NCCL_NCHANNELS_PER_NET_PEER is tuned >1
-
-##### Removed
-- Removed experimental clique-based kernels
-
-### Development Tools
-No notable changes in this release for development tools, including the compiler, profiler, and debugger.
-
-### Deployment and Management Tools
-No notable changes in this release for deployment and management tools.
 
 ## Older ROCm™ Releases
-For release information for older ROCm™ releases, refer to [CHANGELOG](CHANGELOG.md).
+
+For release information for older ROCm™ releases, refer to
+[CHANGELOG](./CHANGELOG.md).
