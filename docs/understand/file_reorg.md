@@ -17,7 +17,7 @@ distributions. Following is the ROCm proposed file structure.
               | -- architecture dependent libraries and binaries used internally by components
          | -- cmake
               | -- <component>
-                   | --<component>.config.cmake
+                   | --<component>-config.cmake
     | -- libexec
          | -- <component>
               | -- non ISA/architecture independent executables used internally by components
