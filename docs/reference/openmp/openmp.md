@@ -9,8 +9,7 @@ Along with host APIs, the OpenMP compilers support offloading code and data onto
 GPU devices. This document briefly describes the installation location of the
 OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
-this ROCm release. See the list of supported GPUs in the installation guide at
-[https://docs.amd.com/](https://docs.amd.com/).
+this ROCm release. See the list of [supported GPUs](https://rocm.docs.amd.com/en/rocm-5.5.0/release/gpu_os_support.html?highlight=supported%20GPU#gpu-support-table).
 
 ### Installation
 
