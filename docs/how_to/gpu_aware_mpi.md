@@ -76,7 +76,7 @@ make -j $(nproc) install
 ```
 
 The following
-[table](../release/3rd_party_support_matrix#communication-libraries)
+[table](../release/3rd_party_support_matrix.md#communication-libraries)
 documents the compatibility of UCX versions with ROCm versions.
 
 ## Install Open MPI
