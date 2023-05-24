@@ -52,4 +52,4 @@ Information about (meta-)packages in the ROCm ecosystem.
 
 ## See Also
 
-- [GPU and OS Support Linux](../../gpu_os_support.md)
+- [GPU and OS Support Linux](../../release/gpu_os_support.md)
