@@ -6,7 +6,7 @@
 :::{grid-item-card} Tuning Guides
 :link: tuning_guides/index
 :link-type: doc
-Usecase-specific system setup and tuning guides.
+Use case-specific system setup and tuning guides.
 
 :::
 

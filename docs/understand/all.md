@@ -40,7 +40,7 @@ allows users to hide GPU resources from programs.
 :link: gpu_arch
 :link-type: doc
 AMD documentation around architectural details from both the CDNA and RDNA
-prodcut lines.
+product lines.
 
 :::
 

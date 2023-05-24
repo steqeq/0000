@@ -6,7 +6,7 @@
 :::{grid-item-card} ROCm Examples
 :link: https://github.com/amd/rocm-examples
 :link-type: url
-Samples codes demonstrating and explainig the use of the HIP API as well as
+Samples codes demonstrating and explaining the use of the HIP API as well as
 ROCm-accelerated domain libraries.
 
 :::

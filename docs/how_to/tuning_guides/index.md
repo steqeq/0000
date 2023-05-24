@@ -1,6 +1,6 @@
 # Tuning Guides
 
-Usecase-specific system setup and tuning guides.
+Use case-specific system setup and tuning guides.
 
 ## High Performance Computing
 
