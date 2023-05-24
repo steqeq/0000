@@ -76,7 +76,7 @@ make -j $(nproc) install
 ```
 
 The following
-[table](https://rocmdocs.amd.com/en/develop/release/3rd_party_support_matrix.html#communication-libraries)
+[table](../release/3rd_party_support_matrix#communication-libraries)
 documents the compatibility of UCX versions with ROCm versions.
 
 ## Install Open MPI
