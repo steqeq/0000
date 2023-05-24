@@ -164,6 +164,7 @@ subtrees:
             title: TransferBench
 - caption: Understand ROCm
   entries:
+    - file: understand/all.md
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
     - file: understand/cmake_packages
