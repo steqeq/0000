@@ -179,6 +179,7 @@ subtrees:
               title: MI100
 - caption: How to Guides
   entries:
+    - file: how_to/all
     - title: Tuning Guides
       file: how_to/tuning_guides/index.md
       subtrees:
