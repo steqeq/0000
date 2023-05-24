@@ -205,11 +205,12 @@ subtrees:
   entries:
     - title: ROCm Examples
       url: https://github.com/amd/rocm-examples
-    - file: tutorial/machine_learning
-      title: Machine Learning
+    - title: Machine Learning
+      file: examples/machine_learning/all
       subtrees:
         - entries: 
-            - glob: examples/machine_learning/*
+          - file: examples/machine_learning/pytorch_inception
+          - file: examples/machine_learning/migraphx_optimization
 
 - caption: About 
   entries:
