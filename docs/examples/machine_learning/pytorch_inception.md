@@ -1,4 +1,4 @@
-# Training and Inference Walk-through: Inception V3 with PyTorch
+# Inception V3 with PyTorch
 
 ## Deep Learning Training
 
@@ -15,11 +15,11 @@ Training occurs in multiple phases for every batch of training data. {numref}`Ty
 :::{table} Types of Training Phases
 :name: TypesOfTrainingPhases
 :widths: auto
-| Types of Phases |  |
-| ----------- | ----------- |
-| Forward Pass | The input features are fed into the model, whose parameters may be randomly initialized initially. Activations (outputs) of each layer are retained during this pass to help in the loss gradient computation during the backward pass. |
-| Loss Computation | The output is compared against the target outputs, and the loss is computed. |
-| Backward Pass | The loss is propagated backward, and the model's error gradients are computed and stored for each trainable parameter. |
+| Types of Phases   |     |
+| ----------------- | --- |
+| Forward Pass      | The input features are fed into the model, whose parameters may be randomly initialized initially. Activations (outputs) of each layer are retained during this pass to help in the loss gradient computation during the backward pass. |
+| Loss Computation  | The output is compared against the target outputs, and the loss is computed. |
+| Backward Pass     | The loss is propagated backward, and the model's error gradients are computed and stored for each trainable parameter. |
 | Optimization Pass | The optimization algorithm updates the model parameters using the stored error gradients. |
 :::
 
@@ -44,19 +44,19 @@ The following sections contain case studies for the Inception v3 model.
 
 ### Inception v3 with PyTorch
 
-Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3 [1] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
+Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
-The implementation uses PyTorch as a framework. This case study utilizes `torchvision` [2], a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
+The implementation uses PyTorch as a framework. This case study utilizes `torchvision`[^torchvision], a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
 
 #### Evaluating a Pre-Trained Model
 
 The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from `torchvision`.
 
-This example is adapted from the PyTorch research hub page on Inception v3 [3].
+This example is adapted from the PyTorch research hub page on Inception v3[^torchvision_inception].
 
 Follow these steps:
 
-1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](/how_to/pytorch_install/pytorch_install.md) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
@@ -146,14 +146,14 @@ The previous section focused on downloading and using the Inception v3 model for
 
 Follow these steps:
 
-1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Frameworks_Installation.html#d1667e113) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](how_to/pytorch_install/pytorch_install.md) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker pull rocm/pytorch:latest
     docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
     ```
 
-2. Download an ImageNet database. For this example, the `tiny-imagenet-200` [4], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
+2. Download an ImageNet database. For this example, the `tiny-imagenet-200`[^stanford_deeplearn], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
 
     ```bash
     wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
@@ -357,7 +357,7 @@ Follow these steps:
     model.to(device)
     ```
 
-13. Set the loss criteria. For this example, Cross Entropy Loss [5] is used.
+13. Set the loss criteria. For this example, Cross Entropy Loss[^cross_entropy] is used.
 
     ```py
     criterion = torch.nn.CrossEntropyLoss()
@@ -583,7 +583,7 @@ Follow these steps:
     import torch.optim as optim
     ```
 
-10. Set the loss criteria. For this example, Cross Entropy Loss [5] is used.
+10. Set the loss criteria. For this example, Cross Entropy Loss[^cross_entropy] is used.
 
     ```py
     criterion = nn.CrossEntropyLoss()
@@ -1164,7 +1164,7 @@ To prepare the data for training, follow these steps:
     ---
     ```
 
-8. A model needs a loss function and an optimizer for training. Since this is a binary classification problem and the model outputs a probability (a single-unit layer with a sigmoid activation), use [losses.BinaryCrossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy) loss function.
+8. A model needs a loss function and an optimizer for training. Since this is a binary classification problem and the model outputs a probability (a single-unit layer with a sigmoid activation), use [`losses.BinaryCrossentropy`](https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy) loss function.
 
     ```py
     model.compile(loss=losses.BinaryCrossentropy(from_logits=True),
@@ -1271,3 +1271,15 @@ To prepare the data for training, follow these steps:
 
     export_model.predict(examples)
     ```
+
+## References
+
+[^inception_arch]: C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," CoRR, p. abs/1512.00567, 2015
+
+[^torchvision]: PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](https://pytorch.org/vision/stable/index.html)
+
+[^torchvision_inception]: PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
+
+[^stanford_deeplearn]: Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
+
+[^cross_entropy]: Wikipedia, \[Online\]. Available: [https://en.wikipedia.org/wiki/Cross_entropy](https://en.wikipedia.org/wiki/Cross_entropy)

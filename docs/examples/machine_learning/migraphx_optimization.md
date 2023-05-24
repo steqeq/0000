@@ -1,8 +1,8 @@
-# Optimization
+# Inference Optimization with MIGraphX
 
 The following sections cover inferencing and introduces MIGraphX.
 
-## Inferencing
+## Inference
 
 The inference is where capabilities learned during Deep Learning training are put to work. It refers to using a fully trained neural network to make conclusions (predictions) on unseen data that the model has never interacted with before. Deep Learning inferencing is achieved by feeding new data, such as new images, to the network, giving the Deep Neural Network a chance to classify the image.
 
@@ -36,7 +36,7 @@ After optimization passes, all these operators get mapped to different kernels o
 
 After importing a model into MIGraphX, the model is represented as `migraphx::program`. `migraphx::program` is made up of `migraphx::module`. The program can consist of several modules, but it always has one main_module. Modules are made up of `migraphx::instruction_ref`. Instructions contain the `migraphx::op` and arguments to the operator.  
 
-## MIGraphX Installation
+## Installing MIGraphX
 
 There are three options to get started with MIGraphX installation. MIGraphX depends on ROCm libraries; assume that the machine has ROCm installed.
 
@@ -56,7 +56,7 @@ There are two ways to build the MIGraphX sources.
 
 - [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses [rbuild](https://github.com/RadeonOpenCompute/rbuild) to install the prerequisites and build the libraries with just one command.
 
- or
+  or
 
 - [Use CMake](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
 
@@ -86,7 +86,7 @@ To use Docker, follow these steps:
     docker run --device='/dev/kfd' --device='/dev/dri' -v=`pwd`:/code/AMDMIGraphX -w /code/AMDMIGraphX --group-add video -it migraphx
     ```
 
-The Docker image contains all the prerequisites required for the installation, so users can go to the folder /code/AMDMIGraphX and follow the steps mentioned in [Option 2: Building from Source](#option-2-building-from-source).
+The Docker image contains all the prerequisites required for the installation, so users can go to the folder `/code/AMDMIGraphX` and follow the steps mentioned in [Option 2: Building from Source](#option-2-building-from-source).
 
 ## MIGraphX Example
 
@@ -133,7 +133,7 @@ Follow these steps:
     print(np.argmax(result_np))
     ```
 
-    Find additional examples of Python API in the /examples directory of the MIGraphX repository.
+    Find additional examples of Python API in the `/examples` directory of the MIGraphX repository.
 
 ## MIGraphX C++ API
 
@@ -221,7 +221,7 @@ Follow these steps:
 
 ## Tuning MIGraphX
 
-MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGraphX, tune MIOpen to pick the best possible kernel implementation. The MIOpen tuning results in a significant performance boost. Tuning can be done by setting the environment variable MIOPEN_FIND_ENFORCE=3.
+MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGraphX, tune MIOpen to pick the best possible kernel implementation. The MIOpen tuning results in a significant performance boost. Tuning can be done by setting the environment variable `MIOPEN_FIND_ENFORCE=3`.
 
 :::{note}
     The tuning process can take a long time to finish.
@@ -303,7 +303,7 @@ Inference time: 0.004ms
 
 ### YModel
 
-The best inference performance through MIGraphX is conditioned upon having tuned kernel configurations stored in a /home local User Database (DB). If a user were to move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configurations and corresponding solvers.
+The best inference performance through MIGraphX is conditioned upon having tuned kernel configurations stored in a `/home` local User Database (DB). If a user were to move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configurations and corresponding solvers.
 
 Tuning is time consuming, and if the users have not performed tuning, they would see discrepancies between expected or claimed inference performance and actual inference performance. This has led to repetitive and time-consuming tuning tasks for each user.
 

@@ -29,7 +29,7 @@ To implement a workaround, follow these steps:
     ```
 
 :::{note}
-    Recompile PyTorch with the right gfx target if compiling from the source if the hardware is not supported. For wheels or Docker installation, contact ROCm support [6].
+    Recompile PyTorch with the right gfx target if compiling from the source if the hardware is not supported. For wheels or Docker installation, contact ROCm support [^rocm_issues].
 :::
 
 **Q: Why am I unable to access Docker or GPU in user accounts?**
@@ -42,4 +42,8 @@ Ans: Bare-metal installation of PyTorch is supported through wheels. Refer to Op
 
 **Q: How do I profile PyTorch workloads?**
 
-Ans: Use the PyTorch Profiler \[6\] to profile GPU kernels on ROCm.
+Ans: Use the PyTorch Profiler to profile GPU kernels on ROCm.
+
+------
+
+[^rocm_issues]: AMD, "ROCm issues," \[Online\]. Available: [https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)
