@@ -3,6 +3,14 @@
 :::::{grid} 1 1 2 2
 :gutter: 1
 
+:::{grid-item-card} Userspace & Kernel Fusion Driver
+Forward and backward compatibility of ROCm userspace components and the
+kernelspace Kernel Fusion Driver (KFD).
+
+- [User/Kernel-Space Support Matrix](./user_kernel_space_compat_matrix.md)
+
+:::
+
 :::{grid-item-card} Docker Image Support
 ROCm releases several Docker container images.
 
