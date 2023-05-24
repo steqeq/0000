@@ -201,6 +201,7 @@ subtrees:
 
 - caption: Examples
   entries:
+    - file: examples/all
     - title: ROCm Examples
       url: https://github.com/amd/rocm-examples
     - file: examples/ai_ml_inferencing
