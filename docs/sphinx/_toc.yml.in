@@ -52,13 +52,12 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
-            title: ROCgdb
           - url: https://rocmdocs.amd.com/projects/ROCgdb/en/hybrid/
-            title: rocprofiler
+            title: ROCgdb
           - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
-            title: roctracer
+            title: rocprofiler
           - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
+            title: roctracer
           - url: https://rocmdocs.amd.com/projects/ROCdbgapi/en/{branch}/
             title: ROCdbgapi
     - file: reference/hip
