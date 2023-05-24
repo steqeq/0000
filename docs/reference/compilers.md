@@ -46,4 +46,3 @@ inspection of execution state of AMD's commercially available GPU architectures.
 ## See Also
 
 - [Compiler Disambiguation](../understand/compiler_disambiguation.md)
-
