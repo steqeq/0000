@@ -46,13 +46,13 @@ The following sections contain case studies for the Inception v3 model.
 
 Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
-The implementation uses PyTorch as a framework. This case study utilizes `torchvision`[^torchvision], a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
+The implementation uses PyTorch as a framework. This case study utilizes `torchvision`[^torch_vision], a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
 
 #### Evaluating a Pre-Trained Model
 
 The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from `torchvision`.
 
-This example is adapted from the PyTorch research hub page on Inception v3[^torchvision_inception].
+This example is adapted from the PyTorch research hub page on Inception v3[^torch_vision_inception].
 
 Follow these steps:
 
@@ -153,7 +153,7 @@ Follow these steps:
     docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
     ```
 
-2. Download an ImageNet database. For this example, the `tiny-imagenet-200`[^stanford_deeplearn], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
+2. Download an ImageNet database. For this example, the `tiny-imagenet-200`[^Stanford_deep_learning], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
 
     ```bash
     wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
@@ -1276,10 +1276,10 @@ To prepare the data for training, follow these steps:
 
 [^inception_arch]: C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," CoRR, p. abs/1512.00567, 2015
 
-[^torchvision]: PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](https://pytorch.org/vision/stable/index.html)
+[^torch_vision]: PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](https://pytorch.org/vision/stable/index.html)
 
-[^torchvision_inception]: PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
+[^torch_vision_inception]: PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
 
-[^stanford_deeplearn]: Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
+[^Stanford_deep_learning]: Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
 
 [^cross_entropy]: Wikipedia, \[Online\]. Available: [https://en.wikipedia.org/wiki/Cross_entropy](https://en.wikipedia.org/wiki/Cross_entropy)
