@@ -59,7 +59,8 @@ subtrees:
           - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
             title: roctracer
           - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
-            title: ROCdbgapi             
+          - url: https://rocmdocs.amd.com/projects/ROCdbgapi/en/{branch}/
+            title: ROCdbgapi
     - file: reference/hip
       subtrees:
         - entries:

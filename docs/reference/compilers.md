@@ -33,4 +33,12 @@ Callback/Activity Library for Performance tracing AMD GPU's
 
 :::
 
+:::{grid-item-card} ROCdbgapi
+:link: https://rocmdocs.amd.com/projects/ROCdbgapi/en/latest/
+The AMD Debugger API is a library that provides all the support necessary for a
+debugger and other tools to perform low level control of the execution and
+inspection of execution state of AMD's commercially available GPU architectures.
+
+:::
+
 :::::
