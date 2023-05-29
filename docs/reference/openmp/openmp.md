@@ -441,13 +441,13 @@ Clang might generate specialized kernels based on compiler options and OpenMP co
 
 To enable the generation of specialized kernels, follow these guidelines:
 
-- Do not specify teams, threads, and schedule-related environment variables. The num_teams clause in an OpenMP target construct acts as an override and prevents the generation of the No-Loop kernel. If the specification of num_teams clause is a user requirement then clang tries to generate the Big-Jump-Loop kernel instead of the No-Loop kernel.
+- Do not specify teams, threads, and schedule-related environment variables. The `num_teams` clause in an OpenMP target construct acts as an override and prevents the generation of the No-Loop kernel. If the specification of num_teams clause is a user requirement then clang tries to generate the Big-Jump-Loop kernel instead of the No-Loop kernel.
 
-- Assert the absence of the teams, threads, and schedule-related environment variables by adding the command-line option -fopenmp-target-ignore-env-vars.
+- Assert the absence of the teams, threads, and schedule-related environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`.
 
-- To automatically enable the specialized kernel generation, use -Ofast or -fopenmp-target-fast for compilation. 
+- To automatically enable the specialized kernel generation, use `-Ofast` or `-fopenmp-target-fast` for compilation. 
 
-- To disable specialized kernel generation, use -fno-openmp-target-ignore-env-vars.
+- To disable specialized kernel generation, use `-fno-openmp-target-ignore-env-vars`.
 
 #### No-Loop Kernel Generation
 
@@ -455,7 +455,7 @@ The No-loop kernel generation feature optimizes the compiler performance by gene
 
 #### Big-Jump-Loop Kernel Generation
 
-A No-Loop kernel is not generated if the OpenMP teams construct uses a num_teams clause. Instead, the compiler may generate a different specialized kernel called the Big-Jump-Loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP num_teams clause and the blocksize chosen either by the compiler or specified by the corresponding OpenMP clause.
+A No-Loop kernel is not generated if the OpenMP teams construct uses a num_teams clause. Instead, the compiler may generate a different specialized kernel called the Big-Jump-Loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP `num_teams` clause and the `blocksize` chosen either by the compiler or specified by the corresponding OpenMP clause.
 
 #### Xteam Optimized Reduction Kernel Generation
 
