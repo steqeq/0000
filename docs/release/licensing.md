@@ -64,6 +64,8 @@ The table is ordered to follow ROCm's manifest file.
 | [aomp-extras](https://github.com/ROCm-Developer-Tools/aomp-extras/)                              | [MIT](https://github.com/ROCm-Developer-Tools/aomp-extras/blob/aomp-dev/LICENSE)                                           |
 | [flang](https://github.com/ROCm-Developer-Tools/flang/)                                          | [Apache 2.0](https://github.com/ROCm-Developer-Tools/flang/blob/master/LICENSE.txt)                                        |
 
+
+
 Open sourced ROCm components are released via public GitHub
 repositories, packages on https://repo.radeon.com and other distribution channels.
 Proprietary products are only available on https://repo.radeon.com. Currently, only
@@ -102,3 +104,24 @@ AMD, the AMD Arrow logo, ROCm, and combinations thereof are trademarks of
 Advanced Micro Devices, Inc. Other product names used in this publication are
 for identification purposes only and may be trademarks of their respective
 companies.
+
+
+## Package Licensing
+
+```{attention}
+AQL Profiler and AOCC CPU optimization are both provided in binary form, each
+subject to the license agreement enclosed in the directory for the binary and is
+available here: `/opt/rocm/share/doc/rocm-llvm-alt/EULA`. By using, installing,
+copying or distributing AQL Profiler and/or AOCC CPU Optimizations, you agree to
+the terms and conditions of this license agreement. If you do not agree to the
+terms of this agreement, do not install, copy or use the AQL Profiler and/or the
+AOCC CPU Optimizations.
+```
+
+For the rest of the ROCm packages, you can find the licensing information at the
+following location: `/opt/rocm/share/doc/<component-name>/`
+
+For example, you can fetch the licensing information of the `_amd_comgr_`
+component (Code Object Manager) from the `amd_comgr` folder. A file named
+`LICENSE.txt` contains the license details at:
+`/opt/rocm-5.4.3/share/doc/amd_comgr/LICENSE.txt`
