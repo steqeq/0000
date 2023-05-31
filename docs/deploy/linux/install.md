@@ -483,6 +483,8 @@ follow these steps:
    hash: `73f5d8100de6048aa38a8b84cd9a87f05177d208 rocm.gpg.key`
    ```
 
+   (install_amdgpu-dkms_package)=
+
 2. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
 
    ```{attention}
