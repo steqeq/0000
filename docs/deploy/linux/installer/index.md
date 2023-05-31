@@ -26,13 +26,6 @@ Instructions for upgrading an existing ROCm installation.
 Steps for removing ROCm packages libraries and tools.
 :::
 
-:::{grid-item-card} Package Manager Integration
-:link: package_manager_integration
-:link-type: doc
-
-Information about packages.
-:::
-
 ::::
 
 ## See Also
