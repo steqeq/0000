@@ -15,11 +15,13 @@ instructions below
 The prerequisites page lists the required steps *before* installation.
 :::
 
-:::{grid-item-card} Overview
+:::{grid-item-card} Install Choices
 :link: install_overview
 :link-type: doc
 
-Overview and comparison of the different ways to install ROCm.
+Distro Commands vs AMDGPU Installer
+
+Standard Packages vs Multiversion Packages
 :::
 
 
