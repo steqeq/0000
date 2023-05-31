@@ -3,7 +3,7 @@
 Please start with {doc}`/deploy/linux/quick_start` or follow the detailed
 instructions below
 
-## Understand the Options
+## Prepare to Install
 
 ::::{grid} 1 1 2 2
 :gutter: 1
