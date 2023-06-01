@@ -21,7 +21,7 @@ The prerequisites page lists the required steps *before* installation.
 
 Distro Commands vs AMDGPU Installer
 
-Standard Packages vs Multiversion Packages
+Standard Packages vs Multi-Version Packages
 :::
 
 
@@ -37,7 +37,7 @@ Standard Packages vs Multiversion Packages
 :link: os-native/index
 :link-type: doc
 
-Directly use your Distro's package manager to install ROCm.
+Directly use your distributions's package manager to install ROCm.
 :::
 
 :::{grid-item-card} AMDGPU Installer

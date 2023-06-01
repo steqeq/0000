@@ -5,7 +5,7 @@ user should follow the [Quick Start guide](./quick_start).
 ## Distro Package Manager Commands versus AMDGPU Installer?
 
 Users can install the same packages via two CLI interfaces as follows:
-- the linux distro package manager commands.
+- Linux distro package manager commands.
 - a proprietary installer known as the `amdgpu-install` script
 There is no difference in the final installation state when choosing either CLI.
 
