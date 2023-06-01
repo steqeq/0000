@@ -1,7 +1,7 @@
 # Deploy ROCm on Linux
 
 Please start with {doc}`/deploy/linux/quick_start` or follow the detailed
-instructions below
+instructions below.
 
 ## Prepare to Install
 
@@ -37,7 +37,7 @@ Standard Packages vs Multi-Version Packages
 :link: os-native/index
 :link-type: doc
 
-Directly use your distributions's package manager to install ROCm.
+Directly use your distribution's package manager to install ROCm.
 :::
 
 :::{grid-item-card} AMDGPU Installer
