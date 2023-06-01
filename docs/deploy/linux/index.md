@@ -27,6 +27,7 @@ Standard Packages vs Multi-Version Packages
 ::::
 
 ## Choose your install method
+
 ::::{grid} 1 1 2 2
 :gutter: 1
 

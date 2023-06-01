@@ -1,5 +1,6 @@
 # ROCm Installation Options (Linux)
-Users installing ROCm must choose between various installation options. A new 
+
+Users installing ROCm must choose between various installation options. A new
 user should follow the [Quick Start guide](./quick_start).
 
 ## Distro Package Manager Commands versus AMDGPU Installer?
@@ -27,9 +28,9 @@ the sake of simplicity.
 
 (installation-types)=
 
-## Standard (Single Version) ROCm install versus Multi-Version 
+## Standard (Single Version) ROCm install versus Multi-Version
 ROCm packages are versioned with both semantic versioning that is package
-specific and a ROCm release version. 
+specific and a ROCm release version.
 
 ### Single-version Installation
 
