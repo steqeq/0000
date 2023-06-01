@@ -24,14 +24,11 @@ Distro Commands vs AMDGPU Installer
 Standard Packages vs Multi-Version Packages
 :::
 
-
 ::::
 
 ## Choose your install method
 ::::{grid} 1 1 2 2
 :gutter: 1
-
-
 
 :::{grid-item-card} Distro Commands
 :link: os-native/index
@@ -45,11 +42,10 @@ Directly use your distribution's package manager to install ROCm.
 :link-type: doc
 
 Use an installer tool that orchestrates changes via the package
-manager. 
+manager.
 :::
 
 ::::
-
 
 ## See Also
 
