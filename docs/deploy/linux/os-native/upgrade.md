@@ -1,7 +1,7 @@
 # Upgrade ROCm with Linux Distribution Commands
 
 This section explains how to upgrade the existing AMDGPU driver and ROCm
-packages to the latest version using your OS's distributed package manager. 
+packages to the latest version using your OS's distributed package manager.
 
 ```{note}
 Package upgrade is applicable to single-version packages only. If the preference
@@ -237,7 +237,6 @@ sudo zypper --gpg-auto-import-keys update -y rocm-hip-sdk
 
 :::::
 ::::::
-
 
 ## Verification Process
 
