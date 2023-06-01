@@ -405,6 +405,8 @@ Users installing multiple versions of the ROCm stack must use the
 release-specific base URL.
 ```
 
+(using-the-package-manager)=
+
 #### Using the Package Manager
 
 ::::::{tab-set}
@@ -482,8 +484,6 @@ follow these steps:
    available in a standard key ring distribution but has the following SHA1 sum
    hash: `73f5d8100de6048aa38a8b84cd9a87f05177d208 rocm.gpg.key`
    ```
-
-   (install_amdgpu-dkms_package)=
 
 2. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
 
