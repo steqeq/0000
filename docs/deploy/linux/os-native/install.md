@@ -14,9 +14,6 @@ installed version by using the multi-version ROCm packages.
 Users installing multiple versions of the ROCm stack must use the
 release-specific repository URL.
 ```
-
-## Using the Package Manager
-
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
 :sync: ubuntu
