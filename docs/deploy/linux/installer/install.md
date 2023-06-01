@@ -1,4 +1,5 @@
 # Installation (Scripted)
+
 (install-script-method)=
 
 The installer script method automates the installation process for the AMDGPU
