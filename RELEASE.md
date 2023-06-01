@@ -48,3 +48,7 @@ The following HIP API is updated in the ROCm v5.5.1 release,
 | rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.1) |
 | rocWMMA | [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.1) |
 | Tensile | [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.1) |
+
+## Older versions
+
+The release notes for older versions can be found in [the changelog](./CHANGELOG.md).
