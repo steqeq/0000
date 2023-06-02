@@ -1,4 +1,4 @@
-# Upgrade via Installer Script (Linux)
+# Upgrading with the Installer Script (Linux)
 
 This section explains how to upgrade the existing kernel-mode driver and ROCm
 packages to the latest version. The assumption is that you already have a
