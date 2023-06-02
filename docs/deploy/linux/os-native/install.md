@@ -285,7 +285,7 @@ follow these steps:
    sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
    [amdgpu]
    Name=amdgpu
-   baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/9.2/main/x86_64/
+   baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/9.1/main/x86_64/
    enabled=1
    priority=50
    gpgcheck=1
