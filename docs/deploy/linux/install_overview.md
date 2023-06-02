@@ -16,17 +16,8 @@ Integrating with the distribution's package manager lets the user install,
 upgrade and uninstall using familiar commands and workflows. 3rd party ecosystem
 support is the same as your OS package manager.
 
-The `amdgpu-install` is a wrapper around the package manager. The same packages
+The `amdgpu-install` script is a wrapper around the package manager. The same packages
 are installed by this script as the package manager system.
-
-```{tip}
-The installer script is provided for convenience. It doesn't do anything the
-user otherwise couldn't. It automates some tasks surrounding installation, such
-as registering/unregistering and driving the system's package manager, but the
-bulk of the work will still be done by the system's package manager. As is the
-case with most convenience wrappers, some degree of customization is lost for
-the sake of simplicity.
-```
 
 (installation-types)=
 
