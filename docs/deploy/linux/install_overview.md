@@ -6,8 +6,10 @@ user should follow the [Quick Start guide](./quick_start).
 ## Distro Package Manager Commands versus AMDGPU Installer?
 
 Users can install the same packages via two CLI interfaces as follows:
+
 - Linux distro package manager commands.
 - a proprietary installer known as the `amdgpu-install` script
+
 There is no difference in the final installation state when choosing either CLI.
 
 Integrating with the distribution's package manager lets the user install,
@@ -29,6 +31,7 @@ the sake of simplicity.
 (installation-types)=
 
 ## Standard (Single Version) ROCm install versus Multi-Version
+
 ROCm packages are versioned with both semantic versioning that is package
 specific and a ROCm release version.
 
