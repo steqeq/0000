@@ -140,7 +140,7 @@ follow these steps:
    :sync: ubuntu-20.04
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   for ver in 5.3.3 5.4.3; do
    echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
    done
    echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -183,7 +183,7 @@ follow these steps:
    ```
 
    ```shell
-   sudo apt install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   sudo apt install rocm-hip-sdk5.4.3 rocm-hip-sdk5.3.3
    ```
 
 :::::
@@ -310,7 +310,7 @@ follow these steps:
    To add the ROCm repository, use the following steps:
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   for ver in 5.3.3 5.4.3; do
    sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
    [ROCm-$ver]
    Name=ROCm$ver
@@ -345,7 +345,7 @@ follow these steps:
    ```
 
    ```shell
-   sudo yum install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   sudo yum install rocm-hip-sdk5.4.3 rocm-hip-sdk5.3.3
    ```
 
 :::::
@@ -423,7 +423,7 @@ these steps:
    To add the ROCm repository, use the following steps:
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   for ver in 5.3.3 5.4.3; do
    sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
    name=rocm
    baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
@@ -456,7 +456,7 @@ these steps:
    ```
 
    ```shell
-   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.4.3 rocm-hip-sdk5.3.3
    ```
 
 :::::
