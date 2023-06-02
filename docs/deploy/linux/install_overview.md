@@ -13,8 +13,8 @@ Users can install the same packages via two CLI interfaces as follows:
 There is no difference in the final installation state when choosing either CLI.
 
 Integrating with the distribution's package manager lets the user install,
-upgrade and uninstall using familiar commands and workflows. 3rd party ecosystem
-support is the same as your OS package manager.
+upgrade and uninstall using familiar commands and workflows. Third party
+ecosystem support is the same as your OS package manager.
 
 The `amdgpu-install` script is a wrapper around the package manager. The same
 packages are installed by this script as the package manager system.
