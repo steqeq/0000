@@ -220,7 +220,7 @@ required repositories for the latest release.
 :sync: ubuntu-20.04
 
 ```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+for ver in 5.3.3 5.5.1; do
 echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -232,7 +232,7 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+for ver in 5.3.3 5.5.1; do
 echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -246,7 +246,7 @@ sudo apt update
 :sync: RHEL
 
 ```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+for ver in 5.3.3 5.5.1; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 Name=ROCm$ver
@@ -265,7 +265,7 @@ sudo yum clean all
 :sync: SLES15
 
 ```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+for ver in 5.3.3 5.5.1; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
 baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
