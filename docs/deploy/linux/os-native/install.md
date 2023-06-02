@@ -10,6 +10,8 @@ release to install, update the previously installed single version to the later
 available release, or add the latest version of ROCm along with the currently
 installed version by using the multi-version ROCm packages.
 
+## Step by Step Instructions
+
 ```{note}
 Users installing multiple versions of the ROCm stack must use the
 release-specific repository URL.
@@ -150,8 +152,8 @@ follow these steps:
    :sync: ubuntu-22.04
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
-   echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+   for ver in 5.5.1 5.4.3 5.3.3 ; do
+   echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
    done
    echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
    sudo apt update
