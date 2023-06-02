@@ -1,4 +1,4 @@
-# ROCm File Reorganization White Paper
+# Linux Folder Structure Reorganization
 
 ## Introduction
 
@@ -17,7 +17,7 @@ distributions. Following is the ROCm proposed file structure.
               | -- architecture dependent libraries and binaries used internally by components
          | -- cmake
               | -- <component>
-                   | --<component>.config.cmake
+                   | --<component>-config.cmake
     | -- libexec
          | -- <component>
               | -- non ISA/architecture independent executables used internally by components
@@ -91,7 +91,7 @@ from the new location (`/opt/rocm-xxx/include`) as shown in the example below.
 #include "hip/hip_runtime.h"
 ```
 
-The depreciation plan for backward compatibility wrapper header files is as
+The deprecation plan for backward compatibility wrapper header files is as
 follows
 
 - `#pragma` message announcing deprecation – ROCm v5.2 release.
@@ -162,7 +162,6 @@ correct header file and use correct search paths.
 
 ## References
 
-ROCm deprecation warning :
-<https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/Deprecations_and_Warnings.html>
+{ref}`ROCm deprecation warning <5_4_0_filesystem_reorg_deprecation_notice>`
 
-Linux File System Standard : <https://refspecs.linuxfoundation.org/fhs.shtml>
+[Linux File System Standard](https://refspecs.linuxfoundation.org/fhs.shtml)

@@ -1,14 +1,12 @@
 # Deploy ROCm on Linux
 
-::::{grid} 2 3 3 3
+Start with {doc}`/deploy/linux/quick_start` or follow the detailed
+instructions below.
+
+## Prepare to Install
+
+::::{grid} 1 1 2 2
 :gutter: 1
-
-:::{grid-item-card} Overview
-:link: install
-:link-type: doc
-
-Overview and comparison of the different ways to install ROCm.
-:::
 
 :::{grid-item-card} Prerequisites
 :link: prerequisites
@@ -17,41 +15,39 @@ Overview and comparison of the different ways to install ROCm.
 The prerequisites page lists the required steps *before* installation.
 :::
 
-:::{grid-item-card} Quick Start
-:link: quick_start
+:::{grid-item-card} Install Choices
+:link: install_overview
 :link-type: doc
 
-The quick start guide is intended as quick reference for users already familiar
-with installing ROCm.
-:::
+Distro Commands vs AMDGPU Installer
 
-:::{grid-item-card} Installation
-:link: install
-:link-type: doc
-
-Detailed steps to install with the package manager or with the installation
-script, including multi-version installation. Recommended for most users.
-:::
-
-:::{grid-item-card} Upgrading
-:link: upgrade
-:link-type: doc
-
-Instructions for upgrading an existing ROCm installation.
-:::
-
-:::{grid-item-card} Uninstallation
-:link: uninstall
-:link-type: doc
-
-Steps for removing ROCm packages libraries and tools.
-:::
-
-:::{grid-item-card} Package Manager Integration
-:link: package_manager_integration
-:link-type: doc
-
-Information about (meta-)packages in the ROCm ecosystem.
+Standard Packages vs Multi-Version Packages
 :::
 
 ::::
+
+## Choose your install method
+
+::::{grid} 1 1 2 2
+:gutter: 1
+
+:::{grid-item-card} Distro Commands
+:link: os-native/index
+:link-type: doc
+
+Directly use your distribution's package manager to install ROCm.
+:::
+
+:::{grid-item-card} AMDGPU Installer
+:link: installer/index
+:link-type: doc
+
+Use an installer tool that orchestrates changes via the package
+manager.
+:::
+
+::::
+
+## See Also
+
+- {doc}`/release/gpu_os_support`

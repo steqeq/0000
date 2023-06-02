@@ -1,4 +1,4 @@
-# AMD ROCm™ Platform - Powering Your GPU Computational Needs
+# AMD ROCm™ Documentation
 
 :::::{grid} 1 1 3 3
 :gutter: 1
@@ -14,10 +14,9 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 ::::
 
 ::::{grid-item}
-:::{dropdown} [Deploy ROCm](deploy)
+:::{dropdown} Deploy ROCm
 
 - {doc}`/deploy/linux/index`
-- {doc}`/deploy/quick_start_windows`
 - {doc}`/deploy/docker`
 
 :::
@@ -45,38 +44,39 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 [APIs and Reference](reference/all)
 ^^^
 
+- [Compilers and Development Tools](reference/compilers)
 - [HIP](reference/hip)
+- [OpenMP](reference/openmp/openmp)
 - [Math Libraries](reference/gpu_libraries/math)
-- [C++ Primitives](reference/gpu_libraries/c++_primitives)
+- [C++ Primitives Libraries](reference/gpu_libraries/c++_primitives)
 - [Communication Libraries](reference/gpu_libraries/communication)
 - [AI Libraries](reference/ai_tools)
 - [Computer Vision](reference/computer_vision)
-- [OpenMP](reference/openmp/openmp)
-- [Compilers and Tools](reference/compilers)
 - [Management Tools](reference/management_tools)
 - [Validation Tools](reference/validation_tools)
-- [GPU Architecture](reference/gpu_arch)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-Understand ROCm
+[Understand ROCm](understand/all)
 ^^^
 
 - [Compiler Disambiguation](understand/compiler_disambiguation)
-- [ISV Deployment Guide (Windows)](understand/isv_deployment_win)
 - [Using CMake](understand/cmake_packages)
-- [ROCm File Reorganization White Paper](understand/file_reorg)
+- [Linux Folder Structure Reorganization](understand/file_reorg)
+- [GPU Isolation Techniques](understand/gpu_isolation)
+- [GPU Architecture](understand/gpu_arch)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-How to Guides
+[How to Guides](how_to/all)
 ^^^
 
-- [How to Isolate GPUs in Docker?](how_to/docker_gpu_isolation)
+- [System Tuning for Various Architectures](how_to/tuning_guides/index)
+- [GPU Aware MPI](how_to/gpu_aware_mpi)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
   - [Magma Installation](how_to/magma_install/magma_install)
   - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
@@ -87,13 +87,13 @@ How to Guides
 
 :::{grid-item-card}
 :padding: 2
-Examples
+[Tutorials & Examples](examples/all)
 ^^^
 
-- [ROCm Examples](https://github.com/amd/rocm-examples)
-- [AMD lab notes](https://github.com/amd/amd-lab-notes)
-- [AI/ML/Inferencing](examples/ai_ml_inferencing)
-  - [Inception V3 with PyTorch](examples/inception_casestudy/inception_casestudy)
+- [Examples](https://github.com/amd/rocm-examples)
+- [ML, DL, and AI](examples/machine_learning/all)
+  - [](examples/machine_learning/pytorch_inception)
+  - [](examples/machine_learning/migraphx_optimization)
 
 :::
 ::::

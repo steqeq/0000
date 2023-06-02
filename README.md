@@ -1,4 +1,4 @@
-# AMD ROCm™ Platform - Powering Your GPU Computational Needs
+# AMD ROCm™ Platform
 
 ROCm™ is an open-source stack for GPU computation. ROCm is primarily Open-Source
 Software (OSS) that allows developers the freedom to customize and tailor their
@@ -37,7 +37,7 @@ ROCm release.
 ```bash
 cd docs
 
-pip3 install -r .sphinx/requirements.txt
+pip3 install -r sphinx/requirements.txt
 
 python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
 ```

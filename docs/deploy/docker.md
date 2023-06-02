@@ -4,9 +4,11 @@
 
 Docker containers share the kernel with the host operating system, therefore the
 ROCm kernel-mode driver must be installed on the host. Please refer to
-[](/deploy/linux/install) for details. The other user-space parts
-(like the HIP-runtime or math libraries) of the ROCm stack will be loaded from
-the container image and don't need to be installed to the host.
+{ref}`using-the-package-manager` on installing `amdgpu-dkms`. The other
+user-space parts (like the HIP-runtime or math libraries) of the ROCm stack will
+be loaded from the container image and don't need to be installed to the host.
+
+(docker-access-gpus-in-container)=
 
 ## Accessing GPUs in containers
 
@@ -37,6 +39,8 @@ docker run --device /dev/kfd --device /dev/dri
 
 Note that this gives more access than strictly required, as it also exposes the
 other device files found in that folder to the container.
+
+(docker-restrict-gpus)=
 
 ### Restricting a container to a subset of the GPUs
 
@@ -82,4 +86,5 @@ applications, but does not include any libraries.
 
 AMD provides pre-built images for various GPU-ready applications through its
 Infinity Hub at <https://www.amd.com/en/technologies/infinity-hub>.
-There are also examples of invocating each application and suggested parameters used for benchmarking.
+Examples for invoking each application and suggested parameters used for
+benchmarking are also provided there.

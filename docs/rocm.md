@@ -1,6 +1,6 @@
-# What is AMD ROCm™ Platform?
+# What is ROCm?
 
-ROCm™ is an open-source stack for GPU computation. ROCm is primarily Open-Source
+ROCm is an open-source stack for GPU computation. ROCm is primarily Open-Source
 Software (OSS) that allows developers the freedom to customize and tailor their
 GPU software for their own needs while collaborating with a community of other
 developers, and helping each other find solutions in an agile, flexible, rapid

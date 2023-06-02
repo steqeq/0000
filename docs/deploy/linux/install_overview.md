@@ -1,26 +1,22 @@
-# Installation Overview (Linux)
+# ROCm Installation Options (Linux)
 
-This document is intended for users familiar with Linux and discusses the
-installation of ROCm on various distributions.
+Users installing ROCm must choose between various installation options. A new
+user should follow the [Quick Start guide](./quick_start).
 
-The guide provides instructions for the following:
+## Distro Package Manager Commands versus AMDGPU Installer?
 
-- Kernel-mode driver installation
-- ROCm single-version and multi-version installation
-- ROCm and kernel-mode driver version upgrade
-- ROCm single-version and multi-version uninstallation
-- Kernel-mode driver uninstallation
+Users can install the same packages via two CLI interfaces as follows:
 
-```{note}
-The rest of this document refers to _Radeon™ Software for Linux_ as the `amdgpu`
-stack and `amdgpu-dkms` driver as the kernel-mode driver.
-```
+- Linux distro package manager commands.
+- a proprietary installer known as the `amdgpu-install` script
 
-## Installation Methods
+There is no difference in the final installation state when choosing either CLI.
 
-It is customary for Linux installers to integrate into the system's package
-manager. There are two notable groups of package sources:
+Integrating with the distribution's package manager lets the user install,
+upgrade and uninstall using familiar commands and workflows. Third party
+ecosystem support is the same as your OS package manager.
 
+<<<<<<< HEAD
 - AMD-hosted repositories maintained by AMD available to register on supported
   Linux distribution versions. For a complete list of AMD-supported platforms,
   refer to the article: [GPU and OS Support](/release/gpu_os_support).
@@ -100,13 +96,17 @@ Some of the ROCm-specific use cases the installer supports are:
 - Kernel-mode driver
 
 For more information, refer to the How to Install ROCm section in this guide.
+=======
+The `amdgpu-install` script is a wrapper around the package manager. The same
+packages are installed by this script as the package manager system.
+>>>>>>> develop
 
 (installation-types)=
 
-## Installation types
+## Standard (Single Version) ROCm install versus Multi-Version
 
-This section discusses the single-version and multi-version installation of the
-ROCm software stack.
+ROCm packages are versioned with both semantic versioning that is package
+specific and a ROCm release version.
 
 ### Single-version Installation
 
