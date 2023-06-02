@@ -81,7 +81,7 @@ GPU resources.
 3. Use of the video group is recommended for all ROCm-supported operating
    systems.
 
-To add all future users to the `video` and `render` groups by default, run 
+To add all future users to the `video` and `render` groups by default, run
 the following commands:
 
    ```shell
