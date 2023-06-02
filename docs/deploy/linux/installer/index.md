@@ -1,6 +1,6 @@
 # AMDGPU Install Script
 
-Please follow these steps to use 
+Please follow these steps to use
 
 ::::{grid} 2 3 3 3
 :gutter: 1

@@ -64,8 +64,6 @@ The table is ordered to follow ROCm's manifest file.
 | [aomp-extras](https://github.com/ROCm-Developer-Tools/aomp-extras/)                              | [MIT](https://github.com/ROCm-Developer-Tools/aomp-extras/blob/aomp-dev/LICENSE)                                           |
 | [flang](https://github.com/ROCm-Developer-Tools/flang/)                                          | [Apache 2.0](https://github.com/ROCm-Developer-Tools/flang/blob/master/LICENSE.txt)                                        |
 
-
-
 Open sourced ROCm components are released via public GitHub
 repositories, packages on https://repo.radeon.com and other distribution channels.
 Proprietary products are only available on https://repo.radeon.com. Currently, only
@@ -104,7 +102,6 @@ AMD, the AMD Arrow logo, ROCm, and combinations thereof are trademarks of
 Advanced Micro Devices, Inc. Other product names used in this publication are
 for identification purposes only and may be trademarks of their respective
 companies.
-
 
 ## Package Licensing
 
