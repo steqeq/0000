@@ -3,7 +3,7 @@
 ## Understanding the Release-specific AMDGPU and ROCm Repositories on Linux Distributions
 
 The release-specific repositories consist of packages from a specific release of
-the AMDGPU and ROCm. The repositories are not updated for the latest
+versions of AMDGPU and ROCm. The repositories are not updated for the latest
 packages with subsequent releases. When a new ROCm release is available, the new
 repository, specific to that release, is added. You can select a specific
 release to install, update the previously installed single version to the later
