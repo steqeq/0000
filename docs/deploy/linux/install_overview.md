@@ -43,7 +43,7 @@ The multi-version installation refers to the following:
 - Use of versioned ROCm meta-packages.
 
 ```{note}
-Multiversion install is not available for the kernel driver module, amdgpu.
+Multiversion install is not available for the kernel driver module, also referred to as AMDGPU.
 ```
 
 The following image demonstrates the difference between single-version and
