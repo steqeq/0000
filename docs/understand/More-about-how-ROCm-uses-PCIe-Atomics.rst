@@ -13,7 +13,7 @@ The full list of HSA system architecture platform requirements are here: `HSA Sy
 
 The ROCm Platform uses the new PCI Express 3.0 (PCIe 3.0) features for Atomic Read-Modify-Write Transactions which extends inter-processor synchronization mechanisms to IO to support the defined set of HSA capabilities needed for queuing and signaling memory operations.
 
-The new PCIe AtomicOps operate as completers for CAS(Compare and Swap), FetchADD, SWAP atomics. The AtomicsOps are initiated by the
+The new PCIe AtomicOps operate as completers for ``CAS`` (Compare and Swap), ``FetchADD``, ``SWAP`` atomics. The AtomicsOps are initiated by the
 I/O device which support 32-bit, 64-bit and 128-bit operand which target address have to be naturally aligned to operation sizes.
 
 For ROCm the Platform atomics are used in ROCm in the following ways:
