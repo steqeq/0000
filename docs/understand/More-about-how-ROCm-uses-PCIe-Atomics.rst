@@ -1,6 +1,6 @@
-======================================
-More about how ROCm uses PCIe Atomics
-======================================
+===========================
+How ROCm uses PCIe Atomics
+===========================
 
 
 ROCm PCIe Feature and Overview BAR Memory
