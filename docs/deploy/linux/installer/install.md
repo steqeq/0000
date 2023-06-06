@@ -180,8 +180,8 @@ conflicts.
 
 ### Add Required Repositories
 
-You must addd the AMDGPU and ROCm repositories manually for all ROCm releases
-you want to install except the latest one. The amdgpu-install script
+You must add the ROCm repositories manually for all ROCm releases
+you want to install except the latest one. The `amdgpu-install` script
 automatically adds the required repositories for the latest release.
 
 Run the following commands based on your distribution to add the repositories:
