@@ -96,7 +96,7 @@ sudo apt install --only-upgrade rocm-hip-sdk
 ```shell
 sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
-Name=amdgpu
+name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
@@ -114,7 +114,7 @@ sudo yum clean all
 ```shell
 sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
-Name=amdgpu
+name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.7/main/x86_64/
 enabled=1
 priority=50
@@ -132,7 +132,7 @@ sudo yum clean all
 ```shell
 sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
-Name=amdgpu
+name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/9.2/main/x86_64/
 enabled=1
 priority=50
@@ -162,7 +162,7 @@ sudo reboot
 ```shell
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-5.4.3]
-Name=ROCm5.4.3
+name=ROCm5.4.3
 baseurl=https://repo.radeon.com/rocm/5.5.1/main
 enabled=1
 priority=50
