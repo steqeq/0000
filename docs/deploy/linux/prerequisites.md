@@ -103,8 +103,12 @@ sudo zypper install kernel-default-devel
 :::
 ::::
 
+## Setting Permissions for Groups
+
 This section provides steps to add any current user to a video group to access
 GPU resources.
+Use of the video group is recommended for all ROCm-supported operating
+systems.
 
 1. To check the groups in your system, issue the following command:
 
@@ -112,22 +116,17 @@ GPU resources.
    groups
    ```
 
-2. Add yourself to the `render` or `video` group using the following instruction:
+2. Add yourself to the `render` and `video` group using the command:
 
    ```shell
-   sudo usermod -a -G render $LOGNAME
-   # OR
-   sudo usermod -a -G video $LOGNAME
+   sudo usermod -a -G render,video $LOGNAME
    ```
-
-3. Use of the video group is recommended for all ROCm-supported operating
-   systems.
 
 To add all future users to the `video` and `render` groups by default, run
 the following commands:
 
-   ```shell
-   echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
-   echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
-   echo 'EXTRA_GROUPS=render' | sudo tee -a /etc/adduser.conf
-   ```
+```shell
+echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
+echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+echo 'EXTRA_GROUPS=render' | sudo tee -a /etc/adduser.conf
+```
