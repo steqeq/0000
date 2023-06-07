@@ -176,12 +176,6 @@ follow these steps:
 
 - Sample Multi-version installation
 
-   ```{important}
-   If the existing ROCm release contains non-versioned ROCm packages, you must
-   uninstall those packages before proceeding to the multi-version installation
-   to avoid conflicts.
-   ```
-
    ```shell
    sudo apt install rocm-hip-sdk5.5.1 rocm-hip-sdk5.3.3
    ```
@@ -338,12 +332,6 @@ follow these steps:
 
 - Sample Multi-version installation
 
-   ```{important}
-   If the existing ROCm release contains non-versioned ROCm packages, you must
-   uninstall those packages before proceeding to the multi-version installation
-   to avoid conflicts.
-   ```
-
    ```shell
    sudo yum install rocm-hip-sdk5.5.1 rocm-hip-sdk5.3.3
    ```
@@ -448,12 +436,6 @@ these steps:
    ```
 
 - Sample Multi-version installation
-
-   ```{important}
-   If the existing ROCm release contains non-versioned ROCm packages, you must
-   uninstall those packages before proceeding to the multi-version installation
-   to avoid conflicts.
-   ```
 
    ```shell
    sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.5.1 rocm-hip-sdk5.3.3

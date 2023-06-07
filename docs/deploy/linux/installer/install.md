@@ -157,12 +157,6 @@ the latest release of ROCm that you wish to install.
 simultaneously, you are required to download the installer from the latest ROCm
 release v5.5.1.
 
-```{attention}
-ROCm packages that were previously installed from a single-version installation
-must be removed before proceeding with the multi-version installation to avoid
-conflicts.
-```
-
 ### Add Required Repositories
 
 You must add the ROCm repositories manually for all ROCm releases
