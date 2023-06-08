@@ -41,6 +41,7 @@ sudo apt install ./amdgpu-install_5.5.50501-1_all.deb
 ::::{tab-set}
 :::{tab-item} RHEL 8.6
 :sync: RHEL-8.6
+:sync: RHEL-8
 
 ```shell
 sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.6/amdgpu-install-5.5.50501-1.el8.noarch.rpm
@@ -49,15 +50,16 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.6/amdgpu-in
 :::
 :::{tab-item} RHEL 8.7
 :sync: RHEL-8.7
+:sync: RHEL-8
 
 ```shell
 sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.7/amdgpu-install-5.5.50501-1.el8.noarch.rpm
 ```
 
-
 :::
 :::{tab-item} RHEL 9.1
 :sync: RHEL-9.1
+:sync: RHEL-9
 
 ```shell
 sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/9.1/amdgpu-install-5.5.50501-1.el8.noarch.rpm
@@ -199,12 +201,16 @@ sudo apt update
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
+::::{tab-set}
+:::{tab-item} RHEL 8
+:sync: RHEL-8
+
 ```shell
 for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/$ver/main
+baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -214,6 +220,27 @@ done
 sudo yum clean all
 ```
 
+:::
+:::{tab-item} RHEL 9
+:sync: RHEL-9
+
+```shell
+for ver in 5.3.3 5.4.3; do
+sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo yum clean all
+```
+
+:::
+::::
 :::::
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
@@ -222,7 +249,7 @@ sudo yum clean all
 for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
-baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/rocm/$ver/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
