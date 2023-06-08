@@ -431,7 +431,7 @@ See the complete sample code for global buffer overflow
 
 ### Specialized Kernels
 
-Clang attempts to generate specialized kernels based on compiler options and OpenMP constructs. The following specialized kernels are supported:
+Clang will attempt to generate specialized kernels based on compiler options and OpenMP constructs. The following specialized kernels are supported:
 
 - No-Loop
 
