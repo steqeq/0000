@@ -28,7 +28,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 ## Supported GPUs
 
-The following table shows the list of GPUs supported:
+The following table shows the list of GPUs supported on Linux distributions:
 
 ::::{tab-set}
 
