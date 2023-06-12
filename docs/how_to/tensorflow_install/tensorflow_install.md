@@ -33,7 +33,9 @@ Follow these steps:
 2. Once you have pulled the image, run it by using the command below:
 
    ```bash
-   docker run -it --network=host --device=/dev/kfd --device=/dev/dri --ipc=host --shm-size 16G --group-add video --cap-add=SYS_PTRACE --security-opt seccomp=unconfined rocm/tensorflow:latest
+   docker run -it --network=host --device=/dev/kfd --device=/dev/dri \
+   --ipc=host --shm-size 16G --group-add video --cap-add=SYS_PTRACE \
+   --security-opt seccomp=unconfined rocm/tensorflow:latest
    ```
 
 #### Option 2: Install TensorFlow Using Wheels Package
