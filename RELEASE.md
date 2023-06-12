@@ -15,130 +15,12 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.5.0
+## ROCm 5.4.3
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
-
-#### HIP Enhancements
-
-The ROCm v5.5 release consists of the following HIP enhancements:
-
-##### Enhanced Stack Size Limit
-
-In this release, the stack size limit is increased from 16k to 131056 bytes (or 128K - 16).
-Applications requiring to update the stack size can use hipDeviceSetLimit API.
-
-##### `hipcc` Changes
-
-The following hipcc changes are implemented in this release:
-
-- `hipcc` will not implicitly link to `libpthread` and `librt`, as they are no longer a link time dependence for HIP programs.  Applications that depend on these libraries must explicitly link to them.
-- `-use-staticlib` and `-use-sharedlib` options are deprecated.
-
-##### Future Changes
-
-- Separation of `hipcc` binaries (Perl scripts) from HIP to `hipcc` project. Users will access separate `hipcc` package for installing `hipcc` binaries in future ROCm releases.
-- In a future ROCm release, the following samples will be removed from the `hip-tests` project.
-  - `hipBusbandWidth` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/shipBusBandwidth>
-  - `hipCommander` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/hipCommander>
-
-  Note that the samples will continue to be available in previous release branches.
-
-##### New HIP APIs in This Release
-
-> **Note**
->
-> This is a pre-official version (beta) release of the new APIs and may contain unresolved issues.
-
-###### Memory Management HIP APIs
-
-The new memory management HIP API is as follows:
-
-- Sets information on the specified pointer [BETA].
-
-  ```h
-  hipError_t hipPointerSetAttribute(const void* value, hipPointer_attribute attribute, hipDeviceptr_t ptr);
-  ```
-
-###### Module Management HIP APIs
-
-The new module management HIP APIs are as follows:
-
-- Launches kernel $f$ with launch parameters and shared memory on stream with arguments passed to `kernelParams`, where thread blocks can cooperate and synchronize as they execute.
-
-  ```h
-  hipError_t hipModuleLaunchCooperativeKernel(hipFunction_t f, unsigned int gridDimX, unsigned int gridDimY, unsigned int gridDimZ, unsigned int blockDimX, unsigned int blockDimY, unsigned int blockDimZ, unsigned int sharedMemBytes, hipStream_t stream, void** kernelParams);
-  ```
-
-- Launches kernels on multiple devices where thread blocks can cooperate and synchronize as they execute.
-
-  ```h
-  hipError_t hipModuleLaunchCooperativeKernelMultiDevice(hipFunctionLaunchParams* launchParamsList, unsigned int numDevices, unsigned int flags);
-  ```
-
-###### HIP Graph Management APIs
-
-The new HIP Graph Management APIs are as follows:
-
-- Creates a memory allocation node and adds it to a graph [BETA]
-
-  ```h
-  hipError_t hipGraphAddMemAllocNode(hipGraphNode_t* pGraphNode, hipGraph_t graph, const hipGraphNode_t* pDependencies, size_t numDependencies, hipMemAllocNodeParams* pNodeParams);
-  ```
-
-- Return parameters for memory allocation node [BETA]
-
-  ```h
-  hipError_t hipGraphMemAllocNodeGetParams(hipGraphNode_t node, hipMemAllocNodeParams* pNodeParams);
-  ```
-
-- Creates a memory free node and adds it to a graph [BETA]
-
-  ```h
-  hipError_t hipGraphAddMemFreeNode(hipGraphNode_t* pGraphNode, hipGraph_t graph, const hipGraphNode_t* pDependencies, size_t numDependencies, void* dev_ptr);
-  ```
-
-- Returns parameters for memory free node [BETA].
-
-  ```h
-  hipError_t hipGraphMemFreeNodeGetParams(hipGraphNode_t node, void* dev_ptr);
-  ```
-
-- Write a DOT file describing graph structure [BETA].
-
-  ```h
-  hipError_t hipGraphDebugDotPrint(hipGraph_t graph, const char* path, unsigned int flags);
-  ```
-
-- Copies attributes from source node to destination node [BETA].
-
-  ```h
-  hipError_t hipGraphKernelNodeCopyAttributes(hipGraphNode_t hSrc, hipGraphNode_t hDst);
-  ```
-
-- Enables or disables the specified node in the given graphExec [BETA]
-
-  ```h
-  hipError_t hipGraphNodeSetEnabled(hipGraphExec_t hGraphExec, hipGraphNode_t hNode, unsigned int isEnabled);
-  ```
-
-- Query whether a node in the given graphExec is enabled [BETA]
-
-  ```h
-  hipError_t hipGraphNodeGetEnabled(hipGraphExec_t hGraphExec, hipGraphNode_t hNode, unsigned int* isEnabled);
-  ```
-
-##### OpenMP Enhancements
-This release consists of the following OpenMP enhancements:
-
-- Additional support for OMPT functions `get_device_time` and `get_record_type`.
-- Add support for min/max fast fp atomics on AMD GPUs.
-- Fix the use of the abs function in C device regions.
-
 ### Deprecations and Warnings
 
-#### HIP Deprecation
+#### HIP Perl Scripts Deprecation
 
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
@@ -230,8 +112,7 @@ lrwxrwxrwx 1 root root   24 May 10 23:32 libamdhip64.so -> ../../lib/libamdhip64
 
 ##### CMake Config files
 
-All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder.
-For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
+All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
 
 Example:
 
@@ -241,64 +122,20 @@ total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
 ```
 
-#### ROCm Support For Code Object V3 Deprecated
+### Fixed Defects
 
-Support for Code Object v3 is deprecated and will be removed in a future release.
+#### Compiler Improvements
 
-#### Comgr V3.0 Changes
+In ROCm v5.4.3, improvements to the compiler address errors with the following signatures:
 
-The following APIs and macros have been marked as deprecated. These are expected to be removed in a future ROCm release and coincides with the release of Comgr v3.0.
+- "error: unhandled SGPR spill to memory"
+- "cannot scavenge register without an emergency spill slot!"
+- "error: ran out of registers during register allocation"
 
-##### API Changes
+### Known Issues
 
-- `amd_comgr_action_info_set_options()`
-- `amd_comgr_action_info_get_options()`
+#### Compiler Option Error at Runtime
 
-##### Actions and Data Types
+Some users may encounter a “Cannot find Symbol” error at runtime when using -save-temps. While most -save-temps use cases work correctly, this error may appear occasionally.
 
-- `AMD_COMGR_ACTION_ADD_DEVICE_LIBRARIES`
-- `AMD_COMGR_ACTION_COMPILE_SOURCE_TO_FATBIN`
-
-For replacements, see the `AMD_COMGR_ACTION_INFO_GET`/`SET_OPTION_LIST APIs`, and the `AMD_COMGR_ACTION_COMPILE_SOURCE_(WITH_DEVICE_LIBS)_TO_BC` macros.
-
-#### Deprecated Environment Variables
-
-The following environment variables are removed in this ROCm release:
-
-- `GPU_MAX_COMMAND_QUEUES`
-- `GPU_MAX_WORKGROUP_SIZE_2D_X`
-- `GPU_MAX_WORKGROUP_SIZE_2D_Y`
-- `GPU_MAX_WORKGROUP_SIZE_3D_X`
-- `GPU_MAX_WORKGROUP_SIZE_3D_Y`
-- `GPU_MAX_WORKGROUP_SIZE_3D_Z`
-- `GPU_BLIT_ENGINE_TYPE`
-- `GPU_USE_SYNC_OBJECTS`
-- `AMD_OCL_SC_LIB`
-- `AMD_OCL_ENABLE_MESSAGE_BOX`
-- `GPU_FORCE_64BIT_PTR`
-- `GPU_FORCE_OCL20_32BIT`
-- `GPU_RAW_TIMESTAMP`
-- `GPU_SELECT_COMPUTE_RINGS_ID`
-- `GPU_USE_SINGLE_SCRATCH`
-- `GPU_ENABLE_LARGE_ALLOCATION`
-- `HSA_LOCAL_MEMORY_ENABLE`
-- `HSA_ENABLE_COARSE_GRAIN_SVM`
-- `GPU_IFH_MODE`
-- `OCL_SYSMEM_REQUIREMENT`
-- `OCL_CODE_CACHE_ENABLE`
-- `OCL_CODE_CACHE_RESET`
-
-### Known Issues In This Release
-
-The following are the known issues in this release.
-
-#### `DISTRIBUTED`/`TEST_DISTRIBUTED_SPAWN` Fails
-
-When user applications call `ncclCommAbort` to destruct communicators and then create new
-communicators repeatedly, subsequent communicators may fail to initialize.
-
-This issue is under investigation and will be resolved in a future release.
-
-#### Failures In HIP Directed Tests
-
-Multiple HIP directed tests fail.
+This issue is under investigation, and the known workaround is not to use -save-temps when the error appears.
