@@ -15,9 +15,37 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.4.2
+## ROCm 5.4.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
+### What's New in This Release
+
+#### HIP Enhancements
+
+The ROCm v5.4.1 release consists of the following new HIP API:
+
+##### New HIP API - hipLaunchHostFunc
+
+The following new HIP API is introduced in the ROCm v5.4.1 release.
+
+> **Note**
+>
+> This is a pre-official version (beta) release of the new APIs.
+
+```h
+hipError_t hipLaunchHostFunc(hipStream_t stream, hipHostFn_t fn, void* userData);
+```
+
+This swaps the stream capture mode of a thread.
+
+```text
+@param [in] mode - Pointer to mode value to swap with the current mode
+```
+
+This parameter returns `#hipSuccess`, `#hipErrorInvalidValue`.
+
+For more information, refer to the HIP API documentation at /bundle/HIP_API_Guide/page/modules.html.
+
 ### Deprecations and Warnings
 
 #### HIP Perl Scripts Deprecation
@@ -28,23 +56,28 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
-#### `hipcc` Options Deprecation
+### IFWI Fixes
 
-The following hipcc options are being deprecated and will be removed in a future release:
+These defects were identified and documented as known issues in previous ROCm releases and are fixed in this release.
+AMD Instinct™ MI200 Firmware IFWI Maintenance Update #3
 
-- The `--amdgpu-target` option is being deprecated, and user must use the `–offload-arch` option to specify the GPU architecture.
-- The `--amdhsa-code-object-version` option is being deprecated.  Users can use the Clang/LLVM option `-mllvm -mcode-object-version` to debug issues related to code object versions.
-- The `--hipcc-func-supp`/`--hipcc-no-func-supp` options are being deprecated, as the function calls are already supported in production on AMD GPUs.
+This IFWI release fixes the following issue in AMD Instinct™ MI210/MI250 Accelerators.
 
-### Known Issues
+After prolonged periods of operation, certain MI200 Instinct™ Accelerators may perform in a degraded way resulting in application failures.
 
-Under certain circumstances typified by high register pressure, users may encounter a compiler abort with one of the following error messages:
+In this package, AMD delivers a new firmware version for MI200 GPU accelerators and a firmware installation tool – AMD FW FLASH 1.2.
 
-- > `error: unhandled SGPR spill to memory`
+| GPU   | Production Part Number | SKU | IFWI Name |
+|-------|------------|--------|---------------|
+| MI210 | 113-D673XX | D67302 | D6730200V.110 |
+| MI210 | 113-D673XX | D67301 | D6730100V.073 |
+| MI250 | 113-D652XX | D65209 | D6520900.073  |
+| MI250 | 113-D652XX | D65210 | D6521000.073  |
 
-- > `cannot scavenge register without an emergency spill slot!`
+Instructions on how to download and apply MI200 maintenance updates are available at:
 
-- > `error: ran out of registers during register allocation`
+<https://www.amd.com/en/support/server-accelerators/amd-instinct/amd-instinct-mi-series/amd-instinct-mi210>
 
-This is a known issue and will be fixed in a future release.
+#### AMD Instinct™ MI200 SRIOV Virtualization Support
 
+Maintenance update #3, combined with ROCm 5.4.1, now provides SRIOV virtualization support for all AMD Instinct™ MI200 devices.
