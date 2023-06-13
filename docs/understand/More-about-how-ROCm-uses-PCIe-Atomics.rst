@@ -39,7 +39,7 @@ There are also a number of papers which talk about these new capabilities:
   * `Atomic Read Modify Write Primitives by Intel <https://www.intel.es/content/dam/doc/white-paper/atomic-read-modify-write-primitives-i-o-devices-paper.pdf>`_
   * `PCI express 3 Accelerator Whitepaper by Intel <https://www.intel.sg/content/dam/doc/white-paper/pci-express3-accelerator-white-paper.pdf>`_
   * `Intel PCIe Generation 3 Hotchips Paper <https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.131.Ajanovic-Intel-PCIeGen3.pdf>`_
-  * `PCIe Generation 4 Base Specification includes Atomics Operation <http://composter.com.ua/documents/PCI_Express_Base_Specification_Revision_4.0.Ver.0.3.pdf>`_
+  * `PCIe Generation 4 Base Specification includes Atomics Operation <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
 
 Other I/O devices with PCIe Atomics support
 
@@ -145,5 +145,3 @@ Improve performance by avoiding stalls caused by ordering rules. For example, po
 This only has meaning for memory requests, and is reserved for Configuration or IO requests. Completers are not required to copy this bit into a completion, and only use the bit if their enable bit is set for this operation.
 
 To read more on PCIe Gen 3 new options https://www.mindshare.com/files/resources/PCIe%203-0.pdf
-
-
