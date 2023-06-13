@@ -74,7 +74,7 @@ Computer vision related projects.
 
 - AMD SMI
 - ROCm SMI
-- ROCm Datacenter Tool
+- ROCm Data Center Tool
 
 :::
 
