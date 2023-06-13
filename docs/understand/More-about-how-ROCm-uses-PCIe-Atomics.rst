@@ -45,8 +45,8 @@ Other I/O devices with PCIe Atomics support
 
    * `Mellanox ConnectX-5 InfiniBand Card <http://www.mellanox.com/related-docs/prod_adapter_cards/PB_ConnectX-5_VPI_Card.pdf>`_
    * `Cray Aries Interconnect <http://www.hoti.org/hoti20/slides/Bob_Alverson.pdf>`_
-   * `Xilinx PCIe Ultrascale Whitepaper <https://www.xilinx.com/support/documentation/white_papers/wp464-PCIe-ultrascale.pdf>`_
-   * `Xilinx 7 Series Devices <https://www.xilinx.com/support/documentation/ip_documentation/pcie_7x/v3_1/pg054-7series-pcie.pdf>`_
+   * `Xilinx PCIe Ultrascale Whitepaper <https://docs.xilinx.com/v/u/8OZSA2V1b1LLU2rRCDVGQw>`_
+   * `Xilinx 7 Series Devices <https://docs.xilinx.com/v/u/1nfXeFNnGpA0ywyykvWHWQ>`_
 
 Future bus technology with richer I/O Atomics Operation Support
 
@@ -54,8 +54,8 @@ Future bus technology with richer I/O Atomics Operation Support
 
 New PCIe Endpoints with support beyond AMD Ryzen and EPYC CPU; Intel Haswell or newer CPU’s with PCIe Generation 3.0 support.
 
-  * `Mellanox Bluefield SOC <http://www.mellanox.com/related-docs/npu-multicore-processors/PB_Bluefield_SoC.pdf>`_
-  * `Cavium Thunder X2 <http://www.cavium.com/ThunderX2_ARM_Processors.html>`_
+  * `Mellanox Bluefield SOC <https://docs.nvidia.com/networking/display/BlueFieldSWv25111213/BlueField+Software+Overview>`_
+  * `Cavium Thunder X2 <https://en.wikichip.org/wiki/cavium/thunderx2>`_
 
 In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU originates two writes to two different targets:  
 
