@@ -15,45 +15,6 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.3.3
-<!-- markdownlint-disable first-line-h1 -->
-### Fixed Defects
-
-#### Issue with rocTHRUST and rocPRIM Libraries
-
-There was a known issue with rocTHRUST and rocPRIM libraries supporting iterator and types in ROCm v5.3.x releases.
-
-- `thrust::merge` no longer correctly supports different iterator types for `keys_input1` and `keys_input2`.
-- `rocprim::device_merge` no longer correctly supports using different types for `keys_input1` and `keys_input2`.
-
-This issue is resolved with the following fixes to compilation failures:
-
-- rocPRIM: in device_merge if the two key iterators do not match.
-- rocTHRUST: in thrust::merge if the two key iterators do not match.
-
-### Library Changes in ROCM 5.3.3
-
-| Library | Version |
-|---------|---------|
-| hipBLAS | [0.52.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.3.3) |
-| hipCUB | [2.12.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.3.3) |
-| hipFFT | [1.0.9](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.3.3) |
-| hipSOLVER | [1.5.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.3.3) |
-| hipSPARSE | [2.3.1](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.3.3) |
-| rccl | [2.12.10](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.3.3) |
-| rocALUTION | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.3.3) |
-| rocBLAS | [2.45.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.3.3) |
-| rocFFT | [1.0.18](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.3.3) |
-| rocPRIM | [2.11.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.3.3) |
-| rocRAND | [2.10.15](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.3.3) |
-| rocSOLVER | [3.19.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.3.3) |
-| rocSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.3.3) |
-| rocThrust | [2.16.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.3.3) |
-| rocWMMA | [0.8](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.3.3) |
-| Tensile | [4.34.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.3.3) |
-
--------------------
-
 ## ROCm 5.3.2
 <!-- markdownlint-disable first-line-h1 -->
 ### Fixed Defects
