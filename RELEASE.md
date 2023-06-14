@@ -15,163 +15,69 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.3.0
+## ROCm 5.2.3
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### Deprecations and Warnings
+### Changes in This Release
 
-#### HIP Perl Scripts Deprecation
+#### Ubuntu 18.04 End of Life Announcement
 
-The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
+Support for Ubuntu 18.04 ends in this release. Future releases of ROCm will not provide prebuilt packages for Ubuntu 18.04.
+HIP and Other Runtimes
 
-> **Note**
->
-> There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
+#### HIP Runtime
 
-#### Linux Filesystem Hierarchy Standard for ROCm
+##### Fixes
 
-ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
+- A bug was discovered in the HIP graph capture implementation in the ROCm v5.2.0 release. If the same kernel is called twice (with different argument values) in a graph capture, the implementation only kept the argument values for the second kernel call.
 
-##### New Filesystem Hierarchy
-
-The following is the new filesystem hierarchy:
-
-```text
-/opt/rocm-<ver>
-    | --bin
-      | --All externally exposed Binaries
-    | --libexec
-        | --<component>
-            | -- Component specific private non-ISA executables (architecture independent)
-    | --include
-        | -- <component>
-            | --<header files>
-    | --lib
-        | --lib<soname>.so -> lib<soname>.so.major -> lib<soname>.so.major.minor.patch
-            (public libraries linked with application)
-        | --<component> (component specific private library, executable data)
-        | --<cmake>
-            | --components
-                | --<component>.config.cmake
-    | --share
-        | --html/<component>/*.html
-        | --info/<component>/*.[pdf, md, txt]
-        | --man
-        | --doc
-            | --<component>
-                | --<licenses>
-        | --<component>
-            | --<misc files> (arch independent non-executable)
-            | --samples
-
-```
-
-> **Note**
->
-> ROCm will not support backward compatibility with the v5.1(old) file system hierarchy in its next major release.
-
-For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
-
-##### Backward Compatibility with Older Filesystems
-
-ROCm has moved header files and libraries to its new location as indicated in the above structure and included symbolic-link and wrapper header files in its old location for backward compatibility.
-
-> **Note**
->
-> ROCm will continue supporting backward compatibility until the next major release.
-
-##### Wrapper header files
-
-Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a warning message to include files from the new location (`/opt/rocm-xxx/include`) as shown in the example below:
-
-```h
-// Code snippet from hip_runtime.h
-#pragma message “This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip”.
-#include "hip/hip_runtime.h"
-```
-
-The wrapper header files’ backward compatibility deprecation is as follows:
-
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
-
-##### Library files
-
-Library files are available in the `/opt/rocm-xxx/lib` folder. For backward compatibility, the old library location (`/opt/rocm-xxx/<component>/lib`) has a soft link to the library at the new location.
+- A bug was introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the `hiprtcGetLoweredName` call to fail for named expressions with whitespace in it.
 
 Example:
 
-```log
-$ ls -l /opt/rocm/hip/lib/
-total 4
-drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
-lrwxrwxrwx 1 root root   24 May 10 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
-```
+The named expression `my_sqrt<complex<double>>` passed but `my_sqrt<complex<double >>` failed.
+ROCm Libraries
 
-##### CMake Config files
+#### RCCL
 
-All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
+##### Added
 
-Example:
+Compatibility with NCCL 2.12.10
 
-```log
-$ ls -l /opt/rocm/hip/lib/cmake/hip/
-total 0
-lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
-```
+- Packages for test and benchmark executables on all supported OSes using CPack
 
-### Fixed Defects
+- Added custom signal handler - opt-in with RCCL_ENABLE_SIGNALHANDLER=1
 
-The following defects are fixed in this release.
+  - Additional details provided if Binary File Descriptor library (BFD) is pre-installed.
 
-These defects were identified and documented as known issues in previous ROCm releases and are fixed in the ROCm v5.3 release.
+- Added experimental support for using multiple ranks per device
 
-#### Kernel produces incorrect results with ROCm 5.2
+  - Requires using a new interface to create communicator (ncclCommInitRankMulti), refer to the interface documentation for details.
 
-User code did not initialize certain data constructs, leading to a correctness issue. A strict reading of the C++ standard suggests that failing to initialize these data constructs is undefined behavior. However, a special case was added for a specific compiler builtin to handle the uninitialized data in a defined manner.
-
-The compiler fix consists of the following patches:
-
-- A new `noundef` attribute is added. This attribute denotes when a function call argument or return val may never contain uninitialized bits.
-For more information, see <https://reviews.llvm.org/D81678>
-- The application of this attribute was refined such that it was not added to a specific compiler builtin where the compiler knows that inactive lanes do not impact program execution.
-
-For more information, see <https://github.com/RadeonOpenCompute/llvm-project/commit/accf36c58409268ca1f216cdf5ad812ba97ceccd>.
-
-### Known Issues
-
-This section consists of known issues in this release.
-
-#### Issue with OpenMP-Extras Package Upgrade
-
-The `openmp-extras` package has been split into runtime (`openmp-extras-runtime`) and dev (`openmp-extras-devel`) packages. This change has broken the upgrade support for the `openmp-extras` package in RHEL/SLES.
-An available workaround in RHEL is to use the following command for upgrades:
+  - To avoid potential deadlocks, user might have to set an environment variables increasing    the number of hardware queues. For example,
 
 ```sh
-sudo yum upgrade rocm-language-runtime --allowerasing
-
+export GPU_MAX_HW_QUEUES=16
 ```
 
-An available workaround in SLES is to use the following command for upgrades:
+- Added support for reusing ports in NET/IB channels
 
-```sh
-zypper update --force-resolution <meta-package>
-```
+  - Opt-in with NCCL_IB_SOCK_CLIENT_PORT_REUSE=1 and NCCL_IB_SOCK_SERVER_PORT_REUSE=1
 
-#### AMD Instinct™ MI200 SRIOV Virtualization Issue
+  - When "Call to bind failed: Address already in use" error happens in large-scale AlltoAll(for example, >=64 MI200 nodes), users are suggested to opt-in either one or both of the options to resolve the massive port usage issue
 
-There is a known issue in this ROCm v5.3 release with all AMD Instinct™ MI200 devices running within a virtual function (VF) under SRIOV virtualization. This issue will likely impact the functionality of SRIOV-based workloads, but does not impact Discrete Device Assignment (DDA) or Bare Metal.
+  - Avoid using NCCL_IB_SOCK_SERVER_PORT_REUSE when NCCL_NCHANNELS_PER_NET_PEER is tuned >1
 
-Until a fix is provided, users should rely on ROCm v5.2.3 to support their SRIOV workloads.
+##### Removed
 
-#### System Crash when IMMOU is Enabled
+- Removed experimental clique-based kernels
 
-If IOMMU is enabled in SBIOS and ROCm is installed, the system may report the following failure or errors when running workloads such as bandwidth test, clinfo, and HelloWord.cl and cause a system crash.
+#### Development Tools
 
-- IO PAGE FAULT
-- IRQ remapping does not support X2APIC mode
-- NMI error
+No notable changes in this release for development tools, including the compiler, profiler, and debugger
+Deployment and Management Tools
 
-Workaround: To avoid the system crash, add `amd_iommu=on iommu=pt` as the kernel bootparam, as indicated in the warning message.
+No notable changes in this release for deployment and management tools.
+Older ROCm Releases
+
+For release information for older ROCm releases, refer to <https://github.com/RadeonOpenCompute/ROCm/blob/master/CHANGELOG.md>
