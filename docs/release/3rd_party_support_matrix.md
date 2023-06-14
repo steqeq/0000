@@ -44,7 +44,6 @@ contemporary CUDA / NVIDIA HPC SDK alternatives.
 | 5.1.3 | 1.15         | 22.1       |
 | 5.2.x | 1.15         | 22.2, 22.3 |
 | 5.3.x | 1.16         | 22.7       |
-| 5.4.x | 1.16         | 22.9       |
 
 For the latest documentation of these libraries, refer to the
 [associated documentation](../reference/gpu_libraries/c%2B%2B_primitives.md).
