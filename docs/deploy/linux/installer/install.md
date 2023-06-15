@@ -18,8 +18,8 @@ following commands based on your distribution.
 
 ```shell
 sudo apt update
-wget https://repo.radeon.com/amdgpu-install/21.50.2/ubuntu/bionic/amdgpu-install_21.50.2.50002-1_all.deb
-sudo apt install ./amdgpu-install_21.50.2.50002-1_all.deb
+wget https://repo.radeon.com/amdgpu-install/21.50.1/ubuntu/bionic/amdgpu-install_21.50.1.50001-1_all.deb
+sudo apt install ./amdgpu-install_21.50.1.50001-1_all.deb
 ```
 
 :::
@@ -28,8 +28,8 @@ sudo apt install ./amdgpu-install_21.50.2.50002-1_all.deb
 
 ```shell
 sudo apt update
-wget https://repo.radeon.com/amdgpu-install/21.50.2/ubuntu/focal/amdgpu-install_21.50.2.50002-1_all.deb
-sudo apt install ./amdgpu-install_21.50.2.50002-1_all.deb
+wget https://repo.radeon.com/amdgpu-install/21.50.1/ubuntu/focal/amdgpu-install_21.50.1.50001-1_all.deb
+sudo apt install ./amdgpu-install_21.50.1.50001-1_all.deb
 ```
 
 :::
@@ -44,7 +44,7 @@ sudo apt install ./amdgpu-install_21.50.2.50002-1_all.deb
 :sync: RHEL-7
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/21.50.2/rhel/7.9/amdgpu-install-21.50.2.50002-1.el7.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/21.50.1/rhel/7.9/amdgpu-install-21.50.1.50001-1.el7.noarch.rpm
 ```
 
 :::
@@ -53,7 +53,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/21.50.2/rhel/7.9/amdgpu-
 :sync: RHEL-8
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/21.50.2/rhel/8.4/amdgpu-install-21.50.2.50002-1.el7.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/21.50.1/rhel/8.4/amdgpu-install-21.50.1.50001-1.el7.noarch.rpm
 ```
 
 :::
@@ -62,7 +62,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/21.50.2/rhel/8.4/amdgpu-
 :sync: RHEL-8
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/21.50.2/rhel/8.5/amdgpu-install-21.50.2.50002-1.el7.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/21.50.1/rhel/8.5/amdgpu-install-21.50.1.50001-1.el7.noarch.rpm
 ```
 
 :::
@@ -76,7 +76,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/21.50.2/rhel/8.5/amdgpu-
 :sync: SLES15-SP3
 
 ```shell
-sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/21.50.2/sle/15/amdgpu-install-21.50.2.50002-1.noarch.rpm
+sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/21.50.1/sle/15/amdgpu-install-21.50.1.50001-1.noarch.rpm
 ```
 
 :::
@@ -155,9 +155,9 @@ the installer script will install packages in the single-version layout.
 For the multi-version ROCm installation you must use the installer script from
 the latest release of ROCm that you wish to install.
 
-**Example:** If you want to install ROCm releases 5.0.0 and 5.0.2
+**Example:** If you want to install ROCm releases 5.0.0 and 5.0.1
 simultaneously, you are required to download the installer from the latest ROCm
-release v5.0.2.
+release v5.0.1.
 
 ### Add Required Repositories
 
@@ -177,9 +177,11 @@ Run the following commands based on your distribution to add the repositories:
 
 ```shell
 for ver in 5.0; do
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver bionic main" | sudo tee /etc/apt/sources.list.d/rocm.list
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver bionic main" \
+  | sudo tee /etc/apt/sources.list.d/rocm.list
 done
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
+  | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
 
@@ -189,9 +191,11 @@ sudo apt update
 
 ```shell
 for ver in 5.0; do
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
+  | sudo tee /etc/apt/sources.list.d/rocm.list
 done
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
+  | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
 
@@ -284,7 +288,7 @@ release in the list.
 
 ```none
 sudo amdgpu-install --usecase=rocm --rocmrelease=5.0.0
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.0.2
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.0.1
 ```
 
 ## Additional options

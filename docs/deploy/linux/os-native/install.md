@@ -53,7 +53,7 @@ To add the AMDGPU repository, follow these steps:
 
 ```shell
 # amdgpu repository for bionic
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/21.50.2/ubuntu bionic main' \
+echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/21.50.1/ubuntu bionic main' \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -64,7 +64,7 @@ sudo apt update
 
 ```shell
 # amdgpu repository for focal
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/21.50.2/ubuntu focal main' \
+echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/21.50.1/ubuntu focal main' \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -91,7 +91,7 @@ To add the ROCm repository, use the following steps:
 
 ```shell
 # ROCm repositories for bionic
-for ver in 5.0 5.0.2; do
+for ver in 5.0 5.0.1; do
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver bionic main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
@@ -106,7 +106,7 @@ sudo apt update
 
 ```shell
 # ROCm repositories for focal
-for ver in 5.0 5.0.2; do
+for ver in 5.0 5.0.1; do
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
@@ -136,7 +136,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo apt install rocm-hip-sdk5.0.2
+   sudo apt install rocm-hip-sdk5.0.1
    ```
 
 :::::
@@ -160,7 +160,7 @@ section.
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/21.50.2/rhel/7.9/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/21.50.1/rhel/7.9/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -179,7 +179,7 @@ sudo yum clean all
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/21.50.2/rhel/8.4/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/21.50.1/rhel/8.4/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -198,7 +198,7 @@ sudo yum clean all
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/21.50.2/rhel/8.5/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/21.50.1/rhel/8.5/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -228,7 +228,7 @@ To add the ROCm repository, use the following steps, based on your distribution:
 :sync: RHEL-7
 
 ```shell
-for ver in 5.0 5.0.2; do
+for ver in 5.0 5.0.1; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -247,7 +247,7 @@ sudo yum clean all
 :sync: RHEL-8
 
 ```shell
-for ver in 5.0 5.0.2; do
+for ver in 5.0 5.0.1; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -282,7 +282,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo yum install rocm-hip-sdk5.0.2
+   sudo yum install rocm-hip-sdk5.0.1
    ```
 
 :::::
@@ -305,7 +305,7 @@ section.
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/21.50.2/sle/15.3/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/21.50.1/sle/15.3/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -330,7 +330,7 @@ sudo reboot
 To add the ROCm repository, use the following steps:
 
 ```shell
-for ver in 5.0 5.0.2; do
+for ver in 5.0 5.0.1; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -362,7 +362,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.0.2
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.0.1
    ```
 
 :::::
@@ -399,7 +399,7 @@ but are generally useful. Verification of the install is advised.
 2. Add binary paths to the `PATH` environment variable.
 
    ```shell
-   export PATH=$PATH:/opt/rocm-5.0.2/bin:/opt/rocm-5.0.2/opencl/bin
+   export PATH=$PATH:/opt/rocm-5.0.1/bin:/opt/rocm-5.0.1/opencl/bin
    ```
 
    ```{attention}
