@@ -15,42 +15,6 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.0.1
-<!-- markdownlint-disable first-line-h1 -->
-### Deprecations and Warnings
-
-#### Refactor of HIPCC/HIPCONFIG
-
-In prior ROCm releases, by default, the hipcc/hipconfig Perl scripts were used to identify and set target compiler options, target platform, compiler, and runtime appropriately.
-
-In ROCm v5.0.1, hipcc.bin and hipconfig.bin have been added as the compiled binary implementations of the hipcc and hipconfig. These new binaries are currently a work-in-progress, considered, and marked as experimental. ROCm plans to fully transition to hipcc.bin and hipconfig.bin in the a future ROCm release. The existing hipcc and hipconfig Perl scripts are renamed to hipcc.pl and hipconfig.pl respectively. New top-level hipcc and hipconfig Perl scripts are created, which can switch between the Perl script or the compiled binary based on the environment variable HIPCC_USE_PERL_SCRIPT.
-
-In ROCm 5.0.1, by default, this environment variable is set to use hipcc and hipconfig through the Perl scripts.
-
-Subsequently, Perl scripts will no longer be available in ROCm in a future release.
-
-### Library Changes in ROCM 5.0.1
-
-| Library | Version |
-|---------|---------|
-| hipBLAS | [0.49.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.0.1) |
-| hipCUB | [2.10.13](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.0.1) |
-| hipFFT | [1.0.4](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.0.1) |
-| hipSOLVER | [1.2.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.0.1) |
-| hipSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.0.1) |
-| rccl | [2.10.3](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.0.1) |
-| rocALUTION | [2.0.1](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.0.1) |
-| rocBLAS | [2.42.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.0.1) |
-| rocFFT | [1.0.13](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.0.1) |
-| rocPRIM | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.0.1) |
-| rocRAND | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.0.1) |
-| rocSOLVER | [3.16.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.0.1) |
-| rocSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.0.1) |
-| rocThrust | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.0.1) |
-| Tensile | [4.31.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.0.1) |
-
--------------------
-
 ## ROCm 5.0.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-blanks-blockquote -->
