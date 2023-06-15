@@ -15,23 +15,17 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.0.2
+## ROCm 5.0.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### Fixed Defects
+### Deprecations and Warnings
 
-The following defects are fixed in the ROCm v5.0.2 release.
+#### Refactor of HIPCC/HIPCONFIG
 
-#### Issue with hostcall Facility in HIP Runtime
+In prior ROCm releases, by default, the hipcc/hipconfig Perl scripts were used to identify and set target compiler options, target platform, compiler, and runtime appropriately.
 
-In ROCm v5.0, when using the “assert()” call in a HIP kernel, the compiler may sometimes fail to emit kernel metadata related to the hostcall facility, which results in incomplete initialization of the hostcall facility in the HIP runtime. This can cause the HIP kernel to crash when it attempts to execute the “assert()” call.
+In ROCm v5.0.1, hipcc.bin and hipconfig.bin have been added as the compiled binary implementations of the hipcc and hipconfig. These new binaries are currently a work-in-progress, considered, and marked as experimental. ROCm plans to fully transition to hipcc.bin and hipconfig.bin in the a future ROCm release. The existing hipcc and hipconfig Perl scripts are renamed to hipcc.pl and hipconfig.pl respectively. New top-level hipcc and hipconfig Perl scripts are created, which can switch between the Perl script or the compiled binary based on the environment variable HIPCC_USE_PERL_SCRIPT.
 
-The root cause was an incorrect check in the compiler to determine whether the hostcall facility is required by the kernel. This is fixed in the ROCm v5.0.2 release.
+In ROCm 5.0.1, by default, this environment variable is set to use hipcc and hipconfig through the Perl scripts.
 
-The resolution includes a compiler change, which emits the required metadata by default, unless the compiler can prove that the hostcall facility is not required by the kernel. This ensures that the “assert()” call never fails.
-
-Note:
-This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region and result in an abort in device code. The issue will be fixed in a future release.
-Compatibility Matrix Updates to ROCm Deep Learning Guide
-
-The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0.2.
+Subsequently, Perl scripts will no longer be available in ROCm in a future release.
