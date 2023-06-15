@@ -37,7 +37,7 @@ sudo apt update
 
 ```shell
 # amdgpu repository for focal
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/22.20.3/ubuntu focal main' \
+echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/22.20/ubuntu focal main' \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -57,7 +57,7 @@ sudo apt update
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/22.20.3/rhel/7.9/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/22.20/rhel/7.9/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -75,7 +75,7 @@ sudo yum clean all
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/22.20.3/rhel/8.5/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/22.20/rhel/8.5/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -93,7 +93,7 @@ sudo yum clean all
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/22.20.3/rhel/8.6/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/22.20/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -102,7 +102,6 @@ EOF
 sudo yum clean all
 ```
 
-:::
 ::::
 :::::
 :::::{tab-item} SUSE Linux Enterprise Server 15
@@ -116,7 +115,7 @@ sudo yum clean all
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/22.20.3/sle/15.3/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/22.20/sle/15.3/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -132,7 +131,7 @@ sudo zypper ref
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/22.20.3/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/22.20/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -226,9 +225,9 @@ sudo apt update
 
 ```shell
 sudo tee /etc/yum.repos.d/rocm.repo <<EOF
-[ROCm-5.2.3]
-name=ROCm5.2.3
-baseurl=https://repo.radeon.com/rocm/yum/5.2.3/main
+[ROCm-5.2]
+name=ROCm5.2
+baseurl=https://repo.radeon.com/rocm/yum/5.2/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -243,9 +242,9 @@ sudo yum clean all
 
 ```shell
 sudo tee /etc/yum.repos.d/rocm.repo <<EOF
-[ROCm-5.2.3]
-name=ROCm5.2.3
-baseurl=https://repo.radeon.com/rocm/rhel8/5.2.3/main
+[ROCm-5.2]
+name=ROCm5.2
+baseurl=https://repo.radeon.com/rocm/rhel8/5.2/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -262,10 +261,10 @@ sudo yum clean all
 
 ```shell
 sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
-[ROCm-5.2.3]
-name=ROCm5.2.3
+[ROCm-5.2]
+name=ROCm5.2
 name=rocm
-baseurl=https://repo.radeon.com/rocm/zyp/5.2.3/main
+baseurl=https://repo.radeon.com/rocm/zyp/5.2/main
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
