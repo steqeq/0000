@@ -15,48 +15,6 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.0.2
-<!-- markdownlint-disable first-line-h1 -->
-### Fixed Defects
-
-The following defects are fixed in the ROCm v5.0.2 release.
-
-#### Issue with hostcall Facility in HIP Runtime
-
-In ROCm v5.0, when using the “assert()” call in a HIP kernel, the compiler may sometimes fail to emit kernel metadata related to the hostcall facility, which results in incomplete initialization of the hostcall facility in the HIP runtime. This can cause the HIP kernel to crash when it attempts to execute the “assert()” call.
-
-The root cause was an incorrect check in the compiler to determine whether the hostcall facility is required by the kernel. This is fixed in the ROCm v5.0.2 release.
-
-The resolution includes a compiler change, which emits the required metadata by default, unless the compiler can prove that the hostcall facility is not required by the kernel. This ensures that the “assert()” call never fails.
-
-Note:
-This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region and result in an abort in device code. The issue will be fixed in a future release.
-Compatibility Matrix Updates to ROCm Deep Learning Guide
-
-The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0.2.
-
-### Library Changes in ROCM 5.0.2
-
-| Library | Version |
-|---------|---------|
-| hipBLAS | [0.49.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.0.2) |
-| hipCUB | [2.10.13](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.0.2) |
-| hipFFT | [1.0.4](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.0.2) |
-| hipSOLVER | [1.2.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.0.2) |
-| hipSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.0.2) |
-| rccl | [2.10.3](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.0.2) |
-| rocALUTION | [2.0.1](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.0.2) |
-| rocBLAS | [2.42.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.0.2) |
-| rocFFT | [1.0.13](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.0.2) |
-| rocPRIM | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.0.2) |
-| rocRAND | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.0.2) |
-| rocSOLVER | [3.16.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.0.2) |
-| rocSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.0.2) |
-| rocThrust | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.0.2) |
-| Tensile | [4.31.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.0.2) |
-
--------------------
-
 ## ROCm 5.0.1
 <!-- markdownlint-disable first-line-h1 -->
 ### Deprecations and Warnings
