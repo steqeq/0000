@@ -1,9 +1,9 @@
-# ROCm Layout FHS Reorganization and Semantic Versioning
+# ROCm Layout FHS Reorganization
 
 ## Introduction
 
-The ROCm stack shall adopt the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to standardize its directory structure and directory content layout, adhering to open source conventions for Linux-based distributions.
-The ROCm stack shall follow Semantic Versioning 2.0.0 ([SemVer](https://semver.org/)) in order to standardize how version numbers are being assigned and incremented.
+The ROCm platform shall adopt the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to standardize its directory structure and directory content layout, adhering to open source conventions for Linux-based distributions.
+
 
 ## Adopting FHS
 
@@ -101,12 +101,10 @@ from the new location (`/opt/rocm-xxx/include`) as shown in the example below.
 The deprecation plan for backward compatibility wrapper header files is as
 follows
 
-- `#pragma` message announcing deprecation – ROCm v5.2 release.
-- `#pragma` message changed to `#warning` – Future release, tentatively ROCm
-  v5.5.
-- `#warning` changed to `#error` – Future release, tentatively ROCm v5.6.
-- Backward compatibility wrappers removed – Future release, tentatively ROCm
-  v6.0.
+- `#pragma` message announcing deprecation – ROCm 5.2 release.
+- `#pragma` message changed to `#warning` – ROCm 5.5 release.
+//- Backward compatibility wrappers removed – Future release, tentatively ROCm
+  6.0.
 
 ### Executable files
 
