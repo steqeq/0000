@@ -407,7 +407,7 @@ Follow these steps:
 
 ## Using MIOpen kdb files with ROCm PyTorch wheels
 
-PyTorch uses MIOpen for machine learning primitives. These primitives are compiled into kernels at runtime. Runtime compilation causes a small warm-up phase when starting PyTorch. MIOpen kdb files contain precompiled kernels that can speed up the warm-up phase of an application. More information is available in the {doc}`MIOpen <miopen:install#installing-miopen-kernels-package>`.
+PyTorch uses MIOpen for machine learning primitives. These primitives are compiled into kernels at runtime. Runtime compilation causes a small warm-up phase when starting PyTorch. MIOpen kdb files contain precompiled kernels that can speed up the warm-up phase of an application. More information is available in the {doc}`MIOpen <miopen:install>`.
 
 MIOpen kdb files can be used with ROCm PyTorch wheels. However, the kdb files need to be placed in a specific location with respect to the PyTorch installation path. A helper script simplifies this task for the user. The script takes in the ROCm version and user's GPU architecture as inputs, and works for Ubuntu and CentOS.
 
