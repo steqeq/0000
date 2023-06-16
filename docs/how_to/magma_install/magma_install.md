@@ -89,4 +89,8 @@ Advanced Micro Devices, Inc., \[Online\]. Available: [https://github.com/ROCmSof
 
 Docker, \[Online\]. [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/)
 
+<<<<<<< HEAD
 Torchvision, \[Online\]. Available [https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision](https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision)
+=======
+Torchvision, \[Online\]. Available [https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision](https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision)
+>>>>>>> 9bda3657ac5818f95245f654d5aefa18dcf371f6
