@@ -1,10 +1,13 @@
-# Linux Folder Structure Reorganization
+# ROCm Layout FHS Reorganization and Semantic Versioning
 
 ## Introduction
 
-ROCm™ packages have adopted the Linux foundation file system hierarchy standard
-to ensure ROCm components follow open source conventions for Linux-based
-distributions. Following is the ROCm proposed file structure.
+The ROCm stack shall adopt the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to standardize its directory structure and directory content layout, adhering to open source conventions for Linux-based distributions.
+The ROCm stack shall follow Semantic Versioning 2.0.0 ([SemVer](https://semver.org/)) in order to standardize how version numbers are being assigned and incremented.
+
+## Adopting FHS
+
+ROCm directory structure and directory content layout shall follow the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html). Following FHS will ensure internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
 
 ```none
 /opt/rocm-<ver>
@@ -42,14 +45,18 @@ distributions. Following is the ROCm proposed file structure.
               | -- architecture independent misc files
 ```
 
-## Changes from earlier ROCm versions
+## Adopting SemVer
 
-ROCm with the file reorganization is going to have a lean structure. Following
-table gives the comparison with new and old folder structure.
+The ROCm stack shall follow the [Semantic Versioning 2.0.0 (SemVer)](https://semver.org/) specification, adhering to a simple set of rules on how ROCm version numbers are being assigned, and providing a clear reflection of the changes and dependencies in the underlying code.
+Briefly, SemVer uses the following version number format: MAJOR.MINOR.PATCH. Conversely, when making dramatic changes to ROCm, changes that are incompatible to previous versions, the MAJOR version will  be incremented. When making changes to ROCm (e.g. adding functionality) that are expected to be backward-compatible the MINOR version will be incremented, and when fixing bugs the PATCH version should be incremented (please see [Semantic Versioning 2.0.0 (SemVer)](https://semver.org/) for more details).  
+
+## Changes From Earlier ROCm Versions
+
+The following table provides a brief overview of the new ROCm FHS layout, compared to the layout of earlier ROCm versions.
 
 ```none
  ______________________________________________________
-|  New File Structure         |  Old File Structure    |
+|  New ROCm Layout            |  Previous ROCm Layout  |
 |_____________________________|________________________|
 | /opt/rocm-<ver>             | /opt/rocm-<ver>        |
 |     | -- bin                |     | -- bin           |
@@ -72,7 +79,7 @@ table gives the comparison with new and old folder structure.
 |______________________________________________________|
 ```
 
-## ROCm File reorganization transition plan
+## ROCm File Reorganization Transition Plan
 
 New file organization for ROCm was first introduced ROCm v5.2 release. Backward
 compatibility was in place to make sure users had a chance to change their
@@ -159,9 +166,3 @@ correct header file and use correct search paths.
 
 3. Any reference to `/opt/rocm/<component>/bin` or `/opt/rocm/<component>/lib`
    needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/` respectively.
-
-## References
-
-{ref}`ROCm deprecation warning <5_4_0_filesystem_reorg_deprecation_notice>`
-
-[Linux File System Standard](https://refspecs.linuxfoundation.org/fhs.shtml)
