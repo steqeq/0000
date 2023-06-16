@@ -56,7 +56,7 @@ that are required for target offload from an OpenMP program:
 The compiler also accepts the alternative offloading notation:
 
 ```bash
--fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa
+-fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch> 
 ```
 
 :::
