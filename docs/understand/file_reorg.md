@@ -75,13 +75,10 @@ The following table provides a brief overview of the new ROCm FHS layout, compar
 |______________________________________________________|
 ```
 
-## ROCm File Reorganization Transition Plan
+## ROCm FHS Reorganization: Backward Compatibility
 
-New file organization for ROCm was first introduced ROCm v5.2 release. Backward
-compatibility was in place to make sure users had a chance to change their
-applications using ROCm. ROCm has moved header files and libraries to its new
-location as indicated in the above structure and included symbolic-link and
-wrapper header files in its old location for backward compatibility.
+The FHS file organization for ROCm was first introduced in the ROCm v5.2 release. Backward compatibility was implemented to make sure users could still run their ROCm applications while transitioning to FHS. ROCm has moved header files and libraries to their new locations as indicated in the above structure and included symbolic-link and
+wrapper header files in their old location for backward compatibility. The following sections detail ROCm backward compatibility implementation for wrapper header files, executable files, library files and CMake config files.
 
 ### Wrapper header files
 
@@ -127,7 +124,7 @@ drwxr-xr-x 4 root root 4096 Jan 1 10:45 cmake
 lrwxrwxrwx 1 root root   24 Jan 1 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-### CMake Config files
+### CMake config files
 
 All CMake configuration files are available in the
 `/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the
