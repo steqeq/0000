@@ -1,4 +1,4 @@
-# ROCm Layout FHS Reorganization
+# ROCm FHS Reorganization
 
 ## Introduction
 
@@ -160,4 +160,3 @@ correct header file and use correct search paths.
 
 3. Any reference to `/opt/rocm/<component>/bin` or `/opt/rocm/<component>/lib`
    needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/` respectively.
-   
