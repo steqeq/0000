@@ -1,12 +1,12 @@
-# ROCm FHS Reorganization, Backward Compatibility, and Versioning
+# ROCm FHS Reorganization
 
 ## Introduction
 
-We discuss the ROCm platform transitioning to the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html), backward compatibility, and improved versioning.
+The ROCm platform has adopted the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm filesystem is supported, and how improved versioning specifications are applied to ROCm.
 
 ## Adopting FHS
 
-ROCm directory structure and directory content layout is adopting the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to standardize its directory structure and directory content layout, adhering to open source conventions for Linux-based distribution. FHS will ensure internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
+In order to standardize ROCm directory structure and directory content layout ROCm has adopted the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html), adhering to open source conventions for Linux-based distribution. FHS ensures internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
 
 ```none
 /opt/rocm-<ver>
@@ -46,7 +46,7 @@ ROCm directory structure and directory content layout is adopting the [Linux fou
 
 ## Changes From Earlier ROCm Versions
 
-The following table provides a brief overview of the new ROCm FHS layout, compared to the layout of earlier ROCm versions.
+The following table provides a brief overview of the new ROCm FHS layout, compared to the layout of earlier ROCm versions. Note that /opt/ is used to denote the default rocm-installation-path and should be replaced in case of non-standard installation location of the ROCm distribution.
 
 ```none
  ______________________________________________________
@@ -75,8 +75,7 @@ The following table provides a brief overview of the new ROCm FHS layout, compar
 
 ## ROCm FHS Reorganization: Backward Compatibility
 
-The FHS file organization for ROCm was first introduced in the ROCm v5.2 release. Backward compatibility was implemented to make sure users could still run their ROCm applications while transitioning to FHS. ROCm has moved header files and libraries to their new locations as indicated in the above structure, and included symbolic-link and
-wrapper header files in their old location for backward compatibility. The following sections detail ROCm backward compatibility implementation for wrapper header files, executable files, library files and CMake config files.
+The FHS file organization for ROCm was first introduced in the release of ROCm 5.2. Backward compatibility was implemented to make sure users could still run their ROCm applications while transitioning to the new FHS. ROCm has moved header files and libraries to their new locations as indicated in the above structure, and included symbolic-links and wrapper header files in their old location for backward compatibility. The following sections detail ROCm backward compatibility implementation for wrapper header files, executable files, library files and CMake config files.
 
 ### Wrapper header files
 
@@ -86,7 +85,7 @@ from the new location (`/opt/rocm-<ver>/include`) as shown in the example below.
 
 ```cpp
 #pragma message "This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip."
-#include "hip/hip_runtime.h"
+#include <hip/hip_runtime.h>
 ```
 
 - Starting at ROCm 5.2 release, the deprecation for backward compatibility wrapper header files is: `#pragma` message announcing `#warning`.
@@ -153,9 +152,12 @@ correct header file and use correct search paths.
 
 ## Changes in Versioning Specifications
 
-The intention is for future releases of the ROCm platform to adopt the [Semantic Versioning 2.0.0 Specifications](https://semver.org/), in order to better manage its dependencies specifications, allowing smoother releases of ROCm while avoiding dependency conflicts. A full transition to Semantic Versioning is not yet implemented but contributors are asked to adhere to the following scheme when numbering and incrementing ROCm files versions:
-**x.y.z**
-Where x.y.z denote:
+In order to better manage ROCm dependencies specification and allow smoother releases of ROCm while avoiding dependency conflicts, the ROCm platform shall adhere to the following scheme when numbering and incrementing ROCm files versions:
+
+```shell
+rocm-<ver>, where <ver> = <x.y.z>
+x.y.z denote:
 x: MAJOR - increment when implementing major changes which are not backward compatible.
 y: MINOR - increment when implementing minor changes which add functionality but are still backward compatible.
 z: PATCH - increment when implementing backward compatible bug fixes.
+```
