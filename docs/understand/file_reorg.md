@@ -45,8 +45,7 @@ ROCm directory structure and directory content layout shall follow the [Linux fo
               | -- architecture independent misc files
 ```
 
-
-## Changes From Earlier ROCm Versions
+## Changes from earlier ROCm versions
 
 The following table provides a brief overview of the new ROCm FHS layout, compared to the layout of earlier ROCm versions.
 
@@ -160,3 +159,9 @@ correct header file and use correct search paths.
 
 3. Any reference to `/opt/rocm/<component>/bin` or `/opt/rocm/<component>/lib`
    needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/` respectively.
+
+## References
+
+{ref}`ROCm deprecation warning <5_4_0_filesystem_reorg_deprecation_notice>`
+
+[Linux File System Standard](https://refspecs.linuxfoundation.org/fhs.shtml)
