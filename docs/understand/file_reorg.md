@@ -156,10 +156,10 @@ In order to better manage ROCm dependencies specification and allow smoother rel
 
 rocm-\<ver\>, where \<ver\> = \<x.y.z\>
 
-x.y.z denote:
-
-x: MAJOR - increment when implementing major changes which are not backward compatible.
-
-y: MINOR - increment when implementing minor changes which add functionality but are still backward compatible.
+x.y.z denote: MAJOR.MINOR.PATCH
 
 z: PATCH - increment when implementing backward compatible bug fixes.
+
+y: MINOR - increment when implementing minor changes that add functionality but are still backward compatible.
+
+x: MAJOR - increment when implementing major changes that are not backward compatible.
