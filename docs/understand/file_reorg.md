@@ -1,14 +1,12 @@
 # ROCm FHS Reorganization
 
-## TESTING
-
 ## Introduction
 
-The ROCm platform has adopted the [Linux foundation Filesystem Hierarchy Standard \(FHS\)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm filesystem is supported, and how improved versioning specifications are applied to ROCm.
+The ROCm platform has adopted the Linux foundation Filesystem Hierarchy Standard (FHS) [https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm filesystem is supported, and how improved versioning specifications are applied to ROCm.
 
-## Adopting FHS
+## Adopting the Linux foundation Filesystem Hierarchy Standard (FHS)
 
-In order to standardize ROCm directory structure and directory content layout ROCm has adopted the [Linux foundation Filesystem Hierarchy Standard \(FHS\)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html), adhering to open source conventions for Linux-based distribution. FHS ensures internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
+In order to standardize ROCm directory structure and directory content layout ROCm has adopted the [FHS] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html), adhering to open source conventions for Linux-based distribution. FHS ensures internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
 
 ```none
 /opt/rocm-<ver>
@@ -157,7 +155,11 @@ correct header file and use correct search paths.
 In order to better manage ROCm dependencies specification and allow smoother releases of ROCm while avoiding dependency conflicts, the ROCm platform shall adhere to the following scheme when numbering and incrementing ROCm files versions:
 
 rocm-\<ver\>, where \<ver\> = \<x.y.z\>
+
 x.y.z denote:
+
 x: MAJOR - increment when implementing major changes which are not backward compatible.
+
 y: MINOR - increment when implementing minor changes which add functionality but are still backward compatible.
+
 z: PATCH - increment when implementing backward compatible bug fixes.
