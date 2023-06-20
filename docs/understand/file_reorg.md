@@ -2,11 +2,11 @@
 
 ## Introduction
 
-The ROCm platform has adopted the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm filesystem is supported, and how improved versioning specifications are applied to ROCm.
+The ROCm platform has adopted the [Linux foundation Filesystem Hierarchy Standard \(FHS\)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm filesystem is supported, and how improved versioning specifications are applied to ROCm.
 
 ## Adopting FHS
 
-In order to standardize ROCm directory structure and directory content layout ROCm has adopted the [Linux foundation Filesystem Hierarchy Standard (FHS)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html), adhering to open source conventions for Linux-based distribution. FHS ensures internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
+In order to standardize ROCm directory structure and directory content layout ROCm has adopted the [Linux foundation Filesystem Hierarchy Standard \(FHS\)] (https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html), adhering to open source conventions for Linux-based distribution. FHS ensures internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
 
 ```none
 /opt/rocm-<ver>
