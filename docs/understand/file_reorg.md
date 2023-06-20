@@ -77,7 +77,7 @@ The following table provides a brief overview of the new ROCm FHS layout, compar
 
 The FHS file organization for ROCm was first introduced in the release of ROCm 5.2 . Backward compatibility was implemented to make sure users could still run their ROCm applications while transitioning to the new FHS. ROCm has moved header files and libraries to their new locations as indicated in the above structure, and included symbolic-links and wrapper header files in their old location for backward compatibility. The following sections detail ROCm backward compatibility implementation for wrapper header files, executable files, library files and CMake config files.
 
-### Wrapper header files
+### Wrapper Header Files
 
 Wrapper header files are placed in the old location (
 `/opt/rocm-<ver>/<component>/include`) with a warning message to include files
@@ -91,7 +91,7 @@ from the new location (`/opt/rocm-<ver>/include`) as shown in the example below.
 - Starting at ROCm 5.2 release, the deprecation for backward compatibility wrapper header files is: `#pragma` message announcing `#warning`.
 - Starting from ROCm 6.0 (tentatively) backward compatibility for wrapper header files will be removed, and the `#pragma` message will be announcing `#error`.
 
-### Executable files
+### Executable Files
 
 Executable files are available in the `/opt/rocm-<ver>/bin` folder. For backward
 compatibility, the old library location (`/opt/rocm-<ver>/<component>/bin`) has a
@@ -103,7 +103,7 @@ $ ls -l /opt/rocm/hip/bin/
 lrwxrwxrwx 1 root root   24 Jan 1 23:32 hipcc -> ../../bin/hipcc
 ```
 
-### Library files
+### Library Files
 
 Library files are available in the `/opt/rocm-<ver>/lib` folder. For backward
 compatibility, the old library location (`/opt/rocm-<ver>/<component>/lib`) has a
@@ -116,7 +116,7 @@ drwxr-xr-x 4 root root 4096 Jan 1 10:45 cmake
 lrwxrwxrwx 1 root root   24 Jan 1 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-### CMake config files
+### CMake Config Files
 
 All CMake configuration files are available in the
 `/opt/rocm-<ver>/lib/cmake/<component>` folder. For backward compatibility, the
@@ -129,7 +129,7 @@ $ ls -l /opt/rocm/hip/lib/cmake/hip/
 lrwxrwxrwx 1 root root 42 Jan 1 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
 ```
 
-## Changes required in applications using ROCm
+## Changes Required in Applications Using ROCm
 
 Applications using ROCm are advised to use the new file paths. As the old files
 will be deprecated in a future release. Applications have to make sure to include
@@ -158,8 +158,8 @@ rocm-\<ver\>, where \<ver\> = \<x.y.z\>
 
 x.y.z denote: MAJOR.MINOR.PATCH
 
-z: PATCH - increment when implementing backward compatible bug fixes.
+z: PATCH - increment z when implementing backward compatible bug fixes.
 
-y: MINOR - increment when implementing minor changes that add functionality but are still backward compatible.
+y: MINOR - increment y when implementing minor changes that add functionality but are still backward compatible.
 
-x: MAJOR - increment when implementing major changes that are not backward compatible.
+x: MAJOR - increment x when implementing major changes that are not backward compatible.
