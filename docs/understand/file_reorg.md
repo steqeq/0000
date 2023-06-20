@@ -46,7 +46,7 @@ In order to standardize ROCm directory structure and directory content layout RO
 
 ## Changes From Earlier ROCm Versions
 
-The following table provides a brief overview of the new ROCm FHS layout, compared to the layout of earlier ROCm versions. Note that /opt/ is used to denote the default rocm-installation-path and should be replaced in case of non-standard installation location of the ROCm distribution.
+The following table provides a brief overview of the new ROCm FHS layout, compared to the layout of earlier ROCm versions. Note that /opt/ is used to denote the default rocm-installation-path and should be replaced in case of a non-standard installation location of the ROCm distribution.
 
 ```none
  ______________________________________________________
@@ -75,7 +75,7 @@ The following table provides a brief overview of the new ROCm FHS layout, compar
 
 ## ROCm FHS Reorganization: Backward Compatibility
 
-The FHS file organization for ROCm was first introduced in the release of ROCm 5.2. Backward compatibility was implemented to make sure users could still run their ROCm applications while transitioning to the new FHS. ROCm has moved header files and libraries to their new locations as indicated in the above structure, and included symbolic-links and wrapper header files in their old location for backward compatibility. The following sections detail ROCm backward compatibility implementation for wrapper header files, executable files, library files and CMake config files.
+The FHS file organization for ROCm was first introduced in the release of ROCm 5.2 . Backward compatibility was implemented to make sure users could still run their ROCm applications while transitioning to the new FHS. ROCm has moved header files and libraries to their new locations as indicated in the above structure, and included symbolic-links and wrapper header files in their old location for backward compatibility. The following sections detail ROCm backward compatibility implementation for wrapper header files, executable files, library files and CMake config files.
 
 ### Wrapper header files
 
@@ -132,7 +132,7 @@ lrwxrwxrwx 1 root root 42 Jan 1 23:32 hip-config.cmake -> ../../../../lib/cmake/
 ## Changes required in applications using ROCm
 
 Applications using ROCm are advised to use the new file paths. As the old files
-will be deprecated in a future release. Application have to make sure to include
+will be deprecated in a future release. Applications have to make sure to include
 correct header file and use correct search paths.
 
 1. `#include<header_file.h>` needs to be changed to
@@ -148,16 +148,14 @@ correct header file and use correct search paths.
    `VAR2=/opt/rocm/hsa` needs to be changed to `VAR2=/opt/rocm`
 
 3. Any reference to `/opt/rocm/<component>/bin` or `/opt/rocm/<component>/lib`
-   needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/` respectively.
+   needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/`, respectively.
 
 ## Changes in Versioning Specifications
 
 In order to better manage ROCm dependencies specification and allow smoother releases of ROCm while avoiding dependency conflicts, the ROCm platform shall adhere to the following scheme when numbering and incrementing ROCm files versions:
 
-```shell
-rocm-<ver>, where <ver> = <x.y.z>
+rocm-\<ver\>, where \<ver\> = \<x.y.z\>
 x.y.z denote:
 x: MAJOR - increment when implementing major changes which are not backward compatible.
 y: MINOR - increment when implementing minor changes which add functionality but are still backward compatible.
 z: PATCH - increment when implementing backward compatible bug fixes.
-```
