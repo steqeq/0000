@@ -13,23 +13,23 @@ following commands based on your distribution.
 :sync: ubuntu
 
 ::::{tab-set}
+:::{tab-item} Ubuntu 18.04
+:sync: ubuntu-18.04
+
+```shell
+sudo apt update
+wget https://repo.radeon.com/amdgpu-install/22.10.1/ubuntu/bionic/amdgpu-install_22.10.1.50101-1_all.deb
+sudo apt install ./amdgpu-install_22.10.1.50101-1_all.deb
+```
+
+:::
 :::{tab-item} Ubuntu 20.04
 :sync: ubuntu-20.04
 
 ```shell
 sudo apt update
-wget https://repo.radeon.com/amdgpu-install/5.2/ubuntu/focal/amdgpu-install_5.2.50200-1_all.deb
-sudo apt install ./amdgpu-install_5.2.50200-1_all.deb
-```
-
-:::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
-
-```shell
-sudo apt update
-wget https://repo.radeon.com/amdgpu-install/5.2/ubuntu/jammy/amdgpu-install_5.2.50200-1_all.deb
-sudo apt install ./amdgpu-install_5.2.50200-1_all.deb
+wget https://repo.radeon.com/amdgpu-install/22.10.1/ubuntu/focal/amdgpu-install_22.10.1.50101-1_all.deb
+sudo apt install ./amdgpu-install_22.10.1.50101-1_all.deb
 ```
 
 :::
@@ -39,30 +39,30 @@ sudo apt install ./amdgpu-install_5.2.50200-1_all.deb
 :sync: RHEL
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
+:::{tab-item} RHEL 7.9
+:sync: RHEL-7.9
+:sync: RHEL-7
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.2/rhel/8.6/amdgpu-install-5.2.50200-1.el8.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/22.10.1/rhel/7.9/amdgpu-install-22.10.1.50101-1.el7.noarch.rpm
 ```
 
 :::
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
+:::{tab-item} RHEL 8.4
+:sync: RHEL-8.4
 :sync: RHEL-8
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.2/rhel/8.7/amdgpu-install-5.2.50200-1.el8.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/22.10.1/rhel/8.4/amdgpu-install-22.10.1.50101-1.el8.noarch.rpm
 ```
 
 :::
-:::{tab-item} RHEL 9.1
-:sync: RHEL-9.1
-:sync: RHEL-9
+:::{tab-item} RHEL 8.5
+:sync: RHEL-8.5
+:sync: RHEL-8
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.2/rhel/9.1/amdgpu-install-5.2.50200-1.el8.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/22.10.1/rhel/8.5/amdgpu-install-22.10.1.50101-1.el8.noarch.rpm
 ```
 
 :::
@@ -76,7 +76,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.2/rhel/9.1/amdgpu-inst
 :sync: SLES15-SP4
 
 ```shell
-sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.2/sle/15.4/amdgpu-install-5.2.50200-1.noarch.rpm
+sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/22.10.1/sle/15/amdgpu-install-22.10.1.50101-1.noarch.rpm
 ```
 
 :::
@@ -155,9 +155,9 @@ the installer script will install packages in the single-version layout.
 For the multi-version ROCm installation you must use the installer script from
 the latest release of ROCm that you wish to install.
 
-**Example:** If you want to install ROCm releases 5.1.3 and 5.2
+**Example:** If you want to install ROCm releases 5.0.2 and 5.1.1
 simultaneously, you are required to download the installer from the latest ROCm
-release v5.2.
+release v5.1.1.
 
 ### Add Required Repositories
 
@@ -172,24 +172,24 @@ Run the following commands based on your distribution to add the repositories:
 :sync: ubuntu
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
+:::{tab-item} Ubuntu 18.04
+:sync: ubuntu-18.04
 
 ```shell
-for ver in 5.1.3 5.2; do
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+for ver in 5.0.2 5.1.1; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver bionic main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
 
 :::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
 
 ```shell
-for ver in 5.1.3 5.2; do
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+for ver in 5.0.2 5.1.1; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
@@ -202,15 +202,15 @@ sudo apt update
 :sync: RHEL
 
 ::::{tab-set}
-:::{tab-item} RHEL 8
-:sync: RHEL-8
+:::{tab-item} RHEL 7
+:sync: RHEL-7
 
 ```shell
-for ver in 5.1.3 5.2; do
+for ver in 5.0.2 5.1.1; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
+baseurl=https://repo.radeon.com/rocm/yum/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -221,15 +221,15 @@ sudo yum clean all
 ```
 
 :::
-:::{tab-item} RHEL 9
-:sync: RHEL-9
+:::{tab-item} RHEL 8
+:sync: RHEL-8
 
 ```shell
-for ver in 5.1.3 5.2; do
+for ver in 5.0.2 5.1.1; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
+baseurl=https://repo.radeon.com/rocm/yum/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -246,10 +246,10 @@ sudo yum clean all
 :sync: SLES15
 
 ```shell
-for ver in 5.1.3 5.2; do
+for ver in 5.0.2 5.1.1; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
-baseurl=https://repo.radeon.com/rocm/$ver/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/rocm/zyp/$ver/main
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -272,12 +272,12 @@ sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-3>
 ```
 
 Following are examples of ROCm multi-version installation. The kernel-mode
-driver, associated with the ROCm release v5.3, will be installed as its latest
+driver, associated with the ROCm release v5.1.1, will be installed as its latest
 release in the list.
 
 ```none
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.1.3
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.2.0
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.0.2
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.1.1
 ```
 
 ## Additional options
