@@ -370,8 +370,8 @@ Vector L1D Cache
 | tcp_total_atomic_with_ret           | Req    | Number of vL1D Atomic with return                           |
 | tcp_total_atomic_without_ret        | Req    | Number of vL1D Atomic without return                        |
 | tcp_total_writeback_invalidates     | Count  | Number of vL1D Writebacks and Invalidates                   |
-| tcp_utcl1_request                   | Req	   | Number of address translation requests to UTCL1             |
-| tcp_utcl1_translation_hit           | Req	   | Number of UTCL1 translation hits                            |
+| tcp_utcl1_request                   | Req    | Number of address translation requests to UTCL1             |
+| tcp_utcl1_translation_hit           | Req    | Number of UTCL1 translation hits                            |
 | tcp_utcl1_translation_miss          | Req    | Number of UTCL1 translation misses                          |
 | tcp_utcl1_persmission_miss          | Req    | Number of UTCL1 permission misses                           |
 | tcp_total_cache_accesses            | Req    | Number of vL1D cache accesses                               |
