@@ -8,13 +8,12 @@ AMD ROCm™ Platform supports the following Linux distributions.
 
 | Distribution       |Processor Architectures| Validated Kernel   |
 |--------------------|-----------------------|--------------------|
+| CentOS 8.4         | x86-64                | 4.18               |
 | CentOS 7.9         | x86-64                | 3.10               |
-| RHEL 8.6 to 8.5    | x86-64                | 4.18               |
+| RHEL 8.5           | x86-64                | 4.18               |
 | RHEL 7.9           | x86-64                | 3.10               |
-| SLES 15 SP4        | x86-64                | 5.14.21            |
 | SLES 15 SP3        | x86-64                | 5.3.18             |
 | Ubuntu 20.04.4 LTS | x86-64                | 5.13               |
-| Ubuntu 20.04.3 LTS | x86-64                | 5.11               |
 | Ubuntu 18.04.5 LTS | x86-64                | 5.4.0              |
 
 ## Virtualization Support
