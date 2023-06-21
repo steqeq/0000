@@ -18,8 +18,8 @@ following commands based on your distribution.
 
 ```shell
 sudo apt update
-wget https://repo.radeon.com/amdgpu-install/22.20/ubuntu/bionic/amdgpu-install_22.20.50200-1_all.deb
-sudo apt install ./amdgpu-install_22.20.50200-1_all.deb
+wget https://repo.radeon.com/amdgpu-install/22.10/ubuntu/bionic/amdgpu-install_22.10.50100-1_all.deb
+sudo apt install ./amdgpu-install_22.10.50100-1_all.deb
 ```
 
 :::
@@ -28,8 +28,8 @@ sudo apt install ./amdgpu-install_22.20.50200-1_all.deb
 
 ```shell
 sudo apt update
-wget https://repo.radeon.com/amdgpu-install/22.20/ubuntu/focal/amdgpu-install_22.20.50200-1_all.deb
-sudo apt install ./amdgpu-install_22.20.50200-1_all.deb
+wget https://repo.radeon.com/amdgpu-install/22.10/ubuntu/focal/amdgpu-install_22.10.50100-1_all.deb
+sudo apt install ./amdgpu-install_22.10.50100-1_all.deb
 ```
 
 :::
@@ -57,34 +57,17 @@ sudo yum install https://repo.radeon.com/amdgpu-install/22.20/rhel/8.5/amdgpu-in
 ```
 
 :::
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/22.20/rhel/8.6/amdgpu-install-22.20.50200-1.el8.noarch.rpm
-```
-
-:::
 ::::
 :::::
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
 ::::{tab-set}
-:::{tab-item} Service Pack 4
-:sync: SLES15-SP4
-
-```shell
-sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/22.20/sle/15.4/amdgpu-install-22.20.50200-1.noarch.rpm
-```
-
-:::
 :::{tab-item} Service Pack 3
 :sync: SLES15-SP3
 
 ```shell
-sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/22.20/sle/15.3/amdgpu-install-22.20.50200-1.noarch.rpm
+sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/22.10/sle/15/amdgpu-install-22.10.50100-1.noarch.rpm
 ```
 
 :::
@@ -163,9 +146,9 @@ the installer script will install packages in the single-version layout.
 For the multi-version ROCm installation you must use the installer script from
 the latest release of ROCm that you wish to install.
 
-**Example:** If you want to install ROCm releases 5.1.3 and 5.2
+**Example:** If you want to install ROCm releases 5.0.2 and 5.1
 simultaneously, you are required to download the installer from the latest ROCm
-release v5.2.
+release v5.1.
 
 ### Add Required Repositories
 
@@ -184,7 +167,7 @@ Run the following commands based on your distribution to add the repositories:
 :sync: ubuntu-18.04
 
 ```shell
-for ver in 5.1.3; do
+for ver in 5.0.2; do
 echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver bionic main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -196,7 +179,7 @@ sudo apt update
 :sync: ubuntu-20.04
 
 ```shell
-for ver in 5.1.3; do
+for ver in 5.0.2; do
 echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -214,7 +197,7 @@ sudo apt update
 :sync: RHEL-7
 
 ```shell
-for ver in 5.1.3; do
+for ver in 5.0.2; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -233,7 +216,7 @@ sudo yum clean all
 :sync: RHEL-8
 
 ```shell
-for ver in 5.1.3; do
+for ver in 5.0.2; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -258,27 +241,10 @@ sudo yum clean all
 :sync: SLES15-SP3
 
 ```shell
-for ver in 5.1.3; do
+for ver in 5.0.2; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
-baseurl=https://repo.radeon.com/rocm/$ver/sle/15.3/main/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-done
-sudo zypper ref
-```
-
-:::
-:::{tab-item} Service Pack 4
-:sync: SLES15-SP4
-
-```shell
-for ver in 5.1.3; do
-sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
-name=rocm
-baseurl=https://repo.radeon.com/rocm/$ver/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/rocm/$ver/sle/15/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -308,8 +274,8 @@ driver, associated with the ROCm release v5.3, will be installed as its latest
 release in the list.
 
 ```none
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.1.3
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.2.0
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.0.2
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.1.0
 ```
 
 ## Additional options
