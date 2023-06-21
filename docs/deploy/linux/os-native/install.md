@@ -53,7 +53,7 @@ To add the AMDGPU repository, follow these steps:
 
 ```shell
 # amdgpu repository for focal
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.3/ubuntu focal main' \
+echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/22.20.3/ubuntu focal main' \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -64,7 +64,7 @@ sudo apt update
 
 ```shell
 # amdgpu repository for jammy
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.3/ubuntu jammy main' \
+echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/22.20.3/ubuntu jammy main' \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -86,13 +86,13 @@ sudo reboot
 To add the ROCm repository, use the following steps:
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
+:::{tab-item} Ubuntu 18.04
+:sync: ubuntu-18.04
 
 ```shell
-# ROCm repositories for focal
-for ver in 5.2.1 5.3; do
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
+# ROCm repositories for bionic
+for ver in 5.1.3 5.2.3; do
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver bionic main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
@@ -101,13 +101,13 @@ sudo apt update
 ```
 
 :::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
 
 ```shell
-# ROCm repositories for jammy
-for ver in 5.2.1 5.3; do
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" \
+# ROCm repositories for focal
+for ver in 5.1.3 5.2.3; do
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
@@ -136,7 +136,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo apt install rocm-hip-sdk5.3.0 rocm-hip-sdk5.2.1
+   sudo apt install rocm-hip-sdk5.2.3 rocm-hip-sdk5.1.3
    ```
 
 :::::
@@ -160,7 +160,7 @@ section.
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.3/rhel/7.9/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/22.20.3/rhel/7.9/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -179,7 +179,7 @@ sudo yum clean all
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.3/rhel/8.5/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/22.20.3/rhel/8.5/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -198,7 +198,7 @@ sudo yum clean all
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.3/rhel/8.6/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/22.20.3/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -209,24 +209,6 @@ sudo yum clean all
 
 :::
 
-:::{tab-item} RHEL 9.0
-:sync: RHEL-9.0
-:sync: RHEL-9
-
-```shell
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.3/rhel/9.0/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
 ::::
 
 Install the kernel mode driver and reboot the system using the following
@@ -247,7 +229,7 @@ To add the ROCm repository, use the following steps, based on your distribution:
 :sync: RHEL-7
 
 ```shell
-for ver in 5.2.1 5.3; do
+for ver in 5.2.1 5.2.3; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -266,30 +248,11 @@ sudo yum clean all
 :sync: RHEL-8
 
 ```shell
-for ver in 5.2.1 5.3; do
+for ver in 5.1.3 5.2.3; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
 baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-done
-sudo yum clean all
-```
-
-:::
-:::{tab-item} RHEL 9
-:sync: RHEL-9
-
-```shell
-for ver in 5.2.1 5.3; do
-sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
-[ROCm-$ver]
-name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -320,7 +283,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo yum install rocm-hip-sdk5.3.0 rocm-hip-sdk5.2.1
+   sudo yum install rocm-hip-sdk5.2.3 rocm-hip-sdk5.1.3
    ```
 
 :::::
@@ -343,7 +306,7 @@ section.
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.3/sle/15.3/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/22.20.3/sle/15.3/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -359,7 +322,7 @@ sudo zypper ref
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.3/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/22.20.3/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -384,7 +347,7 @@ sudo reboot
 To add the ROCm repository, use the following steps:
 
 ```shell
-for ver in 5.2.1 5.3; do
+for ver in 5.1.3 5.2.3; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -416,7 +379,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.3.0 rocm-hip-sdk5.2.1
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.2.3 rocm-hip-sdk5.1.3
    ```
 
 :::::
@@ -453,7 +416,7 @@ but are generally useful. Verification of the install is advised.
 2. Add binary paths to the `PATH` environment variable.
 
    ```shell
-   export PATH=$PATH:/opt/rocm-5.3.2/bin:/opt/rocm-5.2.1/opencl/bin
+   export PATH=$PATH:/opt/rocm-5.2.3/bin:/opt/rocm-5.2.3/opencl/bin
    ```
 
    ```{attention}
