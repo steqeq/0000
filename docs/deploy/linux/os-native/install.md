@@ -53,7 +53,7 @@ To add the AMDGPU repository, follow these steps:
 
 ```shell
 # amdgpu repository for focal
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.4/ubuntu focal main' \
+echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.3.3/ubuntu focal main' \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -64,7 +64,7 @@ sudo apt update
 
 ```shell
 # amdgpu repository for jammy
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.4/ubuntu jammy main' \
+echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.3.3/ubuntu jammy main' \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -91,7 +91,7 @@ To add the ROCm repository, use the following steps:
 
 ```shell
 # ROCm repositories for focal
-for ver in 5.3.3 5.4; do
+for ver in 5.2.1 5.3.3; do
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
@@ -106,7 +106,7 @@ sudo apt update
 
 ```shell
 # ROCm repositories for jammy
-for ver in 5.3.3 5.4; do
+for ver in 5.2.1 5.3.3; do
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
@@ -136,7 +136,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo apt install rocm-hip-sdk5.4.0 rocm-hip-sdk5.3.3
+   sudo apt install rocm-hip-sdk5.3.3 rocm-hip-sdk5.2.1
    ```
 
 :::::
@@ -152,15 +152,15 @@ section.
 ```
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
+:::{tab-item} RHEL 7.9
+:sync: RHEL-7.9
+:sync: RHEL-7
 
 ```shell
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4/rhel/8.6/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/5.3.3/rhel/7.9/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -171,15 +171,34 @@ sudo yum clean all
 
 :::
 
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
+:::{tab-item} RHEL 8.5
+:sync: RHEL-8.5
 :sync: RHEL-8
 
 ```shell
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4/rhel/8.7/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/5.3.3/rhel/8.5/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+
+:::{tab-item} RHEL 8.6
+:sync: RHEL-8.6
+:sync: RHEL-8
+
+```shell
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/5.3.3/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -198,7 +217,7 @@ sudo yum clean all
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4/rhel/9.1/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/5.3.3/rhel/9.1/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -224,11 +243,30 @@ sudo reboot
 To add the ROCm repository, use the following steps, based on your distribution:
 
 ::::{tab-set}
+:::{tab-item} RHEL 7
+:sync: RHEL-7
+
+```shell
+for ver in 5.2.1 5.3.3; do
+sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/yum/$ver/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo yum clean all
+```
+
+:::
 :::{tab-item} RHEL 8
 :sync: RHEL-8
 
 ```shell
-for ver in 5.3.3 5.4; do
+for ver in 5.2.1 5.3.3; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -247,7 +285,7 @@ sudo yum clean all
 :sync: RHEL-9
 
 ```shell
-for ver in 5.3.3 5.4; do
+for ver in 5.2.1 5.3.3; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -282,7 +320,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo yum install rocm-hip-sdk5.4.0 rocm-hip-sdk5.3.3
+   sudo yum install rocm-hip-sdk5.3.3 rocm-hip-sdk5.2.1
    ```
 
 :::::
@@ -297,17 +335,40 @@ If you have a version of the kernel-mode driver installed, you may skip this
 section.
 ```
 
+::::{tab-set}
+:::{tab-item} Service Pack 3
+:sync: SLES15-SP3
+
 ```shell
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.3.3/sle/15.3/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 sudo zypper ref
 ```
+
+:::
+:::{tab-item} Service Pack 4
+:sync: SLES15-SP4
+
+```shell
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/5.3.3/sle/15.4/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo zypper ref
+```
+
+:::
+::::
 
 Install the kernel mode driver and reboot the system using the following
 commands:
@@ -323,7 +384,7 @@ sudo reboot
 To add the ROCm repository, use the following steps:
 
 ```shell
-for ver in 5.3.3 5.4; do
+for ver in 5.2.1 5.3.3; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -355,7 +416,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.4.0 rocm-hip-sdk5.3.3
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.3.3 rocm-hip-sdk5.2.1
    ```
 
 :::::
@@ -392,7 +453,7 @@ but are generally useful. Verification of the install is advised.
 2. Add binary paths to the `PATH` environment variable.
 
    ```shell
-   export PATH=$PATH:/opt/rocm-5.4.0/bin:/opt/rocm-5.4.0/opencl/bin
+   export PATH=$PATH:/opt/rocm-5.3.3/bin:/opt/rocm-5.2.1/opencl/bin
    ```
 
    ```{attention}
