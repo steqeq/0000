@@ -36,24 +36,24 @@ The following was added to the HIP API in the ROCm v5.5.1 release:
 
 | Library | Version |
 |---------|---------|
-| hipBLAS |  ⇒ [1.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
-| hipCUB |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
-| hipFFT |  ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
-| hipSOLVER |  ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
-| hipSPARSE |  ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
-| MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
-| rccl |  ⇒ [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
-| rocALUTION |  ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
-| rocBLAS |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
-| rocFFT |  ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
-| rocm-cmake |  ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
-| rocPRIM |  ⇒ [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
-| rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
-| rocSOLVER |  ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
-| rocSPARSE |  ⇒ [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.0) |
-| rocThrust |  ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
-| rocWMMA |  ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
-| Tensile |  ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
+| hipBLAS | 0.54.0 ⇒ [1.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
+| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
+| hipFFT | 1.0.11 ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
+| hipSOLVER | 1.7.0 ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
+| hipSPARSE | 2.3.5 ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
+| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
+| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
+| rocALUTION | 2.1.8 ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
+| rocBLAS | 2.47.0 ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
+| rocFFT | 1.0.22 ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
+| rocm-cmake | 0.8.1 ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
+| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
+| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
+| rocSOLVER | 3.21.0 ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
+| rocSPARSE | 2.5.1 ⇒ [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.0) |
+| rocThrust | 2.17.0 ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
+| rocWMMA | 1.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
+| Tensile | 4.36.0 ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
 
 #### hipBLAS 1.0.0
 
