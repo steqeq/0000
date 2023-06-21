@@ -56,7 +56,7 @@ that are required for target offload from an OpenMP program:
 The compiler also accepts the alternative offloading notation:
 
 ```bash
--fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa
+-fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch> 
 ```
 
 :::
@@ -439,7 +439,7 @@ You can use the clang compiler option `-fopenmp-target-fast` for kernel optimiza
 
 - `-fopenmp-target-ignore-env-vars`: It enables code generation of specialized kernels including No-loop and Cross-team reductions.
 
-- `-fopenmp-assume-no-thread-state`: It enables the compiler to assume that no thread in a parallel region modifies an Internal Control Variable (ICV), thus potentially reducing the device runtime code execution.
+- `-fopenmp-assume-no-thread-state`: It enables the compiler to assume that no thread in a parallel region modifies an Internal Control Variable (`ICV`), thus potentially reducing the device runtime code execution.
 
 - `-fopenmp-assume-no-nested-parallelism`: It enables the compiler to assume that no thread in a parallel region encounters a parallel region, thus potentially reducing the device runtime code execution.
 
