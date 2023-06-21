@@ -15,6 +15,31 @@ The release notes for the ROCm platform.
 
 -------------------
 
+## ROCm 5.1.3
+
+
+### Library Changes in ROCM 5.1.3
+
+| Library | Version |
+|---------|---------|
+| hipBLAS | [0.50.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.1.3) |
+| hipCUB | [2.11.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.1.3) |
+| hipFFT | [1.0.7](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.1.3) |
+| hipSOLVER | [1.3.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.1.3) |
+| hipSPARSE | [2.1.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.1.3) |
+| rccl | [2.11.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.1.3) |
+| rocALUTION | [2.0.2](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.1.3) |
+| rocBLAS | [2.43.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.1.3) |
+| rocFFT | [1.0.16](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.1.3) |
+| rocPRIM | [2.10.13](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.1.3) |
+| rocRAND | [2.10.13](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.1.3) |
+| rocSOLVER | [3.17.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.1.3) |
+| rocSPARSE | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.1.3) |
+| rocThrust | [2.14.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.1.3) |
+| Tensile | [4.32.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.1.3) |
+
+-------------------
+
 ## ROCm 5.1.1
 
 
