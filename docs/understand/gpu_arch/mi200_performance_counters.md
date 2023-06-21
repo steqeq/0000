@@ -8,7 +8,7 @@ This document lists and describes the hardware performance counters and the deri
 Preliminary validation of all MI200 performance counters is in progress. Those with “[*]” appended to the names require further evaluation.
 :::
 
-###	Graphics Register Bus Management (GRBM)
+### Graphics Register Bus Management (GRBM)
 
 :::{table}
 GRBM Counters
@@ -28,7 +28,7 @@ GRBM Counters
 
 :::
 
-###	Command Processor (CP)
+### Command Processor (CP)
 
 The command processor counters are further classified into fetcher and compute.
 
@@ -57,11 +57,11 @@ CPC Counters
 
 | Hardware Counter               | Unit   | Definition                                          |
 | :------------------------------| :------| --------------------------------------------------: |
-| cpc_me1_busy_for_packet_decode | Cycles |	CPC ME1 busy decoding packets                       |
+| cpc_me1_busy_for_packet_decode | Cycles | CPC ME1 busy decoding packets                       |
 | cpc_utcl1_stall_on_translation | Cycles | One of the UTCL1s is stalled waiting on translation |
 | cpc_cpc_stat_busy              | Cycles | CPC busy                                            |
 | cpc_cpc_stat_idle              | Cycles | CPC idle                                            |
-| cpc_cpc_stat_stall             | Cycles |	CPC stalled                                         |
+| cpc_cpc_stat_stall             | Cycles | CPC stalled                                         |
 | cpc_cpc_tciu_busy              | Cycles | CPC TCIU interface busy                             |
 | cpc_cpc_tciu_idle              | Cycles | CPC TCIU interface idle                             |
 | cpc_cpc_utcl2iu_busy           | Cycles | CPC UTCL2 interface busy                            |
