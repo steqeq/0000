@@ -15,69 +15,26 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.2.3
-<!-- markdownlint-disable first-line-h1 -->
-<!-- markdownlint-disable no-duplicate-header -->
-### Changes in This Release
+## ROCm 5.2.1
 
-#### Ubuntu 18.04 End of Life Announcement
 
-Support for Ubuntu 18.04 ends in this release. Future releases of ROCm will not provide prebuilt packages for Ubuntu 18.04.
-HIP and Other Runtimes
+### Library Changes in ROCM 5.2.1
 
-#### HIP Runtime
-
-##### Fixes
-
-- A bug was discovered in the HIP graph capture implementation in the ROCm v5.2.0 release. If the same kernel is called twice (with different argument values) in a graph capture, the implementation only kept the argument values for the second kernel call.
-
-- A bug was introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the `hiprtcGetLoweredName` call to fail for named expressions with whitespace in it.
-
-Example:
-
-The named expression `my_sqrt<complex<double>>` passed but `my_sqrt<complex<double >>` failed.
-ROCm Libraries
-
-#### RCCL
-
-##### Added
-
-Compatibility with NCCL 2.12.10
-
-- Packages for test and benchmark executables on all supported OSes using CPack
-
-- Added custom signal handler - opt-in with RCCL_ENABLE_SIGNALHANDLER=1
-
-  - Additional details provided if Binary File Descriptor library (BFD) is pre-installed.
-
-- Added experimental support for using multiple ranks per device
-
-  - Requires using a new interface to create communicator (ncclCommInitRankMulti), refer to the interface documentation for details.
-
-  - To avoid potential deadlocks, user might have to set an environment variables increasing    the number of hardware queues. For example,
-
-```sh
-export GPU_MAX_HW_QUEUES=16
-```
-
-- Added support for reusing ports in NET/IB channels
-
-  - Opt-in with NCCL_IB_SOCK_CLIENT_PORT_REUSE=1 and NCCL_IB_SOCK_SERVER_PORT_REUSE=1
-
-  - When "Call to bind failed: Address already in use" error happens in large-scale AlltoAll(for example, >=64 MI200 nodes), users are suggested to opt-in either one or both of the options to resolve the massive port usage issue
-
-  - Avoid using NCCL_IB_SOCK_SERVER_PORT_REUSE when NCCL_NCHANNELS_PER_NET_PEER is tuned >1
-
-##### Removed
-
-- Removed experimental clique-based kernels
-
-#### Development Tools
-
-No notable changes in this release for development tools, including the compiler, profiler, and debugger
-Deployment and Management Tools
-
-No notable changes in this release for deployment and management tools.
-Older ROCm Releases
-
-For release information for older ROCm releases, refer to <https://github.com/RadeonOpenCompute/ROCm/blob/master/CHANGELOG.md>
+| Library | Version |
+|---------|---------|
+| hipBLAS | [0.51.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.2.1) |
+| hipCUB | [2.11.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.2.1) |
+| hipFFT | [1.0.8](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.2.1) |
+| hipSOLVER | [1.4.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.2.1) |
+| hipSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.2.1) |
+| rccl | [2.11.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.2.1) |
+| rocALUTION | [2.0.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.2.1) |
+| rocBLAS | [2.44.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.2.1) |
+| rocFFT | [1.0.17](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.2.1) |
+| rocPRIM | [2.10.14](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.2.1) |
+| rocRAND | [2.10.14](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.2.1) |
+| rocSOLVER | [3.18.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.2.1) |
+| rocSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.2.1) |
+| rocThrust | [2.15.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.2.1) |
+| rocWMMA | [0.7](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.2.1) |
+| Tensile | [4.33.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.2.1) |
