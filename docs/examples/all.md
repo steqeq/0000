@@ -18,7 +18,6 @@ Detailed walkthroughs of specific use-cases driven by frameworks using ROCm
 acceleration.
 
 - [Implementing Inception V3 on ROCm with PyTorch](machine_learning/pytorch_inception.md)
-- [Optimizing Inference with MIGraphX](machine_learning/migraphx_optimization.md)
 
 :::
 

@@ -224,10 +224,6 @@ ROCm CMake Packages
 +-----------+----------+--------------------------------------------------------+
 | MIOpen    | miopen   | ``MIOpen``                                             |
 +-----------+----------+--------------------------------------------------------+
-| MIGraphX  | migraphx | ``migraphx::migraphx``, ``migraphx::migraphx_c``,      |
-|           |          | ``migraphx::migraphx_cpu``, ``migraphx::migraphx_gpu``,|
-|           |          | ``migraphx::migraphx_onnx``, ``migraphx::migraphx_tf`` |
-+-----------+----------+--------------------------------------------------------+
 
 Using CMake Presets
 ===================

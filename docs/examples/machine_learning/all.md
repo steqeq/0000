@@ -10,11 +10,4 @@ A collection of detailed and guided examples for working with Inception V3 with 
 
 :::
 
-:::{grid-item-card} Optimizing Inference with MIGraphX
-:link: migraphx_optimization
-:link-type: doc
-Walkthroughs of optimizing inference using MIGraphX.
-
-:::
-
 :::::

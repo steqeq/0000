@@ -93,7 +93,6 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 - [Examples](https://github.com/amd/rocm-examples)
 - [ML, DL, and AI](examples/machine_learning/all)
   - [](examples/machine_learning/pytorch_inception)
-  - [](examples/machine_learning/migraphx_optimization)
 
 :::
 ::::
