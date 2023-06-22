@@ -1,4 +1,5 @@
 # MI200 Performance Counters and Metrics
+<!-- markdownlint-disable no-duplicate-header -->
 
 This document lists and describes the hardware performance counters and the derived metrics available on the AMD Instinct™ MI200 GPU. All hardware performance monitors, and the derived performance metrics are accessible via AMD ROCm™ Profiler tool.
 
@@ -89,7 +90,6 @@ The compute unit counters are further classified into instruction mix, MFMA oper
 
 #### Instruction Mix
 
-
 | Hardware Counter        | Unit   | Definition                                                               |
 | :-----------------------| :-----:| -----------------------------------------------------------------------: |
 | `sq_insts`                | Instr | Number of instructions issued                                             |
@@ -139,7 +139,6 @@ The compute unit counters are further classified into instruction mix, MFMA oper
 | `sq_insts_valu_mfma_mops_BF16` | FLOP  | Number of BF16 floating MFMA ops in unit of 512 |
 | `sq_insts_valu_mfma_mops_F32`  | FLOP  | Number of F32 floating MFMA ops in unit of 512  |
 | `sq_insts_valu_mfma_mops_F64`  | FLOP  | Number of F64 floating MFMA ops in unit of 512  |
-
 
 #### Level Counters
 
