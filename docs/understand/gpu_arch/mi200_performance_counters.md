@@ -42,7 +42,7 @@ CPF Counters
 | Hardware Counter                     | Unit   | Definition                                                  |
 | -------------------------------------| :------| ----------------------------------------------------------- |
 | `cpf_cmp_utcl1_stall_on_translation` | Cycles | One of the Compute UTCL1s is stalled waiting on translation. |
-| `cpf_cpf_stat_busy`                  | Cycles | CPF busy                                                    
+| `cpf_cpf_stat_busy`                  | Cycles | CPF busy                                                   |
 | `cpf_cpf_stat_idle[∗]`               | Cycles | CPF idle                                                   |
 | `cpf_cpf_stat_stall`                 | Cycles | CPF stall                                                  |
 | `cpf_cpf_tciu_busy`                  | Cycles | CPF TCIU interface busy                                    |
