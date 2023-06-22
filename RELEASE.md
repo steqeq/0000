@@ -15,219 +15,23 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.1.0
+## ROCm 5.0.2
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
-
-#### HIP Enhancements
-
-The ROCm v5.1 release consists of the following HIP enhancements.
-
-##### HIP Installation Guide Updates
-
-The HIP Installation Guide is updated to include installation and building HIP from source on the AMD and NVIDIA platforms.
-
-Refer to the HIP Installation Guide v5.1 for more details.
-
-##### Support for HIP Graph
-
-ROCm v5.1 extends support for HIP Graph.
-
-##### Planned Changes for HIP in Future Releases
-
-###### Separation of hiprtc (libhiprtc) library from hip runtime (amdhip64)
-
-On ROCm/Linux, to maintain backward compatibility, the hipruntime library (amdhip64) will continue to include hiprtc symbols in future releases. The backward compatible support may be discontinued by removing hiprtc symbols from the hipruntime library (amdhip64) in the next major release.
-
-###### hipDeviceProp_t Structure Enhancements
-
-Changes to the hipDeviceProp_t structure in the next major release may result in backward incompatibility.  More details on these changes will be provided in subsequent releases.
-
-#### ROCDebugger Enhancements
-
-##### Multi-language Source Level Debugger
-
-The compiler now generates a source-level variable and function argument debug information.
-
-The accuracy is guaranteed if the compiler options `-g -O0` are used and apply only to HIP.
-
-This enhancement enables ROCDebugger users to interact with the HIP source-level variables and function arguments.
-
-> **Note**
->
-> The newly-suggested compiler -g option must be used instead of the previously-suggested `-ggdb` option. Although the effect of these two options is currently equivalent, this is not guaranteed for the future and might get changed by the upstream LLVM community.
-
-##### Machine Interface Lanes Support
-
-ROCDebugger Machine Interface (MI) extends support to lanes. The following enhancements are made:
-
-- Added a new -lane-info command, listing the current thread's lanes.
-
-- The -thread-select command now supports a lane switch to switch to a specific lane of a thread:
-
-  ```sh
-  -thread-select -l LANE THREAD
-  ```
-
-- The =thread-selected notification gained a lane-id attribute. This enables the frontend to know which lane of the thread was selected.
-
-- The *stopped asynchronous record gained lane-id and hit-lanes attributes.  The former indicates which lane is selected, and the latter indicates which lanes explain the stop.
-
-- MI commands now accept a global --lane option, similar to the global --thread and --frame options.
-
-- MI varobjs are now lane-aware.
-
-For more information, refer to the ROC Debugger User Guide at
-{doc}`ROCgdb <rocgdb:index>`.
-
-##### Enhanced - clone-inferior Command
-
-The clone-inferior command now ensures that the TTY, CMD, ARGS, and AMDGPU PRECISE-MEMORY settings are copied from the original inferior to the new one.  All modifications to the environment variables done using the 'set environment' or 'unset environment' commands are also copied to the new inferior.
-
-#### MIOpen Support for RDNA GPUs
-
-This release includes support for AMD Radeon™ Pro W6800, in addition to other bug fixes and performance improvements as listed below:
-
-- MIOpen now supports RDNA GPUs!! (via MIOpen PRs 973, 780, 764, 740, 739, 677, 660, 653, 493, 498)
-
-- Fixed a correctness issue with ImplicitGemm algorithm
-
-- Updated the performance data for new kernel versions
-
-- Improved MIOpen build time by splitting large kernel header files
-
-- Fixed an issue in reduction kernels for padded tensors
-
-- Various other bug fixes and performance improvements
-
-For more information, see {doc}`Documentation <miopen:index>`.
-
-#### Checkpoint Restore Support With CRIU
-
-The new Checkpoint Restore in Userspace (CRIU) functionality is implemented to support AMD GPU and ROCm applications.
-
-CRIU is a userspace tool to Checkpoint and Restore an application.
-
-CRIU lacked the support for checkpoint restore applications that used device files such as a GPU. With this ROCm release, CRIU is enhanced with a new plugin to support AMD GPUs, which includes:
-
-- Single and Multi GPU systems (Gfx9)
-
-- Checkpoint / Restore on a different system
-
-- Checkpoint / Restore inside a docker container
-
-- PyTorch
-
-- Tensorflow
-
-- Using CRIU Image Streamer
-
-For more information, refer to <https://github.com/checkpoint-restore/criu/tree/criu-dev/plugins/amdgpu>
-
-> **Note**
->
-> The CRIU plugin (amdgpu_plugin) is merged upstream with the CRIU repository. The KFD kernel patches are also available upstream with the amd-staging-drm-next branch (public) and the ROCm 5.1 release branch.
-
-> **Note**
->
-> This is a Beta release of the Checkpoint and Restore functionality, and some features are not available in this release.
-
-For more information, refer to the following websites:
-
-- <https://github.com/RadeonOpenCompute/criu/blob/amdgpu_plugin-03252022/Documentation/amdgpu_plugin.txt>
-
-- <https://criu.org/Main_Page>
-
 ### Fixed Defects
 
-The following defects are fixed in this release.
+The following defects are fixed in the ROCm v5.0.2 release.
 
-#### Driver Fails To Load after Installation
+#### Issue with hostcall Facility in HIP Runtime
 
-The issue with the driver failing to load after ROCm installation is now fixed.
+In ROCm v5.0, when using the “assert()” call in a HIP kernel, the compiler may sometimes fail to emit kernel metadata related to the hostcall facility, which results in incomplete initialization of the hostcall facility in the HIP runtime. This can cause the HIP kernel to crash when it attempts to execute the “assert()” call.
 
-The driver installs successfully, and the server reboots with working rocminfo and clinfo.
+The root cause was an incorrect check in the compiler to determine whether the hostcall facility is required by the kernel. This is fixed in the ROCm v5.0.2 release.
 
-#### ROCDebugger Fixed Defects
+The resolution includes a compiler change, which emits the required metadata by default, unless the compiler can prove that the hostcall facility is not required by the kernel. This ensures that the “assert()” call never fails.
 
-##### Breakpoints in GPU kernel code Before Kernel Is Loaded
+Note:
+This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region and result in an abort in device code. The issue will be fixed in a future release.
+Compatibility Matrix Updates to ROCm Deep Learning Guide
 
-Previously, setting a breakpoint in device code by line number before the device code was loaded into the program resulted in ROCgdb incorrectly moving the breakpoint to the first following line that contains host code.
-
-Now, the breakpoint is left pending.  When the GPU kernel gets loaded, the breakpoint resolves to a location in the kernel.
-
-##### Registers Invalidated After Write
-
-Previously, the stale just-written value was presented as a current value.
-
-ROCgdb now invalidates the cached values of registers whose content might differ after being written.  For example, registers with read-only bits.
-
-ROCgdb also invalidates all volatile registers when a volatile register is written.  For example, writing VCC invalidates the content of STATUS as STATUS.VCCZ may change.
-
-##### Scheduler-locking and GPU Wavefronts
-
-When scheduler-locking is in effect, new wavefronts created by a resumed thread, CPU, or GPU wavefront, are held in the halt state. For example, the "set scheduler-locking" command.
-
-##### ROCDebugger Fails Before Completion of Kernel Execution
-
-It was possible (although erroneous) for a debugger to load GPU code in memory, send it to the device, start executing a kernel on the device, and dispose of the original code before the kernel had finished execution.  If a breakpoint was hit after this point, the debugger failed with an internal error while trying to access the debug information.
-
-This issue is now fixed by ensuring that the debugger keeps a local copy of the original code and debug information.
-
-### Known Issues
-
-#### Random Memory Access Fault Errors Observed While Running Math Libraries Unit Tests
-
-**Issue:** Random memory access fault issues are observed while running Math libraries unit tests. This issue is encountered in ROCm v5.0, ROCm v5.0.1, and ROCm v5.0.2.
-
-Note, the faults only occur in the SRIOV environment.
-
-**Workaround:** Use SDMA to update the page table. The Guest set up steps are as follows:
-
-```sh
-sudo modprobe amdgpu vm_update_mode=0
-```
-
-To verify, use
-
-**Guest:**
-
-```sh
-cat /sys/module/amdgpu/parameters/vm_update_mode 0
-```
-
-Where expectation is 0.
-
-#### CU Masking Causes Application to Freeze
-
-Using CU Masking results in an application freeze or runs exceptionally slowly. This issue is noticed only in the GFX10 suite of products. Note, this issue is observed only in GFX10 suite of products.
-
-This issue is under active investigation at this time.
-
-#### Failed Checkpoint in Docker Containers
-
-A defect with Ubuntu images kernel-5.13-30-generic and kernel-5.13-35-generic with Overlay FS results in incorrect reporting of the mount ID.
-
-This issue with Ubuntu causes CRIU checkpointing to fail in Docker containers.
-
-As a workaround, use an older version of the kernel. For example, Ubuntu 5.11.0-46-generic.
-
-#### Issue with Restoring Workloads Using Cooperative Groups Feature
-
-Workloads that use the cooperative groups function to ensure all waves can be resident at the same time may fail to restore correctly.
-This issue is under investigation and will be fixed in a future release.
-
-#### Radeon Pro V620 and W6800 Workstation GPUs
-
-##### No Support for ROCDebugger on SRIOV
-
-ROCDebugger is not supported in the SRIOV environment on any GPU.
-
-This is a known issue and will be fixed in a future release.
-
-#### Random Error Messages in ROCm SMI for SR-IOV
-
-Random error messages are generated by unsupported functions or commands.
-
-This is a known issue and will be fixed in a future release.
+The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0.2.
