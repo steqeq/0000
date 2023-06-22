@@ -10,12 +10,10 @@ Preliminary validation of all MI200 performance counters is in progress. Those w
 
 ### Graphics Register Bus Management (GRBM)
 
-:::{table}
-GRBM Counters
-:name: GRBM_Counters
+#### GRBM Counters
 
-| Hardware Counter   | Unit  | Definition                                                                 |
-| -------------------| ------| ---------------------------------------------------------------------------|
+| Hardware Counter   | Unit   | Definition                                                                |
+|--------------------|--------| --------------------------------------------------------------------------|
 | `grbm_count`       | Cycles | Free-running GPU clock                                                    |
 | `grbm_gui_active`  | Cycles | GPU active cycles                                                         |
 | `grbm_cp_busy`     | Cycles | Any of the CP (CPC/CPF) blocks are busy.                                  |
@@ -26,8 +24,6 @@ GRBM Counters
 | `grbm_cpf_busy`    | Cycles | The Command Processor - Fetcher (CPF) is busy.                            |
 | `grbm_utcl2_busy`  | Cycles | The Unified Translation Cache - Level 2 (UTCL2) block is busy.            |
 | `grbm_ea_busy`     | Cycles | The Efficiency Arbiter (EA) block is busy.                                |
-
-:::
 
 ### Command Processor (CP)
 
