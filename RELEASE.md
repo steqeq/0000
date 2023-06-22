@@ -18,12 +18,7 @@ The release notes for the ROCm platform.
 ## ROCm 5.6.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
-
-#### Change Log for HIP
-
-Full documentation for HIP is available at rocm.docs.amd.com
-
+<!-- markdownlint-disable header-increment -->
 ##### HIP 5.6 (For ROCm 5.6)
 
 ###### Optimizations
