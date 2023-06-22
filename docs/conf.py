@@ -5,40 +5,14 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import shutil
-shutil.copy2('../CONTRIBUTING.md','./contributing.md')
-shutil.copy2('../RELEASE.md','./release.md')
-
 
 from rocm_docs import ROCmDocs
 
-# working anchors that linkcheck cannot find
-linkcheck_anchors_ignore = [
-    'd90e61', 
-    'd1667e113', 
-    'd2999e60', 
-    'building-from-source', 
-    'use-the-rocm-build-tool-rbuild', 
-    'use-cmake-to-build-migraphx', 
-    'example'
-]
-linkcheck_ignore = [
-    # site to be built
-    "https://rocmdocs.amd.com/projects/ROCmCC/en/latest/", 
-    "https://rocmdocs.amd.com/projects/amdsmi/en/latest/",
-    "https://rocmdocs.amd.com/projects/rdc/en/latest/",
-    "https://rocmdocs.amd.com/projects/rocmsmi/en/latest/", 
-    "https://rocmdocs.amd.com/projects/roctracer/en/latest/",
-    "https://rocmdocs.amd.com/projects/MIGraphX/en/latest/",
-    "https://rocmdocs.amd.com/projects/rocprofiler/en/latest/",
-    # correct links that linkcheck times out on
-    "https://github.com/ROCm-Developer-Tools/HIP-VS/blob/master/README.md",
-    r"https://www.amd.com/system/files/.*.pdf",
-    "https://www.amd.com/en/developer/aocc.html",
-    "https://www.amd.com/en/support/linux-drivers",
-    "https://www.amd.com/en/technologies/infinity-hub",
-    r"https://bitbucket.org/icl/magma/*",
-    "http://cs231n.stanford.edu/"
-]
+
+shutil.copy2('../CONTRIBUTING.md','./contributing.md')
+shutil.copy2('../RELEASE.md','./release.md')
+# Keep capitalization due to similar linking on GitHub's markdown preview.
+shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
 setting_all_article_info = True
 all_article_info_os = ["linux"]
@@ -73,7 +47,7 @@ article_pages = [
     {"file":"how_to/system_debugging", "os":["linux"]},
     {"file":"how_to/tensorflow_install/tensorflow_install", "os":["linux"]},
 
-    {"file":"examples/ai_ml_inferencing", "os":["linux"]},
+    {"file":"examples/machine_learning", "os":["linux"]},
     {"file":"examples/inception_casestudy/inception_casestudy", "os":["linux"]},
     
     {"file":"understand/file_reorg", "os":["linux"]},
@@ -83,8 +57,13 @@ article_pages = [
 
 external_toc_path = "./sphinx/_toc.yml"
 
-docs_core = ROCmDocs("ROCm Documentation")
+docs_core = ROCmDocs("ROCm Documentation Home")
 docs_core.setup()
+
+external_projects_current_project = "rocm"
 
 for sphinx_var in ROCmDocs.SPHINX_VARS:
     globals()[sphinx_var] = getattr(docs_core, sphinx_var)
+html_theme_options = {
+    "link_main_doc": False
+}

@@ -1,6 +1,6 @@
 # OpenMP Support in ROCm
 
-## Introduction to OpenMP Support Guide
+## Introduction
 
 The ROCm™ installation includes an LLVM-based implementation that fully supports
 the OpenMP 4.5 standard and a subset of OpenMP 5.0, 5.1, and 5.2 standards.
@@ -9,8 +9,7 @@ Along with host APIs, the OpenMP compilers support offloading code and data onto
 GPU devices. This document briefly describes the installation location of the
 OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
-this ROCm release. See the list of supported GPUs in the installation guide at
-[https://docs.amd.com/](https://docs.amd.com/).
+this ROCm release. See the list of supported GPUs in {doc}`/release/gpu_os_support`.
 
 ### Installation
 
@@ -54,11 +53,10 @@ that are required for target offload from an OpenMP program:
 ```
 
 :::{note}
-The Makefile in the example above uses a more classical and verbose set of flags
-which can also be used:
+The compiler also accepts the alternative offloading notation:
 
 ```bash
--fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa
+-fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch> 
 ```
 
 :::
@@ -97,7 +95,7 @@ code compiled with AOMP:
    ```
 
    The stats option produces timestamps for the kernels. Look into the output
-   CSV file for the field, `Durations`, which is useful in getting an
+   CSV file for the field, `DurationNs`, which is useful in getting an
    understanding of the critical kernels in the code.
 
    Apart from `--stats`, the option `--timestamp` on produces a timestamp for
@@ -110,7 +108,7 @@ code compiled with AOMP:
    an XML file as an input.
 
 For more details on `rocprof`, refer to the ROCm Profiling Tools document on
-<https://docs.amd.com>.
+{doc}`rocprofiler:rocprof`.
 
 ### Using Tracing Options
 
@@ -118,7 +116,7 @@ For more details on `rocprof`, refer to the ROCm Profiling Tools document on
 program with:
 
 ```bash
-    -Wl,–rpath,/opt/rocm-{version}/lib -lamdhip64
+    -Wl,-rpath,/opt/rocm-{version}/lib -lamdhip64
 ```
 
 The following tracing options are widely used to generate useful information:
@@ -137,14 +135,14 @@ Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the
 HSA calls.
 
 For more details on tracing, refer to the ROCm Profiling Tools document on
-<https://docs.amd.com>.
+{doc}`rocprofiler:rocprof`.
 
 ### Environment Variables
 
 :::{table}
 :widths: auto
-| Environment Variable        | Description |
-| --------------------------- | ----------- |
+| Environment Variable        | Description                  |
+| --------------------------- | ---------------------------- |
 | `OMP_NUM_TEAMS`             | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
 | `LIBOMPTARGET_KERNEL_TRACE` | This environment variable is used to print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
 | `LIBOMPTARGET_INFO`         | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
@@ -156,6 +154,16 @@ For more details on tracing, refer to the ROCm Profiling Tools document on
 
 The OpenMP programming model is greatly enhanced with the following new features
 implemented in the past releases.
+
+(openmp_usm)=
+
+### Asynchronous Behavior in OpenMP Target Regions
+
+- Multithreaded offloading on the same device
+The `libomptarget` plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
+
+- Parallel memory copy invocations
+Implicit asynchronous execution of single target region enables parallel memory copy invocations.
 
 ### Unified Shared Memory
 
@@ -177,39 +185,34 @@ with Xnack capability.
 When enabled, Xnack capability allows GPU threads to access CPU (system) memory,
 allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. Xnack must be
 enabled both at compile- and run-time. To enable Xnack support at compile-time,
-the programmer should use
+use:
 
 ```bash
 --offload-arch=gfx908:xnack+
 ```
 
-Or, equivalently
+Or use another functionally equivalent option Xnack-any:
 
 ```bash
 --offload-arch=gfx908
 ```
 
-:::{note}
-The second case is called Xnack-any and it is functionally equivalent to the
-first case.
-:::
-
-At runtime, programmers enable Xnack functionality on a per-application basis
-using an environment variable:
+To enable Xnack functionality at runtime on a per-application basis,
+use environment variable:
 
 ```bash
 HSA_XNACK=1
 ```
 
-When Xnack support is not needed, then applications can be built to maximize
-resource utilization using:
+When Xnack support is not needed:
+
+- Build the applications to maximize resource utilization using:
 
 ```bash
 --offload-arch=gfx908:xnack-
 ```
 
-At runtime, the `HSA_XNACK` environment variable can be set to 0, as Xnack
-functionality is not needed.
+- At runtime, set the `HSA_XNACK` environment variable to 0.
 
 #### Unified Shared Memory Pragma
 
@@ -263,7 +266,7 @@ The difference between the memory pages pointed to by these two variables is
 that the pages pointed by “a” are in fine-grain memory, while the pages pointed
 to by “b” are in coarse-grain memory during and after the execution of the
 target region. This is accomplished in the OpenMP runtime library with calls to
-the ROCR runtime to set the pages pointed by “b” as coarse grain.
+the ROCr runtime to set the pages pointed by “b” as coarse grain.
 
 ### OMPT Target Support
 
@@ -430,43 +433,46 @@ for(int i=0; i<N; i++){
 See the complete sample code for global buffer overflow
 [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
 
-### No-loop Kernel Generation
+### Clang Compiler Option for Kernel Optimization
 
-The No-loop kernel generation feature optimizes the compiler performance by
-generating a specialized kernel for certain OpenMP Target Constructs such as
-target teams distribute parallel for. The specialized kernel generation assumes
-that every thread executes a single iteration of the user loop, which implies
-that the runtime launches a total number of GPU threads equal to or greater than
-the iteration space size of the target region loop. This allows the compiler to
-generate code for the loop body without an enclosing loop, resulting in reduced
-control-flow complexity and potentially better performance.
+You can use the clang compiler option `-fopenmp-target-fast` for kernel optimization if certain constraints implied by its component options are satisfied. `-fopenmp-target-fast` enables the following options:
 
-To enable the generation of the specialized kernel, follow these guidelines:
+- `-fopenmp-target-ignore-env-vars`: It enables code generation of specialized kernels including No-loop and Cross-team reductions.
 
-- Do not specify teams, threads, and schedule-related environment variables. The
-  `num_teams` or a `thread_limit` clause in an OpenMP target construct acts as
-  an override and prevents the generation of the specialized kernel. As the user
-  is unable to specify the number of teams and threads used within target
-  regions in the absence of the above-mentioned environment variables, the
-  runtime will select the best values for the launch configuration based on
-  runtime knowledge of the program.
+- `-fopenmp-assume-no-thread-state`: It enables the compiler to assume that no thread in a parallel region modifies an Internal Control Variable (`ICV`), thus potentially reducing the device runtime code execution.
 
-- Assert the absence of the above-mentioned environment variables by adding the
-  command-line option `-fopenmp-target-ignore-env-vars`. This option also allows
-  programmers to enable the No-loop functionality at lower optimization levels.
+- `-fopenmp-assume-no-nested-parallelism`: It enables the compiler to assume that no thread in a parallel region encounters a parallel region, thus potentially reducing the device runtime code execution.
 
-- Also, the No-loop functionality is automatically enabled when `-O3` or
-  `-Ofast` is used for compilation. To disable this feature, use
-  `-fno-openmp-target-ignore-env-vars`.
+- `-O3` if no `-O*` is specified by the user.
 
-Note The compiler might not generate the No-loop kernel in certain scenarios
-where the performance improvement is not substantial.
+### Specialized Kernels
 
-### Cross-Team Optimized Reductions
+Clang will attempt to generate specialized kernels based on compiler options and OpenMP constructs. The following specialized kernels are supported:
 
-In scenarios where a No-loop kernel is generated but the OpenMP construct has a
-reduction clause, the compiler may generate optimized code utilizing efficient
-Cross-Team (Xteam) communication. No separate user option is required, and there
-is a significant performance improvement with Xteam reduction. New APIs for
-Xteam reduction are implemented in the device runtime, and clang generates these
-APIs automatically.
+- No-Loop
+
+- Big-Jump-Loop
+
+- Cross-Team (Xteam) Reductions
+
+To enable the generation of specialized kernels, follow these guidelines:
+
+- Do not specify teams, threads, and schedule-related environment variables. The `num_teams` clause in an OpenMP target construct acts as an override and prevents the generation of the No-Loop kernel. If the specification of `num_teams` clause is a user requirement then clang tries to generate the Big-Jump-Loop kernel instead of the No-Loop kernel.
+
+- Assert the absence of the teams, threads, and schedule-related environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`.
+
+- To automatically enable the specialized kernel generation, use `-Ofast` or `-fopenmp-target-fast` for compilation.
+
+- To disable specialized kernel generation, use `-fno-openmp-target-ignore-env-vars`.
+
+#### No-Loop Kernel Generation
+
+The No-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP target constructs such as target teams distribute parallel for. The specialized kernel generation feature assumes every thread executes a single iteration of the user loop, which leads the runtime to launch a total number of GPU threads equal to or greater than the iteration space size of the target region loop. This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
+
+#### Big-Jump-Loop Kernel Generation
+
+A No-Loop kernel is not generated if the OpenMP teams construct uses a `num_teams` clause. Instead, the compiler attempts to generate a different specialized kernel called the Big-Jump-Loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP `num_teams` clause and the `blocksize` chosen either by the compiler or specified by the corresponding OpenMP clause.
+
+#### Xteam Optimized Reduction Kernel Generation
+
+If the OpenMP construct has a reduction clause, the compiler attempts to generate optimized code by utilizing efficient Xteam communication. New APIs for Xteam reduction are implemented in the device runtime and are automatically generated by clang.

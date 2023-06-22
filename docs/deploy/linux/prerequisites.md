@@ -49,59 +49,128 @@ Verify the kernel version using the following steps:
    uname -srmv
    ```
 
-2. Confirm that the obtained kernel version information matches with System
-   Requirements.
-
    **Example:** The output of the command above lists the kernel version in the
    following format:
 
-   ```shell
+   ```output
    Linux 5.15.0-46-generic #44~20.04.5-Ubuntu SMP Fri Jun 24 13:27:29 UTC 2022 x86_64
    ```
 
-## Confirm the System has a ROCm-Capable GPU
+2. Confirm that the obtained kernel version information matches with system
+   requirements as listed in {ref}`supported_distributions`.
 
-The ROCm platform is designed to support the following GPUs:
+## Additional package repositories
 
-```{table} GPU Support for ROCm Programming Models
-:name: gpu-support
-| **Classification** | **GPU Name**              | **GFX ID** | **Product Id** |
-|:------------------:|:-------------------------:|:----------:|:--------------:|
-| **GFX9 GPUs**      | AMD Radeon Instinct™ MI50 | gfx906     | Vega 20        |
-| **GFX9 GPUs**      | AMD Radeon Instinct™ MI60 | gfx906     | Vega 20        |
-| **GFX9 GPUs**      | AMD Radeon™ VII           | gfx906     | Vega 20        |
-| **GFX9 GPUs**      | AMD Radeon™ Pro VII       | gfx906     | Vega 20        |
-| **RDNA GPUs**      | AMD Radeon™ Pro W6800     | gfx1030    | Navi 21 GL-XL  |
-| **RDNA GPUs**      | AMD Radeon™ Pro V620      | gfx1030    | Navi 21 GL-XE  |
-| **CDNA GPUs**      | AMD Instinct™ MI100       | gfx908     | Arcturus       |
-| **CDNA GPUs**      | AMD Instinct™ MI200       | gfx90a     | Aldebaran      |
+On some distributions the ROCm packages depend on packages outside the default
+package repositories. These extra repositories need to be enabled before
+installation. Follow the instructions below based on your distributions.
+
+::::::{tab-set}
+
+:::::{tab-item} Ubuntu
+:sync: ubuntu
+
+All packages are available in the default Ubuntu repositories, therefore
+no additional repositories need to be added.
+
+:::::
+:::::{tab-item} Red Hat Enterprise Linux
+:sync: RHEL
+
+::::{rubric} 1. Add the EPEL repository
+::::
+
+::::{tab-set}
+:::{tab-item} RHEL 8
+:sync: RHEL-8
+
+```shell
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo rpm -ivh epel-release-latest-8.noarch.rpm
 ```
 
-### Verify Your System Has a ROCm-Capable GPU
+:::
+:::{tab-item} RHEL 9
 
-To verify that your system has a ROCm-capable GPU, use these steps:
+```shell
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+sudo rpm -ivh epel-release-latest-9.noarch.rpm
+```
 
-1. Enter the following command:
+:::
+::::
 
-   ```shell
-   lspci | grep -i display
-   ```
+::::{rubric} 2. Enable the CodeReady Linux Builder repository
+::::
 
-   The command displays the details of detected GPUs on the system in the
-   following format in the case of AMD Instinct™ MI200:
+Run the following command and follow the instructions.
 
-   ```text
-   c1:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Aldebaran
-   c5:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Aldebaran
-   ```
+```shell
+sudo crb enable
+```
 
-2. Verify from the output that the listed product names match with the Product
-   Id given in the table above.
+:::::
+:::::{tab-item} SUSE Linux Enterprise Server 15
 
-### Setting Permissions for Groups
+Add the perl languages repository.
+
+```shell
+zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/SLE_15_SP4/devel:languages:perl.repo
+```
+
+:::::
+::::::
+
+## Kernel headers and development packages
+
+The driver package uses
+[{abbr}`DKMS (Dynamic Kernel Module Support)`][DKMS-wiki] to build
+the `amdgpu-dkms` module (driver) for the installed kernels. This requires the
+Linux kernel headers and modules to be installed for each. Usually these are
+automatically installed with the kernel, but if you have multiple kernel
+versions or you have downloaded the kernel images and not the kernel
+meta-packages then they must be manually installed.
+
+[DKMS-wiki]: https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support
+
+To install for the currently active kernel run the command corresponding
+to your distribution.
+
+::::{tab-set}
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
+```shell
+sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+```
+
+:::
+
+:::{tab-item} Red Hat Enterprise Linux
+:sync: RHEL
+
+```shell
+sudo yum install kernel-headers kernel-devel
+```
+
+:::
+
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
+
+```shell
+sudo zypper install kernel-default-devel
+```
+
+:::
+::::
+
+## Setting Permissions for Groups
 
 This section provides steps to add any current user to a video group to access
 GPU resources.
+Use of the video group is recommended for all ROCm-supported operating
+systems.
 
 1. To check the groups in your system, issue the following command:
 
@@ -109,21 +178,17 @@ GPU resources.
    groups
    ```
 
-2. Add yourself to the `render` or `video` group using the following instruction:
+2. Add yourself to the `render` and `video` group using the command:
 
    ```shell
-   sudo usermod -a -G render $LOGNAME
-   # OR
-   sudo usermod -a -G video $LOGNAME
+   sudo usermod -a -G render,video $LOGNAME
    ```
 
-3. Use of the video group is recommended for all ROCm-supported operating
-   systems.
+To add all future users to the `video` and `render` groups by default, run
+the following commands:
 
-   To add all future users to the `video` and `render` groups by default, run the following commands:
-
-   ```shell
-   echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
-   echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
-   echo 'EXTRA_GROUPS=render' | sudo tee -a /etc/adduser.conf
-   ```
+```shell
+echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
+echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+echo 'EXTRA_GROUPS=render' | sudo tee -a /etc/adduser.conf
+```

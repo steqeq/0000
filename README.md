@@ -1,4 +1,4 @@
-# AMD ROCm™ Platform - Powering Your GPU Computational Needs
+# AMD ROCm™ Platform
 
 ROCm™ is an open-source stack for GPU computation. ROCm is primarily Open-Source
 Software (OSS) that allows developers the freedom to customize and tailor their
@@ -29,7 +29,16 @@ repositories and the associated commit used to build the current ROCm release.
 
 The default.xml file uses the repo Manifest format.
 
-## How to build documentation via Sphinx
+The develop branch of this repository contains content for the next
+ROCm release.
+
+## ROCm Documentation
+
+ROCm Documentation is available online at
+[rocm.docs.amd.com](https://rocm.docs.amd.com). Source code for the documenation
+is located in the docs folder of most repositories that are part of ROCm.
+
+### How to build documentation via Sphinx
 
 ```bash
 cd docs

@@ -14,10 +14,12 @@ automatic differentiation. Other advanced features include:
 
 ### Installing PyTorch
 
-To install ROCm on bare metal, refer to the section
-[ROCm Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60).
-The recommended option to get a PyTorch environment is through Docker. However,
-installing the PyTorch wheels package on bare metal is also supported.
+To install ROCm on bare metal, refer to the sections
+[GPU and OS Support (Linux)](../../release/gpu_os_support.md) and
+[Compatibility](../../release/compatibility.md) for hardware, software and
+3rd-party framework compatibility between ROCm and PyTorch. The recommended
+option to get a PyTorch environment is through Docker. However, installing the
+PyTorch wheels package on bare metal is also supported.
 
 #### Option 1 (Recommended): Use Docker Image with PyTorch Pre-Installed
 
@@ -51,12 +53,14 @@ Follow these steps:
    onto the container.
    :::
 
+(install_pytorch_using_wheels)=
+
 #### Option 2: Install PyTorch Using Wheels Package
 
 PyTorch supports the ROCm platform by providing tested wheels packages. To
 access this feature, refer to
 [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
-and choose the "ROCm" compute platform. {numref}`Installation-Matrix-from-Pytorch` is a matrix from <http://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
+and choose the "ROCm" compute platform. {numref}`Installation-Matrix-from-Pytorch` is a matrix from <https://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
 
 ```{figure} ../../data/how_to/magma_install/image.006.png
 :name: Installation-Matrix-from-Pytorch
@@ -77,9 +81,9 @@ To install PyTorch using the wheels package, follow these installation steps:
 
    b. Download a base OS Docker image and install ROCm following the
       installation directions in the section
-      [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60).
-      ROCm 5.2 is installed in this example, as supported by the installation
-      matrix from <http://pytorch.org/>.
+      [Installation](../../deploy/linux/install.md). ROCm 5.2 is installed in
+      this example, as supported by the installation matrix from
+      <https://pytorch.org/>.
 
    or
 
@@ -152,7 +156,7 @@ Follow these steps:
    cd ~
    git clone https://github.com/pytorch/pytorch.git
    cd pytorch
-   git submodule update --init –recursive
+   git submodule update --init --recursive
    ```
 
 4. Build PyTorch for ROCm.
@@ -194,7 +198,7 @@ Follow these steps:
 
    ```bash
    python3 tools/amd_build/build_amd.py
-   USE_ROCM=1 MAX_JOBS=4 python3 setup.py install ––user
+   USE_ROCM=1 MAX_JOBS=4 python3 setup.py install --user
    ```
 
 #### Option 4: Install Using PyTorch Upstream Docker File
@@ -217,7 +221,7 @@ Follow these steps:
    cd ~
    git clone https://github.com/pytorch/pytorch.git
    cd pytorch
-   git submodule update --init –recursive
+   git submodule update --init --recursive
    ```
 
 2. Build the PyTorch Docker image.

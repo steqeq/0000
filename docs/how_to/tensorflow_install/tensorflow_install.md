@@ -16,8 +16,8 @@ The following sections contain options for installing TensorFlow.
 #### Option 1: Install TensorFlow Using Docker Image
 
 To install ROCm on bare metal, follow the section
-[ROCm Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60).
-The recommended option to get a TensorFlow environment is through Docker.
+[Installation (Linux)](../../deploy/linux/install.md). The recommended option to
+get a TensorFlow environment is through Docker.
 
 Using Docker provides portability and access to a prebuilt Docker container that
 has been rigorously tested within AMD. This might also save compilation time and
@@ -33,8 +33,8 @@ Follow these steps:
 2. Once you have pulled the image, run it by using the command below:
 
    ```bash
-   docker run -it --network=host --device=/dev/kfd --device=/dev/dri
-   --ipc=host --shm-size 16G --group-add video --cap-add=SYS_PTRACE
+   docker run -it --network=host --device=/dev/kfd --device=/dev/dri \
+   --ipc=host --shm-size 16G --group-add video --cap-add=SYS_PTRACE \
    --security-opt seccomp=unconfined rocm/tensorflow:latest
    ```
 
@@ -45,7 +45,7 @@ To install TensorFlow using the wheels package, follow these steps:
 1. Check the Python version.
 
    ```bash
-   python3 –version
+   python3 --version
    ```
 
    | If:                                 | Then:                            |
@@ -105,7 +105,7 @@ To install TensorFlow using the wheels package, follow these steps:
 5. Install TensorFlow for the Python version as indicated in Step 2.
 
    ```bash
-   /usr/bin/python[version] -m pip install --user tensorflow-rocm==[wheel-version] –upgrade
+   /usr/bin/python[version] -m pip install --user tensorflow-rocm==[wheel-version] --upgrade
    ```
 
    For a valid wheel version for a ROCm release, refer to the instruction below:
