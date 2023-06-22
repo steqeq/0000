@@ -21,7 +21,6 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 - {doc}`hipBLAS <hipblas:index>`
 - {doc}`hipBLASLt <hipblaslt:index>`
 - {doc}`rocALUTION <rocalution:index>`
-- {doc}`rocWMMA <rocwmma:index>`
 - {doc}`rocSOLVER <rocsolver:index>`
 - {doc}`hipSOLVER <hipsolver:index>`
 - {doc}`rocSPARSE <rocsparse:index>`

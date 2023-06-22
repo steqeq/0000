@@ -45,15 +45,6 @@ modern CPU and GPU platforms.
 
 :::
 
-:::{grid-item-card} {doc}`rocWMMA <rocwmma:index>`
-`rocWMMA` provides an API to break down mixed precision matrix multiply-accumulate
-(MMA) problems into fragments and distributes these over GPU wavefronts.
-
-- {doc}`Documentation <rocwmma:index>`
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
-
-:::
-
 :::{grid-item-card} {doc}`rocSOLVER <rocsolver:index>`
 `rocSOLVER` provides a subset of LAPACK (Linear Algebra Package) functionality on the ROCm platform.
 

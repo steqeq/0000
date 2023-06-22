@@ -99,8 +99,6 @@ subtrees:
                 url: ${project:hipblaslt}
               - title: rocALUTION
                 url: ${project:rocalution}
-              - title: rocWMMA
-                url: ${project:rocwmma}
               - title: rocSOLVER
                 url: ${project:rocsolver}
               - title: hipSOLVER
