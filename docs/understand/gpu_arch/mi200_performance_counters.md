@@ -4,9 +4,7 @@ This document lists and describes the hardware performance counters and the deri
 
 ## MI200 Performance Counters List
 
-:::{note}
-Preliminary validation of all MI200 performance counters is in progress. Those with “[*]” appended to the names require further evaluation.
-:::
+Note: Preliminary validation of all MI200 performance counters is in progress. Those with “[*]” appended to the names require further evaluation.
 
 ### Graphics Register Bus Management (GRBM)
 
@@ -31,27 +29,20 @@ The command processor counters are further classified into fetcher and compute.
 
 #### Command Processor - Fetcher (CPF)
 
-:::{table}
-CPF Counters
-:name: CPF_Counters
+##### CPF Counters
 
-| Hardware Counter                     | Unit   | Definition                                                  |
-| -------------------------------------| :------| ----------------------------------------------------------- |
+| Hardware Counter                     | Unit   | Definition                                                   |
+|--------------------------------------|--------|--------------------------------------------------------------|
 | `cpf_cmp_utcl1_stall_on_translation` | Cycles | One of the Compute UTCL1s is stalled waiting on translation. |
-| `cpf_cpf_stat_busy`                  | Cycles | CPF busy                                                   |
 | `cpf_cpf_stat_idle[∗]`               | Cycles | CPF idle                                                   |
 | `cpf_cpf_stat_stall`                 | Cycles | CPF stall                                                  |
 | `cpf_cpf_tciu_busy`                  | Cycles | CPF TCIU interface busy                                    |
 | `cpf_cpf_tciu_idle`                  | Cycles | CPF TCIU interface idle                                    |
 | `cpf_cpf_tciu_stall[∗]`              | Cycles | CPF TCIU interface is stalled waiting on free tags.        |
 
-:::
-
 #### Command Processor - Compute (CPC)
 
-:::{table}
-CPC Counters
-:name: CPC_Counters
+##### CPC Counters
 
 | Hardware Counter                 | Unit   | Definition                                          |
 | ---------------------------------| -------| --------------------------------------------------- |
@@ -67,13 +58,9 @@ CPC Counters
 | `cpc_cpc_utcl2iu_stall[∗]`       | Cycles | CPC UTCL2 interface stalled waiting                 |
 | `cpc_me1_dci0_spi_busy`          | Cycles | CPC ME1 Processor busy                              |
 
-:::
-
 ### Shader Processor Input (SPI)
 
-:::{table}
-SPI Counters
-:name: SPI_Counters
+#### SPI Counters
 
 | Hardware Counter             | Unit        | Definition                                                   |
 | :----------------------------| :-----------| -----------------------------------------------------------: |
@@ -96,17 +83,12 @@ SPI Counters
 | `spi_vwc_csc_wr`               | Cycles      | Number of clocks to write CSC waves to VGPRs (need to multiply this value by 4) |
 | `spi_swc_csc_wr`               | Cycles      | Number of clocks to write CSC waves to SGPRs (need to multiply this value by 4) |
 
-:::
-
 ### Compute Unit
 
 The compute unit counters are further classified into instruction mix, MFMA operation counters, level counters, wavefront counters, wavefront cycle counters, local data share counters, and others.
 
 #### Instruction Mix
 
-:::{table}
-Instruction Mix Counters
-:name: Instruction_Mix
 
 | Hardware Counter        | Unit   | Definition                                                               |
 | :-----------------------| :-----:| -----------------------------------------------------------------------: |
@@ -148,13 +130,7 @@ Instruction Mix Counters
 | `sq_insts_sendmsg`        | Instr | Number of SENDMSG instructions including s_endpgm issued                  |
 | `sq_insts_vskipped[∗]`    | Instr | Number of VSkipped instructions issued                                    |
 
-:::
-
 #### MFMA Operation Counters
-
-:::{table}
-MFMA Operation Counters
-:name: MFMA_Operation_Counters
 
 | Hardware Counter             | Unit  | Definition                                      |
 | :----------------------------| :-----| ----------------------------------------------: |
@@ -164,13 +140,8 @@ MFMA Operation Counters
 | `sq_insts_valu_mfma_mops_F32`  | FLOP  | Number of F32 floating MFMA ops in unit of 512  |
 | `sq_insts_valu_mfma_mops_F64`  | FLOP  | Number of F64 floating MFMA ops in unit of 512  |
 
-:::
 
 #### Level Counters
-
-:::{table}
-Level Counters
-:name: Level_Counters
 
 | Hardware Counter    | Unit  | Definition                             |
 | :-------------------| :-----| -------------------------------------: |
@@ -182,13 +153,7 @@ Level Counters
 | `sq_insts_level_lds`  | Instr | Number of inflight LDS instructions    |
 | `sq_ifetch_level`     | Instr | Number of inflight instruction fetches |
 
-:::
-
 #### Wavefront Counters
-
-:::{table}
-Wavefront Counters
-:name: Wavefront_Counters
 
 | Hardware Counter     | Unit  | Definition                                                        |
 | :--------------------| :-----| ----------------------------------------------------------------: |
@@ -201,13 +166,7 @@ Wavefront Counters
 | `sq_waves_lt_32`       | Waves | Number of wavefronts with less than 32 active threads sent to SQs |
 | `sq_waves_lt_16`       | Waves | Number of wavefronts with less than 16 active threads sent to SQs |
 
-:::
-
 #### Wavefront Cycle Counters
-
-:::{table}
-Wavefront Cycle Counters
-:name: Wavefront_Cycle_Counters
 
 | Hardware Counter         | Unit    | Definition                                                            |
 | :------------------------| :-------| --------------------------------------------------------------------: |
@@ -232,13 +191,7 @@ Wavefront Cycle Counters
 | `sq_inst_cycles_salu`      | Cycles  | Number of cycles spent to execute non-memory read scalar operations   |
 | `sq_thread_cycles_valu`    | Cycles  | Number of thread-cycles spent to execute VALU operations              |
 
-:::
-
 #### Local Data Share
-
-:::{table}
-Local Data Share
-:name: Local_Data_Share
 
 | Hardware Counter           | Unit   | Definition                                                |
 | :--------------------------| :------| --------------------------------------------------------: |
@@ -248,26 +201,18 @@ Local Data Share
 | `sq_lds_unaligned_stalls[∗]` | Cycles | Number of cycles LDS is stalled processing flat unaligned load/store ops |
 | `sq_lds_mem_violations[∗]`   | Count  | Number of threads that have a memory violation in the LDS |
 
-:::
-
 #### Miscellaneous
 
-:::{table}
-Local Data Share
-:name: Local_Data_Share
+##### Local Data Share
 
 | Hardware Counter | Unit    | Definition                                                |
 | :----------------| :-------| --------------------------------------------------------: |
 | `sq_ifetch`        | Count   | Number of fetch requests from L1I cache, in 32-byte width |
 | `sq_items`         | Threads | Number of valid threads                                   |
 
-:::
-
 ### L1I and sL1D Caches
 
-:::{table}
-L1I and sL1D Caches
-:name: L1I_sL1D_Caches
+#### L1I and sL1D Caches
 
 | Hardware Counter             | Unit   | Definition                                                        |
 | :----------------------------| :------| ----------------------------------------------------------------: |
@@ -293,17 +238,13 @@ L1I and sL1D Caches
 | `sqc_tc_data_atomic_req[∗]`    | Req    | Number of data Atomic requests to the L2 cache                    |
 | `sqc_tc_stall[∗]`              | Cycles | Number of cycles while the valid requests to L2 Cache are stalled |
 
-:::
-
 ### Vector L1 Cache Subsystem
 
 The vector L1 cache subsystem counters are further classified into texture addressing unit, texture data unit, vector L1D cache, and texture cache arbiter.
 
 #### Texture Addressing Unit
 
-:::{table}
-Texture Addressing Unit Counters
-:name: Texture_Addressing_Unit_Counters
+##### Texture Addressing Unit Counters
 
 | Hardware Counter                 | Unit   | Definition                                        |
 | :--------------------------------| :------| ------------------------------------------------: |
@@ -324,13 +265,9 @@ Texture Addressing Unit Counters
 | `ta_flat_write_wavefronts`         | Instr  | Number of Flat Write wavefront instructions       |
 | `ta_flat_atomic_wavefronts`        | Instr  | Number of Flat Atomic wavefront instructions      |
 
-:::
-
 #### Texture Data Unit
 
-:::{table}
-Texture Data Unit Counters
-:name: Texture_Data_Unit_Counters
+##### Texture Data Unit Counters
 
 | Hardware Counter         | Unit  | Definition                                           |
 | :------------------------| :-----| ---------------------------------------------------: |
@@ -342,13 +279,7 @@ Texture Data Unit Counters
 | `td_atomic_wavefront`      | Instr | Number of Atomic wavefront instructions              |
 | `td_coalescable_wavefront` | Instr | Number of coalescable instructions                   |
 
-:::
-
 #### Vector L1D Cache
-
-:::{table}
-Vector L1D Cache
-:name: Vector_L1D_Cache
 
 | Hardware Counter                    | Unit   | Definition                                                  |
 | :-----------------------------------| :------| ----------------------------------------------------------: |
@@ -393,26 +324,16 @@ Vector L1D Cache
 | `tcp_tcc_cc_atomic_req`               | Req    | Number of CC Atomic requests to L2 Cache                   |
 | `tcp_tcc_rw_atomic_req`               | Req    | Number of RW Atomic requests to L2 Cache                   |
 
-:::
-
 #### Texture Cache Arbiter (TCA)
-
-:::{table}
-Texture Cache Arbiter
-:name: Texture_Cache_Arbiter
 
 | Hardware Counter | Unit   | Definition                                  |
 | :----------------| :------| ------------------------------------------: |
 | `tca_cycle`        | Cycles | TCA cycles                                  |
 | `tca_busy`         | Cycles | Number of cycles  TCA has a pending request |
 
-:::
-
 ### L2 Cache Access
 
-:::{table}
-L2 Cache Access Counters
-:name: L2_Cache_Access
+#### L2 Cache Access Counters
 
 | Hardware Counter                 | Unit   | Definition                                                     |
 | :--------------------------------| :------| -------------------------------------------------------------: |
@@ -458,13 +379,9 @@ L2 Cache Access Counters
 | `tcc_normal_evict`                 | Req    | Number of L2 cache normal evictions                           |
 | `tcc_all_tc_op_inv_evict[∗]`       | Req    | Number of instruction-triggered eviction requests             |
 
-:::
-
 ## MI200 Derived Metrics List
 
-:::{table}
-Derived Metrics on MI200 GPUs
-:name: MI200_Derived_Metrics
+### Derived Metrics on MI200 GPUs
 
 | Derived Metric   | Description                                                                            |
 | :----------------| -------------------------------------------------------------------------------------: |
@@ -482,13 +399,9 @@ Derived Metrics on MI200 GPUs
 | `WriteUnitStalled` | The percentage of GPU time the write unit is stalled. Value range: 0% to 100% (bad)      |
 | `LDSBankConflict`  | The percentage of GPU time LDS is stalled by bank conflicts. Value range: 0% (optimal) to 100% (bad) |
 
-:::
-
 ## Abbreviations
 
-:::{table}
-Abbreviations Used in the Document
-:name: MI200_Abbreviations
+### MI200_Abbreviations
 
 | Abbreviation | Meaning                                                                           |
 | :------------| --------------------------------------------------------------------------------: |
@@ -545,5 +458,3 @@ Abbreviations Used in the Document
 | `VGPR`         | Vector GPR                                                                        |
 | `vL1D`         | Vector Level -1 Data Cache                                                        |
 | `VMEM`         | Vector Memory                                                                     |
-
-:::
