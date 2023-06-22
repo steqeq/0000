@@ -401,7 +401,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 
 ## Abbreviations
 
-### MI200_Abbreviations
+### MI200 Abbreviations
 
 | Abbreviation | Meaning                                                                           |
 | :------------| --------------------------------------------------------------------------------: |
@@ -419,11 +419,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `DW`           | 32-bit Data Word, DWORD                                                           |
 | `EA`           | Efficiency Arbiter                                                                |
 | `F16`          | Half Precision Floating Point                                                     |
-| `FLAT`         | FLAT instructions allow read/write/atomic access to a generic memory address pointer, which can resolve to any of the following physical memories:
-•   Global Memory
-•   Scratch (“private”)
-•   LDS (“shared”)
-•   Invalid – MEM_VIOL TrapStatus |
+| `FLAT`         | FLAT instructions allow read/write/atomic access to a generic memory address pointer, which can resolve to any of the following physical memories:<br>•   Global Memory<br>•   Scratch (“private”)<br>•   LDS (“shared”)<br>•   Invalid – MEM_VIOL TrapStatus |
 | `FMA`          | Fused Multiply Add                                                                |
 | `GDS`          | Global Data Share                                                                 |
 | `GRBM`         | Graphics Register Bus Manager                                                     |
