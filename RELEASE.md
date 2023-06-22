@@ -15,39 +15,46 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.5.1
+## ROCm 5.5.2
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
+### Announcement
 
-#### HIP API Change
+- ROCm is switching to a new website at <https://rocm.docs.amd.com>. 
+  User feedback via GitHub is greatly appreciated. 
+  Pull Requests from the community are encouraged.
+- The [ROCm repository](https://github.com/RadeonOpenCompute/ROCm) is the new central repository for documentation. The ROCm_Documentation repository is now archived.
+- AMD is encouraging the community to use ROCm's [GitHub discussions forum](https://github.com/RadeonOpenCompute/ROCm/discussions).
 
-The following HIP API is updated in the ROCm v5.5.1 release,
+### Fixes
 
-##### `hipDeviceSetCacheConfig`
+- An issue in OpenCL related to program lock was fixed.
+- Fixed an issue in drm/amdgpu that impacted system stability.
+- Fixed an issues in drm/amd/display related to power consumption optimization having unexpected performance impacts.
+- [AMDGPU: Fix an assertion in `SIOptimizeVGPRLiveRange`](https://reviews.llvm.org/D149161)
+- A change was made in `hip_init` lock to resolve performance related issues.
 
-- The return value for `hipDeviceSetCacheConfig` is updated from `hipErrorNotSupported` to `hipSuccess`
-
-### Library Changes in ROCM 5.5.1
+### Library Changes in ROCM 5.5.2
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.1) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.1) |
-| hipFFT | [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.1) |
-| hipSOLVER | [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.1) |
-| hipSPARSE | [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.1) |
-| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.1) |
-| rocALUTION | [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.1) |
-| rocBLAS | [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.1) |
-| rocFFT | [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.1) |
-| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.1) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.1) |
-| rocSOLVER | [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.1) |
-| rocSPARSE | [2.5.1](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.5.1) |
-| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.1) |
-| rocWMMA | [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.1) |
-| Tensile | [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.1) |
+| hipBLAS | [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.2) |
+| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.2) |
+| hipFFT | [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.2) |
+| hipSOLVER | [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.2) |
+| hipSPARSE | [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.2) |
+| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.2) |
+| rocALUTION | [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.2) |
+| rocBLAS | [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.2) |
+| rocFFT | [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.2) |
+| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.2) |
+| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.2) |
+| rocSOLVER | [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.2) |
+| rocSPARSE | [2.5.1](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.5.2) |
+| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.2) |
+| rocWMMA | [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.2) |
+| Tensile | [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.2) |
+
 
 ## Older versions
 

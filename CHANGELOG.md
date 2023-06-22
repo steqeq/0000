@@ -15,6 +15,48 @@ The release notes for the ROCm platform.
 
 -------------------
 
+## ROCm 5.5.2
+<!-- markdownlint-disable first-line-h1 -->
+<!-- markdownlint-disable no-duplicate-header -->
+### Announcement
+
+- ROCm is switching to a new website at <https://rocm.docs.amd.com>. 
+  User feedback via GitHub is greatly appreciated. 
+  Pull Requests from the community are encouraged.
+- The [ROCm repository](https://github.com/RadeonOpenCompute/ROCm) is the new central repository for documentation. The ROCm_Documentation repository is now archived.
+- AMD is encouraging the community to use ROCm's [GitHub discussions forum](https://github.com/RadeonOpenCompute/ROCm/discussions).
+
+### Fixes
+
+- An issue in OpenCL related to program lock was fixed.
+- Fixed an issue in drm/amdgpu that impacted system stability.
+- Fixed an issues in drm/amd/display related to power consumption optimization having unexpected performance impacts.
+- [AMDGPU: Fix an assertion in `SIOptimizeVGPRLiveRange`](https://reviews.llvm.org/D149161)
+- A change was made in `hip_init` lock to resolve performance related issues.
+
+### Library Changes in ROCM 5.5.2
+
+| Library | Version |
+|---------|---------|
+| hipBLAS | [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.2) |
+| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.2) |
+| hipFFT | [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.2) |
+| hipSOLVER | [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.2) |
+| hipSPARSE | [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.2) |
+| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.2) |
+| rocALUTION | [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.2) |
+| rocBLAS | [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.2) |
+| rocFFT | [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.2) |
+| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.2) |
+| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.2) |
+| rocSOLVER | [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.2) |
+| rocSPARSE | [2.5.1](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.5.2) |
+| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.2) |
+| rocWMMA | [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.2) |
+| Tensile | [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.2) |
+
+-------------------
+
 ## ROCm 5.5.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
@@ -1135,6 +1177,8 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
+(5_4_0_filesystem_reorg_deprecation_notice)=
+
 ##### Linux Filesystem Hierarchy Standard for ROCm
 
 ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
@@ -1245,9 +1289,8 @@ The test was incorrectly using the `hipDeviceAttributePageableMemoryAccess` devi
 
 `hipHostMalloc()` allocates memory with fine-grained access by default when the environment variable `HIP_HOST_COHERENT=1` is used.
 
-For more information, refer to the HIP Programming Guide at
+For more information, refer to {doc}`hip:.doxygen/docBin/html/index`.
 
-<https://docs.amd.com/bundle/HIP-Programming-Guide-v5.4/page/Introduction_to_HIP_Programming_Guide.html>
 
 #### SoftHang with `hipStreamWithCUMask` test on AMD Instinct™
 
@@ -2561,7 +2604,8 @@ The new APIs for virtual memory management are as follows:
   hipError_t hipMemUnmap(void* ptr, size_t size);
   ```
 
-For more information, refer to the HIP API documentation at <https://docs.amd.com/bundle/HIP_API_Guide/page/modules.html>
+For more information, refer to the HIP API documentation at
+{doc}`hip:.doxygen/docBin/html/modules`.
 
 ##### Planned HIP Changes in Future Releases
 
@@ -2577,7 +2621,8 @@ This release introduces a new ROCm C++ library for accelerating mixed precision 
 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
-For more information, refer to <https://docs.amd.com/category/libraries>.
+For more information, refer to
+[Communication Libraries](../../../../docs/reference/gpu_libraries/communication.md).
 
 #### OpenMP Enhancements in This Release
 
@@ -3171,7 +3216,8 @@ ROCDebugger Machine Interface (MI) extends support to lanes. The following enhan
 
 - MI varobjs are now lane-aware.
 
-For more information, refer to the ROC Debugger User Guide at <https://docs.amd.com>.
+For more information, refer to the ROC Debugger User Guide at
+{doc}`ROCgdb <rocgdb:index>`.
 
 ##### Enhanced - clone-inferior Command
 
@@ -3193,7 +3239,7 @@ This release includes support for AMD Radeon™ Pro W6800, in addition to other 
 
 - Various other bug fixes and performance improvements
 
-For more information, see <https://docs.amd.com/bundle/MIOpen_gh-pages/page/releasenotes.html>
+For more information, see {doc}`Documentation <miopen:index>`.
 
 #### Checkpoint Restore Support With CRIU
 
