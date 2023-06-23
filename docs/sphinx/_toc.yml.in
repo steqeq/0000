@@ -57,6 +57,11 @@ subtrees:
         - file: release/3rd_party_support_matrix
   - file: release/licensing
 
+- caption: Announcements
+  entries:
+  - file: deprecations
+    title: Planned Deprecations
+
 
 - caption: APIs and Reference
   entries:
