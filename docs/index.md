@@ -1,6 +1,6 @@
 # AMD ROCm™ Documentation
 
-:::::{grid} 1 1 3 3
+:::::{grid} 1 1 4 4
 :gutter: 1
 
 ::::{grid-item}
@@ -30,6 +30,15 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 - [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue)
 - [Compatibility](release/compatibility)
 - [Licensing](release/licensing)
+
+:::
+::::
+
+::::{grid-item}
+:::{dropdown} [Announcements](announcements)
+
+- [Planned Deprecations](deprecations)
+- [Docs-As-Code](docs-as-code)
 
 :::
 ::::
