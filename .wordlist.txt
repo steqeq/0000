@@ -27,3 +27,5 @@ DGEMM
 HPCG
 HPL
 IOPM
+# Planned Deprecations
+Deprecations
