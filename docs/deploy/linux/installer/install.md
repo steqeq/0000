@@ -267,7 +267,7 @@ sudo yum clean all
 for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
-baseurl=https://repo.radeon.com/rocm/$ver/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/rocm/zyp/$ver/main
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key

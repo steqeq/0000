@@ -91,6 +91,7 @@ sudo rpm -ivh epel-release-latest-8.noarch.rpm
 
 :::
 :::{tab-item} RHEL 9
+:sync: RHEL-9
 
 ```shell
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -111,6 +112,7 @@ sudo crb enable
 
 :::::
 :::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 Add the perl languages repository.
 
