@@ -98,6 +98,14 @@ sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.6/s
 ```
 
 :::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.6/sle/15.5/amdgpu-install-5.6.50600-1.noarch.rpm
+```
+
+:::
 ::::
 :::::
 ::::::

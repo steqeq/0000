@@ -125,6 +125,14 @@ zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/S
 ```
 
 :::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+zypper addrepo https://download.opensuse.org/repositories/devel:/languages:/perl/15.5/devel:languages:perl.repo
+```
+
+:::
 ::::
 :::::
 ::::::

@@ -352,6 +352,22 @@ sudo zypper ref
 ```
 
 :::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/5.6/sle/15.5/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo zypper ref
+```
+
+:::
 ::::
 
 Install the kernel mode driver and reboot the system using the following
