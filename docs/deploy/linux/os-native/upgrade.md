@@ -141,8 +141,12 @@ sudo yum clean all
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
+
+::::{tab-set}
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
@@ -156,6 +160,8 @@ EOF
 sudo zypper ref
 ```
 
+:::
+::::
 :::::
 ::::::
 

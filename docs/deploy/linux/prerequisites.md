@@ -110,14 +110,20 @@ sudo crb enable
 ```
 
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
+:::::{tab-item} SUSE Linux Enterprise Server
 
 Add the perl languages repository.
+
+::::{tab-set}
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/SLE_15_SP4/devel:languages:perl.repo
 ```
 
+:::
+::::
 :::::
 ::::::
 

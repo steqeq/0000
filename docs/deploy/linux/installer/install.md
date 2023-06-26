@@ -86,12 +86,12 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/9.2/amdgpu-in
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ::::{tab-set}
-:::{tab-item} Service Pack 4
-:sync: SLES15-SP4
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.6/sle/15.4/amdgpu-install-5.6.50600-1.noarch.rpm
@@ -260,8 +260,8 @@ sudo yum clean all
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 for ver in 5.3.3 5.4.3; do

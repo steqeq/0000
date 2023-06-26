@@ -225,8 +225,8 @@ sudo yum clean all
 ::::
 
 ::::{tab-set}
-:::{tab-item} SLES 15 SP4
-:sync: SLES15-SP4
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 

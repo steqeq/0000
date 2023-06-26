@@ -324,8 +324,8 @@ For a comprehensive list of meta-packages, refer to
    ```
 
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ::::{rubric} 1. Add the AMDGPU Repository and Install the Kernel-mode Driver
 ::::
@@ -334,6 +334,10 @@ For a comprehensive list of meta-packages, refer to
 If you have a version of the kernel-mode driver installed, you may skip this
 section.
 ```
+
+::::{tab-set}
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
@@ -346,6 +350,9 @@ gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 sudo zypper ref
 ```
+
+:::
+::::
 
 Install the kernel mode driver and reboot the system using the following
 commands:
