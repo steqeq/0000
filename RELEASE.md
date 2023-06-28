@@ -84,6 +84,22 @@ The release notes for the ROCm platform.
 - HIPMEMCPY_3D fields correction (unsigned int -> size_t)
 - Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
 
+#### ROCgdb (For ROCm 5.6.0)
+
+##### (Unreleased) ROCgdb-13
+
+###### Optimized
+
+- Improved performances when handling the end of a process with a large number of threads.
+
+Known Issues
+
+- On certain configurations, ROCgdb can show the following warning message:
+
+  `warning: Probes-based dynamic linker interface failed. Reverting to original interface.`
+
+  This does not affect ROCgdb's functionalities.
+
 #### ROCprofiler (For ROCm 5.6.0)
 
 In ROCm 5.6 the `rocprofilerv1` and `rocprofilerv2` include and library files of
