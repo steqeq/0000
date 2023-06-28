@@ -19,15 +19,15 @@ The release notes for the ROCm platform.
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 <!-- markdownlint-disable header-increment -->
-##### OS and GPU Support Changes
+#### Release Highlights
 
-- SLES15 SP5 support was added this release. SLES15 SP3 support was dropped.
-- AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively referred to as gfx906 GPUs) will be entering the maintenance mode starting Q3 2023. This will be aligned with ROCm 5.7 GA release date.
-  - No new features and performance optimizations will be supported for the gfx906 GPUs beyond ROCm 5.7
-  - Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (End of Maintenance [EOM])(will be aligned with the closest ROCm release)
-  - Bug fixes during the maintenance will be made to the next ROCm point release
-  - Bug fixes will not be back ported to older ROCm releases for this SKU
-  - Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+ROCm 5.6 consists of several AI software ecosystem improvements to our fast-growing user base. A few examples include:
+
+- New documentation portal at https://rocm.docs.amd.com
+- Ongoing software enhancements for Large Language and other models, ensuring full compliance with the HuggingFace unit test suite
+- OpenAI Triton, CuPy, HIP Graph support, and many other library performance enhancements
+- Improved ROCm deployment and development tools, including CPU-GPU (rocGDB) debugger, profiler, and docker containers
+- New pseudorandom generators are available in rocRAND.  Added support for half-precision transforms in hipFFT/rocFFT.  Added LU refactorization and linear system solver for sparse matrices in rocSOLVER.  
 
 #### OS and GPU Support Changes
 
@@ -38,6 +38,12 @@ The release notes for the ROCm platform.
   - Bug fixes during the maintenance will be made to the next ROCm point release
   - Bug fixes will not be back ported to older ROCm releases for this SKU
   - Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+
+#### Kernel Modules (DKMS)
+
+##### Fixes
+
+- Stability fix for multi GPU system reproducilble via ROCm_Bandwidth_Test as reported in [Issue 2198](https://github.com/RadeonOpenCompute/ROCm/issues/2198).
 
 #### HIP 5.6 (For ROCm 5.6)
 
