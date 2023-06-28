@@ -6,8 +6,6 @@
 
 AMD ROCm™ Platform supports the following Linux distributions.
 
-## GPU Support Table
-
 ::::{tab-set}
 
 :::{tab-item} Supported
