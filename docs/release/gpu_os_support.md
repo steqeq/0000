@@ -101,6 +101,17 @@ Use Driver Shipped with ROCm
 
 :::
 
+:::{tab-item} Radeon Pro™
+:sync: radeonpro
+
+[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+
+| Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
+|:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ VII     | GCN5.1 | gfx906  | ✅ |
+
+:::
+
 ::::
 
 ### Support Status
