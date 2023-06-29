@@ -16,7 +16,7 @@ shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
 # for PDF output on Read the Docs
 project = "ROCm Documentation"
-author = "AMD"
+author = "AMD Inc."
 
 setting_all_article_info = True
 all_article_info_os = ["linux"]
@@ -24,6 +24,12 @@ all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
+    {
+        "file":"release",
+        "os":["linux"],
+        "date":"2023"
+    },
+
     {"file":"deploy/linux/index", "os":["linux"]},
     {"file":"deploy/linux/install_overview", "os":["linux"]},
     {"file":"deploy/linux/prerequisites", "os":["linux"]},
