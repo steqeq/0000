@@ -16,7 +16,8 @@ shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
 # for PDF output on Read the Docs
 project = "ROCm Documentation"
-author = "AMD Inc."
+author = "Advanced Micro Devices, Inc."
+copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
 
 setting_all_article_info = True
 all_article_info_os = ["linux"]
