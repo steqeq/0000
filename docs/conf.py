@@ -14,12 +14,21 @@ shutil.copy2('../RELEASE.md','./release.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
+project = "ROCm"
+author = "AMD"
+
 setting_all_article_info = True
 all_article_info_os = ["linux"]
 all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
+    {
+        "file":"release",
+        "os":["linux"],
+        "date":"2023-05-01"
+    },
+
     {"file":"deploy/linux/index", "os":["linux"]},
     {"file":"deploy/linux/install_overview", "os":["linux"]},
     {"file":"deploy/linux/prerequisites", "os":["linux"]},
