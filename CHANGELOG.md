@@ -1268,9 +1268,8 @@ The test was incorrectly using the `hipDeviceAttributePageableMemoryAccess` devi
 
 `hipHostMalloc()` allocates memory with fine-grained access by default when the environment variable `HIP_HOST_COHERENT=1` is used.
 
-For more information, refer to the HIP Programming Guide at
+For more information, refer to {doc}`hip:.doxygen/docBin/html/index`.
 
-<https://docs.amd.com/bundle/HIP-Programming-Guide-v5.4/page/Introduction_to_HIP_Programming_Guide.html>
 
 #### SoftHang with `hipStreamWithCUMask` test on AMD Instinct™
 
@@ -2584,7 +2583,8 @@ The new APIs for virtual memory management are as follows:
   hipError_t hipMemUnmap(void* ptr, size_t size);
   ```
 
-For more information, refer to the HIP API documentation at <https://docs.amd.com/bundle/HIP_API_Guide/page/modules.html>
+For more information, refer to the HIP API documentation at
+{doc}`hip:.doxygen/docBin/html/modules`.
 
 ##### Planned HIP Changes in Future Releases
 
@@ -2600,7 +2600,8 @@ This release introduces a new ROCm C++ library for accelerating mixed precision 
 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
-For more information, refer to <https://docs.amd.com/category/libraries>.
+For more information, refer to
+[Communication Libraries](../../../../docs/reference/gpu_libraries/communication.md).
 
 #### OpenMP Enhancements in This Release
 
@@ -3194,7 +3195,8 @@ ROCDebugger Machine Interface (MI) extends support to lanes. The following enhan
 
 - MI varobjs are now lane-aware.
 
-For more information, refer to the ROC Debugger User Guide at <https://docs.amd.com>.
+For more information, refer to the ROC Debugger User Guide at
+{doc}`ROCgdb <rocgdb:index>`.
 
 ##### Enhanced - clone-inferior Command
 
@@ -3216,7 +3218,7 @@ This release includes support for AMD Radeon™ Pro W6800, in addition to other 
 
 - Various other bug fixes and performance improvements
 
-For more information, see <https://docs.amd.com/bundle/MIOpen_gh-pages/page/releasenotes.html>
+For more information, see {doc}`Documentation <miopen:index>`.
 
 #### Checkpoint Restore Support With CRIU
 
