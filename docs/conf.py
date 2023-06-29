@@ -14,6 +14,13 @@ shutil.copy2('../RELEASE.md','./release.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
+# configurations for PDF output by Read the Docs
+project = "ROCm Documentation"
+author = "Advanced Micro Devices, Inc."
+copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
+version = "5.2.3"
+release = "5.2.3"
+
 setting_all_article_info = True
 all_article_info_os = ["linux"]
 all_article_info_author = ""
