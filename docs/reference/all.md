@@ -42,8 +42,8 @@ Inter and intra-node communication is supported by the following projects:
 Libraries related to AI.
 
 - {doc}`MIOpen <miopen:index>`
-- {doc}`Composable Kernel <composable-kernel:index>`
-- {doc}`MIGraphX <migraphx:index>`
+- {doc}`Composable Kernel <composable_kernel:index>`
+- {doc}`MIGraphX <amdmigraphx:index>`
 
 :::
 
@@ -80,7 +80,7 @@ Computer vision related projects.
 
 :::{grid-item-card} [Validation Tools](validation_tools)
 
-- {doc}`ROCm Validation Suite <rocm-validation-suite:index>`
+- {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 - {doc}`TransferBench <transferbench:index>`
 
 :::
