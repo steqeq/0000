@@ -21,7 +21,7 @@ To launch the AMD HIP SDK Installer, click the **Setup** icon shown in
 Setup Icon
 ```
 
-The installer requires Administrator Priviliges, so you may be greeted with a
+The installer requires Administrator Privileges, so you may be greeted with a
 User Access Control (UAC) pop-up. Click Yes.
 
 ```{figure} /data/deploy/windows/001-uac-dark.png
