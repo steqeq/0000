@@ -18,8 +18,8 @@ shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
-version = "5.1.0"
-release = "5.1.0"
+version = "5.4.1"
+release = "5.4.1"
 
 setting_all_article_info = True
 all_article_info_os = ["linux"]
