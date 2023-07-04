@@ -50,7 +50,7 @@ the [Jupyter reference](https://jupyterbook.org/en/stable/reference/cheatsheet.h
 
 ### Sphinx External TOC
 
-[sphinx-external-toc](https://sphinx-external-toc.readthedocs.io/en/latest/intro.html)
+[Sphinx External Table of Contents (TOC)](https://sphinx-external-toc.readthedocs.io/en/latest/intro.html)
 is a Sphinx extension used for ROCm documentation navigation. This tool generates a navigation menu on the left 
 based on a YAML file that specifies the table of contents.
 It was selected due to its flexibility that allows scripts to operate on the
