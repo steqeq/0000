@@ -16,7 +16,7 @@ build. It is also available as a [pip package on PyPI](https://pypi.org/project/
 
 [Sphinx](https://www.sphinx-doc.org/en/master/) is a documentation generator
 originally used for Python. It is now widely used in the Open Source community.
-Originally, Sphinx supported reStructured Text (RST) based documentation, but
+Originally, Sphinx supported reStructuredText (RST) based documentation, but
 Markdown support is now available.
 ROCm documentation plans to default to Markdown for new projects.
 Existing projects using RST are under no obligation to convert to Markdown. New
@@ -62,7 +62,7 @@ example.
 
 [Sphinx Book Theme](https://sphinx-book-theme.readthedocs.io/en/latest/) is a Sphinx theme
 that defines the base appearance for ROCm documentation.
-ROCm documentation applies some customizations,
+ROCm documentation applies some customization,
 such as a custom header and footer on top of the Sphinx Book Theme.
 
 ### Sphinx Design

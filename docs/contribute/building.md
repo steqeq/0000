@@ -55,8 +55,8 @@ resulting website show up on a locally-served web server.
 
 1. Install the following extensions:
 
-    - Python (ms-python.python)
-    - Live Server (ritwickdey.LiveServer)
+    - Python `(ms-python.python)`
+    - Live Server `(ritwickdey.LiveServer)`
 
 2. Add the following entries in `.vscode/settings.json`
 
@@ -143,18 +143,18 @@ resulting website show up on a locally-served web server.
     > messages) but the `pattern` references said empty capture group, VS Code
     > discards the message completely.)
 
-4. Configure Python virtual environment (venv)
+4. Configure Python virtual environment (`venv`)
 
     - From the Command Palette, run `Python: Create Environment`
       - Select `venv` environment and the `docs/sphinx/requirements.txt` file.
-      _(Simply pressing enter while hovering over the file from the dropdown is
+      _(Simply pressing enter while hovering over the file from the drop down is
       insufficient, one has to select the radio button with the 'Space' key if
       using the keyboard.)_
 
 5. Build the docs
 
     - Launch the default build Task using either:
-      - a hotkey _(default is 'Ctrl+Shift+B')_ or
+      - a hotkey _(default is `Ctrl+Shift+B`)_ or
       - by issuing the `Tasks: Run Build Task` from the Command Palette.
 
 6. Open the live preview
