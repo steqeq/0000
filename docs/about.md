@@ -17,7 +17,7 @@ build. It is also available as a [pip package on PyPI](https://pypi.org/project/
 [Sphinx](https://www.sphinx-doc.org/en/master/) is a documentation generator
 originally used for Python. It is now widely used in the Open Source community.
 Originally, Sphinx supported reStructured Text (RST) based documentation, but
-Markdown support is now available. 
+Markdown support is now available.
 ROCm documentation plans to default to Markdown for new projects.
 Existing projects using RST are under no obligation to convert to Markdown. New
 projects that believe Markdown is not suitable should contact the documentation
@@ -45,13 +45,13 @@ content.
 [Markedly Structured Text (MyST)](https://myst-tools.org/docs/spec) is an extended
 flavor of Markdown ([CommonMark](https://commonmark.org/)) influenced by reStructuredText (RST) and Sphinx.
 It is integrated into ROCm documentation by the Sphinx extension [`myst-parser`](https://myst-parser.readthedocs.io/en/latest/).
-A cheat sheet that showcases how to use the MyST syntax is available over at 
+A cheat sheet that showcases how to use the MyST syntax is available over at
 the [Jupyter reference](https://jupyterbook.org/en/stable/reference/cheatsheet.html).
 
 ### Sphinx External TOC
 
 [Sphinx External Table of Contents (TOC)](https://sphinx-external-toc.readthedocs.io/en/latest/intro.html)
-is a Sphinx extension used for ROCm documentation navigation. This tool generates a navigation menu on the left 
+is a Sphinx extension used for ROCm documentation navigation. This tool generates a navigation menu on the left
 based on a YAML file that specifies the table of contents.
 It was selected due to its flexibility that allows scripts to operate on the
 YAML file. Please transition to this file for the project's navigation. You can
@@ -68,5 +68,5 @@ such as a custom header and footer on top of the Sphinx Book Theme.
 ### Sphinx Design
 
 [Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html) is a Sphinx extension that adds design
-functionality. 
+functionality.
 ROCm documentation uses Sphinx Design for grids, cards, and synchronized tabs.

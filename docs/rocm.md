@@ -10,7 +10,7 @@ ROCm is a collection of drivers, development tools and APIs enabling GPU
 programming from the low-level kernel to end-user applications.
 
 ROCm is powered by AMD’s Heterogeneous-computing Interface for Portability (HIP),
-an OSS C++ GPU programming environment and its corresponding runtime. 
+an OSS C++ GPU programming environment and its corresponding runtime.
 HIP allows ROCm developers to create portable applications on different platforms
 by deploying code on a range of platforms, from dedicated gaming GPUs to exascale
 High Performance Computing (HPC) clusters.

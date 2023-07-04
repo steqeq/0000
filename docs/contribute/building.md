@@ -11,13 +11,13 @@ the PR (`https://github.com/RadeonOpenCompute/ROCm/pull/<pr_number>`) will have
 a summary at the bottom. This requires the user be logged in to GitHub.
 
 - There, click `Show all checks` and `Details` of the Read the Docs pipeline. It
-  will take you to a URL of the form 
+  will take you to a URL of the form
   `https://readthedocs.com/projects/advanced-micro-devices-rocm/builds/<some_build_num>/`
   - The list of commands shown are the exact ones used by CI to produce a render
     of the documentation.
 - There, click on the small blue link `View docs` (which is not the same as the
   bigger button with the same text). It will take you to the built HTML site with
-  a URL of the form 
+  a URL of the form
   `https://advanced-micro-devices-demo--<pr_number>.com.readthedocs.build/projects/alpha/en/<pr_number>/`.
 
 ## Build documentation from the Command Line
