@@ -24,8 +24,9 @@ scientific computing, CAD, and other applications in a free, open-source,
 integrated and secure software ecosystem.
 
 ## ROCm on Windows
+
 From ROCm 5.5, the HIP SDK brings a subset of ROCm to developers on Windows.
-The collection of features enabled on Windows is the HIP SDK. These features 
+The collection of features enabled on Windows is the HIP SDK. These features
 allow developers to use the HIP runtime, HIP math libraries
 and HIP Primitive libraries. The following table shows the differences
 betwen Windows and Linux releases. 
@@ -51,8 +52,8 @@ betwen Windows and Linux releases.
 Note the 5.5 Windows Installer collectively groups the Math and Primitives
 libraries.
 
-
 ### ROCm release versioning
+
 Linux OS releases set the canonical version numbers for ROCm. Windows will
 follow Linux version numbers as Windows releases are based on Linux ROCm
 releases. However, not all Linux ROCm releases will have a corresponding Windows
@@ -74,6 +75,7 @@ wish to support both Linux and Windows using a single ROCm version should
 refrain from upgrading ROCm unless there is a joint release.
 
 ### Windows Documentation implications
+
 The ROCm documentation website contains both Windows and Linux documentation.
 Just below each article title, a convinient article information section states
 whether the page applies to Linux only, Windows only or both OSes. To find the
@@ -89,6 +91,7 @@ skipped ROCm versions on Windows for information on all the changes present in
 the Windows release.
 
 ### Windows Builds from Source
+
 Not all source code required to build Windows from source is available under a
 permissive open source license. Build instructions on Windows is only provided
 for projects that can be built from source on Windows using a toolchain that
