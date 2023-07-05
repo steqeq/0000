@@ -14,6 +14,8 @@ shutil.copy2('../RELEASE.md','./release.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
+latex_engine = "xelatex"
+
 setting_all_article_info = True
 all_article_info_os = ["linux"]
 all_article_info_author = ""
