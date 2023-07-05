@@ -39,7 +39,7 @@ betwen Windows and Linux releases.
 |Profiler|rocprof|[Radeon GPU Profiler](https://gpuopen.com/rgp/)|
 |Porting Tools|HIPIFY|Coming Soon|
 |Runtime|HIP (Open Sourced)|HIP (closed source)|
-|Math Libraries|Supported|Not Available|
+|Math Libraries|Supported|Supported|
 |Primitives Libraries|Supported|Supported|
 |Communication Libraries|Supported|Not Available|
 |AI Libraries|MIOpen, MIGraphX|Not Available|
@@ -51,6 +51,9 @@ betwen Windows and Linux releases.
 
 Note the 5.5 Windows Installer collectively groups the Math and Primitives
 libraries.
+
+Note: GPU support on Windows and Linux are not synchronized. You must refer to
+Windows and Linux GPU support tables separately.
 
 ### ROCm release versioning
 
