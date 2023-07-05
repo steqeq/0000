@@ -49,11 +49,14 @@ betwen Windows and Linux releases.
 |Visual Studio| Not appplicable| Plugin Available|
 |HIP Ray Tracing| Unsupported|Supported|
 
-Note the 5.5 Windows Installer collectively groups the Math and Primitives
+```{note}
+The 5.5 Windows Installer collectively groups the Math and Primitives
 libraries.
-
-Note: GPU support on Windows and Linux are not synchronized. You must refer to
+```
+```{note}
+GPU support on Windows and Linux may differ. You must refer to
 Windows and Linux GPU support tables separately.
+```
 
 ### ROCm release versioning
 
