@@ -25,7 +25,7 @@ integrated and secure software ecosystem.
 
 ## ROCm on Windows
 
-From ROCm 5.5, the HIP SDK brings a subset of ROCm to developers on Windows.
+Starting with ROCm 5.5, the HIP SDK brings a subset of ROCm to developers on Windows.
 The collection of features enabled on Windows is the HIP SDK. These features
 allow developers to use the HIP runtime, HIP math libraries
 and HIP Primitive libraries. The following table shows the differences
