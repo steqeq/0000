@@ -49,6 +49,9 @@ betwen Windows and Linux releases.
 |Visual Studio| Not appplicable| Plugin Available|
 |HIP Ray Tracing| Unsupported|Supported|
 
+AMD is continuing to invest in Windows support and expect enhanced features in
+subsequent revisions
+
 ```{note}
 The 5.5 Windows Installer collectively groups the Math and Primitives
 libraries.

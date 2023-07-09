@@ -73,6 +73,7 @@ subtrees:
   - file: CHANGELOG
     title: Changelog
   - file: release/gpu_os_support
+  - file: release/windows_support
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
   - file: release/compatibility
