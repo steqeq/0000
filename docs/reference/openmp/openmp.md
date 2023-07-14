@@ -17,7 +17,7 @@ The ROCm OpenMP compiler is implemented using LLVM compiler technology.
 ```{figure-md} openmp-compiler
 :name: openmp-toolchain
 
-<img src="\data\reference\openmp\openmp_toolchain.jpg" alt="">
+<img src="data/reference/openmp/openmp_toolchain.jpg" alt="">
 
 OpenMP Toolchain
 ```
