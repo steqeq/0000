@@ -11,6 +11,13 @@ OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
 this ROCm release. See the list of supported GPUs in {doc}`/release/gpu_os_support`.
 
+```{figure-md} openmp-compiler
+
+<img src="/data/reference/openmp/OpenMP Toolchain.jpg" alt="">
+
+OpenMP Toolchain
+```
+
 ### Installation
 
 The OpenMP toolchain is automatically installed as part of the standard ROCm
