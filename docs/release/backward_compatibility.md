@@ -4,6 +4,8 @@
 
 ### Deprecation
 
+A deprecated API is one that you are no longer recommended to use, due to changes in the API. While still implemented, they may be removed in future releases, so you should not use them in new code, and if possible rewrite old code not to use them.
+
 ### Major Release
 
 ROCm components follow a semantic versioning described at https://semver.org.
