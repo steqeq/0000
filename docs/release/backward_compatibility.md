@@ -6,7 +6,12 @@
 
 ### Major Release
 
-ROCm follows a semantic versioning described at https://semver.org.
+ROCm components follow a semantic versioning described at https://semver.org.
+
+ROCm releases have a X.Y.Z (major minor patch) versioning scheme similar to semver where:
+- X is years since ROCm first released
+- Y is month or bi-monthly period of year
+- Z is patch release
 
 For example, in ROCm 5.4.1, the major version number is 5, the minor is 4, and the patch is 1.
 
