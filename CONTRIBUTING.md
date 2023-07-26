@@ -44,7 +44,7 @@ folder structure. All documentation is in /docs except for special files like
 the contributing guide in the / folder. All images used in the documentation are
 place in the /docs/data folder.
 
-## How to provide feedback for for ROCm documentation
+## How to provide feedback for ROCm documentation
 
 There are three standard ways to provide feedback for this repository.
 
