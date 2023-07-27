@@ -31,7 +31,7 @@ Other architectures are allowed, but their device code will not be instrumented 
 It is not an error to compile some files without address sanitizer instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "a.out" does not directly depend on the Address Sanitizer runtime (libclang_rt.asan-x86_64.so) after the build completes (check by running ldd or readelf), the application will immediately report an error at runtime as described in the next section.
 
 About Compilation Time
-When `-fsanitize=address is used, the LLVM compiler adds instrumentation code around every memory operation. This added code must be handled by all of the downstream components of the compiler toolchain and results in increased overall complilation time. This increase is especially evident in the AMDGPU device compiler and has in a few instances raised the compile time to an unacceptable level.
+When `-fsanitize=address`` is used, the LLVM compiler adds instrumentation code around every memory operation. This added code must be handled by all of the downstream components of the compiler toolchain and results in increased overall complilation time. This increase is especially evident in the AMDGPU device compiler and has in a few instances raised the compile time to an unacceptable level.
 
 There are a few options if the compile time becomes unacceptable:
 
