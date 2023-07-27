@@ -29,7 +29,7 @@ Starting with ROCm 5.5, the HIP SDK brings a subset of ROCm to developers on Win
 The collection of features enabled on Windows is referred to as the HIP SDK.
 These features allow developers to use the HIP runtime, HIP math libraries
 and HIP Primitive libraries. The following table shows the differences
-between Windows and Linux releases. 
+between Windows and Linux releases.
 
 |Component|Linux|Windows|
 |---------|-----|-------|
