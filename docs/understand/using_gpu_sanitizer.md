@@ -32,3 +32,11 @@ There are a few options if the compile time becomes unacceptable:
 - Avoid instrumentation of the files which have the worst compile times. This will reduce the effectiveness of the address sanitizer process.
 - Add the option `-fsanitize-recover=address`` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
 - Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
+
+Using AMD Supplied Address Sanitizer Instrumented Libraries
+ROCm releases have optional packages containing additional address sanitizer instrumented builds of the ROCm libraries usually found in /opt/rocm-<version>/lib. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in /opt/rocm-<version>/lib/asan.
+These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
+
+These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
+
+When adjusting an application build to add instrumentation, linking against these instrumented libraries is unnecessary. For example, any `-L` /opt/rocm-<version>/lib compiler options need not be changed. However, the instrumented libraries should be used when the application is run. It is particularly important that the instrumented language runtimes, like `libamdhip64.so` and `librocm-core.so`, are used; otherwise, device invalid access detections may not be reported.
