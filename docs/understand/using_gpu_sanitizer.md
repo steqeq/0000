@@ -12,7 +12,7 @@ The address sanitizer process begins by compiling the application of interest wi
 
 Recommendations for doing this are:
 
-Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as amdclang++.
+Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as `amdclang++`.
 
 Add the following options to the existing compiler and linker options:
 
