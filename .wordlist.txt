@@ -33,3 +33,6 @@ SKUs
 entrypoint
 PowerShell
 UAC
+rocm-smi-lib
+RDC
+Tensorflow
