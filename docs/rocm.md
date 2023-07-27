@@ -34,17 +34,17 @@ between Windows and Linux releases.
 |Component|Linux|Windows|
 |---------|-----|-------|
 |Driver|Radeon Software for Linux |AMD Software Pro Edition|
-|Compiler|hipcc/amdclang++|hipcc/clang++|
-|Debugger|rocgdb|no debugger available|
-|Profiler|rocprof|[Radeon GPU Profiler](https://gpuopen.com/rgp/)|
+|Compiler|`hipcc`/`amdclang++`|`hipcc`/`clang++`|
+|Debugger|`rocgdb`|no debugger available|
+|Profiler|`rocprof`|[Radeon GPU Profiler](https://gpuopen.com/rgp/)|
 |Porting Tools|HIPIFY|Coming Soon|
 |Runtime|HIP (Open Sourced)|HIP (closed source)|
 |Math Libraries|Supported|Supported|
 |Primitives Libraries|Supported|Supported|
 |Communication Libraries|Supported|Not Available|
 |AI Libraries|MIOpen, MIGraphX|Not Available|
-|System Management|rocm-smi-lib, RDC, rocminfo|amdsmi, hipInfo|
-|AI Frameworks|PyTorch, Tensorflow, etc.|Not Available|
+|System Management|`rocm-smi-lib`, RDC, `rocminfo`|`amdsmi`, `hipInfo`|
+|AI Frameworks|PyTorch, TensorFlow, etc.|Not Available|
 |CMake HIP Language|Enabled|Unsupported|
 |Visual Studio| Not applicable| Plugin Available|
 |HIP Ray Tracing| Supported|Supported|
