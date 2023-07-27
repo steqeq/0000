@@ -36,3 +36,11 @@ UAC
 rocm-smi-lib
 RDC
 Tensorflow
+amdclang
+amdsmi
+hipInfo
+hipcc
+rocgdb
+rocm
+rocminfo
+smi
