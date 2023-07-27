@@ -11,7 +11,7 @@ compatible GPU is required. Please see the supported GPU guide for more details.
 ## HIP SDK Installation
 
 The command line installer is the same executable which is used by the graphical
-front-end. Download the installer from the 
+front-end. Download the installer from the
 [HIP-SDK download page](https://www.amd.com/en/developer/rocm-hub/hip-sdk.html).
 The options supported by the command line interface are summarized in
 {numref}`hip-sdk-cli-options`.

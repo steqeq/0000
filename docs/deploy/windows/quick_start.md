@@ -12,7 +12,7 @@ compatible GPU is required. Please see the supported GPU guide for more details.
 
 ### Download the installer
 
-Download the installer from the 
+Download the installer from the
 [HIP-SDK download page](https://www.amd.com/en/developer/rocm-hub/hip-sdk.html).
 
 ### Launching the installer
