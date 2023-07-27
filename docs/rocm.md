@@ -46,7 +46,7 @@ between Windows and Linux releases.
 |System Management|rocm-smi-lib, RDC, rocminfo|amdsmi, hipInfo|
 |AI Frameworks|PyTorch, Tensorflow, etc.|Not Available|
 |CMake HIP Language|Enabled|Unsupported|
-|Visual Studio| Not appplicable| Plugin Available|
+|Visual Studio| Not applicable| Plugin Available|
 |HIP Ray Tracing| Supported|Supported|
 
 AMD is continuing to invest in Windows support and AMD plans to release enhanced
@@ -91,11 +91,11 @@ refrain from upgrading ROCm unless there is a joint release.
 ### Windows Documentation implications
 
 The ROCm documentation website contains both Windows and Linux documentation.
-Just below each article title, a convinient article information section states
+Just below each article title, a convenient article information section states
 whether the page applies to Linux only, Windows only or both OSes. To find the
 exact Windows documentation for a release of the HIP SDK, please view the ROCm documentation with the same
 Major.Minor version number while ignoring the Patch version. The Patch version
-only matters for Linux releases.  For convinience,
+only matters for Linux releases.  For convenience,
 Windows documentation will continue to be included in the overall ROCm
 documentation for the skipped Windows releases.
 
