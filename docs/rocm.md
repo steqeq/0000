@@ -26,15 +26,15 @@ integrated and secure software ecosystem.
 ## ROCm on Windows
 
 Starting with ROCm 5.5, the HIP SDK brings a subset of ROCm to developers on Windows.
-The collection of features enabled on Windows is the HIP SDK. These features
-allow developers to use the HIP runtime, HIP math libraries
+The collection of features enabled on Windows is referred to as the HIP SDK.
+These features allow developers to use the HIP runtime, HIP math libraries
 and HIP Primitive libraries. The following table shows the differences
-betwen Windows and Linux releases. 
+between Windows and Linux releases. 
 
 |Component|Linux|Windows|
 |---------|-----|-------|
 |Driver|Radeon Software for Linux |AMD Software Pro Edition|
-|Compiler|hipcc/amdclang++|hipcc/amdclang++|
+|Compiler|hipcc/amdclang++|hipcc/clang++|
 |Debugger|rocgdb|no debugger available|
 |Profiler|rocprof|[Radeon GPU Profiler](https://gpuopen.com/rgp/)|
 |Porting Tools|HIPIFY|Coming Soon|
@@ -43,14 +43,14 @@ betwen Windows and Linux releases.
 |Primitives Libraries|Supported|Supported|
 |Communication Libraries|Supported|Not Available|
 |AI Libraries|MIOpen, MIGraphX|Not Available|
-|System Management|rocm-smi-lib, RDC|Not Available|
-|AI Frameworks|PyTorch, Tensorflow, etc.|Not Available|\
+|System Management|rocm-smi-lib, RDC, rocminfo|amdsmi, hipInfo|
+|AI Frameworks|PyTorch, Tensorflow, etc.|Not Available|
 |CMake HIP Language|Enabled|Unsupported|
 |Visual Studio| Not appplicable| Plugin Available|
-|HIP Ray Tracing| Unsupported|Supported|
+|HIP Ray Tracing| Supported|Supported|
 
-AMD is continuing to invest in Windows support and expect enhanced features in
-subsequent revisions
+AMD is continuing to invest in Windows support and AMD plans to release enhanced
+features in subsequent revisions.
 
 ```{note}
 The 5.5 Windows Installer collectively groups the Math and Primitives
@@ -59,6 +59,9 @@ libraries.
 ```{note}
 GPU support on Windows and Linux may differ. You must refer to
 Windows and Linux GPU support tables separately.
+```
+```{note}
+HIP Ray Tracing is not distributed via ROCm in Linux.
 ```
 
 ### ROCm release versioning
@@ -105,4 +108,5 @@ Not all source code required to build Windows from source is available under a
 permissive open source license. Build instructions on Windows is only provided
 for projects that can be built from source on Windows using a toolchain that
 has closed source build prerequisites. The ROCm manifest file is not valid for
-Windows.
+Windows. AMD does not release a manifest or tag our components in Windows.
+Users may use corresponding Linux tags to build on Windows.
