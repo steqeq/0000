@@ -56,10 +56,12 @@ features in subsequent revisions.
 The 5.5 Windows Installer collectively groups the Math and Primitives
 libraries.
 ```
+
 ```{note}
 GPU support on Windows and Linux may differ. You must refer to
 Windows and Linux GPU support tables separately.
 ```
+
 ```{note}
 HIP Ray Tracing is not distributed via ROCm in Linux.
 ```
