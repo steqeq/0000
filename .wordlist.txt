@@ -30,6 +30,5 @@ IOPM
 # windows
 SKU
 SKUs
-entrypoint
 PowerShell
 UAC
