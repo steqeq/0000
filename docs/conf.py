@@ -16,12 +16,25 @@ shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
 latex_engine = "xelatex"
 
+# configurations for PDF output by Read the Docs
+project = "ROCm Documentation"
+author = "Advanced Micro Devices, Inc."
+copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
+version = "5.5.1"
+release = "5.5.1"
+
 setting_all_article_info = True
 all_article_info_os = ["linux"]
 all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
+    {
+        "file":"release",
+        "os":["linux"],
+        "date":"2023-05-24"
+    },
+
     {"file":"deploy/linux/index", "os":["linux"]},
     {"file":"deploy/linux/install_overview", "os":["linux"]},
     {"file":"deploy/linux/prerequisites", "os":["linux"]},
