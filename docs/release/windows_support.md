@@ -13,8 +13,7 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | Windows Server 2022 | x86-64                |                    |
 
 For more information on Windows versions, refer to
-[Windows release health](https://learn.microsoft.com/en-us/windows/release-health/)
-.
+[Windows release health](https://learn.microsoft.com/en-us/windows/release-health/).
 
 ## GPU Support Table
 
@@ -34,7 +33,6 @@ For more information on Windows versions, refer to
 | AMD Radeon™ Pro W5500   | RDNA1  | gfx1012 | ❌ | ❌ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ❌ | ❌ |
 
-
 :::
 
 :::{tab-item} Radeon™
@@ -52,7 +50,6 @@ For more information on Windows versions, refer to
 | AMD Radeon™ RX 6700 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6700     | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6600     | RDNA2  | gfx1032 | ❌ | ❌ |
-
 
 :::
 
