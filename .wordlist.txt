@@ -103,3 +103,9 @@ DGEMM
 HPCG
 HPL
 IOPM
+amdclang
+asan
+complilation
+ldd
+libclang
+readelf
