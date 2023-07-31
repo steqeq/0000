@@ -70,4 +70,79 @@ There are two ASAN_OPTION flags of particular note.
 This tells the ASAN runtime to halt the application immediately after detecting and reporting an addressing error. The default makes sense because the application has entered the realm of undefined behavior. If the developer wishes to have the application continue anyway, this option can be set to zero. However, the application and libraries should then be compiled with the additional option -fsanitize-recover=address. Note that the ROCm optional address sanitizer instrumented libraries are not compiled with this option and if an error is detected within one of them, but halt_on_error is set to 0, more undefined behavior will occur.
 
 - `detect_leaks=0/1 default 1`.
-This option directs the address sanitizer runtime to enable the Leak Sanitizer (LSAN). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be to be leaks. This output can be avoided by adding detect_leaks=0 to the ASAN_OPTIONS, or alternatively by producing an LSAN suppression file (syntax described here) and activating it with environment variable LSAN_OPTIONS=suppressions=/path/to/suppression/file. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the LSAN_OPTIONS flag print_suppressions=0.
+This option directs the address sanitizer runtime to enable the Leak Sanitizer (LSAN). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be to be leaks. This output can be avoided by adding `detect_leaks=0` to the ASAN_OPTIONS, or alternatively by producing an LSAN suppression file (syntax described here) and activating it with environment variable LSAN_OPTIONS=suppressions=/path/to/suppression/file. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS flag print_suppressions=0`.
+
+Runtime Reporting
+
+It is not the intention of this document to provide a detailed explanation of all of the types of reports that can be output by the address sanizer runtime. Instead, the focus is on the differences between the standard reports for CPU issues, and reports for GPU issues.
+
+An invalid address detection report for the CPU always starts with
+
+`==<PID>==ERROR: AddressSanitizer: <problem type> on address <memory address> at pc <pc> bp <bp> sp <sp> <access> of size <N> at <memory address> thread T0`
+
+and continues with a stack trace for the access, a stack trace for the allocation and deallocation, if relevant, and a dump of the shadow near the <memory address>.
+
+In contrast, an invalid address detection report for the GPU always starts with
+
+`==<PID>==ERROR: AddressSanitizer: <problem type> on amdgpu device <device> at pc <pc> <access> of size <n> in workgroup id (<X>,<Y>,<Z>)`
+
+Above, <device> is the integer device ID, and (<X>, <Y> and <Z>) is the ID of the workgroup or block where the invalid address was detected.
+
+While the CPU report include a callstack for the thread attempting the invalid access, the GPU is currently to a callstack of size one, i.e. the (symbolized) of the invalid access, e.g.
+
+`#0 <pc> in <fuction signature> at /path/to/file.hip:<line>:<column>`
+
+This short callstack is followed by a GPU unique section that looks like
+
+Thread ids and accessed addresses:
+<lid0> <maddr 0> : <lid1> <maddr1> : ... 
+
+where <lid j> <maddr j> indicate the lane ID and the invalid memory address held by lane j of the wavefront attempting the invalid access.
+
+Additionally, reports for invalid GPU accesses to memory allocated by GPU code via malloc or new. For example, starting with
+
+`==1234==ERROR: AddressSanitizer: heap-buffer-overflow on amdgpu device 0 at pc 0x7fa9f5c92dcc`
+
+or
+
+`==5678==ERROR: AddressSanitizer: heap-use-after-free on amdgpu device 3 at pc 0x7f4c10062d74`
+
+currently may include one or two surprising CPU side tracebacks mentioning . This is due to how malloc and free are implemented for GPU code and these callstacks can be ignored.
+
+Running with rocgdb
+
+rocgdb can be used to further investigate address sanitizer detected errors, with some preparation.
+
+Currently, the address sanitizer runtime complains when starting rocgdb without preparation.
+
+`$ rocgdb my_app ==1122==ASan` runtime does not come first in initial library list; you should either link runtime to your application or manually preload it with LD_PRELOAD.
+
+This is solved by setting environment variable LD_PRELOAD to the path to the address sanitizer runtime, whose path can be obtained using the command
+
+    amdclang++ -print-file-name=libclang_rt.asan-x86_64.so
+
+It is also recommended to set the environment variable `HIP_ENABLE_DEFERRED_LOADING=0` before debugging HIP applications.
+
+After starting rocgdb breakpoints should be set on the address sanitizer runtime entrypoints of interest. For example, if an address sanitizer error report includes
+
+WRITE of size 4 in workgroup id (10,0,0)
+
+the rocgdb command needed would be
+
+    (gdb) break __asan_report_store4
+
+Similarly, the command for a report including
+
+READ of size <N> in workgroup ID (1,2,3)
+
+would be
+
+    (gdb) break __asan_report_load<N>
+
+It is possible to set breakpoints on all address sanitizer report functions using these commands:
+
+    $ rocgdb <path to application>
+    (gdb) start <commmand line arguments>
+    (gdb) rbreak ^__asan_report
+    (gdb) c
+
