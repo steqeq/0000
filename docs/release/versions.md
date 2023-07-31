@@ -1,6 +1,7 @@
 # ROCm Versions
 
 | Version | Release Date |
+| ------- | ------------ |
 | [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/) | Jun 28, 2022 |
 | [5.5.1](https://rocm.docs.amd.com/en/docs-5.5.1/) | May 24, 2022 |
 | [5.5.0](https://rocm.docs.amd.com/en/docs-5.5.0/) | May 1, 2022 |
