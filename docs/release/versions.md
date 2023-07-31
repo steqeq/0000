@@ -2,11 +2,11 @@
 
 | Version | Release Date |
 | ------- | ------------ |
-| [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/) | Jun 28, 2022 |
-| [5.5.1](https://rocm.docs.amd.com/en/docs-5.5.1/) | May 24, 2022 |
-| [5.5.0](https://rocm.docs.amd.com/en/docs-5.5.0/) | May 1, 2022 |
-| [5.4.3](https://rocm.docs.amd.com/en/docs-5.4.3/) | Feb 7, 2022 |
-| [5.4.2](https://rocm.docs.amd.com/en/docs-5.4.2/) | Jan 13, 2022 |
+| [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/) | Jun 28, 2023 |
+| [5.5.1](https://rocm.docs.amd.com/en/docs-5.5.1/) | May 24, 2023 |
+| [5.5.0](https://rocm.docs.amd.com/en/docs-5.5.0/) | May 1, 2023 |
+| [5.4.3](https://rocm.docs.amd.com/en/docs-5.4.3/) | Feb 7, 2023 |
+| [5.4.2](https://rocm.docs.amd.com/en/docs-5.4.2/) | Jan 13, 2023 |
 | [5.4.1](https://rocm.docs.amd.com/en/docs-5.4.1/) | Dec 15, 2022 |
 | [5.4.0](https://rocm.docs.amd.com/en/docs-5.4.0/) | Nov 30, 2022 |
 | [5.3.3](https://rocm.docs.amd.com/en/docs-5.3.3/) | Nov 17, 2022 |
