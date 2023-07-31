@@ -127,7 +127,7 @@ After starting rocgdb breakpoints should be set on the address sanitizer runtime
 
 WRITE of size 4 in workgroup id (10,0,0)
 
-the rocgdb command needed would be
+the rocgdb command needed is,
 
     (gdb) break __asan_report_store4
 
@@ -135,7 +135,7 @@ Similarly, the command for a report including
 
 READ of size <N> in workgroup ID (1,2,3)
 
-would be
+is
 
     (gdb) break __asan_report_load<N>
 
@@ -146,3 +146,14 @@ It is possible to set breakpoints on all address sanitizer report functions usin
     (gdb) rbreak ^__asan_report
     (gdb) c
 
+Using Address Sanitizer with a Short HIP Application (add link)
+
+Known Issues with Using GPU Sanitizer
+
+- Redzones must have limited size and it is possible for an invalid access to completely miss a redzone and not be detected.
+
+- Lack of detection or false reports can be caused by the runtime not properly maintaining redzone shadows.
+
+- Lack of detection on the GPU might also be due to the implementation not instrumenting accesses to all GPU specific address spaces. For example, in the current implementation accesses to "private" or "stack" variables on the GPU are not instrumented, and accesses to HIP shared variables (also known as "local data store" or "LDS") are also not instrumented.
+
+- It can also be the case that a memory fault is hit for an invalid address even with the instrumentation. This is usually caused by the invalid address being so wild that its shadow address is outside of any memory region, and the fault actually occurs on the access to the shadow address. It is also possible to hit a memory fault for the NULL pointer. While address 0 does have a shadow location, it is not poisoned by the runtime.
