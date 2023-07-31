@@ -95,7 +95,7 @@ While the CPU report include a callstack for the thread attempting the invalid a
 This short callstack is followed by a GPU unique section that looks like
 
 Thread ids and accessed addresses:
-<lid0> <maddr 0> : <lid1> <maddr1> : ... 
+<lid0> <maddr 0> : <lid1> <maddr1> : ...
 
 where <lid j> <maddr j> indicate the lane ID and the invalid memory address held by lane j of the wavefront attempting the invalid access.
 
