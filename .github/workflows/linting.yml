@@ -8,4 +8,5 @@ on:
 
 jobs:
   call-workflow-passing-data:
+    name: Documentation Linting
     uses: RadeonOpenCompute/rocm-docs-core/.github/workflows/linting.yml@develop
