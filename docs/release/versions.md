@@ -1,4 +1,4 @@
-# ROCm Versions
+# ROCm Release History
 
 | Version | Release Date |
 | ------- | ------------ |
