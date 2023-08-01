@@ -7,7 +7,6 @@ Until now, the LLVM Address Sanitizer process was only available for traditional
 This document provides documentation on using ROCm Address Sanitizer.
 For information about LLVM Address Sanitizer, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-=======
 ### Compile for Address Sanitizer
 
 The address sanitizer process begins by compiling the application of interest with the address sanitizer instrumentation.
@@ -46,6 +45,7 @@ When adjusting an application build to add instrumentation, linking against thes
 ### Running Address Sanitizer Instrumented Applications
 
 #### Preparing to Run an Instrumented Application
+
 Here are a few recommendations to consider before running an address sanitizer instrumented heterogeneous application.
 
 + Ensure the Linux kernel running on the system has Heterogeneous Memory Management (HMM) support. A kernel version of 5.6 or higher should be sufficient.
