@@ -9,7 +9,7 @@ For information about LLVM Address Sanitizer, see [the LLVM documentation](https
 
 =======
 ### Compile for Address Sanitizer
->>>>>>> ffe34a79419da74ca94478da67ce258afc9f6cee
+
 The address sanitizer process begins by compiling the application of interest with the address sanitizer instrumentation.
 
 Recommendations for doing this are:
@@ -25,6 +25,7 @@ Other architectures are allowed, but their device code will not be instrumented 
 It is not an error to compile some files without address sanitizer instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the Address Sanitizer runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` or `readelf`), the application will immediately report an error at runtime as described in the next section.
 
 #### About Compilation Time
+
 When `-fsanitize=address` is used, the LLVM compiler adds instrumentation code around every memory operation. This added code must be handled by all of the downstream components of the compiler toolchain and results in increased overall compilation time. This increase is especially evident in the AMDGPU device compiler and has in a few instances raised the compile time to an unacceptable level.
 
 There are a few options if the compile time becomes unacceptable:
@@ -34,6 +35,7 @@ There are a few options if the compile time becomes unacceptable:
 + Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
 
 ### Use AMD Supplied Address Sanitizer Instrumented Libraries
+
 ROCm releases have optional packages containing additional address sanitizer instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
 These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
@@ -74,6 +76,7 @@ This tells the ASAN runtime to halt the application immediately after detecting 
 This option directs the address sanitizer runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSAN). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSAN suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
 ### Runtime Overhead
+
 Running an address sanitizer instrumented application incurs
 overheads which may result in unacceptably long runtimes
 or failure to run at all.
