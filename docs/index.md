@@ -1,16 +1,15 @@
+---
 <!-- markdownlint-disable -->
 <!-- spellcheck-disable -->
----
 myst:
   html_meta:
     "DocGroup": "Reference"
     "DocUserGroup": "User"
     "OSFamily": "Windows, Linux"
----
 <!-- spellcheck-enable -->
 <!-- markdownlint-enable -->
+---
 
-<!-- markdownlint-disable header-style -->
 # AMD ROCm™ Documentation
 
 :::::{grid} 1 1 3 3
