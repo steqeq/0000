@@ -15,9 +15,9 @@ shutil.copy2('../RELEASE.md','./release.md')
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
 myst_html_meta = {
-    "SoftwareFamily": "ROCm",
+    "Software_Family": "ROCm",
     "keywords": "GPU, AI",
-    "DocumentStatus": "Preview"
+    "Document_Status": "Preview"
 }
 
 # for PDF output on Read the Docs
