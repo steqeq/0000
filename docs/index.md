@@ -1,4 +1,5 @@
 ---
+<!-- spellcheck-disable -->
 myst:
   html_meta:
     "SoftwareFamily": "ROCm"
@@ -7,6 +8,7 @@ myst:
     "DocUserGroup": "User"
     "OSFamily": "Windows, Linux"
     "DocumentStatus": "Preview"
+<!-- spellcheck-enable -->
 ---
 
 # AMD ROCm™ Documentation
