@@ -1,3 +1,13 @@
+---
+html_meta:
+  "SoftwareFamily": "ROCm"
+  "keywords": ["GPU", "AI"]
+  "DocGroup": "Reference"
+  "DocUserGroup": "User"
+  "OSFamily": ["Windows", "Linux"]
+  "DocumentStatus": "Preview"
+---
+
 # AMD ROCm™ Documentation
 
 :::::{grid} 1 1 3 3
