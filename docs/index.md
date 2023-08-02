@@ -2,12 +2,9 @@
 <!-- spellcheck-disable -->
 myst:
   html_meta:
-    "SoftwareFamily": "ROCm"
-    "keywords": "GPU, AI"
     "DocGroup": "Reference"
     "DocUserGroup": "User"
     "OSFamily": "Windows, Linux"
-    "DocumentStatus": "Preview"
 <!-- spellcheck-enable -->
 ---
 

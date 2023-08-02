@@ -14,6 +14,12 @@ shutil.copy2('../RELEASE.md','./release.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
+myst_html_meta = {
+    "SoftwareFamily": "ROCm",
+    "keywords": "GPU, AI",
+    "DocumentStatus": "Preview"
+}
+
 # for PDF output on Read the Docs
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
