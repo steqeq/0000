@@ -1,9 +1,9 @@
 ---
 myst:
   html_meta:
-    "DocGroup": "Reference"
-    "DocUserGroup": "User"
-    "OSFamily": "Windows, Linux"
+    "Doc_Group": "Reference"
+    "Doc_User_Group": "User"
+    "OS_Family": "Windows, Linux"
 ---
 
 # AMD ROCm™ Documentation

@@ -29,6 +29,9 @@ MMA
 backends
 cuSOLVER
 cuSPARSE
+# metadata
+html
+myst
 # mi200_performance_counters
 ALU
 Arb
