@@ -1,13 +1,9 @@
 ---
-<!-- markdownlint-disable -->
-<!-- spellcheck-disable -->
 myst:
   html_meta:
     "DocGroup": "Reference"
     "DocUserGroup": "User"
     "OSFamily": "Windows, Linux"
-<!-- spellcheck-enable -->
-<!-- markdownlint-enable -->
 ---
 
 # AMD ROCm™ Documentation
