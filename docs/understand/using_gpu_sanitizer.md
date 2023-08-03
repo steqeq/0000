@@ -175,7 +175,7 @@ $ rocgdb my_app
 This is solved by setting environment variable `LD_PRELOAD` to the path to the address sanitizer runtime, whose path can be obtained using the command
 
 ```bash
-$ amdclang++ -print-file-name=libclang_rt.asan-x86_64.so
+amdclang++ -print-file-name=libclang_rt.asan-x86_64.so
 ```
 
 It is also recommended to set the environment variable `HIP_ENABLE_DEFERRED_LOADING=0` before debugging HIP applications.
