@@ -59,7 +59,7 @@ If the instrumented libraries are not listed by ldd, the environment variable `L
 + Ensure that the application depends on the address sanitizer runtime. This can be checked by running the command `readelf -d <application name> | grep NEEDED` and verifying that shared library: `libclang_rt.asan-x86_64.so` appears in the output.
 If it does not appear, when executed the application will quickly output an address sanitizer error that looks like:
 
-```
+```bash
 ==3210==ASan runtime does not come first in initial library list; you should either link runtime to your application or manually preload it with LD_PRELOAD.
 ```
 
