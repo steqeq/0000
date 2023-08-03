@@ -116,7 +116,7 @@ It is not the intention of this document to provide a detailed explanation of al
 
 An invalid address detection report for the CPU always starts with
 
-```
+```bash
 ==<PID>==ERROR: AddressSanitizer: <problem type> on address <memory address> at pc <pc> bp <bp> sp <sp> <access> of size <N> at <memory address> thread T0
 ```
 
@@ -124,7 +124,7 @@ and continues with a stack trace for the access, a stack trace for the allocatio
 
 In contrast, an invalid address detection report for the GPU always starts with
 
-```
+```bash
 ==<PID>==ERROR: AddressSanitizer: <problem type> on amdgpu device <device> at pc <pc> <access> of size <n> in workgroup id (<X>,<Y>,<Z>)
 ```
 
@@ -132,13 +132,13 @@ Above, `<device>` is the integer device ID, and `(<X>, <Y>, <Z>)` is the ID of t
 
 While the CPU report include a callstack for the thread attempting the invalid access, the GPU is currently to a callstack of size one, i.e. the (symbolized) of the invalid access, e.g.
 
-```
+```bash
 #0 <pc> in <fuction signature> at /path/to/file.hip:<line>:<column>
 ```
 
 This short callstack is followed by a GPU unique section that looks like
 
-```
+```bash
 Thread ids and accessed addresses:
 <lid0> <maddr 0> : <lid1> <maddr1> : ...
 ```
@@ -147,13 +147,13 @@ where each `<lid j> <maddr j>` indicates the lane ID and the invalid memory addr
 
 Additionally, reports for invalid GPU accesses to memory allocated by GPU code via malloc or new starting with, for example,
 
-```
+```bash
 ==1234==ERROR: AddressSanitizer: heap-buffer-overflow on amdgpu device 0 at pc 0x7fa9f5c92dcc
 ```
 
 or
 
-```
+```bash
 ==5678==ERROR: AddressSanitizer: heap-use-after-free on amdgpu device 3 at pc 0x7f4c10062d74
 ```
 
@@ -165,14 +165,14 @@ currently may include one or two surprising CPU side tracebacks mentioning :`hos
 
 Currently, the address sanitizer runtime complains when starting rocgdb without preparation.
 
-```
+```bash
 $ rocgdb my_app
 ==1122==ASan` runtime does not come first in initial library list; you should either link runtime to your application or manually preload it with LD_PRELOAD.
 ```
 
 This is solved by setting environment variable `LD_PRELOAD` to the path to the address sanitizer runtime, whose path can be obtained using the command
 
-```
+```bash
 $ amdclang++ -print-file-name=libclang_rt.asan-x86_64.so
 ```
 
@@ -180,31 +180,31 @@ It is also recommended to set the environment variable `HIP_ENABLE_DEFERRED_LOAD
 
 After starting `rocgdb` breakpoints can be set on the address sanitizer runtime error reporting entrypoints of interest. For example, if an address sanitizer error report includes
 
-```
+```bash
 WRITE of size 4 in workgroup id (10,0,0)
 ```
 
 the `rocgdb` command needed to stop the program before the report is printed is
 
-```
+```bash
 (gdb) break __asan_report_store4
 ```
 
 Similarly, the appropriate command for a report including
 
-```
+```bash
 READ of size <N> in workgroup ID (1,2,3)
 ```
 
 is
 
-```
+```bash
 (gdb) break __asan_report_load<N>
 ```
 
 It is possible to set breakpoints on all address sanitizer report functions using these commands:
 
-```
+```bash
 $ rocgdb <path to application>
 (gdb) start <commmand line arguments>
 (gdb) rbreak ^__asan_report
@@ -215,7 +215,10 @@ $ rocgdb <path to application>
 
 ### Known Issues with Using GPU Sanitizer
 
-- Redzones must have limited size and it is possible for an invalid access to completely miss a redzone and not be detected.
-- Lack of detection or false reports can be caused by the runtime not properly maintaining redzone shadows.
-- Lack of detection on the GPU might also be due to the implementation not instrumenting accesses to all GPU specific address spaces. For example, in the current implementation accesses to "private" or "stack" variables on the GPU are not instrumented, and accesses to HIP shared variables (also known as "local data store" or "LDS") are also not instrumented.
-- It can also be the case that a memory fault is hit for an invalid address even with the instrumentation. This is usually caused by the invalid address being so wild that its shadow address is outside of any memory region, and the fault actually occurs on the access to the shadow address. It is also possible to hit a memory fault for the `NULL` pointer. While address 0 does have a shadow location, it is not poisoned by the runtime.
++ Redzones must have limited size and it is possible for an invalid access to completely miss a redzone and not be detected.
+
++ Lack of detection or false reports can be caused by the runtime not properly maintaining redzone shadows.
+
++ Lack of detection on the GPU might also be due to the implementation not instrumenting accesses to all GPU specific address spaces. For example, in the current implementation accesses to "private" or "stack" variables on the GPU are not instrumented, and accesses to HIP shared variables (also known as "local data store" or "LDS") are also not instrumented.
+
++ It can also be the case that a memory fault is hit for an invalid address even with the instrumentation. This is usually caused by the invalid address being so wild that its shadow address is outside of any memory region, and the fault actually occurs on the access to the shadow address. It is also possible to hit a memory fault for the `NULL` pointer. While address 0 does have a shadow location, it is not poisoned by the runtime.
