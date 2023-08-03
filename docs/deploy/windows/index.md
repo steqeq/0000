@@ -1,4 +1,4 @@
-# Deploy ROCm on Windows
+# Install ROCm (HIP SDK) on Windows
 
 Start with {doc}`/deploy/windows/quick_start` or follow the detailed
 instructions below.
