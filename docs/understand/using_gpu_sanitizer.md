@@ -55,7 +55,7 @@ Here are a few recommendations to consider before running an address sanitizer i
 This requirement is due to the fact that the XNACK setting for these GPUs is system-wide.
 
 + Ensure that the application will use the instrumented libraries when it runs. The output from the shell command `ldd <application name>` can be used to see which libraries will be used.
-If the instrumented libraries are not listed by `ldd`, the environment variable `LD_LIBRARY_PATH` may need to be adjusted, or in some cases an RPATH compiled into the application may need to be changed and the application recompiled.
+If the instrumented libraries are not listed by `ldd`, the environment variable `LD_LIBRARY_PATH` may need to be adjusted, or in some cases an `RPATH` compiled into the application may need to be changed and the application recompiled.
 
 + Ensure that the application depends on the address sanitizer runtime. This can be checked by running the command `readelf -d <application name> | grep NEEDED` and verifying that shared library: `libclang_rt.asan-x86_64.so` appears in the output.
 If it does not appear, when executed the application will quickly output an address sanitizer error that looks like:
@@ -102,10 +102,10 @@ than non-shadow accesses.
 #### Higher Memory Use
 
 The address checking described above relies on the compiler to surround
-each program variable with a "redzone" and on address sanitizer
-runtime to surround each runtime memory allocation with a redzone and
-fill the shadow corresponding to each redzone with poison.
-The added memory for the redzones is additional overhead on top
+each program variable with a red zone and on address sanitizer
+runtime to surround each runtime memory allocation with a red zone and
+fill the shadow corresponding to each red zone with poison.
+The added memory for the red zones is additional overhead on top
 of the 13% overhead for the shadow memory itself.
 
 Applications which consume most one or more available memory pools when
@@ -132,13 +132,13 @@ In contrast, an invalid address detection report for the GPU always starts with
 
 Above, `<device>` is the integer device ID, and `(<X>, <Y>, <Z>)` is the ID of the workgroup or block where the invalid address was detected.
 
-While the CPU report include a callstack for the thread attempting the invalid access, the GPU is currently to a callstack of size one, i.e. the (symbolized) of the invalid access, e.g.
+While the CPU report include a call stack for the thread attempting the invalid access, the GPU is currently to a call stack of size one, i.e. the (symbolized) of the invalid access, e.g.
 
 ```bash
 #0 <pc> in <fuction signature> at /path/to/file.hip:<line>:<column>
 ```
 
-This short callstack is followed by a GPU unique section that looks like
+This short call stack is followed by a GPU unique section that looks like
 
 ```bash
 Thread ids and accessed addresses:
@@ -159,7 +159,7 @@ or
 ==5678==ERROR: AddressSanitizer: heap-use-after-free on amdgpu device 3 at pc 0x7f4c10062d74
 ```
 
-currently may include one or two surprising CPU side tracebacks mentioning :`hostcall`". This is due to how `malloc` and `free` are implemented for GPU code and these callstacks can be ignored.
+currently may include one or two surprising CPU side tracebacks mentioning :`hostcall`". This is due to how `malloc` and `free` are implemented for GPU code and these call stacks can be ignored.
 
 ### Running with `rocgdb`
 
@@ -180,7 +180,7 @@ amdclang++ -print-file-name=libclang_rt.asan-x86_64.so
 
 It is also recommended to set the environment variable `HIP_ENABLE_DEFERRED_LOADING=0` before debugging HIP applications.
 
-After starting `rocgdb` breakpoints can be set on the address sanitizer runtime error reporting entrypoints of interest. For example, if an address sanitizer error report includes
+After starting `rocgdb` breakpoints can be set on the address sanitizer runtime error reporting entry points of interest. For example, if an address sanitizer error report includes
 
 ```bash
 WRITE of size 4 in workgroup id (10,0,0)
@@ -217,9 +217,9 @@ $ rocgdb <path to application>
 
 ### Known Issues with Using GPU Sanitizer
 
-+ Redzones must have limited size and it is possible for an invalid access to completely miss a redzone and not be detected.
++ Red zones must have limited size and it is possible for an invalid access to completely miss a red zone and not be detected.
 
-+ Lack of detection or false reports can be caused by the runtime not properly maintaining redzone shadows.
++ Lack of detection or false reports can be caused by the runtime not properly maintaining red zone shadows.
 
 + Lack of detection on the GPU might also be due to the implementation not instrumenting accesses to all GPU specific address spaces. For example, in the current implementation accesses to "private" or "stack" variables on the GPU are not instrumented, and accesses to HIP shared variables (also known as "local data store" or "LDS") are also not instrumented.
 
