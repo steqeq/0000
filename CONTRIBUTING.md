@@ -38,9 +38,11 @@ as follows:
 
 ## Filenames and folder structure
 
-Please use snake case for file names. Our documentation follows pitchfork for
-folder structure. All documentation is in /docs except for special files like
-the contributing guide in the / folder. All images used in the documentation are
+Please use snake case (all lower case letters and underscores instead of spaces)
+for file names. For example, `example_file_name.md`.
+Our documentation follows pitchfork for folder structure.
+All documentation is in `/docs` except for special files like
+the contributing guide in the `/` folder. All images used in the documentation are
 place in the /docs/data folder.
 
 ## How to provide feedback for ROCm documentation
