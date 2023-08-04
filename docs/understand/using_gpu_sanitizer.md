@@ -103,7 +103,7 @@ than non-shadow accesses.
 
 The address checking described above relies on the compiler to surround
 each program variable with a "redzone" and on address sanitizer
-runtime to surround each rutime memory allocation with a redzone and
+runtime to surround each runtime memory allocation with a redzone and
 fill the shadow corresponding to each redzone with poison.
 The added memory for the redzones is additional overhead on top
 of the 13% overhead for the shadow memory itself.
@@ -159,7 +159,7 @@ or
 ==5678==ERROR: AddressSanitizer: heap-use-after-free on amdgpu device 3 at pc 0x7f4c10062d74
 ```
 
-currently may include one or two surprising CPU side tracebacks mentioning :`hostcall`". This is due to how malloc and free are implemented for GPU code and these callstacks can be ignored.
+currently may include one or two surprising CPU side tracebacks mentioning :`hostcall`". This is due to how `malloc` and `free` are implemented for GPU code and these callstacks can be ignored.
 
 ### Running with `rocgdb`
 
