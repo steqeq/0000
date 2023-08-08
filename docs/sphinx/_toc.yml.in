@@ -238,4 +238,4 @@ subtrees:
         - entries: 
           - file: contribute/building.md
           - file: contribute/feedback.md
-          - file: license.md
+    - file: license.md
