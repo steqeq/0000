@@ -55,7 +55,7 @@ or more Dynamically Linked HIP Libraries including the HIP RT library. ISV
 applications with this dependency need to ensure the end user installs an AMD
 GPU Driver and is recommended to distribute the dynamically linked HIP library
 in the installer package of its application. This allows end users to avoid
-7installing the HIP SDK. One benefit of this model is smaller disk space required
+installing the HIP SDK. One benefit of this model is smaller disk space required
 as only required binaries are distributed by the ISV application. It also avoids
 the end user to have to agree to licensing agreements for the entire HIP SDK.
 The version checks recommended for the ISV application including dynamically
