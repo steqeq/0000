@@ -20,6 +20,7 @@ compilers, debuggers, and libraries. ROCm is fully integrated into machine learn
 such as PyTorch and TensorFlow.
 
 You can deploy ROCm using:
+
 * Bare Metal Installation (single and multi version variants)
 * Containers (such as Docker and Spack)
 * Python pip (for AI/ML)
