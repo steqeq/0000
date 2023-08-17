@@ -18,11 +18,3 @@ platforms, from dedicated gaming GPUs to exascale HPC clusters.
 ROCm supports programming models, such as OpenMP and OpenCL, and includes all necessary OSS
 compilers, debuggers, and libraries. ROCm is fully integrated into machine learning (ML) frameworks,
 such as PyTorch and TensorFlow.
-
-You can deploy ROCm using:
-
-* Bare Metal Installation (single and multi version variants)
-* Containers (such as Docker and Spack)
-* Python pip (for AI/ML)
-* Source build
-* Windows install
