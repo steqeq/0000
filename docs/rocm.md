@@ -22,6 +22,6 @@ such as PyTorch and TensorFlow.
 You can deploy ROCm using:
 * Bare Metal Installation (single and multi version variants)
 * Containers (such as Docker and Spack)
-*  Python pip (for AI/ML)
-*  Source build
-*  Windows install
+* Python pip (for AI/ML)
+* Source build
+* Windows install
