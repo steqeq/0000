@@ -83,6 +83,26 @@ table, choose ROCm from the _Compute Platform_ row.
    pip3 install wheel setuptools
    ```
 
+### Using MIOpen kdb files with ROCm PyTorch wheels
+
+PyTorch uses [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen) for machine learning
+primitives, which are compiled into kernels at runtime. Runtime compilation causes a small warm-up
+phase when starting PyTorch, and MIOpen kdb files contain precompiled kernels that can speed up
+application warm-up phases. For more information, refer to the
+{doc}`MIOpen installation page <miopen:install>`.
+
+MIOpen kdb files can be used with ROCm PyTorch wheels. However, the kdb files need to be placed in
+a specific location with respect to the PyTorch installation path. A helper script simplifies this task by
+taking the ROCm version and GPU architecture as inputs. This works for Ubuntu and CentOS.
+
+You can download the helper script here:
+[install_kdb_files_for_pytorch_wheels.sh](https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/install_kdb_files_for_pytorch_wheels.sh)
+
+After installing ROCm PyTorch wheels, run the following code:
+
+1. (Optional) `export GFX_ARCH=gfx90a`
+2. (Optional) `export ROCM_VERSION=5.5`
+3. `./install_kdb_files_for_pytorch_wheels.sh`
 4. Install torch, `torchvision`, and `torchaudio`, as specified in the _Run this Command_ column of the
    interactive table on the [PyTorch Start Locally](https://pytorch.org/get-started/locally/) website.
 
@@ -267,7 +287,7 @@ maintainers and installs all the required dependencies, including:
    USE_ROCM=1 MAX_JOBS=4 python3 setup.py install --user
    ```
 
-## Test the PyTorch Installation
+## Testing the PyTorch Installation
 
 You can use PyTorch unit tests to validate your PyTorch installation. If you used a
 **prebuilt PyTorch Docker image from AMD ROCm DockerHub** or installed an
@@ -325,7 +345,7 @@ If you want to manually run unit tests to validate your PyTorch installation ful
 
    You can replace `test_nn.py` with any other test set.
 
-## Run a Basic PyTorch Example
+## Running a Basic PyTorch Example
 
 The PyTorch examples repository provides basic examples that exercise the functionality of your
 framework.
