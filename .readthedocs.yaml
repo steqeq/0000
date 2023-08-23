@@ -11,8 +11,6 @@ formats: [htmlzip, pdf, epub]
 python:
    install:
    - requirements: docs/sphinx/requirements.txt
-   - method: pip
-     path: .
 
 build:
    os: ubuntu-20.04
