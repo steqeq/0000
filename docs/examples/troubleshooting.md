@@ -14,8 +14,8 @@ dependencies or libraries do not support the current GPU.
 
 To implement a workaround, follow these steps:
 
-1. Confirm that the hardware supports the ROCm stack. Refer to 
-   [Supported GPUs](../release/gpu_os_support.md#supported-gpus).
+1. Confirm that the hardware supports the ROCm stack. Refer to
+{ref}`supported_gpus`.
 
 2. Determine the gfx target.
 
@@ -45,7 +45,7 @@ described in the ROCm Installation Guide at {ref}`setting_group_permissions`.
 
 Ans: Bare-metal installation of PyTorch is supported through wheels. Refer to
 Option 2: Install PyTorch Using Wheels Package in the section
-{ref}`install_pytorch_wheels` of this guide for more information.
+{ref}`install_pytorch_using_wheels` of this guide for more information.
 
 **Q: How do I profile PyTorch workloads?**
 
