@@ -336,8 +336,10 @@ double a = 0.0;
 a = a + 1.0;
 ```
 
-NOTE `AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
+:::{note}
+`AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
 `AMD_safe_fp_atomics` is implemented with a compare-and-swap loop.
+:::
 
 To disable the generation of fast floating-point atomic instructions at the file
 level, build using the option `-msafe-fp-atomics` or use a hint clause on a
