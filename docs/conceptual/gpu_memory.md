@@ -82,23 +82,20 @@ If managed memory performance is poor, check to see if managed memory is support
 
 ## Access behavior
 
-Memory allocations for GPUs that do not support XNACK or have it disabled by setting the environment variable `HSA_XNACK=0` behave as follow:
+Memory allocations for GPUs behave as follow:
 
-| API                | Data location | Host access  | Device access |
-|--------------------|---------------|--------------|---------------|
-| System allocated   | Host          | Local access | Page fault    |
-| `hipMallocManaged` | Host          | Local access | Zero-copy     |
-| `hipHostMalloc`    | Host          | Local access | Zero-copy*    |
-| `hipMalloc`        | Device        | Zero-copy    | Local access  |
+| API                | Data location | Host access  | Device access        |
+|--------------------|---------------|--------------|----------------------|
+| System allocated   | Host          | Local access | Unhandled page fault |
+| `hipMallocManaged` | Host          | Local access | Zero-copy            |
+| `hipHostMalloc`    | Host          | Local access | Zero-copy*           |
+| `hipMalloc`        | Device        | Zero-copy    | Local access         |
 
-Zero-copy access happen over the Infinity Fabric interconnect or PCI-E lanes on discrete GPUs.
-
-:::{note}
-While `hipHostMalloc` allocates memory on the device, kernels may not be able to use the pointer.
-To get the device pointer `hipHostGetDevicePointer` must be used.
-:::
+Zero-copy accesses happen over the Infinity Fabric interconnect or PCI-E lanes on discrete GPUs.
 
 :::{note}
+While `hipHostMalloc` allocated memory is accessible by a device, the host pointer must be converted to a device pointer with `hipHostGetDevicePointer`.
+
 Memory allocated through standard system allocators such as `malloc`, can accessed by device by registering the memory via `hipHostRegister`.
 The device pointer to be used in kernels can be retrieved with `hipHostGetDevicePointer`.
 Registered memory is treated like `hipHostMalloc` and will have similar performance.
@@ -136,6 +133,20 @@ Turning on XNACK by setting the environment variable `HSA_XNACK=1` and gives the
 ```sh
 $ HSA_XNACK=1 rocminfo | grep xnack
 Name:                    amdgcn-amd-amdhsa--gfx90a:sramecc+:xnack+
+```
+
+`hipcc`by default will generate code that runs correctly with both XNACK enabled or disabled.
+Setting the `--amdgpu-target`-option with `xnack+` or `xnack-` forces code to be only run with XNACK enabled or disabled respectively.
+
+```sh
+# Compiled kernels will run regardless if XNACK is enabled or is disabled. 
+hipcc --amdgpu-target=gfx90a
+
+# Compiled kernels will only be run if XNACK is enabled with XNACK=1.
+hipcc --amdgpu-target=gfx90a:xnack+
+
+# Compiled kernels will only be run if XNACK is disabled with XNACK=0.
+hipcc --amdgpu-target=gfx90a:xnack+
 ```
 
 :::{tip}
