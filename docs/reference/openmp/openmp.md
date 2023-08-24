@@ -117,7 +117,7 @@ code compiled with AOMP:
    options --list-basic and --list-derived. `rocprof` accepts either a text or
    an XML file as an input.
 
-For more details on `rocprof`, refer to the {doc}`ROCProfilerV1 User Manual<rocprofiler:rocprofv1>`.
+For more details on `rocprof`, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
 ### Using Tracing Options
 
@@ -143,7 +143,7 @@ Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/).
 Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the
 HSA calls.
 
-For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual<rocprofiler:rocprofv1>`.
+For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
 ### Environment Variables
 
