@@ -143,8 +143,7 @@ Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/).
 Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the
 HSA calls.
 
-For more details on tracing, refer to the ROCm Profiling Tools document on
-{doc}`rocprofiler:rocprof`.
+For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual<rocprofiler:rocprofv1>`.
 
 ### Environment Variables
 
