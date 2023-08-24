@@ -1,16 +1,10 @@
-# Linux support
+# GPU Support and OS Compatibility (Linux)
 
-The AMD ROCm™ Platform supports the following Linux distributions.
+(supported_distributions)=
 
-| Distribution            |Processor architectures| Validated kernel |
-|----------------------|-------------------------|-------------------|
-| RHEL 9.1                 | x86-64                         | 5.14                    |
-| RHEL 8.6 to 8.7       | x86-64                         | 4.18                    |
-| SLES 15 SP4            | x86-64                         |                           |
-| Ubuntu 20.04.5 LTS | x86-64                        | 5.15                    |
-| Ubuntu 22.04.1 LTS | x86-64                        | 5.15, OEM 5.17   |
+## Supported Linux Distributions
 
-## Supported hardware
+AMD ROCm™ Platform supports the following Linux distributions.
 
 ::::{tab-set}
 
@@ -56,7 +50,7 @@ The AMD ROCm™ Platform supports the following Linux distributions.
 
 ## Virtualization Support
 
-ROCm supports virtualization for the GPUs listed in the following table.
+ROCm supports virtualization for select GPUs only as shown below.
 
 | Hypervisor     | Version  | GPU   | Validated Guest OS (validated kernel)                                            |
 |----------------|----------|-------|----------------------------------------------------------------------------------|
