@@ -146,7 +146,7 @@ hipcc --offload-arch=gfx90a
 hipcc --offload-arch=gfx90a:xnack+
 
 # Compiled kernels will only be run if XNACK is disabled with XNACK=0.
-hipcc --offload-arch=gfx90a:xnack+
+hipcc --offload-arch=gfx90a:xnack-
 ```
 
 :::{tip}
