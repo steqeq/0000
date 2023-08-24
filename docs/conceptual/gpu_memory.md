@@ -136,17 +136,17 @@ Name:                    amdgcn-amd-amdhsa--gfx90a:sramecc+:xnack+
 ```
 
 `hipcc`by default will generate code that runs correctly with both XNACK enabled or disabled.
-Setting the `--amdgpu-target`-option with `xnack+` or `xnack-` forces code to be only run with XNACK enabled or disabled respectively.
+Setting the `--offload-arch=`-option with `xnack+` or `xnack-` forces code to be only run with XNACK enabled or disabled respectively.
 
 ```sh
 # Compiled kernels will run regardless if XNACK is enabled or is disabled. 
-hipcc --amdgpu-target=gfx90a
+hipcc --offload-arch=gfx90a
 
 # Compiled kernels will only be run if XNACK is enabled with XNACK=1.
-hipcc --amdgpu-target=gfx90a:xnack+
+hipcc --offload-arch=gfx90a:xnack+
 
 # Compiled kernels will only be run if XNACK is disabled with XNACK=0.
-hipcc --amdgpu-target=gfx90a:xnack+
+hipcc --offload-arch=gfx90a:xnack+
 ```
 
 :::{tip}
