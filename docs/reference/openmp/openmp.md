@@ -117,8 +117,7 @@ code compiled with AOMP:
    options --list-basic and --list-derived. `rocprof` accepts either a text or
    an XML file as an input.
 
-For more details on `rocprof`, refer to the ROCm Profiling Tools document on
-{doc}`rocprofiler:rocprof`.
+For more details on `rocprof`, refer to the {doc}`ROCProfilerV1 User Manual<rocprofiler:rocprofv1>`.
 
 ### Using Tracing Options
 
