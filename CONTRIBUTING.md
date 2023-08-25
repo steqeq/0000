@@ -43,29 +43,6 @@ as follows:
 
 ## Filenames and folder structure
 
-Please use snake case for file names. Our documentation follows pitchfork for
-folder structure. All documentation is in /docs except for special files like
-the contributing guide in the / folder. All images used in the documentation are
-place in the /docs/data folder.
-
-## How to provide feedback for ROCm documentation
-
-There are three standard ways to provide feedback for this repository.
-
-### Pull Request
-
-All contributions to ROCm documentation should arrive via the
-[GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-targetting the develop branch of the repository. If you are unable to contribute
-via the GitHub Flow, feel free to email us. TODO, confirm email address.
-
-### GitHub Issue
-
-Issues on existing or absent docs can be filed as [GitHub issues
-](https://github.com/RadeonOpenCompute/ROCm/issues).
-
-### Email Feedback
-
 Please use snake case (all lower case letters and underscores instead of spaces)
 for file names. For example, `example_file_name.md`.
 Our documentation follows Pitchfork for folder structure.
