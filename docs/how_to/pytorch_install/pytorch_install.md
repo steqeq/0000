@@ -30,7 +30,7 @@ For hardware, software, and third-party framework compatibility between ROCm and
    You can also download a specific and supported configuration with different user-space ROCm
    versions, PyTorch versions, and operating systems.
 
-2. Start a Docker container using the image with the mounted Pytorch folder.
+2. Start a Docker container using the image with the mounted PyTorch folder.
 
    ```bash
    docker run -it --cap-add=SYS_PTRACE --security-opt --user root \
@@ -61,7 +61,7 @@ table, choose ROCm from the _Compute Platform_ row.
    |----------------|-----------------------------|----------------|
    | Ubuntu 20.04 | `rocm/dev-ubuntu-20.04` | [https://hub.docker.com/r/rocm/dev-ubuntu-20.04](https://hub.docker.com/r/rocm/dev-ubuntu-20.04)
    | Ubuntu 22.04 | `rocm/dev-ubuntu-22.04` | [https://hub.docker.com/r/rocm/dev-ubuntu-22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
-   | Centos 7        | `rocm/dev-centos-7` | [https://hub.docker.com/r/rocm/dev-centos-7](https://hub.docker.com/r/rocm/dev-centos-7)
+   | CentOS 7        | `rocm/dev-centos-7` | [https://hub.docker.com/r/rocm/dev-centos-7](https://hub.docker.com/r/rocm/dev-centos-7)
 
    **Option 2:**
 
@@ -237,7 +237,7 @@ maintainers and installs all the required dependencies, including:
 
    If successful, the output looks like this:
 
-   ```
+   ```bash
    REPOSITORY    TAG                       IMAGE ID         CREATED           SIZE
    rocm/pytorch  build_from_dockerfile     17071499be47     2 minutes ago     32.8GB
    ```

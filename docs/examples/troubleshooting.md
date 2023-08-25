@@ -14,7 +14,7 @@ dependencies or libraries do not support the current GPU.
 
 To implement a workaround, follow these steps:
 
-1. Confirm that the hardware supports the ROCm stack. Refer to 
+1. Confirm that the hardware supports the ROCm stack. Refer to
    [Supported GPUs](../release/gpu_os_support.md#supported-gpus).
 
 2. Determine the gfx target.
