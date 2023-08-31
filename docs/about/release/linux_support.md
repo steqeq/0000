@@ -1,4 +1,4 @@
-# GPU Support and OS Compatibility (Linux)
+# GPU and OS support (Linux)
 
 (supported_distributions)=
 

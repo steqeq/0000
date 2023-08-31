@@ -1,4 +1,4 @@
-# Licensing Terms
+# ROCm licensing terms
 
 ROCm™ is released by Advanced Micro Devices, Inc. and is licensed per component separately.
 The following table is a list of ROCm components with links to their respective license

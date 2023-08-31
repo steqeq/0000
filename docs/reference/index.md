@@ -1,4 +1,4 @@
-# All Reference Material
+# Reference material
 
 ## ROCm Software Groups
 

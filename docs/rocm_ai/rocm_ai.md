@@ -1,4 +1,4 @@
-# Machine Learning, Deep Learning, and Artificial Intelligence
+# ROCm & artificial intelligence
 
 :::::{grid} 1 1 2 2
 :gutter: 1

@@ -1,7 +1,14 @@
-# All Tutorial Material
+# ROCm tutorials
 
 :::::{grid} 1 1 2 2
 :gutter: 1
+
+:::{grid-item-card} Installing ROCm
+:link: install/index.md
+:link-type: doc
+Learn how to install ROCm on Linux and Windows.
+
+:::
 
 :::{grid-item-card} ROCm Examples
 :link: https://github.com/amd/rocm-examples

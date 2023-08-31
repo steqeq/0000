@@ -1,9 +1,6 @@
-# About ROCm Documentation
+# ROCm documentation toolchain
 
-ROCm documentation is made available under open source [licenses](licensing.md).
-Documentation is built using open source toolchains. Contributions to our
-documentation is encouraged and welcome. As a contributor, please familiarize
-yourself with our documentation toolchain.
+Our documentation relies on several open source toolchains and sites.
 
 ## `rocm-docs-core`
 
