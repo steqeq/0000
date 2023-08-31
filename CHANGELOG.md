@@ -26,8 +26,8 @@ The release notes for the ROCm platform.
 | hipCUB |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.7.0) |
 | hipFFT |  ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.0) |
 | hipSOLVER |  ⇒ [1.8.1](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.0) |
-| hipSPARSE |  ⇒ [2.3.7](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
-| rccl |  ⇒ [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.7.0) |
+| hipSPARSE |  ⇒ [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
+| rccl |  ⇒ [2.17.1-1](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.7.0) |
 | rocALUTION |  ⇒ [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.0) |
 | rocBLAS |  ⇒ [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.0) |
 | rocFFT |  ⇒ [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.0) |
@@ -84,9 +84,13 @@ hipFFT 1.0.12 for ROCm 5.7.0
 
 hipSOLVER 1.8.1 for ROCm 5.7.0
 
-#### hipSPARSE 2.3.7
+##### Changed
 
-hipSPARSE 2.3.7 for ROCm 5.7.0
+- Changed hipsolver-test sparse input data search paths to be relative to the test executable
+
+#### hipSPARSE 2.3.8
+
+hipSPARSE 2.3.8 for ROCm 5.7.0
 
 ##### Improved
 
@@ -95,31 +99,25 @@ hipSPARSE 2.3.7 for ROCm 5.7.0
 - Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
 - Minor improvements
 
-#### rccl 2.15.5
+#### RCCL 2.17.1-1
 
-RCCL 2.15.5 for ROCm 5.7.0
+RCCL 2.17.1-1 for ROCm 5.7.0
 
 ##### Changed
 
-- Compatibility with NCCL 2.15.5
-- Unit test executable renamed to rccl-UnitTests
+- Compatibility with NCCL 2.17.1-1
+- Performance tuning for some collective operations
 
 ##### Added
 
-- HW-topology aware binary tree implementation
-- Experimental support for MSCCL
-- New unit tests for hipGraph support
-- NPKit integration
+- Minor improvements to MSCCL codepath
+- NCCL_NCHANNELS_PER_PEER support
+- Improved compilation performance
+- Support for gfx94x
 
 ##### Fixed
 
-- rocm-smi ID conversion
-- Support for HIP_VISIBLE_DEVICES for unit tests
-- Support for p2p transfers to non (HIP) visible devices
-
-##### Removed
-
-- Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
+- Potential race-condition during ncclSocketClose()
 
 #### rocALUTION 2.1.11
 
@@ -224,6 +222,15 @@ rocSOLVER 3.23.0 for ROCm 5.7.0
     - GEBLTTRF_NPVT now supports interleaved\_batched format
 - Linear system solver without pivoting for block tridiagonal matrices:
     - GEBLTTRS_NPVT now supports interleaved\_batched format
+
+##### Fixed
+
+- Fixed stack overflow in sparse tests on Windows
+
+##### Changed
+
+- Changed rocsolver-test sparse input data search paths to be relative to the test executable
+- Changed build scripts to default to compressed debug symbols in Debug builds
 
 #### rocSPARSE 2.5.4
 
