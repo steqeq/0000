@@ -121,6 +121,8 @@ subtrees:
                 url: ${project:rocsparse}
               - title: hipSPARSE
                 url: ${project:hipsparse}
+              - title: hipSPARSELt
+                url: ${project:hipsparselt}
           - file: reference/gpu_libraries/fft
             subtrees:
             - entries: 
