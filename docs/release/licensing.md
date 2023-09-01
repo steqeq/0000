@@ -64,6 +64,7 @@ The table is ordered to follow ROCm's manifest file.
 | [aomp](https://github.com/ROCm-Developer-Tools/aomp/)                                            | [Apache 2.0](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/LICENSE)                                           |
 | [aomp-extras](https://github.com/ROCm-Developer-Tools/aomp-extras/)                              | [MIT](https://github.com/ROCm-Developer-Tools/aomp-extras/blob/aomp-dev/LICENSE)                                           |
 | [flang](https://github.com/ROCm-Developer-Tools/flang/)                                          | [Apache 2.0](https://github.com/ROCm-Developer-Tools/flang/blob/master/LICENSE.txt)                                        |
+| [hipTensor](https://github.com/ROCmSoftwarePlatform/hipTensor)  | [MIT](https://github.com/ROCmSoftwarePlatform/hipTensor/blob/develop/LICENSE) |
 
 Open sourced ROCm components are released via public GitHub
 repositories, packages on https://repo.radeon.com and other distribution channels.
