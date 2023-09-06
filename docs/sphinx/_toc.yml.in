@@ -12,8 +12,6 @@ subtrees:
     - entries:
       - file: rocm_ai/rocm_ai.md
         title: ROCm & AI
-  - file: about/compatibility/index.md
-    title: Compatibility & support
   - file: tutorials/quick_start/index.md
     title: Quick start
     subtrees:
@@ -22,6 +20,8 @@ subtrees:
         title: Linux
       - file: tutorials/quick_start/windows.md
         title: Windows
+  - file: about/compatibility/index.md
+    title: Compatibility & support
   - file: CHANGELOG.md
     title: Release information
     subtrees:
@@ -30,22 +30,8 @@ subtrees:
         title: Release history
       - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
         title: Known issues
-  - file: whats_new.md
+  - file: whats_new/whats_new.md
     title: What's new?
-  - file: conceptual/index.md
-    title: Conceptual documentation
-  - file: how_to/index.md
-    title: How-to guides
-  - file: reference/index.md
-    title: Reference guides
-    subtrees:
-    - entries:
-      - file: reference/apis/index.md
-        title: APIs
-      - file: reference/libraries/index.md
-        title: Libraries
-      - file: reference/compilers_tools/index.md
-        title: Compilers & tools
   - file: tutorials/index.md
     title: Tutorials
     subtrees:
@@ -54,6 +40,12 @@ subtrees:
         title: Install ROCm (Linux)
       - file: tutorials/install/windows/index.md
         title: Install ROCm (Windows)
+  - file: how_to/index.md
+    title: How-to guides
+  - file: reference/index.md
+    title: Reference guides
+  - file: conceptual/index.md
+    title: Conceptual documentation
   - file: rocm_a-z.md
     title: ROCm A-Z
   - file: contribute/index.md

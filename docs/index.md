@@ -1,23 +1,23 @@
 # AMD ROCm™ documentation
 
-Our documentation follows the [Diátaxis](https://diataxis.fr/) approach and is divided into four main
-categories:
+Our documentation is divided into four main categories:
 
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
 :padding: 2
-**[Conceptual](conceptual/index)**
+**[Tutorials](tutorials/index)**
 
-Topic overviews and background information
+Instructional material
 ^^^
 
-- [Compiler Disambiguation](conceptual/compiler_disambiguation)
-- [Using CMake](conceptual/cmake_packages)
-- [Linux Folder Structure Reorganization](conceptual/file_reorg)
-- [GPU Isolation Techniques](conceptual/gpu_isolation)
-- [GPU Architecture](conceptual/gpu_arch)
+- [Installing ROCm](tutorials/install/index)
+- [Installing Magma](tutorials/install/magma_install)
+- [Installing PyTorch](tutorials/install/pytorch_install)
+- [Installing TensorFlow](tutorials/install/tensorflow_install)
+- [GitHub examples](https://github.com/amd/rocm-examples)
+- [Artificial intelligence](rocm_ai/rocm_ai)
 
 :::
 
@@ -42,7 +42,6 @@ Task-oriented walkthroughs
 Collated information
 ^^^
 
-- [APIs](reference/apis/index)
 - [Libraries](reference/libraries/index)
   - [Math libraries](reference/libraries/gpu_libraries/math)
   - [C++ Primitives libraries](reference/libraries/gpu_libraries/c++_primitives)
@@ -58,17 +57,17 @@ Collated information
 
 :::{grid-item-card}
 :padding: 2
-**[Tutorials](tutorials/index)**
+**[Conceptual](conceptual/index)**
 
-Lesson-oriented material
+Topic overviews and background information
 ^^^
 
-- [Installing ROCm](tutorials/install/index)
-- [Installing Magma](tutorials/install/magma_install)
-- [Installing PyTorch](tutorials/install/pytorch_install)
-- [Installing TensorFlow](tutorials/install/tensorflow_install)
-- [GitHub examples](https://github.com/amd/rocm-examples)
-- [Artificial intelligence](rocm_ai/rocm_ai)
+- [Compiler Disambiguation](conceptual/compiler_disambiguation)
+- [Using CMake](conceptual/cmake_packages)
+- [Linux Folder Structure Reorganization](conceptual/file_reorg)
+- [GPU Isolation Techniques](conceptual/gpu_isolation)
+- [GPU Architecture](conceptual/gpu_arch)
 
 :::
+
 ::::
