@@ -10,7 +10,7 @@ Training also includes the choice of an optimization algorithm that reduces the 
 
 ## Training Phases
 
-Training occurs in multiple phases for every batch of training data. the following [table](#training-phases) provides an explanation of the types of training phases.
+Training occurs in multiple phases for every batch of training data. the following table provides an explanation of the types of training phases.
 
 :::{table} Types of Training Phases
 :name: training-phases
@@ -23,7 +23,7 @@ Training occurs in multiple phases for every batch of training data. the followi
 | Optimization Pass | The optimization algorithm updates the model parameters using the stored error gradients. |
 :::
 
-Training is different from inference, particularly from the hardware perspective. The following [table](#training-inference) shows the contrast between training and inference.
+Training is different from inference, particularly from the hardware perspective. The following table shows the contrast between training and inference.
 
 :::{table} Training vs. Inference
 :name: training-inference
@@ -461,7 +461,7 @@ Follow these steps:
 torch.save(model.state_dict(), "trained_inception_v3.pt")
 ```
 
-Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in the following [image](#inception-v3).
+Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in the following image.
 
 ```{figure} ../data/rocm_ai/inception_v3.png
 :name: inception-v3

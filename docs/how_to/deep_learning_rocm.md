@@ -1,7 +1,7 @@
 # Deep Learning Guide
 
 The following sections cover the different framework installations for ROCm and
-Deep Learning applications. The following [image](#rocm-compat-frameworks-chart) provides
+Deep Learning applications. The following image provides
 the sequential flow for the use of each framework. Refer to the ROCm Compatible
 Frameworks Release Notes for each framework's most current release notes at
 [Third party support](../about/compatibility/3rd_party_support_matrix).

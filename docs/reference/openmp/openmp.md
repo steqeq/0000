@@ -12,7 +12,7 @@ with OpenMP applications. The GPUs supported are the same as those supported by
 this ROCm release. See the list of supported GPUs in {doc}`../../about/release/linux_support`.
 
 The ROCm OpenMP compiler is implemented using LLVM compiler technology.
-The following [image](#openmp-toolchain) illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.
+The following image illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.
 
 ```{figure} ../../data/reference/openmp/openmp_toolchain.svg
 :name: openmp-toolchain

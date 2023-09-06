@@ -60,7 +60,7 @@ Follow these steps:
 PyTorch supports the ROCm platform by providing tested wheels packages. To
 access this feature, refer to
 [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
-and choose the "ROCm" compute platform. The following [image](#installation-matrix-pytorch) is a matrix from <https://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
+and choose the "ROCm" compute platform. The following image is a matrix from <https://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
 
 ```{figure} ../../data/tutorials/install/magma_install/magma006.png
 :name: installation-matrix-pytorch
