@@ -2,7 +2,7 @@
 
 ## TensorFlow
 
-TensorFlow is an open source library for solving Machine Learning,
+TensorFlow is an open-source library for solving Machine Learning,
 Deep Learning, and Artificial Intelligence problems. It can be used to solve
 many problems across different sectors and industries but primarily focuses on
 training and inference in neural networks. It is one of the most popular and
@@ -16,7 +16,7 @@ The following sections contain options for installing TensorFlow.
 #### Option 1: Install TensorFlow Using Docker Image
 
 To install ROCm on bare metal, follow the section
-[Installation (Linux)](../../deploy/linux/install.md). The recommended option to
+[Installation (Linux)](../../tutorials/install/linux/os-native/install). The recommended option to
 get a TensorFlow environment is through Docker.
 
 Using Docker provides portability and access to a prebuilt Docker container that

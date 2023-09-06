@@ -50,7 +50,7 @@ the *config-file* packages are shipped with the upstream projects, such as
 rocPRIM and other ROCm libraries.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
-to the installation guides in these docs (`Linux <../deploy/linux/index.html>`_).
+to the installation guides in these docs (`Linux <../tutorials/install/index.html>`_).
 
 Using HIP in CMake
 ==================

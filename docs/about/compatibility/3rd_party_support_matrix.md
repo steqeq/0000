@@ -1,10 +1,8 @@
-# 3rd Party Support Matrix
+# Third party support matrix
 
 ROCm™ supports various 3rd party libraries and frameworks. Supported versions
 are tested and known to work. Non-supported versions of 3rd parties may also
 work, but aren't tested.
-
-(ml_framework_compat_matrix)=
 
 ## Deep Learning
 
@@ -20,6 +18,8 @@ TensorFlow
 | 5.4.x | 1.10.1, 1.11, 1.12.1, 1.13 | 2.8, 2.9, 2.10, 2.11 | 2.5.4 |
 | 5.5.x | 1.10.1, 1.11, 1.12.1, 1.13 | 2.10, 2.11           | 2.5.4 |
 | 5.6   | 1.11, 1.12.1, 1.13.1       | 2.12                 | 2.5.4 |
+
+(communication_libraries)=
 
 ## Communication libraries
 
@@ -59,4 +59,4 @@ contemporary CUDA / NVIDIA HPC SDK alternatives.
 | 5.6   | 1.17.2       | 22.9       |
 
 For the latest documentation of these libraries, refer to the
-[associated documentation](../reference/gpu_libraries/c%2B%2B_primitives.md).
+[associated documentation](../../reference/libraries/gpu_libraries/c++_primitives).

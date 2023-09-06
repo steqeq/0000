@@ -3,29 +3,24 @@
 :::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} Installing ROCm
-:link: install/index.md
-:link-type: doc
+:::{grid-item-card} [Installing ROCm](./install/index.md)
+
 Learn how to install ROCm on Linux and Windows.
 
 :::
 
-:::{grid-item-card} ROCm Examples
-:link: https://github.com/amd/rocm-examples
+:::{grid-item-card} [ROCm examples](https://github.com/amd/rocm-examples)
 :link-type: url
-Samples codes demonstrating and explaining the use of the HIP API as well as
-ROCm-accelerated domain libraries.
+Sample code demonstrating the HIP API and ROCm-accelerated domain libraries.
 
 :::
 
-:::{grid-item-card} AI/ML/Inferencing
-:link: machine_learning/all
-:link-type: doc
-Detailed walkthroughs of specific use-cases driven by frameworks using ROCm
-acceleration.
+:::{grid-item-card} [Artificial intelligence](../rocm_ai/rocm_ai)
 
-- [Implementing Inception V3 on ROCm with PyTorch](machine_learning/pytorch_inception.md)
-- [Optimizing Inference with MIGraphX](machine_learning/migraphx_optimization.md)
+Detailed walkthroughs of specific artificial intelligence use cases using ROCm acceleration.
+
+- [Implementing Inception V3 on ROCm with PyTorch](../rocm_ai/pytorch_inception)
+- [Optimizing Inference with MIGraphX](../rocm_ai/migraphx_optimization)
 
 :::
 

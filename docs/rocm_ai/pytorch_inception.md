@@ -10,10 +10,10 @@ Training also includes the choice of an optimization algorithm that reduces the 
 
 ## Training Phases
 
-Training occurs in multiple phases for every batch of training data. {numref}`TypesOfTrainingPhases` provides an explanation of the types of training phases.
+Training occurs in multiple phases for every batch of training data. the following [table](#training-phases) provides an explanation of the types of training phases.
 
 :::{table} Types of Training Phases
-:name: TypesOfTrainingPhases
+:name: training-phases
 :widths: auto
 | Types of Phases   |     |
 | ----------------- | --- |
@@ -23,10 +23,10 @@ Training occurs in multiple phases for every batch of training data. {numref}`Ty
 | Optimization Pass | The optimization algorithm updates the model parameters using the stored error gradients. |
 :::
 
-Training is different from inference, particularly from the hardware perspective. {numref}`TrainingVsInference` shows the contrast between training and inference.
+Training is different from inference, particularly from the hardware perspective. The following [table](#training-inference) shows the contrast between training and inference.
 
 :::{table} Training vs. Inference
-:name: TrainingVsInference
+:name: training-inference
 :widths: auto
 | Training | Inference |
 | ----------- | ----------- |
@@ -56,7 +56,7 @@ This example is adapted from the PyTorch research hub page on Inception v3[^torc
 
 Follow these steps:
 
-1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](/how_to/pytorch_install/pytorch_install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch_install) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
@@ -146,7 +146,7 @@ The previous section focused on downloading and using the Inception v3 model for
 
 Follow these steps:
 
-1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](how_to/pytorch_install/pytorch_install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch_install) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker pull rocm/pytorch:latest
@@ -461,10 +461,10 @@ Follow these steps:
 torch.save(model.state_dict(), "trained_inception_v3.pt")
 ```
 
-Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in {numref}`inceptionV3`.
+Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in the following [image](#inception-v3).
 
-```{figure} ../../data/understand/deep_learning/inception_v3.png
-:name: inceptionV3
+```{figure} ../data/rocm_ai/inception_v3.png
+:name: inception-v3
 ---
 align: center
 ---
@@ -741,7 +741,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../../data/understand/deep_learning/mnist_1.png
+    ```{figure} ../data/rocm_ai/mnist_1.png
     ---
     align: center
     ---
@@ -769,7 +769,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../../data/understand/deep_learning/mnist_2.png
+    ```{figure} ../data/rocm_ai/mnist_2.png
     ---
     align: center
     ---
@@ -895,7 +895,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../../data/understand/deep_learning/mnist_3.png
+        ```{figure} ../data/rocm_ai/mnist_3.png
         ---
         align: center
         ---
@@ -911,7 +911,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../../data/understand/deep_learning/mnist_4.png
+        ```{figure} ../data/rocm_ai/mnist_4.png
         ---
         align: center
         ---
@@ -946,7 +946,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../../data/understand/deep_learning/mnist_5.png
+        ```{figure} ../data/rocm_ai/mnist_5.png
         ---
         align: center
         ---
@@ -1115,7 +1115,7 @@ To prepare the data for training, follow these steps:
     print("Vectorized review", vectorize_text(first_review, first_label))
     ```
 
-    ```{figure} ../../data/understand/deep_learning/TextClassification_3.png
+    ```{figure} ../data/rocm_ai/TextClassification_3.png
     ---
     align: center
     ---
@@ -1158,7 +1158,7 @@ To prepare the data for training, follow these steps:
     model.summary()
     ```
 
-    ```{figure} ../../data/understand/deep_learning/TextClassification_4.png
+    ```{figure} ../data/rocm_ai/TextClassification_4.png
     ---
     align: center
     ---
@@ -1178,7 +1178,7 @@ To prepare the data for training, follow these steps:
     history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
     ```
 
-    ```{figure} ../../data/understand/deep_learning/TextClassification_5.png
+    ```{figure} ../data/rocm_ai/TextClassification_5.png
     ---
     align: center
     ---
@@ -1224,9 +1224,9 @@ To prepare the data for training, follow these steps:
     plt.show()
     ```
 
-    {numref}`TextClassification6` and {numref}`TextClassification7` illustrate the training and validation loss and the training and validation accuracy.
+    The following images illustrate the training and validation loss and the training and validation accuracy.
 
-    ```{figure} ../../data/understand/deep_learning/TextClassification_6.png
+    ```{figure} ../data/rocm_ai/TextClassification_6.png
     :name: TextClassification6
     ---
     align: center
@@ -1234,7 +1234,7 @@ To prepare the data for training, follow these steps:
     Training and Validation Loss
     ```
 
-    ```{figure} ../../data/understand/deep_learning/TextClassification_7.png
+    ```{figure} ../data/rocm_ai/TextClassification_7.png
     :name: TextClassification7
     ---
     align: center
@@ -1271,15 +1271,3 @@ To prepare the data for training, follow these steps:
 
     export_model.predict(examples)
     ```
-
-## References
-
-[^inception_arch]: C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," CoRR, p. abs/1512.00567, 2015
-
-[^torch_vision]: PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](https://pytorch.org/vision/stable/index.html)
-
-[^torch_vision_inception]: PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
-
-[^Stanford_deep_learning]: Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
-
-[^cross_entropy]: Wikipedia, \[Online\]. Available: [https://en.wikipedia.org/wiki/Cross_entropy](https://en.wikipedia.org/wiki/Cross_entropy)

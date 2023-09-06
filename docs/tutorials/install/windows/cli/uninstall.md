@@ -6,10 +6,10 @@ The steps to uninstall the HIP SDK for Windows are described in this document.
 
 The command line installer is the same executable which is used by the graphical
 front-end. The options supported by the command line interface are summarized in
-{numref}`hip-sdk-cli-options`.
+the following table.
 
 ```{table} HIP SDK Command Line Options
-:name: hip-sdk-cli-options
+:name: hip-sdk-cli-uninstall
 | **Install Option** | **Description** |
 |:------------------:|:---------------:|
 | `-install` | Command used to install packages, both driver and applications. No output to the screen. |

@@ -7,14 +7,14 @@
 Forward and backward compatibility of ROCm user space components and the
 kernel space Kernel Fusion Driver (KFD).
 
-- [User/Kernel-Space Support Matrix](./user_kernel_space_compat_matrix.md)
+- [User/Kernel-Space Support Matrix](./user_kernel_space_compat_matrix)
 
 :::
 
 :::{grid-item-card} Docker Image Support
 ROCm releases several Docker container images.
 
-- [Docker Image Support Matrix](./docker_image_support_matrix.md)
+- [Docker Image Support Matrix](./docker_image_support_matrix)
 
 :::
 
@@ -22,7 +22,7 @@ ROCm releases several Docker container images.
 Several 3rd party libraries ship with ROCm enablement as well as several ROCm
 components provide interfaces compatible with 3rd party solutions.
 
-- [3rd Party Support Matrix](./3rd_party_support_matrix.md)
+- [Third party support matrix](./3rd_party_support_matrix)
 
 :::
 

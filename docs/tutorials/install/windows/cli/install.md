@@ -13,11 +13,10 @@ compatible GPU is required. Please see the supported GPU guide for more details.
 The command line installer is the same executable which is used by the graphical
 front-end. Download the installer from the
 [HIP-SDK download page](https://www.amd.com/en/developer/rocm-hub/hip-sdk.html).
-The options supported by the command line interface are summarized in
-{numref}`hip-sdk-cli-options`.
+The options supported by the command line interface are summarized in the following table.
 
 ```{table} HIP SDK Command Line Options
-:name: hip-sdk-cli-options
+:name: hip-sdk-cli-install
 | **Install Option** | **Description** |
 |:------------------:|:---------------:|
 | `-install` | Command used to install packages, both driver and applications. No output to the screen. |

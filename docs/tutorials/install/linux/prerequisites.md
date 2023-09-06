@@ -24,7 +24,7 @@ Verify the Linux distribution using the following steps:
    uname -m && cat /etc/*release
    ```
 
-2. Confirm that the obtained Linux distribution information matches with those listed in {ref}`supported_distributions`.
+2. Confirm that the obtained Linux distribution information matches with those listed in {ref}`linux_support`.
 
    **Example:** Running the command above on an Ubuntu system results in the
    following output:
@@ -57,7 +57,7 @@ Verify the kernel version using the following steps:
    ```
 
 2. Confirm that the obtained kernel version information matches with system
-   requirements as listed in {ref}`supported_distributions`.
+   requirements as listed in {ref}`linux_support`.
 
 ## Additional package repositories
 
@@ -180,6 +180,8 @@ sudo zypper install kernel-default-devel
 
 :::
 ::::
+
+(linux_group_permissions)=
 
 ## Setting Permissions for Groups
 

@@ -35,4 +35,4 @@ Information about packages.
 
 ## See Also
 
-- {doc}`/release/gpu_os_support`
+- {doc}`../../../../about/release/linux_support`

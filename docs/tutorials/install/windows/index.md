@@ -1,6 +1,6 @@
 # Install ROCm (HIP SDK) on Windows
 
-Start with {doc}`/deploy/windows/quick_start` or follow the detailed
+Start with {doc}`../../quick_start/windows` or follow the detailed
 instructions below.
 
 ## Prepare to Install
@@ -52,7 +52,7 @@ Learn how to use ROCm with descriptive examples for novice to intermediate users
 :::
 
 :::{grid-item-card} Windows App Deployment Guidelines
-:link: ../../understand/windows-app-deployment-guidelines
+:link: ../../../conceptual/windows-app-deployment-guidelines
 :link-type: doc
 
 Discusses strategies on how to bundle HIP libraries with an end user application.
@@ -62,4 +62,4 @@ Discusses strategies on how to bundle HIP libraries with an end user application
 
 ## See Also
 
-- {doc}`/release/gpu_os_support`
+- {doc}`../../../about/release/windows_support`

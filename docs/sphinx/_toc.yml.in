@@ -6,7 +6,7 @@ defaults:
 root: index
 subtrees:
 - entries:
-  - file: rocm
+  - file: what_is_rocm
     title: What is ROCm?
     subtrees:
     - entries:
@@ -26,7 +26,7 @@ subtrees:
     title: Release information
     subtrees:
     - entries:
-      - file: about/release/versions.md
+      - file: about/release/release_history.md
         title: Release history
       - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
         title: Known issues
@@ -54,6 +54,8 @@ subtrees:
         title: Install ROCm (Linux)
       - file: tutorials/install/windows/index.md
         title: Install ROCm (Windows)
+  - file: rocm_a-z.md
+    title: ROCm A-Z
   - file: contribute/index.md
     title: Contributing
     subtrees:

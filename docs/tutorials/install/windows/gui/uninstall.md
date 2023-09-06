@@ -12,14 +12,14 @@ Uninstallation of the HIP SDK components can be done through the Windows
 Settings app. Navigate to "Apps > Installed apps", click the "..." on the far
 right next to the component to uninstall, and click "Uninstall".
 
-```{figure} /data/deploy/windows/014-uninstall-dark.png
+```{figure} ../../../../data/tutorials/install/windows/014-uninstall-dark.png
 :name: uninstall-dark
 :class: only-dark
 :alt: Installed apps section of the Setting app showing installed HIP SDK components.
 Removing the SDK via the Setting app
 ```
 
-```{figure} /data/deploy/windows/014-uninstall-light.png
+```{figure} ../../../../data/tutorials/install/windows/014-uninstall-light.png
 :name: uninstall-light
 :class: only-light
 :alt: Installed apps section of the Setting app showing installed HIP SDK components.

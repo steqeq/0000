@@ -1,4 +1,3 @@
-
 # Troubleshooting
 
 **Q: What do I do if I get this error when trying to run PyTorch:**
@@ -39,7 +38,7 @@ To implement a workaround, follow these steps:
 **Q: Why am I unable to access Docker or GPU in user accounts?**
 
 Ans: Ensure that the user is added to docker, video, and render Linux groups as
-described in the ROCm Installation Guide at {ref}`setting_group_permissions`.
+described in the ROCm Installation Guide at {ref}`linux_group_permissions`.
 
 **Q: Can I install PyTorch directly on bare metal?**
 
@@ -50,7 +49,3 @@ Option 2: Install PyTorch Using Wheels Package in the section
 **Q: How do I profile PyTorch workloads?**
 
 Ans: Use the PyTorch Profiler to profile GPU kernels on ROCm.
-
-------
-
-[^ROCm_issues]: AMD, "ROCm issues," \[Online\]. Available: [https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)

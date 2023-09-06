@@ -19,14 +19,14 @@ All meta-packages exist in both versioned and non-versioned forms.
 - Non-versioned packages – For a single-version installation of the ROCm stack
 - Versioned packages – For multi-version installations of the ROCm stack
 
-```{figure-md} package-naming
-
-<img src="/data/deploy/linux/image.002.png" alt="">
+```{figure} ../../../../data/tutorials/install/linux/linux002.png
+:name: package-naming
+:align: center
 
 ROCm Release Package Naming
 ```
 
-{numref}`package-naming` demonstrates the single and multi-version ROCm packages' naming
+The preceding [image](#package-naming) demonstrates the single and multi-version ROCm packages' naming
 structure, including examples for various Linux distributions. See terms below:
 
 _Module_ - It is the part of the package that represents the name of the ROCm
@@ -53,7 +53,7 @@ valid only for rpm packages.
 
 ## Components of ROCm Programming Models
 
-{numref}`meta-packages` demonstrates the high-level layered architecture of ROCm
+The following [image](#meta-packages) demonstrates the high-level layered architecture of ROCm
 programming models and their meta-packages. All meta-packages are a combination
 of required packages and libraries.
 
@@ -64,9 +64,8 @@ of required packages and libraries.
 - `rocm-hip-sdk` contains runtime components to deploy and execute HIP
   applications.
 
-```{figure-md} meta-packages
-
-<img src="/data/deploy/linux/image.003.png" alt="">
+```{figure} ../../../../data/tutorials/install/linux/linux003.png
+:name: meta-packages
 
 ROCm Meta Packages
 ```
@@ -100,9 +99,8 @@ This section discusses the available meta-packages and their packages. The
 following image visualizes the meta-packages and their associated packages in a
 ROCm programming model.
 
-```{figure-md} assoc-packages
-
-<img src="/data/deploy/linux/image.004.png" alt="">
+```{figure} ../../../../data/tutorials/install/linux/linux004.png
+:name: assoc-packages
 
 Associated Packages
 ```
@@ -112,7 +110,7 @@ Associated Packages
 - Meta-packages and associated packages are represented in the same color.
 
 ```{note}
-{numref}`assoc-packages` is for informational purposes only, as the individual
+The preceding [image](#assoc-packages) is for informational purposes only, as the individual
 packages in a meta-package are subject to change. Install meta-packages, and not
 individual packages, to avoid conflicts.
 ```

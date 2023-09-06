@@ -327,12 +327,11 @@ To run generated `.mxr` files through `migraphx-driver`, use the following:
 ./path/to/migraphx-driver run --migraphx resnet50.mxr --enable-offload-copy
 ```
 
-Alternatively, you can use MIGraphX's C++ or Python API to generate `.mxr` file. Refer to {numref}`image018` for an example.
+Alternatively, you can use MIGraphX's C++ or Python API to generate `.mxr` file.
 
-```{figure} ../../data/understand/deep_learning/image.018.png
+```{figure} ../data/rocm_ai/image018.png
 :name: image018
----
-align: center
----
+:align: center
+
 Generating a `.mxr` File
 ```

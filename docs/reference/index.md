@@ -14,16 +14,16 @@ HIP is both AMD's GPU programming language extension and the GPU runtime.
 
 :::
 
-:::{grid-item-card} [Math Libraries](./gpu_libraries/math)
+:::{grid-item-card} [Math Libraries](./libraries/gpu_libraries/math)
 HIP Math Libraries support the following domains:
 
-- [Linear Algebra Libraries](./gpu_libraries/linear_algebra)
-- [Fast Fourier Transforms](./gpu_libraries/fft)
-- [Random Numbers](./gpu_libraries/rand)
+- [Linear Algebra Libraries](./libraries/gpu_libraries/linear_algebra)
+- [Fast Fourier Transforms](./libraries/gpu_libraries/fft)
+- [Random Numbers](./libraries/gpu_libraries/rand)
 
 :::
 
-:::{grid-item-card} [C++ Primitive Libraries](./gpu_libraries/c++_primitives)
+:::{grid-item-card} [C++ Primitive Libraries](./libraries/gpu_libraries/c++_primitives)
 ROCm template libraries for C++ primitives and algorithms are as follows:
 
 - {doc}`rocPRIM <rocprim:index>`
@@ -32,14 +32,14 @@ ROCm template libraries for C++ primitives and algorithms are as follows:
 
 :::
 
-:::{grid-item-card} [Communication Libraries](gpu_libraries/communication)
+:::{grid-item-card} [Communication Libraries](./libraries/gpu_libraries/communication)
 Inter and intra-node communication is supported by the following projects:
 
 - {doc}`RCCL <rccl:index>`
 
 :::
 
-:::{grid-item-card} [AI Libraries](./ai_tools)
+:::{grid-item-card} [Artificial intelligence](../rocm_ai/rocm_ai)
 Libraries related to AI.
 
 - {doc}`MIOpen <miopen:index>`
@@ -62,9 +62,9 @@ Computer vision related projects.
 
 :::
 
-:::{grid-item-card} [Compilers and Tools](compilers)
+:::{grid-item-card} [Compilers and Tools](compilers_tools/index)
 
-- [ROCmCC](/reference/rocmcc/rocmcc)
+- [ROCmCC](./rocmcc/rocmcc)
 - {doc}`ROCdbgapi <rocdbgapi:index>`
 - {doc}`ROCgdb <rocgdb:index>`
 - {doc}`ROCProfiler <rocprofiler:rocprof>`
@@ -72,7 +72,7 @@ Computer vision related projects.
 
 :::
 
-:::{grid-item-card} [Management Tools](management_tools)
+:::{grid-item-card} [Management Tools](./compilers_tools/management_tools)
 
 - {doc}`AMD SMI <amdsmi:index>`
 - {doc}`ROCm SMI <rocm_smi_lib:index>`
@@ -80,17 +80,17 @@ Computer vision related projects.
 
 :::
 
-:::{grid-item-card} [Validation Tools](validation_tools)
+:::{grid-item-card} [Validation Tools](./compilers_tools/validation_tools)
 
 - {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 - {doc}`TransferBench <transferbench:index>`
 
 :::
 
-:::{grid-item-card} [GPU Architectures](gpu_arch)
+:::{grid-item-card} GPU Architectures
 
-- [AMD Instinct MI200](./gpu_arch/mi250.md)
-- [AMD Instinct MI100](./gpu_arch/mi100.md)
+- [AMD Instinct MI200](../conceptual/gpu_arch/mi250.md)
+- [AMD Instinct MI100](../conceptual/gpu_arch/mi100.md)
 
 :::
 

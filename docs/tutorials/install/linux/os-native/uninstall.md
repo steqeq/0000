@@ -3,7 +3,7 @@
 This section describes how to uninstall ROCm with the Linux distribution's
 package manager. This method should be used if ROCm was installed via the package
 manager. If the installer script was used for installation, then it should be
-used for uninstallation too, refer to {doc}`/deploy/linux/installer/uninstall`.
+used for uninstallation too, refer to {doc}`../installer/uninstall`.
 
 ::::::{tab-set}
 :::::{tab-item} Ubuntu

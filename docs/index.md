@@ -8,22 +8,22 @@ categories:
 
 :::{grid-item-card}
 :padding: 2
-**[Conceptual](conceptual/index.md)**
+**[Conceptual](conceptual/index)**
 
 Topic overviews and background information
 ^^^
 
-- [Compiler Disambiguation](understand/compiler_disambiguation)
-- [Using CMake](understand/cmake_packages)
-- [Linux Folder Structure Reorganization](understand/file_reorg)
-- [GPU Isolation Techniques](understand/gpu_isolation)
-- [GPU Architecture](understand/gpu_arch)
+- [Compiler Disambiguation](conceptual/compiler_disambiguation)
+- [Using CMake](conceptual/cmake_packages)
+- [Linux Folder Structure Reorganization](conceptual/file_reorg)
+- [GPU Isolation Techniques](conceptual/gpu_isolation)
+- [GPU Architecture](conceptual/gpu_arch)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-**[How-to](how_to/index.md)**
+**[How-to](how_to/index)**
 
 Task-oriented walkthroughs
 ^^^
@@ -31,45 +31,44 @@ Task-oriented walkthroughs
 - [System Tuning for Various Architectures](how_to/tuning_guides/index)
 - [GPU Aware MPI](how_to/gpu_aware_mpi)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
-  - [Magma Installation](how_to/magma_install/magma_install)
-  - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
-  - [TensorFlow Installation](how_to/tensorflow_install/tensorflow_install)
-- [System Level Debugging](how_to/system_debugging.md)
+- [System Level Debugging](how_to/system_debugging)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-**[Reference](reference/index.md)**
+**[Reference](reference/index)**
 
 Collated information
 ^^^
 
-- [Compilers and Development Tools](reference/compilers)
+- [APIs](reference/apis/index)
+- [Libraries](reference/libraries/index)
+  - [Math libraries](reference/libraries/gpu_libraries/math)
+  - [C++ Primitives libraries](reference/libraries/gpu_libraries/c++_primitives)
+  - [Communication libraries](reference/libraries/gpu_libraries/communication)
+- [Compilers & tools](reference/compilers_tools/index)
+  - [Computer Vision](reference/computer_vision)
+  - [Management Tools](reference/compilers_tools/management_tools)
+  - [Validation Tools](reference/compilers_tools/validation_tools)
 - [HIP](reference/hip)
 - [OpenMP](reference/openmp/openmp)
-- [Math Libraries](reference/gpu_libraries/math)
-- [C++ Primitives Libraries](reference/gpu_libraries/c++_primitives)
-- [Communication Libraries](reference/gpu_libraries/communication)
-- [AI Libraries](reference/ai_tools)
-- [Computer Vision](reference/computer_vision)
-- [Management Tools](reference/management_tools)
-- [Validation Tools](reference/validation_tools)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-**[Tutorials](tutorials/index.md)**
+**[Tutorials](tutorials/index)**
 
 Lesson-oriented material
 ^^^
 
-- [Installing ROCm](tutorials/install/index.md)
-- [Examples](https://github.com/amd/rocm-examples)
-- [ML, DL, and AI](examples/machine_learning/all)
-  - [](examples/machine_learning/pytorch_inception)
-  - [](examples/machine_learning/migraphx_optimization)
+- [Installing ROCm](tutorials/install/index)
+- [Installing Magma](tutorials/install/magma_install)
+- [Installing PyTorch](tutorials/install/pytorch_install)
+- [Installing TensorFlow](tutorials/install/tensorflow_install)
+- [GitHub examples](https://github.com/amd/rocm-examples)
+- [Artificial intelligence](rocm_ai/rocm_ai)
 
 :::
 ::::

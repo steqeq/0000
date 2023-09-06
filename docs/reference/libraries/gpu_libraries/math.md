@@ -1,4 +1,4 @@
-# Math Libraries
+# Math libraries
 
 AMD provides various math domain and support libraries as part of ROCm.
 

@@ -17,10 +17,9 @@ Download the installer from the
 
 ### Launching the installer
 
-To launch the AMD HIP SDK Installer, click the **Setup** icon shown in
-{numref}`setup-icon`.
+To launch the AMD HIP SDK Installer, click the **Setup** icon shown in the following image.
 
-```{figure} /data/deploy/windows/000-setup-icon.png
+```{figure} ../../data/tutorials/install/windows/000-setup-icon.png
 :name: setup-icon
 :alt: Icon with AMD arrow logo and User Access Control Shield overlayed.
 Setup Icon
@@ -29,14 +28,14 @@ Setup Icon
 The installer requires Administrator Privileges, so you may be greeted with a
 User Access Control (UAC) pop-up. Click Yes.
 
-```{figure} /data/deploy/windows/001-uac-dark.png
+```{figure} ../../data/tutorials/install/windows/001-uac-dark.png
 :name: uac-dark
 :class: only-dark
 :alt: User Access Control pop-up
 User Access Control pop-up
 ```
 
-```{figure} /data/deploy/windows/001-uac-light.png
+```{figure} ../../data/tutorials/install/windows/001-uac-light.png
 :name: uac-light
 :class: only-light
 :alt: User Access Control pop-up
@@ -45,19 +44,18 @@ User Access Control pop-up
 
 The installer executable will temporarily extract installer packages to `C:\AMD`
 which it will remove after installation completes. This extraction is signified
-by the "Initializing install" window in {numref}`init-install`.
+by the "Initializing install" window in the following image.
 
-```{figure} /data/deploy/windows/002-initializing.png
-:name: init-install
+```{figure} ../../data/tutorials/install/windows/002-initializing.png
+:name: init-win-install
 :alt: Window with AMD arrow logo, futuristic background and progress counter.
 Installer initialization window
 ```
 
-The installer will then detect your system configuration as per
-{numref}`detecting-system-components` to decide, which installable components
+The installer will then detect your system configuration to determine which installable components
 are applicable to your system.
 
-```{figure} /data/deploy/windows/003-detecting-system-config.png
+```{figure} ../../data/tutorials/install/windows/003-detecting-system-config.png
 :name: detecting-system-components
 :alt: Window with AMD arrow logo, futuristic background and activity indicator.
 Installer initialization window.
@@ -67,21 +65,21 @@ Installer initialization window.
 
 When the installer launches, it displays a window that lets the user customize
 the installation. By default, all components are selected for installation.
-Refer to {numref}`installer-window` for an instance when the Select All option
+Refer to the following image for an instance when the Select All option
 is turned on.
 
-```{figure} /data/deploy/windows/004-installer-window.png
-:name: installer-window
+```{figure} ../../data/tutorials/install/windows/004-installer-window.png
+:name: install-window
 :alt: Window with AMD arrow logo, futuristic background and activity indicator.
 Installer initialization window.
 ```
 
 #### HIP SDK Installer
 
-The HIP SDK installation options are listed in {numref}`hip-sdk-options`.
+The HIP SDK installation options are listed in the following table.
 
 ```{table} HIP SDK Components for Installation
-:name: hip-sdk-options
+:name: hip-sdk-options-win
 | **HIP Components** | **Install Type** | **Additional Options** |
 |:------------------:|:----------------:|:----------------------:|
 | HIP SDK Core         | 5.5.0               | Install location                        |
@@ -106,20 +104,19 @@ convenient.
 #### AMD Display Driver
 
 The HIP SDK installer bundles an AMD Radeon Software PRO 23.10 installer. The
-supported install options are summarized by
-{numref}`display-driver-install-options`:
+supported install options are summarized in the following table:
 
 ```{table} AMD Display Driver Install Options
-:name: display-driver-install-options
+:name: display-driver-install-win
 | **Install Option** | **Description** |
 |:------------------:|:---------------:|
 | Install Location         | Location on disk to store driver files. |
-| Install Type             | The breadth of components to be installed. Refer to {numref}`display-driver-install-types` for details. |
+| Install Type             | The breadth of components to be installed. |
 | Factory Reset (Optional) | A Factory Reset will remove all prior versions of AMD HIP SDK and drivers. You will not be able to roll back to previously installed drivers. |
 ```
 
 ```{table} AMD Display Driver Install Types
-:name: display-driver-install-types
+:name: display-driver-win-types
 | **Install Type** | **Description** |
 |:----------------:|:---------------:|
 | Full Install     | Provides all AMD Software features and controls for gaming, recording, streaming, and tweaking the performance on your graphics hardware. |
@@ -134,11 +131,10 @@ Display Driver.
 
 ### Installing Components
 
-Please wait for the installation to complete during as shown in
-{numref}`install-progress`.
+Please wait for the installation to complete during as shown in the following image.
 
-```{figure} /data/deploy/windows/012-install-progress.png
-:name: install-progress
+```{figure} ../../data/tutorials/install/windows/012-install-progress.png
+:name: install-progress-win
 :alt: Window with AMD arrow logo, futuristic background and progress meter.
 Installation Progress
 ```
@@ -146,11 +142,10 @@ Installation Progress
 ### Installation Complete
 
 Once the installation is complete, the installer window may prompt you for a
-system restart. Click **Restart** at the lower right corner, shown in
-{numref}`install-complete`
+system restart. Click **Restart** at the lower right corner, shown in the following image.
 
-```{figure} /data/deploy/windows/013-install-complete.png
-:name: install-complete
+```{figure} ../../data/tutorials/install/windows/013-install-complete.png
+:name: install-complete-win
 :alt: Window with AMD arrow logo, futuristic background and completion notice.
 Installation Complete
 ```
@@ -172,15 +167,15 @@ Uninstallation of the HIP SDK components can be done through the Windows
 Settings app. Navigate to "Apps > Installed apps", click the "..." on the far
 right next to the component to uninstall, and click "Uninstall".
 
-```{figure} /data/deploy/windows/014-uninstall-dark.png
-:name: uninstall-dark
+```{figure} ../../data/tutorials/install/windows/014-uninstall-dark.png
+:name: uninstall-dark-win
 :class: only-dark
 :alt: Installed apps section of the Setting app showing installed HIP SDK components.
 Removing the SDK via the Setting app
 ```
 
-```{figure} /data/deploy/windows/014-uninstall-light.png
-:name: uninstall-light
+```{figure} ../../data/tutorials/install/windows/014-uninstall-light.png
+:name: uninstall-light-win
 :class: only-light
 :alt: Installed apps section of the Setting app showing installed HIP SDK components.
 Removing the SDK via the Setting app

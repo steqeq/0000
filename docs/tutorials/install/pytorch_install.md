@@ -2,7 +2,7 @@
 
 ## PyTorch
 
-PyTorch is an open source Machine Learning Python library, primarily
+PyTorch is an open-source machine learning Python library, primarily
 differentiated by Tensor computing with GPU acceleration and a type-based
 automatic differentiation. Other advanced features include:
 
@@ -15,8 +15,8 @@ automatic differentiation. Other advanced features include:
 ### Installing PyTorch
 
 To install ROCm on bare metal, refer to the sections
-[GPU and OS Support (Linux)](../../release/gpu_os_support.md) and
-[Compatibility](../../release/compatibility.md) for hardware, software and
+[GPU and OS Support (Linux)](../../about/release/linux_support) and
+[Compatibility](../../about/compatibility/index) for hardware, software and
 3rd-party framework compatibility between ROCm and PyTorch. The recommended
 option to get a PyTorch environment is through Docker. However, installing the
 PyTorch wheels package on bare metal is also supported.
@@ -60,13 +60,12 @@ Follow these steps:
 PyTorch supports the ROCm platform by providing tested wheels packages. To
 access this feature, refer to
 [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
-and choose the "ROCm" compute platform. {numref}`Installation-Matrix-from-Pytorch` is a matrix from <https://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
+and choose the "ROCm" compute platform. The following [image](#installation-matrix-pytorch) is a matrix from <https://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
 
-```{figure} ../../data/how_to/magma_install/image.006.png
-:name: Installation-Matrix-from-Pytorch
----
-align: center
----
+```{figure} ../../data/tutorials/install/magma_install/magma006.png
+:name: installation-matrix-pytorch
+:align: center
+
 Installation Matrix from Pytorch
 ```
 
@@ -80,8 +79,7 @@ To install PyTorch using the wheels package, follow these installation steps:
    or
 
    b. Download a base OS Docker image and install ROCm following the
-      installation directions in the section
-      [Installation](../../deploy/linux/install.md). ROCm 5.2 is installed in
+      installation directions in the [Installation](../../tutorials/install/linux/index) section. ROCm 5.2 is installed in
       this example, as supported by the installation matrix from
       <https://pytorch.org/>.
 

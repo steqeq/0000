@@ -28,4 +28,4 @@ Steps for removing ROCm packages and libraries.
 
 ## See Also
 
-- {doc}`/release/gpu_os_support`
+- {doc}`../../../../about/release/windows_support`

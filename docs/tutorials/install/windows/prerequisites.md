@@ -40,14 +40,14 @@ Verify the Windows Edition using the following steps:
 
 1. Open the Setting app.
 
-   ```{figure} /data/deploy/windows/000-settings-dark.png
+   ```{figure} ../../../data/tutorials/install/windows/000-settings-dark.png
    :name: settings-dark
    :class: only-dark
    :alt: Gear icon of the Windows Settings app
    Windows Settings app icon
    ```
 
-   ```{figure} /data/deploy/windows/000-settings-light.png
+   ```{figure} ../../../data/tutorials/install/windows/000-settings-light.png
    :name: settings-light
    :class: only-light
    :alt: Gear icon of the Windows Settings app
@@ -56,14 +56,14 @@ Verify the Windows Edition using the following steps:
 
 2. Navigate to **System > About**.
 
-   ```{figure} /data/deploy/windows/001-about-dark.png
+   ```{figure} ../../../data/tutorials/install/windows/001-about-dark.png
    :name: about-dark
    :class: only-dark
    :alt: Settings app panel showing Device and OS information
    Settings > About page
    ```
 
-   ```{figure} /data/deploy/windows/001-about-light.png
+   ```{figure} ../../../data/tutorials/install/windows/001-about-light.png
    :name: about-light
    :class: only-light
    :alt: Settings app panel showing Device and OS information

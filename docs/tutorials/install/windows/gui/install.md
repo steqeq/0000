@@ -17,11 +17,10 @@ Download the installer from the
 
 ### Launching the installer
 
-To launch the AMD HIP SDK Installer, click the **Setup** icon shown in
-{numref}`setup-icon`.
+To launch the AMD HIP SDK Installer, click the **Setup** icon shown in the following image.
 
-```{figure} /data/deploy/windows/000-setup-icon.png
-:name: setup-icon
+```{figure} ../../../../data/tutorials/install/windows/000-setup-icon.png
+:name: setup-icon-install
 :alt: Icon with AMD arrow logo and User Access Control Shield overlayed.
 Setup Icon
 ```
@@ -29,15 +28,15 @@ Setup Icon
 The installer requires Administrator Privileges, so you may be greeted with a
 User Access Control (UAC) pop-up. Click Yes.
 
-```{figure} /data/deploy/windows/001-uac-dark.png
-:name: uac-dark
+```{figure} ../../../../data/tutorials/install/windows/001-uac-dark.png
+:name: uac-dark-install
 :class: only-dark
 :alt: User Access Control pop-up
 User Access Control pop-up
 ```
 
-```{figure} /data/deploy/windows/001-uac-light.png
-:name: uac-light
+```{figure} ../../../../data/tutorials/install/windows/001-uac-light.png
+:name: uac-light-install
 :class: only-light
 :alt: User Access Control pop-up
 User Access Control pop-up
@@ -45,20 +44,19 @@ User Access Control pop-up
 
 The installer executable will temporarily extract installer packages to `C:\AMD`
 which it will remove after installation completes. This extraction is signified
-by the "Initializing install" window in {numref}`init-install`.
+by the "Initializing install" window in the following image.
 
-```{figure} /data/deploy/windows/002-initializing.png
+```{figure} ../../../../data/tutorials/install/windows/002-initializing.png
 :name: init-install
 :alt: Window with AMD arrow logo, futuristic background and progress counter.
 Installer initialization window
 ```
 
-The installer will then detect your system configuration as per
-{numref}`detecting-system-components` to decide, which installable components
+The installer will then detect your system configuration to determine which installable components
 are applicable to your system.
 
-```{figure} /data/deploy/windows/003-detecting-system-config.png
-:name: detecting-system-components
+```{figure} ../../../../data/tutorials/install/windows/003-detecting-system-config.png
+:name: detect-sys-components
 :alt: Window with AMD arrow logo, futuristic background and activity indicator.
 Installer initialization window.
 ```
@@ -67,10 +65,10 @@ Installer initialization window.
 
 When the installer launches, it displays a window that lets the user customize
 the installation. By default, all components are selected for installation.
-Refer to {numref}`installer-window` for an instance when the Select All option
+Refer to the following image for an instance when the Select All option
 is turned on.
 
-```{figure} /data/deploy/windows/004-installer-window.png
+```{figure} ../../../../data/tutorials/install/windows/004-installer-window.png
 :name: installer-window
 :alt: Window with AMD arrow logo, futuristic background and activity indicator.
 Installer initialization window.
@@ -78,7 +76,7 @@ Installer initialization window.
 
 #### HIP SDK Installer
 
-The HIP SDK installation options are listed in {numref}`hip-sdk-options`.
+The HIP SDK installation options are listed in the following table.
 
 ```{table} HIP SDK Components for Installation
 :name: hip-sdk-options
@@ -106,15 +104,14 @@ convenient.
 #### AMD Display Driver
 
 The HIP SDK installer bundles an AMD Radeon Software PRO 23.10 installer. The
-supported install options are summarized by
-{numref}`display-driver-install-options`:
+supported install options are summarized in the following table:
 
 ```{table} AMD Display Driver Install Options
 :name: display-driver-install-options
 | **Install Option** | **Description** |
 |:------------------:|:---------------:|
 | Install Location         | Location on disk to store driver files. |
-| Install Type             | The breadth of components to be installed. Refer to {numref}`display-driver-install-types` for details. |
+| Install Type             | The breadth of components to be installed. |
 | Factory Reset (Optional) | A Factory Reset will remove all prior versions of AMD HIP SDK and drivers. You will not be able to roll back to previously installed drivers. |
 ```
 
@@ -134,10 +131,9 @@ Display Driver.
 
 ### Installing Components
 
-Please wait for the installation to complete during as shown in
-{numref}`install-progress`.
+Please wait for the installation to complete during as shown in the following image.
 
-```{figure} /data/deploy/windows/012-install-progress.png
+```{figure} ../../../../data/tutorials/install/windows/012-install-progress.png
 :name: install-progress
 :alt: Window with AMD arrow logo, futuristic background and progress meter.
 Installation Progress
@@ -146,10 +142,9 @@ Installation Progress
 ### Installation Complete
 
 Once the installation is complete, the installer window may prompt you for a
-system restart. Click **Restart** at the lower right corner, shown in
-{numref}`install-complete`
+system restart. Click **Restart** at the lower right corner, shown in the following image.
 
-```{figure} /data/deploy/windows/013-install-complete.png
+```{figure} ../../../../data/tutorials/install/windows/013-install-complete.png
 :name: install-complete
 :alt: Window with AMD arrow logo, futuristic background and completion notice.
 Installation Complete

@@ -14,7 +14,7 @@ See the user and developer guides for rocm-docs-core at {doc}`rocm-docs-core doc
 ## Sphinx
 
 [Sphinx](https://www.sphinx-doc.org/en/master/) is a documentation generator
-originally used for Python. It is now widely used in the Open Source community.
+originally used for Python. It is now widely used in the open source community.
 Originally, Sphinx supported reStructuredText (RST) based documentation, but
 Markdown support is now available.
 ROCm documentation plans to default to Markdown for new projects.

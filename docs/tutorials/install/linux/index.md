@@ -1,6 +1,6 @@
 # Install ROCm on Linux
 
-Start with {doc}`/deploy/linux/quick_start` or follow the detailed
+Start with {doc}`../../quick_start/linux` or follow the detailed
 instructions below.
 
 ## Prepare to Install
@@ -26,6 +26,8 @@ Standard Packages vs Multi-Version Packages
 
 ::::
 
+(linux_install_methods)=
+
 ## Choose your install method
 
 ::::{grid} 1 1 2 2
@@ -50,4 +52,4 @@ manager.
 
 ## See Also
 
-- {doc}`/release/gpu_os_support`
+- {doc}`../../../about/release/linux_support`

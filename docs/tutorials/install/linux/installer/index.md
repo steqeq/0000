@@ -28,4 +28,4 @@ Steps for removing ROCm packages, libraries and tools.
 
 ## See Also
 
-- {doc}`/release/gpu_os_support`
+- {doc}`../../../../about/release/linux_support`
