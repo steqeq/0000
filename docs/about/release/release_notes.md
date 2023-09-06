@@ -8,6 +8,7 @@
 <!-- markdownlint-disable no-blanks-blockquote              -->
 <!-- markdownlint-disable ul-indent                         -->
 <!-- markdownlint-disable no-trailing-spaces                -->
+<!-- markdownlint-disable ol-prefix                         -->
 
 <!-- spellcheck-disable -->
 
