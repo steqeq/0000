@@ -12,4 +12,5 @@ config:
 ignores:
   - CHANGELOG.md
   - "{,docs/}{RELEASE,release}.md"
+  - about/release/release_notes.md
   - tools/autotag/templates/**/*.md
