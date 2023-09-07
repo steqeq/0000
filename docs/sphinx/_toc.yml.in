@@ -26,12 +26,12 @@ subtrees:
     title: Release information
     subtrees:
     - entries:
+      - file: whats_new/whats_new.md
+        title: What's new?
       - file: about/release/release_history.md
         title: Release history
       - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
         title: Known issues
-  - file: whats_new/whats_new.md
-    title: What's new?
   - file: tutorials/index.md
     title: Tutorials
     subtrees:
@@ -53,8 +53,11 @@ subtrees:
     subtrees:
     - entries:
       - file: contribute/toolchain.md
+        title: Documentation tools
       - file: contribute/building.md
+        title: Building documentation
       - file: contribute/feedback.md
+        title: Providing feedback
   - file: about/license.md
     title: ROCm licensing
 
