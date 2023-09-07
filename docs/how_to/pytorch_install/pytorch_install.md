@@ -76,15 +76,28 @@ table, choose ROCm from the _Compute Platform_ row.
 
    **Option 2:**
 
-   Download a base OS Docker image and install ROCm using the directions in the
-   [Installation section](#install_rocm_linux).
+   Select a base OS Docker image (Check [OS compatibility](#supported_distributions))
+
+   Pull selected base OS image (ubuntu 20.04 for example)
+
+   ```docker
+   docker pull ubuntu:20.04
+   ```
+
+   Start a Docker container using the downloaded image
+
+   ```docker
+   docker run -it --device=/dev/kfd --device=/dev/dri --group-add video ubuntu:20.04
+   ```
+
+   Install ROCm using the directions in the [Installation section](#install_rocm_linux).
 
    **Option 3:**
 
    Install on bare metal. Check [OS compatibility](#supported_distributions) and install ROCm using the
    directions in the [Installation section](#install_rocm_linux).
 
-2. Install the required dependencies for the wheels package.
+1. Install the required dependencies for the wheels package.
 
    ```bash
    sudo apt update
@@ -92,7 +105,7 @@ table, choose ROCm from the _Compute Platform_ row.
    pip3 install wheel setuptools
    ```
 
-3. Install `torch`, `torchvision`, and `torchaudio`, as specified in the [installation matrix](https://pytorch.org/get-started/locally/).
+2. Install `torch`, `torchvision`, and `torchaudio`, as specified in the [installation matrix](https://pytorch.org/get-started/locally/).
 
    :::{note}
    The following command uses the ROCm 5.6 PyTorch wheel. If you want a different version of ROCm,
@@ -103,7 +116,7 @@ table, choose ROCm from the _Compute Platform_ row.
    pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.6/
    ```
 
-4. (Optional) Use MIOpen kdb files with ROCm PyTorch wheels.
+3. (Optional) Use MIOpen kdb files with ROCm PyTorch wheels.
 
    PyTorch uses [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen) for machine learning
    primitives, which are compiled into kernels at runtime. Runtime compilation causes a small warm-up

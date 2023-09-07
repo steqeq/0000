@@ -8,6 +8,7 @@ config:
   MD033: false
   MD034: false
   MD041: false
+  MD051: false
 ignores:
   - CHANGELOG.md
   - "{,docs/}{RELEASE,release}.md"
