@@ -46,6 +46,8 @@ subtrees:
     title: Reference guides
   - file: conceptual/index.md
     title: Conceptual documentation
+  - file: rocm_a-z.md
+    title: ROCm A-Z
   - file: contribute/index.md
     title: Contributing
     subtrees:
