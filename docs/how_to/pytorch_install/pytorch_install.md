@@ -30,13 +30,12 @@ For hardware, software, and third-party framework compatibility between ROCm and
    You can also download a specific and supported configuration with different user-space ROCm
    versions, PyTorch versions, and operating systems.
 
-2. Start a Docker container using the image with the mounted PyTorch folder.
+2. Start a Docker container using the image.
 
    ```bash
-   docker run -it --cap-add=SYS_PTRACE --security-opt --user root \
-   seccomp=unconfined --device=/dev/kfd --device=/dev/dri \
-   --group-add video --ipc=host --shm-size 8G \
-   -v ~/pytorch:/pytorch rocm/pytorch:build_from_dockerfile
+   docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
+   --device=/dev/kfd --device=/dev/dri --group-add video \
+   --ipc=host --shm-size 8G rocm/pytorch:latest
    ```
 
    :::{note}
@@ -56,33 +55,36 @@ table, choose ROCm from the _Compute Platform_ row.
 
    **Option 1:**
 
-   Download a base Docker image with the correct user-space ROCm version.
+   a. Download a base Docker image with the correct user-space ROCm version.
    | Base OS         | Docker image                   | Link to Docker image|
    |----------------|-----------------------------|----------------|
    | Ubuntu 20.04 | `rocm/dev-ubuntu-20.04` | [https://hub.docker.com/r/rocm/dev-ubuntu-20.04](https://hub.docker.com/r/rocm/dev-ubuntu-20.04)
    | Ubuntu 22.04 | `rocm/dev-ubuntu-22.04` | [https://hub.docker.com/r/rocm/dev-ubuntu-22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
    | CentOS 7        | `rocm/dev-centos-7` | [https://hub.docker.com/r/rocm/dev-centos-7](https://hub.docker.com/r/rocm/dev-centos-7)
 
-   **Option 2:**
+   b. Pull the selected image.
 
-   Download a base OS Docker image and install ROCm using the directions in the
-   [Installation](../../deploy/linux/install.md) section.
+   ```bash
+   docker pull rocm/dev-ubuntu-20.04:latest
+   ```
 
-   **Option 3:**
-
-   Install on bare metal. If using this method, skip step 2 (starting a Docker container).
+   c. Start a Docker container using the downloaded image.
 
    ```bash
    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
    ```
 
-2. Start the Docker container (skip this step for bare metal installations).
+   **Option 2:**
 
-   ```dockerfile
-   docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
-   ```
+   Download a base OS Docker image and install ROCm using the directions in the
+   [Installation section](#install_rocm_linux).
 
-3. Install the required dependencies for the wheels package.
+   **Option 3:**
+
+   Install on bare metal. Check [OS compatibility](#supported_distributions) and install ROCm using the
+   directions in the [Installation section](#install_rocm_linux).
+
+2. Install the required dependencies for the wheels package.
 
    ```bash
    sudo apt update
@@ -90,28 +92,7 @@ table, choose ROCm from the _Compute Platform_ row.
    pip3 install wheel setuptools
    ```
 
-### Using MIOpen kdb files with ROCm PyTorch wheels
-
-PyTorch uses [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen) for machine learning
-primitives, which are compiled into kernels at runtime. Runtime compilation causes a small warm-up
-phase when starting PyTorch, and MIOpen kdb files contain precompiled kernels that can speed up
-application warm-up phases. For more information, refer to the
-{doc}`MIOpen installation page <miopen:install>`.
-
-MIOpen kdb files can be used with ROCm PyTorch wheels. However, the kdb files need to be placed in
-a specific location with respect to the PyTorch installation path. A helper script simplifies this task by
-taking the ROCm version and GPU architecture as inputs. This works for Ubuntu and CentOS.
-
-You can download the helper script here:
-[install_kdb_files_for_pytorch_wheels.sh](https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/install_kdb_files_for_pytorch_wheels.sh)
-
-After installing ROCm PyTorch wheels, run the following code:
-
-1. (Optional) `export GFX_ARCH=gfx90a`
-2. (Optional) `export ROCM_VERSION=5.5`
-3. `./install_kdb_files_for_pytorch_wheels.sh`
-4. Install torch, `torchvision`, and `torchaudio`, as specified in the _Run this Command_ column of the
-   interactive table on the [PyTorch Start Locally](https://pytorch.org/get-started/locally/) website.
+3. Install `torch`, `torchvision`, and `torchaudio`, as specified in the [installation matrix](https://pytorch.org/get-started/locally/).
 
    :::{note}
    The following command uses the ROCm 5.6 PyTorch wheel. If you want a different version of ROCm,
@@ -121,6 +102,27 @@ After installing ROCm PyTorch wheels, run the following code:
    ```bash
    pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.6/
    ```
+
+4. (Optional) Use MIOpen kdb files with ROCm PyTorch wheels.
+
+   PyTorch uses [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen) for machine learning
+   primitives, which are compiled into kernels at runtime. Runtime compilation causes a small warm-up
+   phase when starting PyTorch, and MIOpen kdb files contain precompiled kernels that can speed up
+   application warm-up phases. For more information, refer to the
+   {doc}`MIOpen installation page <miopen:install>`.
+
+   MIOpen kdb files can be used with ROCm PyTorch wheels. However, the kdb files need to be placed in
+   a specific location with respect to the PyTorch installation path. A helper script simplifies this task by
+   taking the ROCm version and GPU architecture as inputs. This works for Ubuntu and CentOS.
+
+   You can download the helper script here:
+   [install_kdb_files_for_pytorch_wheels.sh](https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/    install_kdb_files_for_pytorch_wheels.sh)
+
+   After installing ROCm PyTorch wheels, run the following code:
+
+   1. (Optional) `export GFX_ARCH=gfx90a`
+   2. (Optional) `export ROCM_VERSION=5.5`
+   3. `./install_kdb_files_for_pytorch_wheels.sh`
 
 ## Using the PyTorch ROCm base Docker image
 
@@ -153,7 +155,7 @@ scripts to determine the configuration of the build environment.
    ```bash
    cd ~
    git clone https://github.com/pytorch/pytorch.git
-   cd pytorch
+   cd /pytorch
    git submodule update --init --recursive
    ```
 
@@ -215,7 +217,7 @@ maintainers and installs all the required dependencies, including:
    ```bash
    cd ~
    git clone https://github.com/pytorch/pytorch.git
-   cd pytorch
+   cd /pytorch
    git submodule update --init --recursive
    ```
 
@@ -259,39 +261,29 @@ maintainers and installs all the required dependencies, including:
    cd pytorch
    ```
 
-5. Set ROCm architecture. The Docker image tag is `rocm/pytorch:latest-base`.
+5. Set ROCm architecture.
 
-   :::{note}
-   By default in the `rocm/pytorch:latest-base` image, PyTorch builds simultaneously for the following
-   architectures:
-   * gfx900
-   * gfx906
-   * gfx908
-   * gfx90a
-   * gfx1030
-   :::
-
-   If you want to compile _only_ for your microarchitecture (uarch), run:
-
-   ```bash
-   export PYTORCH_ROCM_ARCH=<uarch>
-   ```
-
-   Where `<uarch>` is the architecture reported by the `rocminfo` command.
-
-   To find your uarch, run:
+   To determine your AMD architecture, run:
 
    ```bash
    rocminfo | grep gfx
    ```
 
-   Example output for `gfx1030` architecture looks like this:
+   The result looks like this (for `gfx1030` architecture):
 
    ```bash
-   Name: gfx1030
-      Name: amdgcn-amd-amdhsa--gfx1030
-   >
+   Name:                    gfx1030
+   Name:                    amdgcn-amd-amdhsa--gfx1030
    ```
+
+   Set the `PYTORCH_ROCM_ARCH` environment variable to specify the architectures you want to
+   build PyTorch for.
+
+   ```bash
+   export PYTORCH_ROCM_ARCH=<uarch>
+   ```
+
+   where `<uarch>` is the architecture reported by the `rocminfo` command.
 
 6. Build PyTorch.
 

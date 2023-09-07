@@ -1,3 +1,5 @@
+(install_rocm_linux)=
+
 # Deploy ROCm on Linux
 
 Start with {doc}`/deploy/linux/quick_start` or follow the detailed
