@@ -30,7 +30,7 @@ The following API calls with result in these allocations:
 
 Pageable memory is usually gotten when calling `malloc` or `new` in a C++ application.
 It is unique in that it exists on "pages" (blocks of memory), which can be migrated to other memory storages.
-Examples of this are migrating memory between CPU sockets on a motherboard, or when a system runs out of space in RAM and starts dumping pages of RAM into the swap partition of your hard drive.
+For example, migrating memory between CPU sockets on a motherboard, or a system that runs out of space in RAM and starts dumping pages of RAM into the swap partition of your hard drive.
 
 ### Pinned memory
 
@@ -73,7 +73,7 @@ HIP supports additional calls that work with page migration:
 - `hipMemPrefetchAsync`
 
 :::{tip}
-If the application needs to use data on both host and device regularly, doesn't want to deal with separate allocations, and is not worried about maxing out the VRAM on MI200 GPUs (64 GB per GCD), use managed memory.
+If the application needs to use data on both host and device regularly, does not want to deal with separate allocations, and is not worried about maxing out the VRAM on MI200 GPUs (64 GB per GCD), use managed memory.
 :::
 
 :::{tip}
@@ -96,9 +96,11 @@ Zero-copy accesses happen over the Infinity Fabric interconnect or PCI-E lanes o
 :::{note}
 While `hipHostMalloc` allocated memory is accessible by a device, the host pointer must be converted to a device pointer with `hipHostGetDevicePointer`.
 
-Memory allocated through standard system allocators such as `malloc`, can accessed by device by registering the memory via `hipHostRegister`.
+Memory allocated through standard system allocators such as `malloc`, can be accessed a device by registering the memory via `hipHostRegister`.
 The device pointer to be used in kernels can be retrieved with `hipHostGetDevicePointer`.
 Registered memory is treated like `hipHostMalloc` and will have similar performance.
+
+On devices that support and have [](#xnack) enabled, such as the MI250X, `hipHostRegister` is not required as memory accesses are handled via automatic page migration.
 :::
 
 ### XNACK
