@@ -1,11 +1,8 @@
 **Common Hardware Debug Methods** 
 
-It is recommended to attempt non-invasive methods to resolve any observed failures. However, if those are not successful, reseating and/or swapping MI250 OAM modules may resolve the observed failure or provide an indication of a faulty hardware. PCIe device discovery, PCIe link training, and XGMI communication failures are common candidates for these hardware procedures, particularly in cases where these are observed during the initial installation of the hardware.
+It is recommended to attempt non-invasive methods to resolve any observed failures. However, if those are not successful, reseating and/or swapping the OAM modules may resolve the observed failure or provide an indication of a faulty hardware. PCIe device discovery, PCIe link training, and XGMI communication failures are common candidates for these hardware procedures, particularly in cases where these are observed during the initial installation of the hardware.
 
-AMD recommends consulting the server manufacturer's documentation for
-details on installing or swapping OAM modules. In some cases, the server
-manufacturer may recommend that these procedures only be performed by
-authorized support personnel.
+AMD recommends consulting the server manufacturer's documentation for details on installing or swapping OAM modules. In some cases, the server manufacturer may recommend that these procedures only be performed by authorized support personnel.
 
 **Common Error signatures in Instinct MI250 system:**
 
