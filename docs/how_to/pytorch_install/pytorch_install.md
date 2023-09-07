@@ -97,7 +97,7 @@ table, choose ROCm from the _Compute Platform_ row.
    Install on bare metal. Check [OS compatibility](#supported_distributions) and install ROCm using the
    directions in the [Installation section](#install_rocm_linux).
 
-1. Install the required dependencies for the wheels package.
+2. Install the required dependencies for the wheels package.
 
    ```bash
    sudo apt update
@@ -105,7 +105,7 @@ table, choose ROCm from the _Compute Platform_ row.
    pip3 install wheel setuptools
    ```
 
-2. Install `torch`, `torchvision`, and `torchaudio`, as specified in the [installation matrix](https://pytorch.org/get-started/locally/).
+3. Install `torch`, `torchvision`, and `torchaudio`, as specified in the [installation matrix](https://pytorch.org/get-started/locally/).
 
    :::{note}
    The following command uses the ROCm 5.6 PyTorch wheel. If you want a different version of ROCm,
@@ -116,7 +116,7 @@ table, choose ROCm from the _Compute Platform_ row.
    pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.6/
    ```
 
-3. (Optional) Use MIOpen kdb files with ROCm PyTorch wheels.
+4. (Optional) Use MIOpen kdb files with ROCm PyTorch wheels.
 
    PyTorch uses [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen) for machine learning
    primitives, which are compiled into kernels at runtime. Runtime compilation causes a small warm-up

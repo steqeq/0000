@@ -95,6 +95,7 @@ tg
 tracebacks
 TrapStatus
 UAC
+ubuntu
 UC
 UCX
 Uncached
