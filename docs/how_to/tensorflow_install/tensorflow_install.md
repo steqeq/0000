@@ -10,16 +10,16 @@ in-demand frameworks and is very active in open source contribution and
 development.
 
 :::{warning}
-ROCm 5.6 and 5.7 deviate from the standard practice of supporting the last three
+ROCm 5.6 and 5.7 deviates from the standard practice of supporting the last three
 TensorFlow versions. This is due to incompatibilities between earlier TensorFlow
-versions and changes introduced in the ROCm 5.6 compiler. Please refer to the
-following version support matrix:
+versions and changes introduced in the ROCm 5.6 compiler. Refer to the following
+version support matrix:
 
 | ROCm  | TensorFlow |
 |:-----:|:----------:|
 | 5.6.x | 2.12       |
 | 5.7.0 | 2.12, 2.13 |
-| Post-5.7.0 | Back to standard support practice. |
+| Post-5.7.0 | Last three versions at ROCm release. |
 :::
 
 ### Installing TensorFlow
