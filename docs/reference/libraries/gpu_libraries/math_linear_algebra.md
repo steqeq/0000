@@ -6,6 +6,7 @@ ROCm libraries for linear algebra are as follows:
 :gutter: 1
 
 :::{grid-item-card} {doc}`rocBLAS <rocblas:index>`
+
 `rocBLAS` is an AMD GPU optimized library for BLAS (Basic Linear Algebra Subprograms).
 
 - {doc}`Documentation <rocblas:index>`
@@ -16,6 +17,7 @@ ROCm libraries for linear algebra are as follows:
 :::
 
 :::{grid-item-card} {doc}`hipBLAS <hipblas:index>`
+
 `hipBLAS` is a compatibility layer for GPU accelerated BLAS optimized for AMD GPUs
 via `rocBLAS` and `rocSOLVER`. `hipBLAS` allows for a common interface for other GPU
 BLAS libraries.
@@ -27,6 +29,7 @@ BLAS libraries.
 :::
 
 :::{grid-item-card} {doc}`hipBLASLt <hipblaslt:index>`
+
 `hipBLASLt` is a library that provides general matrix-matrix operations with a
 flexible API and extends functionalities beyond traditional BLAS library.
 `hipBLASLt` is exposed APIs in HIP programming language with an underlying
@@ -39,6 +42,7 @@ optimized generator as a back-end kernel provider.
 :::
 
 :::{grid-item-card} {doc}`rocALUTION <rocalution:index>`
+
 `rocALUTION` is a sparse linear algebra library with focus on exploring
 fine-grained parallelism on top of AMD's ROCm runtime and toolchains, targeting
 modern CPU and GPU platforms.
@@ -50,6 +54,7 @@ modern CPU and GPU platforms.
 :::
 
 :::{grid-item-card} {doc}`rocWMMA <rocwmma:index>`
+
 `rocWMMA` provides an API to break down mixed precision matrix multiply-accumulate
 (MMA) problems into fragments and distributes these over GPU wavefronts.
 
@@ -60,6 +65,7 @@ modern CPU and GPU platforms.
 :::
 
 :::{grid-item-card} {doc}`rocSOLVER <rocsolver:index>`
+
 `rocSOLVER` provides a subset of LAPACK (Linear Algebra Package) functionality on the ROCm platform.
 
 - {doc}`Documentation <rocsolver:index>`
@@ -69,6 +75,7 @@ modern CPU and GPU platforms.
 :::
 
 :::{grid-item-card} {doc}`hipSOLVER <hipsolver:index>`
+
 `hipSOLVER` is a LAPACK marshalling library supporting both `rocSOLVER` and `cuSOLVER`
 as backends whilst exporting a unified interface.
 
@@ -79,6 +86,7 @@ as backends whilst exporting a unified interface.
 :::
 
 :::{grid-item-card} {doc}`rocSPARSE <rocsparse:index>`
+
 `rocSPARSE` is a library to provide BLAS for sparse computations.
 
 - {doc}`Documentation <rocsparse:index>`
@@ -88,6 +96,7 @@ as backends whilst exporting a unified interface.
 :::
 
 :::{grid-item-card} {doc}`hipSPARSE <hipsparse:index>`
+
 `hipSPARSE` is a marshalling library to provide sparse BLAS functionality,
 supporting both `rocSPARSE` and `cuSPARSE` as backends.
 
@@ -98,6 +107,7 @@ supporting both `rocSPARSE` and `cuSPARSE` as backends.
 :::
 
 :::{grid-item-card} {doc}`hipSPARSELt <hipsparselt:index>`
+
 `hipSPARSE` is a marshalling library to provide sparse BLAS functionality,
 supporting both `rocSPARSELt` and `cuSPARSELt` as backends.
 

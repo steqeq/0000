@@ -2,7 +2,7 @@
 # These comments will also be removed.
 defaults:
   numbered: False
-  maxdepth: 6
+  maxdepth: 7
 root: index
 subtrees:
 - entries:
@@ -27,22 +27,24 @@ subtrees:
     subtrees:
     - entries:
       - file: about/compatibility/linux_support.md
-        title: Linux support
+        title: Linux (GPU & OS)
       - file: about/compatibility/windows_support.md
-        title: Windows support
+        title: Windows (GPU & OS)
       - file: about/compatibility/3rd_party_support_matrix.md
-        title: Third-party support
+        title: Third-party
       - file: about/compatibility/user_kernel_space_compat_matrix.md
         title: User/kernel space support
       - file: about/compatibility/docker_image_support_matrix.md
-        title: Docker support
+        title: Docker
 
-  - file: CHANGELOG.md
+  - file: about/release_notes.md
     title: Release information
     subtrees:
     - entries:
       - file: about/whats_new/whats_new.md
         title: What's new?
+      - file: CHANGELOG.md
+        title: Changelog
       - file: about/release_history.md
         title: Release history
       - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
@@ -115,16 +117,16 @@ subtrees:
                 - file: tutorials/install/windows/cli/uninstall.md
                   title: Uninstall
       - file: tutorials/install/docker.md
-        title: Installing ROCm Docker containers
+        title: ROCm Docker containers
       - file: tutorials/install/pytorch_install.md
-        title: Installing Pytorch for ROCm
+        title: Pytorch for ROCm
       - file: tutorials/install/tensorflow_install.md
-        title: Installing Tensorflow for ROCm
+        title: Tensorflow for ROCm
       - file: tutorials/install/magma_install.md
-        title: Installing Magma for ROCm
+        title: Magma for ROCm
 
   - file: how_to/index.md
-    title: How-to guides
+    title: How-to
     subtrees:
     - entries:
       - file: how_to/deep_learning_rocm.md
@@ -182,8 +184,6 @@ subtrees:
         title: OpenMP
       - file: reference/rocmcc/rocmcc.md
         title: ROCmCC
-      - file: reference/docker.md
-        title: Docker
 
   - file: conceptual/index.md
     title: Conceptual documentation

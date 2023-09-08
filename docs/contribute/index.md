@@ -52,8 +52,8 @@ placed in the `/docs/data` folder.
 
 ## Language and Style
 
-Adopt Microsoft C++ docs guidelines for
-[Voice and tone](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md).
+Adopt Microsoft CPP-Docs guidelines for
+[Voice and Tone](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md).
 
 ROCm documentation templates to be made public shortly. ROCm templates dictate
 the recommended structure and flow of the documentation. Guidelines on how to
@@ -69,5 +69,3 @@ Raise issues in `rocm-docs-core` for any formatting concerns and changes request
 For more topics, such as submitting feedback and ways to build documentation,
 see the [Contributing Section](https://rocm.docs.amd.com/en/latest/contributing.html)
 at [rocm.docs.amd.com](https://rocm.docs.amd.com)
-
-To learn more about how our documentation is built, refer to the [ROCm toolchain](toolchain.md).

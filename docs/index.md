@@ -56,7 +56,7 @@ Collated information
 
 :::{grid-item-card}
 :padding: 2
-**[Conceptual](conceptual/index)**
+**[Conceptual](./conceptual/index.md)**
 
 Topic overviews and background information
 ^^^

@@ -5,16 +5,16 @@ Our installation guides are designed to walk you through a ROCm installation in 
 :::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} Linux installation guide
-:link: ./linux/index.md
-:link-type: doc
+:::{grid-item-card}
+**[Linux installation guide](./linux/index.md)**
+
 Install ROCm on Linux.
 
 :::
 
-:::{grid-item-card} Windows installation guide
-:link: ./windows/index.md
-:link-type: doc
+:::{grid-item-card}
+**[Windows installation guide](./windows/index.md)**
+
 Install ROCm on Linux.
 
 :::

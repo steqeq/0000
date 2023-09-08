@@ -8,16 +8,14 @@ instructions below.
 ::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} Prerequisites
-:link: ./prerequisites.md
-:link-type: doc
+:::{grid-item-card}
+**[Prerequisites](./prerequisites.md)**
 
 The prerequisites page lists the required steps *before* installation.
 :::
 
-:::{grid-item-card} Install Choices
-:link: ./install_options.md
-:link-type: doc
+:::{grid-item-card}
+**[Installation options](./install_options.md)**
 
 Package manager vs AMDGPU Installer
 
@@ -33,16 +31,14 @@ Standard Packages vs Multi-Version Packages
 ::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} Package Manager
-:link: ./os-native/index.md
-:link-type: doc
+:::{grid-item-card}
+**[Package manager](./os-native/index.md)**
 
 Directly use your distribution's package manager to install ROCm.
 :::
 
-:::{grid-item-card} AMDGPU Installer
-:link: ./installer/index.md
-:link-type: doc
+:::{grid-item-card}
+**[AMDGPU Installer](./installer/index.md)**
 
 Use an installer tool that orchestrates changes via the package
 manager.

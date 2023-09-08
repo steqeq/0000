@@ -3,25 +3,22 @@
 ::::{grid} 2 3 3 3
 :gutter: 1
 
-:::{grid-item-card} Install
-:link: install
-:link-type: doc
+:::{grid-item-card}
+**[Installing ROCm](./install.md)**
 
-How to install ROCm?
+Installation instructions.
 :::
 
-:::{grid-item-card} Upgrade
-:link: upgrade
-:link-type: doc
+:::{grid-item-card}
+**[Upgrading ROCm](./upgrade.md)**
 
 Instructions for upgrading an existing ROCm installation.
 :::
 
-:::{grid-item-card} Uninstall
-:link: uninstall
-:link-type: doc
+:::{grid-item-card}
+**[Uninstalling ROCm](./uninstall.md)**
 
-Steps for removing ROCm packages and libraries.
+Instructions for removing ROCm packages, libraries and tools.
 :::
 
 ::::

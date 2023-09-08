@@ -4,6 +4,7 @@
 :gutter: 1
 
 :::{grid-item-card} {doc}`rocRAND <rocrand:index>`
+
 rocRAND is an AMD GPU optimized library for pseudo-random number generators (PRNG).
 
 - {doc}`Documentation <rocrand:index>`
@@ -14,6 +15,7 @@ rocRAND is an AMD GPU optimized library for pseudo-random number generators (PRN
 :::
 
 :::{grid-item-card} {doc}`hipRAND <hiprand:index>`
+
 hipRAND is a compatibility layer for GPU accelerated pseudo-random number
 generation (PRNG) optimized for AMD GPUs using rocRAND. hipRAND allows for a
 common interface for other non AMD GPU PRNG libraries.
