@@ -57,4 +57,4 @@ Discusses strategies on how to bundle HIP libraries with an end user application
 
 ## See Also
 
-- {doc}`../../../about/compatibility/windows_support.md`
+- [Windows Support](../../../about/compatibility/windows_support.md)

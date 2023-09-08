@@ -25,4 +25,4 @@ Instructions for removing ROCm packages, libraries and tools.
 
 ## See Also
 
-- {doc}`../../../../about/compatibility/windows_support.md`
+- [Windows Support](../../../../about/compatibility/windows_support.md)

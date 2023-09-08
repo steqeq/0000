@@ -33,4 +33,4 @@ Information about packages.
 
 ## See Also
 
-- {doc}`../../../../about/compatibility/linux_support.md`
+- [Linux support](../../../../about/compatibility/linux_support.md)

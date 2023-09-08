@@ -4,7 +4,7 @@
 :gutter: 1
 
 :::{grid-item-card}
-**[AI libraries](./gpu_libraries/ai_libraries.md)**
+**[AI libraries](./ai_libraries.md)**
 
 :::
 

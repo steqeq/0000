@@ -1,3 +1,4 @@
+CPP
 ROCProfiler
 ROCTracer
 ROCdbgapi
