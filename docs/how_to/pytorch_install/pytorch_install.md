@@ -129,13 +129,21 @@ table, choose ROCm from the _Compute Platform_ row.
    taking the ROCm version and GPU architecture as inputs. This works for Ubuntu and CentOS.
 
    You can download the helper script here:
-   [install_kdb_files_for_pytorch_wheels.sh](https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/    install_kdb_files_for_pytorch_wheels.sh)
+   [install_kdb_files_for_pytorch_wheels.sh](https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/    install_kdb_files_for_pytorch_wheels.sh), or use:
+
+   `wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/install_kdb_files_for_pytorch_wheels.sh`
 
    After installing ROCm PyTorch wheels, run the following code:
 
-   1. (Optional) `export GFX_ARCH=gfx90a`
-   2. (Optional) `export ROCM_VERSION=5.5`
-   3. `./install_kdb_files_for_pytorch_wheels.sh`
+   ```bash
+   #Optional; replace 'gfx90a' with your architecture
+   export GFX_ARCH=gfx90a
+
+   #Optional
+   export ROCM_VERSION=5.5
+
+   ./install_kdb_files_for_pytorch_wheels.sh
+   ```
 
 ## Using the PyTorch ROCm base Docker image
 
