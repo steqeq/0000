@@ -13,12 +13,12 @@ inspection of execution state of AMD's commercially available GPU architectures.
 
 :::
 
-:::{grid-item-card} [ROCmCC](../rocmcc/rocmcc)
+:::{grid-item-card} [ROCmCC](../rocmcc/rocmcc.md)
 ROCmCC is a Clang/LLVM-based compiler. It is optimized for high-performance
 computing on AMD GPUs and CPUs and supports various heterogeneous programming
 models such as HIP, OpenMP, and OpenCL.
 
-- [Documentation](../rocmcc/rocmcc)
+- [Documentation](../rocmcc/rocmcc.md)
 
 :::
 

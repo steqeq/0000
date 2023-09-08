@@ -35,4 +35,4 @@ Information about packages.
 
 ## See Also
 
-- {doc}`../../../../about/release/linux_support`
+- {doc}`../../../../about/compatibility/linux_support.md`

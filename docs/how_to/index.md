@@ -4,28 +4,28 @@
 :gutter: 1
 
 :::{grid-item-card} Tuning Guides
-:link: tuning_guides/index
+:link: ./tuning_guides/index.md
 :link-type: doc
 Use case-specific system setup and tuning guides.
 
 :::
 
 :::{grid-item-card} Deep Learning Guide
-:link: deep_learning_rocm
+:link: ./deep_learning_rocm.md
 :link-type: doc
 Installation of various Deep Learning frameworks and applications.
 
 :::
 
 :::{grid-item-card} GPU-Enabled MPI
-:link: gpu_aware_mpi
+:link: ./gpu_aware_mpi.md
 :link-type: doc
 This chapter exemplifies how to set up Open MPI with the ROCm platform.
 
 :::
 
 :::{grid-item-card} System Debugging Guide
-:link: system_debugging
+:link: ./system_debugging.md
 :link-type: doc
 Useful commands to debug misbehaving ROCm installations.
 

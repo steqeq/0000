@@ -28,4 +28,4 @@ Steps for removing ROCm packages, libraries and tools.
 
 ## See Also
 
-- {doc}`../../../../about/release/linux_support`
+- {doc}`../../../../about/compatibility/linux_support.md`

@@ -4,14 +4,14 @@
 :gutter: 1
 
 :::{grid-item-card} Inception V3 with PyTorch
-:link: pytorch_inception
+:link: ./conceptual/ai_pytorch_inception.md
 :link-type: doc
 A collection of detailed and guided examples for working with Inception V3 with PyTorch on ROCm.
 
 :::
 
 :::{grid-item-card} Optimizing Inference with MIGraphX
-:link: migraphx_optimization
+:link: ./conceptual/ai_migraphx_optimization.md
 :link-type: doc
 Walkthroughs of optimizing inference using MIGraphX.
 

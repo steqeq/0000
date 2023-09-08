@@ -52,71 +52,75 @@ subtrees:
     title: Tutorials
     subtrees:
     - entries:
-      - file: tutorials/install/linux/index.md
-        title: Install ROCm (Linux)
-        subtrees:
-        - entries:
-          - file: tutorials/install/linux/prerequisites.md
-            title: Prerequisites
-          - file: tutorials/install/linux/install_options.md
-            title: Installation options
-            subtrees:
-            - entries:
-              - file: tutorials/install/linux/installer/index.md
-                title: AMDGPU install script
-                subtrees:
-                - entries:
-                  - file: tutorials/install/linux/installer/install.md
-                    title: Install
-                  - file: tutorials/install/linux/installer/upgrade.md
-                    title: Upgrade
-                  - file: tutorials/install/linux/installer/uninstall.md
-                    title: Uninstall
-              - file: tutorials/install/linux/os_native/index.md
-                title: Package manager
-                subtrees:
-                - entries:
-                  - file: tutorials/install/linux/os_native/package_manager_integration.md
-                    title: Package manager integration
-                  - file: tutorials/install/linux/os_native/install.md
-                    title: Install
-                  - file: tutorials/install/linux/os_native/upgrade.md
-                    title: Upgrade
-                  - file: tutorials/install/linux/os_native/uninstall.md
-                    title: Uninstall
-      - file: tutorials/install/windows/index.md
-        title: Install ROCm (Windows)
-        subtrees:
-        - entries:
-          - file: tutorials/install/windows/prerequisites.md
-            title: Prerequisites
-          - file: tutorials/install/windows/gui/index.md
-            title: Graphical installation
-            subtrees:
-            - entries:
-              - file: tutorials/install/windows/gui/install.md
-                title: Install
-              - file: tutorials/install/windows/gui/upgrade.md
-                title: Upgrade
-              - file: tutorials/install/windows/gui/uninstall.md
-                title: Uninstall
-          - file: tutorials/install/windows/cli/index.md
-            title: Command line installation
-            subtrees:
-            - entries:
-              - file: tutorials/install/windows/cli/install.md
-                title: Install
-              - file: tutorials/install/windows/cli/upgrade.md
-                title: Upgrade
-              - file: tutorials/install/windows/cli/uninstall.md
-                title: Uninstall
+      - file: tutorials/install/index.md
+        title: Installing ROCm
+      subtrees:
+      - entries:
+        - file: tutorials/install/linux/index.md
+          title: Linux
+          subtrees:
+          - entries:
+            - file: tutorials/install/linux/prerequisites.md
+              title: Prerequisites
+            - file: tutorials/install/linux/install_options.md
+              title: Installation options
+              subtrees:
+              - entries:
+                - file: tutorials/install/linux/installer/index.md
+                  title: AMDGPU install script
+                  subtrees:
+                  - entries:
+                    - file: tutorials/install/linux/installer/install.md
+                      title: Install
+                    - file: tutorials/install/linux/installer/upgrade.md
+                      title: Upgrade
+                    - file: tutorials/install/linux/installer/uninstall.md
+                      title: Uninstall
+                - file: tutorials/install/linux/os-native/index.md
+                  title: Package manager
+                  subtrees:
+                  - entries:
+                    - file: tutorials/install/linux/os-native/package_manager_integration.md
+                      title: Package manager integration
+                    - file: tutorials/install/linux/os-native/install.md
+                      title: Install
+                    - file: tutorials/install/linux/os-native/upgrade.md
+                      title: Upgrade
+                    - file: tutorials/install/linux/os-native/uninstall.md
+                      title: Uninstall
+        - file: tutorials/install/windows/index.md
+          title: Windows
+          subtrees:
+          - entries:
+            - file: tutorials/install/windows/prerequisites.md
+              title: Prerequisites
+            - file: tutorials/install/windows/gui/index.md
+              title: Graphical installation
+              subtrees:
+              - entries:
+                - file: tutorials/install/windows/gui/install.md
+                  title: Install
+                - file: tutorials/install/windows/gui/upgrade.md
+                  title: Upgrade
+                - file: tutorials/install/windows/gui/uninstall.md
+                  title: Uninstall
+            - file: tutorials/install/windows/cli/index.md
+              title: Command line installation
+              subtrees:
+              - entries:
+                - file: tutorials/install/windows/cli/install.md
+                  title: Install
+                - file: tutorials/install/windows/cli/upgrade.md
+                  title: Upgrade
+                - file: tutorials/install/windows/cli/uninstall.md
+                  title: Uninstall
       - file: tutorials/install/docker.md
         title: Installing ROCm Docker containers
-      - file: tutorials/install/pytorch.md
+      - file: tutorials/install/pytorch_install.md
         title: Installing Pytorch for ROCm
-      - file: tutorials/install/tensorflow.md
+      - file: tutorials/install/tensorflow_install.md
         title: Installing Tensorflow for ROCm
-      - file: tutorials/install/magma.md
+      - file: tutorials/install/magma_install.md
         title: Installing Magma for ROCm
 
   - file: how_to/index.md

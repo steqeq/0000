@@ -1,6 +1,6 @@
 # GPU and OS Support (Windows)
 
-(supported_skus)=
+(windows_support)=
 
 ## Supported SKUs
 
