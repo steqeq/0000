@@ -1,7 +1,21 @@
-# Computer Vision
+# ROCm & artificial intelligence
 
-::::{grid} 1 1 2 2
+:::::{grid} 1 1 2 2
 :gutter: 1
+
+:::{grid-item-card} Inception V3 with PyTorch
+:link: pytorch_inception
+:link-type: doc
+A collection of detailed and guided examples for working with Inception V3 with PyTorch on ROCm.
+
+:::
+
+:::{grid-item-card} Optimizing Inference with MIGraphX
+:link: migraphx_optimization
+:link-type: doc
+Walkthroughs of optimizing inference using MIGraphX.
+
+:::
 
 :::{grid-item-card} {doc}`MIVisionX <mivisionx:README>`
 MIVisionX toolkit is a set of comprehensive computer vision and machine intelligence libraries, utilities, and applications bundled into a single toolkit. AMD MIVisionX also delivers a highly optimized open-source implementation of the Khronos OpenVX™ and OpenVX™ Extensions.
