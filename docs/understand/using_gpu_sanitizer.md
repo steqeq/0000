@@ -213,7 +213,11 @@ $ rocgdb <path to application>
 (gdb) c
 ```
 
-### Using Address Sanitizer with a Short HIP Application (LINK NEEDED HERE)
+### Using Address Sanitizer with a Short HIP Application 
+Refer to the following example to use address sanitizer with a short HIP application,
+
+https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md
+
 
 ### Known Issues with Using GPU Sanitizer
 
