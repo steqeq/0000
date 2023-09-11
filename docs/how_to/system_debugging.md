@@ -6,19 +6,13 @@ Kernel options to avoid: the Ethernet port getting renamed every time you change
 
 ## ROCr Error Code
 
-- 2 Invalid Dimension
-
-- 4 Invalid Group Memory
-
-- 8 Invalid (or Null) Code
-
-- 32 Invalid Format
-
-- 64 Group is too large
-
-- 128 Out of VGPRs
-
-- 0x80000000 Debug Options
+* 2 Invalid Dimension
+* 4 Invalid Group Memory
+* 8 Invalid (or Null) Code
+* 32 Invalid Format
+* 64 Group is too large
+* 128 Out of VGPRs
+* 0x80000000 Debug Options
 
 ## Command to Dump Firmware Version and Get Linux Kernel Version
 
@@ -30,15 +24,15 @@ Kernel options to avoid: the Ethernet port getting renamed every time you change
 
 Debug messages when developing/debugging base ROCm driver. You could enable the printing from `libhsakmt.so` by setting an environment variable, `HSAKMT_DEBUG_LEVEL`. Available debug levels are 3-7. The higher level you set, the more messages will print.
 
-- `export HSAKMT_DEBUG_LEVEL=3` : Only pr_err() prints.
+* `export HSAKMT_DEBUG_LEVEL=3` : Only pr_err() prints.
 
-- `export HSAKMT_DEBUG_LEVEL=4` : pr_err() and pr_warn() print.
+* `export HSAKMT_DEBUG_LEVEL=4` : pr_err() and pr_warn() print.
 
-- `export HSAKMT_DEBUG_LEVEL=5` : We currently do not implement “notice”. Setting to 5 is same as setting to 4.
+* `export HSAKMT_DEBUG_LEVEL=5` : We currently do not implement “notice”. Setting to 5 is same as setting to 4.
 
-- `export HSAKMT_DEBUG_LEVEL=6` : pr_err(), pr_warn(), and pr_info print.
+* `export HSAKMT_DEBUG_LEVEL=6` : pr_err(), pr_warn(), and pr_info print.
 
-- `export HSAKMT_DEBUG_LEVEL=7` : Everything including pr_debug prints.
+* `export HSAKMT_DEBUG_LEVEL=7` : Everything including pr_debug prints.
 
 ## ROCr Level Environment Variables for Debug
 

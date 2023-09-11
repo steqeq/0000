@@ -17,8 +17,8 @@ OpenMP offloading) explicit access to the GPUs must be granted.
 
 The ROCm runtimes make use of multiple device files:
 
-- `/dev/kfd`: the main compute interface shared by all GPUs
-- `/dev/dri/renderD<node>`: direct rendering interface (DRI) devices for each
+* `/dev/kfd`: the main compute interface shared by all GPUs
+* `/dev/dri/renderD<node>`: direct rendering interface (DRI) devices for each
   GPU. **`<node>`** is a number for each card in the system starting from 128.
 
 Exposing these devices to a container is done by using the

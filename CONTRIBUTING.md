@@ -35,9 +35,9 @@ guide on writing and formatting on GitHub as a starting point.
 ROCm documentation adds additional requirements to Markdown and RST based files
 as follows:
 
-- Level one headers are only used for page titles. There must be only one level
+* Level one headers are only used for page titles. There must be only one level
   1 header per file for both Markdown and Restructured Text.
-- Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
+* Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
   our automated GitHub action on a Pull Request (PR).
   See the {doc}`rocm-docs-core linting user guide <rocm-docs-core:user_guide/linting>` for more details.
 

@@ -88,8 +88,8 @@ from the new location (`/opt/rocm-<ver>/include`) as shown in the example below.
 #include <hip/hip_runtime.h>
 ```
 
-- Starting at ROCm 5.2 release, the deprecation for backward compatibility wrapper header files is: `#pragma` message announcing `#warning`.
-- Starting from ROCm 6.0 (tentatively) backward compatibility for wrapper header files will be removed, and the `#pragma` message will be announcing `#error`.
+* Starting at ROCm 5.2 release, the deprecation for backward compatibility wrapper header files is: `#pragma` message announcing `#warning`.
+* Starting from ROCm 6.0 (tentatively) backward compatibility for wrapper header files will be removed, and the `#pragma` message will be announcing `#error`.
 
 ### Executable Files
 

@@ -785,9 +785,9 @@ To understand the code step by step, follow these steps:
     ])
     ```
 
-    - The first layer in this network `tf.keras.layers.Flatten` transforms the format of the images from a two-dimensional array (of 28 x 28 pixels) to a one-dimensional array (of 28 * 28 = 784 pixels). Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data.
+    * The first layer in this network `tf.keras.layers.Flatten` transforms the format of the images from a two-dimensional array (of 28 x 28 pixels) to a one-dimensional array (of 28 * 28 = 784 pixels). Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data.
 
-    - After the pixels are flattened, the network consists of a sequence of two `tf.keras.layers.Dense` layers. These are densely connected or fully connected neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer returns a logits array with a length of 10. Each node contains a score that indicates the current image belongs to one of the 10 classes.
+    * After the pixels are flattened, the network consists of a sequence of two `tf.keras.layers.Dense` layers. These are densely connected or fully connected neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer returns a logits array with a length of 10. Each node contains a score that indicates the current image belongs to one of the 10 classes.
 
 12. You must add the Loss function, Metrics, and Optimizer at the time of model compilation.
 
@@ -797,11 +797,11 @@ To understand the code step by step, follow these steps:
                 metrics=['accuracy'])
     ```
 
-    - Loss function —This measures how accurate the model is during training when you are looking to minimize this function to "steer" the model in the right direction.
+    * Loss function —This measures how accurate the model is during training when you are looking to minimize this function to "steer" the model in the right direction.
 
-    - Optimizer —This is how the model is updated based on the data it sees and its loss function.
+    * Optimizer —This is how the model is updated based on the data it sees and its loss function.
 
-    - Metrics —This is used to monitor the training and testing steps.
+    * Metrics —This is used to monitor the training and testing steps.
 
     The following example uses accuracy, the fraction of the correctly classified images.
 

@@ -3,9 +3,9 @@
 This section provides information about the required meta-packages for the
 following AMD ROCm programming models:
 
-- Heterogeneous-Computing Interface for Portability (HIP)
-- OpenCL™
-- OpenMP™
+* Heterogeneous-Computing Interface for Portability (HIP)
+* OpenCL™
+* OpenMP™
 
 ## ROCm Package Naming Conventions
 
@@ -16,8 +16,8 @@ support a specific use case.
 
 All meta-packages exist in both versioned and non-versioned forms.
 
-- Non-versioned packages – For a single-version installation of the ROCm stack
-- Versioned packages – For multi-version installations of the ROCm stack
+* Non-versioned packages – For a single-version installation of the ROCm stack
+* Versioned packages – For multi-version installations of the ROCm stack
 
 ```{figure} ../../../../data/tutorials/install/linux/linux002.png
 :name: package-naming
@@ -59,9 +59,9 @@ of required packages and libraries.
 
 **Example:**
 
-- `rocm-hip-runtime` is used to deploy on supported machines to execute HIP
+* `rocm-hip-runtime` is used to deploy on supported machines to execute HIP
   applications.
-- `rocm-hip-sdk` contains runtime components to deploy and execute HIP
+* `rocm-hip-sdk` contains runtime components to deploy and execute HIP
   applications.
 
 ```{figure} ../../../../data/tutorials/install/linux/linux003.png
@@ -105,9 +105,9 @@ ROCm programming model.
 Associated Packages
 ```
 
-- Meta-packages can include another meta-package.
-- `rocm-core` package is common across all the meta-packages.
-- Meta-packages and associated packages are represented in the same color.
+* Meta-packages can include another meta-package.
+* `rocm-core` package is common across all the meta-packages.
+* Meta-packages and associated packages are represented in the same color.
 
 ```{note}
 The preceding image is for informational purposes only, as the individual
