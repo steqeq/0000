@@ -51,7 +51,7 @@ Collated information
 ^^^
 
 * [Libraries](./reference/libraries/index.md)
- ** [Math libraries](./reference/libraries/gpu_libraries/math.md)
+  * [Math libraries](./reference/libraries/gpu_libraries/math.md)
   * [C++ Primitives libraries](./reference/libraries/gpu_libraries/c++_primitives.md)
   * [Communication libraries](./reference/libraries/gpu_libraries/communication.md)
 * [Compilers & tools](./reference/compilers_tools/index.md)
