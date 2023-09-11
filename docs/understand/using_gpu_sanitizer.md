@@ -1,4 +1,4 @@
-### Using the LLVM Address Sanitizer (ASAN) on the GPU
+### Using the LLVM Address Sanitizer (ASAN) with the GPU
 
 The LLVM Address Sanitizer provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 
@@ -32,6 +32,21 @@ There are a few options if the compile time becomes unacceptable:
 + Avoid instrumentation of the files which have the worst compile times. This will reduce the effectiveness of the address sanitizer process.
 + Add the option `-fsanitize-recover=address` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
 + Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
+
+### Installing ROCm GPU Address Sanitizer Packages 
+
+For a full ROCm GPU Sanitizer installation, users must install the following packages,
+
+rocm-dev-asan for instrumented HSA and HIP runtimes 
+rocm-ml-sdk-asan for Math libraries
+
+You may use the following instruction for a full installation, 
+
+```
+    apt -o Dpkg::Options::="--force-overwrite" --fix-broken install rocm-dev-asan rocm-ml-sdk-asan
+```
+
+A full installation of all instrumented packages is required to use the address sanitizer. 
 
 ### Using AMD Supplied Address Sanitizer Instrumented Libraries
 
