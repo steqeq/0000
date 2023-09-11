@@ -9,10 +9,10 @@ hardware and BIOS configurations for OEM platforms may not provide optimal
 performance for HPC workloads. To enable optimal HPC settings on a per-platform
 and per-workload level, this guide calls out:
 
-- BIOS settings that can impact performance
-- Hardware configuration best practices
-- Supported versions of operating systems
-- Workload-specific recommendations for optimal BIOS and operating system
+* BIOS settings that can impact performance
+* Hardware configuration best practices
+* Supported versions of operating systems
+* Workload-specific recommendations for optimal BIOS and operating system
   settings
 
 There is also a discussion on the AMD Instinct™ software development
@@ -23,11 +23,11 @@ not exhaustively tested across all compilers.
 Prerequisites to understanding this document and to performing tuning of HPC
 applications include:
 
-- Experience in configuring servers
-- Administrative access to the server's Management Interface (BMC)
-- Administrative access to the operating system
-- Familiarity with the OEM server's BMC (strongly recommended)
-- Familiarity with the OS specific tools for configuration, monitoring, and
+* Experience in configuring servers
+* Administrative access to the server's Management Interface (BMC)
+* Administrative access to the operating system
+* Familiarity with the OEM server's BMC (strongly recommended)
+* Familiarity with the OS specific tools for configuration, monitoring, and
   troubleshooting (strongly recommended)
 
 This document provides guidance on tuning systems with various AMD Instinct™
@@ -52,8 +52,8 @@ their own performance testing for additional tuning.
 This chapter goes through how to configure your AMD Instinct™ MI200 accelerated
 compute nodes to get the best performance out of them.
 
-- [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
-- [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
+* [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
+* [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
 
 :::
 
@@ -63,8 +63,8 @@ compute nodes to get the best performance out of them.
 This chapter briefly reviews hardware aspects of the AMD Instinct™ MI100
 accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs.
 
-- [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
-- [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
+* [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
+* [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
 
 :::
 
@@ -92,8 +92,8 @@ their full potential.
 This chapter describes the AMD GPUs with RDNA™ 2 architecture, namely AMD Radeon
 PRO W6800 and AMD Radeon PRO V620
 
-- [AMD RDNA2 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/rdna2-shader-instruction-set-architecture.pdf)
-- [Whitepaper](https://www.amd.com/system/files/documents/rdna2-explained-radeon-pro-W6000.pdf)
+* [AMD RDNA2 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/rdna2-shader-instruction-set-architecture.pdf)
+* [Whitepaper](https://www.amd.com/system/files/documents/rdna2-explained-radeon-pro-W6000.pdf)
 
 :::
 

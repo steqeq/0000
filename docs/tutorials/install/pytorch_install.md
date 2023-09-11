@@ -6,11 +6,11 @@ PyTorch is an open-source machine learning Python library, primarily
 differentiated by Tensor computing with GPU acceleration and a type-based
 automatic differentiation. Other advanced features include:
 
-- Support for distributed training
-- Native ONNX support
-- C++ front-end
-- The ability to deploy at scale using TorchServe
-- A production-ready deployment mechanism through TorchScript
+* Support for distributed training
+* Native ONNX support
+* C++ front-end
+* The ability to deploy at scale using TorchServe
+* A production-ready deployment mechanism through TorchScript
 
 ### Installing PyTorch
 
@@ -121,10 +121,10 @@ To install PyTorch using the wheels package, follow these installation steps:
 A prebuilt base Docker image is used to build PyTorch in this option. The base
 Docker has all dependencies installed, including:
 
-- ROCm
-- Torchvision
-- Conda packages
-- Compiler toolchain
+* ROCm
+* Torchvision
+* Conda packages
+* Compiler toolchain
 
 Additionally, a particular environment flag (`BUILD_ENVIRONMENT`) is set, and
 the build scripts utilize that to determine the build environment configuration.
@@ -162,11 +162,11 @@ Follow these steps:
    :::{note}
    By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
    architectures simultaneously:
-   - gfx900
-   - gfx906
-   - gfx908
-   - gfx90a
-   - gfx1030
+   * gfx900
+   * gfx906
+   * gfx908
+   * gfx90a
+   * gfx1030
    :::
 
 5. To determine your AMD uarch, run:
@@ -206,10 +206,10 @@ Docker image using scripts from the PyTorch repository. This will utilize a
 standard Docker image from operating system maintainers and install all the
 dependencies required to build PyTorch, including
 
-- ROCm
-- Torchvision
-- Conda packages
-- Compiler toolchain
+* ROCm
+* Torchvision
+* Conda packages
+* Compiler toolchain
 
 Follow these steps:
 
@@ -257,11 +257,11 @@ Follow these steps:
    :::{note}
    By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
    architectures simultaneously:
-   - gfx900
-   - gfx906
-   - gfx908
-   - gfx90a
-   - gfx1030
+   * gfx900
+   * gfx906
+   * gfx908
+   * gfx90a
+   * gfx1030
    :::
 
 6. To determine your AMD uarch, run:
@@ -418,31 +418,3 @@ After installing ROCm PyTorch wheels:
 1. [Optional] `export GFX_ARCH=gfx90a`
 2. [Optional] `export ROCM_VERSION=5.5`
 3. `./install_kdb_files_for_pytorch_wheels.sh`
-
-## References
-
-C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," CoRR, p. abs/1512.00567, 2015
-
-PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](https://pytorch.org/vision/stable/index.html)
-
-PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
-
-Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
-
-Wikipedia, \[Online\]. Available: [https://en.wikipedia.org/wiki/Cross_entropy](https://en.wikipedia.org/wiki/Cross_entropy)
-
-AMD, "ROCm issues," \[Online\]. Available: [https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)
-
-PyTorch, \[Online image\]. [https://pytorch.org/assets/brand-guidelines/PyTorch-Brand-Guidelines.pdf](https://pytorch.org/assets/brand-guidelines/PyTorch-Brand-Guidelines.pdf)
-
-TensorFlow, \[Online image\]. [https://www.tensorflow.org/extras/tensorflow_brand_guidelines.pdf](https://www.tensorflow.org/extras/tensorflow_brand_guidelines.pdf)
-
-MAGMA, \[Online image\]. [https://bitbucket.org/icl/magma/src/master/docs/](https://bitbucket.org/icl/magma/src/master/docs/)
-
-Advanced Micro Devices, Inc., \[Online\]. Available: [https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/](https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/)
-
-Advanced Micro Devices, Inc., \[Online\]. Available: [https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki)
-
-Docker, \[Online\]. [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/)
-
-Torchvision, \[Online\]. Available [https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision](https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision)

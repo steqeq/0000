@@ -9,10 +9,10 @@ ROCm libraries for linear algebra are as follows:
 
 `rocBLAS` is an AMD GPU optimized library for BLAS (Basic Linear Algebra Subprograms).
 
-- {doc}`Documentation <rocblas:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/rocBLAS)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CHANGELOG.md)
-- [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocBLAS)
+* {doc}`Documentation <rocblas:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/rocBLAS)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/CHANGELOG.md)
+* [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocBLAS)
 
 :::
 
@@ -22,9 +22,9 @@ ROCm libraries for linear algebra are as follows:
 via `rocBLAS` and `rocSOLVER`. `hipBLAS` allows for a common interface for other GPU
 BLAS libraries.
 
-- {doc}`Documentation <hipblas:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/hipBLAS)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/hipBLAS/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <hipblas:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/hipBLAS)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/hipBLAS/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -35,9 +35,9 @@ flexible API and extends functionalities beyond traditional BLAS library.
 `hipBLASLt` is exposed APIs in HIP programming language with an underlying
 optimized generator as a back-end kernel provider.
 
-- {doc}`Documentation <hipblaslt:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/hipBLASLt)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/hipBLASLt/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <hipblaslt:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/hipBLASLt)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/hipBLASLt/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -47,9 +47,9 @@ optimized generator as a back-end kernel provider.
 fine-grained parallelism on top of AMD's ROCm runtime and toolchains, targeting
 modern CPU and GPU platforms.
 
-- {doc}`Documentation <rocalution:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/rocALUTION)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <rocalution:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/rocALUTION)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -58,9 +58,9 @@ modern CPU and GPU platforms.
 `rocWMMA` provides an API to break down mixed precision matrix multiply-accumulate
 (MMA) problems into fragments and distributes these over GPU wavefronts.
 
-- {doc}`Documentation <rocwmma:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/rocWMMA)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <rocwmma:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/rocWMMA)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/rocWMMA/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -68,9 +68,9 @@ modern CPU and GPU platforms.
 
 `rocSOLVER` provides a subset of LAPACK (Linear Algebra Package) functionality on the ROCm platform.
 
-- {doc}`Documentation <rocsolver:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/rocSOLVER)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <rocsolver:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/rocSOLVER)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -79,9 +79,9 @@ modern CPU and GPU platforms.
 `hipSOLVER` is a LAPACK marshalling library supporting both `rocSOLVER` and `cuSOLVER`
 as backends whilst exporting a unified interface.
 
-- {doc}`Documentation <hipsolver:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/hipSOLVER)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/hipSOLVER/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <hipsolver:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/hipSOLVER)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/hipSOLVER/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -89,9 +89,9 @@ as backends whilst exporting a unified interface.
 
 `rocSPARSE` is a library to provide BLAS for sparse computations.
 
-- {doc}`Documentation <rocsparse:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/rocSPARSE)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <rocsparse:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/rocSPARSE)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -100,9 +100,9 @@ as backends whilst exporting a unified interface.
 `hipSPARSE` is a marshalling library to provide sparse BLAS functionality,
 supporting both `rocSPARSE` and `cuSPARSE` as backends.
 
-- {doc}`Documentation <hipsparse:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/hipSPARSE)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/hipSOLVER/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <hipsparse:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/hipSPARSE)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/hipSOLVER/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -111,8 +111,8 @@ supporting both `rocSPARSE` and `cuSPARSE` as backends.
 `hipSPARSE` is a marshalling library to provide sparse BLAS functionality,
 supporting both `rocSPARSELt` and `cuSPARSELt` as backends.
 
-- {doc}`Documentation <hipsparselt:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/hipSPARSELt)
+* {doc}`Documentation <hipsparselt:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/hipSPARSELt)
 
 :::
 

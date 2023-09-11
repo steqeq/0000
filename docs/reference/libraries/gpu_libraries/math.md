@@ -18,32 +18,32 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 :::{grid-item-card}
 **[Linear Algebra Libraries](./math_linear_algebra.md)**
 
-- {doc}`rocBLAS <rocblas:index>`
-- {doc}`hipBLAS <hipblas:index>`
-- {doc}`hipBLASLt <hipblaslt:index>`
-- {doc}`rocALUTION <rocalution:index>`
-- {doc}`rocWMMA <rocwmma:index>`
-- {doc}`rocSOLVER <rocsolver:index>`
-- {doc}`hipSOLVER <hipsolver:index>`
-- {doc}`rocSPARSE <rocsparse:index>`
-- {doc}`hipSPARSE <hipsparse:index>`
-- {doc}`hipSPARSELt <hipsparselt:index>`
+* {doc}`rocBLAS <rocblas:index>`
+* {doc}`hipBLAS <hipblas:index>`
+* {doc}`hipBLASLt <hipblaslt:index>`
+* {doc}`rocALUTION <rocalution:index>`
+* {doc}`rocWMMA <rocwmma:index>`
+* {doc}`rocSOLVER <rocsolver:index>`
+* {doc}`hipSOLVER <hipsolver:index>`
+* {doc}`rocSPARSE <rocsparse:index>`
+* {doc}`hipSPARSE <hipsparse:index>`
+* {doc}`hipSPARSELt <hipsparselt:index>`
 
 :::
 
 :::{grid-item-card}
 **[Fast Fourier Transforms](./math_fft.md)**
 
-- {doc}`rocFFT <rocfft:index>`
-- {doc}`hipFFT <hipfft:index>`
+* {doc}`rocFFT <rocfft:index>`
+* {doc}`hipFFT <hipfft:index>`
 
 :::
 
 :::{grid-item-card}
 **[Random Numbers](./rand.md)**
 
-- {doc}`rocRAND <rocrand:index>`
-- {doc}`hipRAND <hiprand:index>`
+* {doc}`rocRAND <rocrand:index>`
+* {doc}`hipRAND <hiprand:index>`
 
 :::
 

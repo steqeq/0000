@@ -9,9 +9,9 @@ ROCm libraries for FFT are as follows:
 
 rocFFT is an AMD GPU optimized library for FFT.
 
-- {doc}`Documentation <rocfft:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/rocFFT)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/rocFFT/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <rocfft:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/rocFFT)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/rocFFT/blob/develop/CHANGELOG.md)
 
 :::
 
@@ -21,9 +21,9 @@ hipFFT is a compatibility layer for GPU accelerated FFT optimized for AMD GPUs
 using rocFFT. hipFFT allows for a common interface for other non AMD GPU
 FFT libraries.
 
-- {doc}`Documentation <hipfft:index>`
-- [GitHub](https://github.com/ROCmSoftwarePlatform/hipFFT)
-- [Changelog](https://github.com/ROCmSoftwarePlatform/hipFFT/blob/develop/CHANGELOG.md)
+* {doc}`Documentation <hipfft:index>`
+* [GitHub](https://github.com/ROCmSoftwarePlatform/hipFFT)
+* [Changelog](https://github.com/ROCmSoftwarePlatform/hipFFT/blob/develop/CHANGELOG.md)
 
 :::
 

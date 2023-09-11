@@ -7,8 +7,8 @@ user should follow the [Quick Start guide](../../quick_start/linux).
 
 ROCm supports two methods for installation:
 
-- Directly using the Linux distribution's package manager
-- The `amdgpu-install` script
+* Directly using the Linux distribution's package manager
+* The `amdgpu-install` script
 
 There is no difference in the final installation state when choosing either
 option.
@@ -38,17 +38,17 @@ specific and a ROCm release version.
 
 The single-version ROCm installation refers to the following:
 
-- Installation of a single instance of the ROCm release on a system
-- Use of non-versioned ROCm meta-packages
+* Installation of a single instance of the ROCm release on a system
+* Use of non-versioned ROCm meta-packages
 
 ### Multi-version Installation
 
 The multi-version installation refers to the following:
 
-- Installation of multiple instances of the ROCm stack on a system. Extending
+* Installation of multiple instances of the ROCm stack on a system. Extending
   the package name and its dependencies with the release version adds the
   ability to support multiple versions of packages simultaneously.
-- Use of versioned ROCm meta-packages.
+* Use of versioned ROCm meta-packages.
 
 ```{attention}
 ROCm packages that were previously installed from a single-version installation

@@ -20,10 +20,10 @@ Finding Dependencies
 
 In short, CMake supports finding dependencies in two ways:
 
--  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to
+*  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to
    find the component in typical install locations and layouts. CMake ships a
    few dozen such scripts, but users and projects may ship them as well.
--  In Config mode, it locates a file named ``<packagename>-config.cmake`` or
+*  In Config mode, it locates a file named ``<packagename>-config.cmake`` or
    ``<PackageName>Config.cmake`` which describes the installed component in all
    regards needed to consume it.
 

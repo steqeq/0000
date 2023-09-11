@@ -62,16 +62,16 @@ on this table, the GPU is not officially supported by AMD.
 ROCm components are described in the [Reference material](../../reference/index). Support
 on Windows is provided with two levels on enablement.
 
-- **Runtime**: Runtime enables the use of the HIP and OpenCL runtimes only.
-- **HIP SDK**: Runtime plus additional components refer to [Libraries](../../reference/libraries/index).
+* **Runtime**: Runtime enables the use of the HIP and OpenCL runtimes only.
+* **HIP SDK**: Runtime plus additional components refer to [Libraries](../../reference/libraries/index).
   Some [math libraries](../../reference/libraries/gpu_libraries/math) are Linux exclusive, please check the library details.
 
 ### Support Status
 
-- ✅: **Supported** - AMD enables these GPUs in our software distributions for
+✅: **Supported** - AMD enables these GPUs in our software distributions for
   the corresponding ROCm product.
-- ⚠️: **Deprecated** - Support will be removed in a future release.
-- ❌: **Unsupported** - This configuration is not enabled in our software
+⚠️: **Deprecated** - Support will be removed in a future release.
+❌: **Unsupported** - This configuration is not enabled in our software
   distributions.
 
 ## CPU Support

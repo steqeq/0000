@@ -12,15 +12,11 @@ Taking our previous example of MNIST, the DNN can be fed new images of handwritt
 
 MIGraphX is a graph compiler focused on accelerating the Machine Learning inference that can target AMD GPUs and CPUs. MIGraphX accelerates the Machine Learning models by leveraging several graph-level transformations and optimizations. These optimizations include:
 
-- Operator fusion
-
-- Arithmetic simplifications
-
-- Dead-code elimination
-
-- Common subexpression elimination (CSE)
-
-- Constant propagation
+* Operator fusion
+* Arithmetic simplifications
+* Dead-code elimination
+* Common subexpression elimination (CSE)
+* Constant propagation
 
 After doing all these transformations, MIGraphX emits code for the AMD GPU by calling to MIOpen or rocBLAS or creating HIP kernels for a particular operator. MIGraphX can also target CPUs using DNNL or ZenDNN libraries.
 
@@ -54,11 +50,11 @@ The header files and libraries are installed under `/opt/rocm-\<version\>`, wher
 
 There are two ways to build the MIGraphX sources.
 
-- [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses [rbuild](https://github.com/RadeonOpenCompute/rbuild) to install the prerequisites and build the libraries with just one command.
+* [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses [rbuild](https://github.com/RadeonOpenCompute/rbuild) to install the prerequisites and build the libraries with just one command.
 
   or
 
-- [Use CMake](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
+* [Use CMake](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
 
 For detailed steps on building from source and installing dependencies, refer to the following `README` file:
 

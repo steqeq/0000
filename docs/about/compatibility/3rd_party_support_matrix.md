@@ -45,8 +45,8 @@ UCC version | ROCm 5.5 and older | ROCm 5.6 and newer |
 ROCm releases provide algorithm libraries with interfaces compatible with
 contemporary CUDA / NVIDIA HPC SDK alternatives.
 
-- Thrust → rocThrust
-- CUB → hipCUB
+* Thrust → rocThrust
+* CUB → hipCUB
 
 | ROCm  | Thrust / CUB | HPC SDK |
 |:------|:------------:|:-------:|

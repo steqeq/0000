@@ -43,8 +43,8 @@ as follows:
 
 ## Filenames and folder structure
 
-Please use snake case (all lower case letters and underscores instead of spaces)
-for file names. For example, `example_file_name.md`.
+Please use kebab-case (all lower case letters and dashes instead of spaces)
+for file names. For example, `example-file-name.md`.
 Our documentation follows Pitchfork for folder structure.
 All documentation is in `/docs` except for special files like
 the contributing guide in the `/` folder. All images used in the documentation are

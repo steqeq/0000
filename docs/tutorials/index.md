@@ -22,8 +22,8 @@ Sample code demonstrating the HIP API and ROCm-accelerated domain libraries.
 
 Detailed walkthroughs of specific artificial intelligence use cases using ROCm acceleration.
 
-- [Implementing Inception V3 on ROCm with PyTorch](../conceptual/ai_pytorch_inception.md)
-- [Optimizing Inference with MIGraphX](../conceptual/ai_migraphx_optimization.md)
+* [Implementing Inception V3 on ROCm with PyTorch](../conceptual/ai_pytorch_inception.md)
+* [Optimizing Inference with MIGraphX](../conceptual/ai_migraphx_optimization.md)
 
 :::
 

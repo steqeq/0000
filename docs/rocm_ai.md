@@ -21,8 +21,8 @@ Walkthroughs of optimizing inference using MIGraphX.
 
 MIVisionX toolkit is a set of comprehensive computer vision and machine intelligence libraries, utilities, and applications bundled into a single toolkit. AMD MIVisionX also delivers a highly optimized open-source implementation of the Khronos OpenVX™ and OpenVX™ Extensions.
 
-- [GitHub](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/)
-- [Changelog](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/blob/master/CHANGELOG.md)
+* [GitHub](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/)
+* [Changelog](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/blob/master/CHANGELOG.md)
 
 :::
 

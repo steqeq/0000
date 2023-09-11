@@ -23,8 +23,8 @@ AMD ROCm™ Platform supports the following Linux distributions.
 
 :::{versionadded} 5.6
 
-- RHEL 8.8 and 9.2 support is added.
-- SLES 15 SP5 support is added
+* RHEL 8.8 and 9.2 support is added.
+* SLES 15 SP5 support is added
 
 :::
 
@@ -43,9 +43,9 @@ AMD ROCm™ Platform supports the following Linux distributions.
 
 ::::
 
-- ✅: **Supported** - AMD performs full testing of all ROCm components on distro
+✅: **Supported** - AMD performs full testing of all ROCm components on distro
   GA image.
-- ❌: **Unsupported** - AMD no longer performs builds and testing on these
+❌: **Unsupported** - AMD no longer performs builds and testing on these
   previously supported distro GA images.
 
 ## Virtualization Support
@@ -110,10 +110,10 @@ Use Driver Shipped with ROCm
 
 ### Support Status
 
-- ✅: **Supported** - AMD enables these GPUs in our software distributions for
+✅: **Supported** - AMD enables these GPUs in our software distributions for
   the corresponding ROCm product.
-- ⚠️: **Deprecated** - Support will be removed in a future release.
-- ❌: **Unsupported** - This configuration is not enabled in our software
+⚠️: **Deprecated** - Support will be removed in a future release.
+❌: **Unsupported** - This configuration is not enabled in our software
   distributions.
 
 ## CPU Support
