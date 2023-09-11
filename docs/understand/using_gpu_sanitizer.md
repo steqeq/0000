@@ -37,8 +37,8 @@ There are a few options if the compile time becomes unacceptable:
 
 For a full ROCm GPU Sanitizer installation, users must install the following packages,
 
-rocm-dev-asan for instrumented HSA and HIP runtimes 
-rocm-ml-sdk-asan for Math libraries
+- rocm-dev-asan for instrumented HSA and HIP runtimes
+- rocm-ml-sdk-asan for Math libraries
 
 You may use the following instruction for a full installation, 
 
