@@ -1,6 +1,8 @@
-# Quick Start (Windows)
+# Windows quick-start installation guide
 
-The steps to install the HIP SDK for Windows are described in this document.
+For a quick summary on installing ROCm (HIP SDK) on Windows, follow the steps listed on this page. If
+you want a more in-depth installation guide, see
+[Installing ROCm on Windows](../install/windows/index.md).
 
 ## System Requirements
 

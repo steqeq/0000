@@ -1,5 +1,13 @@
 # AMD ROCm™ documentation
 
+Welcome to the ROCm docs home page! If you're new to ROCm, you can review the following
+resources to learn more about our products and what we support:
+
+* [What is ROCm?](./what_is_rocm.md)
+* [What's new?](about/whats_new/whats_new)
+* [Compatibility & support](./about/compatibility/index.md)
+* [Release notes](./about/release_notes.md)
+
 Our documentation is divided into four main categories:
 
 ::::{grid} 1 2 2 2
@@ -58,7 +66,7 @@ Collated information
 :padding: 2
 **[Conceptual](./conceptual/index.md)**
 
-Topic overviews and background information
+Topic overviews & background information
 ^^^
 
 - [Compiler Disambiguation](./conceptual/compiler_disambiguation.md)
@@ -71,3 +79,11 @@ Topic overviews and background information
 :::
 
 ::::
+
+We welcome collaboration!
+
+If you'd like to contribute to our documentation, you can find instructions on our
+[Contributing to ROCm](./contribute/index.md) page. Known issues are listed on
+[GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
+
+Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.

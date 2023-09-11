@@ -12,6 +12,8 @@ subtrees:
     - entries:
       - file: rocm_ai.md
         title: ROCm & AI
+  - file: about/whats_new/whats_new.md
+    title: What's new?
 
   - file: tutorials/quick_start/index.md
     title: Quick start
@@ -41,8 +43,6 @@ subtrees:
     title: Release information
     subtrees:
     - entries:
-      - file: about/whats_new/whats_new.md
-        title: What's new?
       - file: CHANGELOG.md
         title: Changelog
       - file: about/release_history.md
