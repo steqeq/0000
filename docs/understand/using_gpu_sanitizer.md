@@ -7,7 +7,7 @@ Until now, the LLVM Address Sanitizer process was only available for traditional
 This document provides documentation on using ROCm Address Sanitizer.
 For information about LLVM Address Sanitizer, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-### Compile for Address Sanitizer
+### Compilng for Address Sanitizer
 
 The address sanitizer process begins by compiling the application of interest with the address sanitizer instrumentation.
 
@@ -33,7 +33,7 @@ There are a few options if the compile time becomes unacceptable:
 + Add the option `-fsanitize-recover=address` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
 + Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
 
-### Use AMD Supplied Address Sanitizer Instrumented Libraries
+### Using AMD Supplied Address Sanitizer Instrumented Libraries
 
 ROCm releases have optional packages containing additional address sanitizer instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
 These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
