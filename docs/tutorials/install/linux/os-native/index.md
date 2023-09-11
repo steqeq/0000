@@ -1,6 +1,6 @@
 # Installation via Package manager
 
-::::{grid} 2 3 3 3
+::::{grid} 1 1 2 2
 :gutter: 1
 
 :::{grid-item-card}
@@ -20,8 +20,6 @@ Instructions for upgrading an existing ROCm installation.
 
 Instructions for removing ROCm packages, libraries and tools.
 :::
-
-::::
 
 :::{grid-item-card}
 **[Package Manager Integration](./package_manager_integration.md)**
