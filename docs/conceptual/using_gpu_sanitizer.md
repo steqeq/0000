@@ -13,12 +13,12 @@ The address sanitizer process begins by compiling the application of interest wi
 
 Recommendations for doing this are:
 
-+ Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as `amdclang++`.
-+ Add the following options to the existing compiler and linker options:
-  + `-fsanitize=address` - enables instrumentation
-  + `-shared-libsan` - use shared version of runtime
-  + `-g` - add debug info for improved reporting
-+ Explicitly use `xnack+` in the offload architecture option. For example, `--offload-arch=gfx90a:xnack+`
+* Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as `amdclang++`.
+* Add the following options to the existing compiler and linker options:
+  * `-fsanitize=address` - enables instrumentation
+  * `-shared-libsan` - use shared version of runtime
+  * `-g` - add debug info for improved reporting
+* Explicitly use `xnack+` in the offload architecture option. For example, `--offload-arch=gfx90a:xnack+`
 Other architectures are allowed, but their device code will not be instrumented and a warning will be emitted.
 
 It is not an error to compile some files without address sanitizer instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the Address Sanitizer runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.

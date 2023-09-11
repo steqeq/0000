@@ -54,9 +54,8 @@ resulting website show up on a locally-served web server.
 ### Configuring VS Code
 
 1. Install the following extensions:
-
-  * Python `(ms-python.python)`
-  * Live Server `(ritwickdey.LiveServer)`
+   * Python `(ms-python.python)`
+   * Live Server `(ritwickdey.LiveServer)`
 
 2. Add the following entries in `.vscode/settings.json`
 
