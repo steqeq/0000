@@ -9,8 +9,8 @@ import shutil
 from rocm_docs import ROCmDocs
 
 
-shutil.copy2('../CONTRIBUTING.md','./contributing.md')
-shutil.copy2('../RELEASE.md','./release.md')
+shutil.copy2('../CONTRIBUTING.md','./contribute/index.md')
+shutil.copy2('../RELEASE.md','./about/release_notes.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
@@ -39,7 +39,7 @@ article_pages = [
     {"file":"tutorials/quick_start/linux", "os":["linux"]},
 
     {"file":"tutorials/install/linux/index", "os":["linux"]},
-    {"file":"tutorials/install/linux/install_overview", "os":["linux"]},
+    {"file":"tutorials/install/linux/install_options", "os":["linux"]},
     {"file":"tutorials/install/linux/prerequisites", "os":["linux"]},
 
     {"file":"tutorials/install/docker", "os":["linux"]},
@@ -52,20 +52,23 @@ article_pages = [
     {"file":"tutorials/install/windows/cli/index", "os":["windows"]},
     {"file":"tutorials/install/windows/gui/index", "os":["windows"]},
 
-    {"file":"about/release/linux_support", "os":["linux"]},
-    {"file":"about/release/windows_support", "os":["windows"]},
+    {"file":"about/compatibility/linux_support", "os":["linux"]},
+    {"file":"about/compatibility/windows_support", "os":["windows"]},
 
     {"file":"about/compatibility/docker_image_support_matrix", "os":["linux"]},
 
-    {"file":"reference/libraries/gpu_libraries/communication", "os":["linux"]},
+    {"file":"reference/libraries/gpu_libraries/index", "os":["linux"]},
     {"file":"reference/compilers_tools/index", "os":["linux"]},
-    {"file":"reference/computer_vision", "os":["linux"]},
+    {"file":"reference/index", "os":["linux"]},
 
     {"file":"how_to/deep_learning_rocm", "os":["linux"]},
     {"file":"how_to/gpu_aware_mpi", "os":["linux"]},
     {"file":"how_to/system_debugging", "os":["linux"]},
+    {"file":"how_to/index", "os":["linux"]},
 
-    {"file":"rocm_ai/rocm_ai", "os":["linux"]},
+    {"file":"rocm_ai", "os":["linux"]},
+    {"file":"rocm_a-z", "os":["linux"]},
+
 ]
 
 external_toc_path = "./sphinx/_toc.yml"

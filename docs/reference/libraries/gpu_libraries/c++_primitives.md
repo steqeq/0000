@@ -6,6 +6,7 @@ ROCm template libraries for algorithms are as follows:
 :gutter: 1
 
 :::{grid-item-card} {doc}`rocPRIM <rocprim:index>`
+
 rocPRIM is an AMD GPU optimized template library of algorithm primitives, like
 transforms, reductions, scans, etc. It also serves as a common back-end for
 similar libraries found inside ROCm.
@@ -18,6 +19,7 @@ similar libraries found inside ROCm.
 :::
 
 :::{grid-item-card} {doc}`rocThrust <rocthrust:index>`
+
 rocThrust is a template library of algorithm primitives with a Thrust-compatible
 interface. Their CPU back-ends are identical, while the GPU back-end calls into
 rocPRIM.
@@ -30,6 +32,7 @@ rocPRIM.
 :::
 
 :::{grid-item-card} {doc}`hipCUB <hipcub:index>`
+
 hipCUB is a template library of algorithm primitives with a CUB-compatible
 interface. It's back-end is rocPRIM.
 
@@ -41,6 +44,7 @@ interface. It's back-end is rocPRIM.
 :::
 
 :::{grid-item-card} {doc}`hipTensor <hiptensor:index>`
+
 hipTensor is AMD's C++ library for accelerating tensor primitives
 based on the composable kernel library,
 through general purpose kernel languages, like HIP C++.

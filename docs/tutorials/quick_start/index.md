@@ -6,11 +6,12 @@ with troubleshooting. For more in-depth installation guides, see [Installing ROC
 :::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} [Linux quick-start guide](linux.md)
+:::{grid-item-card}
+**[Linux quick-start guide](linux.md)**
 :::
 
-:::{grid-item-card} [Windows quick-start guide](windows.md)
-:link-type: url
+:::{grid-item-card}
+**[Windows quick-start guide](windows.md)**
 :::
 
 :::::

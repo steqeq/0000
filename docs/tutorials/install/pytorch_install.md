@@ -15,8 +15,8 @@ automatic differentiation. Other advanced features include:
 ### Installing PyTorch
 
 To install ROCm on bare metal, refer to the sections
-[GPU and OS Support (Linux)](../../about/release/linux_support) and
-[Compatibility](../../about/compatibility/index) for hardware, software and
+[GPU and OS Support (Linux)](../../about/compatibility/linux_support.md) and
+[Compatibility](../../about/compatibility/index.md) for hardware, software and
 3rd-party framework compatibility between ROCm and PyTorch. The recommended
 option to get a PyTorch environment is through Docker. However, installing the
 PyTorch wheels package on bare metal is also supported.

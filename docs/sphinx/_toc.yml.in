@@ -2,16 +2,17 @@
 # These comments will also be removed.
 defaults:
   numbered: False
-  maxdepth: 6
+  maxdepth: 7
 root: index
 subtrees:
 - entries:
-  - file: what_is_rocm
+  - file: what_is_rocm.md
     title: What is ROCm?
     subtrees:
     - entries:
-      - file: rocm_ai/rocm_ai.md
+      - file: rocm_ai.md
         title: ROCm & AI
+
   - file: tutorials/quick_start/index.md
     title: Quick start
     subtrees:
@@ -20,34 +21,206 @@ subtrees:
         title: Linux
       - file: tutorials/quick_start/windows.md
         title: Windows
+
   - file: about/compatibility/index.md
     title: Compatibility & support
-  - file: CHANGELOG.md
+    subtrees:
+    - entries:
+      - file: about/compatibility/linux_support.md
+        title: Linux (GPU & OS)
+      - file: about/compatibility/windows_support.md
+        title: Windows (GPU & OS)
+      - file: about/compatibility/3rd_party_support_matrix.md
+        title: Third-party
+      - file: about/compatibility/user_kernel_space_compat_matrix.md
+        title: User/kernel space support
+      - file: about/compatibility/docker_image_support_matrix.md
+        title: Docker
+
+  - file: about/release_notes.md
     title: Release information
     subtrees:
     - entries:
-      - file: whats_new/whats_new.md
+      - file: about/whats_new/whats_new.md
         title: What's new?
-      - file: about/release/release_history.md
+      - file: CHANGELOG.md
+        title: Changelog
+      - file: about/release_history.md
         title: Release history
       - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
         title: Known issues
+
   - file: tutorials/index.md
     title: Tutorials
     subtrees:
     - entries:
-      - file: tutorials/install/linux/index.md
-        title: Install ROCm (Linux)
-      - file: tutorials/install/windows/index.md
-        title: Install ROCm (Windows)
+      - file: tutorials/install/index.md
+        title: Installing ROCm
+        subtrees:
+        - entries:
+          - file: tutorials/install/linux/index.md
+            title: Linux
+            subtrees:
+            - entries:
+              - file: tutorials/install/linux/prerequisites.md
+                title: Prerequisites
+              - file: tutorials/install/linux/install_options.md
+                title: Installation options
+                subtrees:
+                - entries:
+                  - file: tutorials/install/linux/installer/index.md
+                    title: AMDGPU install script
+                    subtrees:
+                    - entries:
+                      - file: tutorials/install/linux/installer/install.md
+                        title: Install
+                      - file: tutorials/install/linux/installer/upgrade.md
+                        title: Upgrade
+                      - file: tutorials/install/linux/installer/uninstall.md
+                        title: Uninstall
+                  - file: tutorials/install/linux/os-native/index.md
+                    title: Package manager
+                    subtrees:
+                    - entries:
+                      - file: tutorials/install/linux/os-native/package_manager_integration.md
+                        title: Package manager integration
+                      - file: tutorials/install/linux/os-native/install.md
+                        title: Install
+                      - file: tutorials/install/linux/os-native/upgrade.md
+                        title: Upgrade
+                      - file: tutorials/install/linux/os-native/uninstall.md
+                        title: Uninstall
+          - file: tutorials/install/windows/index.md
+            title: Windows
+            subtrees:
+            - entries:
+              - file: tutorials/install/windows/prerequisites.md
+                title: Prerequisites
+              - file: tutorials/install/windows/gui/index.md
+                title: Graphical installation
+                subtrees:
+                - entries:
+                  - file: tutorials/install/windows/gui/install.md
+                    title: Install
+                  - file: tutorials/install/windows/gui/upgrade.md
+                    title: Upgrade
+                  - file: tutorials/install/windows/gui/uninstall.md
+                    title: Uninstall
+              - file: tutorials/install/windows/cli/index.md
+                title: Command line installation
+                subtrees:
+                - entries:
+                  - file: tutorials/install/windows/cli/install.md
+                    title: Install
+                  - file: tutorials/install/windows/cli/upgrade.md
+                    title: Upgrade
+                  - file: tutorials/install/windows/cli/uninstall.md
+                    title: Uninstall
+      - file: tutorials/install/docker.md
+        title: ROCm Docker containers
+      - file: tutorials/install/pytorch_install.md
+        title: Pytorch for ROCm
+      - file: tutorials/install/tensorflow_install.md
+        title: Tensorflow for ROCm
+      - file: tutorials/install/magma_install.md
+        title: Magma for ROCm
+
   - file: how_to/index.md
-    title: How-to guides
+    title: How-to
+    subtrees:
+    - entries:
+      - file: how_to/deep_learning_rocm.md
+        title: Deep learning
+      - file: how_to/gpu_aware_mpi.md
+        title: Using MPI
+      - file: how_to/system_debugging.md
+        title: Debugging
+      - file: how_to/tuning_guides/index.md
+        title: Tuning guides
+        subtrees:
+        - entries:
+          - file: how_to/tuning_guides/mi100.md
+            title: MI100
+          - file: how_to/tuning_guides/mi200.md
+            title: MI200
+          - file: how_to/tuning_guides/w6000_v620.md
+            title: RDNA2
+
   - file: reference/index.md
     title: Reference guides
+    subtrees:
+    - entries:
+      - file: reference/hip.md
+        title: HIP
+      - file: reference/compilers_tools/index.md
+        title: Compilers & tools
+        subtrees:
+        - entries:
+          - file: reference/compilers_tools/validation_tools.md
+            title: Validation tools
+          - file: reference/compilers_tools/management_tools.md
+            title: Management tools
+      - file: reference/libraries/index.md
+        title: Libraries
+        subtrees:
+        - entries:
+          - file: reference/libraries/ai_libraries.md
+            title: AI
+          - file: reference/libraries/gpu_libraries/communication.md
+            title: Communication
+          - file: reference/libraries/gpu_libraries/math.md
+            title: Math
+            subtrees:
+            - entries:
+              - file: reference/libraries/gpu_libraries/math_linear_algebra.md
+                title: Linear algebra
+              - file: reference/libraries/gpu_libraries/math_fft.md
+                title: Fast Fourier transforms
+          - file: reference/libraries/gpu_libraries/rand.md
+            title: Random numbers
+          - file: reference/libraries/gpu_libraries/c++_primitives.md
+            title: C++ primitives
+      - file: reference/openmp/openmp.md
+        title: OpenMP
+      - file: reference/rocmcc/rocmcc.md
+        title: ROCmCC
+
   - file: conceptual/index.md
     title: Conceptual documentation
+    subtrees:
+    - entries:
+      - file: conceptual/gpu_arch.md
+        title: GPU architectures
+        subtrees:
+        - entries:
+          - file: conceptual/gpu_arch/mi100.md
+            title: MI100
+          - file: conceptual/gpu_arch/mi200_performance_counters.md
+            title: MI200
+          - file: conceptual/gpu_arch/mi250.md
+            title: MI250
+      - file: conceptual/compiler_disambiguation.md
+        title: Compiler disambiguation
+      - file: conceptual/file_reorg.md
+        title: File structure (Linux FHS)
+      - file: conceptual/windows-app-deployment-guidelines.md
+        title: Windows deployment guidelines
+      - file: conceptual/gpu_isolation.md
+        title: GPU isolation techniques
+      - file: conceptual/using_gpu_sanitizer.md
+        title: LLVN ASan
+      - file: conceptual/cmake_packages.rst
+        title: Using CMake
+      - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
+        title: ROCm & PCIe Atomics
+      - file: conceptual/ai_pytorch_inception.md
+        title: Inception V3 with Pytorch
+      - file: conceptual/ai_migraphx_optimization.md
+        title: Inference optimization with MIGraphX
+
   - file: rocm_a-z.md
     title: ROCm A-Z
+
   - file: contribute/index.md
     title: Contributing
     subtrees:
@@ -58,6 +231,7 @@ subtrees:
         title: Building documentation
       - file: contribute/feedback.md
         title: Providing feedback
+
   - file: about/license.md
     title: ROCm licensing
 

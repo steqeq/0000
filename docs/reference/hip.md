@@ -9,6 +9,7 @@ page introduces the HIP runtime and other HIP libraries and tools.
 :gutter: 1
 
 :::{grid-item-card} {doc}`HIP Runtime <hip:index>`
+
 The HIP Runtime is used to enable GPU acceleration for all HIP language based
 products.
 
@@ -26,6 +27,7 @@ products.
 :gutter: 1
 
 :::{grid-item-card} {doc}`HIPIFY <hipify:index>`
+
 HIPIFY assists with porting applications from based on CUDA to the HIP Runtime.
 Supported CUDA APIs are documented here as well.
 
