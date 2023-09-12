@@ -64,10 +64,10 @@ article_pages = [
     {"file":"how-to/deep-learning-rocm", "os":["linux"]},
     {"file":"how-to/gpu-aware-mpi", "os":["linux"]},
     {"file":"how-to/system-debugging", "os":["linux"]},
-    {"file":"how-to/index", "os":["linux"]},
+    {"file":"how-to/index", "os":["linux", "windows"]},
 
-    {"file":"rocm-ai", "os":["linux"]},
-    {"file":"rocm-a-z", "os":["linux"]},
+    {"file":"rocm-ai", "os":["linux", "windows"]},
+    {"file":"rocm-a-z", "os":["linux", "windows"]},
 
 ]
 

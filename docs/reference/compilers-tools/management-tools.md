@@ -7,7 +7,6 @@
 
 The AMD System Management Interface Library, or AMD SMI library, is a C library for Linux that provides a user space interface for applications to monitor and control AMD devices.
 
-* {doc}`Documentation <amdsmi:index>`
 * [GitHub](https://github.com/RadeonOpenCompute/amdsmi)
 * [Examples](https://github.com/amd/go_amd_smi#example)
 
