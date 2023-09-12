@@ -22,7 +22,7 @@ Instructions for removing ROCm packages, libraries and tools.
 :::
 
 :::{grid-item-card}
-**[Package Manager Integration](./package_manager_integration.md)**
+**[Package Manager Integration](./package-manager-integration.md)**
 
 Information about packages.
 :::
@@ -31,4 +31,4 @@ Information about packages.
 
 ## See Also
 
-- [Linux support](../../../../about/compatibility/linux_support.md)
+[Linux support](../../../../about/compatibility/linux-support.md)

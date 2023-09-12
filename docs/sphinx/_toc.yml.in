@@ -6,46 +6,46 @@ defaults:
 root: index
 subtrees:
 - entries:
-  - file: what_is_rocm.md
+  - file: what-is-rocm.md
     title: What is ROCm?
     subtrees:
     - entries:
-      - file: rocm_ai.md
+      - file: rocm-ai.md
         title: ROCm & AI
+  - file: about/whats-new/whats-new.md
+    title: What's new?
 
-  - file: tutorials/quick_start/index.md
+  - file: tutorials/quick-start/index.md
     title: Quick start
     subtrees:
     - entries:
-      - file: tutorials/quick_start/linux.md
+      - file: tutorials/quick-start/linux.md
         title: Linux
-      - file: tutorials/quick_start/windows.md
+      - file: tutorials/quick-start/windows.md
         title: Windows
 
   - file: about/compatibility/index.md
     title: Compatibility & support
     subtrees:
     - entries:
-      - file: about/compatibility/linux_support.md
+      - file: about/compatibility/linux-support.md
         title: Linux (GPU & OS)
-      - file: about/compatibility/windows_support.md
+      - file: about/compatibility/windows-support.md
         title: Windows (GPU & OS)
-      - file: about/compatibility/3rd_party_support_matrix.md
+      - file: about/compatibility/3rd-party-support-matrix.md
         title: Third-party
-      - file: about/compatibility/user_kernel_space_compat_matrix.md
+      - file: about/compatibility/user-kernel-space-compat-matrix.md
         title: User/kernel space support
-      - file: about/compatibility/docker_image_support_matrix.md
+      - file: about/compatibility/docker-image-support-matrix.md
         title: Docker
 
-  - file: about/release_notes.md
+  - file: about/release-notes.md
     title: Release information
     subtrees:
     - entries:
-      - file: about/whats_new/whats_new.md
-        title: What's new?
       - file: CHANGELOG.md
         title: Changelog
-      - file: about/release_history.md
+      - file: about/release-history.md
         title: Release history
       - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
         title: Known issues
@@ -64,7 +64,7 @@ subtrees:
             - entries:
               - file: tutorials/install/linux/prerequisites.md
                 title: Prerequisites
-              - file: tutorials/install/linux/install_options.md
+              - file: tutorials/install/linux/install-options.md
                 title: Installation options
                 subtrees:
                 - entries:
@@ -82,7 +82,7 @@ subtrees:
                     title: Package manager
                     subtrees:
                     - entries:
-                      - file: tutorials/install/linux/os-native/package_manager_integration.md
+                      - file: tutorials/install/linux/os-native/package-manager-integration.md
                         title: Package manager integration
                       - file: tutorials/install/linux/os-native/install.md
                         title: Install
@@ -118,32 +118,32 @@ subtrees:
                     title: Uninstall
       - file: tutorials/install/docker.md
         title: ROCm Docker containers
-      - file: tutorials/install/pytorch_install.md
+      - file: tutorials/install/pytorch-install.md
         title: Pytorch for ROCm
-      - file: tutorials/install/tensorflow_install.md
+      - file: tutorials/install/tensorflow-install.md
         title: Tensorflow for ROCm
-      - file: tutorials/install/magma_install.md
+      - file: tutorials/install/magma-install.md
         title: Magma for ROCm
 
-  - file: how_to/index.md
+  - file: how-to/index.md
     title: How-to
     subtrees:
     - entries:
-      - file: how_to/deep_learning_rocm.md
+      - file: how-to/deep-learning-rocm.md
         title: Deep learning
-      - file: how_to/gpu_aware_mpi.md
+      - file: how-to/gpu-aware-mpi.md
         title: Using MPI
-      - file: how_to/system_debugging.md
+      - file: how-to/system-debugging.md
         title: Debugging
-      - file: how_to/tuning_guides/index.md
+      - file: how-to/tuning-guides/index.md
         title: Tuning guides
         subtrees:
         - entries:
-          - file: how_to/tuning_guides/mi100.md
+          - file: how-to/tuning-guides/mi100.md
             title: MI100
-          - file: how_to/tuning_guides/mi200.md
+          - file: how-to/tuning-guides/mi200.md
             title: MI200
-          - file: how_to/tuning_guides/w6000_v620.md
+          - file: how-to/tuning-guides/w6000-v620.md
             title: RDNA2
 
   - file: reference/index.md
@@ -152,33 +152,33 @@ subtrees:
     - entries:
       - file: reference/hip.md
         title: HIP
-      - file: reference/compilers_tools/index.md
+      - file: reference/compilers-tools/index.md
         title: Compilers & tools
         subtrees:
         - entries:
-          - file: reference/compilers_tools/validation_tools.md
+          - file: reference/compilers-tools/validation-tools.md
             title: Validation tools
-          - file: reference/compilers_tools/management_tools.md
+          - file: reference/compilers-tools/management-tools.md
             title: Management tools
       - file: reference/libraries/index.md
         title: Libraries
         subtrees:
         - entries:
-          - file: reference/libraries/ai_libraries.md
+          - file: reference/libraries/ai-libraries.md
             title: AI
-          - file: reference/libraries/gpu_libraries/communication.md
+          - file: reference/libraries/gpu-libraries/communication.md
             title: Communication
-          - file: reference/libraries/gpu_libraries/math.md
+          - file: reference/libraries/gpu-libraries/math.md
             title: Math
             subtrees:
             - entries:
-              - file: reference/libraries/gpu_libraries/math_linear_algebra.md
+              - file: reference/libraries/gpu-libraries/math-linear-algebra.md
                 title: Linear algebra
-              - file: reference/libraries/gpu_libraries/math_fft.md
+              - file: reference/libraries/gpu-libraries/math-fft.md
                 title: Fast Fourier transforms
-          - file: reference/libraries/gpu_libraries/rand.md
+          - file: reference/libraries/gpu-libraries/rand.md
             title: Random numbers
-          - file: reference/libraries/gpu_libraries/c++_primitives.md
+          - file: reference/libraries/gpu-libraries/c++primitives.md
             title: C++ primitives
       - file: reference/openmp/openmp.md
         title: OpenMP
@@ -189,36 +189,36 @@ subtrees:
     title: Conceptual documentation
     subtrees:
     - entries:
-      - file: conceptual/gpu_arch.md
+      - file: conceptual/gpu-arch.md
         title: GPU architectures
         subtrees:
         - entries:
-          - file: conceptual/gpu_arch/mi100.md
+          - file: conceptual/gpu-arch/mi100.md
             title: MI100
-          - file: conceptual/gpu_arch/mi200_performance_counters.md
+          - file: conceptual/gpu-arch/mi200-performance-counters.md
             title: MI200
-          - file: conceptual/gpu_arch/mi250.md
+          - file: conceptual/gpu-arch/mi250.md
             title: MI250
-      - file: conceptual/compiler_disambiguation.md
+      - file: conceptual/compiler-disambiguation.md
         title: Compiler disambiguation
-      - file: conceptual/file_reorg.md
+      - file: conceptual/file-reorg.md
         title: File structure (Linux FHS)
       - file: conceptual/windows-app-deployment-guidelines.md
         title: Windows deployment guidelines
-      - file: conceptual/gpu_isolation.md
+      - file: conceptual/gpu-isolation.md
         title: GPU isolation techniques
-      - file: conceptual/using_gpu_sanitizer.md
+      - file: conceptual/using-gpu-sanitizer.md
         title: LLVN ASan
-      - file: conceptual/cmake_packages.rst
+      - file: conceptual/cmake-packages.rst
         title: Using CMake
       - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
         title: ROCm & PCIe Atomics
-      - file: conceptual/ai_pytorch_inception.md
+      - file: conceptual/ai-pytorch-inception.md
         title: Inception V3 with Pytorch
-      - file: conceptual/ai_migraphx_optimization.md
+      - file: conceptual/ai-migraphx-optimization.md
         title: Inference optimization with MIGraphX
 
-  - file: rocm_a-z.md
+  - file: rocm-a-z.md
     title: ROCm A-Z
 
   - file: contribute/index.md

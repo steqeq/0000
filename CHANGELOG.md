@@ -27,10 +27,10 @@ ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 
 ### Fixed Defects
 
-- *hipMemcpy* device-to-device (intra device) is now asynchronous with respect to the host
-- Enabled xnack+ check in HIP catch2 tests hang when executing tests
-- Memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs
-- Using *hipGraphAddMemFreeNode* no longer results in a crash
+* *hipMemcpy* device-to-device (intra device) is now asynchronous with respect to the host
+* Enabled xnack+ check in HIP catch2 tests hang when executing tests
+* Memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs
+* Using *hipGraphAddMemFreeNode* no longer results in a crash
 
 -------------------
 
@@ -38,110 +38,111 @@ ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 <!-- markdownlint-disable header-increment -->
-#### Release Highlights
+
+### Release Highlights
 
 ROCm 5.6 consists of several AI software ecosystem improvements to our fast-growing user base. A few examples include:
 
-- New documentation portal at https://rocm.docs.amd.com
-- Ongoing software enhancements for LLMs, ensuring full compliance with the HuggingFace unit test suite
-- OpenAI Triton, CuPy, HIP Graph support, and many other library performance enhancements
-- Improved ROCm deployment and development tools, including CPU-GPU (rocGDB) debugger, profiler, and docker containers
-- New pseudorandom generators are available in rocRAND.  Added support for half-precision transforms in hipFFT/rocFFT.  Added LU refactorization and linear system solver for sparse matrices in rocSOLVER.  
+* New documentation portal at https://rocm.docs.amd.com
+* Ongoing software enhancements for LLMs, ensuring full compliance with the HuggingFace unit test suite
+* OpenAI Triton, CuPy, HIP Graph support, and many other library performance enhancements
+* Improved ROCm deployment and development tools, including CPU-GPU (rocGDB) debugger, profiler, and docker containers
+* New pseudorandom generators are available in rocRAND.  Added support for half-precision transforms in hipFFT/rocFFT.  Added LU refactorization and linear system solver for sparse matrices in rocSOLVER.  
 
-#### OS and GPU Support Changes
+### OS and GPU Support Changes
 
-- SLES15 SP5 support was added this release. SLES15 SP3 support was dropped.
-- AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively referred to as gfx906 GPUs) will be entering the maintenance mode starting Q3 2023. This will be aligned with ROCm 5.7 GA release date.
-  - No new features and performance optimizations will be supported for the gfx906 GPUs beyond ROCm 5.7
-  - Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (End of Maintenance [EOM])(will be aligned with the closest ROCm release)
-  - Bug fixes during the maintenance will be made to the next ROCm point release
-  - Bug fixes will not be back ported to older ROCm releases for this SKU
-  - Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+* SLES15 SP5 support was added this release. SLES15 SP3 support was dropped.
+* AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively referred to as gfx906 GPUs) will be entering the maintenance mode starting Q3 2023. This will be aligned with ROCm 5.7 GA release date.
+  * No new features and performance optimizations will be supported for the gfx906 GPUs beyond ROCm 5.7
+  * Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (End of Maintenance [EOM])(will be aligned with the closest ROCm release)
+  * Bug fixes during the maintenance will be made to the next ROCm point release
+  * Bug fixes will not be back ported to older ROCm releases for this SKU
+  * Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
 
-#### AMDSMI CLI 23.0.0.4
+### AMDSMI CLI 23.0.0.4
 
-##### Added
+#### Added
 
-- AMDSMI CLI tool enabled for Linux Bare Metal & Guest
+* AMDSMI CLI tool enabled for Linux Bare Metal & Guest
 
-- Package: amd-smi-lib
+* Package: amd-smi-lib
  
-##### Known Issues
+#### Known Issues
 
-- not all Error Correction Code (ECC) fields are currently supported
+* not all Error Correction Code (ECC) fields are currently supported
 
-- RHEL 8 & SLES 15 have extra install steps
+* RHEL 8 & SLES 15 have extra install steps
 
-#### Kernel Modules (DKMS)
+### Kernel Modules (DKMS)
 
 ##### Fixes
 
-- Stability fix for multi GPU system reproducilble via ROCm_Bandwidth_Test as reported in [Issue 2198](https://github.com/RadeonOpenCompute/ROCm/issues/2198).
+* Stability fix for multi GPU system reproducilble via ROCm_Bandwidth_Test as reported in [Issue 2198](https://github.com/RadeonOpenCompute/ROCm/issues/2198).
 
 #### HIP 5.6 (For ROCm 5.6)
 
 ##### Optimizations
 
-- Consolidation of hipamd, rocclr and OpenCL projects in clr
-- Optimized lock for graph global capture mode
+* Consolidation of hipamd, rocclr and OpenCL projects in clr
+* Optimized lock for graph global capture mode
 
 ##### Added
 
-- Added hipRTC support for amd_hip_fp16
-- Added hipStreamGetDevice implementation to get the device associated with the stream
-- Added HIP_AD_FORMAT_SIGNED_INT16 in hipArray formats
-- hipArrayGetInfo for getting information about the specified array
-- hipArrayGetDescriptor for getting 1D or 2D array descriptor
-- hipArray3DGetDescriptor to get 3D array descriptor
+* Added hipRTC support for amd_hip_fp16
+* Added hipStreamGetDevice implementation to get the device associated with the stream
+* Added HIP_AD_FORMAT_SIGNED_INT16 in hipArray formats
+* hipArrayGetInfo for getting information about the specified array
+* hipArrayGetDescriptor for getting 1D or 2D array descriptor
+* hipArray3DGetDescriptor to get 3D array descriptor
 
 ##### Changed
 
-- hipMallocAsync to return success for zero size allocation to match hipMalloc
-- Separation of hipcc perl binaries from HIP project to hipcc project. hip-devel package depends on newly added hipcc package
-- Consolidation of hipamd, ROCclr, and OpenCL repositories into a single repository called clr. Instructions are updated to build HIP from sources in the HIP Installation guide
-- Removed hipBusBandwidth and hipCommander samples from hip-tests
+* hipMallocAsync to return success for zero size allocation to match hipMalloc
+* Separation of hipcc perl binaries from HIP project to hipcc project. hip-devel package depends on newly added hipcc package
+* Consolidation of hipamd, ROCclr, and OpenCL repositories into a single repository called clr. Instructions are updated to build HIP from sources in the HIP Installation guide
+* Removed hipBusBandwidth and hipCommander samples from hip-tests
 
 ##### Fixed
 
-- Fixed regression in hipMemCpyParam3D when offset is applied
+* Fixed regression in hipMemCpyParam3D when offset is applied
 
 ##### Known Issues
 
-- Limited testing on xnack+ configuration
-  - Multiple HIP tests failures (gpuvm fault or hangs)
-- hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
-- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in a future ROCm release
+* Limited testing on xnack+ configuration
+  * Multiple HIP tests failures (gpuvm fault or hangs)
+* hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
+* Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in a future ROCm release
 
 ##### Upcoming changes in future release
 
-- Removal of gcnarch from hipDeviceProp_t structure
-- Addition of new fields in hipDeviceProp_t structure
-  - maxTexture1D
-  - maxTexture2D
-  - maxTexture1DLayered
-  - maxTexture2DLayered
-  - sharedMemPerMultiprocessor
-  - deviceOverlap
-  - asyncEngineCount
-  - surfaceAlignment
-  - unifiedAddressing
-  - computePreemptionSupported
-  - uuid
-- Removal of deprecated code
-  - hip-hcc codes from hip code tree
-- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
-- HIPMEMCPY_3D fields correction (unsigned int -> size_t)
-- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+* Removal of gcnarch from hipDeviceProp_t structure
+* Addition of new fields in hipDeviceProp_t structure
+  * maxTexture1D
+  * maxTexture2D
+  * maxTexture1DLayered
+  * maxTexture2DLayered
+  * sharedMemPerMultiprocessor
+  * deviceOverlap
+  * asyncEngineCount
+  * surfaceAlignment
+  * unifiedAddressing
+  * computePreemptionSupported
+  * uuid
+* Removal of deprecated code
+  * hip-hcc codes from hip code tree
+* Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+* HIPMEMCPY_3D fields correction (unsigned int -> size_t)
+* Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
 
 #### ROCgdb-13 (For ROCm 5.6.0)
 
 ##### Optimized
 
-- Improved performances when handling the end of a process with a large number of threads.
+* Improved performances when handling the end of a process with a large number of threads.
 
 Known Issues
 
-- On certain configurations, ROCgdb can show the following warning message:
+* On certain configurations, ROCgdb can show the following warning message:
 
   `warning: Probes-based dynamic linker interface failed. Reverting to original interface.`
 
@@ -215,17 +216,17 @@ The resulting `a.out` will depend on
 
 ##### Optimized
 
-- Improved Test Suite
+* Improved Test Suite
 
 ##### Added
 
-- 'end_time' need to be disabled in roctx_trace.txt
+* 'end_time' need to be disabled in roctx_trace.txt
 
 ##### Fixed
 
-- rocprof in ROcm/5.4.0 gpu selector broken.
-- rocprof in ROCm/5.4.1 fails to generate kernel info.
-- rocprof clobbers LD_PRELOAD.
+* rocprof in ROcm/5.4.0 gpu selector broken.
+* rocprof in ROCm/5.4.1 fails to generate kernel info.
+* rocprof clobbers LD_PRELOAD.
 
 ### Library Changes in ROCM 5.6.0
 
@@ -256,16 +257,16 @@ hipBLAS 1.0.0 for ROCm 5.6.0
 
 ##### Changed
 
-- added const qualifier to hipBLAS functions (swap, sbmv, spmv, symv, trsm) where missing
+* added const qualifier to hipBLAS functions (swap, sbmv, spmv, symv, trsm) where missing
 
 ##### Removed
 
-- removed support for deprecated hipblasInt8Datatype_t enum
-- removed support for deprecated hipblasSetInt8Datatype and hipblasGetInt8Datatype functions
+* removed support for deprecated hipblasInt8Datatype_t enum
+* removed support for deprecated hipblasSetInt8Datatype and hipblasGetInt8Datatype functions
 
 ##### Deprecated
 
-- in-place trmm is deprecated. It will be replaced by trmm which includes both in-place and
+* in-place trmm is deprecated. It will be replaced by trmm which includes both in-place and
   out-of-place functionality
 
 #### hipCUB 2.13.1
@@ -274,18 +275,18 @@ hipCUB 2.13.1 for ROCm 5.6.0
 
 ##### Added
 
-- Benchmarks for `BlockShuffle`, `BlockLoad`, and `BlockStore`.
+* Benchmarks for `BlockShuffle`, `BlockLoad`, and `BlockStore`.
 
 ##### Changed
 
-- CUB backend references CUB and Thrust version 1.17.2.
-- Improved benchmark coverage of `BlockScan` by adding `ExclusiveScan`, benchmark coverage of `BlockRadixSort` by adding `SortBlockedToStriped`, and benchmark coverage of `WarpScan` by adding `Broadcast`.
-- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
+* CUB backend references CUB and Thrust version 1.17.2.
+* Improved benchmark coverage of `BlockScan` by adding `ExclusiveScan`, benchmark coverage of `BlockRadixSort` by adding `SortBlockedToStriped`, and benchmark coverage of `WarpScan` by adding `Broadcast`.
+* Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
 
 ##### Known Issues
 
-- `BlockRadixRankMatch` is currently broken under the rocPRIM backend.
-- `BlockRadixRankMatch` with a warp size that does not exactly divide the block size is broken under the CUB backend.
+* `BlockRadixRankMatch` is currently broken under the rocPRIM backend.
+* `BlockRadixRankMatch` with a warp size that does not exactly divide the block size is broken under the CUB backend.
 
 #### hipFFT 1.0.12
 
@@ -293,11 +294,11 @@ hipFFT 1.0.12 for ROCm 5.6.0
 
 ##### Added
 
-- Implemented the hipfftXtMakePlanMany, hipfftXtGetSizeMany, hipfftXtExec APIs, to allow requesting half-precision transforms.
+* Implemented the hipfftXtMakePlanMany, hipfftXtGetSizeMany, hipfftXtExec APIs, to allow requesting half-precision transforms.
 
 ##### Changed
 
-- Added --precision argument to benchmark/test clients.  --double is still accepted but is deprecated as a method to request a double-precision transform.
+* Added --precision argument to benchmark/test clients.  --double is still accepted but is deprecated as a method to request a double-precision transform.
 
 #### hipSOLVER 1.8.0
 
@@ -305,7 +306,7 @@ hipSOLVER 1.8.0 for ROCm 5.6.0
 
 ##### Added
 
-- Added compatibility API with hipsolverRf prefix
+* Added compatibility API with hipsolverRf prefix
 
 #### hipSPARSE 2.3.6
 
@@ -313,11 +314,11 @@ hipSPARSE 2.3.6 for ROCm 5.6.0
 
 ##### Added
 
-- Added SpGEMM algorithms
+* Added SpGEMM algorithms
 
 ##### Changed
 
-- For hipsparseXbsr2csr and hipsparseXcsr2bsr, blockDim == 0 now returns HIPSPARSE_STATUS_INVALID_SIZE
+* For hipsparseXbsr2csr and hipsparseXcsr2bsr, blockDim == 0 now returns HIPSPARSE_STATUS_INVALID_SIZE
 
 #### MIOpen 2.19.0
 
@@ -325,17 +326,17 @@ MIOpen 2.19.0 for ROCm 5.6.0
 
 ##### Added
 
-- ROCm 5.5 support for gfx1101 (Navi32)
+* ROCm 5.5 support for gfx1101 (Navi32)
 
 ##### Changed
 
-- Tuning results for MLIR on ROCm 5.5
-- Bumping MLIR commit to 5.5.0 release tag
+* Tuning results for MLIR on ROCm 5.5
+* Bumping MLIR commit to 5.5.0 release tag
 
 ##### Fixed
 
-- Fix 3d convolution Host API bug
-- [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
+* Fix 3d convolution Host API bug
+* [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
 
 #### rccl 2.15.5
 
@@ -343,25 +344,25 @@ RCCL 2.15.5 for ROCm 5.6.0
 
 ##### Changed
 
-- Compatibility with NCCL 2.15.5
-- Unit test executable renamed to rccl-UnitTests
+* Compatibility with NCCL 2.15.5
+* Unit test executable renamed to rccl-UnitTests
 
 ##### Added
 
-- HW-topology aware binary tree implementation
-- Experimental support for MSCCL
-- New unit tests for hipGraph support
-- NPKit integration
+* HW-topology aware binary tree implementation
+* Experimental support for MSCCL
+* New unit tests for hipGraph support
+* NPKit integration
 
 ##### Fixed
 
-- rocm-smi ID conversion
-- Support for HIP_VISIBLE_DEVICES for unit tests
-- Support for p2p transfers to non (HIP) visible devices
+* rocm-smi ID conversion
+* Support for HIP_VISIBLE_DEVICES for unit tests
+* Support for p2p transfers to non (HIP) visible devices
 
 ##### Removed
 
-- Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
+* Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
 
 #### rocALUTION 2.1.9
 
@@ -369,7 +370,7 @@ rocALUTION 2.1.9 for ROCm 5.6.0
 
 ##### Improved
 
-- Fixed synchronization issues in level 1 routines
+* Fixed synchronization issues in level 1 routines
 
 #### rocBLAS 3.0.0
 
@@ -377,40 +378,40 @@ rocBLAS 3.0.0 for ROCm 5.6.0
 
 ##### Optimizations
 
-- Improved performance of Level 2 rocBLAS GEMV on gfx90a GPU for non-transposed problems having small matrices and larger batch counts. Performance enhanced for problem sizes when m and n &lt;= 32 and batch_count &gt;= 256.
-- Improved performance of rocBLAS syr2k for single, double, and double-complex precision, and her2k for double-complex precision. Slightly improved performance for general sizes on gfx90a.
+* Improved performance of Level 2 rocBLAS GEMV on gfx90a GPU for non-transposed problems having small matrices and larger batch counts. Performance enhanced for problem sizes when m and n &lt;= 32 and batch_count &gt;= 256.
+* Improved performance of rocBLAS syr2k for single, double, and double-complex precision, and her2k for double-complex precision. Slightly improved performance for general sizes on gfx90a.
 
 ##### Added
 
-- Added bf16 inputs and f32 compute support to Level 1 rocBLAS Extension functions axpy_ex, scal_ex and nrm2_ex.
+* Added bf16 inputs and f32 compute support to Level 1 rocBLAS Extension functions axpy_ex, scal_ex and nrm2_ex.
 
 ##### Deprecated
 
-- trmm inplace is deprecated. It will be replaced by trmm that has both inplace and out-of-place functionality
-- rocblas_query_int8_layout_flag() is deprecated and will be removed in a future release
-- rocblas_gemm_flags_pack_int8x4 enum is deprecated and will be removed in a future release
-- rocblas_set_device_memory_size() is deprecated and will be replaced by a future function rocblas_increase_device_memory_size()
-- rocblas_is_user_managing_device_memory() is deprecated and will be removed in a future release
+* trmm inplace is deprecated. It will be replaced by trmm that has both inplace and out-of-place functionality
+* rocblas_query_int8_layout_flag() is deprecated and will be removed in a future release
+* rocblas_gemm_flags_pack_int8x4 enum is deprecated and will be removed in a future release
+* rocblas_set_device_memory_size() is deprecated and will be replaced by a future function rocblas_increase_device_memory_size()
+* rocblas_is_user_managing_device_memory() is deprecated and will be removed in a future release
 
 ##### Removed
 
-- is_complex helper was deprecated and now removed.  Use rocblas_is_complex instead.
-- The enum truncate_t and the value truncate was deprecated and now removed from. It was replaced by rocblas_truncate_t and rocblas_truncate, respectively.
-- rocblas_set_int8_type_for_hipblas was deprecated and is now removed.
-- rocblas_get_int8_type_for_hipblas was deprecated and is now removed.
+* is_complex helper was deprecated and now removed.  Use rocblas_is_complex instead.
+* The enum truncate_t and the value truncate was deprecated and now removed from. It was replaced by rocblas_truncate_t and rocblas_truncate, respectively.
+* rocblas_set_int8_type_for_hipblas was deprecated and is now removed.
+* rocblas_get_int8_type_for_hipblas was deprecated and is now removed.
 
 ##### Dependencies
 
-- build only dependency on python joblib added as used by Tensile build
-- fix for cmake install on some OS when performed by install.sh -d --cmake_install
+* build only dependency on python joblib added as used by Tensile build
+* fix for cmake install on some OS when performed by install.sh -d --cmake_install
 
 ##### Fixed
 
-- make trsm offset calculations 64 bit safe
+* make trsm offset calculations 64 bit safe
 
 ##### Changed
 
-- refactor rotg test code
+* refactor rotg test code
 
 #### rocFFT 1.0.23
 
@@ -418,19 +419,19 @@ rocFFT 1.0.23 for ROCm 5.6.0
 
 ##### Added
 
-- Implemented half-precision transforms, which can be requested by passing rocfft_precision_half to rocfft_plan_create.
-- Implemented a hierarchical solution map which saves how to decompose a problem and the kernels to be used.
-- Implemented a first version of offline-tuner to support tuning kernels for C2C/Z2Z problems.
+* Implemented half-precision transforms, which can be requested by passing rocfft_precision_half to rocfft_plan_create.
+ Implemented a hierarchical solution map which saves how to decompose a problem and the kernels to be used.
+* Implemented a first version of offline-tuner to support tuning kernels for C2C/Z2Z problems.
 
 ##### Changed
 
-- Replaced std::complex with hipComplex data types for data generator.
-- FFT plan dimensions are now sorted to be row-major internally where possible, which produces better plans if the dimensions were accidentally specified in a different order (column-major, for example).
-- Added --precision argument to benchmark/test clients.  --double is still accepted but is deprecated as a method to request a double-precision transform.
+* Replaced std::complex with hipComplex data types for data generator.
+* FFT plan dimensions are now sorted to be row-major internally where possible, which produces better plans if the dimensions were accidentally specified in a different order (column-major, for example).
+* Added --precision argument to benchmark/test clients.  --double is still accepted but is deprecated as a method to request a double-precision transform.
 
 ##### Fixed
 
-- Fixed over-allocation of LDS in some real-complex kernels, which was resulting in kernel launch failure.
+* Fixed over-allocation of LDS in some real-complex kernels, which was resulting in kernel launch failure.
 
 #### rocm-cmake 0.9.0
 
@@ -438,9 +439,9 @@ rocm-cmake 0.9.0 for ROCm 5.6.0
 
 ##### Added
 
-- Added the option ROCM_HEADER_WRAPPER_WERROR
-    - Compile-time C macro in the wrapper headers causes errors to be emitted instead of warnings.
-    - Configure-time CMake option sets the default for the C macro.
+* Added the option ROCM_HEADER_WRAPPER_WERROR
+  * Compile-time C macro in the wrapper headers causes errors to be emitted instead of warnings.
+  * Configure-time CMake option sets the default for the C macro.
 
 #### rocPRIM 2.13.0
 
@@ -448,20 +449,20 @@ rocPRIM 2.13.0 for ROCm 5.6.0
 
 ##### Added
 
-- New block level `radix_rank` primitive.
-- New block level `radix_rank_match` primitive.
-- Added a stable block sorting implementation. This be used with `block_sort` by using the `block_sort_algorithm::stable_merge_sort` algorithm.
+* New block level `radix_rank` primitive.
+* New block level `radix_rank_match` primitive.
+* Added a stable block sorting implementation. This be used with `block_sort` by using the `block_sort_algorithm::stable_merge_sort` algorithm.
 
 ##### Changed
 
-- Improved the performance of `block_radix_sort` and `device_radix_sort`.
-- Improved the performance of `device_merge_sort`.
-- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). Contributed by: [v01dXYZ](https://github.com/v01dXYZ).
+* Improved the performance of `block_radix_sort` and `device_radix_sort`.
+* Improved the performance of `device_merge_sort`.
+* Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). Contributed by: [v01dXYZ](https://github.com/v01dXYZ).
 
 ##### Known Issues
 
-- Disabled GPU error messages relating to incorrect warp operation usage with Navi GPUs on Windows, due to GPU printf performance issues on Windows.
-- When `ROCPRIM_DISABLE_LOOKBACK_SCAN` is set, `device_scan` fails for input sizes bigger than `scan_config::size_limit`, which defaults to `std::numeric_limits&lt;unsigned int&gt;::max()`.
+* Disabled GPU error messages relating to incorrect warp operation usage with Navi GPUs on Windows, due to GPU printf performance issues on Windows.
+* When `ROCPRIM_DISABLE_LOOKBACK_SCAN` is set, `device_scan` fails for input sizes bigger than `scan_config::size_limit`, which defaults to `std::numeric_limits&lt;unsigned int&gt;::max()`.
 
 #### rocRAND 2.10.17
 
@@ -469,14 +470,14 @@ rocRAND 2.10.17 for ROCm 5.6.0
 
 ##### Added
 
-- MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
-- New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
-- experimental HIP-CPU feature
-- ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
+* MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
+* New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
+* experimental HIP-CPU feature
+* ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
 
 ##### Changed
 
-- Python 2.7 is no longer officially supported.
+* Python 2.7 is no longer officially supported.
 
 #### rocSOLVER 3.22.0
 
@@ -484,22 +485,22 @@ rocSOLVER 3.22.0 for ROCm 5.6.0
 
 ##### Added
 
-- LU refactorization for sparse matrices
-    - CSRRF_ANALYSIS
-    - CSRRF_SUMLU
-    - CSRRF_SPLITLU
-    - CSRRF_REFACTLU
-- Linear system solver for sparse matrices
-    - CSRRF_SOLVE
-- Added type `rocsolver_rfinfo` for use with sparse matrix routines
+* LU refactorization for sparse matrices
+  * CSRRF_ANALYSIS
+  * CSRRF_SUMLU
+  * CSRRF_SPLITLU
+  * CSRRF_REFACTLU
+* Linear system solver for sparse matrices
+  * CSRRF_SOLVE
+* Added type `rocsolver_rfinfo` for use with sparse matrix routines
 
 ##### Optimized
 
-- Improved the performance of BDSQR and GESVD when singular vectors are requested
+* Improved the performance of BDSQR and GESVD when singular vectors are requested
 
 ##### Fixed
 
-- BDSQR and GESVD should no longer hang when the input contains `NaN` or `Inf`
+* BDSQR and GESVD should no longer hang when the input contains `NaN` or `Inf`
 
 #### rocSPARSE 2.5.2
 
@@ -507,20 +508,20 @@ rocSPARSE 2.5.2 for ROCm 5.6.0
 
 ##### Improved
 
-- Fixed a memory leak in csritsv
-- Fixed a bug in csrsm and bsrsm
+* Fixed a memory leak in csritsv
+* Fixed a bug in csrsm and bsrsm
 
 #### rocThrust 2.18.0
 
 rocThrust 2.18.0 for ROCm 5.6.0
 
-##### Fixed 
+##### Fixed
 
-- `lower_bound`, `upper_bound`, and `binary_search` failed to compile for certain types.
+* `lower_bound`, `upper_bound`, and `binary_search` failed to compile for certain types.
 
 ##### Changed
 
-- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
+* Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
 
 #### rocWMMA 1.1.0
 
@@ -528,21 +529,21 @@ rocWMMA 1.1.0 for ROCm 5.6.0
 
 ##### Added
 
-- Added cross-lane operation backends (Blend, Permute, Swizzle and Dpp)
-- Added GPU kernels for rocWMMA unit test pre-process and post-process operations (fill, validation)
-- Added performance gemm samples for half, single and double precision
-- Added rocWMMA cmake versioning
-- Added vectorized support in coordinate transforms
-- Included ROCm smi for runtime clock rate detection
-- Added fragment transforms for transpose and change data layout
+* Added cross-lane operation backends (Blend, Permute, Swizzle and Dpp)
+* Added GPU kernels for rocWMMA unit test pre-process and post-process operations (fill, validation)
+* Added performance gemm samples for half, single and double precision
+* Added rocWMMA cmake versioning
+* Added vectorized support in coordinate transforms
+* Included ROCm smi for runtime clock rate detection
+* Added fragment transforms for transpose and change data layout
 
 ##### Changed
 
-- Default to GPU rocBLAS validation against rocWMMA
-- Re-enabled int8 gemm tests on gfx9
-- Upgraded to C++17
-- Restructured unit test folder for consistency
-- Consolidated rocWMMA samples common code
+* Default to GPU rocBLAS validation against rocWMMA
+* Re-enabled int8 gemm tests on gfx9
+* Upgraded to C++17
+* Restructured unit test folder for consistency
+* Consolidated rocWMMA samples common code
 
 #### Tensile 4.37.0
 
@@ -550,55 +551,55 @@ Tensile 4.37.0 for ROCm 5.6.0
 
 ##### Added
 
-- Added user driven tuning API
-- Added decision tree fallback feature
-- Added SingleBuffer + AtomicAdd option for GlobalSplitU
-- DirectToVgpr support for fp16 and Int8 with TN orientation
-- Added new test cases for various functions
-- Added SingleBuffer algorithm for ZGEMM/CGEMM
-- Added joblib for parallel map calls
-- Added support for MFMA + LocalSplitU + DirectToVgprA+B
-- Added asmcap check for MIArchVgpr
-- Added support for MFMA + LocalSplitU
-- Added frequency, power, and temperature data to the output
+* Added user driven tuning API
+* Added decision tree fallback feature
+* Added SingleBuffer + AtomicAdd option for GlobalSplitU
+* DirectToVgpr support for fp16 and Int8 with TN orientation
+* Added new test cases for various functions
+* Added SingleBuffer algorithm for ZGEMM/CGEMM
+* Added joblib for parallel map calls
+* Added support for MFMA + LocalSplitU + DirectToVgprA+B
+* Added asmcap check for MIArchVgpr
+* Added support for MFMA + LocalSplitU
+* Added frequency, power, and temperature data to the output
 
 ##### Optimizations
 
-- Improved the performance of GlobalSplitU with SingleBuffer algorithm
-- Reduced the running time of the extended and pre_checkin tests
-- Optimized the Tailloop section of the assembly kernel
-- Optimized complex GEMM (fixed vgpr allocation, unified CGEMM and ZGEMM code in MulMIoutAlphaToArch)
-- Improved the performance of the second kernel of MultipleBuffer algorithm
+* Improved the performance of GlobalSplitU with SingleBuffer algorithm
+* Reduced the running time of the extended and pre_checkin tests
+* Optimized the Tailloop section of the assembly kernel
+* Optimized complex GEMM (fixed vgpr allocation, unified CGEMM and ZGEMM code in MulMIoutAlphaToArch)
+* Improved the performance of the second kernel of MultipleBuffer algorithm
 
 ##### Changed
 
-- Updated custom kernels with 64-bit offsets
-- Adapted 64-bit offset arguments for assembly kernels
-- Improved temporary register re-use to reduce max sgpr usage
-- Removed some restrictions on VectorWidth and DirectToVgpr
-- Updated the dependency requirements for Tensile
-- Changed the range of AssertSummationElementMultiple
-- Modified the error messages for more clarity
-- Changed DivideAndReminder to vectorStaticRemainder in case quotient is not used
-- Removed dummy vgpr for vectorStaticRemainder
-- Removed tmpVgpr parameter from vectorStaticRemainder/Divide/DivideAndReminder
-- Removed qReg parameter from vectorStaticRemainder
+* Updated custom kernels with 64-bit offsets
+* Adapted 64-bit offset arguments for assembly kernels
+* Improved temporary register re-use to reduce max sgpr usage
+* Removed some restrictions on VectorWidth and DirectToVgpr
+* Updated the dependency requirements for Tensile
+* Changed the range of AssertSummationElementMultiple
+* Modified the error messages for more clarity
+* Changed DivideAndReminder to vectorStaticRemainder in case quotient is not used
+* Removed dummy vgpr for vectorStaticRemainder
+* Removed tmpVgpr parameter from vectorStaticRemainder/Divide/DivideAndReminder
+* Removed qReg parameter from vectorStaticRemainder
 
 ##### Fixed
 
-- Fixed tmp sgpr allocation to avoid over-writing values (alpha)
-- 64-bit offset parameters for post kernels
-- Fixed gfx908 CI test failures
-- Fixed offset calculation to prevent overflow for large offsets
-- Fixed issues when BufferLoad and BufferStore are equal to zero
-- Fixed StoreCInUnroll + DirectToVgpr + no useInitAccVgprOpt mismatch
-- Fixed DirectToVgpr + LocalSplitU + FractionalLoad mismatch
-- Fixed the memory access error related to StaggerU + large stride
-- Fixed ZGEMM 4x4 MatrixInst mismatch
-- Fixed DGEMM 4x4 MatrixInst mismatch
-- Fixed ASEM + GSU + NoTailLoop opt mismatch
-- Fixed AssertSummationElementMultiple + GlobalSplitU issues
-- Fixed ASEM + GSU + TailLoop inner unroll
+* Fixed tmp sgpr allocation to avoid over-writing values (alpha)
+* 64-bit offset parameters for post kernels
+* Fixed gfx908 CI test failures
+* Fixed offset calculation to prevent overflow for large offsets
+* Fixed issues when BufferLoad and BufferStore are equal to zero
+* Fixed StoreCInUnroll + DirectToVgpr + no useInitAccVgprOpt mismatch
+* Fixed DirectToVgpr + LocalSplitU + FractionalLoad mismatch
+* Fixed the memory access error related to StaggerU + large stride
+* Fixed ZGEMM 4x4 MatrixInst mismatch
+* Fixed DGEMM 4x4 MatrixInst mismatch
+* Fixed ASEM + GSU + NoTailLoop opt mismatch
+* Fixed AssertSummationElementMultiple + GlobalSplitU issues
+* Fixed ASEM + GSU + TailLoop inner unroll
 
 -------------------
 
@@ -626,7 +627,7 @@ The following HIP API is updated in the ROCm 5.5.1 release:
 
 ##### `hipDeviceSetCacheConfig`
 
-- The return value for `hipDeviceSetCacheConfig` is updated from `hipErrorNotSupported` to `hipSuccess`
+* The return value for `hipDeviceSetCacheConfig` is updated from `hipErrorNotSupported` to `hipSuccess`
 
 ### Library Changes in ROCM 5.5.1
 
@@ -671,40 +672,40 @@ Applications requiring to update the stack size can use hipDeviceSetLimit API.
 
 The following hipcc changes are implemented in this release:
 
-- `hipcc` will not implicitly link to `libpthread` and `librt`, as they are no longer a link time dependence for HIP programs.  Applications that depend on these libraries must explicitly link to them.
-- `-use-staticlib` and `-use-sharedlib` options are deprecated.
+* `hipcc` will not implicitly link to `libpthread` and `librt`, as they are no longer a link time dependence for HIP programs.  Applications that depend on these libraries must explicitly link to them.
+* `-use-staticlib` and `-use-sharedlib` options are deprecated.
 
 ##### Future Changes
 
-- Separation of `hipcc` binaries (Perl scripts) from HIP to `hipcc` project. Users will access separate `hipcc` package for installing `hipcc` binaries in future ROCm releases.
-- In a future ROCm release, the following samples will be removed from the `hip-tests` project.
-  - `hipBusbandWidth` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/shipBusBandwidth>
-  - `hipCommander` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/hipCommander>
+* Separation of `hipcc` binaries (Perl scripts) from HIP to `hipcc` project. Users will access separate `hipcc` package for installing `hipcc` binaries in future ROCm releases.
+* In a future ROCm release, the following samples will be removed from the `hip-tests` project.
+  * `hipBusbandWidth` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/shipBusBandwidth>
+  * `hipCommander` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/hipCommander>
 
   Note that the samples will continue to be available in previous release branches.
-- Removal of gcnarch from hipDeviceProp_t structure
-- Addition of new fields in hipDeviceProp_t structure
-  - maxTexture1D
-  - maxTexture2D
-  - maxTexture1DLayered
-  - maxTexture2DLayered
-  - sharedMemPerMultiprocessor
-  - deviceOverlap
-  - asyncEngineCount
-  - surfaceAlignment
-  - unifiedAddressing
-  - computePreemptionSupported
-  - hostRegisterSupported
-  - uuid
-- Removal of deprecated code
-  - hip-hcc codes from hip code tree
-- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
-- HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
-- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
-- Correct hipGetLastError to return the last error instead of last API call's return code
-- Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
-- Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
-- Remove hiparray* and make it opaque with hipArray_t
+* Removal of gcnarch from hipDeviceProp_t structure
+* Addition of new fields in hipDeviceProp_t structure
+  * maxTexture1D
+  * maxTexture2D
+  * maxTexture1DLayered
+  * maxTexture2DLayered
+  * sharedMemPerMultiprocessor
+  * deviceOverlap
+  * asyncEngineCount
+  * surfaceAlignment
+  * unifiedAddressing
+  * computePreemptionSupported
+  * hostRegisterSupported
+  * uuid
+* Removal of deprecated code
+  * hip-hcc codes from hip code tree
+* Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+* HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
+* Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+* Correct hipGetLastError to return the last error instead of last API call's return code
+* Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
+* Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
+* Remove hiparray* and make it opaque with hipArray_t
 
 ##### New HIP APIs in This Release
 
@@ -716,7 +717,7 @@ The following hipcc changes are implemented in this release:
 
 The new memory management HIP API is as follows:
 
-- Sets information on the specified pointer [BETA].
+* Sets information on the specified pointer [BETA].
 
   ```h
   hipError_t hipPointerSetAttribute(const void* value, hipPointer_attribute attribute, hipDeviceptr_t ptr);
@@ -726,13 +727,13 @@ The new memory management HIP API is as follows:
 
 The new module management HIP APIs are as follows:
 
-- Launches kernel $f$ with launch parameters and shared memory on stream with arguments passed to `kernelParams`, where thread blocks can cooperate and synchronize as they execute.
+* Launches kernel $f$ with launch parameters and shared memory on stream with arguments passed to `kernelParams`, where thread blocks can cooperate and synchronize as they execute.
 
   ```h
   hipError_t hipModuleLaunchCooperativeKernel(hipFunction_t f, unsigned int gridDimX, unsigned int gridDimY, unsigned int gridDimZ, unsigned int blockDimX, unsigned int blockDimY, unsigned int blockDimZ, unsigned int sharedMemBytes, hipStream_t stream, void** kernelParams);
   ```
 
-- Launches kernels on multiple devices where thread blocks can cooperate and synchronize as they execute.
+* Launches kernels on multiple devices where thread blocks can cooperate and synchronize as they execute.
 
   ```h
   hipError_t hipModuleLaunchCooperativeKernelMultiDevice(hipFunctionLaunchParams* launchParamsList, unsigned int numDevices, unsigned int flags);
@@ -742,49 +743,49 @@ The new module management HIP APIs are as follows:
 
 The new HIP Graph Management APIs are as follows:
 
-- Creates a memory allocation node and adds it to a graph [BETA]
+* Creates a memory allocation node and adds it to a graph [BETA]
 
   ```h
   hipError_t hipGraphAddMemAllocNode(hipGraphNode_t* pGraphNode, hipGraph_t graph, const hipGraphNode_t* pDependencies, size_t numDependencies, hipMemAllocNodeParams* pNodeParams);
   ```
 
-- Return parameters for memory allocation node [BETA]
+* Return parameters for memory allocation node [BETA]
 
   ```h
   hipError_t hipGraphMemAllocNodeGetParams(hipGraphNode_t node, hipMemAllocNodeParams* pNodeParams);
   ```
 
-- Creates a memory free node and adds it to a graph [BETA]
+* Creates a memory free node and adds it to a graph [BETA]
 
   ```h
   hipError_t hipGraphAddMemFreeNode(hipGraphNode_t* pGraphNode, hipGraph_t graph, const hipGraphNode_t* pDependencies, size_t numDependencies, void* dev_ptr);
   ```
 
-- Returns parameters for memory free node [BETA].
+* Returns parameters for memory free node [BETA].
 
   ```h
   hipError_t hipGraphMemFreeNodeGetParams(hipGraphNode_t node, void* dev_ptr);
   ```
 
-- Write a DOT file describing graph structure [BETA].
+* Write a DOT file describing graph structure [BETA].
 
   ```h
   hipError_t hipGraphDebugDotPrint(hipGraph_t graph, const char* path, unsigned int flags);
   ```
 
-- Copies attributes from source node to destination node [BETA].
+* Copies attributes from source node to destination node [BETA].
 
   ```h
   hipError_t hipGraphKernelNodeCopyAttributes(hipGraphNode_t hSrc, hipGraphNode_t hDst);
   ```
 
-- Enables or disables the specified node in the given graphExec [BETA]
+* Enables or disables the specified node in the given graphExec [BETA]
 
   ```h
   hipError_t hipGraphNodeSetEnabled(hipGraphExec_t hGraphExec, hipGraphNode_t hNode, unsigned int isEnabled);
   ```
 
-- Query whether a node in the given graphExec is enabled [BETA]
+* Query whether a node in the given graphExec is enabled [BETA]
 
   ```h
   hipError_t hipGraphNodeGetEnabled(hipGraphExec_t hGraphExec, hipGraphNode_t hNode, unsigned int* isEnabled);
@@ -793,9 +794,9 @@ The new HIP Graph Management APIs are as follows:
 ##### OpenMP Enhancements
 This release consists of the following OpenMP enhancements:
 
-- Additional support for OMPT functions `get_device_time` and `get_record_type`.
-- Add support for min/max fast fp atomics on AMD GPUs.
-- Fix the use of the abs function in C device regions.
+* Additional support for OMPT functions `get_device_time` and `get_record_type`.
+* Add support for min/max fast fp atomics on AMD GPUs.
+* Fix the use of the abs function in C device regions.
 
 ### Deprecations and Warnings
 
@@ -871,10 +872,10 @@ Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/
 
 The wrapper header files’ backward compatibility deprecation is as follows:
 
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
+* `#pragma` message announcing deprecation -- ROCm v5.2 release
+* `#pragma` message changed to `#warning` -- Future release
+* `#warning` changed to `#error` -- Future release
+* Backward compatibility wrappers removed -- Future release
 
 ##### Library files
 
@@ -882,7 +883,7 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
@@ -896,7 +897,7 @@ For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
@@ -912,13 +913,13 @@ The following APIs and macros have been marked as deprecated. These are expected
 
 ##### API Changes
 
-- `amd_comgr_action_info_set_options()`
-- `amd_comgr_action_info_get_options()`
+* `amd_comgr_action_info_set_options()`
+* `amd_comgr_action_info_get_options()`
 
 ##### Actions and Data Types
 
-- `AMD_COMGR_ACTION_ADD_DEVICE_LIBRARIES`
-- `AMD_COMGR_ACTION_COMPILE_SOURCE_TO_FATBIN`
+* `AMD_COMGR_ACTION_ADD_DEVICE_LIBRARIES`
+* `AMD_COMGR_ACTION_COMPILE_SOURCE_TO_FATBIN`
 
 For replacements, see the `AMD_COMGR_ACTION_INFO_GET`/`SET_OPTION_LIST APIs`, and the `AMD_COMGR_ACTION_COMPILE_SOURCE_(WITH_DEVICE_LIBS)_TO_BC` macros.
 
@@ -926,28 +927,28 @@ For replacements, see the `AMD_COMGR_ACTION_INFO_GET`/`SET_OPTION_LIST APIs`, an
 
 The following environment variables are removed in this ROCm release:
 
-- `GPU_MAX_COMMAND_QUEUES`
-- `GPU_MAX_WORKGROUP_SIZE_2D_X`
-- `GPU_MAX_WORKGROUP_SIZE_2D_Y`
-- `GPU_MAX_WORKGROUP_SIZE_3D_X`
-- `GPU_MAX_WORKGROUP_SIZE_3D_Y`
-- `GPU_MAX_WORKGROUP_SIZE_3D_Z`
-- `GPU_BLIT_ENGINE_TYPE`
-- `GPU_USE_SYNC_OBJECTS`
-- `AMD_OCL_SC_LIB`
-- `AMD_OCL_ENABLE_MESSAGE_BOX`
-- `GPU_FORCE_64BIT_PTR`
-- `GPU_FORCE_OCL20_32BIT`
-- `GPU_RAW_TIMESTAMP`
-- `GPU_SELECT_COMPUTE_RINGS_ID`
-- `GPU_USE_SINGLE_SCRATCH`
-- `GPU_ENABLE_LARGE_ALLOCATION`
-- `HSA_LOCAL_MEMORY_ENABLE`
-- `HSA_ENABLE_COARSE_GRAIN_SVM`
-- `GPU_IFH_MODE`
-- `OCL_SYSMEM_REQUIREMENT`
-- `OCL_CODE_CACHE_ENABLE`
-- `OCL_CODE_CACHE_RESET`
+* `GPU_MAX_COMMAND_QUEUES`
+* `GPU_MAX_WORKGROUP_SIZE_2D_X`
+* `GPU_MAX_WORKGROUP_SIZE_2D_Y`
+* `GPU_MAX_WORKGROUP_SIZE_3D_X`
+* `GPU_MAX_WORKGROUP_SIZE_3D_Y`
+* `GPU_MAX_WORKGROUP_SIZE_3D_Z`
+* `GPU_BLIT_ENGINE_TYPE`
+* `GPU_USE_SYNC_OBJECTS`
+* `AMD_OCL_SC_LIB`
+* `AMD_OCL_ENABLE_MESSAGE_BOX`
+* `GPU_FORCE_64BIT_PTR`
+* `GPU_FORCE_OCL20_32BIT`
+* `GPU_RAW_TIMESTAMP`
+* `GPU_SELECT_COMPUTE_RINGS_ID`
+* `GPU_USE_SINGLE_SCRATCH`
+* `GPU_ENABLE_LARGE_ALLOCATION`
+* `HSA_LOCAL_MEMORY_ENABLE`
+* `HSA_ENABLE_COARSE_GRAIN_SVM`
+* `GPU_IFH_MODE`
+* `OCL_SYSMEM_REQUIREMENT`
+* `OCL_CODE_CACHE_ENABLE`
+* `OCL_CODE_CACHE_RESET`
 
 ### Known Issues In This Release
 
@@ -993,24 +994,24 @@ hipBLAS 0.54.0 for ROCm 5.5.0
 
 ##### Added
 
-- added option to opt-in to use __half for hipblasHalf type in the API for c++ users who define HIPBLAS_USE_HIP_HALF
-- added scripts to plot performance for multiple functions
-- data driven hipblas-bench and hipblas-test execution via external yaml format data files
-- client smoke test added for quick validation using command hipblas-test --yaml hipblas_smoke.yaml
+* added option to opt-in to use __half for hipblasHalf type in the API for c++ users who define HIPBLAS_USE_HIP_HALF
+* added scripts to plot performance for multiple functions
+* data driven hipblas-bench and hipblas-test execution via external yaml format data files
+* client smoke test added for quick validation using command hipblas-test --yaml hipblas_smoke.yaml
 
 ##### Fixed
 
-- fixed datatype conversion functions to support more rocBLAS/cuBLAS datatypes
-- fixed geqrf to return successfully when nullptrs are passed in with n == 0 || m == 0
-- fixed getrs to return successfully when given nullptrs with corresponding size = 0
-- fixed getrs to give info = -1 when transpose is not an expected type
-- fixed gels to return successfully when given nullptrs with corresponding size = 0
-- fixed gels to give info = -1 when transpose is not in (&#39;N&#39;, &#39;T&#39;) for real cases or not in (&#39;N&#39;, &#39;C&#39;) for complex cases
+* fixed datatype conversion functions to support more rocBLAS/cuBLAS datatypes
+* fixed geqrf to return successfully when nullptrs are passed in with n == 0 || m == 0
+* fixed getrs to return successfully when given nullptrs with corresponding size = 0
+* fixed getrs to give info = -1 when transpose is not an expected type
+* fixed gels to return successfully when given nullptrs with corresponding size = 0
+* fixed gels to give info = -1 when transpose is not in (&#39;N&#39;, &#39;T&#39;) for real cases or not in (&#39;N&#39;, &#39;C&#39;) for complex cases
 
 ##### Changed
 
-- changed reference code for Windows to OpenBLAS
-- hipblas client executables all now begin with hipblas- prefix
+* changed reference code for Windows to OpenBLAS
+* hipblas client executables all now begin with hipblas- prefix
 
 #### hipCUB 2.13.1
 
@@ -1018,21 +1019,21 @@ hipCUB 2.13.1 for ROCm 5.5.0
 
 ##### Added
 
-- Benchmarks for `BlockShuffle`, `BlockLoad`, and `BlockStore`.
+* Benchmarks for `BlockShuffle`, `BlockLoad`, and `BlockStore`.
 
 ##### Changed
 
-- CUB backend references CUB and Thrust version 1.17.2.
-- Improved benchmark coverage of `BlockScan` by adding `ExclusiveScan`, benchmark coverage of `BlockRadixSort` by adding `SortBlockedToStriped`, and benchmark coverage of `WarpScan` by adding `Broadcast`.
+* CUB backend references CUB and Thrust version 1.17.2.
+* Improved benchmark coverage of `BlockScan` by adding `ExclusiveScan`, benchmark coverage of `BlockRadixSort` by adding `SortBlockedToStriped`, and benchmark coverage of `WarpScan` by adding `Broadcast`.
 
 ##### Fixed
 
-- Windows HIP SDK support
+* Windows HIP SDK support
 
 ##### Known Issues
 
-- `BlockRadixRankMatch` is currently broken under the rocPRIM backend.
-- `BlockRadixRankMatch` with a warp size that does not exactly divide the block size is broken under the CUB backend.
+* `BlockRadixRankMatch` is currently broken under the rocPRIM backend.
+* `BlockRadixRankMatch` with a warp size that does not exactly divide the block size is broken under the CUB backend.
 
 #### hipFFT 1.0.11
 
@@ -1040,7 +1041,7 @@ hipFFT 1.0.11 for ROCm 5.5.0
 
 ##### Fixed
 
-- Fixed old version rocm include/lib folders not removed on upgrade.
+* Fixed old version rocm include/lib folders not removed on upgrade.
 
 #### hipSOLVER 1.7.0
 
@@ -1048,13 +1049,13 @@ hipSOLVER 1.7.0 for ROCm 5.5.0
 
 ##### Added
 
-- Added functions
-  - gesvdj
-    - hipsolverSgesvdj_bufferSize, hipsolverDgesvdj_bufferSize, hipsolverCgesvdj_bufferSize, hipsolverZgesvdj_bufferSize
-    - hipsolverSgesvdj, hipsolverDgesvdj, hipsolverCgesvdj, hipsolverZgesvdj
-  - gesvdjBatched
-    - hipsolverSgesvdjBatched_bufferSize, hipsolverDgesvdjBatched_bufferSize, hipsolverCgesvdjBatched_bufferSize, hipsolverZgesvdjBatched_bufferSize
-    - hipsolverSgesvdjBatched, hipsolverDgesvdjBatched, hipsolverCgesvdjBatched, hipsolverZgesvdjBatched
+* Added functions
+  * gesvdj
+    * hipsolverSgesvdj_bufferSize, hipsolverDgesvdj_bufferSize, hipsolverCgesvdj_bufferSize, hipsolverZgesvdj_bufferSize
+    * hipsolverSgesvdj, hipsolverDgesvdj, hipsolverCgesvdj, hipsolverZgesvdj
+  * gesvdjBatched
+    * hipsolverSgesvdjBatched_bufferSize, hipsolverDgesvdjBatched_bufferSize, hipsolverCgesvdjBatched_bufferSize, hipsolverZgesvdjBatched_bufferSize
+    * hipsolverSgesvdjBatched, hipsolverDgesvdjBatched, hipsolverCgesvdjBatched, hipsolverZgesvdjBatched
 
 #### hipSPARSE 2.3.5
 
@@ -1062,11 +1063,11 @@ hipSPARSE 2.3.5 for ROCm 5.5.0
 
 ##### Improved
 
-- Fixed an issue, where the rocm folder was not removed on upgrade of meta packages
-- Fixed a compilation issue with cusparse backend
-- Added more detailed messages on unit test failures due to missing input data
-- Improved documentation
-- Fixed a bug with deprecation messages when using gcc9 (Thanks @Maetveis)
+* Fixed an issue, where the rocm folder was not removed on upgrade of meta packages
+* Fixed a compilation issue with cusparse backend
+* Added more detailed messages on unit test failures due to missing input data
+* Improved documentation
+* Fixed a bug with deprecation messages when using gcc9 (Thanks @Maetveis)
 
 #### MIOpen 2.19.0
 
@@ -1074,17 +1075,17 @@ MIOpen 2.19.0 for ROCm 5.5.0
 
 ##### Added
 
-- ROCm 5.5 support for gfx1101 (Navi32)
+* ROCm 5.5 support for gfx1101 (Navi32)
 
 ##### Changed
 
-- Tuning results for MLIR on ROCm 5.5
-- Bumping MLIR commit to 5.5.0 release tag
+* Tuning results for MLIR on ROCm 5.5
+* Bumping MLIR commit to 5.5.0 release tag
 
 ##### Fixed
 
-- Fix 3d convolution Host API bug
-- [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
+* Fix 3d convolution Host API bug
+* [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
 
 #### rccl 2.15.5
 
@@ -1092,25 +1093,25 @@ RCCL 2.15.5 for ROCm 5.5.0
 
 ##### Changed
 
-- Compatibility with NCCL 2.15.5
-- Unit test executable renamed to rccl-UnitTests
+* Compatibility with NCCL 2.15.5
+* Unit test executable renamed to rccl-UnitTests
 
 ##### Added
 
-- HW-topology aware binary tree implementation
-- Experimental support for MSCCL
-- New unit tests for hipGraph support
-- NPKit integration
+* HW-topology aware binary tree implementation
+* Experimental support for MSCCL
+* New unit tests for hipGraph support
+* NPKit integration
 
 ##### Fixed
 
-- rocm-smi ID conversion
-- Support for HIP_VISIBLE_DEVICES for unit tests
-- Support for p2p transfers to non (HIP) visible devices
+* rocm-smi ID conversion
+* Support for HIP_VISIBLE_DEVICES for unit tests
+* Support for p2p transfers to non (HIP) visible devices
 
 ##### Removed
 
-- Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
+* Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
 
 #### rocALUTION 2.1.8
 
@@ -1118,24 +1119,24 @@ rocALUTION 2.1.8 for ROCm 5.5.0
 
 ##### Added
 
-- Added build support for Navi32
+* Added build support for Navi32
 
 ##### Improved
 
-- Fixed a typo in MPI backend
-- Fixed a bug with the backend when HIP support is disabled
-- Fixed a bug in SAAMG hierarchy building on HIP backend
-- Improved SAAMG hierarchy build performance on HIP backend
+* Fixed a typo in MPI backend
+* Fixed a bug with the backend when HIP support is disabled
+* Fixed a bug in SAAMG hierarchy building on HIP backend
+* Improved SAAMG hierarchy build performance on HIP backend
 
 ##### Changed
 
-- LocalVector::GetIndexValues(ValueType\*) is deprecated, use LocalVector::GetIndexValues(const LocalVector&amp;, LocalVector\*) instead
-- LocalVector::SetIndexValues(const ValueType\*) is deprecated, use LocalVector::SetIndexValues(const LocalVector&amp;, const LocalVector&amp;) instead
-- LocalMatrix::RSDirectInterpolation(const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*) is deprecated, use LocalMatrix::RSDirectInterpolation(const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*) instead
-- LocalMatrix::RSExtPIInterpolation(const LocalVector&amp;, const LocalVector&amp;, bool, float, LocalMatrix\*, LocalMatrix\*) is deprecated, use LocalMatrix::RSExtPIInterpolation(const LocalVector&amp;, const LocalVector&amp;, bool, LocalMatrix\*) instead
-- LocalMatrix::RugeStueben() is deprecated
-- LocalMatrix::AMGSmoothedAggregation(ValueType, const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*, int) is deprecated, use LocalMatrix::AMGAggregation(ValueType, const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, int) instead
-- LocalMatrix::AMGAggregation(const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*) is deprecated, use LocalMatrix::AMGAggregation(const LocalVector&amp;, LocalMatrix\*) instead
+* LocalVector::GetIndexValues(ValueType\*) is deprecated, use LocalVector::GetIndexValues(const LocalVector&amp;, LocalVector\*) instead
+* LocalVector::SetIndexValues(const ValueType\*) is deprecated, use LocalVector::SetIndexValues(const LocalVector&amp;, const LocalVector&amp;) instead
+* LocalMatrix::RSDirectInterpolation(const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*) is deprecated, use LocalMatrix::RSDirectInterpolation(const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*) instead
+* LocalMatrix::RSExtPIInterpolation(const LocalVector&amp;, const LocalVector&amp;, bool, float, LocalMatrix\*, LocalMatrix\*) is deprecated, use LocalMatrix::RSExtPIInterpolation(const LocalVector&amp;, const LocalVector&amp;, bool, LocalMatrix\*) instead
+* LocalMatrix::RugeStueben() is deprecated
+* LocalMatrix::AMGSmoothedAggregation(ValueType, const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*, int) is deprecated, use LocalMatrix::AMGAggregation(ValueType, const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, int) instead
+* LocalMatrix::AMGAggregation(const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*) is deprecated, use LocalMatrix::AMGAggregation(const LocalVector&amp;, LocalMatrix\*) instead
 
 #### rocBLAS 2.47.0
 
@@ -1143,33 +1144,33 @@ rocBLAS 2.47.0 for ROCm 5.5.0
 
 ##### Added
 
-- added functionality rocblas_geam_ex for matrix-matrix minimum operations
-- added HIP Graph support as beta feature for rocBLAS Level 1, Level 2, and Level 3(pointer mode host) functions
-- added beta features API. Exposed using compiler define ROCBLAS_BETA_FEATURES_API
-- added support for vector initialization in the rocBLAS test framework with negative increments
-- added windows build documentation for forthcoming support using ROCm HIP SDK
-- added scripts to plot performance for multiple functions
+* added functionality rocblas_geam_ex for matrix-matrix minimum operations
+* added HIP Graph support as beta feature for rocBLAS Level 1, Level 2, and Level 3(pointer mode host) functions
+* added beta features API. Exposed using compiler define ROCBLAS_BETA_FEATURES_API
+* added support for vector initialization in the rocBLAS test framework with negative increments
+* added windows build documentation for forthcoming support using ROCm HIP SDK
+* added scripts to plot performance for multiple functions
 
 ##### Optimizations
 
-- improved performance of Level 2 rocBLAS GEMV for float and double precision. Performance enhanced by 150-200% for certain problem sizes when (m==n) measured on a gfx90a GPU.
-- improved performance of Level 2 rocBLAS GER for float, double and complex float precisions. Performance enhanced by 5-7% for certain problem sizes measured on a gfx90a GPU.
-- improved performance of Level 2 rocBLAS SYMV for float and double precisions. Performance enhanced by 120-150% for certain problem sizes measured on both gfx908 and gfx90a GPUs.
+* improved performance of Level 2 rocBLAS GEMV for float and double precision. Performance enhanced by 150-200% for certain problem sizes when (m==n) measured on a gfx90a GPU.
+* improved performance of Level 2 rocBLAS GER for float, double and complex float precisions. Performance enhanced by 5-7% for certain problem sizes measured on a gfx90a GPU.
+* improved performance of Level 2 rocBLAS SYMV for float and double precisions. Performance enhanced by 120-150% for certain problem sizes measured on both gfx908 and gfx90a GPUs.
 
 ##### Fixed
 
-- fixed setting of executable mode on client script rocblas_gentest.py to avoid potential permission errors with clients rocblas-test and rocblas-bench
-- fixed deprecated API compatibility with Visual Studio compiler
-- fixed test framework memory exception handling for Level 2 functions when the host memory allocation exceeds the available memory
+* fixed setting of executable mode on client script rocblas_gentest.py to avoid potential permission errors with clients rocblas-test and rocblas-bench
+* fixed deprecated API compatibility with Visual Studio compiler
+* fixed test framework memory exception handling for Level 2 functions when the host memory allocation exceeds the available memory
 
 ##### Changed
 
-- install.sh internally runs rmake.py (also used on windows) and rmake.py may be used directly by developers on linux (use --help)
-- rocblas client executables all now begin with rocblas- prefix
+* install.sh internally runs rmake.py (also used on windows) and rmake.py may be used directly by developers on linux (use --help)
+* rocblas client executables all now begin with rocblas- prefix
 
 ##### Removed
 
-- install.sh removed options -o --cov as now Tensile will use the default COV format, set by cmake define Tensile_CODE_OBJECT_VERSION=default
+* install.sh removed options -o --cov as now Tensile will use the default COV format, set by cmake define Tensile_CODE_OBJECT_VERSION=default
 
 #### rocFFT 1.0.22
 
@@ -1177,25 +1178,25 @@ rocFFT 1.0.22 for ROCm 5.5.0
 
 ##### Optimizations
 
-- Improved performance of 1D lengths &lt; 2048 that use Bluestein&#39;s algorithm.
-- Reduced time for generating code during plan creation.
-- Optimized 3D R2C/C2R lengths 32, 84, 128.
-- Optimized batched small 1D R2C/C2R cases.
+* Improved performance of 1D lengths &lt; 2048 that use Bluestein&#39;s algorithm.
+* Reduced time for generating code during plan creation.
+* Optimized 3D R2C/C2R lengths 32, 84, 128.
+* Optimized batched small 1D R2C/C2R cases.
 
 ##### Added
 
-- Added gfx1101 to default AMDGPU_TARGETS.
+* Added gfx1101 to default AMDGPU_TARGETS.
 
 ##### Changed
 
-- Moved client programs to C++17.
-- Moved planar kernels and infrequently used Stockham kernels to be runtime-compiled.
-- Moved transpose, real-complex, Bluestein, and Stockham kernels to library kernel cache.
+* Moved client programs to C++17.
+* Moved planar kernels and infrequently used Stockham kernels to be runtime-compiled.
+* Moved transpose, real-complex, Bluestein, and Stockham kernels to library kernel cache.
 
 ##### Fixed
 
-- Removed zero-length twiddle table allocations, which fixes errors from hipMallocManaged.
-- Fixed incorrect freeing of HIP stream handles during twiddle computation when multiple devices are present.
+* Removed zero-length twiddle table allocations, which fixes errors from hipMallocManaged.
+* Fixed incorrect freeing of HIP stream handles during twiddle computation when multiple devices are present.
 
 #### rocm-cmake 0.8.1
 
@@ -1203,11 +1204,11 @@ rocm-cmake 0.8.1 for ROCm 5.5.0
 
 ##### Fixed
 
-- ROCMInstallTargets: Added compatibility symlinks for included cmake files in `&lt;ROCM&gt;/lib/cmake/&lt;PACKAGE&gt;`.
+* ROCMInstallTargets: Added compatibility symlinks for included cmake files in `&lt;ROCM&gt;/lib/cmake/&lt;PACKAGE&gt;`.
 
 ##### Changed
 
-- ROCMHeaderWrapper: The wrapper header deprecation message is now a deprecation warning.
+* ROCMHeaderWrapper: The wrapper header deprecation message is now a deprecation warning.
 
 #### rocPRIM 2.13.0
 
@@ -1215,20 +1216,20 @@ rocPRIM 2.13.0 for ROCm 5.5.0
 
 ##### Added
 
-- New block level `radix_rank` primitive.
-- New block level `radix_rank_match` primitive.
+* New block level `radix_rank` primitive.
+* New block level `radix_rank_match` primitive.
 
 ##### Changed
 
-- Improved the performance of `block_radix_sort` and `device_radix_sort`.
+* Improved the performance of `block_radix_sort` and `device_radix_sort`.
 
 ##### Known Issues
 
-- Disabled GPU error messages relating to incorrect warp operation usage with Navi GPUs on Windows, due to GPU printf performance issues on Windows.
+* Disabled GPU error messages relating to incorrect warp operation usage with Navi GPUs on Windows, due to GPU printf performance issues on Windows.
 
 ##### Fixed
 
-- Fixed benchmark build on Windows
+* Fixed benchmark build on Windows
 
 #### rocRAND 2.10.17
 
@@ -1236,18 +1237,18 @@ rocRAND 2.10.17 for ROCm 5.5.0
 
 ##### Added
 
-- MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
-- New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
-- experimental HIP-CPU feature
-- ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
+* MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
+* New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
+* experimental HIP-CPU feature
+* ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
 
 ##### Changed
 
-- Python 2.7 is no longer officially supported.
+* Python 2.7 is no longer officially supported.
 
 ##### Fixed
 
-- Windows HIP SDK support
+* Windows HIP SDK support
 
 #### rocSOLVER 3.21.0
 
@@ -1255,30 +1256,30 @@ rocSOLVER 3.21.0 for ROCm 5.5.0
 
 ##### Added
 
-- SVD for general matrices using Jacobi algorithm:
-    - GESVDJ (with batched and strided\_batched versions)
-- LU factorization without pivoting for block tridiagonal matrices:
-    - GEBLTTRF_NPVT (with batched and strided\_batched versions)
-- Linear system solver without pivoting for block tridiagonal matrices:
-    - GEBLTTRS_NPVT (with batched and strided\_batched, versions)
-- Product of triangular matrices
-    - LAUUM
-- Added experimental hipGraph support for rocSOLVER functions
+* SVD for general matrices using Jacobi algorithm:
+  * GESVDJ (with batched and strided\_batched versions)
+* LU factorization without pivoting for block tridiagonal matrices:
+  * GEBLTTRF_NPVT (with batched and strided\_batched versions)
+* Linear system solver without pivoting for block tridiagonal matrices:
+  * GEBLTTRS_NPVT (with batched and strided\_batched, versions)
+* Product of triangular matrices
+  * LAUUM
+* Added experimental hipGraph support for rocSOLVER functions
 
 ##### Optimized
 
-- Improved the performance of SYEVJ/HEEVJ.
+* Improved the performance of SYEVJ/HEEVJ.
 
 ##### Changed
 
-- STEDC, SYEVD/HEEVD and SYGVD/HEGVD now use fully implemented Divide and Conquer approach.
+* STEDC, SYEVD/HEEVD and SYGVD/HEGVD now use fully implemented Divide and Conquer approach.
 
 ##### Fixed
 
-- SYEVJ/HEEVJ should now be invariant under matrix scaling.
-- SYEVJ/HEEVJ should now properly output the eigenvalues when no sweeps are executed.
-- Fixed GETF2\_NPVT and GETRF\_NPVT input data initialization in tests and benchmarks.
-- Fixed rocblas missing from the dependency list of the rocsolver deb and rpm packages.
+* SYEVJ/HEEVJ should now be invariant under matrix scaling.
+* SYEVJ/HEEVJ should now properly output the eigenvalues when no sweeps are executed.
+* Fixed GETF2\_NPVT and GETRF\_NPVT input data initialization in tests and benchmarks.
+* Fixed rocblas missing from the dependency list of the rocsolver deb and rpm packages.
 
 #### rocSPARSE 2.5.1
 
@@ -1286,28 +1287,28 @@ rocSPARSE 2.5.1 for ROCm 5.5.0
 
 ##### Added
 
-- Added bsrgemm and spgemm for BSR format
-- Added bsrgeam
-- Added build support for Navi32
-- Added experimental hipGraph support for some rocSPARSE routines
-- Added csritsv, spitsv csr iterative triangular solve
-- Added mixed precisions for SpMV
-- Added batched SpMM for transpose A in COO format with atomic atomic algorithm
+* Added bsrgemm and spgemm for BSR format
+* Added bsrgeam
+* Added build support for Navi32
+* Added experimental hipGraph support for some rocSPARSE routines
+* Added csritsv, spitsv csr iterative triangular solve
+* Added mixed precisions for SpMV
+* Added batched SpMM for transpose A in COO format with atomic atomic algorithm
 
 ##### Improved
 
-- Optimization to csr2bsr
-- Optimization to csr2csr_compress
-- Optimization to csr2coo
-- Optimization to gebsr2csr
-- Optimization to csr2gebsr
-- Fixes to documentation
-- Fixes a bug in COO SpMV gridsize
-- Fixes a bug in SpMM gridsize when using very large matrices
+* Optimization to csr2bsr
+* Optimization to csr2csr_compress
+* Optimization to csr2coo
+* Optimization to gebsr2csr
+* Optimization to csr2gebsr
+* Fixes to documentation
+* Fixes a bug in COO SpMV gridsize
+* Fixes a bug in SpMM gridsize when using very large matrices
 
 ##### Known Issues
 
-- In csritlu0, the algorithm rocsparse_itilu0_alg_sync_split_fusion has some accuracy issues to investigate with XNACK enabled. The fallback is rocsparse_itilu0_alg_sync_split.
+* In csritlu0, the algorithm rocsparse_itilu0_alg_sync_split_fusion has some accuracy issues to investigate with XNACK enabled. The fallback is rocsparse_itilu0_alg_sync_split.
 
 #### rocWMMA 1.0
 
@@ -1315,15 +1316,15 @@ rocWMMA 1.0 for ROCm 5.5.0
 
 ##### Added
 
-- Added support for wave32 on gfx11+
-- Added infrastructure changes to support hipRTC
-- Added performance tracking system
+* Added support for wave32 on gfx11+
+* Added infrastructure changes to support hipRTC
+* Added performance tracking system
 
 ##### Changed
 
-- Modified the assignment of hardware information
-- Modified the data access for unsigned datatypes
-- Added library config to support multiple architectures
+* Modified the assignment of hardware information
+* Modified the data access for unsigned datatypes
+* Added library config to support multiple architectures
 
 #### Tensile 4.36.0
 
@@ -1331,59 +1332,59 @@ Tensile 4.36.0 for ROCm 5.5.0
 
 ##### Added
 
-- Add functions for user-driven tuning
-- Add GFX11 support: HostLibraryTests yamls, rearragne FP32(C)/FP64(C) instruction order, archCaps for instruction renaming condition, adjust vgpr bank for A/B/C for optimize, separate vscnt and vmcnt, dual mac
-- Add binary search for Grid-Based algorithm
-- Add reject condition for (StoreCInUnroll + BufferStore=0) and (DirectToVgpr + ScheduleIterAlg&lt;3 + PrefetchGlobalRead==2)
-- Add support for (DirectToLds + hgemm + NN/NT/TT) and (DirectToLds + hgemm + GlobalLoadVectorWidth &lt; 4)
-- Add support for (DirectToLds + hgemm(TLU=True only) or sgemm + NumLoadsCoalesced &gt; 1)
-- Add GSU SingleBuffer algorithm for HSS/BSS
-- Add gfx900:xnack-, gfx1032, gfx1034, gfx1035
-- Enable gfx1031 support
+* Add functions for user-driven tuning
+* Add GFX11 support: HostLibraryTests yamls, rearragne FP32(C)/FP64(C) instruction order, archCaps for instruction renaming condition, adjust vgpr bank for A/B/C for optimize, separate vscnt and vmcnt, dual mac
+* Add binary search for Grid-Based algorithm
+* Add reject condition for (StoreCInUnroll + BufferStore=0) and (DirectToVgpr + ScheduleIterAlg&lt;3 + PrefetchGlobalRead==2)
+* Add support for (DirectToLds + hgemm + NN/NT/TT) and (DirectToLds + hgemm + GlobalLoadVectorWidth &lt; 4)
+* Add support for (DirectToLds + hgemm(TLU=True only) or sgemm + NumLoadsCoalesced &gt; 1)
+* Add GSU SingleBuffer algorithm for HSS/BSS
+* Add gfx900:xnack-, gfx1032, gfx1034, gfx1035
+* Enable gfx1031 support
 
 ##### Optimizations
 
-- Use AssertSizeLessThan for BufferStoreOffsetLimitCheck if it is smaller than MT1
-- Improve InitAccVgprOpt
+* Use AssertSizeLessThan for BufferStoreOffsetLimitCheck if it is smaller than MT1
+* Improve InitAccVgprOpt
 
 ##### Changed
 
-- Use global_atomic for GSU instead of flat and global_store for debug code
-- Replace flat_load/store with global_load/store
-- Use global_load/store for BufferLoad/Store=0 and enable scheduling
-- LocalSplitU support for HGEMM+HPA when MFMA disabled
-- Update Code Object Version
-- Type cast local memory to COMPUTE_DATA_TYPE in LDS to avoid precision loss
-- Update asm cap cache arguments
-- Unify SplitGlobalRead into ThreadSeparateGlobalRead and remove SplitGlobalRead
-- Change checks, error messages, assembly syntax, and coverage for DirectToLds
-- Remove unused cmake file
-- Clean up the LLVM dependency code
-- Update ThreadSeparateGlobalRead test cases for PrefetchGlobalRead=2
-- Update sgemm/hgemm test cases for DirectToLds and ThreadSepareteGlobalRead
+* Use global_atomic for GSU instead of flat and global_store for debug code
+* Replace flat_load/store with global_load/store
+* Use global_load/store for BufferLoad/Store=0 and enable scheduling
+* LocalSplitU support for HGEMM+HPA when MFMA disabled
+* Update Code Object Version
+* Type cast local memory to COMPUTE_DATA_TYPE in LDS to avoid precision loss
+* Update asm cap cache arguments
+* Unify SplitGlobalRead into ThreadSeparateGlobalRead and remove SplitGlobalRead
+* Change checks, error messages, assembly syntax, and coverage for DirectToLds
+* Remove unused cmake file
+* Clean up the LLVM dependency code
+* Update ThreadSeparateGlobalRead test cases for PrefetchGlobalRead=2
+* Update sgemm/hgemm test cases for DirectToLds and ThreadSepareteGlobalRead
 
 ##### Fixed
 
-- Add build-id to header of compiled source kernels
-- Fix solution index collisions
-- Fix h beta vectorwidth4 correctness issue for WMMA
-- Fix an error with BufferStore=0
-- Fix mismatch issue with (StoreCInUnroll + PrefetchGlobalRead=2)
-- Fix MoveMIoutToArch bug
-- Fix flat load correctness issue on I8 and flat store correctness issue
-- Fix mismatch issue with BufferLoad=0 + TailLoop for large array sizes
-- Fix code generation error with BufferStore=0 and StoreCInUnrollPostLoop
-- Fix issues with DirectToVgpr + ScheduleIterAlg&lt;3
-- Fix mismatch issue with DGEMM TT + LocalReadVectorWidth=2
-- Fix mismatch issue with PrefetchGlobalRead=2
-- Fix mismatch issue with DirectToVgpr + PrefetchGlobalRead=2 + small tile size
-- Fix an error with PersistentKernel=0 + PrefetchAcrossPersistent=1 + PrefetchAcrossPersistentMode=1
-- Fix mismatch issue with DirectToVgpr + DirectToLds + only 1 iteration in unroll loop case
-- Remove duplicate GSU kernels: for GSU = 1, GSUAlgorithm SingleBuffer and MultipleBuffer kernels are identical
-- Fix for failing CI tests due to CpuThreads=0
-- Fix mismatch issue with DirectToLds + PrefetchGlobalRead=2
-- Remove the reject condition for ThreadSeparateGlobalRead and DirectToLds (HGEMM, SGEMM only)
-- Modify reject condition for minimum lanes of ThreadSeparateGlobalRead (SGEMM or larger data type only)
+* Add build-id to header of compiled source kernels
+* Fix solution index collisions
+* Fix h beta vectorwidth4 correctness issue for WMMA
+* Fix an error with BufferStore=0
+* Fix mismatch issue with (StoreCInUnroll + PrefetchGlobalRead=2)
+* Fix MoveMIoutToArch bug
+* Fix flat load correctness issue on I8 and flat store correctness issue
+* Fix mismatch issue with BufferLoad=0 + TailLoop for large array sizes
+* Fix code generation error with BufferStore=0 and StoreCInUnrollPostLoop
+* Fix issues with DirectToVgpr + ScheduleIterAlg&lt;3
+* Fix mismatch issue with DGEMM TT + LocalReadVectorWidth=2
+* Fix mismatch issue with PrefetchGlobalRead=2
+* Fix mismatch issue with DirectToVgpr + PrefetchGlobalRead=2 + small tile size
+* Fix an error with PersistentKernel=0 + PrefetchAcrossPersistent=1 + PrefetchAcrossPersistentMode=1
+* Fix mismatch issue with DirectToVgpr + DirectToLds + only 1 iteration in unroll loop case
+* Remove duplicate GSU kernels: for GSU = 1, GSUAlgorithm SingleBuffer and MultipleBuffer kernels are identical
+* Fix for failing CI tests due to CpuThreads=0
+* Fix mismatch issue with DirectToLds + PrefetchGlobalRead=2
+* Remove the reject condition for ThreadSeparateGlobalRead and DirectToLds (HGEMM, SGEMM only)
+* Modify reject condition for minimum lanes of ThreadSeparateGlobalRead (SGEMM or larger data type only)
 
 -------------------
 
@@ -1463,10 +1464,10 @@ Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/
 
 The wrapper header files’ backward compatibility deprecation is as follows:
 
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
+* `#pragma` message announcing deprecation -- ROCm v5.2 release
+* `#pragma` message changed to `#warning` -- Future release
+* `#warning` changed to `#error` -- Future release
+* Backward compatibility wrappers removed -- Future release
 
 ##### Library files
 
@@ -1474,7 +1475,7 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
@@ -1487,7 +1488,7 @@ All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<com
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
@@ -1872,7 +1873,7 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
@@ -1885,7 +1886,7 @@ All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<com
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
@@ -2435,7 +2436,7 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
@@ -2448,7 +2449,7 @@ All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<com
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
@@ -3259,7 +3260,7 @@ This release introduces a new ROCm C++ library for accelerating mixed precision 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
 For more information, refer to
-[Communication Libraries](reference/libraries/gpu_libraries/communication.md).
+[Communication Libraries](reference/libraries/gpu-libraries/communication.md).
 
 #### OpenMP Enhancements in This Release
 
@@ -3353,7 +3354,7 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
@@ -3366,7 +3367,7 @@ All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<com
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
@@ -3449,13 +3450,13 @@ So, the function argument that is potentially undef (because it is not intialize
 
 ##### Workaround
 
-- Skip adding `noundef` attribute to functions tagged with convergent  attribute. Refer to <https://reviews.llvm.org/D124158> for more information.
+* Skip adding `noundef` attribute to functions tagged with convergent  attribute. Refer to <https://reviews.llvm.org/D124158> for more information.
 
-- Introduce shuffle attribute and add it to `__shfl` like APIs at hip headers. Clang can skip adding noundef attribute, if it finds that argument is tagged with shuffle attribute. Refer to <https://reviews.llvm.org/D125378> for more information.
+* Introduce shuffle attribute and add it to `__shfl` like APIs at hip headers. Clang can skip adding noundef attribute, if it finds that argument is tagged with shuffle attribute. Refer to <https://reviews.llvm.org/D125378> for more information.
 
-- Introduce clang builtin for `__shfl` to identify it and skip adding `noundef` attribute.
+* Introduce clang builtin for `__shfl` to identify it and skip adding `noundef` attribute.
 
-- Introduce `__builtin_freeze` to use on the relevant arguments in library wrappers. The library/header need to insert freezes on the relevant inputs.
+* Introduce `__builtin_freeze` to use on the relevant arguments in library wrappers. The library/header need to insert freezes on the relevant inputs.
 
 #### Issue with Applications Triggering Oversubscription
 
@@ -3490,13 +3491,13 @@ hipBLAS 0.51.0 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for test and benchmark executables on all supported OSes using CPack.
-- Added File/Folder Reorg Changes with backward compatibility support enabled using ROCM-CMAKE wrapper functions
-- Added user-specified initialization option to hipblas-bench
+* Packages for test and benchmark executables on all supported OSes using CPack.
+* Added File/Folder Reorg Changes with backward compatibility support enabled using ROCM-CMAKE wrapper functions
+* Added user-specified initialization option to hipblas-bench
 
 ##### Fixed
 
-- Fixed version gathering in performance measuring script
+* Fixed version gathering in performance measuring script
 
 #### hipCUB 2.11.1
 
@@ -3504,7 +3505,7 @@ hipCUB 2.11.1 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for tests and benchmark executable on all supported OSes using CPack.
+* Packages for tests and benchmark executable on all supported OSes using CPack.
 
 #### hipFFT 1.0.8
 
@@ -3512,8 +3513,8 @@ hipFFT 1.0.8 for ROCm 5.2.0
 
 ##### Added
 
-- Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
-- Packages for test and benchmark executables on all supported OSes using CPack.
+* Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
+* Packages for test and benchmark executables on all supported OSes using CPack.
 
 #### hipSOLVER 1.4.0
 
@@ -3521,13 +3522,13 @@ hipSOLVER 1.4.0 for ROCm 5.2.0
 
 ##### Added
 
-- Package generation for test and benchmark executables on all supported OSes using CPack.
-- File/Folder Reorg
-  - Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
+* Package generation for test and benchmark executables on all supported OSes using CPack.
+* File/Folder Reorg
+  * Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
 
 ##### Fixed
 
-- Fixed the ReadTheDocs documentation generation.
+* Fixed the ReadTheDocs documentation generation.
 
 #### hipSPARSE 2.2.0
 
@@ -3535,7 +3536,7 @@ hipSPARSE 2.2.0 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for test and benchmark executables on all supported OSes using CPack.
+* Packages for test and benchmark executables on all supported OSes using CPack.
 
 #### rocALUTION 2.0.3
 
@@ -3543,7 +3544,7 @@ rocALUTION 2.0.3 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for test and benchmark executables on all supported OSes using CPack.
+* Packages for test and benchmark executables on all supported OSes using CPack.
 
 #### rocBLAS 2.44.0
 
@@ -3551,41 +3552,41 @@ rocBLAS 2.44.0 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for test and benchmark executables on all supported OSes using CPack.
-- Added Denormal number detection to the Numerical checking helper function to detect denormal/subnormal numbers in the input and the output vectors of rocBLAS level 1 and 2 functions.
-- Added Denormal number detection to the Numerical checking helper function to detect denormal/subnormal numbers in the input and the output general matrices of rocBLAS level 2 and 3 functions.
-- Added NaN initialization tests to the yaml files of Level 2 rocBLAS batched and strided-batched functions for testing purposes.
-- Added memory allocation check to avoid disk swapping during rocblas-test runs by skipping tests.
+* Packages for test and benchmark executables on all supported OSes using CPack.
+* Added Denormal number detection to the Numerical checking helper function to detect denormal/subnormal numbers in the input and the output vectors of rocBLAS level 1 and 2 functions.
+* Added Denormal number detection to the Numerical checking helper function to detect denormal/subnormal numbers in the input and the output general matrices of rocBLAS level 2 and 3 functions.
+* Added NaN initialization tests to the yaml files of Level 2 rocBLAS batched and strided-batched functions for testing purposes.
+* Added memory allocation check to avoid disk swapping during rocblas-test runs by skipping tests.
 
 ##### Optimizations
 
-- Improved performance of non-batched and batched her2 for all sizes and data types.
-- Improved performance of non-batched and batched amin for all data types using shuffle reductions.
-- Improved performance of non-batched and batched amax for all data types using shuffle reductions.
-- Improved performance of trsv for all sizes and data types.
+* Improved performance of non-batched and batched her2 for all sizes and data types.
+* Improved performance of non-batched and batched amin for all data types using shuffle reductions.
+* Improved performance of non-batched and batched amax for all data types using shuffle reductions.
+* Improved performance of trsv for all sizes and data types.
 
 ##### Changed
 
-- Modifying gemm_ex for HBH (High-precision F16). The alpha/beta data type remains as F32 without narrowing to F16 and expanding back to F32 in the kernel. This change prevents rounding errors due to alpha/beta conversion in situations where alpha/beta are not exactly represented as an F16.
-- Modified non-batched and batched asum, nrm2 functions to use shuffle instruction based reductions.
-- For gemm, gemm_ex, gemm_ex2 internal API use rocblas_stride datatype for offset.
-- For symm, hemm, syrk, herk, dgmm, geam internal API use rocblas_stride datatype for offset.
--  AMD copyright year for all rocBLAS files.
-- For gemv (transpose-case), typecasted the &#39;lda&#39;(offset) datatype to size_t during offset calculation to avoid overflow and remove duplicate template functions.
+* Modifying gemm_ex for HBH (High-precision F16). The alpha/beta data type remains as F32 without narrowing to F16 and expanding back to F32 in the kernel. This change prevents rounding errors due to alpha/beta conversion in situations where alpha/beta are not exactly represented as an F16.
+* Modified non-batched and batched asum, nrm2 functions to use shuffle instruction based reductions.
+* For gemm, gemm_ex, gemm_ex2 internal API use rocblas_stride datatype for offset.
+* For symm, hemm, syrk, herk, dgmm, geam internal API use rocblas_stride datatype for offset.
+*  AMD copyright year for all rocBLAS files.
+* For gemv (transpose-case), typecasted the &#39;lda&#39;(offset) datatype to size_t during offset calculation to avoid overflow and remove duplicate template functions.
 
 ##### Fixed
 
-- For function her2 avoid overflow in offset calculation.
-- For trsm when alpha == 0 and on host, allow A to be nullptr.
-- Fixed memory access issue in trsv.
-- Fixed git pre-commit script to update only AMD copyright year.
-- Fixed dgmm, geam test functions to set correct stride values.
-- For functions ssyr2k and dsyr2k allow trans == rocblas_operation_conjugate_transpose.
-- Fixed compilation error for clients-only build.
+* For function her2 avoid overflow in offset calculation.
+* For trsm when alpha == 0 and on host, allow A to be nullptr.
+* Fixed memory access issue in trsv.
+* Fixed git pre-commit script to update only AMD copyright year.
+* Fixed dgmm, geam test functions to set correct stride values.
+* For functions ssyr2k and dsyr2k allow trans == rocblas_operation_conjugate_transpose.
+* Fixed compilation error for clients-only build.
 
 ##### Removed
 
-- Remove Navi12 (gfx1011) from fat binary.
+* Remove Navi12 (gfx1011) from fat binary.
 
 #### rocFFT 1.0.17
 
@@ -3593,23 +3594,23 @@ rocFFT 1.0.17 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for test and benchmark executables on all supported OSes using CPack.
-- Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
+* Packages for test and benchmark executables on all supported OSes using CPack.
+* Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
 
 ##### Changed
 
-- Improved reuse of twiddle memory between plans.
-- Set a default load/store callback when only one callback
+* Improved reuse of twiddle memory between plans.
+* Set a default load/store callback when only one callback
   type is set via the API for improved performance.
 
 ##### Optimizations
 
-- Introduced a new access pattern of lds (non-linear) and applied it on
+* Introduced a new access pattern of lds (non-linear) and applied it on
   sbcc kernels len 64 to get performance improvement.
 
 ##### Fixed
 
-- Fixed plan creation failure in cases where SBCC kernels would need to write to non-unit-stride buffers.
+* Fixed plan creation failure in cases where SBCC kernels would need to write to non-unit-stride buffers.
 
 #### rocPRIM 2.10.14
 
@@ -3617,8 +3618,8 @@ rocPRIM 2.10.14 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for tests and benchmark executable on all supported OSes using CPack.
-- Added File/Folder Reorg Changes and Enabled Backward compatibility support using wrapper headers.
+* Packages for tests and benchmark executable on all supported OSes using CPack.
+* Added File/Folder Reorg Changes and Enabled Backward compatibility support using wrapper headers.
 
 #### rocRAND 2.10.14
 
@@ -3626,8 +3627,8 @@ rocRAND 2.10.14 for ROCm 5.2.0
 
 ##### Added
 
-- Backward compatibility for deprecated `#include &lt;rocrand.h&gt;` using wrapper header files.
-- Packages for test and benchmark executables on all supported OSes using CPack.
+* Backward compatibility for deprecated `#include &lt;rocrand.h&gt;` using wrapper header files.
+* Packages for test and benchmark executables on all supported OSes using CPack.
 
 #### rocSOLVER 3.18.0
 
@@ -3635,18 +3636,18 @@ rocSOLVER 3.18.0 for ROCm 5.2.0
 
 ##### Added
 
-- Partial eigenvalue decomposition routines:
-    - STEBZ
-    - STEIN
-- Package generation for test and benchmark executables on all supported OSes using CPack.
-- Added tests for multi-level logging
-- Added tests for rocsolver-bench client
-- File/Folder Reorg
-  - Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
+* Partial eigenvalue decomposition routines:
+  * STEBZ
+  * STEIN
+* Package generation for test and benchmark executables on all supported OSes using CPack.
+* Added tests for multi-level logging
+* Added tests for rocsolver-bench client
+* File/Folder Reorg
+  * Added File/Folder Reorg Changes with backward compatibility support using ROCM-CMAKE wrapper functions.
 
 ##### Fixed
 
-- Fixed compatibility with libfmt 8.1
+* Fixed compatibility with libfmt 8.1
 
 #### rocSPARSE 2.2.0
 
@@ -3654,24 +3655,24 @@ rocSPARSE 2.2.0 for ROCm 5.2.0
 
 ##### Added
 
-- batched SpMM for CSR, COO and Blocked ELL formats. 
-- Packages for test and benchmark executables on all supported OSes using CPack.
-- Clients file importers and exporters.
+* batched SpMM for CSR, COO and Blocked ELL formats. 
+* Packages for test and benchmark executables on all supported OSes using CPack.
+* Clients file importers and exporters.
 
 ##### Improved
 
-- Clients code size reduction.
-- Clients error handling.
-- Clients benchmarking for performance tracking.
+* Clients code size reduction.
+* Clients error handling.
+* Clients benchmarking for performance tracking.
 
 ##### Changed
 
-- Test adjustments due to roundoff errors.
-- Fixing API calls compatiblity with rocPRIM.
+* Test adjustments due to roundoff errors.
+* Fixing API calls compatiblity with rocPRIM.
 
 ##### Known Issues
 
-- none
+* none
 
 #### rocThrust 2.15.0
 
@@ -3679,7 +3680,7 @@ rocThrust 2.15.0 for ROCm 5.2.0
 
 ##### Added
 
-- Packages for tests and benchmark executable on all supported OSes using CPack.
+* Packages for tests and benchmark executable on all supported OSes using CPack.
 
 #### rocWMMA 0.7
 
@@ -3687,29 +3688,29 @@ rocWMMA 0.7 for ROCm 5.2.0
 
 ##### Added
 
-- Added unit tests for DLRM kernels
-- Added GEMM sample
-- Added DLRM sample
-- Added SGEMV sample
-- Added unit tests for cooperative wmma load and stores
-- Added unit tests for IOBarrier.h
-- Added wmma load/ store  tests for different matrix types (A, B and Accumulator)
-- Added more block sizes 1, 2, 4, 8 to test MmaSyncMultiTest
-- Added block sizes 4, 8 to test MmaSynMultiLdsTest
-- Added support for wmma load / store layouts with block dimension greater than 64
-- Added IOShape structure to define the attributes of mapping and layouts for all wmma matrix types
-- Added CI testing for rocWMMA
+* Added unit tests for DLRM kernels
+* Added GEMM sample
+* Added DLRM sample
+* Added SGEMV sample
+* Added unit tests for cooperative wmma load and stores
+* Added unit tests for IOBarrier.h
+* Added wmma load/ store  tests for different matrix types (A, B and Accumulator)
+* Added more block sizes 1, 2, 4, 8 to test MmaSyncMultiTest
+* Added block sizes 4, 8 to test MmaSynMultiLdsTest
+* Added support for wmma load / store layouts with block dimension greater than 64
+* Added IOShape structure to define the attributes of mapping and layouts for all wmma matrix types
+* Added CI testing for rocWMMA
 
 ##### Changed
 
-- Renamed wmma to rocwmma in cmake, header files and documentation
-- Renamed library files
-- Modified Layout.h to use different matrix offset calculations (base offset, incremental offset and cumulative offset)
-- Opaque load/store continue to use incrementatl offsets as they fill the entire block
-- Cooperative load/store use cumulative offsets as they fill only small portions for the entire block
-- Increased Max split counts to 64 for cooperative load/store
-- Moved all the wmma definitions, API headers to rocwmma namespace
-- Modified wmma fill unit tests to validate all matrix types (A, B, Accumulator)
+* Renamed wmma to rocwmma in cmake, header files and documentation
+* Renamed library files
+* Modified Layout.h to use different matrix offset calculations (base offset, incremental offset and cumulative offset)
+* Opaque load/store continue to use incrementatl offsets as they fill the entire block
+* Cooperative load/store use cumulative offsets as they fill only small portions for the entire block
+* Increased Max split counts to 64 for cooperative load/store
+* Moved all the wmma definitions, API headers to rocwmma namespace
+* Modified wmma fill unit tests to validate all matrix types (A, B, Accumulator)
 
 #### Tensile 4.33.0
 
@@ -3717,26 +3718,26 @@ Tensile 4.33.0 for ROCm 5.2.0
 
 ##### Added
 
-- TensileUpdateLibrary for updating old library logic files
-- Support for TensileRetuneLibrary to use sizes from separate file
-- ZGEMM DirectToVgpr/DirectToLds/StoreCInUnroll/MIArchVgpr support
-- Tests for denorm correctness
-- Option to write different architectures to different TensileLibrary files
+* TensileUpdateLibrary for updating old library logic files
+* Support for TensileRetuneLibrary to use sizes from separate file
+* ZGEMM DirectToVgpr/DirectToLds/StoreCInUnroll/MIArchVgpr support
+* Tests for denorm correctness
+* Option to write different architectures to different TensileLibrary files
 
 ##### Optimizations
 
-- Optimize MessagePackLoadLibraryFile by switching to fread
-- DGEMM tail loop optimization for PrefetchAcrossPersistentMode=1/DirectToVgpr
+* Optimize MessagePackLoadLibraryFile by switching to fread
+* DGEMM tail loop optimization for PrefetchAcrossPersistentMode=1/DirectToVgpr
 
 ##### Changed
 
-- Alpha/beta datatype remains as F32 for HPA HGEMM
-- Force assembly kernels to not flush denorms
-- Use hipDeviceAttributePhysicalMultiProcessorCount as multiProcessorCount
+* Alpha/beta datatype remains as F32 for HPA HGEMM
+* Force assembly kernels to not flush denorms
+* Use hipDeviceAttributePhysicalMultiProcessorCount as multiProcessorCount
 
 ##### Fixed
 
-- Fix segmentation fault when run i8 datatype with TENSILE_DB=0x80
+* Fix segmentation fault when run i8 datatype with TENSILE_DB=0x80
 
 -------------------
 
@@ -3837,21 +3838,21 @@ This enhancement enables ROCDebugger users to interact with the HIP source-level
 
 ROCDebugger Machine Interface (MI) extends support to lanes. The following enhancements are made:
 
-- Added a new -lane-info command, listing the current thread's lanes.
+* Added a new -lane-info command, listing the current thread's lanes.
 
-- The -thread-select command now supports a lane switch to switch to a specific lane of a thread:
+* The -thread-select command now supports a lane switch to switch to a specific lane of a thread:
 
   ```sh
   -thread-select -l LANE THREAD
   ```
 
-- The =thread-selected notification gained a lane-id attribute. This enables the frontend to know which lane of the thread was selected.
+* The =thread-selected notification gained a lane-id attribute. This enables the frontend to know which lane of the thread was selected.
 
-- The *stopped asynchronous record gained lane-id and hit-lanes attributes.  The former indicates which lane is selected, and the latter indicates which lanes explain the stop.
+* The *stopped asynchronous record gained lane-id and hit-lanes attributes.  The former indicates which lane is selected, and the latter indicates which lanes explain the stop.
 
-- MI commands now accept a global --lane option, similar to the global --thread and --frame options.
+* MI commands now accept a global --lane option, similar to the global --thread and --frame options.
 
-- MI varobjs are now lane-aware.
+* MI varobjs are now lane-aware.
 
 For more information, refer to the ROC Debugger User Guide at
 {doc}`ROCgdb <rocgdb:index>`.
@@ -3864,17 +3865,12 @@ The clone-inferior command now ensures that the TTY, CMD, ARGS, and AMDGPU PRECI
 
 This release includes support for AMD Radeon™ Pro W6800, in addition to other bug fixes and performance improvements as listed below:
 
-- MIOpen now supports RDNA GPUs!! (via MIOpen PRs 973, 780, 764, 740, 739, 677, 660, 653, 493, 498)
-
-- Fixed a correctness issue with ImplicitGemm algorithm
-
-- Updated the performance data for new kernel versions
-
-- Improved MIOpen build time by splitting large kernel header files
-
-- Fixed an issue in reduction kernels for padded tensors
-
-- Various other bug fixes and performance improvements
+* MIOpen now supports RDNA GPUs!! (via MIOpen PRs 973, 780, 764, 740, 739, 677, 660, 653, 493, 498)
+* Fixed a correctness issue with ImplicitGemm algorithm
+* Updated the performance data for new kernel versions
+* Improved MIOpen build time by splitting large kernel header files
+* Fixed an issue in reduction kernels for padded tensors
+* Various other bug fixes and performance improvements
 
 For more information, see {doc}`Documentation <miopen:index>`.
 
@@ -3886,17 +3882,12 @@ CRIU is a userspace tool to Checkpoint and Restore an application.
 
 CRIU lacked the support for checkpoint restore applications that used device files such as a GPU. With this ROCm release, CRIU is enhanced with a new plugin to support AMD GPUs, which includes:
 
-- Single and Multi GPU systems (Gfx9)
-
-- Checkpoint / Restore on a different system
-
-- Checkpoint / Restore inside a docker container
-
-- PyTorch
-
-- Tensorflow
-
-- Using CRIU Image Streamer
+* Single and Multi GPU systems (Gfx9)
+* Checkpoint / Restore on a different system
+* Checkpoint / Restore inside a docker container
+* PyTorch
+* Tensorflow
+* Using CRIU Image Streamer
 
 For more information, refer to <https://github.com/checkpoint-restore/criu/tree/criu-dev/plugins/amdgpu>
 
@@ -3910,9 +3901,8 @@ For more information, refer to <https://github.com/checkpoint-restore/criu/tree/
 
 For more information, refer to the following websites:
 
-- <https://github.com/RadeonOpenCompute/criu/blob/amdgpu_plugin-03252022/Documentation/amdgpu_plugin.txt>
-
-- <https://criu.org/Main_Page>
+* <https://github.com/RadeonOpenCompute/criu/blob/amdgpu_plugin-03252022/Documentation/amdgpu_plugin.txt>
+* <https://criu.org/Main_Page>
 
 ### Fixed Defects
 
@@ -4033,24 +4023,24 @@ hipBLAS 0.50.0 for ROCm 5.1.0
 
 ##### Added
 
-- Added library version and device information to hipblas-test output
-- Added --rocsolver-path command line option to choose path to pre-built rocSOLVER, as
+* Added library version and device information to hipblas-test output
+* Added --rocsolver-path command line option to choose path to pre-built rocSOLVER, as
   absolute or relative path
-- Added --cmake_install command line option to update cmake to minimum version if required
-- Added cmake-arg parameter to pass in cmake arguments while building
-- Added infrastructure to support readthedocs hipBLAS documentation.
+* Added --cmake_install command line option to update cmake to minimum version if required
+* Added cmake-arg parameter to pass in cmake arguments while building
+* Added infrastructure to support readthedocs hipBLAS documentation.
 
 ##### Fixed
 
-- Added hipblasVersionMinor define. hipblaseVersionMinor remains defined
+* Added hipblasVersionMinor define. hipblaseVersionMinor remains defined
   for backwards compatibility.
-- Doxygen warnings in hipblas.h header file.
+* Doxygen warnings in hipblas.h header file.
 
 ##### Changed
 
-- rocblas-path command line option can be specified as either absolute or relative path
-- Help message improvements in install.sh and rmake.py
-- Updated googletest dependency from 1.10.0 to 1.11.0
+* rocblas-path command line option can be specified as either absolute or relative path
+* Help message improvements in install.sh and rmake.py
+* Updated googletest dependency from 1.10.0 to 1.11.0
 
 #### hipCUB 2.11.0
 
@@ -4058,16 +4048,16 @@ hipCUB 2.11.0 for ROCm 5.1.0
 
 ##### Added
 
-- Device segmented sort
-- Warp merge sort, WarpMask and thread sort from cub 1.15.0 supported in hipCUB
-- Device three way partition
+* Device segmented sort
+* Warp merge sort, WarpMask and thread sort from cub 1.15.0 supported in hipCUB
+* Device three way partition
 
 ##### Changed
 
-- Device_scan and device_segmented_scan: inclusive_scan now uses the input-type as accumulator-type, exclusive_scan uses initial-value-type.
-  - This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).
-  - And low-res input with high-res output (e.g. float input, double output)
-  - Block merge sort no longer supports non power of two blocksizes
+* Device_scan and device_segmented_scan: inclusive_scan now uses the input-type as accumulator-type, exclusive_scan uses initial-value-type.
+  * This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).
+  * And low-res input with high-res output (e.g. float input, double output)
+  * Block merge sort no longer supports non power of two blocksizes
 
 #### hipFFT 1.0.7
 
@@ -4075,7 +4065,7 @@ hipFFT 1.0.7 for ROCm 5.1.0
 
 ##### Changed
 
-- Use fft_params struct for accuracy and benchmark clients.
+* Use fft_params struct for accuracy and benchmark clients.
 
 #### hipSOLVER 1.3.0
 
@@ -4083,38 +4073,38 @@ hipSOLVER 1.3.0 for ROCm 5.1.0
 
 ##### Added
 
-- Added functions
-  - gels
-    - hipsolverSSgels_bufferSize, hipsolverDDgels_bufferSize, hipsolverCCgels_bufferSize, hipsolverZZgels_bufferSize
-    - hipsolverSSgels, hipsolverDDgels, hipsolverCCgels, hipsolverZZgels
-- Added library version and device information to hipsolver-test output.
-- Added compatibility API with hipsolverDn prefix.
-- Added compatibility-only functions
-  - gesvdj
-    - hipsolverDnSgesvdj_bufferSize, hipsolverDnDgesvdj_bufferSize, hipsolverDnCgesvdj_bufferSize, hipsolverDnZgesvdj_bufferSize
-    - hipsolverDnSgesvdj, hipsolverDnDgesvdj, hipsolverDnCgesvdj, hipsolverDnZgesvdj
-  - gesvdjBatched
-    - hipsolverDnSgesvdjBatched_bufferSize, hipsolverDnDgesvdjBatched_bufferSize, hipsolverDnCgesvdjBatched_bufferSize, hipsolverDnZgesvdjBatched_bufferSize
-    - hipsolverDnSgesvdjBatched, hipsolverDnDgesvdjBatched, hipsolverDnCgesvdjBatched, hipsolverDnZgesvdjBatched
-  - syevj
-    - hipsolverDnSsyevj_bufferSize, hipsolverDnDsyevj_bufferSize, hipsolverDnCheevj_bufferSize, hipsolverDnZheevj_bufferSize
-    - hipsolverDnSsyevj, hipsolverDnDsyevj, hipsolverDnCheevj, hipsolverDnZheevj
-  - syevjBatched
-    - hipsolverDnSsyevjBatched_bufferSize, hipsolverDnDsyevjBatched_bufferSize, hipsolverDnCheevjBatched_bufferSize, hipsolverDnZheevjBatched_bufferSize
-    - hipsolverDnSsyevjBatched, hipsolverDnDsyevjBatched, hipsolverDnCheevjBatched, hipsolverDnZheevjBatched
-  - sygvj
-    - hipsolverDnSsygvj_bufferSize, hipsolverDnDsygvj_bufferSize, hipsolverDnChegvj_bufferSize, hipsolverDnZhegvj_bufferSize
-    - hipsolverDnSsygvj, hipsolverDnDsygvj, hipsolverDnChegvj, hipsolverDnZhegvj
+* Added functions
+  * gels
+    * hipsolverSSgels_bufferSize, hipsolverDDgels_bufferSize, hipsolverCCgels_bufferSize, hipsolverZZgels_bufferSize
+    * hipsolverSSgels, hipsolverDDgels, hipsolverCCgels, hipsolverZZgels
+* Added library version and device information to hipsolver-test output.
+* Added compatibility API with hipsolverDn prefix.
+* Added compatibility-only functions
+  * gesvdj
+    * hipsolverDnSgesvdj_bufferSize, hipsolverDnDgesvdj_bufferSize, hipsolverDnCgesvdj_bufferSize, hipsolverDnZgesvdj_bufferSize
+    * hipsolverDnSgesvdj, hipsolverDnDgesvdj, hipsolverDnCgesvdj, hipsolverDnZgesvdj
+  * gesvdjBatched
+    * hipsolverDnSgesvdjBatched_bufferSize, hipsolverDnDgesvdjBatched_bufferSize, hipsolverDnCgesvdjBatched_bufferSize, hipsolverDnZgesvdjBatched_bufferSize
+    * hipsolverDnSgesvdjBatched, hipsolverDnDgesvdjBatched, hipsolverDnCgesvdjBatched, hipsolverDnZgesvdjBatched
+  * syevj
+    * hipsolverDnSsyevj_bufferSize, hipsolverDnDsyevj_bufferSize, hipsolverDnCheevj_bufferSize, hipsolverDnZheevj_bufferSize
+    * hipsolverDnSsyevj, hipsolverDnDsyevj, hipsolverDnCheevj, hipsolverDnZheevj
+  * syevjBatched
+    * hipsolverDnSsyevjBatched_bufferSize, hipsolverDnDsyevjBatched_bufferSize, hipsolverDnCheevjBatched_bufferSize, hipsolverDnZheevjBatched_bufferSize
+    * hipsolverDnSsyevjBatched, hipsolverDnDsyevjBatched, hipsolverDnCheevjBatched, hipsolverDnZheevjBatched
+  * sygvj
+    * hipsolverDnSsygvj_bufferSize, hipsolverDnDsygvj_bufferSize, hipsolverDnChegvj_bufferSize, hipsolverDnZhegvj_bufferSize
+    * hipsolverDnSsygvj, hipsolverDnDsygvj, hipsolverDnChegvj, hipsolverDnZhegvj
 
 ##### Changed
 
-- The rocSOLVER backend now allows hipsolverXXgels and hipsolverXXgesv to be called in-place when B == X.
-- The rocSOLVER backend now allows rwork to be passed as a null pointer to hipsolverXgesvd.
+* The rocSOLVER backend now allows hipsolverXXgels and hipsolverXXgesv to be called in-place when B == X.
+* The rocSOLVER backend now allows rwork to be passed as a null pointer to hipsolverXgesvd.
 
 ##### Fixed
 
-- bufferSize functions will now return HIPSOLVER_STATUS_NOT_INITIALIZED instead of HIPSOLVER_STATUS_INVALID_VALUE when both handle and lwork are null.
-- Fixed rare memory allocation failure in syevd/heevd and sygvd/hegvd caused by improper workspace array allocation outside of rocSOLVER.
+* bufferSize functions will now return HIPSOLVER_STATUS_NOT_INITIALIZED instead of HIPSOLVER_STATUS_INVALID_VALUE when both handle and lwork are null.
+* Fixed rare memory allocation failure in syevd/heevd and sygvd/hegvd caused by improper workspace array allocation outside of rocSOLVER.
 
 #### hipSPARSE 2.1.0
 
@@ -4122,21 +4112,21 @@ hipSPARSE 2.1.0 for ROCm 5.1.0
 
 ##### Added
 
-- Added gtsv_interleaved_batch and gpsv_interleaved_batch routines
-- Add SpGEMM_reuse
+* Added gtsv_interleaved_batch and gpsv_interleaved_batch routines
+* Add SpGEMM_reuse
 
 ##### Changed
 
-- Changed BUILD_CUDA with USE_CUDA in install script and cmake files
-- Update googletest to 11.1
+* Changed BUILD_CUDA with USE_CUDA in install script and cmake files
+* Update googletest to 11.1
 
 ##### Improved
 
-- Fixed a bug in SpMM Alg versioning
+* Fixed a bug in SpMM Alg versioning
 
 ##### Known Issues
 
-- none
+* none
 
 #### rccl 2.11.4
 
@@ -4144,11 +4134,11 @@ RCCL 2.11.4 for ROCm 5.1.0
 
 ##### Added
 
-- Compatibility with NCCL 2.11.4
+* Compatibility with NCCL 2.11.4
 
 ##### Known Issues
 
-- Managed memory is not currently supported for clique-based kernels
+* Managed memory is not currently supported for clique-based kernels
 
 #### rocALUTION 2.0.2
 
@@ -4156,8 +4146,8 @@ rocALUTION 2.0.2 for ROCm 5.1.0
 
 ##### Added
 
-- Added out-of-place matrix transpose functionality
-- Added LocalVector&lt;bool&gt;
+* Added out-of-place matrix transpose functionality
+* Added LocalVector&lt;bool&gt;
 
 #### rocBLAS 2.43.0
 
@@ -4165,32 +4155,32 @@ rocBLAS 2.43.0 for ROCm 5.1.0
 
 ##### Added
 
-- Option to install script for number of jobs to use for rocBLAS and Tensile compilation (-j, --jobs)
-- Option to install script to build clients without using any Fortran (--clients_no_fortran)
-- rocblas_client_initialize function, to perform rocBLAS initialize for clients(benchmark/test) and report the execution time.
-- Added tests for output of reduction functions when given bad input
-- Added user specified initialization (rand_int/trig_float/hpl) for initializing matrices and vectors in rocblas-bench
+* Option to install script for number of jobs to use for rocBLAS and Tensile compilation (-j, --jobs)
+* Option to install script to build clients without using any Fortran (--clients_no_fortran)
+* rocblas_client_initialize function, to perform rocBLAS initialize for clients(benchmark/test) and report the execution time.
+* Added tests for output of reduction functions when given bad input
+* Added user specified initialization (rand_int/trig_float/hpl) for initializing matrices and vectors in rocblas-bench
 
 ##### Optimizations
 
-- Improved performance of trsm with side == left and n == 1
-- Improved perforamnce of trsm with side == left and m &lt;= 32 along with side == right and n &lt;= 32
+* Improved performance of trsm with side == left and n == 1
+* Improved perforamnce of trsm with side == left and m &lt;= 32 along with side == right and n &lt;= 32
 
 ##### Changed
 
-- For syrkx and trmm internal API use rocblas_stride datatype for offset
-- For non-batched and batched gemm_ex functions if the C matrix pointer equals the D matrix pointer (aliased) their respective type and leading dimension arguments must now match
-- Test client dependencies updated to GTest 1.11
-- non-global false positives reported by cppcheck from file based suppression to inline suppression. File based suppression will only be used for global false positives.
-- Help menu messages in install.sh
-- For ger function, typecast the &#39;lda&#39;(offset) datatype to size_t during offset calculation to avoid overflow and remove duplicate template functions.
-- Modified default initialization from rand_int to hpl for initializing matrices and vectors in rocblas-bench
+* For syrkx and trmm internal API use rocblas_stride datatype for offset
+* For non-batched and batched gemm_ex functions if the C matrix pointer equals the D matrix pointer (aliased) their respective type and leading dimension arguments must now match
+* Test client dependencies updated to GTest 1.11
+* non-global false positives reported by cppcheck from file based suppression to inline suppression. File based suppression will only be used for global false positives.
+* Help menu messages in install.sh
+* For ger function, typecast the &#39;lda&#39;(offset) datatype to size_t during offset calculation to avoid overflow and remove duplicate template functions.
+* Modified default initialization from rand_int to hpl for initializing matrices and vectors in rocblas-bench
 
 ##### Fixed
 
-- For function trmv (non-transposed cases) avoid overflow in offset calculation
-- Fixed cppcheck errors/warnings
-- Fixed doxygen warnings
+* For function trmv (non-transposed cases) avoid overflow in offset calculation
+* Fixed cppcheck errors/warnings
+* Fixed doxygen warnings
 
 #### rocFFT 1.0.16
 
@@ -4198,23 +4188,23 @@ rocFFT 1.0.16 for ROCm 5.1.0
 
 ##### Changed
 
-- Supported unaligned tile dimension for SBRC_2D kernels.
-- Improved (more RAII) test and benchmark infrastructure.
-- Enabled runtime compilation of length-2304 FFT kernel during plan creation.
+* Supported unaligned tile dimension for SBRC_2D kernels.
+* Improved (more RAII) test and benchmark infrastructure.
+* Enabled runtime compilation of length-2304 FFT kernel during plan creation.
 
 ##### Optimizations
 
-- Optimized more large 1D cases by using L1D_CC plan.
-- Optimized 3D 200^3 C2R case.
-- Optimized 1D 2^30 double precision on MI200.
+* Optimized more large 1D cases by using L1D_CC plan.
+* Optimized 3D 200^3 C2R case.
+* Optimized 1D 2^30 double precision on MI200.
 
 ##### Fixed
 
-- Fixed correctness of some R2C transforms with unusual strides.
+* Fixed correctness of some R2C transforms with unusual strides.
 
 ##### Removed
 
-- The hipFFT API (header) has been removed from after a long deprecation period.  Please use the [hipFFT](https://github.com/ROCmSoftwarePlatform/hipFFT) package/repository to obtain the hipFFT API.
+* The hipFFT API (header) has been removed from after a long deprecation period.  Please use the [hipFFT](https://github.com/ROCmSoftwarePlatform/hipFFT) package/repository to obtain the hipFFT API.
 
 #### rocPRIM 2.10.13
 
@@ -4222,20 +4212,20 @@ rocPRIM 2.10.13 for ROCm 5.1.0
 
 ##### Fixed
 
-- Fixed radix sort int64_t bug introduced in [2.10.11]
+* Fixed radix sort int64_t bug introduced in [2.10.11]
 
 ##### Added
 
-- Future value
-- Added device partition_three_way to partition input to three output iterators based on two predicates
+* Future value
+* Added device partition_three_way to partition input to three output iterators based on two predicates
 
 ##### Changed
 
-- The reduce/scan algorithm precision issues in the tests has been resolved for half types.
+* The reduce/scan algorithm precision issues in the tests has been resolved for half types.
 
 ##### Known Issues
 
-- device_segmented_radix_sort unit test failing for HIP on Windows
+* device_segmented_radix_sort unit test failing for HIP on Windows
 
 #### rocRAND 2.10.13
 
@@ -4243,30 +4233,30 @@ rocRAND 2.10.13 for ROCm 5.1.0
 
 ##### Added
 
-- Generating a random sequence different sizes now produces the same sequence without gaps
+* Generating a random sequence different sizes now produces the same sequence without gaps
   indepent of how many values are generated per call.
-  - Only in the case of XORWOW, MRG32K3A, PHILOX4X32_10, SOBOL32 and SOBOL64
-  - This only holds true if the size in each call is a divisor of the distributions
+  * Only in the case of XORWOW, MRG32K3A, PHILOX4X32_10, SOBOL32 and SOBOL64
+  * This only holds true if the size in each call is a divisor of the distributions
     `output_width` due to performance
-  - Similarly the output pointer has to be aligned to `output_width * sizeof(output_type)`
+  * Similarly the output pointer has to be aligned to `output_width * sizeof(output_type)`
 
 ##### Changed
 
-- [hipRAND](https://github.com/ROCmSoftwarePlatform/hipRAND.git) split into a separate package
-- Header file installation location changed to match other libraries.
-  - Using the `rocrand.h` header file should now use `#include &lt;rocrand/rocrand.h&gt;`, rather than `#include &lt;rocrand/rocrand.h&gt;`
-- rocRAND still includes hipRAND using a submodule
-  - The rocRAND package also sets the provides field with hipRAND, so projects which require hipRAND can begin to specify it.
+* [hipRAND](https://github.com/ROCmSoftwarePlatform/hipRAND.git) split into a separate package
+* Header file installation location changed to match other libraries.
+  * Using the `rocrand.h` header file should now use `#include &lt;rocrand/rocrand.h&gt;`, rather than `#include &lt;rocrand/rocrand.h&gt;`
+* rocRAND still includes hipRAND using a submodule
+  * The rocRAND package also sets the provides field with hipRAND, so projects which require hipRAND can begin to specify it.
 
 ##### Fixed
 
-- Fix offset behaviour for XORWOW, MRG32K3A and PHILOX4X32_10 generator, setting offset now
+* Fix offset behaviour for XORWOW, MRG32K3A and PHILOX4X32_10 generator, setting offset now
   correctly generates the same sequence starting from the offset.
-  - Only uniform int and float will work as these can be generated with a single call to the generator
+  * Only uniform int and float will work as these can be generated with a single call to the generator
 
 ##### Known Issues
 
-- kernel_xorwow unit test is failing for certain GPU architectures.
+* kernel_xorwow unit test is failing for certain GPU architectures.
 
 #### rocSOLVER 3.17.0
 
@@ -4274,16 +4264,16 @@ rocSOLVER 3.17.0 for ROCm 5.1.0
 
 ##### Optimized
 
-- Optimized non-pivoting and batch cases of the LU factorization
+* Optimized non-pivoting and batch cases of the LU factorization
 
 ##### Fixed
 
-- Fixed missing synchronization in SYTRF with `rocblas_fill_lower` that could potentially
+* Fixed missing synchronization in SYTRF with `rocblas_fill_lower` that could potentially
   result in incorrect pivot values.
-- Fixed multi-level logging output to file with the `ROCSOLVER_LOG_PATH`,
+* Fixed multi-level logging output to file with the `ROCSOLVER_LOG_PATH`,
   `ROCSOLVER_LOG_TRACE_PATH`, `ROCSOLVER_LOG_BENCH_PATH` and `ROCSOLVER_LOG_PROFILE_PATH`
   environment variables.
-- Fixed performance regression in the batched LU factorization of tiny matrices
+* Fixed performance regression in the batched LU factorization of tiny matrices
 
 #### rocSPARSE 2.1.0
 
@@ -4291,19 +4281,19 @@ rocSPARSE 2.1.0 for ROCm 5.1.0
 
 ##### Added
 
-- gtsv_interleaved_batch 
-- gpsv_interleaved_batch
-- SpGEMM_reuse
-- Allow copying of mat info struct
+* gtsv_interleaved_batch
+* gpsv_interleaved_batch
+* SpGEMM_reuse
+* Allow copying of mat info struct
 
 ##### Improved
 
-- Optimization for SDDMM
-- Allow unsorted matrices in csrgemm multipass algorithm
+* Optimization for SDDMM
+* Allow unsorted matrices in csrgemm multipass algorithm
 
 ##### Known Issues
 
-- none
+* none
 
 #### rocThrust 2.14.0
 
@@ -4311,11 +4301,11 @@ rocThrust 2.14.0 for ROCm 5.1.0
 
 ##### Added
 
-- Updated to match upstream Thrust 1.15.0
+* Updated to match upstream Thrust 1.15.0
 
 ##### Known Issues
 
-- async_copy, partition, and stable_sort_by_key unit tests are failing on HIP on Windows.
+* async_copy, partition, and stable_sort_by_key unit tests are failing on HIP on Windows.
 
 #### Tensile 4.32.0
 
@@ -4323,24 +4313,24 @@ Tensile 4.32.0 for ROCm 5.1.0
 
 ##### Added
 
-- Better control of parallelism to control memory usage
-- Support for multiprocessing on Windows for TensileCreateLibrary
-- New JSD metric and metric selection functionality
-- Initial changes to support two-tier solution selection
+* Better control of parallelism to control memory usage
+* Support for multiprocessing on Windows for TensileCreateLibrary
+* New JSD metric and metric selection functionality
+* Initial changes to support two-tier solution selection
 
 ##### Optimized
 
-- Optimized runtime of TensileCreateLibraries by reducing max RAM usage
-- StoreCInUnroll additional optimizations plus adaptive K support
-- DGEMM NN optimizations with PrefetchGlobalRead(PGR)=2 support
+* Optimized runtime of TensileCreateLibraries by reducing max RAM usage
+* StoreCInUnroll additional optimizations plus adaptive K support
+* DGEMM NN optimizations with PrefetchGlobalRead(PGR)=2 support
 
 ##### Changed
 
-- Update Googletest to 1.11.0
+* Update Googletest to 1.11.0
 
 ##### Removed
 
-- Remove no longer supported benchmarking steps
+* Remove no longer supported benchmarking steps
 
 -------------------
 
@@ -4697,13 +4687,10 @@ As a workaround, users can run amdgpu.runpm=0, which temporarily disables the ru
 
 Users may encounter an issue with the enabled timestamp functionality for monitoring one or multiple counters. ROCProfiler outputs the following four timestamps for each kernel:
 
-- Dispatch
-
-- Start
-
-- End
-
-- Complete
+* Dispatch
+* Start
+* End
+* Complete
 
 ##### Issue
 
@@ -4756,11 +4743,11 @@ System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV
 
 #### ROCm Libraries Changes – Deprecations and Deprecation Removal
 
-- The hipFFT.h header is now provided only by the hipFFT package.  Up to ROCm 5.0, users would get hipFFT.h in the rocFFT package too.
+* The hipFFT.h header is now provided only by the hipFFT package.  Up to ROCm 5.0, users would get hipFFT.h in the rocFFT package too.
 
-- The GlobalPairwiseAMG class is now entirely removed, users should use the PairwiseAMG class instead.
+* The GlobalPairwiseAMG class is now entirely removed, users should use the PairwiseAMG class instead.
 
-- The rocsparse_spmm signature in 5.0 was changed to match that of rocsparse_spmm_ex.  In 5.0, rocsparse_spmm_ex is still present, but deprecated. Signature diff for rocsparse_spmm
+* The rocsparse_spmm signature in 5.0 was changed to match that of rocsparse_spmm_ex.  In 5.0, rocsparse_spmm_ex is still present, but deprecated. Signature diff for rocsparse_spmm
   rocsparse_spmm in 5.0
 
   ```h
@@ -4802,9 +4789,9 @@ System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV
 
 In this release, arithmetic operators of HIP complex and vector types are deprecated.
 
-- As alternatives to arithmetic operators of HIP complex types, users can use arithmetic operators of `std::complex` types.
+* As alternatives to arithmetic operators of HIP complex types, users can use arithmetic operators of `std::complex` types.
 
-- As alternatives to arithmetic operators of HIP vector types, users can use the operators of the native clang vector type associated with the data member of HIP vector types.
+* As alternatives to arithmetic operators of HIP vector types, users can use the operators of the native clang vector type associated with the data member of HIP vector types.
 
 During the deprecation, two macros `_HIP_ENABLE_COMPLEX_OPERATORS` and `_HIP_ENABLE_VECTOR_OPERATORS` are provided to allow users to conditionally enable arithmetic operators of HIP complex or vector types.
 
@@ -4850,19 +4837,19 @@ hipBLAS 0.49.0 for ROCm 5.0.0
 
 ##### Added
 
-- Added rocSOLVER functions to hipblas-bench
-- Added option ROCM_MATHLIBS_API_USE_HIP_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex
-- Added compilation warning for future trmm changes
-- Added documentation to hipblas.h
-- Added option to forgo pivoting for getrf and getri when ipiv is nullptr
-- Added code coverage option
+* Added rocSOLVER functions to hipblas-bench
+* Added option ROCM_MATHLIBS_API_USE_HIP_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex
+* Added compilation warning for future trmm changes
+* Added documentation to hipblas.h
+* Added option to forgo pivoting for getrf and getri when ipiv is nullptr
+* Added code coverage option
 
 ##### Fixed
 
-- Fixed use of incorrect &#39;HIP_PATH&#39; when building from source.
-- Fixed windows packaging
-- Allowing negative increments in hipblas-bench
-- Removed boost dependency
+* Fixed use of incorrect &#39;HIP_PATH&#39; when building from source.
+* Fixed windows packaging
+* Allowing negative increments in hipblas-bench
+* Removed boost dependency
 
 #### hipCUB 2.10.13
 
@@ -4870,18 +4857,18 @@ hipCUB 2.10.13 for ROCm 5.0.0
 
 ##### Fixed
 
-- Added missing includes to hipcub.hpp
+* Added missing includes to hipcub.hpp
 
 ##### Added
 
-- Bfloat16 support to test cases (device_reduce &amp; device_radix_sort)
-- Device merge sort
-- Block merge sort
-- API update to CUB 1.14.0
+* Bfloat16 support to test cases (device_reduce &amp; device_radix_sort)
+* Device merge sort
+* Block merge sort
+* API update to CUB 1.14.0
 
 ##### Changed
 
-- The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend.
+* The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend.
 
 #### hipFFT 1.0.4
 
@@ -4889,12 +4876,12 @@ hipFFT 1.0.4 for ROCm 5.0.0
 
 ##### Fixed
 
-- Add calls to rocFFT setup/cleanup.
-- Cmake fixes for clients and backend support.
+* Add calls to rocFFT setup/cleanup.
+* Cmake fixes for clients and backend support.
 
 ##### Added
 
-- Added support for Windows 10 as a build target.
+* Added support for Windows 10 as a build target.
 
 #### hipSOLVER 1.2.0
 
@@ -4902,14 +4889,14 @@ hipSOLVER 1.2.0 for ROCm 5.0.0
 
 ##### Added
 
-- Added functions
-  - sytrf
-    - hipsolverSsytrf_bufferSize, hipsolverDsytrf_bufferSize, hipsolverCsytrf_bufferSize, hipsolverZsytrf_bufferSize
-    - hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf
+* Added functions
+  * sytrf
+    * hipsolverSsytrf_bufferSize, hipsolverDsytrf_bufferSize, hipsolverCsytrf_bufferSize, hipsolverZsytrf_bufferSize
+    * hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf
 
 ##### Fixed
 
-- Fixed use of incorrect `HIP_PATH` when building from source (#40).
+* Fixed use of incorrect `HIP_PATH` when building from source (#40).
   Thanks [@jakub329homola](https://github.com/jakub329homola)!
 
 #### hipSPARSE 2.0.0
@@ -4918,7 +4905,7 @@ hipSPARSE 2.0.0 for ROCm 5.0.0
 
 ##### Added
 
-- Added (conjugate) transpose support for csrmv, hybmv and spmv routines
+* Added (conjugate) transpose support for csrmv, hybmv and spmv routines
 
 #### rccl 2.10.3
 
@@ -4926,11 +4913,11 @@ RCCL 2.10.3 for ROCm 5.0.0
 
 ##### Added
 
-- Compatibility with NCCL 2.10.3
+* Compatibility with NCCL 2.10.3
 
 ##### Known Issues
 
-- Managed memory is not currently supported for clique-based kernels
+* Managed memory is not currently supported for clique-based kernels
 
 #### rocALUTION 2.0.1
 
@@ -4938,13 +4925,13 @@ rocALUTION 2.0.1 for ROCm 5.0.0
 
 ##### Changed
 
-- Removed deprecated GlobalPairwiseAMG class, please use PairwiseAMG instead.
-- Changed to C++ 14 Standard
+* Removed deprecated GlobalPairwiseAMG class, please use PairwiseAMG instead.
+* Changed to C++ 14 Standard
 
 ##### Improved
 
-- Added sanitizer option
-- Improved documentation
+* Added sanitizer option
+* Improved documentation
 
 #### rocBLAS 2.42.0
 
@@ -4952,30 +4939,30 @@ rocBLAS 2.42.0 for ROCm 5.0.0
 
 ##### Added
 
-- Added rocblas_get_version_string_size convenience function
-- Added rocblas_xtrmm_outofplace, an out-of-place version of rocblas_xtrmm
-- Added hpl and trig initialization for gemm_ex to rocblas-bench
-- Added source code gemm. It can be used as an alternative to Tensile for debugging and development
-- Added option ROCM_MATHLIBS_API_USE_HIP_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex
+* Added rocblas_get_version_string_size convenience function
+* Added rocblas_xtrmm_outofplace, an out-of-place version of rocblas_xtrmm
+* Added hpl and trig initialization for gemm_ex to rocblas-bench
+* Added source code gemm. It can be used as an alternative to Tensile for debugging and development
+* Added option ROCM_MATHLIBS_API_USE_HIP_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex
 
 ##### Optimizations
 
-- Improved performance of non-batched and batched single-precision GER for size m &gt; 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.
-- Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU.
+* Improved performance of non-batched and batched single-precision GER for size m &gt; 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.
+* Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU.
 
 ##### Changed
 
-- Instantiate templated rocBLAS functions to reduce size of librocblas.so
-- Removed static library dependency on msgpack
-- Removed boost dependencies for clients
+* Instantiate templated rocBLAS functions to reduce size of librocblas.so
+* Removed static library dependency on msgpack
+* Removed boost dependencies for clients
 
 ##### Fixed
 
-- Option to install script to build only rocBLAS clients with a pre-built rocBLAS library
-- Correctly set output of nrm2_batched_ex and nrm2_strided_batched_ex when given bad input
-- Fix for dgmm with side == rocblas_side_left and a negative incx
-- Fixed out-of-bounds read for small trsm
-- Fixed numerical checking for tbmv_strided_batched
+* Option to install script to build only rocBLAS clients with a pre-built rocBLAS library
+* Correctly set output of nrm2_batched_ex and nrm2_strided_batched_ex when given bad input
+* Fix for dgmm with side == rocblas_side_left and a negative incx
+* Fixed out-of-bounds read for small trsm
+* Fixed numerical checking for tbmv_strided_batched
 
 #### rocFFT 1.0.13
 
@@ -4983,24 +4970,24 @@ rocFFT 1.0.13 for ROCm 5.0.0
 
 ##### Optimizations
 
-- Improved many plans by removing unnecessary transpose steps.
-- Optimized scheme selection for 3D problems.
-  - Imposed less restrictions on 3D_BLOCK_RC selection. More problems can use 3D_BLOCK_RC and
+* Improved many plans by removing unnecessary transpose steps.
+* Optimized scheme selection for 3D problems.
+  * Imposed less restrictions on 3D_BLOCK_RC selection. More problems can use 3D_BLOCK_RC and
     have some performance gain.
-  - Enabled 3D_RC. Some 3D problems with SBCC-supported z-dim can use less kernels and get benefit.
-  - Force --length 336 336 56 (dp) use faster 3D_RC to avoid it from being skipped by conservative
+  * Enabled 3D_RC. Some 3D problems with SBCC-supported z-dim can use less kernels and get benefit.
+  * Force --length 336 336 56 (dp) use faster 3D_RC to avoid it from being skipped by conservative
     threshold test.
-- Optimized some even-length R2C/C2R cases by doing more operations
+* Optimized some even-length R2C/C2R cases by doing more operations
   in-place and combining pre/post processing into Stockham kernels.
-- Added radix-17.
+* Added radix-17.
 
 ##### Added
 
-- Added new kernel generator for select fused-2D transforms.
+* Added new kernel generator for select fused-2D transforms.
 
 ##### Fixed
 
-- Improved large 1D transform decompositions.
+* Improved large 1D transform decompositions.
 
 #### rocPRIM 2.10.12
 
@@ -5008,37 +4995,37 @@ rocPRIM 2.10.12 for ROCm 5.0.0
 
 ##### Fixed
 
-- Enable bfloat16 tests and reduce threshold for bfloat16
-- Fix device scan limit_size feature
-- Non-optimized builds no longer trigger local memory limit errors
+* Enable bfloat16 tests and reduce threshold for bfloat16
+* Fix device scan limit_size feature
+* Non-optimized builds no longer trigger local memory limit errors
 
 ##### Added
 
-- Added scan size limit feature
-- Added reduce size limit feature
-- Added transform size limit feature
-- Add block_load_striped and block_store_striped
-- Add gather_to_blocked to gather values from other threads into a blocked arrangement
-- The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config
-    - the block sort step supports multiple items per thread
+* Added scan size limit feature
+* Added reduce size limit feature
+* Added transform size limit feature
+* Add block_load_striped and block_store_striped
+* Add gather_to_blocked to gather values from other threads into a blocked arrangement
+* The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config
+    * the block sort step supports multiple items per thread
 
 ##### Changed
 
-- size_limit for scan, reduce and transform can now be set in the config struct instead of a parameter
-- Device_scan and device_segmented_scan: `inclusive_scan` now uses the input-type as accumulator-type, `exclusive_scan` uses initial-value-type.
-  - This particularly changes behaviour of small-size input types with large-size output types (e.g. `short` input, `int` output).
-  - And low-res input with high-res output (e.g. `float` input, `double` output)
-- Revert old Fiji workaround, because they solved the issue at compiler side
-- Update README cmake minimum version number
-- Block sort support multiple items per thread
-    - currently only powers of two block sizes, and items per threads are supported and only for full blocks
-- Bumped the minimum required version of CMake to 3.16
+* size_limit for scan, reduce and transform can now be set in the config struct instead of a parameter
+* Device_scan and device_segmented_scan: `inclusive_scan` now uses the input-type as accumulator-type, `exclusive_scan` uses initial-value-type.
+  * This particularly changes behaviour of small-size input types with large-size output types (e.g. `short` input, `int` output).
+  * And low-res input with high-res output (e.g. `float` input, `double` output)
+* Revert old Fiji workaround, because they solved the issue at compiler side
+* Update README cmake minimum version number
+* Block sort support multiple items per thread
+    * currently only powers of two block sizes, and items per threads are supported and only for full blocks
+* Bumped the minimum required version of CMake to 3.16
 
 ##### Known Issues
 
-- Unit tests may soft hang on MI200 when running in hipMallocManaged mode.
-- device_segmented_radix_sort, device_scan unit tests failing for HIP on Windows
-- ReduceEmptyInput cause random faulire with bfloat16
+* Unit tests may soft hang on MI200 when running in hipMallocManaged mode.
+* device_segmented_radix_sort, device_scan unit tests failing for HIP on Windows
+* ReduceEmptyInput cause random faulire with bfloat16
 
 #### rocRAND 2.10.12
 
@@ -5046,7 +5033,7 @@ rocRAND 2.10.12 for ROCm 5.0.0
 
 ##### Changed
 
-- No updates or changes for ROCm 5.0.0.
+* No updates or changes for ROCm 5.0.0.
 
 #### rocSOLVER 3.16.0
 
@@ -5054,27 +5041,27 @@ rocSOLVER 3.16.0 for ROCm 5.0.0
 
 ##### Added
 
-- Symmetric matrix factorizations:
-    - LASYF
-    - SYTF2, SYTRF (with batched and strided\_batched versions)
-- Added `rocsolver_get_version_string_size` to help with version string queries
-- Added `rocblas_layer_mode_ex` and the ability to print kernel calls in the trace and profile logs
-- Expanded batched and strided\_batched sample programs.
+* Symmetric matrix factorizations:
+    * LASYF
+    * SYTF2, SYTRF (with batched and strided\_batched versions)
+* Added `rocsolver_get_version_string_size` to help with version string queries
+* Added `rocblas_layer_mode_ex` and the ability to print kernel calls in the trace and profile logs
+* Expanded batched and strided\_batched sample programs.
 
 ##### Optimized
 
-- Improved general performance of LU factorization
-- Increased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems.
+* Improved general performance of LU factorization
+* Increased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems.
 
 ##### Changed
 
-- The rocsolver-test client now prints the rocSOLVER version used to run the tests,
+* The rocsolver-test client now prints the rocSOLVER version used to run the tests,
   rather than the version used to build them
-- The rocsolver-bench client now prints the rocSOLVER version used in the benchmark
+* The rocsolver-bench client now prints the rocSOLVER version used in the benchmark
 
 ##### Fixed
 
-- Added missing stdint.h include to rocsolver.h
+* Added missing stdint.h include to rocsolver.h
 
 #### rocSPARSE 2.0.0
 
@@ -5082,16 +5069,16 @@ rocSPARSE 2.0.0 for ROCm 5.0.0
 
 ##### Added
 
-- csrmv, coomv, ellmv, hybmv for (conjugate) transposed matrices
-- csrmv for symmetric matrices
+* csrmv, coomv, ellmv, hybmv for (conjugate) transposed matrices
+* csrmv for symmetric matrices
 
 ##### Changed
 
-- spmm\_ex is now deprecated and will be removed in the next major release
+* spmm\_ex is now deprecated and will be removed in the next major release
 
 ##### Improved
 
-- Optimization for gtsv
+* Optimization for gtsv
 
 #### rocThrust 2.13.0
 
@@ -5099,15 +5086,15 @@ rocThrust 2.13.0 for ROCm 5.0.0
 
 ##### Added
 
-- Updated to match upstream Thrust 1.13.0
-- Updated to match upstream Thrust 1.14.0
-- Added async scan
+* Updated to match upstream Thrust 1.13.0
+* Updated to match upstream Thrust 1.14.0
+* Added async scan
 
 ##### Changed
 
-- Scan algorithms: `inclusive_scan` now uses the input-type as accumulator-type, `exclusive_scan` uses initial-value-type.
-    - This particularly changes behaviour of small-size input types with large-size output types (e.g. `short` input, `int` output).
-    - And low-res input with high-res output (e.g. `float` input, `double` output)
+* Scan algorithms: `inclusive_scan` now uses the input-type as accumulator-type, `exclusive_scan` uses initial-value-type.
+    * This particularly changes behaviour of small-size input types with large-size output types (e.g. `short` input, `int` output).
+    * And low-res input with high-res output (e.g. `float` input, `double` output)
 
 #### Tensile 4.31.0
 
@@ -5115,28 +5102,28 @@ Tensile 4.31.0 for ROCm 5.0.0
 
 ##### Added
 
-- DirectToLds support (x2/x4)
-- DirectToVgpr support for DGEMM
-- Parameter to control number of files kernels are merged into to better parallelize kernel compilation
-- FP16 alternate implementation for HPA HGEMM on aldebaran
+* DirectToLds support (x2/x4)
+* DirectToVgpr support for DGEMM
+* Parameter to control number of files kernels are merged into to better parallelize kernel compilation
+* FP16 alternate implementation for HPA HGEMM on aldebaran
 
 ##### Optimized
 
-- Add DGEMM NN custom kernel for HPL on aldebaran
+* Add DGEMM NN custom kernel for HPL on aldebaran
 
 ##### Changed
 
-- Update tensile_client executable to std=c++14
+* Update tensile_client executable to std=c++14
 
 ##### Removed
 
-- Remove unused old Tensile client code
+* Remove unused old Tensile client code
 
 ##### Fixed
 
-- Fix hipErrorInvalidHandle during benchmarks
-- Fix addrVgpr for atomic GSU
-- Fix for Python 3.8: add case for Constant nodeType
-- Fix architecture mapping for gfx1011 and gfx1012
-- Fix PrintSolutionRejectionReason verbiage in KernelWriter.py
-- Fix vgpr alignment problem when enabling flat buffer load
+* Fix hipErrorInvalidHandle during benchmarks
+* Fix addrVgpr for atomic GSU
+* Fix for Python 3.8: add case for Constant nodeType
+* Fix architecture mapping for gfx1011 and gfx1012
+* Fix PrintSolutionRejectionReason verbiage in KernelWriter.py
+* Fix vgpr alignment problem when enabling flat buffer load
