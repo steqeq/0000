@@ -1,6 +1,6 @@
 # Install ROCm (HIP SDK) on Windows
 
-Start with {doc}`../../quick_start/windows` or follow the detailed
+Start with {doc}`../../quick-start/windows` or follow the detailed
 instructions below.
 
 ## Prepare to Install
@@ -57,4 +57,4 @@ Discusses strategies on how to bundle HIP libraries with an end user application
 
 ## See Also
 
-[Windows Support](../../../about/compatibility/windows_support.md)
+[Windows Support](../../../about/compatibility/windows-support.md)

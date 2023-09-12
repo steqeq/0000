@@ -6,7 +6,7 @@
 :gutter: 1
 
 :::{grid-item-card}
-**[AMD Instinct MI250](./gpu_arch/mi250.md)**
+**[AMD Instinct MI250](./gpu-arch/mi250.md)**
 
 Review hardware aspects of the AMD Instinct™ MI250
 accelerators and the CDNA™ 2 architecture that is the foundation of these GPUs.
@@ -17,7 +17,7 @@ accelerators and the CDNA™ 2 architecture that is the foundation of these GPUs
 :::
 
 :::{grid-item-card}
-**[AMD Instinct MI100](./gpu_arch/mi100.md)**
+**[AMD Instinct MI100](./gpu-arch/mi100.md)**
 
 Review hardware aspects of the AMD Instinct™ MI100
 accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs.

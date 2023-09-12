@@ -1,6 +1,6 @@
 # GPU and OS Support (Windows)
 
-(windows_support)=
+(windows-support)=
 
 ## Supported SKUs
 
@@ -64,7 +64,7 @@ on Windows is provided with two levels on enablement.
 
 * **Runtime**: Runtime enables the use of the HIP and OpenCL runtimes only.
 * **HIP SDK**: Runtime plus additional components refer to [Libraries](../../reference/libraries/index).
-  Some [math libraries](../../reference/libraries/gpu_libraries/math) are Linux exclusive, please check the library details.
+  Some [math libraries](../../reference/libraries/gpu-libraries/math) are Linux exclusive, please check the library details.
 
 ### Support Status
 

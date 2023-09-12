@@ -1,7 +1,7 @@
 # ROCm A-Z
 
 :::{table}
-:name: rocm_a-z
+:name: rocm-a-z
 
 | ROCm product | Description |
 | :---------------- | :------------ |

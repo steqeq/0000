@@ -87,7 +87,7 @@ their full potential.
 :gutter: 1
 
 :::{grid-item-card}
-**[AMD Radeon™ PRO W6000 and V620](./w6000_v620)**
+**[AMD Radeon™ PRO W6000 and V620](./w6000-v620)**
 
 This chapter describes the AMD GPUs with RDNA™ 2 architecture, namely AMD Radeon
 PRO W6800 and AMD Radeon PRO V620

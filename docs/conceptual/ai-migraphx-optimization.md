@@ -323,7 +323,7 @@ To run generated `.mxr` files through `migraphx-driver`, use the following:
 
 Alternatively, you can use MIGraphX's C++ or Python API to generate `.mxr` file.
 
-```{figure} ../data/rocm_ai/image018.png
+```{figure} ../data/rocm-ai/image018.png
 :name: image018
 :align: center
 

@@ -15,7 +15,7 @@ automatic differentiation. Other advanced features include:
 ### Installing PyTorch
 
 To install ROCm on bare metal, refer to the sections
-[GPU and OS Support (Linux)](../../about/compatibility/linux_support.md) and
+[GPU and OS Support (Linux)](../../about/compatibility/linux-support.md) and
 [Compatibility](../../about/compatibility/index.md) for hardware, software and
 3rd-party framework compatibility between ROCm and PyTorch. The recommended
 option to get a PyTorch environment is through Docker. However, installing the
@@ -53,7 +53,7 @@ Follow these steps:
    onto the container.
    :::
 
-(install_pytorch_using_wheels)=
+(install-pytorch-using-wheels)=
 
 #### Option 2: Install PyTorch Using Wheels Package
 
@@ -62,7 +62,7 @@ access this feature, refer to
 [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
 and choose the "ROCm" compute platform. The following image is a matrix from <https://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
 
-```{figure} ../../data/tutorials/install/magma_install/magma006.png
+```{figure} ../../data/tutorials/install/magma-install/magma006.png
 :name: installation-matrix-pytorch
 :align: center
 

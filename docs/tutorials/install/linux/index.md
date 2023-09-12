@@ -1,6 +1,6 @@
 # Install ROCm on Linux
 
-Start with {doc}`../../quick_start/linux` or follow the detailed
+Start with {doc}`../../quick-start/linux` or follow the detailed
 instructions below.
 
 ## Prepare to Install
@@ -15,7 +15,7 @@ The prerequisites page lists the required steps *before* installation.
 :::
 
 :::{grid-item-card}
-**[Installation options](./install_options.md)**
+**[Installation options](./install-options.md)**
 
 Package manager vs AMDGPU Installer
 
@@ -24,7 +24,7 @@ Standard Packages vs Multi-Version Packages
 
 ::::
 
-(linux_install_methods)=
+(linux-install-methods)=
 
 ## Choose your install method
 
@@ -48,4 +48,4 @@ manager.
 
 ## See Also
 
-[Linux support](../../../about/compatibility/linux_support.md)
+[Linux support](../../../about/compatibility/linux-support.md)

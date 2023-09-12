@@ -56,7 +56,7 @@ This example is adapted from the PyTorch research hub page on Inception v3[^torc
 
 Follow these steps:
 
-1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch_install) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch-install) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
@@ -146,7 +146,7 @@ The previous section focused on downloading and using the Inception v3 model for
 
 Follow these steps:
 
-1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch_install) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch-install) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker pull rocm/pytorch:latest
@@ -463,7 +463,7 @@ torch.save(model.state_dict(), "trained_inception_v3.pt")
 
 Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in the following image.
 
-```{figure} ../data/rocm_ai/inception_v3.png
+```{figure} ../data/rocm-ai/inception-v3.png
 :name: inception-v3
 ---
 align: center
@@ -741,7 +741,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/rocm_ai/mnist_1.png
+    ```{figure} ../data/rocm-ai/mnist-1.png
     ---
     align: center
     ---
@@ -769,7 +769,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/rocm_ai/mnist_2.png
+    ```{figure} ../data/rocm-ai/mnist-2.png
     ---
     align: center
     ---
@@ -895,7 +895,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm_ai/mnist_3.png
+        ```{figure} ../data/rocm-ai/mnist-3.png
         ---
         align: center
         ---
@@ -911,7 +911,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm_ai/mnist_4.png
+        ```{figure} ../data/rocm-ai/mnist-4.png
         ---
         align: center
         ---
@@ -946,7 +946,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm_ai/mnist_5.png
+        ```{figure} ../data/rocm-ai/mnist-5.png
         ---
         align: center
         ---
@@ -1115,7 +1115,7 @@ To prepare the data for training, follow these steps:
     print("Vectorized review", vectorize_text(first_review, first_label))
     ```
 
-    ```{figure} ../data/rocm_ai/TextClassification_3.png
+    ```{figure} ../data/rocm-ai/TextClassification-3.png
     ---
     align: center
     ---
@@ -1158,7 +1158,7 @@ To prepare the data for training, follow these steps:
     model.summary()
     ```
 
-    ```{figure} ../data/rocm_ai/TextClassification_4.png
+    ```{figure} ../data/rocm-ai/TextClassification-4.png
     ---
     align: center
     ---
@@ -1178,7 +1178,7 @@ To prepare the data for training, follow these steps:
     history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
     ```
 
-    ```{figure} ../data/rocm_ai/TextClassification_5.png
+    ```{figure} ../data/rocm-ai/TextClassification-5.png
     ---
     align: center
     ---
@@ -1226,7 +1226,7 @@ To prepare the data for training, follow these steps:
 
     The following images illustrate the training and validation loss and the training and validation accuracy.
 
-    ```{figure} ../data/rocm_ai/TextClassification_6.png
+    ```{figure} ../data/rocm-ai/TextClassification-6.png
     :name: TextClassification6
     ---
     align: center
@@ -1234,7 +1234,7 @@ To prepare the data for training, follow these steps:
     Training and Validation Loss
     ```
 
-    ```{figure} ../data/rocm_ai/TextClassification_7.png
+    ```{figure} ../data/rocm-ai/TextClassification-7.png
     :name: TextClassification7
     ---
     align: center

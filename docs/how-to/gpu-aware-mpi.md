@@ -72,7 +72,7 @@ make -j $(nproc)
 make -j $(nproc) install
 ```
 
-The [communication libraries tables](#communication_libraries)
+The [communication libraries tables](#communication-libraries)
 documents the compatibility of UCX versions with ROCm versions.
 
 ## Install Open MPI
@@ -148,7 +148,7 @@ larger than 67MB, an effective utilization of about 150GB/sec is achieved, which
 corresponds to 75% of the peak transfer bandwidth of 200GB/sec for that
 connection:
 
-:::{figure} ../data/how_to/gpu_enabled_mpi_1.png
+:::{figure} ../data/how-to/gpu-enabled-mpi-1.png
 :name: mpi-bandwidth
 :alt: OSU execution showing transfer bandwidth increasing alongside payload inc.
 Inter-GPU bandwidth with various payload sizes.
@@ -161,7 +161,7 @@ Unified Collective Communication Library (UCC) component in Open MPI.
 For this, the UCC library has to be configured and compiled with ROCm
 support.
 
-Please note the compatibility [tables](#communication_libraries)
+Please note the compatibility [tables](#communication-libraries)
 for UCC versions with the various ROCm versions.
 
 An example for configuring UCC and Open MPI with ROCm support

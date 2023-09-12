@@ -25,4 +25,4 @@ Instructions for removing ROCm packages, libraries and tools.
 
 ## See Also
 
-[Linux support](../../../../about/compatibility/linux_support.md)
+[Linux support](../../../../about/compatibility/linux-support.md)

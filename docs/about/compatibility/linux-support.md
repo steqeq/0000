@@ -1,6 +1,6 @@
 # GPU and OS support (Linux)
 
-(linux_support)=
+(linux-support)=
 
 ## Supported Linux Distributions
 

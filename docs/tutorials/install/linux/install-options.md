@@ -1,7 +1,7 @@
 # ROCm Installation Options (Linux)
 
 Users installing ROCm must choose between various installation options. A new
-user should follow the [Quick Start guide](../../quick_start/linux).
+user should follow the [Quick Start guide](../../quick-start/linux).
 
 ## Package Manager versus AMDGPU Installer?
 

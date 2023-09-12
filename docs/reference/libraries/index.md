@@ -4,17 +4,17 @@
 :gutter: 1
 
 :::{grid-item-card}
-**[AI libraries](./ai_libraries.md)**
+**[AI libraries](./ai-libraries.md)**
 
 :::
 
 :::{grid-item-card}
-**[Math libraries](./gpu_libraries/math.md)**
+**[Math libraries](./gpu-libraries/math.md)**
 
 :::
 
 :::{grid-item-card}
-**[Communication libraries](./gpu_libraries/communication.md)**
+**[Communication libraries](./gpu-libraries/communication.md)**
 
 :::
 ::::
