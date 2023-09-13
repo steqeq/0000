@@ -4,13 +4,13 @@ The following sections cover inferencing and introduces MIGraphX.
 
 ## Inference
 
-The inference is where capabilities learned during Deep Learning training are put to work. It refers to using a fully trained neural network to make conclusions (predictions) on unseen data that the model has never interacted with before. Deep Learning inferencing is achieved by feeding new data, such as new images, to the network, giving the Deep Neural Network a chance to classify the image.
+The inference is where capabilities learned during deep-learning training are put to work. It refers to using a fully trained neural network to make conclusions (predictions) on unseen data that the model has never interacted with before. Deep-learning inferencing is achieved by feeding new data, such as new images, to the network, giving the Deep Neural Network a chance to classify the image.
 
 Taking our previous example of MNIST, the DNN can be fed new images of handwritten digit images, allowing the neural network to classify digits. A fully trained DNN should make accurate predictions about what an image represents, and inference cannot happen without training.
 
 ## MIGraphX Introduction
 
-MIGraphX is a graph compiler focused on accelerating the Machine Learning inference that can target AMD GPUs and CPUs. MIGraphX accelerates the Machine Learning models by leveraging several graph-level transformations and optimizations. These optimizations include:
+MIGraphX is a graph compiler focused on accelerating the machine-learning inference that can target AMD GPUs and CPUs. MIGraphX accelerates the machine-learning models by leveraging several graph-level transformations and optimizations. These optimizations include:
 
 * Operator fusion
 * Arithmetic simplifications

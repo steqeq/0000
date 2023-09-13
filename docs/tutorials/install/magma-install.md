@@ -13,7 +13,7 @@ more information, refer to
 
 ### Using MAGMA for PyTorch
 
-Tensor is fundamental to Deep Learning techniques because it provides extensive
+Tensor is fundamental to deep-learning techniques because it provides extensive
 representational functionalities and math operations. This data structure is
 represented as a multidimensional matrix. MAGMA accelerates tensor operations
 with a variety of solutions including driver routines, computational routines,

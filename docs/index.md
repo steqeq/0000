@@ -38,7 +38,7 @@ Task-oriented walkthroughs
 
 * [System Tuning for Various Architectures](./how-to/tuning-guides/index.md)
 * [GPU Aware MPI](./how-to/gpu-aware-mpi.md)
-* [Setting up for Deep Learning with ROCm](./how-to/deep-learning-rocm.md)
+* [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
 * [System Level Debugging](./how-to/system-debugging.md)
 
 :::

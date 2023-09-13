@@ -2,8 +2,8 @@
 
 ## TensorFlow
 
-TensorFlow is an open-source library for solving Machine Learning,
-Deep Learning, and Artificial Intelligence problems. It can be used to solve
+TensorFlow is an open-source library for solving machine-learning,
+deep-learning, and artificial-intelligence problems. It can be used to solve
 many problems across different sectors and industries but primarily focuses on
 training and inference in neural networks. It is one of the most popular and
 in-demand frameworks and is very active in open source contribution and

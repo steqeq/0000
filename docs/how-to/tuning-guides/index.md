@@ -77,7 +77,7 @@ requirements, a blend of both graphics and compute, certification, stability and
 the list continues.
 
 The document covers specific software requirements and processes needed to use
-these GPUs for Single Root I/O Virtualization (SR-IOV) and Machine Learning
+these GPUs for Single Root I/O Virtualization (SR-IOV) and machine learning
 (ML).
 
 The main purpose of this document is to help users utilize the RDNA 2 GPUs to

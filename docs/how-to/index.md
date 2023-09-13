@@ -11,9 +11,9 @@ Use case-specific system setup and tuning guides.
 :::
 
 :::{grid-item-card}
-**[Deep Learning Guide](./deep-learning-rocm.md)**
+**[Deep-learning guide](./deep-learning-rocm.md)**
 
-Installation of various Deep Learning frameworks and applications.
+Installation of various deep learning frameworks and applications.
 
 :::
 

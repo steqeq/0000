@@ -87,8 +87,8 @@ clang compiler files.
 | `rocm-hip-libraries`     | HIP libraries optimized for the AMD platform                                                                                        |
 | `rocm-hip-sdk`           | Develop or port HIP applications and libraries for the AMD platform                                        |
 | `rocm-developer-tools`   | Debug and profile HIP applications                                                                    |
-| `rocm-ml-sdk`            | Develop and run Machine Learning applications with optimized for AMD |
-| `rocm-ml-libraries`      | Key Machine Learning libraries, specifically MIOpen                                                                 |
+| `rocm-ml-sdk`            | Develop and run machine-learning applications with optimized for AMD |
+| `rocm-ml-libraries`      | Key machine-learning libraries, specifically MIOpen                                                                 |
 | `rocm-openmp-sdk`        | Develop OpenMP-based applications for the AMD platform                                                        |
 | `rocm-openmp-runtime`    | Run OpenMP-based applications for the AMD platform                                                            |
 ```
