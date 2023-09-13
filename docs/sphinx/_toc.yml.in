@@ -10,8 +10,118 @@ subtrees:
     title: What is ROCm?
     subtrees:
     - entries:
-      - file: rocm-ai.md
-        title: ROCm & AI
+      - file: rocm-a-z.md
+        title: ROCm A-Z
+        subtrees:
+        - entries:
+          - url: https://github.com/ROCm-Developer-Tools/clr
+            title: AMD Compute Language Runtimes (CLR)
+          - url: https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/
+            title: AMDMIGraphX
+          - url: https://github.com/ROCm-Developer-Tools/aomp/
+            title: AOMP
+          - url: https://github.com/RadeonOpenCompute/atmi/
+            title: Asynchronous Task and Memory Interface (ATMI)
+          - url: https://rocm.docs.amd.com/projects/composable_kernel/en/latest/
+            title: Composable Kernel
+          - url: https://github.com/ROCm-Developer-Tools/flang/
+            title: Flang
+          - url: https://github.com/ROCmSoftwarePlatform/half/
+            title: Half-precision floating point library (half)
+          - url: https://rocm.docs.amd.com/projects/HIP/en/latest/
+            title: HIP
+          - url: https://github.com/ROCmSoftwarePlatform/hipBLAS/
+            title: hipBLAS
+          - url: https://rocm.docs.amd.com/projects/HIPCC/en/latest/
+            title: HIPCC
+          - url: https://rocm.docs.amd.com/projects/hipCUB/en/latest/
+            title: hipCUB
+          - url: https://rocm.docs.amd.com/projects/hipFFT/en/latest/
+            title: hipFFT
+          - url: https://rocm.docs.amd.com/projects/hipfort/en/latest/
+            title: hipfort
+          - url: https://rocm.docs.amd.com/projects/HIPIFY/en/latest/
+            title: HIPIFY
+          - url: https://rocm.docs.amd.com/projects/HIPIFY/en/latest/hipify-clang.html
+            title: hipify-clang
+          - url: https://rocm.docs.amd.com/projects/HIPIFY/en/latest/hipify-perl.html
+            title: hipify-perl
+          - url: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+            title: hipSOLVER
+          - url: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+            title: hipSPARSE
+          - url: https://github.com/ROCmSoftwarePlatform/hipTensor
+            title: hipTensor
+          - url: https://github.com/RadeonOpenCompute/llvm-project
+            title: LLVM
+          - url: https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/
+            title: MIGraphX
+          - url: https://rocm.docs.amd.com/projects/MIOpen/en/latest/
+            title: MIOpen
+          - url: https://github.com/ROCmSoftwarePlatform/MIOpenGEMM
+            title: MIOpenGEMM
+          - url: https://github.com/ROCmSoftwarePlatform/MIOpenTensile
+            title: MIOpenTensile
+          - url: https://rocm.docs.amd.com/projects/MIVisionX/en/latest/doxygen/html/index.html
+            title: MIVisionX
+          - url: https://github.com/GPUOpen-Tools/radeon_compute_profiler/
+            title: Radeon Compute Profiler (RCP)
+          - url: https://rocm.docs.amd.com/projects/rccl/en/latest/
+            title: RCCL
+          - url: https://rocm.docs.amd.com/projects/rocAL/en/latest/doxygen/html/index.html
+            title: rocAL
+          - url: https://rocm.docs.amd.com/projects/rocALUTION/en/latest/
+            title: rocALUTION
+          - url: https://github.com/RadeonOpenCompute/rocm_bandwidth_test/
+            title: RocBandwidthTest
+          - url: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/
+            title: rocBLAS
+          - url: https://rocm.docs.amd.com/projects/rocFFT/en/latest/
+            title: rocFFT
+          - url: https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/
+            title: ROCK-Kernel-Driver
+          - url: https://rocm.docs.amd.com/en/latest/reference/rocmcc/rocmcc.html
+            title: ROCmCC
+          - url: https://github.com/RadeonOpenCompute/rocm-cmake
+            title: ROCm cmake
+          - url: https://rocm.docs.amd.com/projects/rdc/en/latest/
+            title: ROCm Data Center Tool
+          - url: https://github.com/ROCm-Developer-Tools/rocr_debug_agent/
+            title: ROCm Debug Agent Library (ROCdebug-agent)
+          - url: https://rocm.docs.amd.com/projects/ROCgdb/en/latest/
+            title: ROCm Debugger (ROCgdb)
+          - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/
+            title: ROCm Debugger API (ROCdbgapi)
+          - url: https://github.com/RadeonOpenCompute/rocminfo/
+            title: rocminfo
+          - url: https://github.com/RadeonOpenCompute/rocm_smi_lib/
+            title: ROCm SMI
+          - url: https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/
+            title: ROCm Validation Suite
+          - url: https://rocm.docs.amd.com/projects/rocPRIM/en/latest/
+            title: rocPRIM
+          - url: https://rocm.docs.amd.com/projects/rocprofiler/en/latest/profiler_home_page.html
+            title: ROCProfiler
+          - url: https://rocm.docs.amd.com/projects/rocRAND/en/latest/
+            title: rocRAND
+          - url: https://github.com/RadeonOpenCompute/ROCR-Runtime/
+            title: ROCR-Runtime
+          - url: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
+            title: rocSOLVER
+          - url: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+            title: rocSPARSE
+          - url: https://rocm.docs.amd.com/projects/rocThrust/en/latest/
+            title: rocThrust
+          - url: https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/
+            title: ROCT-Thunk-Interface
+          - url: https://rocm.docs.amd.com/projects/roctracer/en/latest/
+            title: ROCTracer
+          - url: https://rocm.docs.amd.com/projects/rocWMMA/en/latest/index.html
+            title: rocWMMA
+          - url: https://github.com/ROCmSoftwarePlatform/Tensile
+            title: Tensile
+          - url: https://rocm.docs.amd.com/projects/TransferBench/en/latest/
+            title: TransferBench
   - file: about/whats-new/whats-new.md
     title: What's new?
 
@@ -217,9 +327,6 @@ subtrees:
         title: Inception V3 with Pytorch
       - file: conceptual/ai-migraphx-optimization.md
         title: Inference optimization with MIGraphX
-
-  - file: rocm-a-z.md
-    title: ROCm A-Z
 
   - file: contribute/index.md
     title: Contributing
