@@ -265,7 +265,7 @@ maintainers and installs all the required dependencies, including:
    rocm/pytorch  build_from_dockerfile     17071499be47     2 minutes ago     32.8GB
    ```
 
-3. Start a Docker container using the image.
+3. Start a Docker container using the image with the mounted Pytorch folder.
 
    ```bash
    docker run -it --cap-add=SYS_PTRACE --security-opt --user root \
@@ -401,7 +401,7 @@ Two of our favorite testing databases are:
    git clone https://github.com/pytorch/examples.git
    ```
 
-2. Run the MNIST example.
+2. Go to the MNIST example folder.
 
    ```bash
    cd examples/mnist
@@ -432,7 +432,7 @@ Two of our favorite testing databases are:
    git clone https://github.com/pytorch/examples.git
    ```
 
-2. Run the ImageNet example.
+2. Go to the ImageNet example folder.
 
    ```bash
    cd examples/imagenet
