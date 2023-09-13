@@ -12,10 +12,8 @@ docBin/
 _doxygen/
 _readthedocs/
 
-docs/CHANGELOG.md
-CHANGELOG.md
-
 # avoid duplicating contributing.md due to conf.py
-#docs/contributing.md
-#docs/release.md
-#docs/about/release-notes.md
+CHANGELOG.md
+docs/contributing.md
+docs/release.md
+docs/about/release-notes.md

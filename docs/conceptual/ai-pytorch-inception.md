@@ -988,7 +988,7 @@ Follow these steps:
                                         cache_subdir='')
     ```
 
-    ```py
+    ```bash
     Downloading data from https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz
     84131840/84125825 [==============================] – 1s 0us/step
     84149932/84125825 [==============================] – 1s 0us/step
