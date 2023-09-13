@@ -7,7 +7,7 @@ Until now, the LLVM Address Sanitizer process was only available for traditional
 This document provides documentation on using ROCm Address Sanitizer.
 For information about LLVM Address Sanitizer, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-### Compilng for Address Sanitizer
+### Compiling for Address Sanitizer
 
 The address sanitizer process begins by compiling the application of interest with the address sanitizer instrumentation.
 
