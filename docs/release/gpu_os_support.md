@@ -22,7 +22,7 @@ AMD ROCm™ Platform supports the following Linux distributions.
 | SLES 15 SP5    | x86-64 | 5.14.21 | ✅ |
 | Ubuntu 20.04.5 | x86-64 | 5.15    | ✅ |
 | Ubuntu 20.04.6 | x86-64 | 5.15    | ✅ |
-| Ubuntu 22.04.2 | x86-64 | 5.19     | ✅ |
+| Ubuntu 22.04.2 | x86-64 | 5.19    | ✅ |
 | Ubuntu 22.04.3 | x86-64 | 6.2     | ✅ |
 
 :::{versionadded} 5.6
@@ -93,10 +93,11 @@ Use Driver Shipped with ROCm
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ Pro W7900   | RDNA3  | gfx1100 | ✅ |
+| AMD Radeon™ Pro W7800   | RDNA3  | gfx1100 | ✅ |
 | AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro V620    | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ✅ |
-
 :::
 
 :::{tab-item} Radeon™
@@ -104,9 +105,11 @@ Use Driver Shipped with ROCm
 
 [Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 
-| Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
-|:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
-| AMD Radeon™ VII     | GCN5.1 | gfx906  | ✅ |
+| Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
+|:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ RX7900 XTX | RDNA3  | gfx1100 | ✅ |
+| AMD Radeon™ RX7900 XT  | RDNA3  | gfx1100 | ✅ |
+| AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
 
 :::
 
