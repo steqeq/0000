@@ -63,8 +63,6 @@ The compiler also accepts the alternative offloading notation:
 -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch> 
 ```
 
-```
-
 Obtain the value of `gpu-arch` by running the following command:
 
 ```bash
