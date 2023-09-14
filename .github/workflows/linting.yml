@@ -18,3 +18,13 @@ jobs:
   call-workflow-passing-data:
     name: Documentation
     uses: RadeonOpenCompute/rocm-docs-core/.github/workflows/linting.yml@develop
+
+  md-link-check:
+    name: "Markdown Link Check"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        folder-path: 'docs'
+        file-path: './README.md'
