@@ -16,9 +16,6 @@ The release notes for the ROCm platform.
 -------------------
 
 ## ROCm 5.7.0
-<<<<<<< HEAD
-
-=======
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 
@@ -90,7 +87,6 @@ The following defects are fixed in ROCm v5.7,
 - Failures observed with non-HMM HIP directed catch2 tests with XNACK+
 
 - Multiple test failures and test hangs observed in hip-directed catch2 tests with xnack+
->>>>>>> 1ebaf66 (add 5.7.0 release notes to CHANGELOG)
 
 ### Library Changes in ROCM 5.7.0
 
@@ -101,18 +97,12 @@ The following defects are fixed in ROCm v5.7,
 | hipFFT |  ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.0) |
 | hipSOLVER |  ⇒ [1.8.1](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.0) |
 | hipSPARSE |  ⇒ [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
-<<<<<<< HEAD
-=======
 | MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.7.0) |
->>>>>>> 1ebaf66 (add 5.7.0 release notes to CHANGELOG)
 | rccl |  ⇒ [2.17.1-1](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.7.0) |
 | rocALUTION |  ⇒ [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.0) |
 | rocBLAS |  ⇒ [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.0) |
 | rocFFT |  ⇒ [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.0) |
-<<<<<<< HEAD
-=======
 | rocm-cmake |  ⇒ [0.10.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.7.0) |
->>>>>>> 1ebaf66 (add 5.7.0 release notes to CHANGELOG)
 | rocPRIM |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.7.0) |
 | rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.7.0) |
 | rocSOLVER |  ⇒ [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.0) |
@@ -181,8 +171,6 @@ hipSPARSE 2.3.8 for ROCm 5.7.0
 - Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
 - Minor improvements
 
-<<<<<<< HEAD
-=======
 #### MIOpen 2.19.0
 
 MIOpen 2.19.0 for ROCm 5.7.0
@@ -201,7 +189,6 @@ MIOpen 2.19.0 for ROCm 5.7.0
 - Fix 3d convolution Host API bug
 - [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
 
->>>>>>> 1ebaf66 (add 5.7.0 release notes to CHANGELOG)
 #### RCCL 2.17.1-1
 
 RCCL 2.17.1-1 for ROCm 5.7.0
@@ -285,8 +272,6 @@ rocFFT 1.0.24 for ROCm 5.7.0
 - Moved rocfft_rtc_helper executable to lib/rocFFT directory on Linux.
 - Moved library kernel cache to lib/rocFFT directory.
 
-<<<<<<< HEAD
-=======
 #### rocm-cmake 0.10.0
 
 rocm-cmake 0.10.0 for ROCm 5.7.0
@@ -296,7 +281,6 @@ rocm-cmake 0.10.0 for ROCm 5.7.0
 - Added ROCMTest module
 - ROCMCreatePackage: Added support for ASAN packages
 
->>>>>>> 1ebaf66 (add 5.7.0 release notes to CHANGELOG)
 #### rocPRIM 2.13.1
 
 rocPRIM 2.13.1 for ROCm 5.7.0
@@ -427,9 +411,9 @@ Tensile 4.38.0 for ROCm 5.7.0
 
 ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 
-#### HIP 5.6.1 (for ROCm 5.6.1)
+## HIP 5.6.1 (for ROCm 5.6.1)
 
-##### Fixed Defects
+### Fixed Defects
 
 - *hipMemcpy* device-to-device (intra device) is now asynchronous with respect to the host
 - Enabled xnack+ check in HIP catch2 tests hang when executing tests
@@ -1075,7 +1059,7 @@ Applications requiring to update the stack size can use hipDeviceSetLimit API.
 
 The following hipcc changes are implemented in this release:
 
-- `hipcc` will not implicitly link to `libpthread` and `librt`, as they are no longer a link time dependence for HIP programs.  Applications that depend on these libraries must explicitly link to them.
+- `hipcc` will not implicitly link to `libpthread` and `librt`, as they are no longer a link time dependence for HIP programs.  Applications that depend on these libraries must explicitly link to them.
 - `-use-staticlib` and `-use-sharedlib` options are deprecated.
 
 ##### Future Changes

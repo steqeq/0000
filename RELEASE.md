@@ -171,8 +171,6 @@ hipSPARSE 2.3.8 for ROCm 5.7.0
 - Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
 - Minor improvements
 
-<<<<<<< HEAD
-=======
 #### MIOpen 2.19.0
 
 MIOpen 2.19.0 for ROCm 5.7.0
@@ -191,7 +189,6 @@ MIOpen 2.19.0 for ROCm 5.7.0
 - Fix 3d convolution Host API bug
 - [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
 
->>>>>>> c0e71da (update RELEASE.md for 5.7.0)
 #### RCCL 2.17.1-1
 
 RCCL 2.17.1-1 for ROCm 5.7.0
@@ -275,8 +272,6 @@ rocFFT 1.0.24 for ROCm 5.7.0
 - Moved rocfft_rtc_helper executable to lib/rocFFT directory on Linux.
 - Moved library kernel cache to lib/rocFFT directory.
 
-<<<<<<< HEAD
-=======
 #### rocm-cmake 0.10.0
 
 rocm-cmake 0.10.0 for ROCm 5.7.0
@@ -286,7 +281,6 @@ rocm-cmake 0.10.0 for ROCm 5.7.0
 - Added ROCMTest module
 - ROCMCreatePackage: Added support for ASAN packages
 
->>>>>>> c0e71da (update RELEASE.md for 5.7.0)
 #### rocPRIM 2.13.1
 
 rocPRIM 2.13.1 for ROCm 5.7.0
