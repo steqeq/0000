@@ -51,7 +51,7 @@ For a complete ROCm GPU Sanitizer installation, the following  must be installed
     sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan 
 ```
 
-**Note**: It is recommended to install all address sanitizer packages. If the optional instrumented Math libraries are not installed, the address sanitizer cannot find issues within those libraries.
+**Note**: It is recommended to install all address sanitizer packages. If the optional instrumented math libraries are not installed, the address sanitizer cannot find issues within those libraries.
 
 ### Using AMD Supplied Address Sanitizer Instrumented Libraries
 
