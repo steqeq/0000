@@ -1,4 +1,4 @@
-### Using the LLVM Address Sanitizer (ASAN) with the GPU
+### Using the LLVM Address Sanitizer (ASAN) with the GPU (Beta Release)
 
 The LLVM Address Sanitizer provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 
@@ -6,6 +6,8 @@ Until now, the LLVM Address Sanitizer process was only available for traditional
 
 This document provides documentation on using ROCm Address Sanitizer.
 For information about LLVM Address Sanitizer, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
+
+**Note**: This beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
 
 ### Compiling for Address Sanitizer
 
@@ -35,18 +37,21 @@ There are a few options if the compile time becomes unacceptable:
 
 ### Installing ROCm GPU Address Sanitizer Packages 
 
-For a full ROCm GPU Sanitizer installation, users must install the following packages,
+For a complete ROCm GPU Sanitizer installation, the following  must be installed,
 
-- *rocm-dev-asan* for instrumented HSA and HIP runtimes
-- *rocm-ml-sdk-asan* for Math libraries
-
-You may use the following instruction for a full installation, 
+ - For instrumented HSA and HIP runtimes, and tools (required)
 
 ```
-    apt -o Dpkg::Options::="--force-overwrite" --fix-broken install rocm-dev-asan rocm-ml-sdk-asan
+    sudo apt-get install amd-smi-lib-asan comgr-asan hip-runtime-amd-asan hsa-rocr-asan hsakmt-roct-asan hsa-amd-aqlprofile-asan rocm-core-asan rocm-dbgapi-asan rocm-debug-agent-asan rocm-opencl-asan rocm-smi-lib-asan rocprofiler-asan roctracer-asan
 ```
 
-A full installation of all instrumented packages is required to use the address sanitizer. 
+- For instrumented math libraries (optional)
+  
+```  
+    sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan 
+```
+
+It is recommended to install all address sanitizer packages. If the optional instrumented math libraries are not installed, the address sanitizer will not be able to find issues within those libraries.
 
 ### Using AMD Supplied Address Sanitizer Instrumented Libraries
 
