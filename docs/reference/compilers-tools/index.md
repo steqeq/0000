@@ -54,6 +54,6 @@ Callback/Activity Library for Performance tracing AMD GPUs
 
 :::::
 
-## See Also
+## See also
 
-* [Compiler Disambiguation](../../conceptual/compiler-disambiguation.md)
+* [Compiler disambiguation](../../conceptual/compiler-disambiguation.md)

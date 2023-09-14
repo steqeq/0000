@@ -12,8 +12,6 @@ matchers
 # file_reorg
 FHS
 incrementing
-Filesystem
-filesystem
 rocm
 # gpu_aware_mpi
 DMA

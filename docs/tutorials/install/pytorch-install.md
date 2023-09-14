@@ -340,7 +340,7 @@ Follow these steps:
    errors when running the unit tests.
    :::
 
-   This will first install some dependencies, such as a supported `torchvision`
+   This will first install some dependencies, such as a supported `[torchvision](https://pytorch.org/vision/stable/index.html)`
    version for PyTorch. `torchvision` is used in some PyTorch tests for loading
    models. Next, this will run all the unit tests.
 

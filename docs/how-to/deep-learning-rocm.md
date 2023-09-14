@@ -13,7 +13,7 @@ Frameworks Release Notes for each framework's most current release notes at
 ROCm Compatible Frameworks Flowchart
 ```
 
-## Frameworks Installation
+## Frameworks installation
 
 * [How to Install PyTorch?](../tutorials/install/pytorch-install)
 * [How to Install Tensorflow?](../tutorials/install/tensorflow-install)

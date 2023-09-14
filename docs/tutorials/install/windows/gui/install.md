@@ -1,14 +1,14 @@
-# Installation Using the Graphical Interface
+# Installation using the graphical interface
 
 The steps to install the HIP SDK for Windows are described in this document.
 
-## System Requirements
+## System requirements
 
 The HIP SDK is supported on Windows 10 and 11. The HIP SDK may be installed on a
 system without AMD GPUs to use the build toolchains. To run HIP applications, a
 compatible GPU is required. Please see the supported GPU guide for more details.
 
-## HIP SDK Installation
+## HIP SDK installation
 
 ### Download the installer
 
@@ -74,7 +74,7 @@ is turned on.
 Installer initialization window.
 ```
 
-#### HIP SDK Installer
+#### HIP SDK installer
 
 The HIP SDK installation options are listed in the following table.
 
@@ -101,7 +101,7 @@ DeSelecting All and then picking the individual components may be more
 convenient.
 ```
 
-#### AMD Display Driver
+#### AMD display driver
 
 The HIP SDK installer bundles an AMD Radeon Software PRO 23.10 installer. The
 supported install options are summarized in the following table:
@@ -129,7 +129,7 @@ You must perform a system restart for a complete installation of the
 Display Driver.
 ```
 
-### Installing Components
+### Installing components
 
 Please wait for the installation to complete during as shown in the following image.
 
@@ -139,7 +139,7 @@ Please wait for the installation to complete during as shown in the following im
 Installation Progress
 ```
 
-### Installation Complete
+### Installation complete
 
 Once the installation is complete, the installer window may prompt you for a
 system restart. Click **Restart** at the lower right corner, shown in the following image.

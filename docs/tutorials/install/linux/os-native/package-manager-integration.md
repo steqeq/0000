@@ -1,4 +1,4 @@
-# Package Manager Integration
+# Package manager integration
 
 This section provides information about the required meta-packages for the
 following AMD ROCm programming models:
@@ -7,7 +7,7 @@ following AMD ROCm programming models:
 * OpenCL™
 * OpenMP™
 
-## ROCm Package Naming Conventions
+## ROCm package naming conventions
 
 A meta-package is a grouping of related packages and dependencies used to
 support a specific use case.
@@ -51,7 +51,7 @@ valid only for rpm packages.
 
 **Example:** `el8` represents RHEL 8.x packages.
 
-## Components of ROCm Programming Models
+## Components of ROCm programming models
 
 The following image demonstrates the high-level layered architecture of ROCm
 programming models and their meta-packages. All meta-packages are a combination
@@ -93,7 +93,7 @@ clang compiler files.
 | `rocm-openmp-runtime`    | Run OpenMP-based applications for the AMD platform                                                            |
 ```
 
-## Packages in ROCm Programming Models
+## Packages in ROCm programming models
 
 This section discusses the available meta-packages and their packages. The
 following image visualizes the meta-packages and their associated packages in a

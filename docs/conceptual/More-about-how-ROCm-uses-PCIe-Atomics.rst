@@ -1,10 +1,10 @@
 ===========================
-How ROCm uses PCIe Atomics
+How ROCm uses PCIe atomics
 ===========================
 
 
-ROCm PCIe Feature and Overview BAR Memory
-==========================================
+ROCm PCIe feature and overview base address register (BAR) memory
+================================================================
 
 
 ROCm is an extension of HSA platform architecture, so it shares the queueing model, memory model, signaling and synchronization protocols. Platform atomics are integral to perform queuing and signaling memory operations where there may be multiple-writers across CPU and GPU agents.
@@ -60,19 +60,19 @@ New PCIe Endpoints with support beyond AMD Ryzen and EPYC CPU; Intel Haswell or 
 In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU originates two writes to two different targets:  
 
   | 1. write to another GPU memory,
-  
+
   | 2. then write to system memory to indicate transfer complete.
 
 They are routed off to different ends of the computer but we want to make sure the write to system memory to indicate transfer complete occurs AFTER P2P write to GPU has complete.
 
-BAR Memory Overview
-*******************
+BAR memory overview
+***************************************************************************************************
 On a Xeon E5 based system in the BIOS we can turn on above 4GB PCIe addressing, if so he need to set MMIO Base address ( MMIOH Base) and Range ( MMIO High Size) in the BIOS.
 
 In SuperMicro system in the system bios you need to see the following
 
    * Advanced->PCIe/PCI/PnP configuration-> Above 4G Decoding = Enabled
-  
+
    * Advanced->PCIe/PCI/PnP Configuration->MMIOH Base = 512G
 
    * Advanced->PCIe/PCI/PnP Configuration->MMIO High Size = 256G
@@ -91,17 +91,17 @@ Here is how our BAR works on GFX 8 GPU’s with 40 bit Physical Address Limit ::
   11:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Fiji [Radeon R9 FURY / NANO Series] (rev c1)
 
   Subsystem: Advanced Micro Devices, Inc. [AMD/ATI] Device 0b35
-    
+
   Flags: bus master, fast devsel, latency 0, IRQ 119
-    
+
   Memory at bf40000000 (64-bit, prefetchable) [size=256M]
-   
+
   Memory at bf50000000 (64-bit, prefetchable) [size=2M]
-   
+
   I/O ports at 3000 [size=256]
-   
+
   Memory at c7400000 (32-bit, non-prefetchable) [size=256K]
-   
+
   Expansion ROM at c7440000 [disabled] [size=128K]
 
 Legend:
@@ -116,12 +116,12 @@ Legend:
 
 5 : Expansion ROM – This is required for the AMD Driver SW to access the GPU’s video-bios. This is currently fixed at 128KB.
 
-Excepts form Overview of Changes to PCI Express 3.0
-===================================================
+Excerpts from 'Overview of Changes to PCI Express 3.0'
+================================================================
 By Mike Jackson, Senior Staff Architect, MindShare, Inc.
-********************************************************
+***************************************************************************************************
 Atomic Operations – Goal:
-*************************
+***************************************************************************************************
 Support SMP-type operations across a PCIe network to allow for things like offloading tasks between CPU cores and accelerators like a GPU. The spec says this enables advanced synchronization mechanisms that are particularly useful with multiple producers or consumers that need to be synchronized in a non-blocking fashion. Three new atomic non-posted requests were added, plus the corresponding completion (the address must be naturally aligned with the operand size or the TLP is malformed):
 
   * Fetch and Add – uses one operand as the “add” value. Reads the target location, adds the operand, and then writes the result back 	  to the original location.
@@ -137,7 +137,7 @@ Since AtomicOps are not locked they don't have the performance downsides of the 
 AtomicOps can go from device to device, device to host, or host to device. Each completer indicates whether it supports this capability and guarantees atomic access if it does. The ability to route AtomicOps is also indicated in the registers for a given port.
 
 ID-based Ordering – Goal:
-*************************
+***************************************************************************************************
 Improve performance by avoiding stalls caused by ordering rules. For example, posted writes are never normally allowed to pass each other in a queue, but if they are requested by different functions, we can have some confidence that the requests are not dependent on each other. The previously reserved Attribute bit [2] is now combined with the RO bit to indicate ID ordering with or without relaxed ordering.
 
 This only has meaning for memory requests, and is reserved for Configuration or IO requests. Completers are not required to copy this bit into a completion, and only use the bit if their enable bit is set for this operation.

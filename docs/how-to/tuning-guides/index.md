@@ -1,10 +1,10 @@
-# Tuning Guides
+# Tuning guides
 
 Use case-specific system setup and tuning guides.
 
-## High Performance Computing
+## High-performance computing
 
-High Performance Computing (HPC) workloads have unique requirements. The default
+High-performance computing (HPC) workloads have unique requirements. The default
 hardware and BIOS configurations for OEM platforms may not provide optimal
 performance for HPC workloads. To enable optimal HPC settings on a per-platform
 and per-workload level, this guide calls out:

@@ -1,14 +1,14 @@
-# Installation Using the Command Line Interface
+# Installation using the command line interface
 
 The steps to install the HIP SDK for Windows are described in this document.
 
-## System Requirements
+## System requirements
 
 The HIP SDK is supported on Windows 10 and 11. The HIP SDK may be installed on a
 system without AMD GPUs to use the build toolchains. To run HIP applications, a
 compatible GPU is required. Please see the supported GPU guide for more details.
 
-## HIP SDK Installation
+## HIP SDK installation
 
 The command line installer is the same executable which is used by the graphical
 front-end. Download the installer from the
@@ -32,7 +32,7 @@ Unlike the graphical installer, the command line interface doesn't support
 selectively installing parts of the SDK bundle. It's all or nothing.
 ```
 
-### Launching the Installer From the Command Line
+### Launching the installer from the command line
 
 The installer is still a graphical application with a `WinMain` entry point, even
 when called on the command line. This means that the application lifetime is

@@ -1,4 +1,4 @@
-# Docker Image Support Matrix
+# Docker image support matrix
 
 The software support matrices for ROCm container releases is listed.
 

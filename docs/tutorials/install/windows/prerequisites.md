@@ -1,19 +1,19 @@
-# Installation Prerequisites (Windows)
+# Installation prerequisites (Windows)
 
 You must perform the following steps before installing ROCm and check if the
 system meets all the requirements to proceed with the installation.
 
-## Confirm the System Is Supported
+## Confirm the system is supported
 
 The ROCm installation is supported only on specific host architectures, Windows
 Editions and update versions.
 
-### Check the Windows Editions and Update Version on Your System
+### Check the windows editions and update version on your system
 
 This section discusses obtaining information about the host architecture,
 Windows Edition and update version.
 
-#### Command Line Check
+#### Command line check
 
 Verify the Windows Edition using the following steps:
 
@@ -36,7 +36,7 @@ Verify the Windows Edition using the following steps:
    x64-based PC Microsoft Windows 11 Pro 22H2
    ```
 
-#### Graphical Check
+#### Graphical check
 
 1. Open the Setting app.
 

@@ -8,7 +8,7 @@ The training data consists of input features in supervised learning, similar to 
 
 Training also includes the choice of an optimization algorithm that reduces the loss by adjusting the model's parameters. Training is an iterative process where training data is fed in, usually split into different batches, with the entirety of the training data passed during one training epoch. Training usually is run for multiple epochs.
 
-## Training Phases
+## Training phases
 
 Training occurs in multiple phases for every batch of training data. the following table provides an explanation of the types of training phases.
 
@@ -38,7 +38,7 @@ Training is different from inference, particularly from the hardware perspective
 
 Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other datatypes, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
 
-## Case Studies
+## Case studies
 
 The following sections contain case studies for the Inception v3 model.
 
@@ -46,13 +46,13 @@ The following sections contain case studies for the Inception v3 model.
 
 Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
-The implementation uses PyTorch as a framework. This case study utilizes `torchvision`[^torch_vision], a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
+The implementation uses PyTorch as a framework. This case study utilizes `[torchvision](https://pytorch.org/vision/stable/index.html)`, a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
 
-#### Evaluating a Pre-Trained Model
+#### Evaluating a pre-trained model
 
 The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from `torchvision`.
 
-This example is adapted from the PyTorch research hub page on Inception v3[^torch_vision_inception].
+This example is adapted from the PyTorch research hub page on [Inception v3](https://pytorch.org/vision/master/models/inception.html).
 
 Follow these steps:
 
@@ -140,7 +140,7 @@ Follow these steps:
         print(categories[top5_catid[i]], top5_prob[i].item())
     ```
 
-#### Training Inception v3
+#### Training inception v3
 
 The previous section focused on downloading and using the Inception v3 model for a simple image classification task. This section walks through training the model on a new dataset.
 
@@ -196,7 +196,7 @@ Follow these steps:
 
 5. Open a Python shell.
 
-6. Import dependencies, including `torch`, `os`, and `torchvision`.
+6. Import dependencies, including `torch`, `os`, and `[torchvision](https://github.com/pytorch/vision)`.
 
     ```py
     import torch
@@ -463,7 +463,7 @@ torch.save(model.state_dict(), "trained_inception_v3.pt")
 
 Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in the following image.
 
-```{figure} ../data/rocm-ai/inception-v3.png
+```{figure} ../data/conceptual/inception-v3.png
 :name: inception-v3
 ---
 align: center
@@ -477,7 +477,7 @@ The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of t
 
 Follow these steps:
 
-1. Import dependencies, including `torch`, `os`, and `torchvision`.
+1. Import dependencies, including `torch`, `os`, and `[torchvision](https://github.com/pytorch/vision)`.
 
     ```py
     import torch
@@ -741,7 +741,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/rocm-ai/mnist-1.png
+    ```{figure} ../data/conceptual/mnist-1.png
     ---
     align: center
     ---
@@ -769,7 +769,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/rocm-ai/mnist-2.png
+    ```{figure} ../data/conceptual/mnist-2.png
     ---
     align: center
     ---
@@ -895,7 +895,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm-ai/mnist-3.png
+        ```{figure} ../data/conceptual/mnist-3.png
         ---
         align: center
         ---
@@ -911,7 +911,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm-ai/mnist-4.png
+        ```{figure} ../data/conceptual/mnist-4.png
         ---
         align: center
         ---
@@ -946,7 +946,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm-ai/mnist-5.png
+        ```{figure} ../data/conceptual/mnist-5.png
         ---
         align: center
         ---
@@ -1115,7 +1115,7 @@ To prepare the data for training, follow these steps:
     print("Vectorized review", vectorize_text(first_review, first_label))
     ```
 
-    ```{figure} ../data/rocm-ai/TextClassification-3.png
+    ```{figure} ../data/conceptual/TextClassification-3.png
     ---
     align: center
     ---
@@ -1158,7 +1158,7 @@ To prepare the data for training, follow these steps:
     model.summary()
     ```
 
-    ```{figure} ../data/rocm-ai/TextClassification-4.png
+    ```{figure} ../data/conceptual/TextClassification-4.png
     ---
     align: center
     ---
@@ -1178,7 +1178,7 @@ To prepare the data for training, follow these steps:
     history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
     ```
 
-    ```{figure} ../data/rocm-ai/TextClassification-5.png
+    ```{figure} ../data/conceptual/TextClassification-5.png
     ---
     align: center
     ---
@@ -1226,7 +1226,7 @@ To prepare the data for training, follow these steps:
 
     The following images illustrate the training and validation loss and the training and validation accuracy.
 
-    ```{figure} ../data/rocm-ai/TextClassification-6.png
+    ```{figure} ../data/conceptual/TextClassification-6.png
     :name: TextClassification6
     ---
     align: center
@@ -1234,7 +1234,7 @@ To prepare the data for training, follow these steps:
     Training and Validation Loss
     ```
 
-    ```{figure} ../data/rocm-ai/TextClassification-7.png
+    ```{figure} ../data/conceptual/TextClassification-7.png
     :name: TextClassification7
     ---
     align: center

@@ -1,4 +1,4 @@
-# Uninstallation Using the Graphical Interface
+# Uninstallation using the graphical interface
 
 The steps to uninstall the HIP SDK for Windows are described in this document.
 
