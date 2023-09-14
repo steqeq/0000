@@ -497,6 +497,7 @@ offload-arch gfx906 -v
 
 The options are listed below:
 
+:::{program} offload-arch
 :::{option} -h
   Prints the help message.
 :::
