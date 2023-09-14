@@ -76,5 +76,5 @@ on Windows is provided with two levels on enablement.
 
 ## CPU support
 
-ROCm requires CPUs that support PCIe™ Atomics. Modern CPUs after the release of
-1st generation AMD Zen CPU and Intel™ Haswell support PCIe Atomics.
+ROCm requires CPUs that support PCIe™ atomics. Modern CPUs after the release of
+1st generation AMD Zen CPU and Intel™ Haswell support PCIe atomics.

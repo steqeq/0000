@@ -354,7 +354,7 @@ toolchain
 toolchains
 TorchScript
 TorchServe
-Torchvision
+torchvision
 tracebacks
 TransferBench
 TrapStatus

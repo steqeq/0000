@@ -212,7 +212,7 @@ subtrees:
       - file: conceptual/cmake-packages.rst
         title: Using CMake
       - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
-        title: ROCm & PCIe Atomics
+        title: ROCm & PCIe atomics
       - file: conceptual/ai-pytorch-inception.md
         title: Inception V3 with Pytorch
       - file: conceptual/ai-migraphx-optimization.md

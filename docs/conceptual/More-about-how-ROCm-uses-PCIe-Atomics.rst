@@ -22,15 +22,15 @@ For ROCm the Platform atomics are used in ROCm in the following ways:
    * Update HSA queue’s write_dispatch_id: 64 bit atomic add used by the CPU and GPU agent to support multi-writer queue insertions.
    * Update HSA Signals – 64bit atomic ops are used for CPU & GPU synchronization.
 
-The PCIe 3.0 AtomicOp feature allows atomic transactions to be requested by, routed through and completed by PCIe components. Routing and completion does not require software support. Component support for each is detectable via the DEVCAP2 register. Upstream bridges need to have AtomicOp routing enabled or the Atomic Operations will fail even though PCIe endpoint and PCIe I/O Devices has the capability to Atomics Operations.
+The PCIe 3.0 AtomicOp feature allows atomic transactions to be requested by, routed through and completed by PCIe components. Routing and completion does not require software support. Component support for each is detectable via the DEVCAP2 register. Upstream bridges need to have AtomicOp routing enabled or the Atomic Operations will fail even though PCIe endpoint and PCIe I/O devices has the capability to Atomics Operations.
 
-To do AtomicOp routing capability between two or more Root Ports, each associated Root Port must indicate that capability via the AtomicOp Routing Supported bit in the Device Capabilities 2 register.
+To do AtomicOp routing capability between two or more Root Ports, each associated Root Port must indicate that capability via the AtomicOp routing supported bit in the Device Capabilities 2 register.
 
-If your system has a PCIe Express Switch it needs to support AtomicsOp routing. Again AtomicOp requests are permitted only if a component’s ``DEVCTL2.ATOMICOP_REQUESTER_ENABLE`` field is set. These requests can only be serviced if the upstream components support AtomicOp completion and/or routing to a component which does. AtomicOp Routing Support=1 Routing is supported, AtomicOp Routing Support=0 routing is not supported.
+If your system has a PCIe Express Switch it needs to support AtomicsOp routing. AtomicOp requests are permitted only if a component’s ``DEVCTL2.ATOMICOP_REQUESTER_ENABLE`` field is set. These requests can only be serviced if the upstream components support AtomicOp completion and/or routing to a component which does. AtomicOp Routing Support=1 Routing is supported, AtomicOp Routing Support=0 routing is not supported.
 
-Atomic Operation is a Non-Posted transaction supporting 32-bit and 64-bit address formats, there must be a response for Completion containing the result of the operation. Errors associated with the operation (uncorrectable error accessing the target location or carrying out the Atomic operation) are signaled to the requester by setting the Completion Status field in the completion descriptor, they are set to to Completer Abort (CA) or Unsupported Request (UR).
+An atomic operation is a non-posted transaction supporting 32-bit and 64-bit address formats, there must be a response for Completion containing the result of the operation. Errors associated with the operation (uncorrectable error accessing the target location or carrying out the Atomic operation) are signaled to the requester by setting the Completion Status field in the completion descriptor, they are set to to Completer Abort (CA) or Unsupported Request (UR).
 
-To understand more about how PCIe Atomic operations work `PCIe Atomics <https://pcisig.com/specifications/pciexpress/specifications/ECN_Atomic_Ops_080417.pdf>`_
+To understand more about how PCIe atomic operations work, see `PCIe atomics <https://pcisig.com/specifications/pciexpress/specifications/ECN_Atomic_Ops_080417.pdf>`_
 
 `Linux Kernel Patch to pci_enable_atomic_request <https://patchwork.kernel.org/project/linux-pci/patch/1443110390-4080-1-git-send-email-jay@jcornwall.me/>`_
 
@@ -41,14 +41,14 @@ There are also a number of papers which talk about these new capabilities:
   * `Intel PCIe Generation 3 Hotchips Paper <https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.131.Ajanovic-Intel-PCIeGen3.pdf>`_
   * `PCIe Generation 4 Base Specification includes Atomics Operation <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
 
-Other I/O devices with PCIe Atomics support
+Other I/O devices with PCIe atomics support
 
    * `Mellanox ConnectX-5 InfiniBand Card <http://www.mellanox.com/related-docs/prod_adapter_cards/PB_ConnectX-5_VPI_Card.pdf>`_
    * `Cray Aries Interconnect <http://www.hoti.org/hoti20/slides/Bob_Alverson.pdf>`_
    * `Xilinx PCIe Ultrascale Whitepaper <https://docs.xilinx.com/v/u/8OZSA2V1b1LLU2rRCDVGQw>`_
    * `Xilinx 7 Series Devices <https://docs.xilinx.com/v/u/1nfXeFNnGpA0ywyykvWHWQ>`_
 
-Future bus technology with richer I/O Atomics Operation Support
+Future bus technology with richer I/O atomics operation Support
 
   * GenZ
 
@@ -120,7 +120,7 @@ Excerpts from 'Overview of Changes to PCI Express 3.0'
 ================================================================
 By Mike Jackson, Senior Staff Architect, MindShare, Inc.
 ***************************************************************************************************
-Atomic Operations – Goal:
+Atomic operations – goal:
 ***************************************************************************************************
 Support SMP-type operations across a PCIe network to allow for things like offloading tasks between CPU cores and accelerators like a GPU. The spec says this enables advanced synchronization mechanisms that are particularly useful with multiple producers or consumers that need to be synchronized in a non-blocking fashion. Three new atomic non-posted requests were added, plus the corresponding completion (the address must be naturally aligned with the operand size or the TLP is malformed):
 
@@ -132,9 +132,9 @@ Support SMP-type operations across a PCIe network to allow for things like offlo
 
   * AtomicOpCompletion – new completion to give the result so far atomic request and indicate that the atomicity of the transaction 	has been maintained.
 
-Since AtomicOps are not locked they don't have the performance downsides of the PCI locked protocol. Compared to locked cycles, they provide “lower latency, higher scalability, advanced synchronization algorithms, and dramatically lower impact on other PCIe traffic.” The lock mechanism can still be used across a bridge to PCI or PCI-X to achieve the desired operation.
+Since atomic operations are not locked they don't have the performance downsides of the PCI locked protocol. Compared to locked cycles, they provide “lower latency, higher scalability, advanced synchronization algorithms, and dramatically lower impact on other PCIe traffic.” The lock mechanism can still be used across a bridge to PCI or PCI-X to achieve the desired operation.
 
-AtomicOps can go from device to device, device to host, or host to device. Each completer indicates whether it supports this capability and guarantees atomic access if it does. The ability to route AtomicOps is also indicated in the registers for a given port.
+Atomic operations can go from device to device, device to host, or host to device. Each completer indicates whether it supports this capability and guarantees atomic access if it does. The ability to route atomic operations is also indicated in the registers for a given port.
 
 ID-based Ordering – Goal:
 ***************************************************************************************************

@@ -140,7 +140,7 @@ Follow these steps:
         print(categories[top5_catid[i]], top5_prob[i].item())
     ```
 
-#### Training inception v3
+#### Training Inception v3
 
 The previous section focused on downloading and using the Inception v3 model for a simple image classification task. This section walks through training the model on a new dataset.
 
