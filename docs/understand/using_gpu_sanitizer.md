@@ -7,7 +7,7 @@ Until now, the LLVM Address Sanitizer process was only available for traditional
 This document provides documentation on using ROCm Address Sanitizer.
 For information about LLVM Address Sanitizer, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-**Note**: This beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
+**Note**: The beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
 
 ### Compiling for Address Sanitizer
 
