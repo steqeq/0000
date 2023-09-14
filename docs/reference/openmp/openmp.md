@@ -44,10 +44,10 @@ cd $ROCM_PATH/share/openmp-extras/examples/openmp/veccopy
 sudo make run
 ```
 
-:::{note}
+```{note}
 `sudo` is required since we are building inside the `/opt` directory.
 Alternatively, copy the files to your home directory first.
-:::
+```
 
 The above invocation of Make compiles and runs the program. Note the options
 that are required for target offload from an OpenMP program:
@@ -56,14 +56,14 @@ that are required for target offload from an OpenMP program:
 -fopenmp --offload-arch=<gpu-arch>
 ```
 
-:::{note}
+```{note}
 The compiler also accepts the alternative offloading notation:
 
 ```bash
 -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch> 
 ```
 
-:::
+```
 
 Obtain the value of `gpu-arch` by running the following command:
 
@@ -326,10 +326,10 @@ double a = 0.0;
 a = a + 1.0;
 ```
 
-:::{note}
+```{note}
 `AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
 `AMD_safe_fp_atomics` is implemented with a compare-and-swap loop.
-:::
+```
 
 To disable the generation of fast floating-point atomic instructions at the file
 level, build using the option `-msafe-fp-atomics` or use a hint clause on a

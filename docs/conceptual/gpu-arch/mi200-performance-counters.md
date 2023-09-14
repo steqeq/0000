@@ -5,9 +5,9 @@ This document lists and describes the hardware performance counters and the deri
 
 ## MI200 performance counters list
 
-:::{note}
+```{note}
 Preliminary validation of all MI200 performance counters is in progress. Those with “[*]” appended to the names require further evaluation.
-:::
+```
 
 ### Graphics register bus management (GRBM)
 

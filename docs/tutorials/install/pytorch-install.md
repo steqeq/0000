@@ -47,11 +47,11 @@ Follow these steps:
    docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
    ```
 
-   :::{note}
+   ```{note}
    This will automatically download the image if it does not exist on the host.
    You can also pass the -v argument to mount any data directories from the host
    onto the container.
-   :::
+   ```
 
 (install-pytorch-using-wheels)=
 
@@ -108,9 +108,9 @@ To install PyTorch using the wheels package, follow these installation steps:
 4. Install torch, `torchvision`, and `torchaudio` as specified by the installation
    matrix.
 
-   :::{note}
+   ```{note}
    ROCm 5.2 PyTorch wheel in the command below is shown for reference.
-   :::
+   ```
 
    ```bash
    pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/rocm5.2/
@@ -159,7 +159,7 @@ Follow these steps:
 
 4. Build PyTorch for ROCm.
 
-   :::{note}
+   ```{note}
    By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
    architectures simultaneously:
    * gfx900
@@ -167,7 +167,7 @@ Follow these steps:
    * gfx908
    * gfx90a
    * gfx1030
-   :::
+   ```
 
 5. To determine your AMD uarch, run:
 
@@ -254,7 +254,7 @@ Follow these steps:
 
 5. Build PyTorch for ROCm.
 
-   :::{note}
+   ```{note}
    By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
    architectures simultaneously:
    * gfx900
@@ -262,7 +262,7 @@ Follow these steps:
    * gfx908
    * gfx90a
    * gfx1030
-   :::
+   ```
 
 6. To determine your AMD uarch, run:
 
@@ -307,9 +307,9 @@ Follow these steps:
 1. Test if PyTorch is installed and accessible by importing the torch package in
    Python.
 
-   :::{note}
+   ```{note}
    Do not run in the PyTorch git folder.
-   :::
+   ```
 
    ```bash
    python3 -c 'import torch' 2> /dev/null && echo 'Success' || echo 'Failure'
@@ -334,23 +334,23 @@ Follow these steps:
    the required environment variable will be set to skip certain unit tests for
    ROCm.
 
-   :::{note}
+   ```{note}
    Make sure the PyTorch source code is corresponding to the PyTorch wheel or
    installation in the Docker image. Incompatible PyTorch source code might give
    errors when running the unit tests.
-   :::
+   ```
 
    This will first install some dependencies, such as a supported `[torchvision](https://pytorch.org/vision/stable/index.html)`
    version for PyTorch. `torchvision` is used in some PyTorch tests for loading
    models. Next, this will run all the unit tests.
 
-   :::{note}
+   ```{note}
    Some tests may be skipped, as appropriate, based on your system
    configuration. All features of PyTorch are not supported on ROCm, and the
    tests that evaluate these features are skipped. In addition, depending on the
    host memory, or the number of available GPUs, other tests may be skipped. No
    test should fail if the compilation and installation are correct.
-   :::
+   ```
 
 4. Run individual unit tests with the following command:
 

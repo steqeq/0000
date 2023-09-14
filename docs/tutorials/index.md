@@ -18,7 +18,7 @@ Sample code demonstrating the HIP API and ROCm-accelerated domain libraries.
 :::
 
 :::{grid-item-card}
-**[Artificial intelligence](../rocm-ai.md)**
+**Artificial intelligence**
 
 Detailed walkthroughs of specific artificial intelligence use cases using ROCm acceleration.
 

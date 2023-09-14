@@ -66,4 +66,4 @@ Raise issues in `rocm-docs-core` for any formatting concerns and changes request
 
 ## More
 
-For more topics, such as submitting feedback and ways to build documentation, refer to [Building documentation](./docs/contribute/building.md) and [How to provide feedback for ROCm documentation](./docs/contribute/feedback.md).
+For more topics, such as submitting feedback and ways to build documentation, refer to [Building documentation](./building.md) and [How to provide feedback for ROCm documentation](./feedback.md).

@@ -8,10 +8,6 @@ subtrees:
 - entries:
   - file: what-is-rocm.md
     title: What is ROCm?
-    subtrees:
-    - entries:
-      - file: rocm-ai.md
-        title: ROCm & AI
   - file: about/whats-new/whats-new.md
     title: What's new?
 

@@ -53,14 +53,14 @@ To install TensorFlow using the wheels package, follow these steps:
    | The Python version is less than 3.7 | Upgrade Python.                  |
    | The Python version is more than 3.7 | Skip this step and go to Step 3. |
 
-   :::{note}
+   ```{note}
    The supported Python versions are:
 
    * 3.7
    * 3.8
    * 3.9
    * 3.10
-   :::
+   ```
 
    ```bash
    sudo apt-get install python3.7 # or python3.8 or python 3.9 or python 3.10
@@ -74,9 +74,9 @@ To install TensorFlow using the wheels package, follow these steps:
    /usr/bin/python3 python3 /usr/bin/python[version] [priority]
    ```
 
-   :::{note}
+   ```{note}
    Follow the instruction in Step 2 for incompatible Python versions.
-   :::
+   ```
 
    ```bash
    sudo update-alternatives --config python3
@@ -139,10 +139,10 @@ To install TensorFlow using the wheels package, follow these steps:
    python3 -c 'import tensorflow' 2> /dev/null && echo 'Success' || echo 'Failure'
    ```
 
-   :::{note}
+   ```{note}
    For details on `tensorflow-rocm` wheels and ROCm version compatibility, see:
    [https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md](https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md)
-   :::
+   ```
 
 ### Test the TensorFlow installation
 
