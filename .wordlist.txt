@@ -348,7 +348,7 @@ TensorFlow
 TFLOPS
 tg
 th
-TOC
+ToC
 tokenize
 toolchain
 toolchains
