@@ -88,6 +88,83 @@ The following defects are fixed in ROCm v5.7,
 
 - Multiple test failures and test hangs observed in hip-directed catch2 tests with xnack+
 
+#### HIP 5.7.0
+
+##### Optimizations
+
+##### Added
+
+- Added `meta_group_size`/`rank` for getting the number of tiles and rank of a tile in the partition
+
+- Added new APIs supporting Windows only, under development on Linux
+
+    - `hipMallocMipmappedArray` for allocating a mipmapped array on the device
+
+    - `hipFreeMipmappedArray` for freeing a mipmapped array on the device
+
+    - `hipGetMipmappedArrayLevel` for getting a mipmap level of a HIP mipmapped array
+
+    - `hipMipmappedArrayCreate` for creating a mipmapped array
+
+    - `hipMipmappedArrayDestroy` for destroy a mipmapped array
+
+    - `hipMipmappedArrayGetLevel` for getting a mipmapped array on a mipmapped level
+
+##### Changed
+
+##### Fixed
+
+##### Known Issues
+
+- HIP memory type enum values currently don't support equivalent value to `cudaMemoryTypeUnregistered`, due to HIP functionality backward compatibility.
+- HIP API `hipPointerGetAttributes` could return invalid value in case the input memory pointer was not allocated through any HIP API on device or host.
+
+##### Upcoming changes for HIP in ROCm 6.0 release
+
+- Removal of gcnarch from hipDeviceProp_t structure
+
+- Addition of new fields in hipDeviceProp_t structure
+
+    - maxTexture1D
+
+    - maxTexture2D
+
+    - maxTexture1DLayered
+
+    - maxTexture2DLayered
+    
+    - sharedMemPerMultiprocessor
+    
+    - deviceOverlap
+    
+    - asyncEngineCount
+    
+    - surfaceAlignment
+    
+    - unifiedAddressing
+    
+    - computePreemptionSupported
+    
+    - hostRegisterSupported
+    
+    - uuid
+    
+- Removal of deprecated code -hip-hcc codes from hip code tree
+
+- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+
+- HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
+
+- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+
+- Correct hipGetLastError to return the last error instead of last API call's return code
+
+- Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
+
+- Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
+
+- Remove hiparray* and make it opaque with hipArray_t
+
 ### Library Changes in ROCM 5.7.0
 
 | Library | Version |
