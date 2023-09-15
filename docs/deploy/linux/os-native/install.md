@@ -1,5 +1,12 @@
 # Installation (Linux)
 
+```{warning}
+ROCm currently doesn't support integrated graphics. Should your system have an
+AMD IGP installed, disable it in the BIOS prior to using ROCm. If the driver can
+enumerate the IGP, the ROCm runtime may crash the system, even if told to omit
+it via {ref}`hip_visible_devices`.
+```
+
 ## Understanding the Release-specific AMDGPU and ROCm Repositories on Linux Distributions
 
 The release-specific repositories consist of packages from a specific release of

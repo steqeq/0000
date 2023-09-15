@@ -3,6 +3,13 @@
 Prior to beginning, please ensure you have the [prerequisites](../prerequisites)
 installed.
 
+```{warning}
+ROCm currently doesn't support integrated graphics. Should your system have an
+AMD IGP installed, disable it in the BIOS prior to using ROCm. If the driver can
+enumerate the IGP, the ROCm runtime may crash the system, even if told to omit
+it via {ref}`hip_visible_devices`.
+```
+
 ## Download the Installer Script
 
 To download and install the `amdgpu-install` script on the system, use the
@@ -169,6 +176,18 @@ To install use cases specific to your requirements, use the installer
 
   ```shell
   sudo amdgpu-install --usecase=hiplibsdk,rocm
+  ```
+
+- For graphical workloads using the open-source driver add `graphics`, for eg.:
+
+  ```shell
+  sudo amdgpu-install --usecase=graphics,rocm
+  ```
+
+- For graphical workloads using the proprietary driver add `graphics`, for eg.:
+
+  ```shell
+  sudo amdgpu-install --usecase=workstation,rocm
   ```
 
 ## Single-version ROCm Installation
