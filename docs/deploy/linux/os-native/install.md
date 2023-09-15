@@ -151,7 +151,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo apt install rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
+   sudo apt install rocm-hip-sdk5.7 rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
    ```
 
 :::::
