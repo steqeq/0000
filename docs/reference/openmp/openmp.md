@@ -9,16 +9,13 @@ Along with host APIs, the OpenMP compilers support offloading code and data onto
 GPU devices. This document briefly describes the installation location of the
 OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
-this ROCm release. See the list of supported GPUs in {doc}`/release/gpu_os_support`.
+this ROCm release. See the list of supported GPUs for [Linux](../../about/compatibility/linux-support.md) and [Windows](../../about/compatibility/windows-support.md).
 
 The ROCm OpenMP compiler is implemented using LLVM compiler technology.
-{numref}`openmp-toolchain` illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.
+The following image illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.
 
-```{figure-md} openmp-toolchain
-
-<img src="/data/reference/openmp/openmp_toolchain.svg" alt="">
-
-OpenMP Toolchain
+```{figure} ../../data/reference/openmp/openmp-toolchain.svg
+:name: openmp-toolchain
 ```
 
 ### Installation
@@ -29,13 +26,10 @@ sub-directories are:
 
 bin: Compilers (`flang` and `clang`) and other binaries.
 
-- examples: The usage section below shows how to compile and run these programs.
-
-- include: Header files.
-
-- lib: Libraries including those required for target offload.
-
-- lib-debug: Debug versions of the above libraries.
+* examples: The usage section below shows how to compile and run these programs.
+* include: Header files.
+* lib: Libraries including those required for target offload.
+* lib-debug: Debug versions of the above libraries.
 
 ## OpenMP: Usage
 
@@ -117,8 +111,7 @@ code compiled with AOMP:
    options --list-basic and --list-derived. `rocprof` accepts either a text or
    an XML file as an input.
 
-For more details on `rocprof`, refer to the ROCm Profiling Tools document on
-{doc}`rocprofiler:rocprof`.
+For more details on `rocprof`, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
 ### Using Tracing Options
 
@@ -131,10 +124,10 @@ program with:
 
 The following tracing options are widely used to generate useful information:
 
-- **`--hsa-trace`**: This option is used to get a JSON output file with the HSA
+* **`--hsa-trace`**: This option is used to get a JSON output file with the HSA
   API execution traces and a flat profile in a CSV file.
 
-- **`--sys-trace`**: This allows programmers to trace both HIP and HSA calls.
+* **`--sys-trace`**: This allows programmers to trace both HIP and HSA calls.
   Since this option results in loading ``libamdhip64.so``, follow the
   prerequisite as mentioned above.
 
@@ -144,20 +137,21 @@ Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/).
 Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the
 HSA calls.
 
-For more details on tracing, refer to the ROCm Profiling Tools document on
-{doc}`rocprofiler:rocprof`.
+For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
 ### Environment Variables
 
 :::{table}
 :widths: auto
-| Environment Variable        | Description                  |
+| Environment Variable        | Purpose                  |
 | --------------------------- | ---------------------------- |
-| `OMP_NUM_TEAMS`             | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
-| `LIBOMPTARGET_KERNEL_TRACE` | This environment variable is used to print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
-| `LIBOMPTARGET_INFO`         | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
-| `LIBOMPTARGET_DEBUG`        | If a debug version of the device library is present, setting this environment variable to 1 and using that library emits further detailed debugging information about data transfer operations and kernel launch. |
-| `GPU_MAX_HW_QUEUES`         | This environment variable is used to set the number of HSA queues in the OpenMP runtime. |
+| `OMP_NUM_TEAMS`             | To set the number of teams for kernel launch, which is otherwise chosen by the implementation by default. You can set this number (subject to implementation limits) for performance tuning. |
+| `LIBOMPTARGET_KERNEL_TRACE` | To print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
+| `LIBOMPTARGET_INFO`         | To print informational messages from the device runtime as the program executes. Setting it to a value of 1 or higher, prints fine-grain information and setting it to -1 prints complete information. |
+| `LIBOMPTARGET_DEBUG`        | To get detailed debugging information about data transfer operations and kernel launch when using a debug version of the device library. Set this environment variable to 1 to get the detailed information from the library. |
+| `GPU_MAX_HW_QUEUES`         | To set the number of HSA queues in the OpenMP runtime. The HSA queues are created on demand up to the maximum value as supplied here. The queue creation starts with a single initialized queue to avoid unnecessary allocation of resources. The provided value is capped if it exceeds the recommended, device-specific value. |
+| `LIBOMPTARGET_AMDGPU_MAX_ASYNC_COPY_BYTES` | To set the threshold size up to which data transfers are initiated asynchronously. The default threshold size is 1*1024*1024 bytes (1MB). |
+| `OMPX_FORCE_SYNC_REGIONS` | To force the runtime to execute all operations synchronously, i.e., wait for an operation to complete immediately. This affects data transfers and kernel execution. While it is mainly designed for debugging, it may have a minor positive effect on performance in certain situations. |
 :::
 
 ## OpenMP: Features
@@ -169,10 +163,17 @@ implemented in the past releases.
 
 ### Asynchronous Behavior in OpenMP Target Regions
 
-- Multithreaded offloading on the same device
+* Controlling Asynchronous Behavior
+
+The OpenMP offloading runtime executes in an asynchronous fashion by default, allowing multiple data transfers to start concurrently. However, if the data to be transferred becomes larger than the default threshold of 1MB, the runtime falls back to a synchronous data transfer. The buffers that have been locked already are always executed asynchronously.
+You can overrule this default behavior by setting `LIBOMPTARGET_AMDGPU_MAX_ASYNC_COPY_BYTES` and `OMPX_FORCE_SYNC_REGIONS`. See the [Environment Variables](#environment-variables) table for details.
+
+* Multithreaded Offloading on the Same Device
+
 The `libomptarget` plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
 
-- Parallel memory copy invocations
+* Parallel Memory Copy Invocations
+
 Implicit asynchronous execution of single target region enables parallel memory copy invocations.
 
 ### Unified Shared Memory
@@ -183,11 +184,9 @@ with Xnack capability.
 
 #### Prerequisites
 
-- Linux Kernel versions above 5.14
-
-- Latest KFD driver packaged in ROCm stack
-
-- Xnack, as USM support can only be tested with applications compiled with Xnack
+* Linux Kernel versions above 5.14
+* Latest KFD driver packaged in ROCm stack
+* Xnack, as USM support can only be tested with applications compiled with Xnack
   capability
 
 #### Xnack Capability
@@ -216,13 +215,13 @@ HSA_XNACK=1
 
 When Xnack support is not needed:
 
-- Build the applications to maximize resource utilization using:
+* Build the applications to maximize resource utilization using:
 
 ```bash
 --offload-arch=gfx908:xnack-
 ```
 
-- At runtime, set the `HSA_XNACK` environment variable to 0.
+* At runtime, set the `HSA_XNACK` environment variable to 0.
 
 #### Unified Shared Memory Pragma
 
@@ -327,8 +326,10 @@ double a = 0.0;
 a = a + 1.0;
 ```
 
-NOTE `AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
+:::{note}
+`AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
 `AMD_safe_fp_atomics` is implemented with a compare-and-swap loop.
+:::
 
 To disable the generation of fast floating-point atomic instructions at the file
 level, build using the option `-msafe-fp-atomics` or use a hint clause on a
@@ -370,27 +371,19 @@ GPUs with applications written in both HIP and OpenMP.
 
 **Features Supported on Host Platform (Target x86_64):**
 
-- Use-after-free
-
-- Buffer overflows
-
-- Heap buffer overflow
-
-- Stack buffer overflow
-
-- Global buffer overflow
-
-- Use-after-return
-
-- Use-after-scope
-
-- Initialization order bugs
+* Use-after-free
+* Buffer overflows
+* Heap buffer overflow
+* Stack buffer overflow
+* Global buffer overflow
+* Use-after-return
+* Use-after-scope
+* Initialization order bugs
 
 **Features Supported on AMDGPU Platform (`amdgcn-amd-amdhsa`):**
 
-- Heap buffer overflow
-
-- Global buffer overflow
+* Heap buffer overflow
+* Global buffer overflow
 
 **Software (Kernel/OS) Requirements:** Unified Shared Memory support with Xnack
 capability. See the section on [Unified Shared Memory](#unified-shared-memory)
@@ -398,7 +391,7 @@ for prerequisites and details on Xnack.
 
 **Example:**
 
-- Heap buffer overflow
+* Heap buffer overflow
 
 ```bash
 void  main() {
@@ -418,7 +411,7 @@ void  main() {
 See the complete sample code for heap buffer overflow
 [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/heap_buffer_overflow/openmp/vecadd-HBO.cpp).
 
-- Global buffer overflow
+* Global buffer overflow
 
 ```bash
 #pragma omp declare target
@@ -447,33 +440,31 @@ See the complete sample code for global buffer overflow
 
 You can use the clang compiler option `-fopenmp-target-fast` for kernel optimization if certain constraints implied by its component options are satisfied. `-fopenmp-target-fast` enables the following options:
 
-- `-fopenmp-target-ignore-env-vars`: It enables code generation of specialized kernels including No-loop and Cross-team reductions.
+* `-fopenmp-target-ignore-env-vars`: It enables code generation of specialized kernels including No-loop and Cross-team reductions.
 
-- `-fopenmp-assume-no-thread-state`: It enables the compiler to assume that no thread in a parallel region modifies an Internal Control Variable (`ICV`), thus potentially reducing the device runtime code execution.
+* `-fopenmp-assume-no-thread-state`: It enables the compiler to assume that no thread in a parallel region modifies an Internal Control Variable (`ICV`), thus potentially reducing the device runtime code execution.
 
-- `-fopenmp-assume-no-nested-parallelism`: It enables the compiler to assume that no thread in a parallel region encounters a parallel region, thus potentially reducing the device runtime code execution.
+* `-fopenmp-assume-no-nested-parallelism`: It enables the compiler to assume that no thread in a parallel region encounters a parallel region, thus potentially reducing the device runtime code execution.
 
-- `-O3` if no `-O*` is specified by the user.
+* `-O3` if no `-O*` is specified by the user.
 
 ### Specialized Kernels
 
 Clang will attempt to generate specialized kernels based on compiler options and OpenMP constructs. The following specialized kernels are supported:
 
-- No-Loop
-
-- Big-Jump-Loop
-
-- Cross-Team (Xteam) Reductions
+* No-Loop
+* Big-Jump-Loop
+* Cross-Team (Xteam) Reductions
 
 To enable the generation of specialized kernels, follow these guidelines:
 
-- Do not specify teams, threads, and schedule-related environment variables. The `num_teams` clause in an OpenMP target construct acts as an override and prevents the generation of the No-Loop kernel. If the specification of `num_teams` clause is a user requirement then clang tries to generate the Big-Jump-Loop kernel instead of the No-Loop kernel.
+* Do not specify teams, threads, and schedule-related environment variables. The `num_teams` clause in an OpenMP target construct acts as an override and prevents the generation of the No-Loop kernel. If the specification of `num_teams` clause is a user requirement then clang tries to generate the Big-Jump-Loop kernel instead of the No-Loop kernel.
 
-- Assert the absence of the teams, threads, and schedule-related environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`.
+* Assert the absence of the teams, threads, and schedule-related environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`.
 
-- To automatically enable the specialized kernel generation, use `-Ofast` or `-fopenmp-target-fast` for compilation.
+* To automatically enable the specialized kernel generation, use `-Ofast` or `-fopenmp-target-fast` for compilation.
 
-- To disable specialized kernel generation, use `-fno-openmp-target-ignore-env-vars`.
+* To disable specialized kernel generation, use `-fno-openmp-target-ignore-env-vars`.
 
 #### No-Loop Kernel Generation
 
