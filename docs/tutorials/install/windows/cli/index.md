@@ -1,4 +1,4 @@
-# Command line installation
+# Command-line installation
 
 ::::{grid} 2 3 3 3
 :gutter: 1

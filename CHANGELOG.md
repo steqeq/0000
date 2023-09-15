@@ -2501,7 +2501,7 @@ Until a fix is provided, users should rely on ROCm v5.2.3 to support their SRIOV
 
 #### System crash when IMMOU is enabled
 
-If IOMMU is enabled in SBIOS and ROCm is installed, the system may report the following failure or errors when running workloads such as bandwidth test, clinfo, and HelloWord.cl and cause a system crash.
+If input-output memory management unit (IOMMU) is enabled in SBIOS and ROCm is installed, the system may report the following failure or errors when running workloads such as bandwidth test, clinfo, and HelloWord.cl and cause a system crash.
 
 - IO PAGE FAULT
 - IRQ remapping does not support X2APIC mode
@@ -3886,7 +3886,7 @@ CRIU lacked the support for checkpoint restore applications that used device fil
 * Checkpoint / Restore on a different system
 * Checkpoint / Restore inside a docker container
 * PyTorch
-* Tensorflow
+* TensorFlow
 * Using CRIU Image Streamer
 
 For more information, refer to <https://github.com/checkpoint-restore/criu/tree/criu-dev/plugins/amdgpu>
@@ -4024,21 +4024,21 @@ hipBLAS 0.50.0 for ROCm 5.1.0
 ##### Added
 
 * Added library version and device information to hipblas-test output
-* Added --rocsolver-path command line option to choose path to pre-built rocSOLVER, as
+* Added --rocsolver-path command-line option to choose path to pre-built rocSOLVER, as
   absolute or relative path
-* Added --cmake_install command line option to update cmake to minimum version if required
+* Added --cmake_install command-line option to update cmake to minimum version if required
 * Added cmake-arg parameter to pass in cmake arguments while building
 * Added infrastructure to support readthedocs hipBLAS documentation.
 
 ##### Fixed
 
 * Added hipblasVersionMinor define. hipblaseVersionMinor remains defined
-  for backwards compatibility.
+  for backward compatibility.
 * Doxygen warnings in hipblas.h header file.
 
 ##### Changed
 
-* rocblas-path command line option can be specified as either absolute or relative path
+* rocblas-path command-line option can be specified as either absolute or relative path
 * Help message improvements in install.sh and rmake.py
 * Updated googletest dependency from 1.10.0 to 1.11.0
 

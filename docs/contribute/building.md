@@ -1,6 +1,6 @@
 # Building documentation
 
-While contributing, one may build the documentation locally on the command-line
+While contributing, one may build the documentation locally on the command line
 or rely on Continuous Integration for previewing the resulting HTML pages in a
 browser.
 
@@ -20,7 +20,7 @@ a summary at the bottom. This requires the user be logged in to GitHub.
   a URL of the form
   `https://advanced-micro-devices-demo--<pr_number>.com.readthedocs.build/projects/alpha/en/<pr_number>/`.
 
-## Build documentation from the command Line
+## Build documentation from the command line
 
 Python versions known to build documentation:
 

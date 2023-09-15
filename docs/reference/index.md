@@ -54,7 +54,7 @@ Libraries related to artificial intelligence.
 * {doc}`Composable Kernel <composable_kernel:index>`
 * {doc}`MIGraphX <amdmigraphx:index>`
 * {doc}`MIVisionX <mivisionx:README>`
-* {doc}`rocAL <rocal:README>`
+* {doc}`ROCm Augmentation Library (rocAL) <rocal:README>`
 :::
 
 :::{grid-item-card}

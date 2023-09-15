@@ -13,12 +13,12 @@ Editions and update versions.
 This section discusses obtaining information about the host architecture,
 Windows Edition and update version.
 
-#### Command line check
+#### Command-line check
 
 Verify the Windows Edition using the following steps:
 
 1. To obtain the Linux distribution information, type the following command on
-   your system from a PowerShell Command Line Interface (CLI):
+   your system from a PowerShell command-line interface (CLI):
 
    ```pwsh
    Get-ComputerInfo | Format-Table CsSystemType,OSName,OSDisplayVersion

@@ -18,7 +18,7 @@ kernel version.
 Verify the Linux distribution using the following steps:
 
 1. To obtain the Linux distribution information, type the following command on
-   your system from the Command Line Interface (CLI):
+   your system from the command-line interface (CLI):
 
    ```shell
    uname -m && cat /etc/*release

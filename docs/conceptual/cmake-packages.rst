@@ -36,7 +36,7 @@ paths), or using ``<PackageName>_ROOT`` variable on a project-specific basis.
 
 There are nearly a dozen ways to set these variables. One may be more convenient
 over the other depending on your workflow. Conceptually the simplest is adding
-it to your CMake configuration command on the command-line via
+it to your CMake configuration command on the command line via
 ``-D CMAKE_PREFIX_PATH=....`` . AMD packaged ROCm installs can typically be
 added to the config file search paths such as:
 
@@ -232,7 +232,7 @@ ROCm CMake packages
 Using CMake presets
 ===================
 
-CMake command-lines depending on how specific users like to be when compiling
+CMake command lines depending on how specific users like to be when compiling
 code can grow to unwieldy lengths. This is the primary reason why projects tend
 to bake script snippets into their build definitions controlling compiler
 warning levels, changing CMake defaults (``CMAKE_BUILD_TYPE`` or
@@ -255,7 +255,7 @@ a setup'n'forget fashion for quick assembly using graphical front-ends. This is
 all nice, but configurations aren't portable, nor can they be reused in
 Continuous Intergration (CI) pipelines. CMake has condensed existing practice
 into a portable JSON format that works in all IDEs and can be invoked from any
-command-line. This is
+command line. This is
 `CMake Presets <https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html>`_
 .
 

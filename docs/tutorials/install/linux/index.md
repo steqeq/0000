@@ -19,7 +19,7 @@ The prerequisites page lists the required steps *before* installation.
 
 Package manager vs AMDGPU installer
 
-Standard packages vs multi-version packages
+Standard vs multi-version packages
 :::
 
 ::::

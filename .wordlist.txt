@@ -255,7 +255,6 @@ preprocess
 preprocessing
 preq
 prerequisites
-PRNG
 profiler
 PRs
 PyPi
@@ -397,7 +396,6 @@ walkthroughs
 wavefront
 wavefronts
 WGP
-whitepaper
 whitespaces
 Wojna
 workgroup

@@ -15,6 +15,6 @@ ROCm Compatible Frameworks Flowchart
 
 ## Frameworks installation
 
-* [How to Install PyTorch?](../tutorials/install/pytorch-install)
-* [How to Install Tensorflow?](../tutorials/install/tensorflow-install)
-* [How to Install Magma?](../tutorials/install/magma-install)
+* [Installing PyTorch](../tutorials/install/pytorch-install)
+* [Installing TensorFlow](../tutorials/install/tensorflow-install)
+* [Installing MAGMA](../tutorials/install/magma-install)

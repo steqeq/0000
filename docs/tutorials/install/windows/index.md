@@ -29,7 +29,7 @@ Use the graphical front-end of the installer.
 :::
 
 :::{grid-item-card}
-**[Command line installation](./cli/index.md)**
+**[Command-line installation](./cli/index.md)**
 
 Use the command line front-end of the installer.
 :::

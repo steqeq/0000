@@ -15,7 +15,7 @@ used for uninstallation too, refer to {doc}`../installer/uninstall`.
 ```shell
 # Uninstall single-version ROCm packages
 sudo apt autoremove <package-name>
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo apt autoremove <package-name with release version>
 ```
 
@@ -25,7 +25,7 @@ sudo apt autoremove <package-name with release version>
 ```shell
 # Uninstall single-version ROCm packages
 sudo apt autoremove rocm-core
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo apt autoremove rocm-core<release version>
 ```
 
@@ -69,7 +69,7 @@ sudo apt autoremove amdgpu-dkms
 ```shell
 # Uninstall single-version ROCm packages
 sudo yum remove <package-name>
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo yum remove <package-name with release version>
 ```
 
@@ -79,7 +79,7 @@ sudo yum remove <package-name with release version>
 ```shell
 # Uninstall single-version ROCm packages
 sudo yum remove rocm-core
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo yum remove rocm-core<release version>
 ```
 
@@ -123,7 +123,7 @@ sudo yum autoremove amdgpu-dkms
 ```shell
 # Uninstall all single-version ROCm packages
 sudo zypper remove <package-name>
-# Uninstall all multiversion ROCm packages
+# Uninstall all multi-version ROCm packages
 sudo zypper remove <package-name with release version>
 ```
 
@@ -133,7 +133,7 @@ sudo zypper remove <package-name with release version>
 ```shell
 # Uninstall all single-version ROCm packages
 sudo zypper remove rocm-core
-# Uninstall all multiversion ROCm packages
+# Uninstall all multi-version ROCm packages
 sudo zypper remove rocm-core<release version>
 ```
 

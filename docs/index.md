@@ -21,7 +21,7 @@ Instructional material
 ^^^
 
 * [Installing ROCm](./tutorials/install/index.md)
-* [Installing Magma](./tutorials/install/magma-install.md)
+* [Installing MAGMA](./tutorials/install/magma-install.md)
 * [Installing PyTorch](./tutorials/install/pytorch-install.md)
 * [Installing TensorFlow](./tutorials/install/tensorflow-install.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)

@@ -57,7 +57,7 @@ conflicts.
 ```
 
 ```{note}
-Multiversion install is not available for the kernel driver module, also referred to as AMDGPU.
+Multi-version install is not available for the kernel driver module, also referred to as AMDGPU.
 ```
 
 The following image demonstrates the difference between single-version and

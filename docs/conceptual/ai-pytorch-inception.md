@@ -1,4 +1,4 @@
-# Inception V3 with PyTorch
+# Inception v3 with PyTorch
 
 ## Deep learning training
 
@@ -46,11 +46,11 @@ The following sections contain case studies for the Inception v3 model.
 
 Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
-The implementation uses PyTorch as a framework. This case study utilizes `[torchvision](https://pytorch.org/vision/stable/index.html)`, a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
+The implementation uses PyTorch as a framework. This case study utilizes [torchvision](https://pytorch.org/vision/stable/index.html), a repository of popular datasets and model architectures, for obtaining the model. Torchvision also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
 
 #### Evaluating a pre-trained model
 
-The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from `torchvision`.
+The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from torchvision.
 
 This example is adapted from the PyTorch research hub page on [Inception v3](https://pytorch.org/vision/master/models/inception.html).
 
@@ -85,7 +85,7 @@ Follow these steps:
     except: urllib.request.urlretrieve(url, filename)
     ```
 
-5. Import `torchvision` and `PIL.Image` support libraries.
+5. Import torchvision and PILImage support libraries.
 
     ```py
     from PIL import Image
@@ -196,7 +196,7 @@ Follow these steps:
 
 5. Open a Python shell.
 
-6. Import dependencies, including `torch`, `os`, and `[torchvision](https://github.com/pytorch/vision)`.
+6. Import dependencies, including torch, os, and [torchvision](https://github.com/pytorch/vision).
 
     ```py
     import torch
@@ -241,7 +241,7 @@ Follow these steps:
     val_resize_size = 342
     ```
 
-    The pre-trained Inception v3 model is chosen to be downloaded from `torchvision`.
+    The pre-trained Inception v3 model is chosen to be downloaded from torchvision.
 
     ```py
     model_name = "inception_v3"
@@ -334,7 +334,7 @@ Follow these steps:
     ```
 
     ```{note}
-    Use `torchvision` to obtain the Inception v3 model. Use the pre-trained model weights to speed up training.
+    Use torchvision to obtain the Inception v3 model. Use the pre-trained model weights to speed up training.
     ```
 
     ```py
@@ -477,7 +477,7 @@ The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of t
 
 Follow these steps:
 
-1. Import dependencies, including `torch`, `os`, and `[torchvision](https://github.com/pytorch/vision)`.
+1. Import dependencies, including torch, os, and [torchvision](https://github.com/pytorch/vision).
 
     ```py
     import torch
@@ -487,7 +487,7 @@ Follow these steps:
     import numpy as np
     ```
 
-2. The output of `torchvision` datasets is `PILImage` images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
+2. The output of torchvision datasets is `PILImage` images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
 
     ```py
     transform = transforms.Compose(

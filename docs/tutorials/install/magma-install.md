@@ -1,8 +1,8 @@
-# Magma installation for ROCm
+# MAGMA installation for ROCm
 
 ## MAGMA for ROCm
 
-Matrix Algebra on GPU and Multi-core Architectures (MAGMA) is a
+Matrix Algebra on GPU and Multicore Architectures (MAGMA) is a
 collection of next-generation dense linear algebra libraries that is designed
 for heterogeneous architectures, such as multiple GPUs and multi- or many-core
 CPUs.
@@ -39,7 +39,7 @@ To build MAGMA from the source, follow these steps:
    # "install" hipMAGMA into /opt/rocm/magma by copying after build
    git clone https://bitbucket.org/icl/magma.git
    pushd magma
-   # Fixes memory leaks of magma found while executing linalg UTs
+   # Fixes memory leaks of MAGMA found while executing linalg UTs
    git checkout 5959b8783e45f1809812ed96ae762f38ee701972
    cp make.inc-examples/make.inc.hip-gcc-mkl make.inc
    echo 'LIBDIR += -L$(MKLROOT)/lib' >> make.inc

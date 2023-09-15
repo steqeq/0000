@@ -105,7 +105,7 @@ To install PyTorch using the wheels package, follow these installation steps:
    pip3 install wheel setuptools
    ```
 
-4. Install torch, `torchvision`, and `torchaudio` as specified by the installation
+4. Install torch, torchvision, and torchaudio as specified by the installation
    matrix.
 
    ```{note}
@@ -340,8 +340,8 @@ Follow these steps:
    errors when running the unit tests.
    ```
 
-   This will first install some dependencies, such as a supported `[torchvision](https://pytorch.org/vision/stable/index.html)`
-   version for PyTorch. `torchvision` is used in some PyTorch tests for loading
+   This will first install some dependencies, such as a supported [torchvision](https://pytorch.org/vision/stable/index.html)
+   version for PyTorch. Torchvision is used in some PyTorch tests for loading
    models. Next, this will run all the unit tests.
 
    ```{note}
