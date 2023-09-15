@@ -13,18 +13,18 @@ Preliminary validation of all MI200 performance counters is in progress. Those w
 
 #### GRBM counters
 
-| Hardware Counter   | Unit   | Definition                                                                |
-|--------------------|--------| --------------------------------------------------------------------------|
-| `grbm_count`       | Cycles | Free-running GPU clock                                                    |
-| `grbm_gui_active`  | Cycles | GPU active cycles                                                         |
-| `grbm_cp_busy`     | Cycles | Any of the CP (CPC/CPF) blocks are busy.                                  |
+| Hardware Counter   | Unit   | Definition |
+|--------------------|--------| ------------------------------------------------------|
+| `grbm_count`       | Cycles | Free-running GPU clock |
+| `grbm_gui_active`  | Cycles | GPU active cycles |
+| `grbm_cp_busy`     | Cycles | Any of the command processor (CPC/CPF) blocks are busy. |
 | `grbm_spi_busy`    | Cycles | Any of the shader processor input (SPI) are busy in the shader engine(s). |
-| `grbm_ta_busy`     | Cycles | Any of the texture addressing unit (TA) are busy in the shader engine(s). |
-| `grbm_tc_busy`     | Cycles | Any of the texture cache blocks (TCP/TCI/TCA/TCC) are busy.               |
-| `grbm_cpc_busy`    | Cycles | The command processor - compute (CPC) is busy.                            |
-| `grbm_cpf_busy`    | Cycles | The command processor - fetcher (CPF) is busy.                            |
-| `grbm_utcl2_busy`  | Cycles | The unified translation cache - level 2 (UTCL2) block is busy.            |
-| `grbm_ea_busy`     | Cycles | The efficiency arbiter (EA) block is busy.                                |
+| `grbm_ta_busy`     | Cycles | Any of the texture addressing unit are busy in the shader engine(s). |
+| `grbm_tc_busy`     | Cycles | Any of the texture cache blocks (TCP/TCI/TCA/TCC) are busy. |
+| `grbm_cpc_busy`    | Cycles | The command processor - compute (CPC) is busy. |
+| `grbm_cpf_busy`    | Cycles | The command processor - fetcher (CPF) is busy. |
+| `grbm_utcl2_busy`  | Cycles | The unified translation cache - level 2 (UTCL2) block is busy. |
+| `grbm_ea_busy`     | Cycles | The efficiency arbiter (EA) block is busy. |
 
 ### Command processor
 
@@ -173,7 +173,7 @@ The compute unit counters are further classified into instruction mix, MFMA oper
 | :------------------------| :-------| --------------------------------------------------------------------: |
 | `sq_cycles`                | Cycles  | Free-running  SQ clocks                                               |
 | `sq_busy_cycles`           | Cycles  | Number of cycles while SQ reports it to be busy                       |
-| `sq_busy_cu_cycles`        | Qcycles | Number of quad-cycles each CU is busy                                 |
+| `sq_busy_cu_cycles`        | Qcycles | Number of quad cycles each CU is busy                                 |
 | `sq_valu_mfma_busy_cycles` | Cycles  | Number of cycles the MFMA ALU is busy                                 |
 | `sq_wave_cycles`           | Qcycles | Number of quad cycles spent by waves in the CUs                       |
 | `sq_wait_any`              | Qcycles | Number of quad cycles spent waiting for anything                      |
@@ -186,8 +186,8 @@ The compute unit counters are further classified into instruction mix, MFMA oper
 | `sq_active_inst_exp_gds`   | Qcycles | Number of quad cycles spent by each wave to work on EXP or GDS instruction |
 | `sq_active_inst_misc`      | Qcycles | Number of quad cycles spent by each wave to work on an MISC instruction, including branch and sendmsg |
 | `sq_active_inst_flat`      | Qcycles | Number of quad cycles spent by each wave to work on a FLAT instruction |
-| `sq_inst_cycles_vmem_wr`   | Qcycles | Number of quad cycles  spent to send addr and cmd data for VMEM Write instructions, including both FLAT and Buffer |
-| `sq_inst_cycles_vmem_rd`   | Qcycles | Number of quad cycles  spent to send addr and cmd data for VMEM Read instructions, including both FLAT and Buffer |
+| `sq_inst_cycles_vmem_wr`   | Qcycles | Number of quad cycles  spent to send addr and cmd data for VMEM write instructions, including both FLAT and buffer |
+| `sq_inst_cycles_vmem_rd`   | Qcycles | Number of quad cycles  spent to send addr and cmd data for VMEM read instructions, including both FLAT and buffer |
 | `sq_inst_cycles_smem`      | Qcycles | Number of quad cycles  spent to execute scalar memory reads           |
 | `sq_inst_cycles_salu`      | Cycles  | Number of cycles spent to execute non-memory read scalar operations   |
 | `sq_thread_cycles_valu`    | Cycles  | Number of thread cycles spent to execute VALU operations              |
@@ -249,7 +249,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 
 | Hardware Counter                 | Unit   | Definition                                        |
 | :--------------------------------| :------| ------------------------------------------------: |
-| `ta_ta_busy`                       | Cycles | TA busy cycles                                    |
+| `ta_ta_busy`                       | Cycles | texture addressing unit busy cycles                                    |
 | `ta_total_wavefronts`              | Instr  | Number of wavefront instructions                  |
 | `ta_buffer_wavefronts`             | Instr  | Number of buffer wavefront instructions           |
 | `ta_buffer_read_wavefronts`        | Instr  | Number of buffer read wavefront instructions      |
@@ -258,9 +258,9 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `ta_buffer_total_cycles`           | Cycles | Number of buffer cycles, including read and write |
 | `ta_buffer_coalesced_read_cycles`  | Cycles | Number of coalesced buffer read cycles            |
 | `ta_buffer_coalesced_write_cycles` | Cycles | Number of coalesced buffer write cycles           |
-| `ta_addr_stalled_by_tc`            | Cycles | Number of cycles TA address is stalled by TCP     |
-| `ta_data_stalled_by_tc`            | Cycles | Number of cycles TA data is stalled by TCP        |
-| `ta_addr_stalled_by_td_cycles[∗]`  | Cycles | Number of cycles TA address is stalled by TD      |
+| `ta_addr_stalled_by_tc`            | Cycles | Number of cycles texture addressing unit address is stalled by TCP     |
+| `ta_data_stalled_by_tc`            | Cycles | Number of cycles texture addressing unit data is stalled by TCP        |
+| `ta_addr_stalled_by_td_cycles[∗]`  | Cycles | Number of cycles texture addressing unit address is stalled by TD      |
 | `ta_flat_wavefronts`               | Instr  | Number of flat wavefront instructions             |
 | `ta_flat_read_wavefronts`          | Instr  | Number of flat read wavefront instructions        |
 | `ta_flat_write_wavefronts`         | Instr  | Number of flat write wavefront instructions       |
@@ -293,7 +293,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `tcp_atomic_tagconflict_stall_cycles` | Cycles | Number of cycles tagram conflict stalls on an atomic       |
 | `tcp_pending_stall_cycles`            | Cycles | Number of cycles vL1D cache is stalled due to data pending from L2 cache |
 | `tcp_ta_tcp_state_read`               | Req    | Number of wavefront instruction requests to vL1D           |
-| `tcp_volatile[∗]`                     | Req    | Number of L1 volatile pixels/buffers from TA               |
+| `tcp_volatile[∗]`                     | Req    | Number of L1 volatile pixels/buffers from texture addressing unit               |
 | `tcp_total_accesses`                  | Req    | Number of vL1D accesses                                    |
 | `tcp_total_read`                      | Req    | Number of vL1D read accesses                               |
 | `tcp_total_write`                     | Req    | Number of vL1D write accesses                              |
@@ -410,7 +410,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `Arb`          | Arbiter |
 | `BF16`        | Brain floating point – 16 |
 | `CC`           | Coherently cached |
-| `CP`           | Command Processor |
+| `CP`           | Command processor |
 | `CPC`         | Command processor – compute |
 | `CPF`         | Command processor – fetcher |
 | `CS`           | Compute shader |
@@ -444,7 +444,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TC`           | Texture cache |
 | `TCA`          | Texture cache arbiter |
 | `TCC`          | Texture cache per channel, known as L2 cache |
-| `TCIU`         | Texture cache interface unit, command processor (CP)’s interface to memory system |
+| `TCIU`         | Texture cache interface unit, command processor’s interface to memory system |
 | `TCP`          | Texture cache per pipe, known as vector L1 cache |
 | `TCR`          | Texture cache router |
 | `TD`           | Texture data unit |

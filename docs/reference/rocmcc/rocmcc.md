@@ -679,8 +679,8 @@ The following table lists the other Clang options and their support status.
 :widths: auto
 :align: center
 
-| **Option**                               | **Support Status** | **Description**                                                                                                                |
-|------------------------------------------|:------------------:|--------------------------------------------------------------------------------------------------------------------------------|
+| **Option** | **Support Status** | **Description** |
+|--------------|:-----------------------:|-------------------------|
 | `-###`                                   | Supported          | Prints (but does not run) the commands to run for this compilation                                                             |
 | `--analyzer-output <value>`              | Supported          | "Static analyzer report output format (`html|plist|plist-multi-file|plist-html|sarif|text`)"                                   |
 | `--analyze`                              | Supported          | Runs the static analyzer                                                                                                       |

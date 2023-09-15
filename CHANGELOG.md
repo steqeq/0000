@@ -531,7 +531,7 @@ rocWMMA 1.1.0 for ROCm 5.6.0
 
 * Added cross-lane operation backends (Blend, Permute, Swizzle and Dpp)
 * Added GPU kernels for rocWMMA unit test pre-process and post-process operations (fill, validation)
-* Added performance gemm samples for half, single and double precision
+* Added performance gemm samples for half, single, and double precision
 * Added rocWMMA cmake versioning
 * Added vectorized support in coordinate transforms
 * Included ROCm smi for runtime clock rate detection
