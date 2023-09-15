@@ -93,8 +93,6 @@ Use Driver Shipped with ROCm
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
-| AMD Radeon™ Pro W7900   | RDNA3  | gfx1100 | ✅ |
-| AMD Radeon™ Pro W7800   | RDNA3  | gfx1100 | ✅ |
 | AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro V620    | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ✅ |
@@ -107,8 +105,6 @@ Use Driver Shipped with ROCm
 
 | Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
-| AMD Radeon™ RX7900 XTX | RDNA3  | gfx1100 | ✅ |
-| AMD Radeon™ RX7900 XT  | RDNA3  | gfx1100 | ✅ |
 | AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
 
 :::
