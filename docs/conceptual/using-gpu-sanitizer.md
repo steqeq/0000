@@ -15,12 +15,12 @@ The address sanitizer process begins by compiling the application of interest wi
 
 Recommendations for doing this are:
 
-+ Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as `amdclang++`.
-+ Add the following options to the existing compiler and linker options:
-  + `-fsanitize=address` - enables instrumentation
-  + `-shared-libsan` - use shared version of runtime
-  + `-g` - add debug info for improved reporting
-+ Explicitly use `xnack+` in the offload architecture option. For example, `--offload-arch=gfx90a:xnack+`
+* Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as `amdclang++`.
+* Add the following options to the existing compiler and linker options:
+  * `-fsanitize=address` - enables instrumentation
+  * `-shared-libsan` - use shared version of runtime
+  * `-g` - add debug info for improved reporting
+* Explicitly use `xnack+` in the offload architecture option. For example, `--offload-arch=gfx90a:xnack+`
 Other architectures are allowed, but their device code will not be instrumented and a warning will be emitted.
 
 It is not an error to compile some files without address sanitizer instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the Address Sanitizer runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
@@ -31,23 +31,23 @@ When `-fsanitize=address` is used, the LLVM compiler adds instrumentation code a
 
 There are a few options if the compile time becomes unacceptable:
 
-+ Avoid instrumentation of the files which have the worst compile times. This will reduce the effectiveness of the address sanitizer process.
-+ Add the option `-fsanitize-recover=address` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
-+ Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
+* Avoid instrumentation of the files which have the worst compile times. This will reduce the effectiveness of the address sanitizer process.
+* Add the option `-fsanitize-recover=address` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
+* Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
 
-### Installing ROCm GPU Address Sanitizer Packages 
+### Installing ROCm GPU Address Sanitizer Packages
 
 For a complete ROCm GPU Sanitizer installation, the following  must be installed,
 
- - For instrumented HSA and HIP runtimes, and tools (required)
+* For instrumented HSA and HIP runtimes, and tools (required)
 
-```
+```bash
     sudo apt-get install amd-smi-lib-asan comgr-asan hip-runtime-amd-asan hsa-rocr-asan hsakmt-roct-asan hsa-amd-aqlprofile-asan rocm-core-asan rocm-dbgapi-asan rocm-debug-agent-asan rocm-opencl-asan rocm-smi-lib-asan rocprofiler-asan roctracer-asan
 ```
 
-- For instrumented math libraries (optional)
+* For instrumented math libraries (optional)
   
-```  
+```bash
     sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan 
 ```
 
@@ -68,33 +68,33 @@ When adjusting an application build to add instrumentation, linking against thes
 
 Here are a few recommendations to consider before running an address sanitizer instrumented heterogeneous application.
 
-+ Ensure the Linux kernel running on the system has Heterogeneous Memory Management (HMM) support. A kernel version of 5.6 or higher should be sufficient.
-+ Ensure XNACK is enabled
-  + For `gfx90a` (MI-2X0) or `gfx940` (MI-3X0) use environment `HSA_XNACK = 1`.
-  + For `gfx906` (MI-50) or `gfx908` (MI-100) use environment `HSA_XNACK = 1` but also ensure the amdgpu kernel module is loaded with module argument `noretry=0`.  
+* Ensure the Linux kernel running on the system has Heterogeneous Memory Management (HMM) support. A kernel version of 5.6 or higher should be sufficient.
+* Ensure XNACK is enabled
+  * For `gfx90a` (MI-2X0) or `gfx940` (MI-3X0) use environment `HSA_XNACK = 1`.
+  * For `gfx906` (MI-50) or `gfx908` (MI-100) use environment `HSA_XNACK = 1` but also ensure the amdgpu kernel module is loaded with module argument `noretry=0`.  
 This requirement is due to the fact that the XNACK setting for these GPUs is system-wide.
 
-+ Ensure that the application will use the instrumented libraries when it runs. The output from the shell command `ldd <application name>` can be used to see which libraries will be used.
+* Ensure that the application will use the instrumented libraries when it runs. The output from the shell command `ldd <application name>` can be used to see which libraries will be used.
 If the instrumented libraries are not listed by `ldd`, the environment variable `LD_LIBRARY_PATH` may need to be adjusted, or in some cases an `RPATH` compiled into the application may need to be changed and the application recompiled.
 
-+ Ensure that the application depends on the address sanitizer runtime. This can be checked by running the command `readelf -d <application name> | grep NEEDED` and verifying that shared library: `libclang_rt.asan-x86_64.so` appears in the output.
+* Ensure that the application depends on the address sanitizer runtime. This can be checked by running the command `readelf -d <application name> | grep NEEDED` and verifying that shared library: `libclang_rt.asan-x86_64.so` appears in the output.
 If it does not appear, when executed the application will quickly output an address sanitizer error that looks like:
 
 ```bash
 ==3210==ASan runtime does not come first in initial library list; you should either link runtime to your application or manually preload it with LD_PRELOAD.
 ```
 
-+ Ensure that the application `llvm-symbolizer` can be executed, and that it is located in `/opt/rocm-<version>/llvm/bin`. This executable is not strictly required, but if found is used to translate ("symbolize") a host-side instruction address into a more useful function name, file name, and line number (assuming the application has been built to include debug information).
+* Ensure that the application `llvm-symbolizer` can be executed, and that it is located in `/opt/rocm-<version>/llvm/bin`. This executable is not strictly required, but if found is used to translate ("symbolize") a host-side instruction address into a more useful function name, file name, and line number (assuming the application has been built to include debug information).
 
 There is an environment variable, `ASAN_OPTIONS` which can be used to adjust the runtime behavior of the ASAN runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASAN runtime. The device runtime only currently supports the default settings for the few relevant options.
 
 There are two `ASAN_OPTION` flags of particular note.
 
-+ `halt_on_error=0/1 default 1`.  
+* `halt_on_error=0/1 default 1`.  
 
 This tells the ASAN runtime to halt the application immediately after detecting and reporting an addressing error. The default makes sense because the application has entered the realm of undefined behavior. If the developer wishes to have the application continue anyway, this option can be set to zero. However, the application and libraries should then be compiled with the additional option `-fsanitize-recover=address`. Note that the ROCm optional address sanitizer instrumented libraries are not compiled with this option and if an error is detected within one of them, but halt_on_error is set to 0, more undefined behavior will occur.
 
-+ `detect_leaks=0/1 default 1`.
+* `detect_leaks=0/1 default 1`.
 This option directs the address sanitizer runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSAN). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSAN suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
 ### Runtime Overhead
@@ -233,18 +233,18 @@ $ rocgdb <path to application>
 (gdb) c
 ```
 
-### Using Address Sanitizer with a Short HIP Application 
+### Using Address Sanitizer with a Short HIP Application
+
 Refer to the following example to use address sanitizer with a short HIP application,
 
 https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md
 
-
 ### Known Issues with Using GPU Sanitizer
 
-+ Red zones must have limited size and it is possible for an invalid access to completely miss a red zone and not be detected.
+* Red zones must have limited size and it is possible for an invalid access to completely miss a red zone and not be detected.
 
-+ Lack of detection or false reports can be caused by the runtime not properly maintaining red zone shadows.
+* Lack of detection or false reports can be caused by the runtime not properly maintaining red zone shadows.
 
-+ Lack of detection on the GPU might also be due to the implementation not instrumenting accesses to all GPU specific address spaces. For example, in the current implementation accesses to "private" or "stack" variables on the GPU are not instrumented, and accesses to HIP shared variables (also known as "local data store" or "LDS") are also not instrumented.
+* Lack of detection on the GPU might also be due to the implementation not instrumenting accesses to all GPU specific address spaces. For example, in the current implementation accesses to "private" or "stack" variables on the GPU are not instrumented, and accesses to HIP shared variables (also known as "local data store" or "LDS") are also not instrumented.
 
-+ It can also be the case that a memory fault is hit for an invalid address even with the instrumentation. This is usually caused by the invalid address being so wild that its shadow address is outside of any memory region, and the fault actually occurs on the access to the shadow address. It is also possible to hit a memory fault for the `NULL` pointer. While address 0 does have a shadow location, it is not poisoned by the runtime.
+* It can also be the case that a memory fault is hit for an invalid address even with the instrumentation. This is usually caused by the invalid address being so wild that its shadow address is outside of any memory region, and the fault actually occurs on the access to the shadow address. It is also possible to hit a memory fault for the `NULL` pointer. While address 0 does have a shadow location, it is not poisoned by the runtime.
