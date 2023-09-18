@@ -1,4 +1,4 @@
-# Inception v3 with PyTorch
+# Deep learning: Inception V3 with PyTorch
 
 ## Deep learning training
 
@@ -40,19 +40,19 @@ Different quantization data types are typically chosen between training (FP32, B
 
 ## Case studies
 
-The following sections contain case studies for the Inception v3 model.
+The following sections contain case studies for the Inception V3 model.
 
-### Inception v3 with PyTorch
+### Inception V3 with PyTorch
 
-Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
+Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception V3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
-The implementation uses PyTorch as a framework. This case study utilizes [torchvision](https://pytorch.org/vision/stable/index.html), a repository of popular datasets and model architectures, for obtaining the model. Torchvision also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
+The implementation uses PyTorch as a framework. This case study utilizes [TorchVision](https://pytorch.org/vision/stable/index.html), a repository of popular datasets and model architectures, for obtaining the model. TorchVision also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
 
 #### Evaluating a pre-trained model
 
-The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from torchvision.
+The Inception V3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from TorchVision.
 
-This example is adapted from the PyTorch research hub page on [Inception v3](https://pytorch.org/vision/master/models/inception.html).
+This example is adapted from the PyTorch research hub page on [Inception V3](https://pytorch.org/vision/master/models/inception.html).
 
 Follow these steps:
 
@@ -140,9 +140,9 @@ Follow these steps:
         print(categories[top5_catid[i]], top5_prob[i].item())
     ```
 
-#### Training Inception v3
+#### Training Inception V3
 
-The previous section focused on downloading and using the Inception v3 model for a simple image classification task. This section walks through training the model on a new dataset.
+The previous section focused on downloading and using the Inception V3 model for a simple image classification task. This section walks through training the model on a new dataset.
 
 Follow these steps:
 
@@ -196,7 +196,7 @@ Follow these steps:
 
 5. Open a Python shell.
 
-6. Import dependencies, including torch, os, and [torchvision](https://github.com/pytorch/vision).
+6. Import dependencies, including Torch, OS, and [TorchVision](https://github.com/pytorch/vision).
 
     ```py
     import torch
@@ -222,7 +222,7 @@ Follow these steps:
     data_path = "tiny-imagenet-200"
     ```
 
-    The training image size is cropped for input into Inception v3.
+    The training image size is cropped for input into Inception V3.
 
     ```py
     train_crop_size = 299
@@ -241,7 +241,7 @@ Follow these steps:
     val_resize_size = 342
     ```
 
-    The pre-trained Inception v3 model is chosen to be downloaded from torchvision.
+    The pre-trained Inception V3 model is chosen to be downloaded from torchvision.
 
     ```py
     model_name = "inception_v3"
@@ -334,7 +334,7 @@ Follow these steps:
     ```
 
     ```{note}
-    Use torchvision to obtain the Inception v3 model. Use the pre-trained model weights to speed up training.
+    Use torchvision to obtain the Inception V3 model. Use the pre-trained model weights to speed up training.
     ```
 
     ```py
@@ -343,7 +343,7 @@ Follow these steps:
     model = torchvision.models.__dict__[model_name](pretrained=pretrained)
     ```
 
-11. Adapt Inception v3 for the current dataset. `tiny-imagenet-200` contains only 200 classes, whereas Inception v3 is designed for 1,000-class output. The last layer of Inception v3 is replaced to match the output features required.
+11. Adapt Inception V3 for the current dataset. `tiny-imagenet-200` contains only 200 classes, whereas Inception V3 is designed for 1,000-class output. The last layer of Inception V3 is replaced to match the output features required.
 
     ```py
     model.fc = torch.nn.Linear(model.fc.in_features, len(dataset.classes))

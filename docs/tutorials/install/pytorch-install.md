@@ -100,7 +100,7 @@ To install PyTorch using the wheels package, follow these installation steps:
    pip3 install wheel setuptools
    ```
 
-4. Install torch, torchvision, and torchaudio as specified by the installation
+4. Install Torch, TorchVision, and TorchAudio as specified by the installation
    matrix.
 
    ```{note}

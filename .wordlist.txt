@@ -201,6 +201,7 @@ MMA
 MNIST
 MPI
 mtypes
+Multicore
 Multithreaded
 MVAPICH
 MyST
@@ -255,6 +256,7 @@ preprocess
 preprocessing
 preq
 prerequisites
+PRNG
 profiler
 PRs
 PyPi
@@ -351,9 +353,10 @@ ToC
 tokenize
 toolchain
 toolchains
+TorchAudio
 TorchScript
 TorchServe
-torchvision
+TorchVision
 tracebacks
 TransferBench
 TrapStatus
@@ -396,6 +399,7 @@ walkthroughs
 wavefront
 wavefronts
 WGP
+whitepaper
 whitespaces
 Wojna
 workgroup
@@ -416,5 +420,3 @@ YAML
 YML
 YModel
 ZenDNN
-
-
