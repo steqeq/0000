@@ -5,6 +5,7 @@ AddressSanitizer
 AlexNet
 alloc
 allocators
+allocators
 ALU
 AMD
 AMDGPU
@@ -27,8 +28,11 @@ benchmarking
 bilinear
 BitCode
 BLAS
+Blit
+blit
 BMC
 bursty
+cacheable
 CCD
 CDNA
 CentOS
@@ -46,6 +50,7 @@ CommonMark
 composable
 Conda
 config
+conformant
 convolutional
 convolves
 CoRR
@@ -71,6 +76,7 @@ cuSOLVER
 cuSPARSE
 dataset
 datasets
+dataspace
 datatype
 datatypes
 de
@@ -103,6 +109,7 @@ ethernet
 exascale
 executables
 FFT
+FFTs
 FHS
 Flang
 FMA
@@ -112,9 +119,11 @@ GCD
 GCDs
 GCN
 GDB
+GDDR
 GDR
 GDS
 GEMM
+GEMMs
 gfx
 GIM
 Gitpod
@@ -234,8 +243,12 @@ OpenFabrics
 OpenGL
 OpenMP
 OpenVX
+optimizers
+os
 OSS
 OSU
+Pageable
+pageable
 passthrough
 PCI
 PCIe
@@ -259,9 +272,11 @@ prerequisites
 PRNG
 profiler
 PRs
+pseudorandom
 PyPi
 PyTorch
 Qcycles
+quasirandom
 Radeon
 RadeonOpenCompute
 RCCL
@@ -281,6 +296,7 @@ rocBLAS
 ROCdbgapi
 rocFFT
 ROCgdb
+ROCk
 rocLIB
 rocm
 ROCm
@@ -300,12 +316,13 @@ RST
 runtime
 runtimes
 RW
-RW
 SALU
 SBIOS
 SCA
 scalability
 SDK
+SDMA
+SDRAM
 SENDMSG
 sendmsg
 SENDMSG
@@ -318,6 +335,7 @@ SHA
 shader
 Shlens
 sigmoid
+SIGQUIT
 SIMD
 SKU
 SKUs
@@ -357,6 +375,7 @@ TorchAudio
 TorchScript
 TorchServe
 TorchVision
+torchvision
 tracebacks
 TransferBench
 TrapStatus
@@ -368,6 +387,7 @@ UCX
 UIF
 Uncached
 uncached
+Unhandled
 uninstallation
 unsqueeze
 unstacking
@@ -392,6 +412,7 @@ vL
 VM
 VMEM
 VMWare
+VRAM
 VSkipped
 Vulkan
 walkthrough
