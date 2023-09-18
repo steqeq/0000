@@ -2,8 +2,8 @@
 
 For the HIP reference documentation, see:
 
-- {doc}`hip:.doxygen/docBin/html/group___memory`
-- {doc}`hip:.doxygen/docBin/html/group___memory_m`
+* {doc}`hip:.doxygen/docBin/html/group___memory`
+* {doc}`hip:.doxygen/docBin/html/group___memory_m`
 
 Host memory exists on the host (e.g. CPU) of the machine in random access memory (RAM).
 
@@ -69,8 +69,8 @@ It is therefore recommended to check for managed memory capability with: `hipDev
 
 HIP supports additional calls that work with page migration:
 
-- `hipMemAdvise`
-- `hipMemPrefetchAsync`
+* `hipMemAdvise`
+* `hipMemPrefetchAsync`
 
 :::{tip}
 If the application needs to use data on both host and device regularly, does not want to deal with separate allocations, and is not worried about maxing out the VRAM on MI200 GPUs (64 GB per GCD), use managed memory.
@@ -157,9 +157,9 @@ If you want to make use of page migration, use managed memory. While pageable me
 
 ### Coherence
 
-- *Coarse-grained coherence* means that memory is only considered up to date at kernel boundaries, which can be enforced through `hipDeviceSynchronize`, `hipStreamSynchronize`, or any blocking operation that acts on the null stream (e.g. `hipMemcpy`).
+* *Coarse-grained coherence* means that memory is only considered up to date at kernel boundaries, which can be enforced through `hipDeviceSynchronize`, `hipStreamSynchronize`, or any blocking operation that acts on the null stream (e.g. `hipMemcpy`).
 For example, cacheable memory is a type of coarse-grained memory where an up-to-date copy of the data can be stored elsewhere (e.g. in an L2 cache).
-- *Fine-grained coherence* means the coherence is supported while a CPU/GPU kernel is running.
+* *Fine-grained coherence* means the coherence is supported while a CPU/GPU kernel is running.
 This can be useful if both host and device are operating on the same dataspace using system-scope atomic operations (e.g. updating an error code or flag to a buffer).
 Fine-grained memory implies that up-to-date data may be made visible to others regardless of kernel boundaries as discussed above.
 
