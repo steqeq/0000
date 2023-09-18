@@ -501,6 +501,36 @@ ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 * Memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs
 * Using *hipGraphAddMemFreeNode* no longer results in a crash
 
+### Library Changes in ROCM 5.6.1
+
+| Library | Version |
+|---------|---------|
+| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.1) |
+| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.1) |
+| hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.1) |
+| hipSOLVER | [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.1) |
+| hipSPARSE | 2.3.6 ⇒ [2.3.7](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.1) |
+| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.1) |
+| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.1) |
+| rocALUTION | [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.1) |
+| rocBLAS | [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.1) |
+| rocFFT | [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.1) |
+| rocm-cmake | [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.1) |
+| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.1) |
+| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.1) |
+| rocSOLVER | [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.1) |
+| rocSPARSE | [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.1) |
+| rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.1) |
+| Tensile | [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.1) |
+
+#### hipSPARSE 2.3.7
+
+hipSPARSE 2.3.7 for ROCm 5.6.1
+
+##### Bugfix
+
+* Reverted an undocumented API change in hipSPARSE 2.3.6 that affected hipsparseSpSV_solve function
+
 -------------------
 
 ## ROCm 5.6.0
