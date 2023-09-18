@@ -12,7 +12,7 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | Windows 11          | x86-64                | 22H2 (GA)          |
 | Windows Server 2022 | x86-64                |                    |
 
-## Windows supported GPUs
+## Windows-supported GPUs
 
 The table below shows supported GPUs for Radeon Pro™ and Radeon™ GPUs. Please
 click the tabs below to switch between GPU product lines. If a GPU is not listed

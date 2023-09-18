@@ -213,7 +213,7 @@ sudo zypper ref
 :::::
 ::::::
 
-### Upgrade the kernel-mode driver & reboot
+### Upgrade the kernel-mode driver and reboot
 
 Upgrade the kernel mode driver and reboot the system using the following
 commands based on your distribution:

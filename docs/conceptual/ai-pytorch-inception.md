@@ -465,7 +465,7 @@ Plotting the train and test loss shows both metrics reducing over training epoch
 
 ![Inception V3 train and loss graph](../data/conceptual/inception-v3.png "Inception V3 train and loss")
 
-### Custom Model with CIFAR-10 on PyTorch
+### Custom model with CIFAR-10 on PyTorch
 
 The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of the Tiny Images dataset (which contains 80 million images of 32x32 collected from the Internet) and consists of 60,000 32x32 color images. The images are labeled with one of 10 mutually exclusive classes: airplane, motor car, bird, cat, deer, dog, frog, cruise ship, stallion, and truck (but not pickup truck). There are 6,000 images per class, with 5,000 training and 1,000 testing images per class. Let us prepare a custom model for classifying these images using the PyTorch framework and go step-by-step as illustrated below.
 
@@ -662,7 +662,7 @@ Follow these steps:
         print("Accuracy for class {:5s} is: {:.1f} %".format(classname,accuracy))
     ```
 
-### Case Study: TensorFlow with Fashion MNIST
+### Case study: TensorFlow with Fashion MNIST
 
 Fashion MNIST is a dataset that contains 70,000 grayscale images in 10 categories.
 
@@ -932,7 +932,7 @@ To understand the code step by step, follow these steps:
         np.argmax(predictions_single[0])
         ```
 
-### Case Study: TensorFlow with Text Classification
+### Case study: TensorFlow with text classification
 
 This procedure demonstrates text classification starting from plain text files stored on disk. You will train a binary classifier to perform sentiment analysis on an IMDB dataset. At the end of the notebook, there is an exercise for you to try in which you will train a multi-class classifier to predict the tag for a programming question on Stack Overflow.
 

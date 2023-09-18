@@ -358,9 +358,9 @@ double b = 0.0;
 b = b + 1.0;
 ```
 
-### AddressSanitizer (ASan) tool
+### AddressSanitizer tool
 
-ASan is a memory error detector tool utilized by applications to
+AddressSanitizer (ASan) is a memory error detector tool utilized by applications to
 detect various errors ranging from spatial issues such as out-of-bound access to
 temporal issues such as use-after-free. The AOMP compiler supports ASan for AMD
 GPUs with applications written in both HIP and OpenMP.

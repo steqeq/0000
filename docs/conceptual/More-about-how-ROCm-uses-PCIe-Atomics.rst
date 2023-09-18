@@ -136,7 +136,7 @@ Since atomic operations are not locked they don't have the performance downsides
 
 Atomic operations can go from device to device, device to host, or host to device. Each completer indicates whether it supports this capability and guarantees atomic access if it does. The ability to route atomic operations is also indicated in the registers for a given port.
 
-ID-based Ordering – Goal:
+ID-based ordering – goal:
 ***************************************************************************************************
 Improve performance by avoiding stalls caused by ordering rules. For example, posted writes are never normally allowed to pass each other in a queue, but if they are requested by different functions, we can have some confidence that the requests are not dependent on each other. The previously reserved Attribute bit [2] is now combined with the RO bit to indicate ID ordering with or without relaxed ordering.
 
