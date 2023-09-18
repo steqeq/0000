@@ -32,6 +32,7 @@
 | [MIVisionX](https://rocm.docs.amd.com/projects/MIVisionX/en/latest/doxygen/html/index.html) | A set of comprehensive computer vision and machine learning libraries, utilities, and applications |
 | [Radeon Compute Profiler (RCP)](https://github.com/GPUOpen-Tools/radeon_compute_profiler/) | A performance analysis tool that gathers data from the API run-time and GPU for OpenCL and ROCm/HSA applications |
 | [RCCL](https://rocm.docs.amd.com/projects/rccl/en/latest/) | A standalone library that provides multi-GPU and multi-node collective communication primitives |
+| [rocAL](https://rocm.docs.amd.com/projects/rocAL/en/latest/doxygen/html/index.html) | An augmentation library designed to decode and process images and videos |
 | [rocALUTION](https://rocm.docs.amd.com/projects/rocALUTION/en/latest/) | A sparse linear algebra library for exploring fine-grained parallelism on ROCm runtime and toolchains |
 | [RocBandwidthTest](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/) | Captures the performance characteristics of buffer copying and kernel read/write operations |
 | [rocBLAS](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/)| A BLAS implementation (in the HIP programming language) on ROCm's runtime and toolchains |
