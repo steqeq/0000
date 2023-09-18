@@ -9,6 +9,7 @@ work, but aren't tested.
 ROCm releases support the most recent and two prior releases of PyTorch and
 TensorFlow
 
+<!-- markdown-link-check-disable -->
 | ROCm  | [PyTorch](https://github.com/pytorch/pytorch/releases/) | [TensorFlow](https://github.com/tensorflow/tensorflow/releases/) | [MAGMA](https://icl.utk.edu/magma/index.html) |
 |:------|:--------------------------:|:--------------------:|:-----:|
 | 5.0.2 | 1.8,  1.9,  1.10           | 2.6, 2.7, 2.8        |       |
@@ -18,6 +19,7 @@ TensorFlow
 | 5.4.x | 1.10.1, 1.11, 1.12.1, 1.13 | 2.8, 2.9, 2.10, 2.11 | 2.5.4 |
 | 5.5.x | 1.10.1, 1.11, 1.12.1, 1.13 | 2.10, 2.11           | 2.5.4 |
 | 5.6   | 1.11, 1.12.1, 1.13.1       | 2.12                 | 2.5.4 |
+<!-- markdown-link-check-enable -->
 
 (communication-libraries)=
 

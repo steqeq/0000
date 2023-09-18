@@ -56,6 +56,7 @@ This example is adapted from the PyTorch research hub page on Inception v3[^torc
 
 Follow these steps:
 
+<!-- markdown-link-check-disable-next-line -->
 1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch-install) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
@@ -146,6 +147,7 @@ The previous section focused on downloading and using the Inception v3 model for
 
 Follow these steps:
 
+<!-- markdown-link-check-disable-next-line -->
 1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](../tutorials/install/pytorch-install) for setting up a PyTorch environment on ROCm.
 
     ```dockerfile

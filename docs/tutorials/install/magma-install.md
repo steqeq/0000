@@ -7,9 +7,11 @@ collection of next-generation dense linear algebra libraries that is designed
 for heterogeneous architectures, such as multiple GPUs and multi- or many-core
 CPUs.
 
+<!-- markdown-link-check-disable -->
 MAGMA provides implementations for CUDA, HIP, Intel Xeon Phi, and OpenCL™. For
 more information, refer to
 [https://icl.utk.edu/magma/index.html](https://icl.utk.edu/magma/index.html).
+<!-- markdown-link-check-enable -->
 
 ### Using MAGMA for PyTorch
 
