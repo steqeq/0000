@@ -1,4 +1,5 @@
-# Using the LLVM AddressSanitizer (ASan) on a GPU
+<<<<<<< HEAD
+# Using the LLVM AddressSanitizer (ASan) on a GPU (beta release)
 
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 
@@ -7,7 +8,9 @@ Until now, the LLVM ASan process was only available for traditional purely CPU a
 This document provides documentation on using ROCm ASan.
 For information about LLVM ASan, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-## Compile for ASan
+**Note**: The beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
+
+## Compiling for ASan
 
 The ASan process begins by compiling the application of interest with the ASan instrumentation.
 
@@ -23,7 +26,7 @@ Other architectures are allowed, but their device code will not be instrumented 
 
 It is not an error to compile some files without ASan instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the ASan runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
 
-### About Compilation Time
+### About compilation time
 
 When `-fsanitize=address` is used, the LLVM compiler adds instrumentation code around every memory operation. This added code must be handled by all of the downstream components of the compiler toolchain and results in increased overall compilation time. This increase is especially evident in the AMDGPU device compiler and has in a few instances raised the compile time to an unacceptable level.
 
@@ -33,9 +36,28 @@ There are a few options if the compile time becomes unacceptable:
 * Add the option `-fsanitize-recover=address` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
 * Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
 
-## Use AMD supplied ASan instrumented libraries
+## Installing ROCm GPU ASan packages
 
-ROCm releases provide optional packages containing ASan instrumented builds of a subset of those ROCm libraries usually found in `/opt/rocm-<version>/lib`. These optional packages are typically named <library>-asan. However, the instrumented libraries themselves have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`. It is expected that the subset of ASan instrumented ROCm libraries will be expanded in future releases. They are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as described above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
+For a complete ROCm GPU Sanitizer installation, the following  must be installed,
+
+* For instrumented HSA and HIP runtimes, and tools (required)
+
+```bash
+    sudo apt-get install amd-smi-lib-asan comgr-asan hip-runtime-amd-asan hsa-rocr-asan hsakmt-roct-asan hsa-amd-aqlprofile-asan rocm-core-asan rocm-dbgapi-asan rocm-debug-agent-asan rocm-opencl-asan rocm-smi-lib-asan rocprofiler-asan roctracer-asan
+```
+
+* For instrumented math libraries (optional)
+
+```bash
+    sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan 
+```
+
+**Note**: It is recommended to install all address sanitizer packages. If the optional instrumented math libraries are not installed, the address sanitizer cannot find issues within those libraries.
+
+## Using AMD-supplied ASan instrumented libraries
+
+ROCm releases have optional packages containing additional address sanitizer instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
+These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
 These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
 
@@ -50,7 +72,7 @@ Here are a few recommendations to consider before running an ASan instrumented h
 * Ensure the Linux kernel running on the system has Heterogeneous Memory Management (HMM) support. A kernel version of 5.6 or higher should be sufficient.
 * Ensure XNACK is enabled
   * For `gfx90a` (MI-2X0) or `gfx940` (MI-3X0) use environment `HSA_XNACK = 1`.
-  * For `gfx906` (MI-50) or `gfx908` (MI-100) use environment `HSA_XNACK = 1` but also ensure the amdgpu kernel module is loaded with module argument `noretry=0`.  
+  * For `gfx906` (MI-50) or `gfx908` (MI-100) use environment `HSA_XNACK = 1` but also ensure the amdgpu kernel module is loaded with module argument `noretry=0`.
 This requirement is due to the fact that the XNACK setting for these GPUs is system-wide.
 
 * Ensure that the application will use the instrumented libraries when it runs. The output from the shell command `ldd <application name>` can be used to see which libraries will be used.
@@ -160,7 +182,7 @@ or
 
 currently may include one or two surprising CPU side tracebacks mentioning :`hostcall`". This is due to how `malloc` and `free` are implemented for GPU code and these call stacks can be ignored.
 
-## Running with `rocgdb`
+### Running with `rocgdb`
 
 `rocgdb` can be used to further investigate ASan detected errors, with some preparation.
 
@@ -212,9 +234,13 @@ $ rocgdb <path to application>
 (gdb) c
 ```
 
-## Using ASan with a short HIP application
+### Using ASan with a short HIP application
 
-## Known issues with GPU sanitizers
+Refer to the following example to use address sanitizer with a short HIP application,
+
+https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md
+
+### Known issues with using GPU sanitizer
 
 * Red zones must have limited size and it is possible for an invalid access to completely miss a red zone and not be detected.
 
