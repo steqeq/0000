@@ -21,47 +21,25 @@ Download the installer from the
 
 To launch the AMD HIP SDK Installer, click the **Setup** icon shown in the following image.
 
-```{figure} ../../data/tutorials/install/windows/000-setup-icon.png
-:name: setup-icon
-:alt: Icon with AMD arrow logo and User Access Control Shield overlayed.
-Setup Icon
-```
+![Icon with AMD arrow logo and User Access Control Shield overlay](../../data/tutorials/install/windows/000-setup-icon.png "Setup Icon")
 
 The installer requires Administrator Privileges, so you may be greeted with a
 User Access Control (UAC) pop-up. Click Yes.
 
-```{figure} ../../data/tutorials/install/windows/001-uac-dark.png
-:name: uac-dark
-:class: only-dark
-:alt: User Access Control pop-up
-User Access Control pop-up
-```
+![User Access Control pop-up](../../data/tutorials/install/windows/001-uac-dark.png "User Access Control pop-up")
 
-```{figure} ../../data/tutorials/install/windows/001-uac-light.png
-:name: uac-light
-:class: only-light
-:alt: User Access Control pop-up
-User Access Control pop-up
-```
+![User Access Control pop-up](../../data/tutorials/install/windows/001-uac-light.png "User Access Control pop-up")
 
 The installer executable will temporarily extract installer packages to `C:\AMD`
 which it will remove after installation completes. This extraction is signified
 by the "Initializing install" window in the following image.
 
-```{figure} ../../data/tutorials/install/windows/002-initializing.png
-:name: init-win-install
-:alt: Window with AMD arrow logo, futuristic background and progress counter.
-Installer initialization window
-```
+![Window with AMD arrow logo, futuristic background and progress counter](../../data/tutorials/install/windows/002-initializing.png "Installer initialization window")
 
 The installer will then detect your system configuration to determine which installable components
 are applicable to your system.
 
-```{figure} ../../data/tutorials/install/windows/003-detecting-system-config.png
-:name: detecting-system-components
-:alt: Window with AMD arrow logo, futuristic background and activity indicator.
-Installer initialization window.
-```
+![Window with AMD arrow logo, futuristic background and activity indicator](../../data/tutorials/install/windows/003-detecting-system-config.png "Installer initialization window")
 
 ### Customizing the install
 
@@ -70,11 +48,7 @@ the installation. By default, all components are selected for installation.
 Refer to the following image for an instance when the Select All option
 is turned on.
 
-```{figure} ../../data/tutorials/install/windows/004-installer-window.png
-:name: install-window
-:alt: Window with AMD arrow logo, futuristic background and activity indicator.
-Installer initialization window.
-```
+![Window with AMD arrow logo, futuristic background and activity indicator](../../data/tutorials/install/windows/004-installer-window.png "Installer initialization window")
 
 #### HIP SDK installer
 
@@ -135,22 +109,14 @@ Display Driver.
 
 Please wait for the installation to complete during as shown in the following image.
 
-```{figure} ../../data/tutorials/install/windows/012-install-progress.png
-:name: install-progress-win
-:alt: Window with AMD arrow logo, futuristic background and progress meter.
-Installation Progress
-```
+![Window with AMD arrow logo, futuristic background and progress meter](../../data/tutorials/install/windows/012-install-progress.png "Installation progress")
 
 ### Installation complete
 
 Once the installation is complete, the installer window may prompt you for a
 system restart. Click **Restart** at the lower right corner, shown in the following image.
 
-```{figure} ../../data/tutorials/install/windows/013-install-complete.png
-:name: install-complete-win
-:alt: Window with AMD arrow logo, futuristic background and completion notice.
-Installation Complete
-```
+![Window with AMD arrow logo, futuristic background and completion notice](../../data/tutorials/install/windows/013-install-complete.png "Installation complete")
 
 ```{error}
 Should the installer terminate due to unexpcted circumstances, or the user
@@ -169,16 +135,6 @@ Uninstallation of the HIP SDK components can be done through the Windows
 Settings app. Navigate to "Apps > Installed apps", click the "..." on the far
 right next to the component to uninstall, and click "Uninstall".
 
-```{figure} ../../data/tutorials/install/windows/014-uninstall-dark.png
-:name: uninstall-dark-win
-:class: only-dark
-:alt: Installed apps section of the Setting app showing installed HIP SDK components.
-Removing the SDK via the Setting app
-```
+![Installed apps section of the settings app showing installed HIP SDK components](../../data/tutorials/install/windows/014-uninstall-dark.png "Removing the SDK via the settings app")
 
-```{figure} ../../data/tutorials/install/windows/014-uninstall-light.png
-:name: uninstall-light-win
-:class: only-light
-:alt: Installed apps section of the Setting app showing installed HIP SDK components.
-Removing the SDK via the Setting app
-```
+![Installed apps section of the settings app showing installed HIP SDK components](../../data/tutorials/install/windows/014-uninstall-light.png "Removing the SDK via the settings app")

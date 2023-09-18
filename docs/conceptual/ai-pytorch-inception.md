@@ -463,13 +463,7 @@ torch.save(model.state_dict(), "trained_inception_v3.pt")
 
 Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in the following image.
 
-```{figure} ../data/conceptual/inception-v3.png
-:name: inception-v3
----
-align: center
----
-Inception v3 Train and Loss Graph
-```
+![Inception V3 train and loss graph](../data/conceptual/inception-v3.png "Inception V3 train and loss")
 
 ### Custom Model with CIFAR-10 on PyTorch
 
@@ -741,11 +735,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/conceptual/mnist-1.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/mnist-1.png)
 
 10. From the above picture, you can see that values are from zero to 255. Before training this on the neural network, you must bring them in the range of zero to one. Hence, divide the values by 255.
 
@@ -769,11 +759,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/conceptual/mnist-2.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/mnist-2.png)
 
     The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Deep learning consists of chaining together simple layers. Most layers, such as `tf.keras.layers.Dense`, have parameters that are learned during training.
 
@@ -895,13 +881,9 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/conceptual/mnist-3.png
-        ---
-        align: center
-        ---
-        ```
+     ![ ](../data/conceptual/mnist-3.png)
 
-        ```py
+     ```py
         i = 12
         plt.figure(figsize=(6,3))
         plt.subplot(1,2,1)
@@ -911,11 +893,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/conceptual/mnist-4.png
-        ---
-        align: center
-        ---
-        ```
+        ![ ](../data/conceptual/mnist-4.png)
 
     10. Use the trained model to predict a single image.
 
@@ -946,11 +924,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/conceptual/mnist-5.png
-        ---
-        align: center
-        ---
-        ```
+        ![ ](../data/conceptual/mnist-5.png)
 
     13. `tf.keras.Model.predict` returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
 
@@ -1115,11 +1089,7 @@ To prepare the data for training, follow these steps:
     print("Vectorized review", vectorize_text(first_review, first_label))
     ```
 
-    ```{figure} ../data/conceptual/TextClassification-3.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/TextClassification-3.png)
 
 5. As you can see above, each token has been replaced by an integer. Look up the token (string) that each integer corresponds to by calling get_vocabulary() on the layer.
 
@@ -1158,11 +1128,7 @@ To prepare the data for training, follow these steps:
     model.summary()
     ```
 
-    ```{figure} ../data/conceptual/TextClassification-4.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/TextClassification-4.png)
 
 8. A model needs a loss function and an optimizer for training. Since this is a binary classification problem and the model outputs a probability (a single-unit layer with a sigmoid activation), use [`losses.BinaryCrossentropy`](https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy) loss function.
 
@@ -1178,11 +1144,7 @@ To prepare the data for training, follow these steps:
     history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
     ```
 
-    ```{figure} ../data/conceptual/TextClassification-5.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/TextClassification-5.png)
 
 10. See how the model performs. Two values are returned: loss (a number representing our error; lower values are better) and accuracy.
 
@@ -1226,21 +1188,9 @@ To prepare the data for training, follow these steps:
 
     The following images illustrate the training and validation loss and the training and validation accuracy.
 
-    ```{figure} ../data/conceptual/TextClassification-6.png
-    :name: TextClassification6
-    ---
-    align: center
-    ---
-    Training and Validation Loss
-    ```
+    ![Training and validation loss](../data/conceptual/TextClassification-6.png "Training and validation loss")
 
-    ```{figure} ../data/conceptual/TextClassification-7.png
-    :name: TextClassification7
-    ---
-    align: center
-    ---
-    Training and Validation Accuracy
-    ```
+    ![Training and validation accuracy](../data/conceptual/TextClassification-7.png "Training and validation accuracy")
 
 12. Export the model.
 

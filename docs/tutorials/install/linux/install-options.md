@@ -63,9 +63,4 @@ Multi-version install is not available for the kernel driver module, also referr
 The following image demonstrates the difference between single-version and
 multi-version ROCm installation types:
 
-```{figure-md} install-types
-
-<img src="/data/tutorials/install/linux/linux001.png" alt="">
-
-ROCm installation types
-```
+![ROCm installation types](../../../data/tutorials/install/linux/linux001.png "ROCm installation types")

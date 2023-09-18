@@ -148,11 +148,7 @@ larger than 67MB, an effective utilization of about 150GB/sec is achieved, which
 corresponds to 75% of the peak transfer bandwidth of 200GB/sec for that
 connection:
 
-:::{figure} ../data/how-to/gpu-enabled-mpi-1.png
-:name: mpi-bandwidth
-:alt: OSU execution showing transfer bandwidth increasing alongside payload inc.
-Inter-GPU bandwidth with various payload sizes.
-:::
+![OSU execution showing transfer bandwidth increasing alongside payload increase](../data/how-to/gpu-enabled-mpi-1.png "Inter-GPU bandwidth with various payload sizes")
 
 ## Collective operations
 

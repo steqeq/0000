@@ -40,35 +40,15 @@ Verify the Windows Edition using the following steps:
 
 1. Open the Setting app.
 
-   ```{figure} ../../../data/tutorials/install/windows/000-settings-dark.png
-   :name: settings-dark
-   :class: only-dark
-   :alt: Gear icon of the Windows Settings app
-   Windows Settings app icon
-   ```
+   ![Gear icon of the Windows Settings app](../../../data/tutorials/install/windows/000-settings-dark.png "Windows Settings app icon")
 
-   ```{figure} ../../../data/tutorials/install/windows/000-settings-light.png
-   :name: settings-light
-   :class: only-light
-   :alt: Gear icon of the Windows Settings app
-   Windows Settings app icon
-   ```
+   ![Gear icon of the Windows Settings app](../../../data/tutorials/install/windows/000-settings-light.png "Windows Settings app icon")
 
 2. Navigate to **System > About**.
 
-   ```{figure} ../../../data/tutorials/install/windows/001-about-dark.png
-   :name: about-dark
-   :class: only-dark
-   :alt: Settings app panel showing Device and OS information
-   Settings > About page
-   ```
+   ![Settings app panel showing device and OS information](../../../data/tutorials/install/windows/001-about-dark.png "Settings > About page")
 
-   ```{figure} ../../../data/tutorials/install/windows/001-about-light.png
-   :name: about-light
-   :class: only-light
-   :alt: Settings app panel showing Device and OS information
-   Settings > About page
-   ```
+   ![Settings app panel showing device and OS information](../../../data/tutorials/install/windows/001-about-light.png "Settings > About page")
 
 3. Confirm that the obtained information matches with those listed in
    {ref}`windows-support`.

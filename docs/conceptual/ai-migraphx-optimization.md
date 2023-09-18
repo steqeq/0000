@@ -323,9 +323,4 @@ To run generated `.mxr` files through `migraphx-driver`, use the following:
 
 Alternatively, you can use MIGraphX's C++ or Python API to generate `.mxr` file.
 
-```{figure} ../data/conceptual/image018.png
-:name: image018
-:align: center
-
-Generating a `.mxr` File
-```
+![Generating an MXR file](../data/conceptual/image018.png "Generating an MXR file")

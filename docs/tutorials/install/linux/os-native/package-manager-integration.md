@@ -19,12 +19,7 @@ All meta-packages exist in both versioned and non-versioned forms.
 * Non-versioned packages – For a single-version installation of the ROCm stack
 * Versioned packages – For multi-version installations of the ROCm stack
 
-```{figure} ../../../../data/tutorials/install/linux/linux002.png
-:name: package-naming
-:align: center
-
-ROCm Release Package Naming
-```
+![ROCm release package naming](../../../../data/tutorials/install/linux/linux002.png "ROCm release package naming")
 
 The preceding image demonstrates the single and multi-version ROCm packages' naming
 structure, including examples for various Linux distributions. See terms below:
@@ -64,11 +59,7 @@ of required packages and libraries.
 * `rocm-hip-sdk` contains runtime components to deploy and execute HIP
   applications.
 
-```{figure} ../../../../data/tutorials/install/linux/linux003.png
-:name: meta-packages
-
-ROCm Meta Packages
-```
+![ROCm meta packages](../../../../data/tutorials/install/linux/linux003.png "ROCm meta packages")
 
 ```{note}
 `rocm-llvm` is not a meta-package but a single package that installs the ROCm
@@ -99,11 +90,7 @@ This section discusses the available meta-packages and their packages. The
 following image visualizes the meta-packages and their associated packages in a
 ROCm programming model.
 
-```{figure} ../../../../data/tutorials/install/linux/linux004.png
-:name: assoc-packages
-
-Associated Packages
-```
+![Associated packages](../../../../data/tutorials/install/linux/linux004.png "Associated packages")
 
 * Meta-packages can include another meta-package.
 * `rocm-core` package is common across all the meta-packages.
