@@ -15,11 +15,13 @@ shutil.copy2('../RELEASE.md','./release.md')
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
 latex_engine = "xel  atex"
-latex_elements["fontpkg"] = \
-r"""\usepackage{tgtermes}
+latex_elements = {
+    "fontpkg": r"""
+\usepackage{tgtermes}
 \usepackage{tgheros}
 \renewcommand\ttdefault{txtt}
 """
+}
 
 # configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
