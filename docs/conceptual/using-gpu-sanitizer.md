@@ -1,4 +1,4 @@
-# Using the LLVM AddressSanitizer (ASan) on a GPU (beta release)
+# Using the LLVM ASan on a GPU (beta release)
 
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 
