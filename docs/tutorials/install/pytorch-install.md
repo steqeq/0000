@@ -78,7 +78,7 @@ table, choose ROCm from the _Compute Platform_ row.
 
    Select a base OS Docker image (Check [OS compatibility](#supported_distributions))
 
-   Pull selected base OS image (ubuntu 20.04 for example)
+   Pull selected base OS image (Ubuntu 20.04 for example)
 
    ```docker
    docker pull ubuntu:20.04
@@ -265,7 +265,7 @@ maintainers and installs all the required dependencies, including:
    rocm/pytorch  build_from_dockerfile     17071499be47     2 minutes ago     32.8GB
    ```
 
-3. Start a Docker container using the image with the mounted Pytorch folder.
+3. Start a Docker container using the image with the mounted PyTorch folder.
 
    ```bash
    docker run -it --cap-add=SYS_PTRACE --security-opt --user root \

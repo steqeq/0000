@@ -119,7 +119,7 @@ subtrees:
       - file: tutorials/install/docker.md
         title: ROCm Docker containers
       - file: tutorials/install/pytorch-install.md
-        title: Pytorch for ROCm
+        title: PyTorch for ROCm
       - file: tutorials/install/tensorflow-install.md
         title: Tensorflow for ROCm
       - file: tutorials/install/magma-install.md
@@ -214,7 +214,7 @@ subtrees:
       - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
         title: ROCm & PCIe atomics
       - file: conceptual/ai-pytorch-inception.md
-        title: Inception v3 with Pytorch
+        title: Inception v3 with PyTorch
       - file: conceptual/ai-migraphx-optimization.md
         title: Inference optimization with MIGraphX
 
