@@ -199,6 +199,8 @@ subtrees:
             title: MI200
           - file: conceptual/gpu-arch/mi250.md
             title: MI250
+      - file: conceptual/gpu-memory.md
+        title: GPU memory
       - file: conceptual/compiler-disambiguation.md
         title: Compiler disambiguation
       - file: conceptual/file-reorg.md

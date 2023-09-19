@@ -76,7 +76,7 @@ table, choose ROCm from the _Compute Platform_ row.
 
    **Option 2:**
 
-   Select a base OS Docker image (Check [OS compatibility](#supported_distributions))
+   Select a base OS Docker image (Check [OS compatibility](../../about/compatibility/linux-support.md))
 
    Pull selected base OS image (Ubuntu 20.04 for example)
 
@@ -90,12 +90,12 @@ table, choose ROCm from the _Compute Platform_ row.
    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video ubuntu:20.04
    ```
 
-   Install ROCm using the directions in the [Installation section](#install_rocm_linux).
+   Install ROCm using the directions in the [Installation section](../install/linux/install-options.md).
 
    **Option 3:**
 
-   Install on bare metal. Check [OS compatibility](#supported_distributions) and install ROCm using the
-   directions in the [Installation section](#install_rocm_linux).
+   Install on bare metal. Check [OS compatibility](../../about/compatibility/linux-support.md) and install ROCm using the
+   directions in the [Installation section](../install/linux/install-options.md).
 
 2. Install the required dependencies for the wheels package.
 
