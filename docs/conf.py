@@ -14,7 +14,7 @@ shutil.copy2('../RELEASE.md','./release.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
-latex_engine = "xel  atex"
+latex_engine = "xelatex"
 latex_elements = {
     "fontpkg": r"""
 \usepackage{tgtermes}
