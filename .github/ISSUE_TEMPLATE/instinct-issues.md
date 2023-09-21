@@ -1,5 +1,23 @@
 ---
 name: Instinct Issues
+about: File issues for Instinct GPUs using this form
+title: ''
+labels: 'hardware:Instict'
+assignees: ''
+
+---
+
+**GPU Model**
+Name of your GPU model such as MI 250.
+
+**OS and other system details**
+List your operating system, CPU, RAM, motherboard and other relevant information.
+
+**Describe your Problem**
+Provide sufficient information to reproduce your problem. Explain why the current behavior is a concern.
+
+---
+name: Radeon Issues
 about: File issues for Radeon GPUs using this form
 title: ''
 labels: ''
