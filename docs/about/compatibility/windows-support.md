@@ -46,9 +46,9 @@ on this table, the GPU is not officially supported by AMD.
 | AMD Radeon™ RX 6900 XT  | RDNA2  | gfx1030 | ✅ | ✅ |
 | AMD Radeon™ RX 6800 XT  | RDNA2  | gfx1030 | ✅ | ✅ |
 | AMD Radeon™ RX 6800     | RDNA2  | gfx1030 | ✅ | ✅ |
-| AMD Radeon™ RX 6750     | RDNA2  | gfx1032 | ✅ | ❌ |
-| AMD Radeon™ RX 6700 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
-| AMD Radeon™ RX 6700     | RDNA2  | gfx1032 | ✅ | ❌ |
+| AMD Radeon™ RX 6750 XT  | RDNA2  | gfx1031 | ✅ | ❌ |
+| AMD Radeon™ RX 6700 XT  | RDNA2  | gfx1031 | ✅ | ❌ |
+| AMD Radeon™ RX 6700     | RDNA2  | gfx1031 | ✅ | ❌ |
 | AMD Radeon™ RX 6650 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6600 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6600     | RDNA2  | gfx1032 | ✅ | ❌ |
