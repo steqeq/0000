@@ -48,8 +48,7 @@ For hardware, software, and third-party framework compatibility between ROCm and
 ## Using a wheels package
 
 PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, go
-to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). In the interactive
-table, choose ROCm from the _Compute Platform_ row.
+to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). For the correct wheels command, you must select 'Linux', 'Python', 'pip', and 'ROCm' in the matrix.
 
 1. Choose one of the following three options:
 
