@@ -137,11 +137,11 @@ wheels command, you must select 'Linux', 'Python', 'pip', and 'ROCm' in the matr
    After installing ROCm PyTorch wheels, run the following code:
 
    ```bash
-   #Optional; replace 'gfx90a' with your architecture
+   #Optional; replace 'gfx90a' with your architecture and 5.6 with your preferred ROCm version
    export GFX_ARCH=gfx90a
 
    #Optional
-   export ROCM_VERSION=5.5
+   export ROCM_VERSION=5.6
 
    ./install_kdb_files_for_pytorch_wheels.sh
    ```
