@@ -37,7 +37,7 @@ There are a few options if the compile time becomes unacceptable:
 
 ### Installing ROCm GPU Address Sanitizer Packages 
 
-For a complete ROCm GPU Sanitizer installation and its packages, including instrumented HSA and HIP runtimes, tools and math libraries, use the following instruction,
+For a complete ROCm GPU Sanitizer installation, including packages, instrumented HSA and HIP runtimes, tools, and math libraries, use the following instruction,
 
 ```
     sudo apt-get install rocm-ml-sdk-asan
