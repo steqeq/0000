@@ -7,7 +7,7 @@ There are four standard ways to provide feedback for this repository.
 All contributions to ROCm documentation should arrive via the
 [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 targeting the develop branch of the repository. If you are unable to contribute
-via the GitHub Flow, feel free to email us at [rocm-feedback@amd.com](mailto:rocm-feedback@amd.com?subject=Documentation Feedback).
+via the GitHub Flow, feel free to email us at [rocm-feedback@amd.com](mailto:rocm-feedback@amd.com?subject=Documentation%20Feedback).
 
 ## GitHub discussions
 
