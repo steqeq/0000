@@ -15,13 +15,16 @@ resources to learn more about our products and what we support:
 :padding: 2
 **Installation**
 
-Instructional material
+Installation guides
 ^^^
 
-* [Install ROCm](./install/index.md)
-* [Install MAGMA](./install/magma-install.md)
-* [Install PyTorch](./install/pytorch-install.md)
-* [Install TensorFlow](./install/tensorflow-install.md)
+* [Linux quick-start](./install/linux/install-quick.md)
+* [Windows quick-start](./install/windows/install-quick.md)
+* [ROCm on Linux](./install/linux/install-quick.md)
+* [ROCm on Windows](./install/windows/install-quick.md)
+* [MAGMA for ROCm](./install/magma-install.md)
+* [PyTorch for ROCm](./install/pytorch-install.md)
+* [TensorFlow for ROCm](./install/tensorflow-install.md)
 
 :::
 
