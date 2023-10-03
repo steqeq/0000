@@ -36,7 +36,10 @@ $ sudo reboot
 :sync: ubuntu-22.04-IS
 
 ```console
-$ temp
+$ sudo apt update 
+$ wget https://repo.radeon.com/amdgpu-install/5.7/ubuntu/jammy/amdgpu-install_5.7.50700-1_all.deb 
+$ sudo apt install ./amdgpu-install_5.7.50700-1_all.deb 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
@@ -70,7 +73,10 @@ $ sudo reboot
 :sync: ubuntu-20.04-IS
 
 ```console
-$ temp
+$ sudo apt update 
+$ wget https://repo.radeon.com/amdgpu-install/5.7/ubuntu/focal/amdgpu-install_5.7.50700-1_all.deb 
+$ sudo apt install ./amdgpu-install_5.7.50700-1_all.deb 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
@@ -119,7 +125,8 @@ $ sudo reboot
 :sync: RHEL-9.2
 
 ```console
-$ temp
+$ sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/9.2/amdgpu-install-5.7.50700-1.el9.noarch.rpm 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
@@ -163,7 +170,8 @@ $ sudo reboot
 :sync: RHEL-9.1
 
 ```console
-$ temp
+$ sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/9.1/amdgpu-install-5.7.50700-1.el9.noarch.rpm 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
@@ -205,7 +213,8 @@ $ sudo reboot
 :::{tab-item} Install Script
 :sync: RHEL-8.8
 ```console
-$ temp
+$ sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.8/amdgpu-install-5.7.50700-1.el8.noarch.rpm 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
@@ -247,7 +256,8 @@ $ sudo reboot
 :sync: RHEL-8.7
 
 ```console
-$ temp
+$ sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.7/amdgpu-install-5.7.50700-1.el8.noarch.rpm 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
@@ -287,7 +297,8 @@ $ sudo reboot
 :::{tab-item} Install Script
 :sync: RHEL-8.6
 ```console
-$ temp
+$ sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.6/amdgpu-install-5.7.50700-1.el8.noarch.rpm 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
@@ -337,7 +348,8 @@ $ sudo reboot
 :::{tab-item} Install Script    
 :sync: SLES-15.5          
 ```console                      
-$ temp                         
+$ sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.7/sle/15.5/amdgpu-install-5.7.50700-1.noarch.rpm 
+$ sudo amdgpu-install --usecase=graphics,rocm                        
 ```                            
 
 :::                             
@@ -377,7 +389,8 @@ $ sudo reboot
 :sync: SLES-15.4
 
 ```console
-$ temp
+$ sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.7/sle/15.4/amdgpu-install-5.7.50700-1.noarch.rpm 
+$ sudo amdgpu-install --usecase=graphics,rocm 
 ```
 
 :::
