@@ -34,8 +34,9 @@ subtrees:
   - file: install/magma-install.md
     title: MAGMA for ROCm
 
-- file: about/compatibility/index.md
-  title: Compatibility & support
+  entries:
+  - file: about/compatibility/index.md
+    title: Compatibility & support
   subtrees:
   - entries:
     - file: about/compatibility/linux-support.md
@@ -49,8 +50,9 @@ subtrees:
     - file: about/compatibility/docker-image-support-matrix.md
       title: Docker
 
-- file: about/release-notes.md
-  title: Release information
+  entries:
+  - file: about/release-notes.md
+    title: Release information
   subtrees:
   - entries:
     - file: CHANGELOG.md
@@ -83,8 +85,9 @@ subtrees:
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
 
-- file: reference/index.md
-  title: Reference guides
+  entries:
+  - file: reference/index.md
+    title: Reference guides
   subtrees:
   - entries:
     - file: reference/hip.md
@@ -153,8 +156,9 @@ subtrees:
   - file: conceptual/ai-migraphx-optimization.md
     title: Inference optimization with MIGraphX
 
-- file: contribute/index.md
-  title: Contribute to ROCm docs
+  entries:
+  - file: contribute/index.md
+    title: Contribute to ROCm docs
   subtrees:
   - entries:
     - file: contribute/toolchain.md
@@ -164,5 +168,6 @@ subtrees:
     - file: contribute/feedback.md
       title: Providing feedback
 
-- file: about/license.md
-  title: ROCm license
+  entries:
+  - file: about/license.md
+    title: ROCm license
