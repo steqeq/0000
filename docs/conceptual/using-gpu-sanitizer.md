@@ -37,21 +37,16 @@ There are a few options if the compile time becomes unacceptable:
 
 ## Installing ROCm GPU ASan packages
 
-For a complete ROCm GPU Sanitizer installation, the following  must be installed,
+For a complete ROCm GPU Sanitizer installation, the following must be installed,
 
-* For instrumented HSA and HIP runtimes, and tools (required)
+For instrumented HSA and HIP runtimes, tools and math libraries
 
-```bash
-    sudo apt-get install amd-smi-lib-asan comgr-asan hip-runtime-amd-asan hsa-rocr-asan hsakmt-roct-asan hsa-amd-aqlprofile-asan rocm-core-asan rocm-dbgapi-asan rocm-debug-agent-asan rocm-opencl-asan rocm-smi-lib-asan rocprofiler-asan roctracer-asan
 ```
+    sudo apt-get install rocm-ml-sdk-asan
 
-* For instrumented math libraries (optional)
+ ```
 
-```bash
-    sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan 
-```
-
-**Note**: It is recommended to install all ASan packages. If the optional instrumented math libraries are not installed, the address sanitizer cannot find issues within those libraries.
+**Note**: The above instruction willl install all ROCm ASAN packages.
 
 ## Using AMD-supplied ASan instrumented libraries
 
