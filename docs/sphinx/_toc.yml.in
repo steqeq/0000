@@ -221,18 +221,25 @@ subtrees:
         title: Inference optimization with MIGraphX
 
   - file: contribute/index.md
-    title: Contributing
+    title: Contribute
     subtrees:
     - entries:
-      - file: contribute/toolchain.md
-        title: Documentation tools
-      - file: contribute/building.md
-        title: Building documentation
-      - file: contribute/feedback.md
-        title: Providing feedback
+      - file: contribute/contribute_to_documentation/index.md
+        title: Contribute to documentation
+        subtrees:
+        - entries:
+          - file: contribute/contribute_to_documentation/toolchain.md
+            title: Documentation tools
+          - file: contribute/contribute_to_documentation/building.md
+            title: Building documentation
+          - file: contribute/contribute_to_documentation/feedback.md
+            title: Providing feedback
 
-  - file: about/license.md
-    title: ROCm licensing
-
-
-
+  - file: licensing/index.md
+    title: Licensing
+    subtrees:
+    - entries:
+      - file: about/licensing.md
+        title: ROCm licensing
+      - file: licensing/licensing_for_documentation.md
+        title: Licensing for this documentation

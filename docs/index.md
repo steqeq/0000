@@ -79,7 +79,7 @@ Topic overviews & background information
 ::::
 
 We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
-on our [Contributing to ROCm](./contribute/index.md) page. Known issues are listed on
+on our [Contributing to ROCm](./contribute/contribute_to_documentation/index.md) page. Known issues are listed on
 [GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
 
-Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.
+Licensing information for all ROCm components is listed on our [Licensing](./about/licensing.md) page.

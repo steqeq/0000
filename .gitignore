@@ -14,5 +14,5 @@ _readthedocs/
 
 # avoid duplicating contributing.md due to conf.py
 docs/CHANGELOG.md
-docs/contribute/index.md
+docs/contribute/contribute_to_documentation/index.md
 docs/about/release-notes.md
