@@ -116,6 +116,8 @@ subtrees:
                     title: Upgrade
                   - file: tutorials/install/windows/cli/uninstall.md
                     title: Uninstall
+              - file: conceptual/windows-app-deployment-guidelines.md
+                title: Windows deployment guidelines
       - file: tutorials/install/docker.md
         title: ROCm Docker containers
       - file: tutorials/install/pytorch-install.md
@@ -125,8 +127,7 @@ subtrees:
       - file: tutorials/install/magma-install.md
         title: MAGMA for ROCm
 
-  - file: how-to/index.md
-    title: How-to
+  - title: How-to
     subtrees:
     - entries:
       - file: how-to/deep-learning-rocm.md
@@ -145,6 +146,10 @@ subtrees:
             title: MI200
           - file: how-to/tuning-guides/w6000-v620.md
             title: RDNA2
+      - file: how-to/spack.md
+        title: ROCm & Spack
+      - url: https://github.com/amd/rocm-examples
+        title: GitHub examples
 
   - file: reference/index.md
     title: Reference guides
@@ -185,8 +190,8 @@ subtrees:
       - file: reference/rocmcc/rocmcc.md
         title: ROCmCC
 
-  - file: conceptual/index.md
-    title: Conceptual documentation
+
+  - title: Conceptual
     subtrees:
     - entries:
       - file: conceptual/gpu-arch.md
@@ -205,8 +210,6 @@ subtrees:
         title: Compiler disambiguation
       - file: conceptual/file-reorg.md
         title: File structure (Linux FHS)
-      - file: conceptual/windows-app-deployment-guidelines.md
-        title: Windows deployment guidelines
       - file: conceptual/gpu-isolation.md
         title: GPU isolation techniques
       - file: conceptual/using-gpu-sanitizer.md
@@ -221,7 +224,7 @@ subtrees:
         title: Inference optimization with MIGraphX
 
   - file: contribute/index.md
-    title: Contributing
+    title: Contribute to ROCm docs
     subtrees:
     - entries:
       - file: contribute/toolchain.md
@@ -232,7 +235,7 @@ subtrees:
         title: Providing feedback
 
   - file: about/license.md
-    title: ROCm licensing
+    title: ROCm license
 
 
 

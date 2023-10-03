@@ -85,9 +85,9 @@ spack help will list the commands available.
 
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
 
-## Using Spack to install ROCm components  
+## Using Spack to install ROCm components
 
-## rocm-cmake  
+## rocm-cmake
 
 Below command will install the default variants and latest version of rocm-cmake.
 
@@ -101,7 +101,7 @@ Example:
 
 spack install rocm-cmake@5.2.0
 
-## Using info  
+## Using info
 
 info** command will display basic information of the package. It shows the Preferred, Safe and Deprecated versions and different Variants available.
 
@@ -111,72 +111,72 @@ spack info mivisionx
 
 Example:
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack info mivisionx  
-CMakePackage: mivisionx  
-  
-Description:  
- MIVisionX toolkit is a set of comprehensive computer vision and machine  
- intelligence libraries, utilities, and applications bundled into a  
- single toolkit.  
-  
-Homepage: <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX>  
-  
-Preferred version:  
- 5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>  
-  
-Safe versions:  
- 5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>  
- 5.2.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.3.tar.gz>  
- 5.2.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.1.tar.gz>  
- 5.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.0.tar.gz>  
- 5.1.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.3.tar.gz>  
- 5.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.0.tar.gz>  
- 5.0.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.2.tar.gz>  
- 5.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.0.tar.gz>  
- 4.5.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.2.tar.gz>  
- 4.5.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.0.tar.gz>  
-  
-Deprecated versions:  
- 4.3.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.1.tar.gz>  
- 4.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.0.tar.gz>  
- 4.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.2.0.tar.gz>  
- 4.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.1.0.tar.gz>  
- 4.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.0.0.tar.gz>  
- 3.10.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.10.0.tar.gz>  
- 3.9.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.9.0.tar.gz>  
- 3.8.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.8.0.tar.gz>  
- 3.7.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.7.0.tar.gz>  
- 1.7 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/1.7.tar.gz>  
-  
-Variants:  
- Name [Default] When Allowed values Description  
- ==================== ==== ==================== ==================================  
-  
- build_type [Release] -- Release, Debug, CMake build type  
- RelWithDebInfo  
- hip [on] -- on, off Use HIP as backend  
- ipo [off] -- on, off CMake interprocedural optimization  
- opencl [off] -- on, off Use OPENCL as the backend  
-  
-Build Dependencies:  
- cmake ffmpeg libjpeg-turbo miopen-hip miopen-opencl miopengemm opencv openssl protobuf rocm-cmake rocm-opencl  
-  
-Link Dependencies:  
- miopen-hip miopen-opencl miopengemm openssl rocm-opencl  
-  
-Run Dependencies:  
- None  
-  
+root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack info mivisionx
+CMakePackage: mivisionx
+
+Description:
+ MIVisionX toolkit is a set of comprehensive computer vision and machine
+ intelligence libraries, utilities, and applications bundled into a
+ single toolkit.
+
+Homepage: <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX>
+
+Preferred version:
+ 5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>
+
+Safe versions:
+ 5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>
+ 5.2.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.3.tar.gz>
+ 5.2.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.1.tar.gz>
+ 5.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.0.tar.gz>
+ 5.1.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.3.tar.gz>
+ 5.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.0.tar.gz>
+ 5.0.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.2.tar.gz>
+ 5.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.0.tar.gz>
+ 4.5.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.2.tar.gz>
+ 4.5.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.0.tar.gz>
+
+Deprecated versions:
+ 4.3.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.1.tar.gz>
+ 4.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.0.tar.gz>
+ 4.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.2.0.tar.gz>
+ 4.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.1.0.tar.gz>
+ 4.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.0.0.tar.gz>
+ 3.10.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.10.0.tar.gz>
+ 3.9.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.9.0.tar.gz>
+ 3.8.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.8.0.tar.gz>
+ 3.7.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.7.0.tar.gz>
+ 1.7 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/1.7.tar.gz>
+
+Variants:
+ Name [Default] When Allowed values Description
+ ==================== ==== ==================== ==================================
+
+ build_type [Release] -- Release, Debug, CMake build type
+ RelWithDebInfo
+ hip [on] -- on, off Use HIP as backend
+ ipo [off] -- on, off CMake interprocedural optimization
+ opencl [off] -- on, off Use OPENCL as the backend
+
+Build Dependencies:
+ cmake ffmpeg libjpeg-turbo miopen-hip miopen-opencl miopengemm opencv openssl protobuf rocm-cmake rocm-opencl
+
+Link Dependencies:
+ miopen-hip miopen-opencl miopengemm openssl rocm-opencl
+
+Run Dependencies:
+ None
+
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack)
 
-## Installing variants for ROCm components  
+## Installing variants for ROCm components 
 
-Variants listed above indicates that mivisionx package is built with **build_type=Release,** backend **hip**  and without backend **opencl** by default.  
+Variants listed above indicates that mivisionx package is built with **build_type=Release,** backend **hip**  and without backend **opencl** by default.
 But it also supports build_type=**Debug** and **RelWithDebInfo** , with **opencl** and without **hip** as backend.
 
 Example:
 
-spack install mivisionx build_type=Debug (Backend will be hip since it is the default one)  
+spack install mivisionx build_type=Debug (Backend will be hip since it is the default one)
 spack install mivisionx+opencl build_type=Debug (Backend will be opencl and hip will be disabled as per the conflict defined in recipe)
 
 ## spack spec command
@@ -185,16 +185,16 @@ In order to display the dependency tree spack spec command can be used with the 
 
 ## Example
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx  
-Input spec  
-\--------------------------------  
-mivisionx  
-  
-Concretized  
-\--------------------------------  
-mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu20.04-skylake_avx512  
-  
-## Creating environment  
+root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx
+Input spec
+\--------------------------------
+mivisionx
+
+Concretized
+\--------------------------------
+mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu20.04-skylake_avx512
+
+## Creating environment
 
 You can create an environment with all the components of required version, install them collectively and work in the environment.
 
@@ -248,33 +248,33 @@ You can create an environment with all the components of required version, insta
 
 ## Create and apply patch for a package before installation
 
-Spack will install rocm packages after pulling the source code from git hub and building locally.  
+Spack will install rocm packages after pulling the source code from git hub and building locally.
 In order to build a component with any modification in source code we would need to generate a patch and apply before the build phase by making changes in the spack recipe of the corresponding package.
 
 Below the procedure to generate a patch and build with the changes.
 
 1.**Stage the source code**
 
-spack stage hip@5.2.0 (This will pull the 5.2.0 release version source code of hip and display the path to spack-src directory where entire source code is available)  
-  
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack stage hip@5.2.0  
-==\> Fetching <https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-5.2.0.tar.gz>  
-==\> Fetching <https://github.com/ROCm-Developer-Tools/hipamd/archive/rocm-5.2.0.tar.gz>  
-==\> Fetching <https://github.com/ROCm-Developer-Tools/ROCclr/archive/rocm-5.2.0.tar.gz>  
-==\> Moving resource stage  
- source: /tmp/root/spack-stage/resource-hipamd-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/  
- destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/hipamd  
-==\> Moving resource stage  
- source: /tmp/root/spack-stage/resource-opencl-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/  
- destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/opencl  
-==\> Moving resource stage  
- source: /tmp/root/spack-stage/resource-rocclr-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/  
- destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/rocclr  
+spack stage hip@5.2.0 (This will pull the 5.2.0 release version source code of hip and display the path to spack-src directory where entire source code is available)
+
+root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack stage hip@5.2.0
+==\> Fetching <https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-5.2.0.tar.gz>
+==\> Fetching <https://github.com/ROCm-Developer-Tools/hipamd/archive/rocm-5.2.0.tar.gz>
+==\> Fetching <https://github.com/ROCm-Developer-Tools/ROCclr/archive/rocm-5.2.0.tar.gz>
+==\> Moving resource stage
+ source: /tmp/root/spack-stage/resource-hipamd-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
+ destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/hipamd
+==\> Moving resource stage
+ source: /tmp/root/spack-stage/resource-opencl-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
+ destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/opencl
+==\> Moving resource stage
+ source: /tmp/root/spack-stage/resource-rocclr-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
+ destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/rocclr
 ==\> Staged hip in /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7
 
 2\. **Change directory to spack-src inside the staged directory**
 
-root@[ixt-rack-104:/spack\#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)  
+root@[ixt-rack-104:/spack\#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)
 root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
 
 3\. **Creates a new Git repository**
@@ -295,10 +295,10 @@ root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mv
 
 7\. **Update the recipe with the patch file name and conditions to apply**
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip  
-  
-Provide the patch file name and the conditions for the patch to be applied in the hip recipe as below,  
-  
+root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip
+
+Provide the patch file name and the conditions for the patch to be applied in the hip recipe as below,
+
 patch("0001-modifications.patch", when="@5.2.0")
 
 Spack will apply 0001-modifications.patch on the 5.2.0 release code before starting the build for hip.

@@ -11,7 +11,7 @@
 Review hardware aspects of the AMD Instinct™ MI250
 accelerators and the CDNA™ 2 architecture that is the foundation of these GPUs.
 
-* [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
+* [Instruction set architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
 * [White paper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
 
 :::
@@ -22,8 +22,16 @@ accelerators and the CDNA™ 2 architecture that is the foundation of these GPUs
 Review hardware aspects of the AMD Instinct™ MI100
 accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs.
 
-* [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
+* [Instruction set architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
 * [White paper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
+
+:::
+
+:::{grid-item-card}
+**[# MI200 performance counters](./gpu-arch/mi200-performance-counters.md)**
+
+Review hardware performance counters and the derived metrics available on the AMD Instinct™ MI200
+GPU.
 
 :::
 

@@ -8,43 +8,45 @@ resources to learn more about our products and what we support:
 * [Compatibility & support](./about/compatibility/index.md)
 * [Release notes](./about/release-notes.md)
 
-Our documentation is divided into four main categories:
-
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
 :padding: 2
-**[Tutorials](./tutorials/index.md)**
+**Installation**
 
 Instructional material
 ^^^
 
-* [Installing ROCm](./tutorials/install/index.md)
-* [Installing MAGMA](./tutorials/install/magma-install.md)
-* [Installing PyTorch](./tutorials/install/pytorch-install.md)
-* [Installing TensorFlow](./tutorials/install/tensorflow-install.md)
+* [Install ROCm](./install/index.md)
+* [Install MAGMA](./install/magma-install.md)
+* [Install PyTorch](./install/pytorch-install.md)
+* [Install TensorFlow](./install/tensorflow-install.md)
+
+:::
+
+:::{grid-item-card}
+:padding: 2
+**How-to**
+
+Task-oriented walkthroughs
+^^^
+
+* [System tuning for various architectures](./how-to/tuning-guides.md)
+  * [MI100](./how-to/tuning-guides/mi100.md)
+  * [MI200](./how-to/tuning-guides/mi200.md)
+  * [RDNA2](./how-to/tuning-guides/w6000-v620.md)
+* [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
+* [GPU-enabled MPI](./how-to/gpu-enabled-mpi.md)
+* [System level debugging](./how-to/system-debugging.md)
+* [ROCm & Spack](./how-to/spack.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-**[How-to](./how-to/index.md)**
-
-Task-oriented walkthroughs
-^^^
-
-* [System tuning for various architectures](./how-to/tuning-guides/index.md)
-* [GPU-enabled MPI](./how-to/gpu-enabled-mpi.md)
-* [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
-* [System level debugging](./how-to/system-debugging.md)
-
-:::
-
-:::{grid-item-card}
-:padding: 2
-**[Reference](./reference/index.md)**
+**Reference**
 
 Collated information
 ^^^
@@ -63,23 +65,31 @@ Collated information
 
 :::{grid-item-card}
 :padding: 2
-**[Conceptual](./conceptual/index.md)**
+**Conceptual**
 
 Topic overviews & background information
 ^^^
 
-* [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
-* [Using CMake](./conceptual/cmake-packages.rst)
-* [Linux folder structure reorganization](./conceptual/file-reorg.md)
-* [GPU isolation techniques](./conceptual/gpu-isolation.md)
 * [GPU architecture](./conceptual/gpu-arch.md)
+  * [MI100](./conceptual/gpu-arch/mi100.md)
+  * [MI200](./conceptual/gpu-arch/mi200-performance-counters.md)
+  * [MI250](./conceptual/gpu-arch/mi250.md)
+* [GPU memory](./conceptual/gpu-memory.md)
+* [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
+* [File structure (Linux FHS)](./conceptual/file-reorg.md)
+* [GPU isolation techniques](./conceptual/gpu-isolation.md)
+* [LLVN ASan](./conceptual/using-gpu-sanitizer.md)
+* [Using CMake](./conceptual/cmake-packages.rst)
+* [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
+* [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
+* [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
 
 :::
 
 ::::
 
 We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
-on our [Contributing to ROCm](./contribute/index.md) page. Known issues are listed on
+on our [Contribute to ROCm docs](./contribute/index.md) page. Known issues are listed on
 [GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
 
 Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.
