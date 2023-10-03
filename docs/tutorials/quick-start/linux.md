@@ -3,13 +3,18 @@
 For a quick summary on installing ROCm on Linux, follow the steps listed on this page. If you
 want a more in-depth installation guide, see [Installing ROCm on Linux](../install/linux/index.md).
 
-::::::{tab-set}
-:::::{tab-item} Ubuntu
+::::::::{tab-set}
+:::::::{tab-item} Ubuntu
 :sync: ubuntu
 
-::::{tab-set}
-:::{tab-item} Ubuntu 22.04
+::::::{tab-set}
+:::::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
+
+::::{tab-set}
+:::{tab-item} Package Manager
+:sync: ubuntu-22.04-PM
+
 
 ```console
 $ sudo mkdir --parents --mode=0755 /etc/apt/keyrings
@@ -27,8 +32,23 @@ $ sudo apt install rocm-hip-libraries
 $ sudo reboot
 ```
 :::
-:::{tab-item} Ubuntu 20.04
+:::{tab-item} Install Script
+:sync: ubuntu-22.04-IS
+
+```console
+$ temp
+```
+
+:::
+::::
+
+:::::
+:::::{tab-item} Ubuntu 20.04
 :sync: ubuntu-20.04
+
+::::{tab-set}
+:::{tab-item} Package Manager
+:sync: ubuntu-20.04-PM
 
 ```console
 $ sudo mkdir --parents --mode=0755 /etc/apt/keyrings
@@ -44,15 +64,31 @@ $ sudo apt install amdgpu-dkms
 $ sudo apt install rocm-hip-libraries
 $ sudo reboot
 ```
+
+:::
+:::{tab-item} Install Script
+:sync: ubuntu-20.04-IS
+
+```console
+$ temp
+```
+
+:::
 ::::
 
-:::::
+::::::
 
-:::::{tab-item} Red Hat Enterprise Linux
+:::::::
+
+:::::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
+::::::{tab-set}
+:::::{tab-item} RHEL 9.2
+:sync: RHEL-9.2
+
 ::::{tab-set}
-:::{tab-item} RHEL 9.2
+:::{tab-item} Package Manager
 :sync: RHEL-9.2
 
 ```console
@@ -78,10 +114,25 @@ $ sudo yum install amdgpu-dkms
 $ sudo yum install rocm-hip-libraries
 $ sudo reboot
 ```
+:::
+:::{tab-item} Install Script
+:sync: RHEL-9.2
+
+```console
+$ temp
+```
 
 :::
+::::
 
-:::{tab-item} RHEL 9.1
+
+
+:::::
+:::::{tab-item} RHEL 9.1
+:sync: RHEL-9.1
+
+::::{tab-set}
+:::{tab-item} Package Manager
 :sync: RHEL-9.1
 
 ```console
@@ -108,8 +159,23 @@ $ sudo yum install rocm-hip-libraries
 $ sudo reboot
 ```
 :::
+:::{tab-item} Install Script
+:sync: RHEL-9.1
 
-:::{tab-item} RHEL 8.8
+```console
+$ temp
+```
+
+:::
+::::
+
+:::::
+
+:::::{tab-item} RHEL 8.8
+:sync: RHEL-8.8
+
+::::{tab-set}
+:::{tab-item} Package Manager
 :sync: RHEL-8.8
 
 ```console
@@ -136,10 +202,23 @@ $ sudo yum install rocm-hip-libraries
 $ sudo reboot
 ```
 :::
+:::{tab-item} Install Script
+:sync: RHEL-8.8
+```console
+$ temp
+```
 
-:::{tab-item} RHEL 8.7
+:::
+::::
+
+:::::
+
+:::::{tab-item} RHEL 8.7
 :sync: RHEL-8.7
 
+::::{tab-set}
+:::{tab-item} Package Manager
+:sync: RHEL-8.7
 ```console
 $ sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF' 
   [amdgpu]
@@ -164,10 +243,23 @@ $ sudo yum install rocm-hip-libraries
 $ sudo reboot
 ```
 :::
+:::{tab-item} Install Script
+:sync: RHEL-8.7
 
-:::{tab-item} RHEL 8.6
+```console
+$ temp
+```
+
+:::
+::::
+:::::
+
+:::::{tab-item} RHEL 8.6
 :sync: RHEL-8.6
 
+::::{tab-set}
+:::{tab-item} Package Manager
+:sync: RHEL-8.6
 ```console
 $ sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF' 
   [amdgpu]
@@ -192,17 +284,30 @@ $ sudo yum install rocm-hip-libraries
 $ sudo reboot
 ```
 :::
-::::
+:::{tab-item} Install Script
+:sync: RHEL-8.6
+```console
+$ temp
+```
 
+:::
 ::::
-
 :::::
+::::::
 
-:::::{tab-item} SUSE Linux Enterprise Server
+::::::
+
+:::::::
+
+:::::::{tab-item} SUSE Linux Enterprise Server
 :sync: SLES
 
-::::{tab-set}
-:::{tab-item} SLES 15.5
+::::::{tab-set}
+:::::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+::::{tab-set}                   
+:::{tab-item} Package Manager   
 :sync: SLES-15.5
 
 ```console
@@ -228,11 +333,22 @@ $ sudo zypper install amdgpu-dkms
 $ sudo zypper install rocm-hip-libraries
 $ sudo reboot
 ```
+:::                             
+:::{tab-item} Install Script    
+:sync: SLES-15.5          
+```console                      
+$ temp                         
+```                            
 
-:::
-:::{tab-item} SLES 15.4
+:::                             
+::::                            
+:::::
+:::::{tab-item} SLES 15.4
 :sync: SLES-15.4
 
+::::{tab-set}
+:::{tab-item} Package Manager
+:sync: SLES-15.4
 ```console
 $ sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
   [amdgpu]
@@ -256,12 +372,21 @@ $ sudo zypper install amdgpu-dkms
 $ sudo zypper install rocm-hip-libraries
 $ sudo reboot
 ```
+:::
+:::{tab-item} Install Script
+:sync: SLES-15.4
+
+```console
+$ temp
+```
 
 :::
 ::::
-
-::::
-
-
 :::::
 ::::::
+
+::::::
+
+
+:::::::
+::::::::
