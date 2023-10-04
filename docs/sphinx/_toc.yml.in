@@ -7,9 +7,6 @@ root: index
 subtrees:
 - entries:
   - file: what-is-rocm.md
-    subtrees:
-    - entries:
-      - file: rocm-a-z.md
   - file: about/whats-new/whats-new.md
 
 - caption: Installation
