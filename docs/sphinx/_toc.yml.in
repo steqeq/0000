@@ -2,27 +2,24 @@
 # These comments will also be removed.
 defaults:
   numbered: False
-  maxdepth: 5
+  maxdepth: 6
 root: index
 subtrees:
 - entries:
   - file: what-is-rocm.md
-    title: What is ROCm?
     subtrees:
     - entries:
       - file: rocm-a-z.md
-        title: ROCm A-Z
   - file: about/whats-new/whats-new.md
-    title: What's new?
 
 - caption: Installation
   entries:
   - file: install/linux/install-quick.md
-    title: Linux quick-start
-  - file: install/linux/install.md
-    title: ROCm on Linux
+    title: Quick start (Linux)
   - file: install/windows/install-quick.md
-    title: ROCm on Windows
+    title: Quick start (Windows)
+  - file: install/linux/install.md
+    title: Linux install guide
   - file: install/windows/install.md
     title: Windows install guide
   - file: install/docker.md
@@ -34,33 +31,29 @@ subtrees:
   - file: install/magma-install.md
     title: MAGMA for ROCm
 
+- caption: Compatibility & support
   entries:
-  - file: about/compatibility/index.md
-    title: Compatibility & support
-  subtrees:
-  - entries:
-    - file: about/compatibility/linux-support.md
-      title: Linux (GPU & OS)
-    - file: about/compatibility/windows-support.md
-      title: Windows (GPU & OS)
-    - file: about/compatibility/3rd-party-support-matrix.md
-      title: Third-party
-    - file: about/compatibility/user-kernel-space-compat-matrix.md
-      title: User/kernel space support
-    - file: about/compatibility/docker-image-support-matrix.md
-      title: Docker
+  - file: about/compatibility/linux-support.md
+    title: Linux (GPU & OS)
+  - file: about/compatibility/windows-support.md
+    title: Windows (GPU & OS)
+  - file: about/compatibility/3rd-party-support-matrix.md
+    title: Third-party
+  - file: about/compatibility/user-kernel-space-compat-matrix.md
+    title: User/kernel space support
+  - file: about/compatibility/docker-image-support-matrix.md
+    title: Docker
 
+- caption: Release information
   entries:
   - file: about/release-notes.md
-    title: Release information
-  subtrees:
-  - entries:
-    - file: CHANGELOG.md
-      title: Changelog
-    - file: about/release-history.md
-      title: Release history
-    - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
-      title: Known issues
+    title: Release notes
+  - file: CHANGELOG.md
+    title: Changelog
+  - file: about/release-history.md
+    title: Release history
+  - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
+    title: Known issues
 
 - caption: How-to
   entries:
@@ -85,45 +78,42 @@ subtrees:
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
 
+- caption: Reference
   entries:
-  - file: reference/index.md
-    title: Reference guides
-  subtrees:
-  - entries:
-    - file: reference/hip.md
-      title: HIP
-    - file: reference/compilers-tools/index.md
-      title: Compilers & tools
-      subtrees:
-      - entries:
-        - file: reference/compilers-tools/validation-tools.md
-          title: Validation tools
-        - file: reference/compilers-tools/management-tools.md
-          title: Management tools
-    - file: reference/libraries/index.md
-      title: Libraries
-      subtrees:
-      - entries:
-        - file: reference/libraries/ai-libraries.md
-          title: AI
-        - file: reference/libraries/gpu-libraries/communication.md
-          title: Communication
-        - file: reference/libraries/gpu-libraries/math.md
-          title: Math
-          subtrees:
-          - entries:
-            - file: reference/libraries/gpu-libraries/math-linear-algebra.md
-              title: Linear algebra
-            - file: reference/libraries/gpu-libraries/math-fft.md
-              title: Fast Fourier transforms
-        - file: reference/libraries/gpu-libraries/rand.md
-          title: Random numbers
-        - file: reference/libraries/gpu-libraries/c++primitives.md
-          title: C++ primitives
-    - file: reference/openmp/openmp.md
-      title: OpenMP
-    - file: reference/rocmcc/rocmcc.md
-      title: ROCmCC
+  - file: reference/hip.md
+    title: HIP
+  - file: reference/compilers-tools/index.md
+    title: Compilers & tools
+    subtrees:
+    - entries:
+      - file: reference/compilers-tools/validation-tools.md
+        title: Validation tools
+      - file: reference/compilers-tools/management-tools.md
+        title: Management tools
+  - file: reference/libraries/index.md
+    title: Libraries
+    subtrees:
+    - entries:
+      - file: reference/libraries/ai-libraries.md
+        title: AI
+      - file: reference/libraries/gpu-libraries/communication.md
+        title: Communication
+      - file: reference/libraries/gpu-libraries/math.md
+        title: Math
+        subtrees:
+        - entries:
+          - file: reference/libraries/gpu-libraries/math-linear-algebra.md
+            title: Linear algebra
+          - file: reference/libraries/gpu-libraries/math-fft.md
+            title: Fast Fourier transforms
+      - file: reference/libraries/gpu-libraries/rand.md
+        title: Random numbers
+      - file: reference/libraries/gpu-libraries/c++primitives.md
+        title: C++ primitives
+  - file: reference/openmp/openmp.md
+    title: OpenMP
+  - file: reference/rocmcc/rocmcc.md
+    title: ROCmCC
 
 - caption: Conceptual
   entries:
@@ -156,18 +146,17 @@ subtrees:
   - file: conceptual/ai-migraphx-optimization.md
     title: Inference optimization with MIGraphX
 
+- caption: Contribute
   entries:
   - file: contribute/index.md
     title: Contribute to ROCm docs
-  subtrees:
-  - entries:
-    - file: contribute/toolchain.md
-      title: Documentation tools
-    - file: contribute/building.md
-      title: Building documentation
-    - file: contribute/feedback.md
-      title: Providing feedback
-
-  entries:
+    subtrees:
+    - entries:
+      - file: contribute/toolchain.md
+        title: Documentation tools
+      - file: contribute/building.md
+        title: Building documentation
+      - file: contribute/feedback.md
+        title: Providing feedback
   - file: about/license.md
     title: ROCm license
