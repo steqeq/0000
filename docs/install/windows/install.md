@@ -15,13 +15,14 @@ compatible GPU is required. Please see the [supported GPU guide](../../about/com
 ::::{tab-set}
 
 :::{tab-item} CLI
-:sync: key1
+:sync: cli
 
 1. Type the following command on your system from a PowerShell command-line interface (CLI):
 
    ```pwsh
    Get-ComputerInfo | Format-Table CsSystemType,OSName,OSDisplayVersion
    ```
+
    Running this command on a Windows system may result in the following output:
 
    ```output
@@ -35,22 +36,17 @@ compatible GPU is required. Please see the [supported GPU guide](../../about/com
 :::
 
 :::{tab-item} GUI
-:sync: key2
+:sync: gui
 
-1. Open the Settings app.
-
-   ![Gear icon of the Windows Settings app](../../data/install/windows/000-settings-dark.png "Windows Settings app icon")
+1. Open the **Settings** app.
 
    ![Gear icon of the Windows Settings app](../../data/install/windows/000-settings-light.png "Windows Settings app icon")
 
 2. Navigate to **System > About**.
 
-   ![Settings app panel showing device and OS information](../../data/install/windows/001-about-dark.png "Settings > About page")
-
    ![Settings app panel showing device and OS information](../../data/install/windows/001-about-light.png "Settings > About page")
 
-3. Confirm that the obtained information matches with those listed in
-   {ref}`windows-support`.
+3. Confirm that the obtained information matches {ref}`windows-support`.
 
 :::
 ::::
@@ -60,23 +56,24 @@ compatible GPU is required. Please see the [supported GPU guide](../../about/com
 ::::{tab-set}
 
 :::{tab-item} CLI
-:sync: key1
+:sync: cli
 
-```{table} HIP SDK Command Line Options
+CLI options are listed in the following table:
+
+```{table}
 :name: hip-sdk-cli-install
 | **Install Option** | **Description** |
-|:------------------:|:---------------:|
+|:------------------|:---------------|
 | `-install` | Command used to install packages, both driver and applications. No output to the screen. |
 | `-install -boot` | Silent install with auto reboot. |
 | `-install -log <absolute path>` | Write install result code to the specified log file. The specified log file must be on a local machine. Double quotes are needed if there are spaces in the log file path. |
 | `-uninstall` | Command to uninstall all packages installed by this installer on the system. There is no option to specify which packages to uninstall. |
 | `-uninstall -boot` | Silent uninstall with auto reboot. |
-| `/?` or /help | Shows a brief description of all switch commands. |
+| `/?` or `/help` | Shows a brief description of all switch commands. |
 ```
 
 ```{note}
-Unlike the graphical installer, the CLI doesn't support
-selectively installing parts of the SDK bundle. It's all or nothing.
+Unlike the GUI, the CLI doesn't support selectively installing parts of the SDK bundle.
 ```
 
 To start the installation, follow these steps:
@@ -105,14 +102,14 @@ To start the installation, follow these steps:
 :::
 
 :::{tab-item} GUI
-:sync: key2
+:sync: gui
 
 The HIP SDK installation options are listed in the following table.
 
-```{table} HIP SDK Components for Installation
+```{table}
 :name: hip-sdk-options
 | **HIP Components** | **Install Type** | **Additional Options** |
-|:------------------:|:----------------:|:----------------------:|
+|:------------------|:----------------|:----------------------|
 | HIP SDK Core         | 5.5.0               | Install location                        |
 | HIP Libraries        | Full, Partial, None | Runtime, Development (Libs and headers) |
 | HIP Runtime Compiler | Full, Partial, None | Runtime, Development (Headers)          |
@@ -135,19 +132,19 @@ convenient.
 The HIP SDK installer bundles an AMD Radeon Software PRO 23.10 installer. The
 supported install options are summarized in the following table:
 
-```{table} AMD Display Driver Install Options
+```{table}
 :name: display-driver-install-options
 | **Install Option** | **Description** |
-|:------------------:|:---------------:|
+|:------------------|:---------------|
 | Install Location         | Location on disk to store driver files. |
 | Install Type             | The breadth of components to be installed. |
 | Factory Reset (Optional) | A Factory Reset will remove all prior versions of AMD HIP SDK and drivers. You will not be able to roll back to previously installed drivers. |
 ```
 
 ```{table} AMD Display Driver Install Types
-:name: display-driver-install-types
+:name:
 | **Install Type** | **Description** |
-|:----------------:|:---------------:|
+|:----------------|:---------------|
 | Full Install     | Provides all AMD Software features and controls for gaming, recording, streaming, and tweaking the performance on your graphics hardware. |
 | Minimal Install  | Provides only the basic controls for AMD Software features and does not include advanced features such as performance tweaking or recording and capturing content. |
 | Driver Only      | Provides no user interface for AMD Software features. |
@@ -169,8 +166,6 @@ To start the installation, follow these steps:
 
     The installer requires Administrator Privileges, so you may be greeted with a
     User Access Control (UAC) pop-up. Click Yes.
-
-    ![User Access Control pop-up](../../data/install/windows/001-uac-dark.png "User Access Control pop-up")
 
     ![User Access Control pop-up](../../data/install/windows/001-uac-light.png "User Access Control pop-up")
 
@@ -217,7 +212,7 @@ existing version. You can also uninstall the HIP SDK before installing the newes
 ::::{tab-set}
 
 :::{tab-item} CLI
-:sync: key1
+:sync: cli
 
 Launch the installer. Note that the installer is a graphical application with a `WinMain` entry
 point, even when called on the command line. This means that the application lifetime is tied to a
@@ -240,12 +235,10 @@ Start-Process ~\Downloads\Setup.exe -ArgumentList '-uninstall' -NoNewWindow -Wai
 :::
 
 :::{tab-item} GUI
-:sync: key2
+:sync: gui
 
 Uninstallation of HIP SDK components can be done through the Windows Settings app. Navigate to
 "Apps > Installed apps" and click the ellipsis (...) on the far right next to the component you want to uninstall. Click "Uninstall".
-
-![Installed apps section of the settings app showing installed HIP SDK components](../../data/install/windows/014-uninstall-dark.png "Removing the SDK via the settings app")
 
 ![Installed apps section of the settings app showing installed HIP SDK components](../../data/install/windows/014-uninstall-light.png "Removing the SDK via the settings app")
 

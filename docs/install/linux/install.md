@@ -48,10 +48,10 @@ conflicts.
 Multi-version install is not available for the kernel driver module, also referred to as AMDGPU.
 ```
 
-The following image demonstrates the difference between single-version and
-multi-version ROCm installation types:
+The following image shows the difference between single-version and
+multi-version ROCm installations:
 
-![ROCm installation types](../../../data/tutorials/install/linux/linux001.png "ROCm installation types")
+![ROCm installation types](../../data/install/linux/linux001.png "ROCm installation types")
 
 ## Prepare to install
 
@@ -104,7 +104,7 @@ on specific Linux distributions and kernel versions.
    :::::{tab-item} Red Hat Enterprise Linux
    :sync: RHEL
 
-   ::::{rubric} 1. Add the EPEL repository.
+   ::::{rubric} a. Add the EPEL repository.
    ::::
 
    ::::{tab-set}
@@ -128,7 +128,7 @@ on specific Linux distributions and kernel versions.
    :::
    ::::
 
-   ::::{rubric} 2. Enable the CodeReady Linux Builder repository.
+   ::::{rubric} b. Enable the CodeReady Linux Builder repository.
    ::::
 
    Run the following command and follow the instructions.
@@ -244,13 +244,12 @@ You can select a specific release to install, update the previously installed si
 available release, or add the latest version of ROCm along with the currently installed version by using
 the multi-version ROCm packages.
 
-::::{tab-set}
+::::::::{tab-set}
+:::::::{tab-item} Linux package manager
+:sync: package
 
-:::{tab-item} Package manager
-:sync: key1
-
-::::{tab-set}
-:::{tab-item} Ubuntu
+::::::{tab-set}
+:::::{tab-item} Ubuntu
 :sync: ubuntu
 
 ::::{rubric} 1. Download and convert the package signing key
@@ -690,12 +689,14 @@ For a comprehensive list of meta-packages, refer to
 :::::
 ::::::
 
-## Post-install actions and verification
+(post-install-actions-linux)=
+
+### Post-install actions and verification process
 
 The post-install actions listed here are optional and depend on your use case,
 but are generally useful. Verification of the install is advised.
 
-### Post-install actions
+#### Post-install actions
 
 1. Instruct the system linker where to find the shared objects (`.so` files) for
    ROCm applications.
@@ -736,34 +737,35 @@ but are generally useful. Verification of the install is advised.
    developing these libraries or want to use self-built versions of them.)
    ```
 
-### Verify kernel-mode driver installation
+(verifying-kernel-mode-driver-installation)=
 
-Check the installation of the kernel-mode driver by typing the command given below:
+#### Verifying kernel-mode driver installation
+
+Check the installation of the kernel-mode driver by typing the command given
+below:
 
 ```shell
 dkms status
 ```
 
-### Verify ROCm installation
+* Verifying ROCm installation: After completing the ROCm installation, execute the following
+  commands on the system to verify if the installation is successful. If you see your GPUs listed by both
+  commands, the installation is considered successful.
 
-After completing the ROCm installation, use the following command to verify the installation. If you
-see your GPUs listed, the installation is successful:
+   ```shell
+   /opt/rocm/bin/rocminfo
+   ```
 
-```shell
-/opt/rocm/bin/rocminfo
-```
+* Verifying package installation: To ensure the packages are installed successfully, use the following
+  commands.
 
-### Verify package installation
+   ::::{tab-set}
+   :::{tab-item} Ubuntu
+   :sync: ubuntu
 
-To ensure the packages are installed successfully, use the following command:
-
-::::{tab-set}
-:::{tab-item} Ubuntu
-:sync: ubuntu
-
-```shell
-sudo apt list --installed
-```
+   ```shell
+   sudo apt list --installed
+   ```
 
 :::
 
@@ -785,10 +787,10 @@ sudo zypper search --installed-only
 
 :::
 ::::
-:::
+:::::::
 
-:::{tab-item} AMDGPU
-:sync: key2
+:::::::{tab-item} AMDGPU install script
+:sync: amdgpu
 
 To download and install the `amdgpu-install` script on the system, use the
 following commands based on your distribution.
@@ -956,169 +958,171 @@ To install use cases specific to your requirements, use the installer
   sudo amdgpu-install --usecase=hiplibsdk,rocm
   ```
 
-### Single-version ROCm installation
+### Single-version and multi-version ROCm installation
 
-By default (without the `--rocmrelease` option) the installer script will install packages in the
-single-version layout.
+By default (without the `--rocmrelease` option)
+the installer script will install packages in the single-version layout.
 
-### Multi-version ROCm installation
+For the multi-version ROCm installation you must use the installer script from
+the latest release of ROCm that you wish to install.
 
-For the multi-version ROCm installation you must use the installer script from the latest release of
-ROCm that you wish to install.
+**Example:** If you want to install ROCm releases 5.5.3, 5.6.1 and 5.7
+simultaneously, you are required to download the installer from the latest ROCm
+release 5.7.
 
-```{note}
- If you want to install ROCm releases 5.5.3, 5.6.1 and 5.7simultaneously, you are required to download
- the installer from the latest ROCm release 5.7.
+### Add required repositories
+
+You must add the ROCm repositories manually for all ROCm releases
+you want to install except the latest one. The `amdgpu-install` script
+automatically adds the required repositories for the latest release.
+
+Run the following commands based on your distribution to add the repositories:
+
+::::::{tab-set}
+:::::{tab-item} Ubuntu
+:sync: ubuntu
+
+::::{tab-set}
+:::{tab-item} Ubuntu 22.04
+:sync: ubuntu-22.04
+
+```shell
+for ver in 5.5.3 5.6.1 5.7; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+done
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+sudo apt update
 ```
 
-You must add the ROCm repositories manually for all ROCm releases you want to install except the
-latest one. The `amdgpu-install` script automatically adds the required repositories for the latest
-release.
+:::
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
 
-1. Run the following commands based on your distribution:
-
-   ::::::{tab-set}
-   :::::{tab-item} Ubuntu
-   :sync: ubuntu
-
-   ::::{tab-set}
-   :::{tab-item} Ubuntu 22.04
-   :sync: ubuntu-22.04
-
-   ```shell
-      for ver in 5.5.3 5.6.1 5.7; do
-      echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
-      done
-      echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
-      sudo apt update
-   ```
-
-   :::
-   :::{tab-item} Ubuntu 20.04
-   :sync: ubuntu-20.04
-
-   ```shell
-      for ver in 5.5.3 5.6.1 5.7; do
-      echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
-      done
-      echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
-      sudo apt update
-   ```
-
-   :::
-   ::::
-   :::::
-   :::::{tab-item} Red Hat Enterprise Linux
-   :sync: RHEL
-
-   ::::{tab-set}
-   :::{tab-item} RHEL 9
-   :sync: RHEL-9
-
-   ```shell
-      for ver in 5.5.3 5.6.1 5.7; do
-      sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
-      [ROCm-$ver]
-      name=ROCm$ver
-      baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
-      enabled=1
-      priority=50
-      gpgcheck=1
-      gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-      EOF
-      done
-      sudo yum clean all
-   ```
-
-   :::
-   :::{tab-item} RHEL 8
-   :sync: RHEL-8
-
-   ```shell
-      for ver in 5.5.3 5.6.1 5.7; do
-      sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
-      [ROCm-$ver]
-      name=ROCm$ver
-      baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
-      enabled=1
-      priority=50
-      gpgcheck=1
-      gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-      EOF
-      done
-      sudo yum clean all
-   ```
-
-   :::
-   ::::
-   :::::
-
-   :::::{tab-item} SUSE Linux Enterprise Server
-   :sync: SLES
-
-   ```shell
-      for ver in 5.5.3 5.6.1 5.7; do
-      sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
-      name=rocm
-      baseurl=https://repo.radeon.com/rocm/zyp/$ver/main
-      enabled=1
-      gpgcheck=1
-      gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-      EOF
-      done
-      sudo zypper ref
-   ```
-
-   :::::
-   ::::::
-
-2. Install the packages.
-
-  ```none
-    sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-1>
-    sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-2>
-    sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-3>
-  ```
-
-  Following are examples of ROCm multi-version installation. The kernel-mode
-  driver, associated with the ROCm release 5.7, will be installed as its latest
-  release in the list.
-
-  ```none
-    sudo amdgpu-install --usecase=rocm --rocmrelease=5.7
-    sudo amdgpu-install --usecase=rocm --rocmrelease=5.6.1
-    sudo amdgpu-install --usecase=rocm --rocmrelease=5.5.3
-  ```
-
-### Additional options
-
-1. Unattended installation: Adding `-y` as a parameter to `amdgpu-install` skips user prompts (for
-   automation). Example: `amdgpu-install -y --usecase=rocm`
-
-2. Skipping kernel mode driver installation: The installer script tries to install the kernel mode
-  driver along with the requested use cases. This might be unnecessary as in the case of docker
-  containers or you may wish to keep a specific version when using multi-version installation, and not
-  have the last installed version overwrite the kernel mode driver.
-
-  To skip the installation of the kernel-mode driver add the `--no-dkms` option when calling the
-  installer script.
+```shell
+for ver in 5.5.3 5.6.1 5.7; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+done
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+sudo apt update
+```
 
 :::
 ::::
+:::::
+:::::{tab-item} Red Hat Enterprise Linux
+:sync: RHEL
+
+::::{tab-set}
+:::{tab-item} RHEL 9
+:sync: RHEL-9
+
+```shell
+for ver in 5.5.3 5.6.1 5.7; do
+sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 8
+:sync: RHEL-8
+
+```shell
+for ver in 5.5.3 5.6.1 5.7; do
+sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo yum clean all
+```
+
+:::
+::::
+:::::
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
+
+```shell
+for ver in 5.5.3 5.6.1 5.7; do
+sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
+name=rocm
+baseurl=https://repo.radeon.com/rocm/zyp/$ver/main
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo zypper ref
+```
+
+:::::
+::::::
+
+### Install packages
+
+Use the installer script as given below:
+
+```none
+sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-1>
+sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-2>
+sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-3>
+```
+
+Following are examples of ROCm multi-version installation. The kernel-mode
+driver, associated with the ROCm release 5.7, will be installed as its latest
+release in the list.
+
+```none
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.7
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.6.1
+sudo amdgpu-install --usecase=rocm --rocmrelease=5.5.3
+```
+
+### Additional options
+
+1. Unattended installation.
+      Adding `-y` as a parameter to `amdgpu-install` skips user prompts (for
+      automation). Example: `amdgpu-install -y --usecase=rocm`
+
+2. Skipping kernel mode driver installation.
+      The installer script tries to install the kernel mode driver
+      along with the requested use cases. This might be unnecessary as in the case of docker containers or
+      you may wish to keep a specific version when using multi-version installation, and not have the last
+      installed version overwrite the kernel mode driver.
+
+      To skip the installation of the kernel-mode driver add the `--no-dkms` option
+      when calling the installer script.
+
+:::::::
+::::::::
 
 ## Upgrade ROCm
 
-::::{tab-set}
+::::::::{tab-set}
 
-:::{tab-item} Package manager
-:sync: key1
+:::::::{tab-item} Linux package manager
+:sync: package
 
 The upgrade procedure with the installer script is exactly the same as installing for first-time use.
 
-:::
+:::::::
 
-:::{tab-item} AMDGPU
-:sync: key2
+:::::::{tab-item} AMDGPU
+:sync: amdgpu
 
 Note that package upgrade is applicable to single-version packages only. If the preference is to install
 an updated version of the ROCm along with the currently installed version, refer to the [](install) page.
@@ -1327,10 +1331,7 @@ an updated version of the ROCm along with the currently installed version, refer
     :::::
     ::::::
 
-2.  Upgrade the kernel-mode driver and reboot
-
-    Upgrade the kernel mode driver and reboot the system using the following
-    commands based on your distribution:
+2.  Upgrade the kernel-mode driver and reboot the system.
 
     ::::{tab-set}
     :::{tab-item} Ubuntu
@@ -1362,10 +1363,7 @@ an updated version of the ROCm along with the currently installed version, refer
     :::
     ::::
 
-3. Update the ROCm repository
-
-    Execute the commands below based on your distribution to point the `rocm`
-    repository to the new release.
+3. Update the ROCm repository.
 
     ::::::{tab-set}
     :::::{tab-item} Ubuntu
@@ -1505,9 +1503,8 @@ an updated version of the ROCm along with the currently installed version, refer
     :::
     ::::
 
-:::
-
-::::
+:::::::
+::::::::
 
 ## Uninstall ROCm
 

@@ -20,8 +20,16 @@ subtrees:
     title: Quick start (Windows)
   - file: install/linux/install.md
     title: Linux install guide
+    subtrees:
+    - entries:
+      - file: install/linux/package-manager-integration.md
+        title: Package manager integration
   - file: install/windows/install.md
     title: Windows install guide
+    subtrees:
+    - entries:
+      - file: install/windows/windows-app-deployment-guidelines.md
+        title: Application deployment guidelines for Windows
   - file: install/docker.md
     title: ROCm Docker containers
   - file: install/pytorch-install.md
