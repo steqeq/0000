@@ -1321,7 +1321,7 @@ an updated version of the ROCm along with the currently installed version, refer
       :::::
       ::::::
 
-2.  Upgrade the kernel-mode driver and reboot the system.
+2. Upgrade the kernel-mode driver and reboot the system.
 
     ::::{tab-set}
     :::{tab-item} Ubuntu
@@ -1353,7 +1353,7 @@ an updated version of the ROCm along with the currently installed version, refer
     :::
     ::::
 
-2. Update the ROCm repository.
+3. Update the ROCm repository.
 
     ::::::{tab-set}
     :::::{tab-item} Ubuntu
