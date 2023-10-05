@@ -26,7 +26,7 @@ subtrees:
     subtrees:
     - entries:
       - file: install/windows/windows-app-deployment-guidelines.md
-        title: Application deployment guidelines for Windows
+        title: Application deployment guidelines
   - file: install/docker.md
     title: ROCm Docker containers
   - file: install/pytorch-install.md
@@ -47,6 +47,8 @@ subtrees:
   - file: about/compatibility/user-kernel-space-compat-matrix.md
     title: User/kernel space support
   - file: about/compatibility/docker-image-support-matrix.md
+    title: Docker
+  - file: about/compatibility/openmp.md
     title: Docker
 
 - caption: Release information
@@ -85,40 +87,91 @@ subtrees:
 
 - caption: Reference
   entries:
-  - file: reference/hip.md
-    title: HIP
-  - file: reference/compilers-tools/index.md
-    title: Compilers & tools
-    subtrees:
-    - entries:
-      - file: reference/compilers-tools/validation-tools.md
-        title: Validation tools
-      - file: reference/compilers-tools/management-tools.md
-        title: Management tools
-  - file: reference/libraries/index.md
-    title: Libraries
-    subtrees:
-    - entries:
-      - file: reference/libraries/ai-libraries.md
-        title: AI
-      - file: reference/libraries/gpu-libraries/communication.md
-        title: Communication
-      - file: reference/libraries/gpu-libraries/math.md
-        title: Math
-        subtrees:
-        - entries:
-          - file: reference/libraries/gpu-libraries/math-linear-algebra.md
-            title: Linear algebra
-          - file: reference/libraries/gpu-libraries/math-fft.md
-            title: Fast Fourier transforms
-      - file: reference/libraries/gpu-libraries/rand.md
-        title: Random numbers
-      - file: reference/libraries/gpu-libraries/c++primitives.md
-        title: C++ primitives
-  - file: reference/openmp/openmp.md
-    title: OpenMP
-  - file: reference/rocmcc/rocmcc.md
-    title: ROCmCC
+    - file: reference/library-index.md
+      title: API libraries
+      subtrees:
+      - caption: HIP
+        entries:
+        - url: https://rocm.docs.amd.com/projects/HIP/en/develop/.doxygen/docBin/html/index.html
+          title: HIP runtime
+        - url: https://rocm.docs.amd.com/projects/HIPIFY/en/latest/index.html
+          title: HIPIFY
+      - caption: Artificial intelligence
+        entries:
+        - url: https://rocm.docs.amd.com/projects/MIOpen/en/latest/index.html
+          title: MIOpen
+        - url: https://rocm.docs.amd.com/projects/composable_kernel/en/latest/index.html
+          title: Composable kernel
+        - url: https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/index.html
+          title: MIGraphX
+      - caption: C++ primitives
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rocPRIM/en/latest/index.html
+          title: rocPRIM
+        - url: https://rocm.docs.amd.com/projects/rocThrust/en/latest/index.html
+          title: rocThrust
+        - url: https://rocm.docs.amd.com/projects/hipCUB/en/latest/index.html
+          title: hipCUB
+        - url: https://rocm.docs.amd.com/projects/hipTensor/en/latest/index.html
+          title: hipTensor
+      - caption: Communication
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rccl/en/latest/index.html
+          title: RCCL
+      - caption: Math
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/index.html
+          title: rocBLAS
+        - url: https://rocm.docs.amd.com/projects/hipBLAS/en/latest/index.html
+          title: hipBLAS
+        - url: https://rocm.docs.amd.com/projects/hipBLASLt/en/latest/index.html
+          title: hipBLASLt
+        - url: https://rocm.docs.amd.com/projects/rocALUTION/en/latest/index.html
+          title: rocALUTION
+        - url: https://rocm.docs.amd.com/projects/rocWMMA/en/latest/index.html
+          title: rocWMM
+        - url: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/index.html
+          title: rocSOLVER
+        - url: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/index.html
+          title: hipSOLVER
+        - url: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/index.html
+          title: rocSPARSE
+        - url: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/index.html
+          title: hipSPARSE
+        - url: https://rocm.docs.amd.com/projects/hipSPARSELt/en/latest/index.html
+          title: hipSPARSELt
+        - url: https://rocm.docs.amd.com/projects/rocFFT/en/latest/index.html
+          title: rocFFT
+        - url: https://rocm.docs.amd.com/projects/hipFFT/en/latest/index.html
+          title: hipFFT
+        - url: https://rocm.docs.amd.com/projects/rocRAND/en/latest/index.html
+          title: rocRAND
+        - url: https://rocm.docs.amd.com/projects/hipRAND/en/latest/index.html
+          title: hipRAND
+      - caption: Performance analysis
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rocprofiler/en/latest/rocprof.html
+          title: ROCProfiler
+        - url: https://github.com/ROCm-Developer-Tools/roctracer
+          title: Performance tracing
+      - caption: Tools
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/
+          title: ROCm SMI LIB
+        - url: https://rocm.docs.amd.com/projects/rdc/en/latest/
+          title: ROCm Data Center Tool
+        - url: https://rocm.docs.amd.com/projects/roctracer/en/latest/index.html
+          title: ROCTracer
+        - url: https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/
+          title: ROCm validation suite
+        - url: https://rocm.docs.amd.com/projects/TransferBench/en/latest/
+          title: TransferBench
+        - file: reference/rocmcc.md
+          title: ROCmCC
+        - url: https://rocm.docs.amd.com/projects/ROCgdb/en/latest/index.html
+          title: ROCm debugger API
+        - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/index.html
+          title: AMD debugger API
 
 - caption: Conceptual
   entries:

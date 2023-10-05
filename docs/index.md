@@ -5,7 +5,6 @@ resources to learn more about our products and what we support:
 
 * [What is ROCm?](./what-is-rocm.md)
 * [What's new?](about/whats-new/whats-new)
-* [Compatibility & support](./about/compatibility/index.md)
 * [Release notes](./about/release-notes.md)
 
 ::::{grid} 1 2 2 2
@@ -18,13 +17,34 @@ resources to learn more about our products and what we support:
 Installation guides
 ^^^
 
-* [Linux quick-start](./install/linux/install-quick.md)
-* [Windows quick-start](./install/windows/install-quick.md)
-* [ROCm on Linux](./install/linux/install-quick.md)
-* [ROCm on Windows](./install/windows/install-quick.md)
-* [MAGMA for ROCm](./install/magma-install.md)
+* Linux
+  * [Quick-start (Linux)](./install/linux/install-quick.md)
+  * [Linux install guide](./install/linux/install.md)
+  * [Package manager integration](./install/linux/package-manager-integration.md)
+* Windows
+  * [Quick-start (Windows)](./install/windows/install-quick.md)
+  * [Windows install guide](./install/windows/install.md)
+  * [Application deployment guidelines](./install/windows/windows-app-deployment-guidelines.md)
+* [Deploy ROCm Docker containers](./install/docker.md)
 * [PyTorch for ROCm](./install/pytorch-install.md)
 * [TensorFlow for ROCm](./install/tensorflow-install.md)
+* [MAGMA for ROCm](./install/magma-install.md)
+
+:::
+
+:::{grid-item-card}
+:padding: 2
+**Compatibility & Support**
+
+ROCm compatibility information
+^^^
+
+* [Linux (GPU & OS)](./about/compatibility/linux-support.md)
+* [Windows (GPU & OS)](./about/compatibility/windows-support.md)
+* [Third-party](./about/compatibility/3rd-party-support-matrix.md)
+* [User/kernel space](./about/compatibility/user-kernel-space-compat-matrix.md)
+* [Docker](./about/compatibility/docker-image-support-matrix.md)
+* [OpenMP](./about/compatibility/openmp.md)
 
 :::
 
@@ -42,7 +62,7 @@ Task-oriented walkthroughs
 * [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.md)
 * [System level debugging](./how-to/system-debugging.md)
-* [ROCm & Spack](./how-to/spack.md)
+* [ROCm & Spack](./how-to/spack-intro.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 
 :::
@@ -54,15 +74,48 @@ Task-oriented walkthroughs
 Collated information
 ^^^
 
-* [Libraries](./reference/libraries/index.md)
-  * [Math libraries](./reference/libraries/gpu-libraries/math.md)
-  * [C++ primitives libraries](./reference/libraries/gpu-libraries/c++primitives.md)
-  * [Communication libraries](./reference/libraries/gpu-libraries/communication.md)
-* [Compilers & tools](./reference/compilers-tools/index.md)
-  * [Management tools](./reference/compilers-tools/management-tools.md)
-  * [Validation tools](./reference/compilers-tools/validation-tools.md)
-* [HIP](./reference/hip.md)
-* [OpenMP](./reference/openmp/openmp.md)
+* [API Libraries](./reference/library-index.md)
+  * HIP
+    * {doc}`HIP runtime <hip:index>`
+    * {doc}`HIPIFY <hipify:index>`
+  * Artificial Intelligence
+    * {doc}`MIOpen <miopen:index>`
+    * {doc}`Composable Kernel <composable_kernel:index>`
+    * {doc}`MIGraphX <amdmigraphx:index>`
+  * C++ primitives
+    * {doc}`rocPRIM <rocprim:index>`
+    * {doc}`rocThrust <rocthrust:index>`
+    * {doc}`hipCUB <hipcub:index>`
+    * {doc}`hipTensor <hiptensor:index>`
+  * Communication
+    * {doc}`RCCL <rccl:index>`
+  * Math
+    * {doc}`rocBLAS <rocblas:index>`
+    * {doc}`hipBLAS <hipblas:index>`
+    * {doc}`hipBLASLt <hipblaslt:index>`
+    * {doc}`rocALUTION <rocalution:index>`
+    * {doc}`rocWMMA <rocwmma:index>`
+    * {doc}`rocSOLVER <rocsolver:index>`
+    * {doc}`hipSOLVER <hipsolver:index>`
+    * {doc}`rocSPARSE <rocsparse:index>`
+    * {doc}`hipSPARSE <hipsparse:index>`
+    * {doc}`hipSPARSELt <hipsparselt:index>`
+    * {doc}`rocFFT <rocfft:index>`
+    * {doc}`hipFFT <hipfft:index>`
+    * {doc}`rocRAND <rocrand:index>`
+    * {doc}`hipRAND <hiprand:index>`
+  * Performance analysis
+    * {doc}`ROCdbgapi <rocdbgapi:index>`
+    * {doc}`ROCProfiler <rocprofiler:rocprof>`
+    * [Performance tracing](https://github.com/ROCm-Developer-Tools/roctracer)
+  * Tools
+    * {doc}`ROCm SMI LIB <rocm_smi_lib:index>`
+    * {doc}`ROCm Data Center Tool <rdc:index>`
+    * {doc}`ROCTracer <roctracer:index>`
+    * {doc}`ROCgdb <rocgdb:index>`
+    * {doc}`RVS <rocmvalidationsuite:index>`
+    * {doc}`TransferBench <transferbench:index>`
+    * [ROCmCC](./reference/rocmcc.md)
 
 :::
 
@@ -86,6 +139,7 @@ Topic overviews & background information
 * [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
+* [OpenMP support in ROCm](./conceptual/openmp.md)
 
 :::
 
