@@ -75,47 +75,6 @@ Collated information
 ^^^
 
 * [API Libraries](./reference/library-index.md)
-  * HIP
-    * {doc}`HIP runtime <hip:index>`
-    * {doc}`HIPIFY <hipify:index>`
-  * Artificial Intelligence
-    * {doc}`MIOpen <miopen:index>`
-    * {doc}`Composable Kernel <composable_kernel:index>`
-    * {doc}`MIGraphX <amdmigraphx:index>`
-  * C++ primitives
-    * {doc}`rocPRIM <rocprim:index>`
-    * {doc}`rocThrust <rocthrust:index>`
-    * {doc}`hipCUB <hipcub:index>`
-    * {doc}`hipTensor <hiptensor:index>`
-  * Communication
-    * {doc}`RCCL <rccl:index>`
-  * Math
-    * {doc}`rocBLAS <rocblas:index>`
-    * {doc}`hipBLAS <hipblas:index>`
-    * {doc}`hipBLASLt <hipblaslt:index>`
-    * {doc}`rocALUTION <rocalution:index>`
-    * {doc}`rocWMMA <rocwmma:index>`
-    * {doc}`rocSOLVER <rocsolver:index>`
-    * {doc}`hipSOLVER <hipsolver:index>`
-    * {doc}`rocSPARSE <rocsparse:index>`
-    * {doc}`hipSPARSE <hipsparse:index>`
-    * {doc}`hipSPARSELt <hipsparselt:index>`
-    * {doc}`rocFFT <rocfft:index>`
-    * {doc}`hipFFT <hipfft:index>`
-    * {doc}`rocRAND <rocrand:index>`
-    * {doc}`hipRAND <hiprand:index>`
-  * Performance analysis
-    * {doc}`ROCdbgapi <rocdbgapi:index>`
-    * {doc}`ROCProfiler <rocprofiler:rocprof>`
-    * [Performance tracing](https://github.com/ROCm-Developer-Tools/roctracer)
-  * Tools
-    * {doc}`ROCm SMI LIB <rocm_smi_lib:index>`
-    * {doc}`ROCm Data Center Tool <rdc:index>`
-    * {doc}`ROCTracer <roctracer:index>`
-    * {doc}`ROCgdb <rocgdb:index>`
-    * {doc}`RVS <rocmvalidationsuite:index>`
-    * {doc}`TransferBench <transferbench:index>`
-    * [ROCmCC](./reference/rocmcc.md)
 
 :::
 
