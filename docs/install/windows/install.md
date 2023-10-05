@@ -1,6 +1,6 @@
 # Install ROCm (HIP SDK) on Windows
 
-To install ROCm on Windows, you can use our [quick-start guide](./windows-quick.md)` or you can
+To install ROCm on Windows, you can use our [quick-start guide](./install-quick.md)` or you can
 follow the instructions listed below.
 
 ## Prepare to install

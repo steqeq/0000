@@ -47,7 +47,7 @@ their own performance testing for additional tuning.
 :gutter: 1
 
 :::{grid-item-card}
-**[AMD Instinct™ MI200](./mi200)**
+**[AMD Instinct™ MI200](./tuning-guides/mi200)**
 
 This chapter goes through how to configure your AMD Instinct™ MI200 accelerated
 compute nodes to get the best performance out of them.
@@ -58,7 +58,7 @@ compute nodes to get the best performance out of them.
 :::
 
 :::{grid-item-card}
-**[AMD Instinct™ MI100](./mi100)**
+**[AMD Instinct™ MI100](./tuning-guides/mi100)**
 
 This chapter briefly reviews hardware aspects of the AMD Instinct™ MI100
 accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs.
@@ -87,7 +87,7 @@ their full potential.
 :gutter: 1
 
 :::{grid-item-card}
-**[AMD Radeon™ PRO W6000 and V620](./w6000-v620)**
+**[AMD Radeon™ PRO W6000 and V620](./tuning-guides/w6000-v620)**
 
 This chapter describes the AMD GPUs with RDNA™ 2 architecture, namely AMD Radeon
 PRO W6800 and AMD Radeon PRO V620

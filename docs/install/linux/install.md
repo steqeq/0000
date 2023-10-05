@@ -23,6 +23,8 @@ complete installation process for ROCm, including setting up the repository, cle
 updating, and installing the desired drivers and meta-packages. Users who are less familiar with the
 package manager can choose this method for ROCm installation.
 
+(linux-install-methods)=
+
 ### Single-version versus multi-version ROCm install
 
 ROCm packages are versioned with both semantic versioning that is package

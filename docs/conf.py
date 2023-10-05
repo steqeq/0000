@@ -63,7 +63,7 @@ article_pages = [
     {"file":"how-to/deep-learning-rocm", "os":["linux"]},
     {"file":"how-to/gpu-enabled-mpi", "os":["linux"]},
     {"file":"how-to/system-debugging", "os":["linux"]},
-    {"file":"how-to/index", "os":["linux", "windows"]},
+    {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
 
     {"file":"rocm-a-z", "os":["linux", "windows"]},
 

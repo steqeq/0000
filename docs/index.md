@@ -100,7 +100,7 @@ Topic overviews & background information
 * [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
-* [OpenMP support in ROCm](./conceptual/openmp.md)
+* [OpenMP support in ROCm](./about/compatibility/openmp.md)
 
 :::
 

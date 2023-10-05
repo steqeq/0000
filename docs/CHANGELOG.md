@@ -3761,7 +3761,7 @@ This release introduces a new ROCm C++ library for accelerating mixed precision 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
 For more information, refer to
-[Communication Libraries](./reference/libraries/gpu-libraries/communication.md).
+[Communication Libraries](./reference/library-index.md).
 
 #### OpenMP enhancements in this release
 

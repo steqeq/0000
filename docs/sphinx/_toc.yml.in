@@ -70,7 +70,7 @@ subtrees:
     title: Using MPI
   - file: how-to/system-debugging.md
     title: Debugging
-  - file: how-to/tuning-guides/index.md
+  - file: how-to/tuning-guides.md
     title: Tuning guides
     subtrees:
     - entries:
