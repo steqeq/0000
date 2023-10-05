@@ -57,24 +57,24 @@ Reference: <https://spack-tutorial.readthedocs.io/en/latest/>
 | **hipsolver**             | hipsolver              |
 | **mlirmiopen**            | mlirmiopen             |
 
-One must to install all the pre-requisites before performing the SPACK installation.
+Install all prerequisites before performing the SPACK installation.
 
 ::::{tab-set}
 :::{tab-item} Ubuntu
 :sync: Ubuntu
 
 ```shell
-# Installing some essential utilities:
+# Install some essential utilities:
 apt-get update
 apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk
 apt-get update -y
 apt-get install -y xz-utils
 apt-get build-essential
 apt-get install vim
-# Installing python:
+# Install Python:
 apt-get install python3
 apt-get upgrade python3-pip
-# Installing Compilers:
+# Install Compilers:
 apt-get install gcc
 apt-get install gfortran
 ```
@@ -84,15 +84,15 @@ apt-get install gfortran
 :sync: SLES
 
 ```shell
-# Installing some essential utilities:
+# Install some essential utilities:
 zypper update
 zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk
 zypper in -t pattern
 zypper install vim
-# Installing python:
+# Install Python:
 zypper install python3
 zypper install python3-pip
-# Installing Compilers:
+# Install Compilers:
 zypper install gcc
 zypper install gcc-fortran
 zypper install gcc-c++
@@ -109,7 +109,7 @@ yum install make
 yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk
 yum group install "Development Tools"
 yum install vim
-# Install python:
+# Install Python:
 yum install python3
 pip3 install --upgrade pip 
 # Install compilers:
