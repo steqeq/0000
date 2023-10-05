@@ -1,7 +1,5 @@
 # ROCm API libraries
 
-
-
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
@@ -105,7 +103,7 @@
 :::
 
 We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
-on our [Contribute to ROCm docs](./contribute/index.md) page. Known issues are listed on
+on our [Contribute to ROCm docs](../contribute/index.md) page. Known issues are listed on
 [GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
 
-Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.
+Licensing information for all ROCm components is listed on our [Licensing](../about/license.md) page.
