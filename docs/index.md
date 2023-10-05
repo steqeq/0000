@@ -7,6 +7,8 @@ resources to learn more about our products and what we support:
 * [What's new?](about/whats-new/whats-new)
 * [Release notes](./about/release-notes.md)
 
+Our documentation is organized into the following categories:
+
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
