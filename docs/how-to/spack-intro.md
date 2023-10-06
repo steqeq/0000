@@ -66,9 +66,67 @@ the same package. For more information on Spack, see
 
 You must install all prerequisites before installing SPACK.
 
-| **CentOS-8:**                                                                                                                                                                                                                                                                                                                                       | **SLES:**                                                                                                                                                                                                                                                                                                                            | **Ubuntu:**                                                                                                                                                                                                                                                                                                                                                       |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Install some essential utilities: yum update yum install make yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk yum group install "Development Tools" yum install vim Install python : yum install python3 pip3 install --upgrade pip Install compilers: yum install gcc yum install gcc-gfortran yum install gcc-c++ | Install some essential utilities: zypper update zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk zypper in -t pattern zypper install vim Installing python: zypper install python3 zypper install python3-pip Installing Compilers: zypper install gcc zypper install gcc-fortran zypper install gcc-c++ | Installing some essential utilities: apt-get update apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk apt-get update -y apt-get install -y xz-utils apt-get build-essential apt-get install vim Installing python: apt-get install python3 apt-get upgrade python3-pip Installing Compilers: apt-get install gcc apt-get install gfortran |
+::::{tab-set}
+:::{tab-item} Ubuntu
+:sync: Ubuntu
+
+```shell
+# Install some essential utilities:
+apt-get update
+apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk
+apt-get update -y
+apt-get install -y xz-utils
+apt-get build-essential
+apt-get install vim
+# Install Python:
+apt-get install python3
+apt-get upgrade python3-pip
+# Install Compilers:
+apt-get install gcc
+apt-get install gfortran
+```
+
+:::
+:::{tab-item} SLES
+:sync: SLES
+
+```shell
+# Install some essential utilities:
+zypper update
+zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk
+zypper in -t pattern
+zypper install vim
+# Install Python:
+zypper install python3
+zypper install python3-pip
+# Install Compilers:
+zypper install gcc
+zypper install gcc-fortran
+zypper install gcc-c++
+```
+
+:::
+:::{tab-item} CentOS
+:sync: CentOS
+
+```shell
+# Install some essential utilities:
+yum update
+yum install make
+yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk
+yum group install "Development Tools"
+yum install vim
+# Install Python:
+yum install python3
+pip3 install --upgrade pip 
+# Install compilers:
+yum install gcc
+yum install gcc-gfortran
+yum install gcc-c++
+```
+
+:::
+::::
 
 ## Steps to build ROCm components using Spack
 
@@ -206,11 +264,11 @@ spack install mivisionx+opencl build_type=Debug (Backend will be opencl and hip 
     ```bash
     root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx
     Input spec
-    \--------------------------------
+    --------------------------------
     mivisionx
 
     Concretized
-    \--------------------------------
+    --------------------------------
     mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu20.04-skylake_avx512
     ```
 
@@ -236,9 +294,9 @@ create an environment.
     * all:
     * compiler: [gcc@8.5.0]
     * specs:
-    * \- matrix:
-    * \- ['%gcc@8.5.0\^cmake@3.19.7']
-    * \- [rocm-cmake@5.3.2, rocm-dbgapi@5.3.2, rocm-debug-agent@5.3.2, rocm-gdb@5.3.2,
+    * - matrix:
+    * - ['%gcc@8.5.0\^cmake@3.19.7']
+    * - [rocm-cmake@5.3.2, rocm-dbgapi@5.3.2, rocm-debug-agent@5.3.2, rocm-gdb@5.3.2,
     * rocminfo@5.3.2, rocm-opencl@5.3.2, rocm-smi-lib@5.3.2, rocm-tensile@5.3.2, rocm-validation-suite@4.3.1,
     * rocprim@5.3.2, rocprofiler-dev@5.3.2, rocrand@5.3.2, rocsolver@5.3.2, rocsparse@5.3.2,
     * rocthrust@5.3.2, roctracer-dev@5.3.2]
@@ -316,26 +374,26 @@ To generate a patch and build with the changes:
 2. Change directory to `spack-src` inside the staged directory.
 
     ```bash
-    root@[ixt-rack-104:/spack\#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
+    root@[ixt-rack-104:/spack#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
     ```
 
 3. Create a new Git repository.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git init
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git init
     ```
 
 4. Add the entire directory to the repository.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git add .
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git add .
     ```
 
 5. Make the required changes to the source code.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) vi hipamd/CMakeLists.txt (Make required changes in the source code)
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) vi hipamd/CMakeLists.txt (Make required changes in the source code)
     ```
 
 6. Generate the patch using the `git diff` command.
@@ -347,7 +405,7 @@ To generate a patch and build with the changes:
 7. Update the recipe with the patch file name and any conditions you want to apply.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip
     ```
 
     Provide the patch file name and the conditions for the patch:
