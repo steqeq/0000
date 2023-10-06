@@ -8,7 +8,7 @@ follow the instructions listed below.
 * [Installation options](#installation-options)
 * [Prerequisites](#prerequisites)
 * [Install ROCm](#install-rocm)
-* [Post-install actions and verification](#post-install-actions-and-verification-process)
+* [Post-install actions and verification](#post-install-actions-and-verification)
 * [Upgrade ROCm](#upgrade-rocm)
 * [Uninstall ROCm](#uninstall-rocm)
 
@@ -56,7 +56,7 @@ conflicts.
 ```
 
 ```{note}
-Multi-version install is not available for the kernel driver module, also referred to as AMDGPU.
+Multi-version install is not available for the kernel driver module (AMDGPU).
 ```
 
 The following image shows the difference between single-version and
@@ -759,47 +759,46 @@ below:
 dkms status
 ```
 
-* Verifying ROCm installation: After completing the ROCm installation, execute the following
-  commands on the system to verify if the installation is successful. If you see your GPUs listed by both
-  commands, the installation is considered successful.
+**Verifying ROCm installation.**
 
-   ```shell
-   /opt/rocm/bin/rocminfo
-   ```
+After completing the ROCm installation, execute the following commands on the system to verify if the
+installation is successful. If you see your GPUs listed by both commands, the installation is considered
+successful.
 
-* Verifying package installation: To ensure the packages are installed successfully, use the following
-  commands.
+```shell
+/opt/rocm/bin/rocminfo
+```
 
-   ::::{tab-set}
-   :::{tab-item} Ubuntu
-   :sync: ubuntu
+**Verifying package installation.**
 
-   ```shell
-   sudo apt list --installed
-   ```
+To ensure the packages are installed successfully, use the following commands.
 
-:::
+::::::{tab-set}
+:::::{tab-item} Ubuntu
+:sync: ubuntu
 
-:::{tab-item} Red Hat Enterprise Linux
+```shell
+sudo apt list --installed
+```
+
+:::::
+:::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
 ```shell
 sudo yum list installed
 ```
 
-:::
-
-:::{tab-item} SUSE Linux Enterprise Server
+:::::
+:::::{tab-item} SUSE Linux Enterprise Server
 :sync: SLES
 
 ```shell
 sudo zypper search --installed-only
 ```
 
-:::
-::::
+:::::
 :::::::
-
 :::::::{tab-item} AMDGPU install script
 :sync: amdgpu
 

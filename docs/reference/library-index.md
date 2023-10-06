@@ -5,23 +5,12 @@
 
 :::{grid-item-card}
 :padding: 2
-**HIP**
-
-^^^
-
-* {doc}`HIP runtime <hip:index>`
-* {doc}`HIPIFY <hipify:index>`
-
-:::
-
-:::{grid-item-card}
-:padding: 2
 **Artificial intelligence**
 
 ^^^
 
-* {doc}`MIOpen <miopen:index>`
 * {doc}`Composable Kernel <composable_kernel:index>`
+* {doc}`MIOpen <miopen:index>`
 * {doc}`MIGraphX <amdmigraphx:index>`
 
 :::
@@ -32,10 +21,10 @@
 
 ^^^
 
-* {doc}`rocPRIM <rocprim:index>`
-* {doc}`rocThrust <rocthrust:index>`
 * {doc}`hipCUB <hipcub:index>`
 * {doc}`hipTensor <hiptensor:index>`
+* {doc}`rocPRIM <rocprim:index>`
+* {doc}`rocThrust <rocthrust:index>`
 
 :::
 
@@ -51,24 +40,51 @@
 
 :::{grid-item-card}
 :padding: 2
-**Math**
+**Fast Fourier transforms (FFTs)**
 
 ^^^
 
-* {doc}`rocBLAS <rocblas:index>`
+* {doc}`hipFFT <hipfft:index>`
+* {doc}`rocFFT <rocfft:index>`
+
+:::
+
+:::{grid-item-card}
+:padding: 2
+**HIP**
+
+^^^
+
+* {doc}`HIP runtime <hip:index>`
+* {doc}`HIPIFY <hipify:index>`
+
+:::
+
+:::{grid-item-card}
+:padding: 2
+**Linear algebra**
+
+^^^
+
 * {doc}`hipBLAS <hipblas:index>`
 * {doc}`hipBLASLt <hipblaslt:index>`
-* {doc}`rocALUTION <rocalution:index>`
-* {doc}`rocWMMA <rocwmma:index>`
-* {doc}`rocSOLVER <rocsolver:index>`
 * {doc}`hipSOLVER <hipsolver:index>`
-* {doc}`rocSPARSE <rocsparse:index>`
 * {doc}`hipSPARSE <hipsparse:index>`
 * {doc}`hipSPARSELt <hipsparselt:index>`
-* {doc}`rocFFT <rocfft:index>`
-* {doc}`hipFFT <hipfft:index>`
-* {doc}`rocRAND <rocrand:index>`
-* {doc}`hipRAND <hiprand:index>`
+* {doc}`rocALUTION <rocalution:index>`
+* {doc}`rocBLAS <rocblas:index>`
+* {doc}`rocSOLVER <rocsolver:index>`
+* {doc}`rocSPARSE <rocsparse:index>`
+
+:::
+
+:::{grid-item-card}
+:padding: 2
+**Matrix multiply**
+
+^^^
+
+* {doc}`rocWMMA <rocwmma:index>`
 
 :::
 
@@ -78,12 +94,21 @@
 
 ^^^
 
-* {doc}`ROCProfiler <rocprofiler:rocprof>`
 * [Performance tracing](https://github.com/ROCm-Developer-Tools/roctracer)
+* {doc}`ROCProfiler <rocprofiler:rocprof>`
 
 :::
 
-::::
+:::{grid-item-card}
+:padding: 2
+**Random number generators**
+
+^^^
+
+* {doc}`hipRAND <hiprand:index>`
+* {doc}`rocRAND <rocrand:index>`
+
+:::
 
 :::{grid-item-card}
 :padding: 2
@@ -91,16 +116,17 @@
 
 ^^^
 
-* {doc}`ROCdbgapi <rocdbgapi:index>`
-* {doc}`ROCm SMI LIB <rocm_smi_lib:index>`
-* {doc}`ROCm Data Center Tool <rdc:index>`
-* {doc}`ROCTracer <roctracer:index>`
-* {doc}`ROCgdb <rocgdb:index>`
-* {doc}`RVS <rocmvalidationsuite:index>`
-* {doc}`TransferBench <transferbench:index>`
+* {doc}`AMD debugger (ROCdbgapi) <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
+* {doc}`ROCm Data Center Tool <rdc:index>`
+* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCm SMI LIB <rocm_smi_lib:index>`
+* {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
+* {doc}`ROCTracer <roctracer:index>`
+* {doc}`TransferBench <transferbench:index>`
 
 :::
+::::
 
 We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
 on our [Contribute to ROCm docs](../contribute/index.md) page. Known issues are listed on
