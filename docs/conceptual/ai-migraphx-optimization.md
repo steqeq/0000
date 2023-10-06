@@ -321,6 +321,6 @@ To run generated `.mxr` files through `migraphx-driver`, use the following:
 ./path/to/migraphx-driver run --migraphx resnet50.mxr --enable-offload-copy
 ```
 
-Alternatively, you can use the MIGraphX C++ or Python API to generate `.mxr` file.
+Alternatively, you can use the MIGraphX C++ or Python API to generate `.mxr` files.
 
 ![Generating an MXR file](../data/conceptual/image018.png "Generating an MXR file")
