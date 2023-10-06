@@ -64,7 +64,7 @@ the same package. For more information on Spack, see
 | **hipsolver**             | hipsolver              |
 | **mlirmiopen**            | mlirmiopen             |
 
-You must install all prerequisites before installing SPACK.
+You must install all prerequisites before installing Spack.
 
 ::::{tab-set}
 :::{tab-item} Ubuntu
@@ -130,7 +130,7 @@ yum install gcc-c++
 
 ## Steps to build ROCm components using Spack
 
-1. Clone the Spack project from github in order to use the spack package manager.
+1. To use the spack package manager, clone the Spack project from GitHub.
 
     ```bash
     git clone <https://github.com/spack/spack>
