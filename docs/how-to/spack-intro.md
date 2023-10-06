@@ -7,7 +7,7 @@ exotic architectures using libraries that do not have a standard ABI. Spack is n
 a new version does not break existing installations, so many configurations can coexist on the same
 system.
 
-Most importantly, Spack is *simple*. It offers a simple *spec* syntax, so users can concicely specify
+Most importantly, Spack is *simple*. It offers a simple *spec* syntax, so users can concisely specify
 versions and configuration options. Spack is also simple for package authors: package files are written
 in pure Python, and specs allow package authors to maintain a single file for many different builds of
 the same package. For more information on Spack, see
@@ -118,7 +118,7 @@ yum group install "Development Tools"
 yum install vim
 # Install Python:
 yum install python3
-pip3 install --upgrade pip 
+pip3 install --upgrade pip
 # Install compilers:
 yum install gcc
 yum install gcc-gfortran
@@ -145,6 +145,7 @@ yum install gcc-c++
 
     . share/spack/setup-env.sh
     ```
+
     Spack commands are available once the above steps are completed. To list the available commands,
     use `help`.
 

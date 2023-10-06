@@ -1,6 +1,6 @@
 # Install HIP SDK on Windows
 
-To install the HIP SDK on Windows, use the quick-start guide (./install-quick.md) or follow the instructions below.
+To install the HIP SDK on Windows, use the [quick-start guide](./install-quick.md) or follow the instructions below.
 
 follow the instructions listed below.
 
@@ -11,7 +11,8 @@ only on specific host architectures, Windows Editions, and update versions.
 
 The HIP SDK is supported on Windows 10 and 11. It can be installed on a
 system without AMD GPUs to use the build toolchains, but to run HIP applications, a
-compatible GPU is required. Please see the [supported GPU guide](../../about/compatibility/windows-support.md) for more details.
+compatible GPU is required. Please see the
+[supported GPU guide](../../about/compatibility/windows-support.md) for more details.
 
 ::::{tab-set}
 
