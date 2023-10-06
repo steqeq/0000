@@ -1,10 +1,17 @@
 # Introduction to Spack
 
-Spack is a package management tool designed to support multiple versions and configurations of software on a wide variety of platforms and environments. It was designed for large supercomputing centers, where many users and application teams share common installations of software on clusters with exotic architectures, using libraries that do not have a standard ABI. Spack is non-destructive: installing a new version does not break existing installations, so many configurations can coexist on the same system.
+Spack is a package management tool designed to support multiple software versions and
+configurations on a wide variety of platforms and environments. It was designed for large
+supercomputing centers, where many users share common software installations on clusters with
+exotic architectures using libraries that do not have a standard ABI. Spack is non-destructive: installing
+a new version does not break existing installations, so many configurations can coexist on the same
+system.
 
-Most importantly, Spack is *simple*. It offers a simple *spec* syntax so that users can specify versions and configuration options concisely. Spack is also simple for package authors: package files are written in pure Python, and specs allow package authors to maintain a single file for many different builds of the same package. Below link can be referred for more generic information on Spack.
-
-Reference: <https://spack-tutorial.readthedocs.io/en/latest/>
+Most importantly, Spack is *simple*. It offers a simple *spec* syntax, so users can concicely specify
+versions and configuration options. Spack is also simple for package authors: package files are written
+in pure Python, and specs allow package authors to maintain a single file for many different builds of
+the same package. For more information on Spack, see
+[https://spack-tutorial.readthedocs.io/en/latest/](https://spack-tutorial.readthedocs.io/en/latest/).
 
 ## ROCM packages in Spack
 
@@ -57,252 +64,297 @@ Reference: <https://spack-tutorial.readthedocs.io/en/latest/>
 | **hipsolver**             | hipsolver              |
 | **mlirmiopen**            | mlirmiopen             |
 
-One need to install all the pre-requisites before performing the SPACK installation.
+You must install all prerequisites before installing SPACK.
 
 | **CentOS-8:**                                                                                                                                                                                                                                                                                                                                       | **SLES:**                                                                                                                                                                                                                                                                                                                            | **Ubuntu:**                                                                                                                                                                                                                                                                                                                                                       |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Install some essential utilities: yum update yum install make yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk yum group install "Development Tools" yum install vim Install python : yum install python3 pip3 install --upgrade pip Install compilers: yum install gcc yum install gcc-gfortran yum install gcc-c++ | Installing some essential utilities: zypper update zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk zypper in -t pattern zypper install vim Installing python: zypper install python3 zypper install python3-pip Installing Compilers: zypper install gcc zypper install gcc-fortran zypper install gcc-c++ | Installing some essential utilities: apt-get update apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk apt-get update -y apt-get install -y xz-utils apt-get build-essential apt-get install vim Installing python: apt-get install python3 apt-get upgrade python3-pip Installing Compilers: apt-get install gcc apt-get install gfortran |
+| Install some essential utilities: yum update yum install make yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk yum group install "Development Tools" yum install vim Install python : yum install python3 pip3 install --upgrade pip Install compilers: yum install gcc yum install gcc-gfortran yum install gcc-c++ | Install some essential utilities: zypper update zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk zypper in -t pattern zypper install vim Installing python: zypper install python3 zypper install python3-pip Installing Compilers: zypper install gcc zypper install gcc-fortran zypper install gcc-c++ | Installing some essential utilities: apt-get update apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk apt-get update -y apt-get install -y xz-utils apt-get build-essential apt-get install vim Installing python: apt-get install python3 apt-get upgrade python3-pip Installing Compilers: apt-get install gcc apt-get install gfortran |
 
-## Steps to build ROCm Components using Spack
+## Steps to build ROCm components using Spack
 
-## Clone Spack project
+1. Clone the Spack project from github in order to use the spack package manager.
 
-Clone the Spack project from github in order to use the spack package manager.
+    ```bash
+    git clone <https://github.com/spack/spack>
+    ```
 
-git clone <https://github.com/spack/spack>
+2. Initialize Spack.
 
-## Initialize Spack
+    The `setup-env.sh` script initializes the Spack environment.
 
-The script setup-env.sh will initialize spack environment.
+    ```bash
+    cd spack
 
-\$ cd spack
+    . share/spack/setup-env.sh
+    ```
+    Spack commands are available once the above steps are completed. To list the available commands,
+    use `help`.
 
-\$ . share/spack/setup-env.sh
-
-Spack commands will be available once the above steps are executed successfully.
-
-spack help will list the commands available.
-
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
+    ```bash
+    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
+    ```
 
 ## Using Spack to install ROCm components
 
-## rocm-cmake
+1. `rocm-cmake`
 
-Below command will install the default variants and latest version of rocm-cmake.
+    Install the default variants and the latest version of `rocm-cmake`.
 
-spack install rocm-cmake
+    ```bash
+    spack install rocm-cmake
+    ```
 
-In order to install a specific version of rocm-cmake below format can be used.
+    To install a specific version of `rocm-cmake`, use:
 
-spack install rocm-cmake@\<version number\>
+    ```bash
+    spack install rocm-cmake@<version number>
+    ```
 
-Example:
+    For example, `spack install rocm-cmake@5.2.0`
 
-spack install rocm-cmake@5.2.0
+2. `info`
 
-## Using info
+    The `info**` command displays basic package information. It shows the preferred, safe, and
+    deprecated versions, in addition to the available variants. It also shows the dependencies with other
+    packages.
 
-info** command will display basic information of the package. It shows the Preferred, Safe and Deprecated versions and different Variants available.
+    ```bash
+    spack info mivisionx
+    ```
 
-It also shows the Dependencies with other packages. as shown below.
+    For example:
 
-spack info mivisionx
+    ```bash
+    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack info mivisionx
+    CMakePackage: mivisionx
 
-Example:
+    Description:
+    MIVisionX toolkit is a set of comprehensive computer vision and machine
+    intelligence libraries, utilities, and applications bundled into a
+    single toolkit.
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack info mivisionx
-CMakePackage: mivisionx
+    Homepage: <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX>
 
-Description:
- MIVisionX toolkit is a set of comprehensive computer vision and machine
- intelligence libraries, utilities, and applications bundled into a
- single toolkit.
+    Preferred version:
+    5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>
 
-Homepage: <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX>
+    Safe versions:
+    5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>
+    5.2.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.3.tar.gz>
+    5.2.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.1.tar.gz>
+    5.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.0.tar.gz>
+    5.1.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.3.tar.gz>
+    5.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.0.tar.gz>
+    5.0.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.2.tar.gz>
+    5.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.0.tar.gz>
+    4.5.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.2.tar.gz>
+    4.5.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.0.tar.gz>
 
-Preferred version:
- 5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>
+    Deprecated versions:
+    4.3.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.1.tar.gz>
+    4.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.0.tar.gz>
+    4.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.2.0.tar.gz>
+    4.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.1.0.tar.gz>
+    4.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.0.0.tar.gz>
+    3.10.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.10.0.tar.gz>
+    3.9.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.9.0.tar.gz>
+    3.8.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.8.0.tar.gz>
+    3.7.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.7.0.tar.gz>
+    1.7 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/1.7.tar.gz>
 
-Safe versions:
- 5.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.3.0.tar.gz>
- 5.2.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.3.tar.gz>
- 5.2.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.1.tar.gz>
- 5.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.2.0.tar.gz>
- 5.1.3 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.3.tar.gz>
- 5.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.1.0.tar.gz>
- 5.0.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.2.tar.gz>
- 5.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-5.0.0.tar.gz>
- 4.5.2 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.2.tar.gz>
- 4.5.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.5.0.tar.gz>
+    Variants:
+    Name [Default] When Allowed values Description
+    ==================== ==== ==================== ==================================  
 
-Deprecated versions:
- 4.3.1 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.1.tar.gz>
- 4.3.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.3.0.tar.gz>
- 4.2.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.2.0.tar.gz>
- 4.1.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.1.0.tar.gz>
- 4.0.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-4.0.0.tar.gz>
- 3.10.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.10.0.tar.gz>
- 3.9.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.9.0.tar.gz>
- 3.8.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.8.0.tar.gz>
- 3.7.0 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-3.7.0.tar.gz>
- 1.7 <https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/1.7.tar.gz>
+    build_type [Release] -- Release, Debug, CMake build type
+    RelWithDebInfo
+    hip [on] -- on, off Use HIP as backend
+    ipo [off] -- on, off CMake interprocedural optimization
+    opencl [off] -- on, off Use OPENCL as the backend
 
-Variants:
- Name [Default] When Allowed values Description
- ==================== ==== ==================== ==================================  
+    Build Dependencies:
+    cmake ffmpeg libjpeg-turbo miopen-hip miopen-opencl miopengemm opencv openssl protobuf rocm-cmake rocm-opencl
 
- build_type [Release] -- Release, Debug, CMake build type
- RelWithDebInfo
- hip [on] -- on, off Use HIP as backend
- ipo [off] -- on, off CMake interprocedural optimization
- opencl [off] -- on, off Use OPENCL as the backend
+    Link Dependencies:
+    miopen-hip miopen-opencl miopengemm openssl rocm-opencl
 
-Build Dependencies:
- cmake ffmpeg libjpeg-turbo miopen-hip miopen-opencl miopengemm opencv openssl protobuf rocm-cmake rocm-opencl
+    Run Dependencies:
+    None
 
-Link Dependencies:
- miopen-hip miopen-opencl miopengemm openssl rocm-opencl
-
-Run Dependencies:
- None
-
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack)
+    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack)
+    ```
 
 ## Installing variants for ROCm components
 
-Variants listed above indicates that mivisionx package is built with **build_type=Release,** backend **hip**  and without backend **opencl** by default.
-But it also supports build_type=**Debug** and **RelWithDebInfo** , with **opencl** and without **hip** as backend.
+The variants listed above indicate that the `mivisionx` package is built by default with
+`build_type=Release` and the `hip` backend, and without the `opencl` backend. `build_type=Debug` and
+`RelWithDebInfo`, with `opencl` and without `hip`, are also supported.
 
-Example:
+For example:
 
+```bash
 spack install mivisionx build_type=Debug (Backend will be hip since it is the default one)
 spack install mivisionx+opencl build_type=Debug (Backend will be opencl and hip will be disabled as per the conflict defined in recipe)
+```
 
-## spack spec command
+* `spack spec` command
 
-In order to display the dependency tree spack spec command can be used with the same format.
+    To display the dependency tree, the `spack spec` command can be used with the same format.
 
-## Example
+    For example:
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx
-Input spec
-\--------------------------------
-mivisionx
+    ```bash
+    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx
+    Input spec
+    \--------------------------------
+    mivisionx
 
-Concretized
-\--------------------------------
-mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu20.04-skylake_avx512
+    Concretized
+    \--------------------------------
+    mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu20.04-skylake_avx512
+    ```
 
-## Creating environment
+## Creating an environment
 
-You can create an environment with all the components of required version, install them collectively and work in the environment.
+You can create an environment with all the required components of your version.
 
-1\. In the root folder make a folder to create a .yaml file with which we can create an environment.
+1. In the root folder, create a new folder when you can create a `.yaml` file. This file is used to
+create an environment.
 
-* mkdir /localscratch
-* cd /localscratch
-* vi sample.yaml
+    ```bash
+    * mkdir /localscratch
+    * cd /localscratch
+    * vi sample.yaml
+    ```
 
-2.Add all the required components on sample.yaml file, as shown below,
+2. Add all the required components in the `sample.yaml` file:
 
-* spack:
-* concretization: separately
-* packages:
-* all:
-* compiler: [gcc@8.5.0]
-* specs:
-* \- matrix:
-* \- ['%gcc@8.5.0\^cmake@3.19.7']
-* \- [rocm-cmake@5.3.2, rocm-dbgapi@5.3.2, rocm-debug-agent@5.3.2, rocm-gdb@5.3.2,
-* rocminfo@5.3.2, rocm-opencl@5.3.2, rocm-smi-lib@5.3.2, rocm-tensile@5.3.2, rocm-validation-suite@4.3.1,
-* rocprim@5.3.2, rocprofiler-dev@5.3.2, rocrand@5.3.2, rocsolver@5.3.2, rocsparse@5.3.2,
-* rocthrust@5.3.2, roctracer-dev@5.3.2]
-* view: true
+    ```bash
+    * spack:
+    * concretization: separately
+    * packages:
+    * all:
+    * compiler: [gcc@8.5.0]
+    * specs:
+    * \- matrix:
+    * \- ['%gcc@8.5.0\^cmake@3.19.7']
+    * \- [rocm-cmake@5.3.2, rocm-dbgapi@5.3.2, rocm-debug-agent@5.3.2, rocm-gdb@5.3.2,
+    * rocminfo@5.3.2, rocm-opencl@5.3.2, rocm-smi-lib@5.3.2, rocm-tensile@5.3.2, rocm-validation-suite@4.3.1,
+    * rocprim@5.3.2, rocprofiler-dev@5.3.2, rocrand@5.3.2, rocsolver@5.3.2, rocsparse@5.3.2,
+    * rocthrust@5.3.2, roctracer-dev@5.3.2]
+    * view: true
+    ```
 
-3\. Once you got .yaml file, using it create an environment as shown below,
+3. Once you've created the `.yaml` file, you can use it to create an environment.
 
-* spack env create -d /localscratch/MyEnvironment /localscratch/sample.yaml
+    ```bash
+   * spack env create -d /localscratch/MyEnvironment /localscratch/sample.yaml
+    ```
 
-4\. Activate the created environment as shown below,
+4. Activate the environment.
 
-* spack env activate /localscratch/MyEnvironment
+    ```bash
+   * spack env activate /localscratch/MyEnvironment
+   ```
 
-5.Before installing all components using next step, verify whether versions mentioned for all components are desired or not as shown below,
+5. Verify that you want all the component versions.
 
-* spack find - this command will list out all components been in the environment (and 0 installed )
+    ```bash
+   * spack find - this command will list out all components been in the environment (and 0 installed )
+   ```
 
-6.Install all the components in the .yaml after activating the environment as shown below by entering the created environment.
+6. Install all the components in the `.yaml` file.
 
-* cd /localscratch/MyEnvironment
-* spack install -j 50
+    ```bash
+   * cd /localscratch/MyEnvironment
+   * spack install -j 50
+   ```
 
-7.Check all the components installation are successful or not.
+7. Check that all components are successfully installed.
 
-* spack find
+    ```bash
+   * spack find
+   ```
 
-8.If any modification is done to the .yaml file, to reflect those changes one needs to deactivate the existing environment and create a new one again using steps 3 and 4.
+8. If any modification is made to the `.yaml` file, you must deactivate the existing environment and create a new one in order for the modications to be reflected.
 
-* To deactivate use below command,
-* spack env deactivate
+    To deactivate, use:
 
-## Create and apply patch for a package before installation
+    ```bash
+    * spack env deactivate
+    ```
 
-Spack will install rocm packages after pulling the source code from git hub and building locally.
-In order to build a component with any modification in source code we would need to generate a patch and apply before the build phase by making changes in the spack recipe of the corresponding package.
+## Create and apply a patch before installation
 
-Below the procedure to generate a patch and build with the changes.
+Spack installs ROCm packages after pulling the source code from GitHub and building it locally. In
+order to build a component with any modification to the  source code, you must generate a patch and
+apply it before the build phase.
 
-1.**Stage the source code**
+To generate a patch and build with the changes:
 
-spack stage hip@5.2.0 (This will pull the 5.2.0 release version source code of hip and display the path to spack-src directory where entire source code is available)
+1. Stage the source code.
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack stage hip@5.2.0
-==\> Fetching <https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-5.2.0.tar.gz>
-==\> Fetching <https://github.com/ROCm-Developer-Tools/hipamd/archive/rocm-5.2.0.tar.gz>
-==\> Fetching <https://github.com/ROCm-Developer-Tools/ROCclr/archive/rocm-5.2.0.tar.gz>
-==\> Moving resource stage
- source: /tmp/root/spack-stage/resource-hipamd-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
- destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/hipamd
-==\> Moving resource stage
- source: /tmp/root/spack-stage/resource-opencl-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
- destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/opencl
-==\> Moving resource stage
- source: /tmp/root/spack-stage/resource-rocclr-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
- destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/rocclr
-==\> Staged hip in /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7
+    ```bash
+    spack stage hip@5.2.0 (This will pull the 5.2.0 release version source code of hip and display the path to spack-src directory where entire source code is available)
 
-2\. **Change directory to spack-src inside the staged directory**
+    root@[ixt-rack-104:/spack#](http://ixt-rack-104/spack) spack stage hip@5.2.0
+    ==> Fetching <https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-5.2.0.tar.gz>
+    ==> Fetching <https://github.com/ROCm-Developer-Tools/hipamd/archive/rocm-5.2.0.tar.gz>
+    ==> Fetching <https://github.com/ROCm-Developer-Tools/ROCclr/archive/rocm-5.2.0.tar.gz>
+    ==> Moving resource stage
+    source: /tmp/root/spack-stage/resource-hipamd-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
+    destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/hipamd
+    ==> Moving resource stage
+    source: /tmp/root/spack-stage/resource-opencl-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
+    destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/opencl
+    ==> Moving resource stage
+    source: /tmp/root/spack-stage/resource-rocclr-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/
+    destination: /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src/rocclr
+    ==> Staged hip in /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7
+    ```
 
-root@[ixt-rack-104:/spack\#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
+2. Change directory to `spack-src` inside the staged directory.
 
-3\. **Creates a new Git repository**
+    ```bash
+    root@[ixt-rack-104:/spack\#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
+    ```
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git init
+3. Create a new Git repository.
 
-4\. **Add the entire directory to the repository**
+    ```bash
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git init
+    ```
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git add .
+4. Add the entire directory to the repository.
 
-5\. **Make the required changes in the source code**
+    ```bash
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git add .
+    ```
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) vi hipamd/CMakeLists.txt (Make required changes in the source code)
+5. Make the required changes to the source code.
 
-6\. **Generate the patch using "git diff" command**
+    ```bash
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) vi hipamd/CMakeLists.txt (Make required changes in the source code)
+    ```
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git diff \> /spack/var/spack/repos/builtin/packages/hip/0001-modifications.patch
+6. Generate the patch using the `git diff` command.
 
-7\. **Update the recipe with the patch file name and conditions to apply**
+    ```bash
+    diff > /spack/var/spack/repos/builtin/packages/hip/0001-modifications.patch
+    ```
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip
+7. Update the recipe with the patch file name and any conditions you want to apply.
 
-Provide the patch file name and the conditions for the patch to be applied in the hip recipe as below,
+    ```bash
+    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip
+    ```
 
-patch("0001-modifications.patch", when="@5.2.0")
+    Provide the patch file name and the conditions for the patch:
 
-Spack will apply 0001-modifications.patch on the 5.2.0 release code before starting the build for hip.
+    `patch("0001-modifications.patch", when="@5.2.0")`
 
-**Note**: After each modification we need to make sure the recipe is also updated. If there is no change in the recipe do touch /spack/var/spack/repos/builtin/packages/hip/package.py
+    Spack applies `0001-modifications.patch` on the `5.2.0` release code before starting the `hip` build.
 
-**Note:** Spack latest release is 5.5.1
+   After each modification, you must update the recipe. If there is no change to the recipe, run
+   `touch /spack/var/spack/repos/builtin/packages/hip/package.py`
