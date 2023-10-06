@@ -1,11 +1,12 @@
-# Install ROCm (HIP SDK) on Windows
+# Install HIP SDK on Windows
 
-To install ROCm on Windows, you can use our [quick-start guide](./install-quick.md)` or you can
+To install the HIP SDK on Windows, use the quick-start guide (./install-quick.md) or follow the instructions below.
+
 follow the instructions listed below.
 
 ## Prepare to install
 
-Verify that your system meets all the installation requirements. The ROCm installation is only supported
+Verify that your system meets all the installation requirements. The installation is only supported
 only on specific host architectures, Windows Editions, and update versions.
 
 The HIP SDK is supported on Windows 10 and 11. It can be installed on a
