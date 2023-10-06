@@ -3,6 +3,15 @@
 To install ROCm on Linux, you can use our [quick-start guide](./install-quick.md) or you can
 follow the instructions listed below.
 
+**Topics:**
+
+* [Installation options](#installation-options)
+* [Prerequisites](#prerequisites)
+* [Install ROCm](#install-rocm)
+* [Post-install actions and verification](#post-install-actions-and-verification-process)
+* [Upgrade ROCm](#upgrade-rocm)
+* [Uninstall ROCm](#uninstall-rocm)
+
 ## Installation options
 
 ROCm supports two methods for installation:
@@ -55,7 +64,7 @@ multi-version ROCm installations:
 
 ![ROCm installation types](../../data/install/linux/linux001.png "ROCm installation types")
 
-## Prepare to install
+## Prerequisites
 
 Verify that your system meets all the installation requirements. The ROCm installation is supported only
 on specific Linux distributions and kernel versions.
@@ -693,12 +702,12 @@ For a comprehensive list of meta-packages, refer to
 
 (post-install-actions-linux)=
 
-### Post-install actions and verification process
+## Post-install actions and verification
 
 The post-install actions listed here are optional and depend on your use case,
 but are generally useful. Verification of the install is advised.
 
-#### Post-install actions
+### Post-install actions
 
 1. Instruct the system linker where to find the shared objects (`.so` files) for
    ROCm applications.
@@ -741,7 +750,7 @@ but are generally useful. Verification of the install is advised.
 
 (verifying-kernel-mode-driver-installation)=
 
-#### Verifying kernel-mode driver installation
+### Verifying kernel-mode driver installation
 
 Check the installation of the kernel-mode driver by typing the command given
 below:

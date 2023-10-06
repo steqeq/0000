@@ -4,7 +4,14 @@ To install the HIP SDK on Windows, use the [quick-start guide](./install-quick.m
 
 follow the instructions listed below.
 
-## Prepare to install
+**Topics:**
+
+* [Prerequisites](#prerequisites)
+* [Install HIP SDK](#install-hip-sdk)
+* [Upgrade HIP SDK](#upgrade-hip-sdk)
+* [Uninstall HIP SDK](#uninstall-hip-sdk)
+
+## Prerequisites
 
 Verify that your system meets all the installation requirements. The installation is only supported
 only on specific host architectures, Windows Editions, and update versions.
@@ -53,7 +60,7 @@ compatible GPU is required. Please see the
 :::
 ::::
 
-## Install the HIP SDK
+## Install HIP SDK
 
 ::::{tab-set}
 
@@ -204,12 +211,12 @@ To start the installation, follow these steps:
 
 ::::
 
-## Upgrade the HIP SDK
+## Upgrade HIP SDK
 
 To upgrade the HIP SDK, you can run the installer for the newer version without uninstalling the
 existing version. You can also uninstall the HIP SDK before installing the newest version.
 
-## Uninstall the HIP SDK
+## Uninstall HIP SDK
 
 ::::{tab-set}
 
