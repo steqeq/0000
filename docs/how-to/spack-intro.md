@@ -64,7 +64,9 @@ the same package. For more information on Spack, see
 | **hipsolver**             | hipsolver              |
 | **mlirmiopen**            | mlirmiopen             |
 
+```{note}
 You must install all prerequisites before installing Spack.
+```
 
 ::::{tab-set}
 :::{tab-item} Ubuntu
