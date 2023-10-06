@@ -56,7 +56,7 @@ to the installation guides for `Linux <../install/linux/install.html>`_ and
 Using HIP in CMake
 ==================
 
-ROCm components providing a C/C++ interface support being consumed using any
+ROCm components providing a C/C++ interface support consumption via any
 C/C++ toolchain that CMake knows how to drive. ROCm also supports CMake's HIP
 language features, allowing users to program using the HIP single-source
 programming model. When a program (or translation-unit) uses the HIP API without
