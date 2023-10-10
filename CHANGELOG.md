@@ -183,6 +183,7 @@ The following defects are fixed in ROCm v5.7:
 | hipSOLVER | 1.8.0 ⇒ [1.8.1](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.0) |
 | hipSPARSE | 2.3.7 ⇒ [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
 | MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.7.0) |
+| rccl | 2.15.5 ⇒ [2.17.1-1](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.7.0) |
 | rocALUTION | 2.1.9 ⇒ [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.0) |
 | rocBLAS | 3.0.0 ⇒ [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.0) |
 | rocFFT | 1.0.23 ⇒ [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.0) |
@@ -278,6 +279,26 @@ hipSPARSE 2.3.8 for ROCm 5.7.0
 - Fix compilation failures when using cusparse 12.0.0 backend
 - Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
 - Minor improvements
+
+#### RCCL 2.17.1-1
+
+RCCL 2.17.1-1 for ROCm 5.7.0
+
+##### Changed
+
+* Compatibility with NCCL 2.17.1-1
+* Performance tuning for some collective operations
+
+##### Added
+
+* Minor improvements to MSCCL codepath
+* NCCL_NCHANNELS_PER_PEER support
+* Improved compilation performance
+* Support for gfx94x
+
+##### Fixed
+
+* Potential race-condition during ncclSocketClose()
 
 #### rocALUTION 2.1.11
 
