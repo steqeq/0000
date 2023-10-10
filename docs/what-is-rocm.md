@@ -23,10 +23,9 @@ source software compilers, debuggers, and libraries. ROCm is fully integrated in
 
 ROCm consists of the following drivers, development tools, and APIs.
 
-| ROCm product | Description |
+| Project | Description |
 | :---------------- | :------------ |
 | [AMD Compute Language Runtimes (CLR)](https://github.com/ROCm-Developer-Tools/clr) | Contains source code for AMD's compute languages runtimes: {doc}`HIP <hip:index>` and OpenCL |
-| [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/) | A graph inference engine that accelerates machine learning model inference |
 | [AOMP](https://github.com/ROCm-Developer-Tools/aomp/) | A scripted build of [LLVM](https://github.com/RadeonOpenCompute/llvm-project) and supporting software |
 | [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/) | A runtime framework for efficient task management in heterogeneous CPU-GPU systems |
 | [Composable Kernel](https://rocm.docs.amd.com/projects/composable_kernel/en/latest/) | A library that aims to provide a programming model for writing performance critical kernels for machine learning workloads across multiple architectures |
@@ -58,7 +57,6 @@ ROCm consists of the following drivers, development tools, and APIs.
 | [rocBLAS](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/)| A BLAS implementation (in the HIP programming language) on the ROCm runtime and toolchains |
 | [rocFFT](https://rocm.docs.amd.com/projects/rocFFT/en/latest/) | A software library for computing fast Fourier transforms (FFTs) written in HIP |
 | [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/) | An AMDGPU Driver with KFD that is used by ROCm |
-| [ROCm Augmentation Library (rocAL)](https://rocm.docs.amd.com/projects/rocAL/en/latest/doxygen/html/index.html) | An augmentation library designed to decode and process images and videos |
 | [ROCmCC](https://rocm.docs.amd.com/en/latest/reference/rocmcc/rocmcc.html) | A Clang/LLVM-based compiler |
 | [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake) | A collection of CMake modules for common build and development tasks |
 | [ROCm Data Center Tool](https://rocm.docs.amd.com/projects/rdc/en/latest/) | Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments |
