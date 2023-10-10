@@ -35,7 +35,7 @@ subtrees:
     title: Tensorflow for ROCm
   - file: install/magma-install.md
     title: MAGMA for ROCm
-  - file: how-to/spack-intro.md
+  - file: install/spack-intro.md
     title: ROCm & Spack
 
 - caption: Compatibility & support
