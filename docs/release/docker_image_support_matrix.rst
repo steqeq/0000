@@ -16,7 +16,7 @@ ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>
 
                 * ``rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_staging``
 
-                    * `ROCm5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
+                    * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                     * `Torch 2.1.0 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/rocm5.7_internal_testing>`_
                     * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
