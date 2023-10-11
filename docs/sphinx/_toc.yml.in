@@ -90,8 +90,7 @@ subtrees:
     - file: reference/library-index.md
       title: Library APIs
       subtrees:
-      - caption: Artificial intelligence
-        entries:
+      - entries:
         - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/index.html
           title: AMD debugger API
         - url: https://rocm.docs.amd.com/projects/composable_kernel/en/latest/index.html
