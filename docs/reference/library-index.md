@@ -1,4 +1,4 @@
-# ROCm API libraries
+# ROCm API libraries & tools
 
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
