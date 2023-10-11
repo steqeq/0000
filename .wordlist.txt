@@ -46,6 +46,7 @@ cd
 CDNA
 CentOS
 centric
+changelog
 chiplet
 CIFAR
 CLI
