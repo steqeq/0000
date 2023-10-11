@@ -12,9 +12,10 @@ ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>
 
         .. tab-set::
 
-            .. tab-item:: Ubuntu
+            .. tab-item:: Ubuntu 20.04
 
-                * ``rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_staging``
+                Tag: [``rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_staging``](https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4)
+                * Inventory:
 
                     * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
