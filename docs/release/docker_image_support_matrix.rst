@@ -30,7 +30,7 @@ ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>
 
                 * ``Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_1.12.1``
 
-                    * `ROCm5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
+                    * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                     * `Torch 1.12.1 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/1.12>`_
                     * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
@@ -43,7 +43,7 @@ ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>
 
                 * ``Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_1.13.1``
 
-                    * `ROCm5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
+                    * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                     * `Torch 1.12.1 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/1.13>`_
                     * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
@@ -56,7 +56,7 @@ ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>
 
                 * ``Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1``
 
-                    * `ROCm5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
+                    * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                     * `Torch 2.0.1 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/2.0>`_
                     * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
@@ -71,7 +71,7 @@ ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>
 
                 ``rocm/pytorch:rocm5.7_centos7_py3.9_pytorch_staging``
 
-                * `ROCm5.7 <https://repo.radeon.com/rocm/yum/5.7/>`_
+                * `ROCm 5.7 <https://repo.radeon.com/rocm/yum/5.7/>`_
                 * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                 * `Torch 2.1.0 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/rocm5.7_internal_testing>`_
                 * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
@@ -86,14 +86,14 @@ ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>
 
                 * ``rocm5.7_ubuntu20.04_py3_tensorflow_r2.12-rocm-enhanced_release``
 
-                    * `ROCm5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
+                    * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                     * `tensorflow-rocm 2.12.1 <https://pypi.org/project/tensorflow-rocm/2.12.1.570/>`_
                     * `Tensorboard 2.12.3 <https://github.com/tensorflow/tensorboard/tree/2.12>`_
 
                 * ``rocm5.7_ubuntu20.04_py3_tensorflow_r2.13-rocm-enhanced_release``
 
-                    * `ROCm5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
+                    * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                     * `tensorflow-rocm 2.13.0 <https://pypi.org/project/tensorflow-rocm/2.13.0.570/>`_
                     * `Tensorboard 2.13.0 <https://github.com/tensorflow/tensorboard/tree/2.13>`_
