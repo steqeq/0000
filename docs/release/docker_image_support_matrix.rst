@@ -2,9 +2,7 @@
 Docker image support matrix
 ******************************************************************
 
-ROCm 5.7 supports the following `Pytorch <https://hub.docker.com/r/rocm/pytorch>`_ and
-`TensorFlow <https://hub.docker.com/r/rocm/tensorflow>`_ Docker images:.
-
+AMD publishes `Pytorch <https://hub.docker.com/r/rocm/pytorch>`_ and `TensorFlow <https://hub.docker.com/r/rocm/tensorflow>`_ containers validated with ROCm 5.7 on dockerhub. 
 
 .. tab-set::
 
