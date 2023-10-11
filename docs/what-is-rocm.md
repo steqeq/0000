@@ -62,7 +62,7 @@ ROCm consists of the following drivers, development tools, and APIs.
 | [ROCm Data Center Tool](https://rocm.docs.amd.com/projects/rdc/en/latest/) | Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments |
 | [ROCm Debug Agent Library (ROCdebug-agent)](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/) | A library that can print the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running |
 | [ROCm Debugger (ROCgdb)](https://rocm.docs.amd.com/projects/ROCgdb/en/latest/) | A source-level debugger for Linux, based on the GNU Debugger (GDB) |
-| [ROCm Debugger API (ROCdbgapi)](https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/) | The ROCm debugger library |
+| [ROCdbgapi](https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/) | The ROCm debugger library |
 | [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/) | Reports system information |
 | [ROCm SMI](https://github.com/RadeonOpenCompute/rocm_smi_lib/) | A C library for Linux that provides a user space interface for applications to monitor and control GPU applications |
 | [ROCm Validation Suite](https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/) | A tool for detecting and troubleshooting common problems affecting AMD GPUs running in a high-performance computing environment |
