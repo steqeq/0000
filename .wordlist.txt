@@ -362,6 +362,7 @@ repos
 Req
 req
 resampling
+ReST
 reStructuredText
 RHEL
 Rickle
