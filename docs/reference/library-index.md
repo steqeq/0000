@@ -40,6 +40,19 @@
 
 :::{grid-item-card}
 :padding: 2
+**Development tools**
+
+^^^
+
+* {doc}`ROCdbgapi <rocdbgapi:index>`
+* [ROCmCC](./rocmcc.md)
+* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCTracer <roctracer:index>`
+
+:::
+
+:::{grid-item-card}
+:padding: 2
 **Fast Fourier transforms (FFTs)**
 
 ^^^
@@ -112,17 +125,13 @@
 
 :::{grid-item-card}
 :padding: 2
-**Tools**
+**System tools**
 
 ^^^
 
-* {doc}`AMD debugger (ROCdbgapi) <rocdbgapi:index>`
-* [ROCmCC](./rocmcc.md)
 * {doc}`ROCm Data Center Tool <rdc:index>`
-* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
 * {doc}`ROCm SMI LIB <rocm_smi_lib:index>`
 * {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
-* {doc}`ROCTracer <roctracer:index>`
 * {doc}`TransferBench <transferbench:index>`
 
 :::

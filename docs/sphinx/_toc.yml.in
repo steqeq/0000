@@ -91,8 +91,6 @@ subtrees:
       title: API libraries & tools
       subtrees:
       - entries:
-        - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/index.html
-          title: AMD debugger API
         - url: https://rocm.docs.amd.com/projects/composable_kernel/en/latest/index.html
           title: Composable kernel
         - url: https://rocm.docs.amd.com/projects/hipBLAS/en/latest/index.html
@@ -127,6 +125,8 @@ subtrees:
           title: rocALUTION
         - url: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/index.html
           title: rocBLAS
+        - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/index.html
+          title: ROCdbgapi
         - url: https://rocm.docs.amd.com/projects/rocFFT/en/latest/index.html
           title: rocFFT
         - file: reference/rocmcc.md
@@ -134,7 +134,7 @@ subtrees:
         - url: https://rocm.docs.amd.com/projects/rdc/en/latest/
           title: ROCm Data Center Tool
         - url: https://rocm.docs.amd.com/projects/ROCgdb/en/latest/index.html
-          title: ROCm debugger AP
+          title: ROCm debugger API
         - url: https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/
           title: ROCm SMI LIB
         - url: https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/
