@@ -13,7 +13,7 @@ containers on dockerhub. The following tags, and associated inventories, are val
 
             .. tab-item:: Ubuntu 20.04
 
-                Tag: ` ``rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_staging`` <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4)>`_
+                Tag: `rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_staging <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4)>`_
 
                 * Inventory:
 
@@ -29,7 +29,7 @@ containers on dockerhub. The following tags, and associated inventories, are val
                     * `OFED 5.4.3 <https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz>`_
 
 
-                Tag: ` ``Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_1.12.1`` <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_1.12.1/images/sha256-e67db9373c045a7b6defd43cc3d067e7d49fd5d380f3f8582d2fb219c1756e1f>`_
+                Tag: `Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_1.12.1 <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_1.12.1/images/sha256-e67db9373c045a7b6defd43cc3d067e7d49fd5d380f3f8582d2fb219c1756e1f>`_
 
                 * Inventory:
 
@@ -44,7 +44,7 @@ containers on dockerhub. The following tags, and associated inventories, are val
                     * `OMPI 4.0.3 <https://github.com/open-mpi/ompi/tree/v4.0.3>`_
                     * `OFED 5.4.3 <https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz>`_
 
-                Tag: ` ``Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_1.13.1`` <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_1.13.1/images/sha256-ed99d159026093d2aaf5c48c1e4b0911508773430377051372733f75c340a4c1>`_
+                Tag: `Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_1.13.1 <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_1.13.1/images/sha256-ed99d159026093d2aaf5c48c1e4b0911508773430377051372733f75c340a4c1>`_
 
                 * Inventory:
 
@@ -59,7 +59,7 @@ containers on dockerhub. The following tags, and associated inventories, are val
                     * `OMPI 4.0.3 <https://github.com/open-mpi/ompi/tree/v4.0.3>`_
                     * `OFED 5.4.3 <https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz>`_
 
-                Tag: ` ``Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1`` <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4>`_
+                Tag: `Ubuntu rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1 <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4>`_
 
                 * Inventory:
 
@@ -76,7 +76,7 @@ containers on dockerhub. The following tags, and associated inventories, are val
 
             .. tab-item:: CentOS 7
 
-                Tag: ` ``rocm/pytorch:rocm5.7_centos7_py3.9_pytorch_staging`` <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_centos7_py3.9_pytorch_staging/images/sha256-92240cdf0b4aa7afa76fc78be995caa19ee9c54b5c9f1683bdcac28cedb58d2b>`_
+                Tag: `rocm/pytorch:rocm5.7_centos7_py3.9_pytorch_staging <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_centos7_py3.9_pytorch_staging/images/sha256-92240cdf0b4aa7afa76fc78be995caa19ee9c54b5c9f1683bdcac28cedb58d2b>`_
 
                 * Inventory:
 
