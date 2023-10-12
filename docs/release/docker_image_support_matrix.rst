@@ -93,14 +93,18 @@ containers on dockerhub. The following tags, and associated inventories, are val
 
             .. tab-item:: Ubuntu 20.04
 
-                * ``rocm5.7_ubuntu20.04_py3_tensorflow_r2.12-rocm-enhanced_release``
+                Tag: `rocm5.7-tf2.12-dev <https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.12-dev/images/sha256-e0ac4d49122702e5167175acaeb98a79b9500f585d5e74df18facf6b52ce3e59>_`
+                
+                * Inventory:
 
                     * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                     * `tensorflow-rocm 2.12.1 <https://pypi.org/project/tensorflow-rocm/2.12.1.570/>`_
                     * `Tensorboard 2.12.3 <https://github.com/tensorflow/tensorboard/tree/2.12>`_
 
-                * ``rocm5.7_ubuntu20.04_py3_tensorflow_r2.13-rocm-enhanced_release``
+                Tag: `rocm5.7-tf2.13-dev <https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.13-dev/images/sha256-6f995539eebc062aac2b53db40e2b545192d8b032d0deada8c24c6651a7ac332>_`
+
+                * Inventory:
 
                     * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
