@@ -41,14 +41,14 @@ on this table, the GPU is not officially supported by AMD.
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|:----------------:|
 | AMD Radeon™ RX 7900 XTX | RDNA3  | gfx1100 | ✅ | ✅ |
 | AMD Radeon™ RX 7900 XT  | RDNA3  | gfx1100 | ✅ | ✅ |
-| AMD Radeon™ RX 7600     | RDNA3  | gfx1100 | ✅ | ✅ |
+| AMD Radeon™ RX 7600     | RDNA3  | gfx1102 | ✅ | ✅ |
 | AMD Radeon™ RX 6950 XT  | RDNA2  | gfx1030 | ✅ | ✅ |
 | AMD Radeon™ RX 6900 XT  | RDNA2  | gfx1030 | ✅ | ✅ |
 | AMD Radeon™ RX 6800 XT  | RDNA2  | gfx1030 | ✅ | ✅ |
 | AMD Radeon™ RX 6800     | RDNA2  | gfx1030 | ✅ | ✅ |
-| AMD Radeon™ RX 6750     | RDNA2  | gfx1032 | ✅ | ❌ |
-| AMD Radeon™ RX 6700 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
-| AMD Radeon™ RX 6700     | RDNA2  | gfx1032 | ✅ | ❌ |
+| AMD Radeon™ RX 6750 XT  | RDNA2  | gfx1031 | ✅ | ❌ |
+| AMD Radeon™ RX 6700 XT  | RDNA2  | gfx1031 | ✅ | ❌ |
+| AMD Radeon™ RX 6700     | RDNA2  | gfx1031 | ✅ | ❌ |
 | AMD Radeon™ RX 6650 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6600 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6600     | RDNA2  | gfx1032 | ✅ | ❌ |
@@ -59,12 +59,12 @@ on this table, the GPU is not officially supported by AMD.
 
 ### Component support
 
-ROCm components are described in the [Reference material](../../reference/index). Support
+ROCm components are described in [What is ROCm?](../../what-is-rocm.md) Support
 on Windows is provided with two levels on enablement.
 
 * **Runtime**: Runtime enables the use of the HIP and OpenCL runtimes only.
-* **HIP SDK**: Runtime plus additional components refer to [Libraries](../../reference/libraries/index).
-  Some [math libraries](../../reference/libraries/gpu-libraries/math) are Linux exclusive, please check the library details.
+* **HIP SDK**: Runtime plus additional components are listed in [Libraries](../../reference/library-index.md).
+ Note that some math libraries are Linux exclusive.
 
 ### Support status
 
