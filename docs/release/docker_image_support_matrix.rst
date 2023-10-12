@@ -93,7 +93,7 @@ containers on dockerhub. The following tags, and associated inventories, are val
 
             .. tab-item:: Ubuntu 20.04
 
-                Tag: `rocm5.7-tf2.12-dev <https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.12-dev/images/sha256-e0ac4d49122702e5167175acaeb98a79b9500f585d5e74df18facf6b52ce3e59>_`
+                Tag: `rocm5.7-tf2.12-dev <https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.12-dev/images/sha256-e0ac4d49122702e5167175acaeb98a79b9500f585d5e74df18facf6b52ce3e59>`_
                 
                 * Inventory:
 
@@ -102,7 +102,7 @@ containers on dockerhub. The following tags, and associated inventories, are val
                     * `tensorflow-rocm 2.12.1 <https://pypi.org/project/tensorflow-rocm/2.12.1.570/>`_
                     * `Tensorboard 2.12.3 <https://github.com/tensorflow/tensorboard/tree/2.12>`_
 
-                Tag: `rocm5.7-tf2.13-dev <https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.13-dev/images/sha256-6f995539eebc062aac2b53db40e2b545192d8b032d0deada8c24c6651a7ac332>_`
+                Tag: `rocm5.7-tf2.13-dev <https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.13-dev/images/sha256-6f995539eebc062aac2b53db40e2b545192d8b032d0deada8c24c6651a7ac332>`_
 
                 * Inventory:
 
