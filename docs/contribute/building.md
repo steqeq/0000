@@ -48,11 +48,11 @@ documentation locally using Visual Studio (VS) Code. Follow these steps to confi
 2. Add the following entries to `.vscode/settings.json`.
 
     ```json
-    {
-      "liveServer.settings.root": "/.vscode/build/html",
-      "liveServer.settings.wait": 1000,
-      "python.terminal.activateEnvInCurrentTerminal": true
-    }
+      {
+        "liveServer.settings.root": "/.vscode/build/html",
+        "liveServer.settings.wait": 1000,
+        "python.terminal.activateEnvInCurrentTerminal": true
+      }
     ```
 
     * `liveServer.settings.root`: Sets the root of the output website for live previews. Must be changed
@@ -65,61 +65,61 @@ documentation locally using Visual Studio (VS) Code. Follow these steps to confi
 3. Add the following tasks to `.vscode/tasks.json`.
 
     ```json
-    {
-      "version": "2.0.0",
-      "tasks": [
-        {
-          "label": "Build Docs",
-          "type": "process",
-          "windows": {
-            "command": "${workspaceFolder}/.venv/Scripts/python.exe"
-          },
-          "command": "${workspaceFolder}/.venv/bin/python3",
-          "args": [
-            "-m",
-            "sphinx",
-            "-j",
-            "auto",
-            "-T",
-            "-b",
-            "html",
-            "-d",
-            "${workspaceFolder}/.vscode/build/doctrees",
-            "-D",
-            "language=en",
-            "${workspaceFolder}/docs",
-            "${workspaceFolder}/.vscode/build/html"
-          ],
-          "problemMatcher": [
-            {
-              "owner": "sphinx",
-              "fileLocation": "absolute",
-              "pattern": {
-                "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):(\\d+):\\s+(WARNING|ERROR):\\s+(.*)$",
-                "file": 1,
-                "line": 2,
-                "severity": 3,
-                "message": 4
-              }
+      {
+        "version": "2.0.0",
+        "tasks": [
+          {
+            "label": "Build Docs",
+            "type": "process",
+            "windows": {
+              "command": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
-            {
-             "owner": "sphinx",
-              "fileLocation": "absolute",
-              "pattern": {
-                "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):{1,2}\\s+(WARNING|ERROR):\\s+(.*)$",
-                "file": 1,
-                "severity": 2,
-                "message": 3
+            "command": "${workspaceFolder}/.venv/bin/python3",
+            "args": [
+              "-m",
+              "sphinx",
+              "-j",
+              "auto",
+              "-T",
+              "-b",
+              "html",
+              "-d",
+              "${workspaceFolder}/.vscode/build/doctrees",
+              "-D",
+              "language=en",
+              "${workspaceFolder}/docs",
+              "${workspaceFolder}/.vscode/build/html"
+            ],
+            "problemMatcher": [
+              {
+                "owner": "sphinx",
+                "fileLocation": "absolute",
+                "pattern": {
+                  "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):(\\d+):\\s+(WARNING|ERROR):\\s+(.*)$",
+                  "file": 1,
+                  "line": 2,
+                  "severity": 3,
+                  "message": 4
+                }
+              },
+              {
+              "owner": "sphinx",
+                "fileLocation": "absolute",
+                "pattern": {
+                  "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):{1,2}\\s+(WARNING|ERROR):\\s+(.*)$",
+                  "file": 1,
+                  "severity": 2,
+                  "message": 3
+                }
               }
+            ],
+            "group": {
+              "kind": "build",
+              "isDefault": true
             }
-          ],
-          "group": {
-            "kind": "build",
-            "isDefault": true
           }
-        }
-      ]
-    }
+        ]
+      }
     ```
 
     > (Implementation detail: two problem matchers were needed to be defined,
