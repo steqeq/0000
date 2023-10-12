@@ -100,10 +100,10 @@ documentation locally using Visual Studio (VS) Code. Follow these steps to confi
                 "line": 2,
                 "severity": 3,
                 "message": 4
-              },
+              }
             },
             {
-              "owner": "sphinx",
+             "owner": "sphinx",
               "fileLocation": "absolute",
               "pattern": {
                 "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):{1,2}\\s+(WARNING|ERROR):\\s+(.*)$",
@@ -117,8 +117,8 @@ documentation locally using Visual Studio (VS) Code. Follow these steps to confi
             "kind": "build",
             "isDefault": true
           }
-        },
-      ],
+        }
+      ]
     }
     ```
 
