@@ -37,7 +37,7 @@ There are a few options if the compile time becomes unacceptable:
 
 ## Installing ROCm GPU ASan packages
 
-Use the following instruction to install instrumented HSA and HIP runtimes, tools, and math libraries
+Use the following instruction to install instrumented HSA and HIP runtimes, tools, and math libraries.
 
 ```
     sudo apt-get install rocm-ml-sdk-asan
