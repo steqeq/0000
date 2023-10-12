@@ -42,9 +42,9 @@ use for each:
 
 ```rst
 
-..  code-block:: language-name
+.. code-block:: language-name
 
-My code block.
+  My code block.
 
 
 ```
@@ -83,18 +83,30 @@ My code block.
 ```rst
 
 ******************
-Chapter title
+Chapter title (H1)
 ******************
 
-Section title
+Section title (H2)
 ===============
 
-Subsection title
+Subsection title (H3)
 ---------------------
 
-Sub-subsection title
+Sub-subsection title (H4)
 ^^^^^^^^^^^^^^^^^^^^
 
+
+```
+
+</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>
+
+```rst
+
+.. image:: image1.png
 
 ```
 
@@ -128,9 +140,9 @@ As shown in :ref:`section-1`.
 
 ```rst
 
-# Ordered list item
+# Ordered (numbered) list item
 
-* Unordered list item
+* Unordered (bulleted) list item
 
 ```
 
@@ -144,10 +156,11 @@ As shown in :ref:`section-1`.
 ```rst
 
 .. math::
-A = \begin{pmatrix}
-        0.0 & 1.0 & 1.0 & 3.0 \\
-        4.0 & 5.0 & 6.0 & 7.0 \\
-      \end{pmatrix}
+
+  A = \begin{pmatrix}
+          0.0 & 1.0 & 1.0 & 3.0 \\
+          4.0 & 5.0 & 6.0 & 7.0 \\
+        \end{pmatrix}
 
 ```
 
@@ -173,7 +186,7 @@ A = \begin{pmatrix}
 
 .. note::
 
-My note here.
+  My note here.
 
 ```
 
@@ -186,8 +199,8 @@ My note here.
 ```rst
 
 .. csv-table::  Optional title here
-    :widths: 30, 70  #optional column widths
-   :header: "entry1 header", "entry2 header"
+  :widths: 30, 70  #optional column widths
+  :header: "entry1 header", "entry2 header"
 
    "entry1", "entry2"
 
@@ -200,16 +213,15 @@ My note here.
 ## Language and style
 
 We use
-[Microsoft CPP-Docs](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md)
-guidelines for voice and tone, and
-[Microsoft style guidelines](https://learn.microsoft.com/en-us/style-guide/) for language and style.
+[Microsoft Visual Studio documentation for Microsoft C++](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md)
+guidelines for voice and tone, and the
+[Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/) for language and style.
 
-Font size and selection, page layout, white space control, and other formatting
+Font size and type, page layout, white space control, and other formatting
 details are controlled via
-[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
-
-If you want to notify us of any formatting issues, create a pull request in
-[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
+[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). If you want to notify us
+of any formatting issues, create a pull request in our
+[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core) GitHub repository.
 
 ## Building our documentation
 
