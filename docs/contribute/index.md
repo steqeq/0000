@@ -21,9 +21,9 @@ Our naming structure uses kebab case; for example, `my-file-name.rst`.
 
 ## Supported formats and syntax
 
-Our documentation includes both Markdown and ReST files. We are gradually transitioning existing
-Markdown to ReST in order to more effectively meet our documentation needs. When contributing,
-ReST is preferred; if you must use Markdown, use GitHub-flavored Markdown.
+Our documentation includes both Markdown and RST files. We are gradually transitioning existing
+Markdown to RST in order to more effectively meet our documentation needs. When contributing,
+RST is preferred; if you must use Markdown, use GitHub-flavored Markdown.
 
 We use [Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html) syntax and compile
 our API references using Doxygen.
@@ -34,7 +34,7 @@ use for each:
 <table>
 <tr>
 <th>Component</th>
-<th>ReST syntax</th>
+<th>RST syntax</th>
 </tr>
 <tr>
 <td>Code blocks</td>
