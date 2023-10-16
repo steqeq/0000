@@ -91,71 +91,71 @@ subtrees:
       title: API libraries & tools
       subtrees:
       - entries:
-        - url: https://rocm.docs.amd.com/projects/composable_kernel/en/latest/index.html
+        - url: ${project:composable_kernel}
           title: Composable kernel
-        - url: https://rocm.docs.amd.com/projects/hipBLAS/en/latest/index.html
+        - url: ${project:hipblas}
           title: hipBLAS
-        - url: https://rocm.docs.amd.com/projects/hipBLASLt/en/latest/index.html
+        - url: ${project:hipblaslt}
           title: hipBLASLt
-        - url: https://rocm.docs.amd.com/projects/hipCUB/en/latest/index.html
+        - url: ${project:hipcc}
+          title: hipCC
+        - url: ${project:hipcub}
           title: hipCUB
-        - url: https://rocm.docs.amd.com/projects/hipFFT/en/latest/index.html
+        - url: ${project:hipfft}
           title: hipFFT
-        - url: https://rocm.docs.amd.com/projects/HIPIFY/en/latest/index.html
+        - url: ${project:hipify}
           title: HIPIFY
-        - url: https://rocm.docs.amd.com/projects/hipRAND/en/latest/index.html
+        - url: ${project:hiprand}
           title: hipRAND
-        - url: https://rocm.docs.amd.com/projects/HIP/en/develop/.doxygen/docBin/html/index.html
+        - url: ${project:hip}
           title: HIP runtime
-        - url: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/index.html
+        - url: ${project:hipsolver}
           title: hipSOLVER
-        - url: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/index.html
+        - url: ${project:hipsparse}
           title: hipSPARSE
-        - url: https://rocm.docs.amd.com/projects/hipSPARSELt/en/latest/index.html
+        - url: ${project:hipsparselt}
           title: hipSPARSELt
-        - url: https://rocm.docs.amd.com/projects/hipTensor/en/latest/index.html
+        - url: ${project:hiptensor}
           title: hipTensor
-        - url: https://rocm.docs.amd.com/projects/MIOpen/en/latest/index.html
+        - url: ${project:miopen}
           title: MIOpen
-        - url: https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/index.html
+        - url: ${project:amdmigraphx}
           title: MIGraphX
-        - url: https://rocm.docs.amd.com/projects/rccl/en/latest/index.html
+        - url: ${project:rccl}
           title: RCCL
-        - url: https://rocm.docs.amd.com/projects/rocALUTION/en/latest/index.html
+        - url: ${project:rocalution}
           title: rocALUTION
-        - url: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/index.html
+        - url: ${project:rocblas}
           title: rocBLAS
-        - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/index.html
+        - url: ${project:rocdbgapi}
           title: ROCdbgapi
-        - url: https://rocm.docs.amd.com/projects/rocFFT/en/latest/index.html
+        - url: ${project:rocfft}
           title: rocFFT
         - file: reference/rocmcc.md
           title: ROCmCC
-        - url: https://rocm.docs.amd.com/projects/rdc/en/latest/
+        - url: ${project:rdc}
           title: ROCm Data Center Tool
-        - url: https://rocm.docs.amd.com/projects/ROCgdb/en/latest/index.html
-          title: ROCm debugger API
-        - url: https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/
+        - url: ${project:rocm_smi_lib}
           title: ROCm SMI LIB
-        - url: https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/
+        - url: ${project:rocmvalidationsuite}
           title: ROCm validation suite
-        - url: https://rocm.docs.amd.com/projects/rocPRIM/en/latest/index.html
+        - url: ${project:rocprim}
           title: rocPRIM
-        - url: https://rocm.docs.amd.com/projects/rocprofiler/en/latest/rocprof.html
+        - url: ${project:rocprofiler}
           title: ROCProfiler
-        - url: https://rocm.docs.amd.com/projects/rocRAND/en/latest/index.html
+        - url: ${project:rocrand}
           title: rocRAND
-        - url: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/index.html
+        - url: ${project:rocsolver}
           title: rocSOLVER
-        - url: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/index.html
+        - url: ${project:rocsparse}
           title: rocSPARSE
-        - url: https://rocm.docs.amd.com/projects/rocThrust/en/latest/index.html
+        - url: ${project:rocthrust}
           title: rocThrust
-        - url: https://github.com/ROCm-Developer-Tools/roctracer
+        - url: ${project:roctracer}
           title: rocTracer
-        - url: https://rocm.docs.amd.com/projects/rocWMMA/en/latest/index.html
+        - url: ${project:rocwmma}
           title: rocWMMA
-        - url: https://rocm.docs.amd.com/projects/TransferBench/en/latest/
+        - url: ${project:transferbench}
           title: TransferBench
 
 - caption: Conceptual

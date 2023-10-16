@@ -43,7 +43,7 @@
 **Development tools**
 
 ^^^
-
+* {doc}`hipCC <hipcc:index>`
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
 * {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
@@ -107,8 +107,8 @@
 
 ^^^
 
-* [Performance tracing](https://github.com/ROCm-Developer-Tools/roctracer)
 * {doc}`ROCProfiler <rocprofiler:rocprof>`
+* {doc}`ROCTracer <roctracer:index>`
 
 :::
 
