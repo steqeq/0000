@@ -21,7 +21,7 @@ such as PyTorch and TensorFlow.
 
 ## Radeon Software for Linux with ROCm
 
-Starting with Radeon Software for Linux 23.20.00.48 with ROCm 5.7, researchers and developers working with Machine Learning (ML) models and algorithms can tap into the parallel computing power of the AMD desktop GPUs based on the RDNA™ 3 architecture.
+Starting with Radeon Software for Linux® 23.20.00.48 with ROCm 5.7, researchers and developers working with Machine Learning (ML) models and algorithms can tap into the parallel computing power of the AMD desktop GPUs based on the RDNA™ 3 architecture.
 
 A client solution built on powerful high-end AMD GPUs provides a local, private and often cost-effective workflow to develop ROCm and train ML (PyTorch) for the users who previously relied solely on cloud-based solutions.
 
