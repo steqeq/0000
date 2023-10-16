@@ -4,7 +4,7 @@
 
 Docker containers share the kernel with the host operating system, therefore the
 ROCm kernel-mode driver must be installed on the host. Please refer to
-{ref}`linux-install-methods` on installing `amdgpu-dkms`. The other
+the [Linux installation options](./linux/install.rst) for installing `amdgpu-dkms`. The other
 user-space parts (like the HIP-runtime or math libraries) of the ROCm stack will
 be loaded from the container image and don't need to be installed to the host.
 

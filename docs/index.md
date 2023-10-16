@@ -20,8 +20,8 @@ Installation guides
 ^^^
 
 * Linux
-  * [Quick-start (Linux)](./install/linux/install-quick.md)
-  * [Linux install guide](./install/linux/install.md)
+  * [Quick-start (Linux)](./install/linux/install-quick.rst)
+  * [Linux install guide](./install/linux/install.rst)
   * [Package manager integration](./install/linux/package-manager-integration.md)
 * Windows
   * [Quick-start (Windows)](./install/windows/install-quick.md)
@@ -107,7 +107,7 @@ Topic overviews & background information
 ::::
 
 We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
-on our [Contribute to ROCm docs](./contribute/index.md) page. Known issues are listed on
+on our [Contributing to ROCm documentation](./contribute/index.md) page. Known issues are listed on
 [GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
 
 Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.

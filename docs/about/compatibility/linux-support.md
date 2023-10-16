@@ -1,3 +1,5 @@
+.. _linux-support:
+
 # GPU and OS support (Linux)
 
 (linux-support)=

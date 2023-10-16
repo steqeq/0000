@@ -90,12 +90,12 @@ wheels command, you must select 'Linux', 'Python', 'pip', and 'ROCm' in the matr
    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video ubuntu:20.04
    ```
 
-   Install ROCm using the directions in the [Installation section](./linux/install.md).
+   Install ROCm using the directions in the [Installation section](./linux/install.rst).
 
    **Option 3:**
 
    Install on bare metal. Check [OS compatibility](../about/compatibility/linux-support.md) and install ROCm using the
-   directions in the [Installation section](./linux/install.md).
+   directions in the [Installation section](./linux/install.rst).
 
 2. Install the required dependencies for the wheels package.
 

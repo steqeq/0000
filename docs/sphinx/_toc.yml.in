@@ -11,11 +11,11 @@ subtrees:
 
 - caption: Installation
   entries:
-  - file: install/linux/install-quick.md
+  - file: install/linux/install-quick.rst
     title: Quick start (Linux)
   - file: install/windows/install-quick.md
     title: Quick start (Windows)
-  - file: install/linux/install.md
+  - file: install/linux/install.rst
     title: Linux install guide
     subtrees:
     - entries:
