@@ -5,7 +5,7 @@ user should follow the [Quick Start guide](./quick_start).
 
 ```{note}
 See {doc}`Radeon Software for Linux installation instructions <radeon:install/install-radeon>`
-for those using select NAVI™ 3 GPU with graphical applications and ROCm.
+for those using select RDNA™ 3 GPU with graphical applications and ROCm.
 ```
 
 ## Package Manager versus AMDGPU Installer?
