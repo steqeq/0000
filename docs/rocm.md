@@ -25,7 +25,7 @@ Starting with Radeon Software for Linux® 23.20.00.48 with ROCm 5.7, researchers
 
 A client solution built on powerful high-end AMD GPUs provides a local, private and often cost-effective workflow to develop ROCm and train ML (PyTorch) for the users who previously relied solely on cloud-based solutions.
 
-For information about how to install ROCm on AMD desktop GPUs based on the RDNA™ 3 architecture, see {doc}`Use ROCm on Radeon GPUs<radeon:index>`. For more information about supported AMD Radeon™ desktop GPUs, see {doc}`Radeon Compatibility Matrices <radeon:compatibility>`.
+For information about how to install ROCm on AMD desktop GPUs based on the RDNA™ 3 architecture, see {doc}`Use ROCm on Radeon GPUs<radeon:index>`. For more information about supported AMD Radeon™ desktop GPUs, see {doc}`Radeon Compatibility Matrices <radeon:docs/compatibility>`.
 
 ## ROCm on Windows
 
