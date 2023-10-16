@@ -82,18 +82,18 @@ use for each:
 
 ```rst
 
-******************
+*************************
 Chapter title (H1)
-******************
+*************************
 
 Section title (H2)
-===============
+=================-
 
 Subsection title (H3)
----------------------
+----------------------------------
 
 Sub-subsection title (H4)
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 
 ```
@@ -120,14 +120,14 @@ Sub-subsection title (H4)
 
 1. Add a tag to the section you want to reference:
 
-.. _my-section-tag: section-1
+.. _my-reference-tag:
 
 Section 1
 ==========
 
 2. Link to your tag:
 
-As shown in :ref:`section-1`.
+As shown in :ref:`my-reference-tag`.
 
 ```
 
@@ -225,4 +225,4 @@ of any formatting issues, create a pull request in our
 ## Building our documentation
 
 To learn how to build our documentation, refer to
-[Building documentation](./docs/contribute/building.md).
+[Building documentation](./building.md).
