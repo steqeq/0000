@@ -4,8 +4,8 @@ Users installing ROCm must choose between various installation options. A new
 user should follow the [Quick Start guide](./quick_start).
 
 ```{note}
-See {doc}`Radeon Installation instructions <radeon:install/install-radeon>`
-for those using the Radeon GPU with graphical applications.
+See {doc}`Radeon Software for Linux installation instructions <radeon:install/install-radeon>`
+for those using select NAVI™ 3 GPU with graphical applications and ROCm.
 ```
 
 ## Package Manager versus AMDGPU Installer?
