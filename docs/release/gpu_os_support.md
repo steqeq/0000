@@ -87,7 +87,7 @@ is not listed on this table, the GPU is not officially supported by AMD.
 :sync: radeonpro
 
 :::{note}
-See {doc}`Radeon Software for Linux compability matrix <radeon:docs/install/install-radeon>`
+See {doc}`Radeon Software for Linux compability matrix <radeon:docs/compatibility>`
 for those using select RDNA™ 3 GPU with graphical applications and ROCm.
 :::
 
@@ -103,7 +103,7 @@ for those using select RDNA™ 3 GPU with graphical applications and ROCm.
 :sync: radeonpro
 
 :::{note}
-See {doc}`Radeon Software for Linux compatibility <radeon:docs/install/install-radeon>`
+See {doc}`Radeon Software for Linux compatibility <radeon:docs/compatibility>`
 for those using select RDNA™ 3 GPU with graphical applications and ROCm.
 :::
 
