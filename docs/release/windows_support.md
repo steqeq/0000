@@ -4,7 +4,7 @@
 
 ## Supported SKUs
 
-AMD HIP SDK supports the following Windows SKU.
+AMD HIP SDK supports the following Windows variants.
 
 | Distribution        |Processor Architectures| Validated update   |
 |---------------------|-----------------------|--------------------|
