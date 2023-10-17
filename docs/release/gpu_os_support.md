@@ -86,10 +86,10 @@ is not listed on this table, the GPU is not officially supported by AMD.
 :::{tab-item} Radeon Pro™
 :sync: radeonpro
 
-:::{note}
+::{note}
 See {doc}`Radeon Software for Linux compability matrix <radeon:docs/install/install-radeon>`
 for those using select RDNA™ 3 GPU with graphical applications and ROCm.
-:::
+::
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
@@ -102,10 +102,10 @@ for those using select RDNA™ 3 GPU with graphical applications and ROCm.
 :::{tab-item} Radeon™
 :sync: radeonpro
 
-:::{note}
+::{note}
 See {doc}`Radeon Software for Linux compatibility <radeon:docs/install/install-radeon>`
 for those using select RDNA™ 3 GPU with graphical applications and ROCm.
-:::
+::
 
 | Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
