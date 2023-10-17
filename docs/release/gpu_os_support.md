@@ -72,8 +72,6 @@ is not listed on this table, the GPU is not officially supported by AMD.
 :::{tab-item} AMD Instinct™
 :sync: instinct
 
-Use Driver Shipped with ROCm
-
 | Product Name | Architecture | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) |Support |
 |:------------:|:------------:|:--------------------------------------------------------------------:|:-------:|
 | AMD Instinct™ MI250X | CDNA2  | gfx90a | ✅ |
@@ -88,10 +86,14 @@ Use Driver Shipped with ROCm
 :::{tab-item} Radeon Pro™
 :sync: radeonpro
 
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+:::{note}
+See {doc}`Radeon Software for Linux compability matrix <radeon:docs/install/install-radeon>`
+for those using select RDNA™ 3 GPU with graphical applications and ROCm.
+:::
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ Pro W7900   | RDNA3  | gfx1100 | ✅ (Ubuntu 22.04 only)|
 | AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro V620    | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ✅ |
@@ -100,10 +102,14 @@ Use Driver Shipped with ROCm
 :::{tab-item} Radeon™
 :sync: radeonpro
 
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+:::{note}
+See {doc}`Radeon Software for Linux compatibility <radeon:docs/install/install-radeon>`
+for those using select RDNA™ 3 GPU with graphical applications and ROCm.
+:::
 
 | Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ RX 7900XTX | GCN5.1 | gfx1100  | ✅ (Ubuntu 22.04 only)|
 | AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
 
 :::
