@@ -372,3 +372,8 @@ Loading the new driver requires a system reboot.
 ```shell
 sudo reboot
 ```
+
+## Verify
+
+To verify the install, refer to
+{ref}`verifying-kernel-mode-driver-installation`.
