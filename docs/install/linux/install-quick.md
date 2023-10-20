@@ -1,7 +1,8 @@
 # Linux quick-start installation guide
 
-For a quick summary on installing ROCm on Linux, follow the steps listed on this page. If you
-want a more in-depth installation guide, see [Installing ROCm on Linux](./install.md).
+For a quick summary on installing ROCm on Linux, follow the steps listed on this
+page. If you want a more in-depth installation guide, see
+[Installing ROCm on Linux](./install.md).
 
 ## Add repositories
 
