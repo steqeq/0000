@@ -66,20 +66,20 @@ clang compiler files.
 
 ```{table} Meta-packages and Their Descriptions
 :name: meta-package-desc
-| **Meta-packages**          | **Description**                                                                                                                           |
-|:---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------:|
-| `rocm-language-runtime`  | The ROCm runtime                                                                                                                 |
-| `rocm-hip-runtime`       | Run HIP applications written for the AMD platform                                                     |
-| `rocm-opencl-runtime`    | Run OpenCL-based applications on the AMD platform                                                           |
-| `rocm-hip-runtime-devel` | Develop applications on HIP or port from CUDA                                                                   |
-| `rocm-opencl-sdk`        | Develop applications in OpenCL for the AMD platform                                                         |
-| `rocm-hip-libraries`     | HIP libraries optimized for the AMD platform                                                                                        |
-| `rocm-hip-sdk`           | Develop or port HIP applications and libraries for the AMD platform                                        |
-| `rocm-developer-tools`   | Debug and profile HIP applications                                                                    |
+| **Meta-packages**        | **Description**                                                      |
+|:-------------------------|---------------------------------------------------------------------:|
+| `rocm-language-runtime`  | The ROCm runtime                                                     |
+| `rocm-hip-runtime`       | Run HIP applications written for the AMD platform                    |
+| `rocm-opencl-runtime`    | Run OpenCL-based applications on the AMD platform                    |
+| `rocm-hip-runtime-devel` | Develop applications on HIP or port from CUDA                        |
+| `rocm-opencl-sdk`        | Develop applications in OpenCL for the AMD platform                  |
+| `rocm-hip-libraries`     | HIP libraries optimized for the AMD platform                         |
+| `rocm-hip-sdk`           | Develop or port HIP applications and libraries for the AMD platform  |
+| `rocm-developer-tools`   | Debug and profile HIP applications                                   |
 | `rocm-ml-sdk`            | Develop and run machine-learning applications with optimized for AMD |
-| `rocm-ml-libraries`      | Key machine-learning libraries, specifically MIOpen                                                                 |
-| `rocm-openmp-sdk`        | Develop OpenMP-based applications for the AMD platform                                                        |
-| `rocm-openmp-runtime`    | Run OpenMP-based applications for the AMD platform                                                            |
+| `rocm-ml-libraries`      | Key machine-learning libraries, specifically MIOpen                  |
+| `rocm-openmp-sdk`        | Develop OpenMP-based applications for the AMD platform               |
+| `rocm-openmp-runtime`    | Run OpenMP-based applications for the AMD platform                   |
 ```
 
 ## Packages in ROCm programming models
