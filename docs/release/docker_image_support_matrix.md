@@ -3,7 +3,7 @@
 AMD validates and publishes
 [PyTorch](https://hub.docker.com/r/rocm/pytorch) and
 [TensorFlow](https://hub.docker.com/r/rocm/tensorflow) containers on
-dockerhub. The following tags, and associated inventories, are validated
+Docker Hub. The following tags, and associated inventories, are validated
 with ROCm 5.7.
 
 ## PyTorch
