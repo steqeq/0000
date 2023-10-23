@@ -8,7 +8,7 @@ with ROCm 5.7.
 
 ## PyTorch
 
-### Ubuntu 22.04
+> `Ubuntu 22.04`
 
 | Tag | Inventory |
 | --- | --------- |
@@ -23,7 +23,7 @@ with ROCm 5.7.
 |  | [OMPI 4.0.3](https://github.com/open-mpi/ompi/tree/v4.0.3) |
 |  | [OFED 5.4.3](https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz) |
 
-### Ubuntu 20.04
+> `Ubuntu 20.04`
 
 | Tag | Inventory |
 | --- | --------- |
@@ -37,7 +37,7 @@ with ROCm 5.7.
 |  | [UCX 1.10.0](https://github.com/openucx/ucx/tree/v1.10.0) |
 |  | [OMPI 4.0.3](https://github.com/open-mpi/ompi/tree/v4.0.3) |
 |  | [OFED 5.4.3](https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz) |
-| [ rocm/pytorch:rocm5.7\_ubuntu20.04\_py3.9\_pytorch\_1.12.1](https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_1.12.1/images/sha256-e67db9373c045a7b6defd43cc3d067e7d49fd5d380f3f8582d2fb219c1756e1f) | [ROCm 5.7](https://repo.radeon.com/rocm/apt/5.7/) |
+| [rocm/pytorch:rocm5.7\_ubuntu20.04\_py3.9\_pytorch\_1.12.1](https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_1.12.1/images/sha256-e67db9373c045a7b6defd43cc3d067e7d49fd5d380f3f8582d2fb219c1756e1f) | [ROCm 5.7](https://repo.radeon.com/rocm/apt/5.7/) |
 |  | [Python 3.9](https://www.python.org/downloads/release/python-3918/) |
 |  | [Torch 1.12.1](https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/1.12) |
 |  | [Apex 0.1](https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1) |
@@ -68,7 +68,7 @@ with ROCm 5.7.
 |  | [OMPI 4.0.3](https://github.com/open-mpi/ompi/tree/v4.0.3) |
 |  | [OFED 5.4.3](https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz) |
 
-### CentOS 7
+> `CentOS 7`
 
 | Tag | Inventory |
 | --- | --------- |
@@ -81,7 +81,7 @@ with ROCm 5.7.
 
 ## TensorFlow
 
-### Ubuntu 20.04
+> `Ubuntu 20.04`
 
 | Tag | Inventory |
 | --- | --------- |
