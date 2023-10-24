@@ -8,7 +8,7 @@ with ROCm 5.7.
 
 ## PyTorch Ubuntu 22.04
 
-| [rocm5.7/pytorch_2.0.1] |
+| [rocm5.7/ubuntu22.04/pytorch_2.0.1] |
 | ----------------------------------- |
 | [ROCm 5.7 apt]                      |
 | [Python 3.10]                       |
@@ -83,7 +83,7 @@ with ROCm 5.7.
 [rocm5.7/pytorch_1.13.1]: https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_1.13.1/images/sha256-ed99d159026093d2aaf5c48c1e4b0911508773430377051372733f75c340a4c1
 [rocm5.7/pytorch_2.0.1]: https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4
 [rocm5.7/pytorch_staging]: https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4
-[rocm5.7/pytorch_2.0.1]: https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu22.04_py3.10_pytorch_2.0.1/images/sha256-21df283b1712f3d73884b9bc4733919374344ceacb694e8fbc2c50bdd3e767ee
+[rocm5.7/ubuntu22.04/pytorch_2.0.1]: https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu22.04_py3.10_pytorch_2.0.1/images/sha256-21df283b1712f3d73884b9bc4733919374344ceacb694e8fbc2c50bdd3e767ee
 [rocm5.7-tf2.12-dev]: https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.12-dev/images/sha256-e0ac4d49122702e5167175acaeb98a79b9500f585d5e74df18facf6b52ce3e59
 [rocm5.7-tf2.13-dev]: https://hub.docker.com/layers/rocm/tensorflow/rocm5.7-tf2.13-dev/images/sha256-6f995539eebc062aac2b53db40e2b545192d8b032d0deada8c24c6651a7ac332
 [tensorflow-rocm 2.12.1]: https://pypi.org/project/tensorflow-rocm/2.12.1.570/
