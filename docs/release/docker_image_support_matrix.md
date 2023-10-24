@@ -56,8 +56,6 @@ with ROCm 5.7.
 | [tensorflow-rocm 2.12.1] | [tensorflow-rocm 2.13.0] |
 | [Tensorboard 2.12.3]     | [Tensorboard 2.13.0]     |
 
-
-[References]: references
 [Apex 0.1]: https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1
 [MAGMA]: https://bitbucket.org/icl/magma/src/master/
 [OFED 5.4.3]: https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz
