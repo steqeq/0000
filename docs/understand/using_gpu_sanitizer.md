@@ -35,7 +35,7 @@ There are a few options if the compile time becomes unacceptable:
 + Add the option `-fsanitize-recover=address` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
 + Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
 
-### Installing ROCm GPU Address Sanitizer Packages 
+### Installing ROCm GPU Address Sanitizer Packages
 
 For a complete ROCm GPU Sanitizer installation, including packages, instrumented HSA and HIP runtimes, tools, and math libraries, use the following instruction,
 
@@ -224,11 +224,11 @@ $ rocgdb <path to application>
 (gdb) c
 ```
 
-### Using Address Sanitizer with a Short HIP Application 
+### Using Address Sanitizer with a Short HIP Application
+
 Refer to the following example to use address sanitizer with a short HIP application,
 
 https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md
-
 
 ### Known Issues with Using GPU Sanitizer
 
