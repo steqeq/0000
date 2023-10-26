@@ -1,99 +1,113 @@
-# AMD ROCm™ Documentation
+# AMD ROCm™ documentation
 
-:::::{grid} 1 1 3 3
-:gutter: 1
+Welcome to the ROCm docs home page! If you're new to ROCm, you can review the following
+resources to learn more about our products and what we support:
 
-::::{grid-item}
-:::{dropdown} [What is ROCm?](rocm)
-ROCm is an open-source stack, composed primarily of open-source software (OSS), designed for
-graphics processing unit (GPU) computation. ROCm consists of a collection of drivers, development
-tools, and APIs that enable GPU programming from low-level kernel to end-user applications.
-[more...](rocm)
+* [What is ROCm?](./what-is-rocm.md)
+* [What's new?](about/whats-new/whats-new)
+* [Release notes](./about/release-notes.md)
 
-::::
-
-::::{grid-item}
-:::{dropdown} Deploy ROCm
-
-- {doc}`/deploy/linux/index`
-- {doc}`/deploy/docker`
-- {doc}`Deploy ROCm using Radeon <radeon:index>`
-
-:::
-::::
-
-::::{grid-item}
-:::{dropdown} [Release Info](release)
-
-- [Release Notes](release)
-- [GPU and OS Support](release/gpu_os_support)
-- [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue)
-- [Compatibility](release/compatibility)
-- [Licensing](release/licensing)
-
-:::
-::::
-
-:::::
+Our documentation is organized into the following categories:
 
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
 :padding: 2
-[APIs and Reference](reference/all)
+**Installation**
+
+Installation guides
 ^^^
 
-- [Compilers and Development Tools](reference/compilers)
-- [HIP](reference/hip)
-- [OpenMP](reference/openmp/openmp)
-- [Math Libraries](reference/gpu_libraries/math)
-- [C++ Primitives Libraries](reference/gpu_libraries/c++_primitives)
-- [Communication Libraries](reference/gpu_libraries/communication)
-- [AI Libraries](reference/ai_tools)
-- [Computer Vision](reference/computer_vision)
-- [Management Tools](reference/management_tools)
-- [Validation Tools](reference/validation_tools)
+* Linux
+  * [Quick-start (Linux)](./install/linux/install-quick.md)
+  * [Linux install guide](./install/linux/install.md)
+  * [Package manager integration](./install/linux/package-manager-integration.md)
+* Windows
+  * [Quick-start (Windows)](./install/windows/install-quick.md)
+  * [Windows install guide](./install/windows/install.md)
+  * [Application deployment guidelines](./install/windows/windows-app-deployment-guidelines.md)
+* [Deploy ROCm Docker containers](./install/docker.md)
+* [PyTorch for ROCm](./install/pytorch-install.md)
+* [TensorFlow for ROCm](./install/tensorflow-install.md)
+* [MAGMA for ROCm](./install/magma-install.md)
+* [ROCm & Spack](./install/spack-intro.md)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-[Understand ROCm](understand/all)
+**Compatibility & Support**
+
+ROCm compatibility information
 ^^^
 
-- [Compiler Disambiguation](understand/compiler_disambiguation)
-- [Using CMake](understand/cmake_packages)
-- [Linux Folder Structure Reorganization](understand/file_reorg)
-- [GPU Isolation Techniques](understand/gpu_isolation)
-- [GPU Architecture](understand/gpu_arch)
+* [Linux (GPU & OS)](./about/compatibility/linux-support.md)
+* [Windows (GPU & OS)](./about/compatibility/windows-support.md)
+* [Third-party](./about/compatibility/3rd-party-support-matrix.md)
+* [User/kernel space](./about/compatibility/user-kernel-space-compat-matrix.md)
+* [Docker](./about/compatibility/docker-image-support-matrix.rst)
+* [OpenMP](./about/compatibility/openmp.md)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-[How to Guides](how_to/all)
+**How-to**
+
+Task-oriented walkthroughs
 ^^^
 
-- [System Tuning for Various Architectures](how_to/tuning_guides/index)
-- [GPU Aware MPI](how_to/gpu_aware_mpi)
-- [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
-  - [Magma Installation](how_to/magma_install/magma_install)
-  - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
-  - [TensorFlow Installation](how_to/tensorflow_install/tensorflow_install)
-- [System Level Debugging](how_to/system_debugging.md)
+* [System tuning for various architectures](./how-to/tuning-guides.md)
+  * [MI100](./how-to/tuning-guides/mi100.md)
+  * [MI200](./how-to/tuning-guides/mi200.md)
+  * [RDNA2](./how-to/tuning-guides/w6000-v620.md)
+* [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
+* [GPU-enabled MPI](./how-to/gpu-enabled-mpi.md)
+* [System level debugging](./how-to/system-debugging.md)
+* [GitHub examples](https://github.com/amd/rocm-examples)
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-[Tutorials & Examples](examples/all)
+**Reference**
+
+Collated information
 ^^^
 
-- [Examples](https://github.com/amd/rocm-examples)
-- [ML, DL, and AI](examples/machine_learning/all)
-  - [](examples/machine_learning/pytorch_inception)
-  - [](examples/machine_learning/migraphx_optimization)
+* [API Libraries](./reference/library-index.md)
 
 :::
+
+:::{grid-item-card}
+:padding: 2
+**Conceptual**
+
+Topic overviews & background information
+^^^
+
+* [GPU architecture](./conceptual/gpu-arch.md)
+  * [MI100](./conceptual/gpu-arch/mi100.md)
+  * [MI200](./conceptual/gpu-arch/mi200-performance-counters.md)
+  * [MI250](./conceptual/gpu-arch/mi250.md)
+* [GPU memory](./conceptual/gpu-memory.md)
+* [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
+* [File structure (Linux FHS)](./conceptual/file-reorg.md)
+* [GPU isolation techniques](./conceptual/gpu-isolation.md)
+* [LLVN ASan](./conceptual/using-gpu-sanitizer.md)
+* [Using CMake](./conceptual/cmake-packages.rst)
+* [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
+* [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
+* [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
+* [OpenMP support in ROCm](./about/compatibility/openmp.md)
+
+:::
+
 ::::
+
+We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
+on our [Contribute to ROCm docs](./contribute/index.md) page. Known issues are listed on
+[GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
+
+Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.

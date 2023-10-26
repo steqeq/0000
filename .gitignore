@@ -13,11 +13,7 @@ _doxygen/
 _readthedocs/
 
 # avoid duplicating contributing.md due to conf.py
-docs/contributing.md
-docs/release.md
 docs/CHANGELOG.md
-
-# auto-generated files
-docs/deploy/linux/installer/install.md
-docs/deploy/linux/os-native/install.md
-docs/deploy/linux/quick_start.md
+docs/contribute/index.md
+docs/about/release-notes.md
+docs/about/CHANGELOG.md

@@ -94,17 +94,17 @@ AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 
 
 As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the final release for gfx906 GPUs to be in a fully supported state.
 
-* ROCm 6.0 release will show MI50s as "under maintenance" mode for [Linux](./about/compatibility/linux-support.md) and [Windows](./about/compatibility/windows-support.md)
+* ROCm 6.0 release will show MI50s as "under maintenance" for [Linux](../about/compatibility/linux-support.md) and [Windows](../about/compatibility/windows-support.md)
 
 * No new features and performance optimizations will be supported for the gfx906 GPUs beyond this major release (ROCm 5.7).
 
-* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
+* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
 
 * Bug fixes during the maintenance will be made to the next ROCm point release.
 
 * Bug fixes will not be backported to older ROCm releases for gfx906.
 
-* Distribution and operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+* Distribution and operating system updates will continue per the ROCm release cadence for gfx906 GPUs until EOM.
 
 #### Feature updates
 
@@ -141,7 +141,8 @@ The ROCm 5.7 release introduces the beta release of LLVM AddressSanitizer (ASan)
 
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
-Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer User Guide](./docs/conceptual/using_gpu_sanitizer.md).
+<!--  TODO: Fix the link to be able to work at every files   -->
+Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer user guide](../conceptual/using-gpu-sanitizer.md).
 
 **Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
@@ -304,7 +305,7 @@ MIGraphX 2.7 for ROCm 5.7.0
 - Bumped version of half library to 5.6.0
 - Bumped CI to support rocm 5.6
 - Make building tests optional
-- replace np.bool with bool as per numpy request
+- replace np.bool with bool per numpy request
 
 ##### Removed
 
@@ -590,7 +591,7 @@ ROCm 5.6 consists of several AI software ecosystem improvements to our fast-grow
 * Ongoing software enhancements for LLMs, ensuring full compliance with the HuggingFace unit test suite
 * OpenAI Triton, CuPy, HIP Graph support, and many other library performance enhancements
 * Improved ROCm deployment and development tools, including CPU-GPU (rocGDB) debugger, profiler, and docker containers
-* New pseudorandom generators are available in rocRAND.  Added support for half-precision transforms in hipFFT/rocFFT.  Added LU refactorization and linear system solver for sparse matrices in rocSOLVER.  
+* New pseudorandom generators are available in rocRAND.  Added support for half-precision transforms in hipFFT/rocFFT.  Added LU refactorization and linear system solver for sparse matrices in rocSOLVER.
 
 ### OS and GPU support changes
 
@@ -600,7 +601,7 @@ ROCm 5.6 consists of several AI software ecosystem improvements to our fast-grow
   * Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (End of Maintenance \[EOM])(will be aligned with the closest ROCm release)
   * Bug fixes during the maintenance will be made to the next ROCm point release
   * Bug fixes will not be back ported to older ROCm releases for this SKU
-  * Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+  * Distro / Operating system updates will continue per the ROCm release cadence for gfx906 GPUs till EOM.
 
 ### AMDSMI CLI 23.0.0.4
 
@@ -3719,7 +3720,7 @@ This release introduces a new ROCm C++ library for accelerating mixed-precision 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
 For more information, refer to
-[Communication Libraries](../../../../docs/reference//library-index.md)
+[Communication Libraries](../reference/library-index.md)
 
 #### OpenMP enhancements in this release
 
@@ -4815,9 +4816,9 @@ The resolution includes a compiler change, which emits the required metadata by 
 
 Note:
 This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region and result in an abort in device code. The issue will be fixed in a future release.
-Compatibility Matrix Updates to the [Deep-learning guide](../../../../docs/how-to/deep-learning-rocm.md)
+Compatibility Matrix Updates to the [Deep-learning guide](../how-to/deep-learning-rocm.md)
 
-The compatibility matrix in the [Deep-learning guide](../../../../docs/how-to/deep-learning-rocm.md) is updated for ROCm v5.0.2.
+The compatibility matrix in the [Deep-learning guide](../how-to/deep-learning-rocm.md) is updated for ROCm v5.0.2.
 
 ### Library Changes in ROCM 5.0.2
 

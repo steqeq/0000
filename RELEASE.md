@@ -11,7 +11,7 @@
 
 <!-- spellcheck-disable -->
 
-The release notes for the ROCm platform.
+Welcome to the release notes for the ROCm platform.
 
 -------------------
 
@@ -42,8 +42,6 @@ ROCm 5.7.1 is a point release with several bug fixes in the HIP runtime.
 
 ### Fixed defects
 The *hipPointerGetAttributes* API returns the correct HIP memory type as *hipMemoryTypeManaged* for managed memory.
-
-
 
 ### Library Changes in ROCM 5.7.1
 
