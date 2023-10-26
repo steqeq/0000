@@ -353,7 +353,7 @@ unit, vector L1D cache, and texture cache arbiter.
 | :----------------| :------| :----------------------|
 | `TCC_CYCLE[n]` |Cycle | Number of L2 cache free-running clocks (value range for n: [0-31]) |
 | `TCC_BUSY[n]` |Cycle | Number of L2 cache busy cycles (value range for n: [0-31]) |
-| `TCC_REQ[n]` |Req | Number of L2 cache requests of all types, measured at the tag block; may be more than the number of requests arriving at the TCC, but is representatibe of total amount of work required (value range for n: [0-31]) |
+| `TCC_REQ[n]` |Req | Number of L2 cache requests of all types, measured at the tag block; may be more than the number of requests arriving at the TCC, but is representative of total amount of work required (value range for n: [0-31]) |
 | `TCC_STREAMING_REQ[n]` |Req | Number of L2 cache streaming requests, measured at the tag block (value range for n: [0-31]) |
 | `TCC_NC_REQ[n]` |Req | Number of NC requests, measured at the tag block (value range for n: [0-31]) |
 | `TCC_UC_REQ[n]` |Req | Number of UC requests, measured at the tag block (value range for n: [0-31]) |
