@@ -412,7 +412,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TA_ADDR_STALLED_BY_TC_CYCLES_sum` | Total number of cycles TA address path is stalled by TC, over all TA instances. |
 | `TA_ADDR_STALLED_BY_TD_CYCLES_sum` | Total number of cycles TA address path is stalled by TD, over all TA instances. |
 | `TA_BUFFER_WAVEFRONTS_sum` | Total number of buffer wavefronts processed by all TA instances. |
-| `TA_BUFFER_READ_WAVEFRONTS_sum` | Total number of buffer read wavefronts processed by all TA instances. | 
+| `TA_BUFFER_READ_WAVEFRONTS_sum` | Total number of buffer read wavefronts processed by all TA instances. |
 | `TA_BUFFER_WRITE_WAVEFRONTS_sum` | Total number of buffer write wavefronts processed by all TA instances. |
 | `TA_BUFFER_ATOMIC_WAVEFRONTS_sum` | Total number of buffer atomic wavefronts processed by all TA instances. |
 | `TA_BUFFER_TOTAL_CYCLES_sum` | Total number of buffer cycles (including read and write) issued to TC by all TA instances. |
