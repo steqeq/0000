@@ -71,6 +71,7 @@ convolutional
 convolves
 CoRR
 CP
+CPs
 CPC
 CPCs
 CPF
