@@ -123,7 +123,7 @@ The compute unit counters are further classified into instruction mix, MFMA oper
 | `SQ_INSTS_VMEM`           | Instr | Number of VMEM instructions issued, including both FLAT and Buffer instructions |
 | `SQ_INSTS_SALU`           | Instr | Number of SALU instructions issued                                        |
 | `SQ_INSTS_SMEM`           | Instr | Number of SMEM instructions issued                                       |
-| `SQ_INSTS_SMEM_NORM`      | Instr | Number of SMEM instructions normalized to match `smem_level`(*2 load/store; *2 atomic; *2 memtime; *4 wb/inv) issued |
+| `SQ_INSTS_SMEM_NORM`      | Instr | Number of SMEM instructions normalized to match `smem_level` issued |
 | `SQ_INSTS_FLAT`           | Instr | Number of FLAT instructions issued                                     |
 | `SQ_INSTS_FLAT_LDS_ONLY`  | Instr | Number of FLAT instructions that read/write only from/to LDS issued. Works only if `EARLY_TA_DONE` is enabled       |
 | `SQ_INSTS_LDS`            | Instr | Number of LDS instructions issued (including FLAT)                                         |
@@ -146,7 +146,7 @@ The compute unit counters are further classified into instruction mix, MFMA oper
 #### Level Counters
 
 :::{note}
-All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure average latency. 
+All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure average latency.
 :::
 
 | Hardware Counter    | Unit  | Definition                             |
@@ -194,9 +194,9 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 | `SQ_INST_CYCLES_VMEM_WR`   | Qcycles | Number of quad-cycles  spent to send addr and cmd data for VMEM Write instructions.  |
 | `SQ_INST_CYCLES_VMEM_RD`   | Qcycles | Number of quad-cycles  spent to send addr and cmd data for VMEM Read instructions.  |
 | `SQ_INST_CYCLES_SMEM`      | Qcycles | Number of quad-cycles  spent to execute scalar memory reads.          |
-| `SQ_INST_CYCLES_SALU`      | QCycles  | Number of quad-cycles spent to execute non-memory read scalar operations.    |
+| `SQ_INST_CYCLES_SALU`      | Qcycles  | Number of quad-cycles spent to execute non-memory read scalar operations.    |
 | `SQ_THREAD_CYCLES_VALU`    | Cycles  | Number of thread-cycles spent to execute VALU operations. This is similar to `INST_CYCLES_VALU` but multiplied by the number of active threads.            |
-| `SQ_WAIT_INST_LDS` | Qcycles | Number of quad-cycles spent waiting for LDS instruction to be issued.  | 
+| `SQ_WAIT_INST_LDS` | Qcycles | Number of quad-cycles spent waiting for LDS instruction to be issued.  |
 
 #### Local Data Share
 
@@ -299,7 +299,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TCP_WRITE_TAGCONFLICT_STALL_CYCLES[n]`  | Cycles | Number of cycles tagram conflict stalls on a write. Value range for n: [0-15].         |
 | `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES[n]` | Cycles | Number of cycles tagram conflict stalls on an atomic. Value range for n: [0-15].       |
 | `TCP_PENDING_STALL_CYCLES[n]`            | Cycles | Number of cycles vL1D cache is stalled due to data pending from L2 Cache. Value range for n: [0-15]. |
-| `TCP_TCP_TA_DATA_STALL_CYCLES` | Cycles | Number of cycles TCP stalls TA data interface. | 
+| `TCP_TCP_TA_DATA_STALL_CYCLES` | Cycles | Number of cycles TCP stalls TA data interface. |
 | `TCP_TA_TCP_STATE_READ[n]`               | Req    | Number of state reads. Value range for n: [0-15].    |
 | `TCP_VOLATILE[n]`                     | Req    | Number of L1 volatile pixels/buffers from TA. Value range for n: [0-15].  |
 | `TCP_TOTAL_ACCESSES[n]`                  | Req    | Number of vL1D accesses. Equals `TCP_PERF_SEL_TOTAL_READ`+`TCP_PERF_SEL_TOTAL_NONREAD`. Value range for n: [0-15].                    |
@@ -394,7 +394,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 
 | Derived Metric   | Description                                                                            |
 | :----------------| -------------------------------------------------------------------------------------: |
-| `ALUStalledByLDS` | Percentage of GPU time ALU units are stalled due to the LDS input queue being full or the output queue not being ready. Reduce this by reducing the LDS bank conflicts or the number of LDS accesses if possible. Value range: 0% (optimal) to 100% (bad). | 
+| `ALUStalledByLDS` | Percentage of GPU time ALU units are stalled due to the LDS input queue being full or the output queue not being ready. Reduce this by reducing the LDS bank conflicts or the number of LDS accesses if possible. Value range: 0% (optimal) to 100% (bad). |
 | `FetchSize` | Total kilobytes fetched from the video memory. This is measured with all extra fetches and any cache or memory effects taken into account. |
 | `FlatLDSInsts`     | Average number of FLAT instructions that read from or write to LDS, executed per work item (affected by flow control). |
 | `FlatVMemInsts`    | Average number of FLAT instructions that read from or write to the video memory, executed per work item (affected by flow control). Includes FLAT instructions that read from or write to scratch. |
@@ -403,46 +403,46 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `L2CacheHit`       | Percentage of fetch, write, atomic, and other instructions that hit the data in L2 cache. Value range: 0% (no hit) to 100% (optimal). |
 | `LDSBankConflict`  | Percentage of GPU time LDS is stalled by bank conflicts. Value range: 0% (optimal) to 100% (bad). |
 | `LDSInsts`         | Average number of LDS read/write instructions executed per work item (affected by flow control). Excludes FLAT instructions that read from or write to LDS. |
-| `MemUnitBusy` | Percentage of GPU time the memory unit is active. The result includes the stall time (`MemUnitStalled`). This is measured with all extra fetches and writes and any cache or memory effects taken into account. Value range: 0% to 100% (fetch-bound). | 
+| `MemUnitBusy` | Percentage of GPU time the memory unit is active. The result includes the stall time (`MemUnitStalled`). This is measured with all extra fetches and writes and any cache or memory effects taken into account. Value range: 0% to 100% (fetch-bound). |
 | `MemUnitStalled`   | Percentage of GPU time the memory unit is stalled. Try reducing the number or size of fetches and writes if possible. Value range: 0% (optimal) to 100% (bad). |
 | `MemWrites32B`     | Total number of effective 32B write transactions to the memory.                      |
 | `SALUBusy`         | Percentage of GPU time scalar ALU instructions are processed. Value range: 0% (bad) to 100% (optimal). |
 | `SALUInsts` | Average number of scalar ALU instructions executed per work item (affected by flow control). |
 | `SFetchInsts` | Average number of scalar fetch instructions from the video memory executed per work item (affected by flow control). |
-| `TA_ADDR_STALLED_BY_TC_CYCLES_sum` | Total number of cycles TA address path is stalled by TC, over all TA instances. | 
+| `TA_ADDR_STALLED_BY_TC_CYCLES_sum` | Total number of cycles TA address path is stalled by TC, over all TA instances. |
 | `TA_ADDR_STALLED_BY_TD_CYCLES_sum` | Total number of cycles TA address path is stalled by TD, over all TA instances. |
-| `TA_BUFFER_WAVEFRONTS_sum` | Total number of buffer wavefronts processed by all TA instances. | 
+| `TA_BUFFER_WAVEFRONTS_sum` | Total number of buffer wavefronts processed by all TA instances. |
 | `TA_BUFFER_READ_WAVEFRONTS_sum` | Total number of buffer read wavefronts processed by all TA instances. | 
 | `TA_BUFFER_WRITE_WAVEFRONTS_sum` | Total number of buffer write wavefronts processed by all TA instances. |
 | `TA_BUFFER_ATOMIC_WAVEFRONTS_sum` | Total number of buffer atomic wavefronts processed by all TA instances. |
-| `TA_BUFFER_TOTAL_CYCLES_sum` | Total number of buffer cycles (including read and write) issued to TC by all TA instances. | 
-| `TA_BUFFER_COALESCED_READ_CYCLES_sum` | Total number of coalesced buffer read cycles issued to TC by all TA instances. | 
+| `TA_BUFFER_TOTAL_CYCLES_sum` | Total number of buffer cycles (including read and write) issued to TC by all TA instances. |
+| `TA_BUFFER_COALESCED_READ_CYCLES_sum` | Total number of coalesced buffer read cycles issued to TC by all TA instances. |
 | `TA_BUFFER_COALESCED_WRITE_CYCLES_sum` | Total number of coalesced buffer write cycles issued to TC by all TA instances. |
 | `TA_BUSY_avr` | Average number of busy cycles over all TA instances. |
-| `TA_BUSY_max` | Maximum number of TA busy cycles over all TA instances. | 
+| `TA_BUSY_max` | Maximum number of TA busy cycles over all TA instances. |
 | `TA_BUSY_min` | Minimum number of TA busy cycles over all TA instances. |
-| `TA_DATA_STALLED_BY_TC_CYCLES_sum` | Total number of cycles TA data path is stalled by TC, over all TA instances. | 
+| `TA_DATA_STALLED_BY_TC_CYCLES_sum` | Total number of cycles TA data path is stalled by TC, over all TA instances. |
 | `TA_FLAT_READ_WAVEFRONTS_sum` | Sum of flat opcode reads processed by all TA instances. |
 | `TA_FLAT_WRITE_WAVEFRONTS_sum` | Sum of flat opcode writes processed by all TA instances. |
 | `TA_FLAT_WAVEFRONTS_sum` | Total number of flat opcode wavefronts processed by all TA instances. |
-| `TA_FLAT_READ_WAVEFRONTS_sum` | Total number of flat opcode read wavefronts processed by all TA instances. | 
-| `TA_FLAT_ATOMIC_WAVEFRONTS_sum` | Total number of flat opcode atomic wavefronts processed by all TA instances. | 
+| `TA_FLAT_READ_WAVEFRONTS_sum` | Total number of flat opcode read wavefronts processed by all TA instances. |
+| `TA_FLAT_ATOMIC_WAVEFRONTS_sum` | Total number of flat opcode atomic wavefronts processed by all TA instances. |
 | `TA_TA_BUSY_sum` | Total number of TA busy cycles over all TA instances. |
 | `TA_TOTAL_WAVEFRONTS_sum` | Total number of wavefronts processed by all TA instances. |
 | `TCA_BUSY_sum` | Total number of cycles TCA has a pending request, over all TCA instances. |
 | `TCA_CYCLE_sum` | Total number of cycles over all TCA instances. |
 | `TCC_ALL_TC_OP_WB_WRITEBACK_sum` | Total number of writebacks due to all TC_OP writeback requests, over all TCC instances. |
-| `TCC_ALL_TC_OP_INV_EVICT_sum` | Total number of evictions due to all TC_OP invalidate requests, over all TCC instances. | 
+| `TCC_ALL_TC_OP_INV_EVICT_sum` | Total number of evictions due to all TC_OP invalidate requests, over all TCC instances. |
 | `TCC_ATOMIC_sum` | Total number of L2 cache atomic requests of all types, over all TCC instances. |
 | `TCC_BUSY_avr` | Average number of L2 cache busy cycles, over all TCC instances. |
 | `TCC_BUSY_sum` | Total number of L2 cache busy cycles, over all TCC instances. |
 | `TCC_CC_REQ_sum` | Total number of CC requests over all TCC instances. |
-| `TCC_CYCLE_sum` | Total number of L2 cache free running clocks, over all TCC instances. | 
+| `TCC_CYCLE_sum` | Total number of L2 cache free running clocks, over all TCC instances. |
 | `TCC_EA_WRREQ_sum` | Total number of 32-byte and 64-byte transactions going over the TC_EA_wrreq interface, over all TCC instances. Atomics may travel over the same interface and are generally classified as write requests. This does not include probe commands. |
-| `TCC_EA_WRREQ_64B_sum` | Total number of 64-byte transactions (write or CMPSWAP) going over the TC_EA_wrreq interface, over all TCC instances. |
+| `TCC_EA_WRREQ_64B_sum` | Total number of 64-byte transactions (write or `CMPSWAP`) going over the TC_EA_wrreq interface, over all TCC instances. |
 | `TCC_EA_WR_UNCACHED_32B_sum` | Total Number of 32-byte write/atomic going over the TC_EA_wrreq interface due to uncached traffic, over all TCC instances. Note that CC mtypes can produce uncached requests, and those are included in this. A 64-byte request is counted as 2. |
 | `TCC_EA_WRREQ_STALL_sum` | Total Number of cycles a write request is stalled, over all instances. |
-| `TCC_EA_WRREQ_IO_CREDIT_STALL_sum` | Total number of cycles an EA write request is stalled due to the interface running out of IO credits, over all instances. | 
+| `TCC_EA_WRREQ_IO_CREDIT_STALL_sum` | Total number of cycles an EA write request is stalled due to the interface running out of IO credits, over all instances. |
 | `TCC_EA_WRREQ_GMI_CREDIT_STALL_sum` | Total number of cycles an EA write request is stalled due to the interface running out of GMI credits, over all instances. |
 | `TCC_EA_WRREQ_DRAM_CREDIT_STALL_sum` | Total number of cycles an EA write request is stalled due to the interface running out of DRAM credits, over all instances. |
 | `TCC_EA_WRREQ_LEVEL_sum` | Total number of EA write requests in flight over all TCC instances. |
@@ -453,10 +453,10 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TCC_EA_RDREQ_32B_sum` | Total number of 32-byte read requests to EA, over all TCC instances. |
 | `TCC_EA_RD_UNCACHED_32B_sum` | Total number of 32-byte EA reads due to uncached traffic, over all TCC instances. |
 | `TCC_EA_RDREQ_IO_CREDIT_STALL_sum` | Total number of cycles there is a stall due to the read request interface running out of IO credits, over all TCC instances. |
-| `TCC_EA_RDREQ_GMI_CREDIT_STALL_sum` | Total number of cycles there is a stall due to the read request interface running out of GMI credits, ovr all TCC instances. |
+| `TCC_EA_RDREQ_GMI_CREDIT_STALL_sum` | Total number of cycles there is a stall due to the read request interface running out of GMI credits, over all TCC instances. |
 | `TCC_EA_RDREQ_DRAM_CREDIT_STALL_sum` | Total number of cycles there is a stall due to the read request interface running out of DRAM credits, over all TCC instances. |
 | `TCC_EA_RDREQ_DRAM_sum` | Total number of 32-byte or 64-byte EA read requests to HBM, over all TCC instances. |
-| `TCC_EA_WRREQ_DRAM_sum` | Total number of 32-byte or 64-byte EA write requests to HBM, over all TCC instances. | 
+| `TCC_EA_WRREQ_DRAM_sum` | Total number of 32-byte or 64-byte EA write requests to HBM, over all TCC instances. |
 | `TCC_HIT_sum` | Total number of L2 cache hits over all TCC instances. |
 | `TCC_MISS_sum` | Total number of L2 cache misses over all TCC instances. |
 | `TCC_NC_REQ_sum` | Total number of NC requests over all TCC instances. |
@@ -472,13 +472,13 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TCC_TOO_MANY_EA_WRREQS_STALL_sum` | Total number of cycles L2 cache is unable to send an EA write request due to it reaching its maximum capacity of pending EA write requests, over all TCC instances. |
 | `TCC_UC_REQ_sum` | Total number of UC requests over all TCC instances. |
 | `TCC_WRITE_sum` | Total number of L2 cache write requests over all TCC instances. |
-| `TCC_WRITEBACK_sum` | Total number of lines written back to the main memory including writebacks of dirty lines and uncached write/atomic requests, over all TCC instaces. | 
+| `TCC_WRITEBACK_sum` | Total number of lines written back to the main memory including writebacks of dirty lines and uncached write/atomic requests, over all TCC instances. |
 | `TCC_WRREQ_STALL_max` | Maximum number of cycles a write request is stalled, over all TCC instances. |
 | `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on an atomic, over all TCP instances. |
 | `TCP_GATE_EN1_sum` | Total number of cycles vL1D interface clocks are turned on, over all TCP instances. |
 | `TCP_GATE_EN2_sum` | Total number of cycles vL1D core clocks are turned on, over all TCP instances. |
 | `TCP_PENDING_STALL_CYCLES_sum` | Total number of cycles vL1D cache is stalled due to data pending from L2 Cache, over all TCP instances. |
-| `TCP_READ_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on a read, over all TCP instances. | 
+| `TCP_READ_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on a read, over all TCP instances. |
 | `TCP_TA_TCP_STATE_READ_sum` | Total number of state reads by all TCP instances. |
 | `TCP_TCC_ATOMIC_WITH_RET_REQ_sum` | Total number of atomic requests to L2 cache with return, over all TCP instances. |
 | `TCP_TCC_ATOMIC_WITHOUT_RET_REQ_sum` | Total number of atomic requests to L2 cache without return, over all TCP instances. |
@@ -490,7 +490,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TCP_TCC_NC_ATOMIC_REQ_sum` | Total number of NC atomic requests to L2 cache, over all TCP instances. |
 | `TCP_TCC_READ_REQ_LATENCY_sum` | Total vL1D to L2 request latency over all wavefronts for reads and atomics with return for all TCP instances. |
 | `TCP_TCC_READ_REQ_sum` | Total number of read requests to L2 cache, over all TCP instances. |
-| `TCP_TCC_RW_READ_REQ_sum` | Total number of RW read requests to L2 cache, over all TCP instances. | 
+| `TCP_TCC_RW_READ_REQ_sum` | Total number of RW read requests to L2 cache, over all TCP instances. |
 | `TCP_TCC_RW_WRITE_REQ_sum` | Total number of RW write requests to L2 cache, over all TCP instances. |
 | `TCP_TCC_RW_ATOMIC_REQ_sum` | Total number of RW atomic requests to L2 cache, over all TCP instances. |
 | `TCP_TCC_UC_READ_REQ_sum` | Total number of UC read requests to L2 cache, over all TCP instances. |
@@ -504,7 +504,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TCP_TOTAL_ACCESSES_sum` | Total number of vL1D accesses, over all TCP instances. |
 | `TCP_TOTAL_READ_sum` | Total number of vL1D read accesses, over all TCP instances. |
 | `TCP_TOTAL_WRITE_sum` | Total number of vL1D write accesses, over all TCP instances. |
-| `TCP_TOTAL_ATOMIC_WITH_RET_sum` | Total number of vL1D atomic requests with return, over all TCP instances. | 
+| `TCP_TOTAL_ATOMIC_WITH_RET_sum` | Total number of vL1D atomic requests with return, over all TCP instances. |
 | `TCP_TOTAL_ATOMIC_WITHOUT_RET_sum` | Total number of vL1D atomic requests without return, over all TCP instances. |
 | `TCP_TOTAL_CACHE_ACCESSES_sum` | Total number of vL1D cache accesses (including hits and misses) by all TCP instances. |
 | `TCP_TOTAL_WRITEBACK_INVALIDATES_sum` | Total number of vL1D writebacks and invalidates, over all TCP instances. |
@@ -516,11 +516,11 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `TCP_WRITE_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on a write, over all TCP instances. |
 | `TD_ATOMIC_WAVEFRONT_sum` | Total number of atomic wavefront instructions, over all TD instances. |
 | `TD_COALESCABLE_WAVEFRONT_sum` | Total number of coalescable wavefronts according to TA, over all TD instances. |
-| `TD_LOAD_WAVEFRONT_sum` | Total number of wavefront instructions (read/write/atomic), over all TD instances. | 
+| `TD_LOAD_WAVEFRONT_sum` | Total number of wavefront instructions (read/write/atomic), over all TD instances. |
 | `TD_SPI_STALL_sum` | Total number of cycles TD is stalled by SPI, over all TD instances. |
 | `TD_STORE_WAVEFRONT_sum` | Total number of write wavefront instructions, over all TD instances. |
 | `TD_TC_STALL_sum` | Total number of cycles TD is stalled waiting for TC data, over all TD instances. |
-| `TD_TD_BUSY_sum` | Total number of TD busy cycles while it is processing or waiting for data, over all TD instances. | 
+| `TD_TD_BUSY_sum` | Total number of TD busy cycles while it is processing or waiting for data, over all TD instances. |
 | `VALUBusy`         | Percentage of GPU time vector ALU instructions are processed. Value range: 0% (bad) to 100% (optimal). |
 | `VALUInsts` | Average number of vector ALU instructions executed per work item (affected by flow control). |
 | `VALUUtilization`  | Percentage of active vector ALU threads in a wave. A lower number can mean either more thread divergence in a wave or that the work-group size is not a multiple of 64. Value range: 0% (bad), 100% (ideal - no thread divergence). |
