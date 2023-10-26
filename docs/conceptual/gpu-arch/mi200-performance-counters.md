@@ -31,7 +31,7 @@ the names require further evaluation.
 
 ### Command processor
 
-The CPCs are further classified into fetcher (CPF) and compute (CPC).
+The command processors (CPs) are further classified into fetcher (CPF) and compute (CPC).
 
 #### CPF
 
