@@ -98,6 +98,10 @@ there's a catch-all, last resort variable consulted locating this file,
 ``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` which should be set the root of the
 ROCm installation.
 
+.. note::
+    Imported targets defined by `hip-lang-config.cmake` are for internal use for
+    CMake and should not be used directly.
+
 If the user doesn't provide a semi-colon delimited list of device architectures
 via ``CMAKE_HIP_ARCHITECTURES``, CMake will select some sensible default. It is
 advised though that if a user knows what devices they wish to target, then set
@@ -141,6 +145,11 @@ any C or C++ compiler can be used. The ``find_package(hip)`` provides the
   find_package(hip REQUIRED)
   add_executable(MyApp ...)
   target_link_libraries(MyApp PRIVATE hip::host)
+
+When mixing CXX sources using the host API only and HIP sources with device-code
+in them, link only to `hip::host` and if HIP sources don't have `.hip` as their
+extension, use
+`set_source_files_properties(<hip_sources>... PROPERTIES LANGUAGE HIP)` on them.
 
 Compiling device code in C++ language mode
 ------------------------------------------
