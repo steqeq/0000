@@ -89,43 +89,43 @@ The CU counters are further classified into instruction mix, Matrix Fused Multip
 
 | Hardware Counter        | Unit   | Definition                                                               |
 | :-----------------------| :-----:| -----------------------------------------------------------------------: |
-| `SQ_INSTS`                | Instr | Number of instructions issued                                              |
-| `SQ_INSTS_VALU`           | Instr | Number of Vector Arithmetic Logic Unit (VALU) instructions including MFMA issued                         |
-| `SQ_INSTS_VALU_ADD_F16`   | Instr | Number of VALU Half Precision Floating Point (F16) ADD/SUB instructions issued                            |
-| `SQ_INSTS_VALU_MUL_F16`   | Instr | Number of VALU F16 Multiply instructions issued                   |
-| `SQ_INSTS_VALU_FMA_F16`   | Instr | Number of VALU F16 Fused Multiply Add (FMA)/ Mulitply Add (MAD) instructions issued                   |
-| `SQ_INSTS_VALU_TRANS_F16` | Instr | Number of VALU F16 Transcendental instructions issued                   |
-| `SQ_INSTS_VALU_ADD_F32`   | Instr | Number of VALU Full Precision Floating Point (F32) ADD/SUB instructions issued                 |
-| `SQ_INSTS_VALU_MUL_F32`   | Instr | Number of VALU F32 Multiply instructions issued                    |
-| `SQ_INSTS_VALU_FMA_F32`   | Instr | Number of VALU F32 FMA/MAD instructions issued                   |
-| `SQ_INSTS_VALU_TRANS_F32` | Instr | Number of VALU F32 Transcendental instructions issued                    |
-| `SQ_INSTS_VALU_ADD_F64`   | Instr | Number of VALU F64 ADD/SUB instructions issued                |
-| `SQ_INSTS_VALU_MUL_F64`   | Instr | Number of VALU F64 Multiply instructions issued                    |
-| `SQ_INSTS_VALU_FMA_F64`   | Instr | Number of VALU F64 FMA/MAD instructions issued                   |
-| `SQ_INSTS_VALU_TRANS_F64` | Instr | Number of VALU F64 Transcendental instructions issued                 |
-| `SQ_INSTS_VALU_INT32`     | Instr | Number of VALU 32-bit integer instructions (signed or unsigned) issued        |
-| `SQ_INSTS_VALU_INT64`     | Instr | Number of VALU 64-bit integer instructions (signed or unsigned) issued       |
-| `SQ_INSTS_VALU_CVT`       | Instr | Number of VALU Conversion instructions issued                   |
-| `SQ_INSTS_VALU_MFMA_I8`   | Instr | Number of 8-bit Integer MFMA instructions issued               |
-| `SQ_INSTS_VALU_MFMA_F16`  | Instr | Number of F16 MFMA instructions issued                                   |
-| `SQ_INSTS_VALU_MFMA_BF16` | Instr | Number of Brain Floating Point - 16 (BF16) MFMA instructions issued                                  |
-| `SQ_INSTS_VALU_MFMA_F32`  | Instr | Number of F32 MFMA instructions issued                                    |
-| `SQ_INSTS_VALU_MFMA_F64`  | Instr | Number of F64 MFMA instructions issued                               |
-| `SQ_INSTS_MFMA`           | Instr | Number of MFMA instructions issued                                  |
-| `SQ_INSTS_VMEM_WR`        | Instr | Number of Vector Memory (VMEM) Write instructions (including FLAT) issued                                  |
-| `SQ_INSTS_VMEM_RD`        | Instr | Number of VMEM Read instructions (including FLAT) issued  |
-| `SQ_INSTS_VMEM`           | Instr | Number of VMEM instructions issued, including both FLAT and Buffer instructions |
-| `SQ_INSTS_SALU`           | Instr | Number of SALU instructions issued                                        |
-| `SQ_INSTS_SMEM`           | Instr | Number of Scalar Memory (SMEM) instructions issued                                       |
-| `SQ_INSTS_SMEM_NORM`      | Instr | Number of SMEM instructions normalized to match `smem_level` issued |
-| `SQ_INSTS_FLAT`           | Instr | Number of FLAT instructions issued                                     |
-| `SQ_INSTS_FLAT_LDS_ONLY`  | Instr | Number of FLAT instructions that read/write only from/to LDS issued. Works only if `EARLY_TA_DONE` is enabled       |
-| `SQ_INSTS_LDS`            | Instr | Number of Local Data Share (LDS) instructions issued (including FLAT)                                         |
-| `SQ_INSTS_GDS`            | Instr | Number of Global Data Share (GDS) instructions issued                                         |
-| `SQ_INSTS_EXP_GDS`        | Instr | Number of EXP and GDS instructions excluding skipped export instructions issued  |
-| `SQ_INSTS_BRANCH`         | Instr | Number of Branch instructions issued                                     |
-| `SQ_INSTS_SENDMSG`        | Instr | Number of `SENDMSG` instructions including `s_endpgm` issued                 |
-| `SQ_INSTS_VSKIPPED[*]`    | Instr | Number of vector instructions skipped                                 |
+| `SQ_INSTS`                | Instr | Number of instructions issued.                                              |
+| `SQ_INSTS_VALU`           | Instr | Number of Vector Arithmetic Logic Unit (VALU) instructions including MFMA issued.                         |
+| `SQ_INSTS_VALU_ADD_F16`   | Instr | Number of VALU Half Precision Floating Point (F16) ADD/SUB instructions issued.                            |
+| `SQ_INSTS_VALU_MUL_F16`   | Instr | Number of VALU F16 Multiply instructions issued.                   |
+| `SQ_INSTS_VALU_FMA_F16`   | Instr | Number of VALU F16 Fused Multiply Add (FMA)/ Mulitply Add (MAD) instructions issued.                   |
+| `SQ_INSTS_VALU_TRANS_F16` | Instr | Number of VALU F16 Transcendental instructions issued.                   |
+| `SQ_INSTS_VALU_ADD_F32`   | Instr | Number of VALU Full Precision Floating Point (F32) ADD/SUB instructions issued.                 |
+| `SQ_INSTS_VALU_MUL_F32`   | Instr | Number of VALU F32 Multiply instructions issued.                    |
+| `SQ_INSTS_VALU_FMA_F32`   | Instr | Number of VALU F32 FMA/MAD instructions issued.                   |
+| `SQ_INSTS_VALU_TRANS_F32` | Instr | Number of VALU F32 Transcendental instructions issued.                    |
+| `SQ_INSTS_VALU_ADD_F64`   | Instr | Number of VALU F64 ADD/SUB instructions issued.                |
+| `SQ_INSTS_VALU_MUL_F64`   | Instr | Number of VALU F64 Multiply instructions issued.                    |
+| `SQ_INSTS_VALU_FMA_F64`   | Instr | Number of VALU F64 FMA/MAD instructions issued.                   |
+| `SQ_INSTS_VALU_TRANS_F64` | Instr | Number of VALU F64 Transcendental instructions issued.                 |
+| `SQ_INSTS_VALU_INT32`     | Instr | Number of VALU 32-bit integer instructions (signed or unsigned) issued.        |
+| `SQ_INSTS_VALU_INT64`     | Instr | Number of VALU 64-bit integer instructions (signed or unsigned) issued.       |
+| `SQ_INSTS_VALU_CVT`       | Instr | Number of VALU Conversion instructions issued.                   |
+| `SQ_INSTS_VALU_MFMA_I8`   | Instr | Number of 8-bit Integer MFMA instructions issued.               |
+| `SQ_INSTS_VALU_MFMA_F16`  | Instr | Number of F16 MFMA instructions issued.                                   |
+| `SQ_INSTS_VALU_MFMA_BF16` | Instr | Number of Brain Floating Point - 16 (BF16) MFMA instructions issued.                                  |
+| `SQ_INSTS_VALU_MFMA_F32`  | Instr | Number of F32 MFMA instructions issued.                                    |
+| `SQ_INSTS_VALU_MFMA_F64`  | Instr | Number of F64 MFMA instructions issued.                               |
+| `SQ_INSTS_MFMA`           | Instr | Number of MFMA instructions issued.                                  |
+| `SQ_INSTS_VMEM_WR`        | Instr | Number of Vector Memory (VMEM) Write instructions (including FLAT) issued.                                  |
+| `SQ_INSTS_VMEM_RD`        | Instr | Number of VMEM Read instructions (including FLAT) issued.  |
+| `SQ_INSTS_VMEM`           | Instr | Number of VMEM instructions issued, including both FLAT and Buffer instructions. |
+| `SQ_INSTS_SALU`           | Instr | Number of SALU instructions issued.                                        |
+| `SQ_INSTS_SMEM`           | Instr | Number of Scalar Memory (SMEM) instructions issued.                                       |
+| `SQ_INSTS_SMEM_NORM`      | Instr | Number of SMEM instructions normalized to match `smem_level` issued. |
+| `SQ_INSTS_FLAT`           | Instr | Number of FLAT instructions issued.                                     |
+| `SQ_INSTS_FLAT_LDS_ONLY`  | Instr | Number of FLAT instructions that read/write only from/to LDS issued. Works only if `EARLY_TA_DONE` is enabled.       |
+| `SQ_INSTS_LDS`            | Instr | Number of Local Data Share (LDS) instructions issued (including FLAT).                                         |
+| `SQ_INSTS_GDS`            | Instr | Number of Global Data Share (GDS) instructions issued.                                         |
+| `SQ_INSTS_EXP_GDS`        | Instr | Number of EXP and GDS instructions excluding skipped export instructions issued.  |
+| `SQ_INSTS_BRANCH`         | Instr | Number of Branch instructions issued.                                     |
+| `SQ_INSTS_SENDMSG`        | Instr | Number of `SENDMSG` instructions including `s_endpgm` issued.                 |
+| `SQ_INSTS_VSKIPPED[*]`    | Instr | Number of vector instructions skipped.                                 |
 
 #### MFMA operation counters
 
