@@ -1,9 +1,9 @@
-# MI200 performance counters and metrics
+# MI200 Performance Counters and Metrics
 <!-- markdownlint-disable no-duplicate-header -->
 
 This document lists and describes the hardware performance counters and the derived metrics available on the AMD Instinct™ MI200 GPU. All hardware performance monitors, and the derived performance metrics are accessible via AMD ROCm™ Profiler tool.
 
-## MI200 performance counters list
+## MI200 Performance Counters List
 
 See the category-wise listing of MI200 performance counters in the following tables.
 
@@ -85,7 +85,7 @@ The CP counters are further classified into CP-Fetcher (CPF) and CP-Compute (CPC
 
 The CU counters are further classified into instruction mix, Matrix Fused Multiply Add (MFMA) operation counters, level counters, wavefront counters, wavefront cycle counters and Local Data Share (LDS) counters.
 
-#### Instruction mix
+#### Instruction Mix
 
 | Hardware Counter        | Unit   | Definition                                                               |
 | :-----------------------| :-----:| -----------------------------------------------------------------------: |
@@ -127,7 +127,7 @@ The CU counters are further classified into instruction mix, Matrix Fused Multip
 | `SQ_INSTS_SENDMSG`        | Instr | Number of `SENDMSG` instructions including `s_endpgm` issued.                 |
 | `SQ_INSTS_VSKIPPED[*]`    | Instr | Number of vector instructions skipped.                                 |
 
-#### MFMA operation counters
+#### MFMA Operation Counters
 
 | Hardware Counter             | Unit  | Definition                                      |
 | :----------------------------| :-----| ----------------------------------------------: |
@@ -137,7 +137,7 @@ The CU counters are further classified into instruction mix, Matrix Fused Multip
 | `SQ_INSTS_VALU_MFMA_MOPS_F32`  | FLOP  | Number of F32 floating MFMA ops in the unit of 512  |
 | `SQ_INSTS_VALU_MFMA_MOPS_F64`  | FLOP  | Number of F64 floating MFMA ops in the unit of 512  |
 
-#### Level counters
+#### Level Counters
 
 :::{note}
 All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure average latency.
@@ -153,7 +153,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 | `SQ_INST_LEVEL_LDS`  | Instr | Number of inflight LDS (including FLAT) instructions. To calculate the LDS latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_INSTS_LDS`.  |
 | `SQ_IFETCH_LEVEL`     | Instr | Number of inflight instruction fetch requests from the cache. To calculate the instruction fetch latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_IFETCH`. |
 
-#### Wavefront counters
+#### Wavefront Counters
 
 | Hardware Counter     | Unit  | Definition                                                        |
 | :--------------------| :-----| ----------------------------------------------------------------: |
@@ -166,7 +166,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 | `SQ_WAVES_LT_32`       | Waves | Number of wavefronts with less than 32 active threads sent to SQs  |
 | `SQ_WAVES_LT_16`       | Waves | Number of wavefronts with less than 16 active threads sent to SQs  |
 
-#### Wavefront cycle counters
+#### Wavefront Cycle Counters
 
 | Hardware Counter         | Unit    | Definition                                                            |
 | :------------------------| :-------| --------------------------------------------------------------------: |
@@ -236,7 +236,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 | `SQC_TC_DATA_ATOMIC_REQ[*]`    | Req    | Number of data atomic requests to the L2 cache              |
 | `SQC_TC_STALL[*]`              | Cycles | Number of cycles while the valid requests to the L2 cache are stalled |
 
-### Vector L1 cache subsystem
+### Vector L1 Cache Subsystem
 
 The vector L1 cache subsystem counters are further classified into Texture Addressing Unit (TA), Texture Data Unit (TD), vector L1D cache or Texture Cache per Pipe (TCP), and Texture Cache Arbiter (TCA) counters.
 
@@ -374,7 +374,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 | `TCC_NORMAL_EVICT[n]`                 | Req    | Number of evictions due to requests that are not invalidate or probe requests. Value range for n: [0-31].        |
 | `TCC_ALL_TC_OP_INV_EVICT[n]`       | Req    | Number of evictions due to all `TC_OP` invalidate requests. Value range for n: [0-31].           |
 
-## MI200 derived metrics list
+## MI200 Derived Metrics List
 
 | Derived Metric   | Description                                                                            |
 | :----------------| -------------------------------------------------------------------------------------: |
