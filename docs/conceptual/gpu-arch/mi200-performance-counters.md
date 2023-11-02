@@ -93,7 +93,7 @@ The CU counters are further classified into instruction mix, Matrix Fused Multip
 | `SQ_INSTS_VALU`           | Instr | Number of Vector Arithmetic Logic Unit (VALU) instructions including MFMA issued.                         |
 | `SQ_INSTS_VALU_ADD_F16`   | Instr | Number of VALU Half Precision Floating Point (F16) ADD/SUB instructions issued.                            |
 | `SQ_INSTS_VALU_MUL_F16`   | Instr | Number of VALU F16 Multiply instructions issued.                   |
-| `SQ_INSTS_VALU_FMA_F16`   | Instr | Number of VALU F16 Fused Multiply Add (FMA)/ Mulitply Add (MAD) instructions issued.                   |
+| `SQ_INSTS_VALU_FMA_F16`   | Instr | Number of VALU F16 Fused Multiply Add (FMA)/ Multiply Add (MAD) instructions issued.                   |
 | `SQ_INSTS_VALU_TRANS_F16` | Instr | Number of VALU F16 Transcendental instructions issued.                   |
 | `SQ_INSTS_VALU_ADD_F32`   | Instr | Number of VALU Full Precision Floating Point (F32) ADD/SUB instructions issued.                 |
 | `SQ_INSTS_VALU_MUL_F32`   | Instr | Number of VALU F32 Multiply instructions issued.                    |
@@ -328,7 +328,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 
 ### L2 Cache Access Counters
 
-L2 Cache is also known as Texture Cache per Channel (TCC). 
+L2 Cache is also known as Texture Cache per Channel (TCC).
 
 | Hardware Counter                 | Unit   | Definition                                                     |
 | :--------------------------------| :------| -------------------------------------------------------------: |
