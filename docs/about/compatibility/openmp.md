@@ -520,6 +520,7 @@ Build and run the program in an Xnack-enabled environment with `OMPX_APU_MAPS` e
 
 See how to build a program that does not contain the `unified_shared_memory` pragma:
 
+<!-- markdownlint-disable no-blanks-blockquote -->
 > * Using `xnack-any`
 
 > `clang++ -fopenmp -offload-arch=gfx942 vec_add.cpp -o vec_add`
@@ -527,6 +528,7 @@ See how to build a program that does not contain the `unified_shared_memory` pra
 > * Using `xnack+`
 
 > `clang++ -fopenmp -offload-arch=gfx942:xnack+ vec_add.cpp -o vec_add`
+<!-- markdownlint-enable no-blanks-blockquote -->
 
 Execute the above-compiled program as shown below:
 
