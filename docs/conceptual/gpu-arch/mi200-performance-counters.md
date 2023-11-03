@@ -1,7 +1,7 @@
 # MI200 Performance Counters and Metrics
 <!-- markdownlint-disable no-duplicate-header -->
 
-This document lists and describes the hardware performance counters and the derived metrics available on the AMD Instinct™ MI200 GPU. All hardware performance monitors, and the derived performance metrics are accessible via {doc}`ROCProfiler tool <rocprofiler:rocprofv1>`.
+This document lists and describes the hardware performance counters and derived metrics available on the AMD Instinct™ MI200 GPU. All the hardware basic counters and derived metrics are accessible via {doc}`ROCProfiler tool <rocprofiler:rocprofv1>`.
 
 ## MI200 Performance Counters List
 
