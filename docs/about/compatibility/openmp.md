@@ -520,17 +520,13 @@ Build and run the program in an Xnack-enabled environment with `OMPX_APU_MAPS` e
 
 See how to build a program that does not contain the `unified_shared_memory` pragma:
 
-&nbsp;* Using `xnack-any`
+> * Using `xnack-any`
 
-  ```bash
-  clang++ -fopenmp -offload-arch=gfx942 vec_add.cpp -o vec_add
-  ```
+> `clang++ -fopenmp -offload-arch=gfx942 vec_add.cpp -o vec_add`
 
-&nbsp;* Using `xnack+`
+> * Using `xnack+`
 
-  ```bash
-  clang++ -fopenmp -offload-arch=gfx942:xnack+ vec_add.cpp -o vec_add
-  ```
+> `clang++ -fopenmp -offload-arch=gfx942:xnack+ vec_add.cpp -o vec_add`
 
 Execute the above-compiled program as shown below:
 
