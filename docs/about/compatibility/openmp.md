@@ -476,7 +476,7 @@ If the OpenMP construct has a reduction clause, the compiler attempts to generat
 ### Shared Memory Support
 
 Unlike other discrete GPU systems that have distinct CPU (system) and GPU memory, MI300A architecture features a single physical storage per socket which is the main memory for both CPU and GPU.
-To support the optimal use of shared memory on MI300A, the ROCm OpenMP compiler and runtime are optimized to use “zero-copy” also known as “no-copy” behavior as the default execution model where the CPU and GPU threads use the same addresses to access the same physical storage. The zero or no-copy behavior also ensures that the OpenMP map constructs do not result in device memory allocation and copies between host and device memory, as there is no physical device storage. 
+To support the optimal use of shared memory on MI300A, the ROCm OpenMP compiler and runtime are optimized to use “zero-copy” also known as “no-copy” behavior as the default execution model where the CPU and GPU threads use the same addresses to access the same physical storage. The zero or no-copy behavior also ensures that the OpenMP map constructs do not result in device memory allocation and copies between host and device memory, as there is no physical device storage.
 
 For demonstration purposes, we are using [vec_add.cpp](#sample-program) in the examples below.
 
@@ -502,7 +502,7 @@ clang++ -fopenmp -offload-arch=gfx942 -BUILD_WITH_USM vec_add.cpp -o vec_add
 
 Note that the `-BUILD_WITH_USM` macro has been defined in [vec_add.cpp](#sample-program) to enable `#pragma omp requires unified_shared_memory`.
 
-Alternatively, see how to build using the ROCm compiler option `-fopenmp-force-usm`: 
+Alternatively, see how to build using the ROCm compiler option `-fopenmp-force-usm`:
 
 ```bash
 clang++ -fopenmp -offload-arch=gfx942 -fopenmp-force-usm vec_add.cpp -o vec_add
@@ -520,13 +520,13 @@ Build and run the program in an Xnack-enabled environment with `OMPX_APU_MAPS` e
 
 See how to build a program that does not contain the `unified_shared_memory` pragma:
 
-  * Using `xnack-any`
+    * Using `xnack-any`
 
   ```bash
   clang++ -fopenmp -offload-arch=gfx942 vec_add.cpp -o vec_add
   ```
 
-  * Using `xnack+`
+    * Using `xnack+`
 
   ```bash
   clang++ -fopenmp -offload-arch=gfx942:xnack+ vec_add.cpp -o vec_add
