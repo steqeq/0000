@@ -1,4 +1,4 @@
-# OpenMP support in ROCm
+# OpenMP Support in ROCm
 
 ## Introduction
 
@@ -28,7 +28,7 @@ sub-directories are:
 * lib: Libraries including those required for target offload.
 * lib-debug: Debug versions of the above libraries.
 
-## OpenMP: usage
+## OpenMP: Usage
 
 The example programs can be compiled and run by pointing the environment
 variable `ROCM_PATH` to the ROCm install directory.
@@ -108,7 +108,7 @@ code compiled with AOMP:
 
 For more details on `rocprof`, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
-### Using tracing options
+### Using Tracing Options
 
 **Prerequisite:** When using the `--sys-trace` option, compile the OpenMP
 program with:
@@ -134,7 +134,7 @@ HSA calls.
 
 For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
-### Environment variables
+### Environment Variables
 
 :::{table}
 :widths: auto
@@ -149,14 +149,14 @@ For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocpr
 | `OMPX_FORCE_SYNC_REGIONS` | To force the runtime to execute all operations synchronously, i.e., wait for an operation to complete immediately. This affects data transfers and kernel execution. While it is mainly designed for debugging, it may have a minor positive effect on performance in certain situations. |
 :::
 
-## OpenMP: features
+## OpenMP: Features
 
 The OpenMP programming model is greatly enhanced with the following new features
 implemented in the past releases.
 
 (openmp_usm)=
 
-### Asynchronous behavior in OpenMP target regions
+### Asynchronous Behavior in OpenMP Target Regions
 
 * Controlling Asynchronous Behavior
 
@@ -171,7 +171,7 @@ The `libomptarget` plugin for GPU offloading allows creation of separate configu
 
 Implicit asynchronous execution of single target region enables parallel memory copy invocations.
 
-### Unified shared memory
+### Unified Shared Memory
 
 Unified Shared Memory (USM) provides a pointer-based approach to memory
 management. To implement USM, fulfill the following system requirements along
@@ -184,7 +184,7 @@ with Xnack capability.
 * Xnack, as USM support can only be tested with applications compiled with Xnack
   capability
 
-#### Xnack capability
+#### Xnack Capability
 
 When enabled, Xnack capability allows GPU threads to access CPU (system) memory,
 allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. Xnack must be
@@ -218,7 +218,7 @@ When Xnack support is not needed:
 
 * At runtime, set the `HSA_XNACK` environment variable to 0.
 
-#### Unified shared memory pragma
+#### Unified Shared Memory Pragma
 
 This OpenMP pragma is available on MI200 through `xnack+` support.
 
@@ -272,7 +272,7 @@ to by “b” are in coarse-grain memory during and after the execution of the
 target region. This is accomplished in the OpenMP runtime library with calls to
 the ROCr runtime to set the pages pointed by “b” as coarse grain.
 
-### OMPT target support
+### OMPT Target Support
 
 The OpenMP runtime in ROCm implements a subset of the OMPT device APIs, as
 described in the OpenMP specification document. These APIs allow first-party
@@ -297,7 +297,7 @@ The file `veccopy-ompt-target-tracing.c` simulates how a tool initiates device
 activity tracing. The file `callbacks.h` shows the callbacks registered and
 implemented by the tool.
 
-### Floating point atomic operations
+### Floating Point Atomic Operations
 
 The MI200-series GPUs support the generation of hardware floating-point atomics
 using the OpenMP atomic pragma. The support includes single- and
@@ -357,7 +357,7 @@ double b = 0.0;
 b = b + 1.0;
 ```
 
-### AddressSanitizer tool
+### AddressSanitizer Tool
 
 AddressSanitizer (ASan) is a memory error detector tool utilized by applications to
 detect various errors ranging from spatial issues such as out-of-bound access to
@@ -431,7 +431,7 @@ for(int i=0; i<N; i++){
 See the complete sample code for global buffer overflow
 [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
 
-### Clang compiler option for kernel optimization
+### Clang Compiler Option for Kernel Optimization
 
 You can use the clang compiler option `-fopenmp-target-fast` for kernel optimization if certain constraints implied by its component options are satisfied. `-fopenmp-target-fast` enables the following options:
 
@@ -443,7 +443,7 @@ You can use the clang compiler option `-fopenmp-target-fast` for kernel optimiza
 
 * `-O3` if no `-O*` is specified by the user.
 
-### Specialized kernels
+### Specialized Kernels
 
 Clang will attempt to generate specialized kernels based on compiler options and OpenMP constructs. The following specialized kernels are supported:
 
@@ -461,14 +461,104 @@ To enable the generation of specialized kernels, follow these guidelines:
 
 * To disable specialized kernel generation, use `-fno-openmp-target-ignore-env-vars`.
 
-#### No-loop kernel generation
+#### No-loop Kernel Generation
 
 The no-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP target constructs such as target teams distribute parallel for. The specialized kernel generation feature assumes every thread executes a single iteration of the user loop, which leads the runtime to launch a total number of GPU threads equal to or greater than the iteration space size of the target region loop. This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
 
-#### Big-jump-loop kernel generation
+#### Big-jump-loop Kernel Generation
 
 A no-loop kernel is not generated if the OpenMP teams construct uses a `num_teams` clause. Instead, the compiler attempts to generate a different specialized kernel called the big-jump-loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP `num_teams` clause and the `blocksize` chosen either by the compiler or specified by the corresponding OpenMP clause.
 
-#### Cross-team optimized reduction kernel generation
+#### Cross-team Optimized Reduction Kernel Generation
 
 If the OpenMP construct has a reduction clause, the compiler attempts to generate optimized code by utilizing efficient cross-team communication. New APIs for cross-team reduction are implemented in the device runtime and are automatically generated by clang.
+
+### Shared Memory Support
+
+Unlike other discrete GPU systems that have distinct CPU (system) and GPU memory, MI300A architecture features a single physical storage per socket which is the main memory for both CPU and GPU.
+To support the optimal use of shared memory on MI300A, the ROCm OpenMP compiler and runtime are optimized to use “zero-copy” also known as “no-copy” behavior as the default execution model where the CPU and GPU threads use the same addresses to access the same physical storage. The zero or no-copy behavior also ensures that the OpenMP map constructs do not result in device memory allocation and copies between host and device memory, as there is no physical device storage. 
+
+For demonstration purposes, we are using [vec_add.cpp](#sample-program) in the examples below.
+
+To enable zero-copy behavior by default in the programs running on MI300A, follow these options:
+
+* When using `unified_shared_memory` pragma in the program:
+
+You can enable `unified_shared_memory` in your program using two options. One is to use `#pragma omp requires unified_shared_memory` construct in your source files and the other option is to use the compiler option `-fopenmp-force-usm` that enables `unified_shared_memory` without having to write it in the program. Irrespective of the option chosen to enable `unified_shared_memory`, you must build and run the program in an Xnack-enabled environment.
+
+Note that this implementation is already available for discrete GPU systems such as MI200.
+
+See how to build a program with `unified_shared_memory` pragma and `xnack+` target feature:
+
+```bash
+clang++ -fopenmp -offload-arch=gfx942:xnack+ -BUILD_WITH_USM vec_add.cpp -o vec_add
+```
+
+You can also build using `xnack-any` which is the default when an Xnack target feature is not explicitly specified:
+
+```bash
+clang++ -fopenmp -offload-arch=gfx942 -BUILD_WITH_USM vec_add.cpp -o vec_add
+```
+
+Note that the `-BUILD_WITH_USM` macro has been defined in [vec_add.cpp](#sample-program) to enable `#pragma omp requires unified_shared_memory`.
+
+Alternatively, see how to build using the ROCm compiler option `-fopenmp-force-usm`: 
+
+```bash
+clang++ -fopenmp -offload-arch=gfx942 -fopenmp-force-usm vec_add.cpp -o vec_add
+```
+
+Execute the above-compiled program with Xnack-enabled as shown below:
+
+```bash
+HSA_XNACK=1 ./vec_add
+```
+
+* When not using `unified_shared_memory` pragma in the program:
+
+Build and run the program in an Xnack-enabled environment with `OMPX_APU_MAPS` environment variable set to 1 during execution. `OMPX_APU_MAPS` indicates to the OpenMP runtime that the system is an Accelerated Processing Unit (APU) and enables zero-copy mode.
+
+See how to build a program that does not contain the `unified_shared_memory` pragma:
+
+  * Using `xnack-any`
+
+  ```bash
+  clang++ -fopenmp -offload-arch=gfx942 vec_add.cpp -o vec_add
+  ```
+
+  * Using `xnack+`
+
+  ```bash
+  clang++ -fopenmp -offload-arch=gfx942:xnack+ vec_add.cpp -o vec_add
+  ```
+
+Execute the above-compiled program as shown below:
+
+```bash
+OMPX_APU_MAPS=1 HSA_XNACK=1 ./vec_add
+```
+
+To debug portability issues between GPU and APU systems, enable the legacy behavior on MI300A by disabling Xnack thus allowing extra memory allocations and copies. For example:
+
+```bash
+HSA_XNACK=0 ./vec_add
+```
+
+#### Sample Program
+
+Here is the `vec_add.cpp` program that is used in the examples above to demonstrate how to enable zero-copy behavior on MI300A.
+
+```bash
+#ifdef BUILD_WITH_USM
+#pragma omp requires unified_shared_memory
+#endif
+ 
+void vec_add(size_t n) {
+  int *a = new int[n];
+  int *b = new int[n];
+  init_vec(n, b); // init array b
+  
+  #pragma omp target teams loop
+  for (size_t I = 0; i < n; i++)
+    a[i] = b[i];
+}
