@@ -28,7 +28,7 @@ In short, CMake supports finding dependencies in two ways:
    regards needed to consume it.
 
 ROCm predominantly relies on Config mode, one notable exception being the Module
-driving the compilation of HIP programs on Nvidia runtimes. As such, when
+driving the compilation of HIP programs on NVIDIA runtimes. As such, when
 dependencies are not found in standard system locations, one either has to
 instruct CMake to search for package config files in additional folders using
 the ``CMAKE_PREFIX_PATH`` variable (a semi-colon separated list of file system
