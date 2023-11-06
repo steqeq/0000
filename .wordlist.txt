@@ -50,6 +50,7 @@ changelog
 chiplet
 CIFAR
 CLI
+CLion
 CMake
 cmake
 CMakeLists
@@ -90,6 +91,7 @@ cuRAND
 CUs
 cuSOLVER
 cuSPARSE
+CXX
 dataset
 datasets
 dataspace
@@ -112,7 +114,6 @@ DMA
 DNN
 DNNL
 Dockerfile
-DockerHub
 Doxygen
 DPM
 DRI
@@ -201,6 +202,8 @@ hsakmt
 HWE
 ib_core
 ICV
+IDE
+IDEs
 ImageNet
 IMDB
 inband
