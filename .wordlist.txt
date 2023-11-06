@@ -272,6 +272,8 @@ mivisionx
 mkdir
 mlirmiopen
 MMA
+MMIO
+MMIOH
 MNIST
 MPI
 MSVC
@@ -461,6 +463,7 @@ subexpression
 subfolder
 subfolders
 supercomputing
+Supermicro
 SWE
 Szegedy
 tagram

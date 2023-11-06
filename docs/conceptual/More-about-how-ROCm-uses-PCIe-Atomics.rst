@@ -92,9 +92,9 @@ memory to indicate transfer complete occurs AFTER P2P write to GPU has complete.
 BAR memory overview
 ----------------------------------------------------------------------------------------------------
 On a Xeon E5 based system in the BIOS we can turn on above 4GB PCIe addressing, if so he need to set
-MMIO Base address (MMIOH Base) and Range (MMIO High Size) in the BIOS.
+memory-mapped input/output (MMIO) base address (MMIOH base) and range (MMIO high size) in the BIOS.
 
-In SuperMicro system in the system bios you need to see the following
+In the Supermicro system in the system bios you need to see the following
 
   * Advanced->PCIe/PCI/PnP configuration-\> Above 4G Decoding = Enabled
   * Advanced->PCIe/PCI/PnP Configuration-\>MMIOH Base = 512G
