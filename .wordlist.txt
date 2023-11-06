@@ -63,6 +63,7 @@ Codespaces
 comgr
 Commitizen
 CommonMark
+completers
 composable
 concretization
 Concretized
@@ -341,6 +342,7 @@ pre
 prebuilt
 precompiled
 prefetch
+prefetchable
 preprocess
 preprocessing
 preq
@@ -504,6 +506,7 @@ UCX
 UIF
 Uncached
 uncached
+uncorrectable
 Unhandled
 uninstallation
 unsqueeze
