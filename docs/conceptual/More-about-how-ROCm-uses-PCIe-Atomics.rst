@@ -5,7 +5,7 @@ How ROCm uses PCIe atomics
 ROCm PCIe feature and overview of BAR memory
 ================================================================
 
-ROCm is an extension of HSA platform architecture, so it shares the queueing model, memory model,
+ROCm is an extension of HSA platform architecture, so it shares the queuing model, memory model,
 signaling and synchronization protocols. Platform atomics are integral to perform queuing and
 signaling memory operations where there may be multiple-writers across CPU and GPU agents.
 
