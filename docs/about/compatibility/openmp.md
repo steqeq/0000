@@ -484,7 +484,7 @@ To enable zero-copy behavior by default in the programs running on MI300A, follo
 
 * When using `unified_shared_memory` pragma in the program:
 
-You can enable `unified_shared_memory` in your program using two options. One is to use `#pragma omp requires unified_shared_memory` construct in your source files and the other option is to use the compiler option `-fopenmp-force-usm` that enables `unified_shared_memory` without having to write it in the program. Irrespective of the option chosen to enable `unified_shared_memory`, you must build and run the program in an Xnack-enabled environment.
+You can enable `unified_shared_memory` in your program using two options. One is to use `#pragma omp requires unified_shared_memory` construct in your source files and the other option is to use the compiler option `-fopenmp-force-usm` that enables `unified_shared_memory` without having to write it in the program. Building using each option is explained below and irrespective of the option chosen to enable `unified_shared_memory`, you must build and run the program in an Xnack-enabled environment.
 
 Note that this implementation is already available for discrete GPU systems such as MI200.
 
@@ -520,13 +520,13 @@ Build and run the program in an Xnack-enabled environment with `OMPX_APU_MAPS` e
 
 See how to build a program that does not contain the `unified_shared_memory` pragma:
 
-**Using `xnack-any`:**
+Using `xnack-any`:
 
   ```bash
   clang++ -fopenmp -offload-arch=gfx942 vec_add.cpp -o vec_add
   ```
 
-**Using `xnack+`:**
+Using `xnack+`:
 
   ```bash
   clang++ -fopenmp -offload-arch=gfx942:xnack+ vec_add.cpp -o vec_add
