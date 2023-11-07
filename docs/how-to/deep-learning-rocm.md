@@ -6,17 +6,10 @@ the sequential flow for the use of each framework. Refer to the ROCm Compatible
 Frameworks Release Notes for each framework's most current release notes at
 [Third party support](../about/compatibility/3rd-party-support-matrix.md).
 
-```{figure} ../data/tutorials/install/magma-install/magma005.png
-:name: rocm-compat-frameworks-chart
-:align: center
+![ROCm Compatible Frameworks Flowchart](../data/install/magma-install/magma005.png "ROCm Compatible Frameworks")
 
-ROCm Compatible Frameworks Flowchart
-```
+## Frameworks installation
 
-## Frameworks Installation
-
-<!-- markdown-link-check-disable -->
-* [How to Install PyTorch?](../tutorials/install/pytorch-install)
-* [How to Install Tensorflow?](../tutorials/install/tensorflow-install)
-* [How to Install Magma?](../tutorials/install/magma-install)
-<!-- markdown-link-check-enable -->
+* [Installing PyTorch](../install/pytorch-install.md)
+* [Installing TensorFlow](../install/tensorflow-install.md)
+* [Installing MAGMA](../install/magma-install.md)

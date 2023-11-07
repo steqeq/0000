@@ -4,12 +4,13 @@ ROCm™ is released by Advanced Micro Devices, Inc. and is licensed per componen
 The following table is a list of ROCm components with links to their respective license
 terms. These components may include third party components subject to
 additional licenses. Please review individual repositories for more information.
-The table shows ROCm components, the name of license and link to the license terms.
-The table is ordered to follow ROCm's manifest file.
+
+The table shows ROCm components, the name of license, and link to the license terms.
+The table is ordered to follow the ROCm manifest file.
 
 <!-- spellcheck-disable -->
 | Component | License |
-|:------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+|:---------------------|:-------------------------|
 | [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/) | [MIT](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/blob/develop/LICENSE) |
 | [HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt) | [MIT](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt) |
 | [HIPIFY](https://github.com/ROCm-Developer-Tools/HIPIFY/) | [MIT](https://github.com/ROCm-Developer-Tools/HIPIFY/blob/amd-staging/LICENSE.txt) |
@@ -105,7 +106,7 @@ Advanced Micro Devices, Inc. Other product names used in this publication are
 for identification purposes only and may be trademarks of their respective
 companies.
 
-## Package Licensing
+## Package licensing
 
 ```{attention}
 AQL Profiler and AOCC CPU optimization are both provided in binary form, each

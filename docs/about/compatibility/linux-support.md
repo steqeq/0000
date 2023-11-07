@@ -2,7 +2,7 @@
 
 (linux-support)=
 
-## Supported Linux Distributions
+## Supported Linux distributions
 
 AMD ROCm™ Platform supports the following Linux distributions.
 
@@ -48,7 +48,7 @@ AMD ROCm™ Platform supports the following Linux distributions.
 ❌: **Unsupported** - AMD no longer performs builds and testing on these
   previously supported distro GA images.
 
-## Virtualization Support
+## Virtualization support
 
 ROCm supports virtualization for select GPUs only as shown below.
 
@@ -58,18 +58,16 @@ ROCm supports virtualization for select GPUs only as shown below.
 | VMWare         | ESXi 8   | MI210 | Ubuntu 20.04 (`5.15.0-56-generic`), SLES 15 SP4 (`5.14.21-150400.24.18-default`) |
 | VMWare         | ESXi 7   | MI210 | Ubuntu 20.04 (`5.15.0-56-generic`), SLES 15 SP4 (`5.14.21-150400.24.18-default`) |
 
-## Linux Supported GPUs
+## Linux-supported GPUs
 
 The table below shows supported GPUs for Instinct™, Radeon Pro™ and Radeon™
 GPUs. Please click the tabs below to switch between GPU product lines. If a GPU
 is not listed on this table, the GPU is not officially supported by AMD.
 
-::::{tab-set}
+:::::{tab-set}
 
-:::{tab-item} AMD Instinct™
+::::{tab-item} AMD Instinct™
 :sync: instinct
-
-Use Driver Shipped with ROCm
 
 | Product Name | Architecture | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) |Support |
 |:------------:|:------------:|:--------------------------------------------------------------------:|:-------:|
@@ -80,35 +78,31 @@ Use Driver Shipped with ROCm
 | AMD Instinct™ MI50   | GCN5.1 | gfx906 | ✅ |
 | AMD Instinct™ MI25   | GCN5.0 | gfx900 | ❌ |
 
-:::
+::::
 
-:::{tab-item} Radeon Pro™
+::::{tab-item} Radeon Pro™
 :sync: radeonpro
-
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ Pro W7900   | RDNA3  | gfx1100 | ✅ (Ubuntu 22.04 only)|
 | AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro V620    | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ✅ |
-
-:::
-
-:::{tab-item} Radeon™
-:sync: radeonpro
-
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
-
-| Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
-|:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
-| AMD Radeon™ VII     | GCN5.1 | gfx906  | ✅ |
-
-:::
-
 ::::
 
-### Support Status
+::::{tab-item} Radeon™
+:sync: radeonpro
+
+| Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
+|:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ RX 7900 XTX | RDNA3 | gfx1100  | ✅ (Ubuntu 22.04 only)|
+| AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
+
+::::
+:::::
+
+### Support status
 
 ✅: **Supported** - AMD enables these GPUs in our software distributions for
   the corresponding ROCm product.
@@ -116,7 +110,7 @@ Use Driver Shipped with ROCm
 ❌: **Unsupported** - This configuration is not enabled in our software
   distributions.
 
-## CPU Support
+## CPU support
 
-ROCm requires CPUs that support PCIe™ Atomics. Modern CPUs after the release of
-1st generation AMD Zen CPU and Intel™ Haswell support PCIe Atomics.
+ROCm requires CPUs that support PCIe™ atomics. Modern CPUs after the release of
+1st generation AMD Zen CPU and Intel™ Haswell support PCIe atomics.
