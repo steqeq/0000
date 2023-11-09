@@ -156,6 +156,7 @@ GDR
 GDS
 GEMM
 GEMMs
+GenZ
 gfortran
 gfx
 GIM
