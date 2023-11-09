@@ -107,7 +107,9 @@ Dependabot
 deserializers
 detections
 dev
+DevCap
 devicelibs
+devsel
 DGEMM
 disambiguates
 distro
@@ -229,6 +231,7 @@ IOP
 IOPM
 IOV
 ipo
+IRQ
 ISA
 ISV
 ISVs

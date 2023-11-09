@@ -13,12 +13,12 @@ The full list of HSA system architecture platform requirements are here:
 `HSA Sys Arch Features <http://hsafoundation.com/wp-content/uploads/2021/02/HSA-SysArch-1.2.pdf>`_.
 
 The ROCm platform uses the new PCI Express 3.0 (Peripheral Component Interconnect Express [PCIe]
-3.0) features for Atomic Read-Modify-Write Transactions which extends inter-processor synchronization
+3.0) features for atomic read-modify-write transactions which extends inter-processor synchronization
 mechanisms to IO to support the defined set of HSA capabilities needed for queuing and signaling
 memory operations.
 
 The new PCIe atomic operations operate as completers for ``CAS`` (Compare and Swap), ``FetchADD``,
-``SWAP`` atomics. The AtomicsOps are initiated by the I/O device which support 32-bit, 64-bit and
+``SWAP`` atomics. The atomic operations are initiated by the I/O device which support 32-bit, 64-bit and
 128-bit operand which target address have to be naturally aligned to operation sizes.
 
 For ROCm the Platform atomics are used in ROCm in the following ways:
@@ -31,23 +31,23 @@ For ROCm the Platform atomics are used in ROCm in the following ways:
 
 The PCIe 3.0 atomic operations feature allows atomic transactions to be requested by, routed through
 and completed by PCIe components. Routing and completion does not require software support.
-Component support for each is detectable via the DEVCAP2 register. Upstream bridges need to have
-atomic operations routing enabled or the Atomic Operations will fail even though PCIe endpoint and
-PCIe I/O devices has the capability to Atomics Operations.
+Component support for each is detectable via the DevCap2 register. Upstream bridges need to have
+atomic operations routing enabled or the atomic operations will fail even though PCIe endpoint and
+PCIe I/O devices has the capability to atomic operations.
 
 To do atomic operations routing capability between two or more Root Ports, each associated Root Port
 must indicate that capability via the atomic operations routing supported bit in the Device Capabilities
 2 register.
 
-If your system has a PCIe Express Switch it needs to support AtomicsOp routing. Atomic operations
-requests are permitted only if a component's ``DEVCTL2.ATOMICOP_REQUESTER_ENABLE`` field is set.
-These requests can only be serviced if the upstream components support atomic operation completion
-and/or routing to a component which does. Atomic operations routing support=1, routing is
-supported; atomic operations routing support=0, routing is not supported.
+If your system has a PCIe Express Switch it needs to support atomic operations routing. Atomic
+operations requests are permitted only if a component's ``DEVCTL2.ATOMICOP_REQUESTER_ENABLE``
+field is set. These requests can only be serviced if the upstream components support atomic operation
+completion and/or routing to a component which does. Atomic operations routing support=1, routing
+is supported; atomic operations routing support=0, routing is not supported.
 
 An atomic operation is a non-posted transaction supporting 32-bit and 64-bit address formats, there
 must be a response for Completion containing the result of the operation. Errors associated with the
-operation (uncorrectable error accessing the target location or carrying out the Atomic operation) are
+operation (uncorrectable error accessing the target location or carrying out the atomic operation) are
 signaled to the requester by setting the Completion Status field in the completion descriptor, they are
 set to to Completer Abort (CA) or Unsupported Request (UR).
 
@@ -61,7 +61,7 @@ There are also a number of papers which talk about these new capabilities:
   * `Atomic Read Modify Write Primitives by Intel <https://www.intel.es/content/dam/doc/white-paper/atomic-read-modify-write-primitives-i-o-devices-paper.pdf>`_
   * `PCI express 3 Accelerator White paper by Intel <https://www.intel.sg/content/dam/doc/white-paper/pci-express3-accelerator-white-paper.pdf>`_
   * `Intel PCIe Generation 3 Hotchips Paper <https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.131.Ajanovic-Intel-PCIeGen3.pdf>`_
-  * `PCIe Generation 4 Base Specification includes Atomics Operation <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
+  * `PCIe Generation 4 Base Specification includes atomic operations <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
 
 Other I/O devices with PCIe atomics support
 
@@ -100,7 +100,7 @@ In the Supermicro system in the system bios you need to see the following
   * Advanced->PCIe/PCI/PnP Configuration-\>MMIOH Base = 512G
   * Advanced->PCIe/PCI/PnP Configuration-\>MMIO High Size = 256G
 
-When we support Large Bar Capability there is a Large Bar Vbios which also disable the IO bar.
+When we support Large Bar Capability there is a Large Bar VBIOS which also disable the IO bar.
 
 For GFX9 and Vega10 which have Physical Address up 44 bit and 48 bit Virtual address.
 
