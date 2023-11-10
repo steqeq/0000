@@ -175,40 +175,40 @@ Implicit asynchronous execution of single target region enables parallel memory 
 
 Unified Shared Memory (USM) provides a pointer-based approach to memory
 management. To implement USM, fulfill the following system requirements along
-with Xnack capability.
+with XNACK capability.
 
 #### Prerequisites
 
 * Linux Kernel versions above 5.14
 * Latest KFD driver packaged in ROCm stack
-* Xnack, as USM support can only be tested with applications compiled with Xnack
+* XNACK, as USM support can only be tested with applications compiled with XNACK
   capability
 
-#### Xnack capability
+#### XNACK capability
 
-When enabled, Xnack capability allows GPU threads to access CPU (system) memory,
-allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. Xnack must be
-enabled both at compile- and run-time. To enable Xnack support at compile-time,
+When enabled, XNACK capability allows GPU threads to access CPU (system) memory,
+allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. XNACK must be
+enabled both at compile and run-time. To enable XNACK support at compile-time,
 use:
 
 ```bash
 --offload-arch=gfx908:xnack+
 ```
 
-Or use another functionally equivalent option Xnack-any:
+Or use another functionally equivalent option `xnack-any`:
 
 ```bash
 --offload-arch=gfx908
 ```
 
-To enable Xnack functionality at runtime on a per-application basis,
+To enable XNACK functionality at runtime on a per-application basis,
 use environment variable:
 
 ```bash
 HSA_XNACK=1
 ```
 
-When Xnack support is not needed:
+When XNACK support is not needed:
 
 * Build the applications to maximize resource utilization using:
 
@@ -380,9 +380,9 @@ GPUs with applications written in both HIP and OpenMP.
 * Heap buffer overflow
 * Global buffer overflow
 
-**Software (kernel/OS) requirements:** Unified Shared Memory support with Xnack
+**Software (kernel/OS) requirements:** Unified Shared Memory support with XNACK
 capability. See the section on [Unified Shared Memory](#unified-shared-memory)
-for prerequisites and details on Xnack.
+for prerequisites and details on XNACK.
 
 **Example:**
 
@@ -484,9 +484,9 @@ To enable zero-copy behavior by default in the programs running on MI300A, follo
 
 * When using `unified_shared_memory` pragma in the program:
 
-You can enable `unified_shared_memory` in your program using two options. One is to use `#pragma omp requires unified_shared_memory` construct in your source files and the other option is to use the compiler option `-fopenmp-force-usm` that enables `unified_shared_memory` without having to write it in the program. Building using each option is explained below but irrespective of the option chosen to enable `unified_shared_memory`, you must build and run the program in an Xnack-enabled environment.
+You can enable `unified_shared_memory` in your program using two options. One is to use `#pragma omp requires unified_shared_memory` construct in your source files and the other option is to use the compiler option `-fopenmp-force-usm` that enables `unified_shared_memory` without having to write it in the program. Building using each option is explained below but irrespective of the option chosen to enable `unified_shared_memory`, you must build and run the program in an XNACK-enabled environment.
 
-Note that this implementation is already available for discrete GPU systems such as MI200.
+Note that the implementation of `#pragma omp requires unified_shared_memory` in OpenMP compiler and runtime is already available for discrete GPU systems such as MI200.
 
 See how to build a program with `unified_shared_memory` pragma and `xnack+` target feature:
 
@@ -494,7 +494,7 @@ See how to build a program with `unified_shared_memory` pragma and `xnack+` targ
 clang++ -fopenmp -offload-arch=gfx942:xnack+ -BUILD_WITH_USM vec_add.cpp -o vec_add
 ```
 
-You can also build using `xnack-any` which is the default when an Xnack target feature is not explicitly specified:
+You can also build using `xnack-any` which is the default when an XNACK target feature is not explicitly specified:
 
 ```bash
 clang++ -fopenmp -offload-arch=gfx942 -BUILD_WITH_USM vec_add.cpp -o vec_add
@@ -508,7 +508,7 @@ Alternatively, see how to build using the ROCm compiler option `-fopenmp-force-u
 clang++ -fopenmp -offload-arch=gfx942 -fopenmp-force-usm vec_add.cpp -o vec_add
 ```
 
-Execute the above-compiled program with Xnack-enabled as shown below:
+Execute the above-compiled program with XNACK-enabled as shown below:
 
 ```bash
 HSA_XNACK=1 ./vec_add
@@ -516,7 +516,7 @@ HSA_XNACK=1 ./vec_add
 
 * When not using `unified_shared_memory` pragma in the program:
 
-Build and run the program in an Xnack-enabled environment with `OMPX_APU_MAPS` environment variable set to 1 during execution. `OMPX_APU_MAPS` indicates to the OpenMP runtime that the system is an Accelerated Processing Unit (APU) and enables zero-copy mode.
+Build and run the program in an XNACK-enabled environment with `OMPX_APU_MAPS` environment variable set to 1 during execution. `OMPX_APU_MAPS` indicates to the OpenMP runtime that the system is an Accelerated Processing Unit (APU) and enables zero-copy mode.
 
 See how to build a program that does not contain the `unified_shared_memory` pragma:
 
@@ -538,7 +538,7 @@ Execute the above-compiled program as shown below:
 OMPX_APU_MAPS=1 HSA_XNACK=1 ./vec_add
 ```
 
-To debug portability issues between GPU and APU systems, enable the legacy behavior on MI300A by disabling Xnack thus allowing extra memory allocations and copies. For example:
+To debug portability issues between GPU and APU systems, enable the legacy behavior on MI300A by disabling XNACK thus allowing extra memory allocations and copies. For example:
 
 ```bash
 HSA_XNACK=0 ./vec_add
