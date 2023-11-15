@@ -70,8 +70,6 @@ ROCm 5.7.1 is a point release with several bug fixes in the HIP runtime.
 The `hipPointerGetAttributes` API returns the correct HIP memory type as `hipMemoryTypeManaged`
 for managed memory.
 
-
-
 ### Library changes in ROCM 5.7.1
 
 | Library | Version |
