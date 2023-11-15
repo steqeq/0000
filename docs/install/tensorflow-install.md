@@ -21,7 +21,7 @@ version support matrix:
 :::
 
 For current TensorFlow ROCm version support, refer to the
-[GitHub repository](https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md).
+[ROCm fork of the TensorFlow repository](https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md).
 
 ## Installing TensorFlow
 
