@@ -71,7 +71,7 @@ Source code written in the HIP dialect of C++ typically uses the `.hip`
 extension. When the HIP CMake language is enabled, it will automatically
 associate such source files with the HIP toolchain being used.
 
-..  code-block:: cpp
+.. code-block:: cpp
 
   cmake_minimum_required(VERSION 3.21) # HIP language support requires 3.21
   cmake_policy(VERSION 3.21.3...3.27)
@@ -83,7 +83,7 @@ HIP, you can tell CMake that despite their `.cu` extension, they're HIP sources.
 Do note that this mostly facilitates compiling kernel code-only source files,
 as host-side CUDA API won't compile in this fashion.
 
-..  code-block:: cpp
+.. code-block:: cpp
 
   add_library(MyLib MyLib.cu)
   set_source_files_properties(MyLib.cu PROPERTIES LANGUAGE HIP)
@@ -111,7 +111,7 @@ Illustrated in the example below is a C++ application using MIOpen from CMake.
 It calls ``find_package(miopen)``, which provides the ``MIOpen`` imported
 target. This can be linked with ``target_link_libraries``
 
-..  code-block:: cpp
+.. code-block:: cpp
 
   cmake_minimum_required(VERSION 3.5) # find_package(miopen) requires 3.5
   cmake_policy(VERSION 3.5...3.27)
@@ -163,7 +163,7 @@ compiler that supports AMD GPU targets, which is usually Clang.
 The ``find_package(hip)`` provides the ``hip::device`` imported target to add
 all the flags necessary for device compilation.
 
-..  code-block:: cpp
+.. code-block:: cpp
 
   cmake_minimum_required(VERSION 3.8) # cxx_std_11 requires 3.8
   cmake_policy(VERSION 3.8...3.27)
