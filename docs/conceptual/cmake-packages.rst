@@ -278,7 +278,7 @@ Following is an example ``CMakeUserPresets.json`` file which actually compiles
 the `amd/rocm-examples <https://github.com/amd/rocm-examples>`_ suite of sample
 applications on a typical ROCm installation:
 
-..  code-block:: json
+.. code-block:: json
 
   {
     "version": 3,
