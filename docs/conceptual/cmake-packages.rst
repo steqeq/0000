@@ -72,7 +72,6 @@ extension. When the HIP CMake language is enabled, it will automatically
 associate such source files with the HIP toolchain being used.
 
 .. code-block:: cpp
-
   cmake_minimum_required(VERSION 3.21) # HIP language support requires 3.21
   cmake_policy(VERSION 3.21.3...3.27)
   project(MyProj LANGUAGES HIP)
@@ -279,7 +278,6 @@ the `amd/rocm-examples <https://github.com/amd/rocm-examples>`_ suite of sample
 applications on a typical ROCm installation:
 
 .. code-block:: json
-
   {
     "version": 3,
     "cmakeMinimumRequired": {
