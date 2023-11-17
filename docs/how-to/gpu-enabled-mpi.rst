@@ -43,7 +43,7 @@ home directory in our example, but you can specify a different location if you w
         export BUILD_DIR=/tmp/ompi_for_gpu_build
         mkdir -p $BUILD_DIR
 
-2. Instal UCX. To view UCX and ROCm version compatibility, refer to the
+2. Install UCX. To view UCX and ROCm version compatibility, refer to the
 `communication libraries tables <https://rocm.docs.amd.com/en/latest/reference/gpu_libraries/communication.html>`_.
 
     .. code-block:: shell
