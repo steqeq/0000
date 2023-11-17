@@ -79,7 +79,7 @@ home directory in our example, but you can specify a different location if you w
 
 .. _rocm-enabled-osu:
 
-ROCm-enabled OSU
+ROCm-enabled OSU benchmarks
 ---------------------------------------------------------------------------------------------------------------
 
 You can use OSU Micro Benchmarks (OMB) to evaluate the performance of various primitives on
