@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="TensorFlow for ROCm">
+  <meta name="keywords" content="TensorFlow, Docker image, wheels package, install">
+</head>
+
 # TensorFlow for ROCm
 
 TensorFlow is an open-source library for solving machine-learning,

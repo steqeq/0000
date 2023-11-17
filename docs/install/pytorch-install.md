@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Installing PyTorch for ROCm">
+  <meta name="keywords" content="PyTorch, Docker image, wheels package, install">
+</head>
+
 # Installing PyTorch for ROCm
 
 [PyTorch](https://pytorch.org/) is an open-source tensor library designed for deep learning. PyTorch on

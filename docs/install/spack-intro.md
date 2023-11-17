@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Introduction to Spack">
+  <meta name="keywords" content="Spack, package management tool, install">
+</head>
+
 # Introduction to Spack
 
 Spack is a package management tool designed to support multiple software versions and

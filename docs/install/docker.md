@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Deploy ROCm Docker containers">
+  <meta name="keywords" content="Docker, installation, base images">
+</head>
+
 # Deploy ROCm Docker containers
 
 ## Prerequisites

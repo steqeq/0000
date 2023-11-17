@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="MAGMA installation for ROCm">
+  <meta name="keywords" content="MAGMA, installation, PyTorch">
+</head>
+
 # MAGMA installation for ROCm
 
 ## MAGMA for ROCm

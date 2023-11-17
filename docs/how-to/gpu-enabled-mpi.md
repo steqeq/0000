@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="GPU-enabled MPI">
+  <meta name="keywords" content="Message Passing Interface, MPI, installation, PyTorch, TensorFlow,
+  MAGMA">
+</head>
+
 # GPU-enabled MPI
 
 The Message Passing Interface ([MPI](https://www.mpi-forum.org)) is a standard
