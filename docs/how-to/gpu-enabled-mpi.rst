@@ -1,5 +1,5 @@
 ***************************************************************************************************
-GPU-enabled MPI
+GPU-enabled Message Passing Interface
 ***************************************************************************************************
 
 The Message Passing Interface (`MPI <https://www.mpi-forum.org>`_) is a standard API for distributed
