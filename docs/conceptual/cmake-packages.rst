@@ -84,10 +84,12 @@ HIP, you can tell CMake that despite their `.cu` extension, they're HIP sources.
 Do note that this mostly facilitates compiling kernel code-only source files,
 as host-side CUDA API won't compile in this fashion.
 
+.. <!-- spellcheck-disable -->
 .. code-block:: cpp
 
   add_library(MyLib MyLib.cu)
   set_source_files_properties(MyLib.cu PROPERTIES LANGUAGE HIP)
+.. <!-- spellcheck-enable -->
 
 CMake itself only hosts part of the HIP language support, such as defining
 HIP-specific properties, etc. while the other half ships with the HIP
@@ -183,7 +185,7 @@ all the flags necessary for device compilation.
 
   Compiling for the GPU device requires at least C++11.
 
-This project can then be configured with for eg.
+This project can then be configured with the following cmake commands.
 
 -  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
 
@@ -197,7 +199,7 @@ When using the CXX language support to compile HIP device code, selecting the
 target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
 ``CMAKE_HIP_ARCHITECTURES`` only exists when the HIP language is enabled. By
 default, this is set to some subset of the currently supported architectures of
-AMD ROCm. It can be set to eg. ``-D GPU_TARGETS="gfx1032;gfx1035"``.
+AMD ROCm. It can be set to the cmake option ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
 ROCm CMake packages
 -------------------
