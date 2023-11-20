@@ -71,11 +71,13 @@ Source code written in the HIP dialect of C++ typically uses the `.hip`
 extension. When the HIP CMake language is enabled, it will automatically
 associate such source files with the HIP toolchain being used.
 
+.. <!-- spellcheck-disable -->
 .. code-block:: cpp
   cmake_minimum_required(VERSION 3.21) # HIP language support requires 3.21
   cmake_policy(VERSION 3.21.3...3.27)
   project(MyProj LANGUAGES HIP)
   add_executable(MyApp Main.hip)
+.. <!-- spellcheck-enable -->
 
 Should you have existing CUDA code that is from the source compatible subset of
 HIP, you can tell CMake that despite their `.cu` extension, they're HIP sources.
