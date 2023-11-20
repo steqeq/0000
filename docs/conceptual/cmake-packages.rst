@@ -96,7 +96,7 @@ HIP-specific properties, etc. while the other half ships with the HIP
 implementation, such as ROCm. CMake will search for a file
 `hip-lang-config.cmake` describing how the the properties defined by CMake
 translate to toolchain invocations. If one installs ROCm using non-standard
-methods or layouts and CMake cannot locate this file or detect parts of the SDK,
+methods or layouts and CMake can't locate this file or detect parts of the SDK,
 there's a catch-all, last resort variable consulted locating this file,
 ``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` which should be set the root of the
 ROCm installation.
