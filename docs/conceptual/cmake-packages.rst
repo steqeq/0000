@@ -134,6 +134,7 @@ Use the HIP API without compiling the GPU device code. As there is no GPU code,
 any C or C++ compiler can be used. The ``find_package(hip)`` provides the
 ``hip::host`` imported target to use HIP in this context.
 
+.. <!-- spellcheck-disable -->
 ..  code-block:: cpp
 
   cmake_minimum_required(VERSION 3.5) # find_package(hip) requires 3.5
@@ -142,6 +143,7 @@ any C or C++ compiler can be used. The ``find_package(hip)`` provides the
   find_package(hip REQUIRED)
   add_executable(MyApp ...)
   target_link_libraries(MyApp PRIVATE hip::host)
+.. <!-- spellcheck-enable -->
 
 Compiling device code in C++ language mode
 ------------------------------------------
