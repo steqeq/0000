@@ -157,7 +157,7 @@ Compiling device code in C++ language mode
   understanding's sake. It pre-dates the existence of HIP language support in
   CMake. If source code has HIP device code in it, it is a HIP source file
   and should be compiled as such. Only resort to the method below if your
-  HIP-enabled CMake code path can not mandate CMake version 3.21.
+  HIP-enabled CMake code path can't mandate CMake version 3.21.
 
 If code uses the HIP API and compiles GPU device code, it requires using a
 device compiler. The compiler for CMake can be set using either the
