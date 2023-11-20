@@ -96,7 +96,7 @@ HIP-specific properties, etc. while the other half ships with the HIP
 implementation, such as ROCm. CMake will search for a file
 `hip-lang-config.cmake` describing how the the properties defined by CMake
 translate to toolchain invocations. If one installs ROCm using non-standard
-methods or layouts and CMake can't locate this file or detect parts of the SDK,
+methods or layouts and CMake cannot locate this file or detect parts of the SDK,
 there's a catch-all, last resort variable consulted locating this file,
 ``-D CMAKE_HIP_COMPILER_ROCM_ROOT:PATH=`` which should be set the root of the
 ROCm installation.
@@ -157,7 +157,7 @@ Compiling device code in C++ language mode
   understanding's sake. It pre-dates the existence of HIP language support in
   CMake. If source code has HIP device code in it, it is a HIP source file
   and should be compiled as such. Only resort to the method below if your
-  HIP-enabled CMake code path can't mandate CMake version 3.21.
+  HIP-enabled CMake code path can not mandate CMake version 3.21.
 
 If code uses the HIP API and compiles GPU device code, it requires using a
 device compiler. The compiler for CMake can be set using either the
@@ -185,7 +185,7 @@ all the flags necessary for device compilation.
 
   Compiling for the GPU device requires at least C++11.
 
-This project can then be configured with the following cmake commands.
+This project can then be configured with the following CMake commands.
 
 -  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
 
@@ -199,7 +199,7 @@ When using the CXX language support to compile HIP device code, selecting the
 target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
 ``CMAKE_HIP_ARCHITECTURES`` only exists when the HIP language is enabled. By
 default, this is set to some subset of the currently supported architectures of
-AMD ROCm. It can be set to the cmake option ``-D GPU_TARGETS="gfx1032;gfx1035"``.
+AMD ROCm. It can be set to the CMake option ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
 ROCm CMake packages
 -------------------
