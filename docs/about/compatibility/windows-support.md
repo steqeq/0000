@@ -68,11 +68,13 @@ on Windows is provided with two levels on enablement.
 
 ### Support status
 
-✅: **Supported** - AMD enables these GPUs in our software distributions for
-  the corresponding ROCm product.
+✅: **Supported** - AMD enables these GPUs in our software
+distributions for the corresponding ROCm product.
+
 ⚠️: **Deprecated** - Support will be removed in a future release.
-❌: **Unsupported** - This configuration is not enabled in our software
-  distributions.
+
+❌: **Unsupported** - This configuration is not enabled in our
+software distributions.
 
 ## CPU support
 

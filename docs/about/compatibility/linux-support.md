@@ -43,10 +43,11 @@ AMD ROCm™ Platform supports the following Linux distributions.
 
 ::::
 
-✅: **Supported** - AMD performs full testing of all ROCm components on distro
-  GA image.
-❌: **Unsupported** - AMD no longer performs builds and testing on these
-  previously supported distro GA images.
+✅: **Supported** - AMD performs full testing of all ROCm components
+on distro GA image.
+
+❌: **Unsupported** - AMD no longer performs builds and testing on
+these previously supported distro GA images.
 
 ## Virtualization support
 
@@ -104,11 +105,13 @@ is not listed on this table, the GPU is not officially supported by AMD.
 
 ### Support status
 
-✅: **Supported** - AMD enables these GPUs in our software distributions for
-  the corresponding ROCm product.
+✅: **Supported** - AMD enables these GPUs in our software
+distributions for the corresponding ROCm product.
+
 ⚠️: **Deprecated** - Support will be removed in a future release.
-❌: **Unsupported** - This configuration is not enabled in our software
-  distributions.
+
+❌: **Unsupported** - This configuration is not enabled in our
+software distributions.
 
 ## CPU support
 
