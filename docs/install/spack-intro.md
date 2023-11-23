@@ -135,7 +135,7 @@ yum install gcc-c++
 1. To use the spack package manager, clone the Spack project from GitHub.
 
     ```bash
-    git clone <https://github.com/spack/spack>
+    git clone https://github.com/spack/spack.git
     ```
 
 2. Initialize Spack.
@@ -145,14 +145,14 @@ yum install gcc-c++
     ```bash
     cd spack
 
-    . share/spack/setup-env.sh
+    ./share/spack/setup-env.sh
     ```
 
     Spack commands are available once the above steps are completed. To list the available commands,
     use `help`.
 
     ```bash
-    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
+    user@computername:~$ spack help
     ```
 
 ## Using Spack to install ROCm components
@@ -186,7 +186,7 @@ yum install gcc-c++
     For example:
 
     ```bash
-    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack info mivisionx
+    user@computername:~$ spack info mivisionx
     CMakePackage: mivisionx
 
     Description:
@@ -241,8 +241,6 @@ yum install gcc-c++
 
     Run Dependencies:
     None
-
-    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack)
     ```
 
 ## Installing variants for ROCm components
@@ -265,7 +263,7 @@ spack install mivisionx+opencl build_type=Debug (Backend will be opencl and hip 
     For example:
 
     ```bash
-    root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx
+    user@computername:~$ spack spec mivisionx
     Input spec
     --------------------------------
     mivisionx
@@ -358,7 +356,7 @@ To generate a patch and build with the changes:
     ```bash
     spack stage hip@5.2.0 (This will pull the 5.2.0 release version source code of hip and display the path to spack-src directory where entire source code is available)
 
-    root@[ixt-rack-104:/spack#](http://ixt-rack-104/spack) spack stage hip@5.2.0
+    user@computername:~/spack$ spack stage hip@5.2.0
     ==> Fetching <https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-5.2.0.tar.gz>
     ==> Fetching <https://github.com/ROCm-Developer-Tools/hipamd/archive/rocm-5.2.0.tar.gz>
     ==> Fetching <https://github.com/ROCm-Developer-Tools/ROCclr/archive/rocm-5.2.0.tar.gz>
@@ -377,26 +375,26 @@ To generate a patch and build with the changes:
 2. Change directory to `spack-src` inside the staged directory.
 
     ```bash
-    root@[ixt-rack-104:/spack#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
+    user@computername:~/spack$ cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7
+    user@computername:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7$ cd spack-src/
     ```
 
 3. Create a new Git repository.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git init
+    user@computername:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src$ git init
     ```
 
 4. Add the entire directory to the repository.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git add .
+    user@computername:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src$ git add .
     ```
 
 5. Make the required changes to the source code.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) vi hipamd/CMakeLists.txt (Make required changes in the source code)
+    user@computername:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src$ vi hipamd/CMakeLists.txt (Make required changes in the source code)
     ```
 
 6. Generate the patch using the `git diff` command.
@@ -408,7 +406,7 @@ To generate a patch and build with the changes:
 7. Update the recipe with the patch file name and any conditions you want to apply.
 
     ```bash
-    root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip
+    user@computername:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src$ spack edit hip
     ```
 
     Provide the patch file name and the conditions for the patch:
