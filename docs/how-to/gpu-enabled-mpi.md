@@ -8,36 +8,32 @@ directly use GPU pointers in MPI calls and enable ROCm-aware MPI libraries to
 deliver optimal performance for both intra-node and inter-node GPU-to-GPU
 communication.
 
-The AMD kernel driver exposes Remote Direct Memory Access (RDMA)
-through the *PeerDirect* interfaces to allow Network Interface Cards
-(NICs) to directly read and write to the GPU device memory with RDMA
-capabilities and hence enables high-speed DMA transfers between GPU
-and NIC. These interfaces are used to optimize inter-node MPI message
-communication.
+The AMD kernel driver exposes Remote Direct Memory Access (RDMA) through the
+*PeerDirect* interfaces to allow Host Channel Adapters (HCA, a type of
+Network Interface Card or NIC) to directly read and write to the GPU device
+memory with RDMA capabilities. These interfaces are currently registered as a
+*peer_memory_client* with Mellanox’s OpenFabrics Enterprise Distribution (OFED)
+`ib_core` kernel module to allow high-speed DMA transfers between GPU and HCA.
+These interfaces are used to optimize inter-node MPI message communication.
 
-This chapter exemplifies how to set up Open MPI with the ROCm
-platform. The Open MPI project is an open source implementation of the
-MPI that is developed and maintained by a consortium of academic,
-research, and industry partners.
+This chapter exemplifies how to set up Open MPI with ROCm software. The Open
+MPI project is an open source implementation of the MPI that is developed and maintained by a consortium of academic, research,
+and industry partners.
 
-In the following we provide sample recipes to compile Open MPI with ROCm support
-on different network interconnects.
+Several MPI implementations can be made ROCm-aware by compiling them with
+[Unified Communication Framework](https://www.openucx.org/) (UCX) support. One
+notable exception is MVAPICH2: It directly supports AMD GPUs without using UCX,
+and you can download it [here](http://mvapich.cse.ohio-state.edu/downloads/).
+Use the latest version of the MVAPICH2-GDR package.
 
-* [ROCm-aware Open MPI on InfiniBand and RoCE networks using UCX](#rocm-aware-open-mpi-on-infiniband-and-roce-networks-using-ucx)
-* [ROCm-aware Open MPI using libfabric](#rocm-aware-open-mpi-using-libfabric)
+The Unified Communication Framework, is an open source cross-platform framework
+whose goal is to provide a common set of communication interfaces that targets a
+broad set of network programming models and interfaces. UCX is ROCm-aware, and
+ROCm technologies are used directly to implement various network operation
+primitives. For more details on the UCX design, refer to it's
+[documentation](https://www.openucx.org/documentation).
 
-## ROCm-aware Open MPI on InfiniBand and RoCE networks using UCX
-
-The Unified Communication Framework, is an open source cross-platform
-framework whose goal is to provide a common set of communication
-interfaces that targets a broad set of network programming models and
-interfaces. UCX is ROCm-aware, and ROCm technologies are used directly
-to implement various network operation primitives. For more details on
-the UCX design, refer to it's
-[documentation](https://www.openucx.org/documentation). UCX is the
-preferred communication library for InfiniBand and RoCE network
-interconnect. Many MPI libraries, including Open MPI, can leverage UCX
-internally to optimize data transfer operations on these networks.
+## Building UCX
 
 The following section describes how to set up UCX so it can be used to compile
 Open MPI. The following environment variables are set, such that all software
