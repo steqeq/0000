@@ -132,9 +132,9 @@ target. This can be linked with ``target_link_libraries``
 Consuming the HIP API in C++ code
 ---------------------------------
 
-Use the HIP API without compiling the GPU device code. As there is no GPU code,
-any C or C++ compiler can be used. The ``find_package(hip)`` provides the
-``hip::host`` imported target to use HIP in this context.
+Consuming the HIP API without compiling single-source GPU device code can be
+done using any C++ compiler. The ``find_package(hip)`` provides the
+``hip::host`` imported target to use HIP in this scenario.
 
 ..  code-block:: cmake
 
@@ -145,9 +145,8 @@ any C or C++ compiler can be used. The ``find_package(hip)`` provides the
   add_executable(MyApp ...)
   target_link_libraries(MyApp PRIVATE hip::host)
 
-When mixing ``CXX`` sources using the host API only and HIP sources with
-device-code in them, link only to `hip::host` and if HIP sources don't have
-`.hip` as their extension, use
+When mixing such ``CXX`` sources with ``HIP`` sources holding device-code, link
+only to `hip::host`. If HIP sources don't have `.hip` as their extension, use
 `set_source_files_properties(<hip_sources>... PROPERTIES LANGUAGE HIP)` on them.
 
 Compiling device code in C++ language mode
