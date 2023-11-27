@@ -148,6 +148,12 @@ done using any C++ compiler. The ``find_package(hip)`` provides the
 When mixing such ``CXX`` sources with ``HIP`` sources holding device-code, link
 only to `hip::host`. If HIP sources don't have `.hip` as their extension, use
 `set_source_files_properties(<hip_sources>... PROPERTIES LANGUAGE HIP)` on them.
+Linking to `hip::host` will set all the necessary flags for the ``CXX`` sources
+while ``HIP`` sources inherit all flags from the built-in language support.
+Having HIP sources in a target will turn the |LINK_LANG|_ into ``HIP``.
+
+.. |LINK_LANG| replace:: ``LINKER_LANGUAGE``
+.. _LINK_LANG: https://cmake.org/cmake/help/latest/prop_tgt/LINKER_LANGUAGE.html
 
 Compiling device code in C++ language mode
 ------------------------------------------
