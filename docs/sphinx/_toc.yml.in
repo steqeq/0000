@@ -102,8 +102,6 @@ subtrees:
   - file: conceptual/ai-migraphx-optimization.md
     title: Inference optimization with MIGraphX
 
-
-
 - caption: Contribute
   entries:
   - file: contribute/index.md
