@@ -32,7 +32,7 @@ implement various network operation primitives. UCX is the standard communicatio
 InfiniBand and RDMA over Converged Ethernet (RoCE) network interconnect. To optimize data
 transfer operations, many MPI libraries, including Open MPI, can leverage UCX internally.
 
-To set up UCX so that it can be used to compile Open MPI, refer to the following instructions.
+UCX and Open MPI have a compile option to enable ROCm support. To install and configure UCX to compile Open MPI for ROCm, use the following instructions.
 
 1. Set environment variables to install all software components in the same base directory. We use the
 home directory in our example, but you can specify a different location if you want.
