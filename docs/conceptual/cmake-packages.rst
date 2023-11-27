@@ -98,8 +98,8 @@ there's a catch-all, last resort variable consulted locating this file,
 ROCm installation.
 
 .. note::
-    Imported targets defined by `hip-lang-config.cmake` are for internal use for
-    CMake and should not be used directly.
+    Imported targets defined by `hip-lang-config.cmake` are for internal use
+    only.
 
 If the user doesn't provide a semi-colon delimited list of device architectures
 via ``CMAKE_HIP_ARCHITECTURES``, CMake will select some sensible default. It is
