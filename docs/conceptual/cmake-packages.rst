@@ -137,7 +137,7 @@ Consuming the HIP API without compiling single-source GPU device code can be
 done using any C++ compiler. The ``find_package(hip)`` provides the
 ``hip::host`` imported target to use HIP in this scenario.
 
-..  code-block:: cmake
+.. code-block:: cmake
 
   cmake_minimum_required(VERSION 3.5) # find_package(hip) requires 3.5
   cmake_policy(VERSION 3.5...3.27)
