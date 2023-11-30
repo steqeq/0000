@@ -11,24 +11,10 @@ subtrees:
 
 - caption: Installation
   entries:
-  - file: install/windows/install-quick.md
-    title: Quick start (Windows)
-  - file: install/windows/install.md
-    title: Windows install guide
-    subtrees:
-    - entries:
-      - file: install/windows/windows-app-deployment-guidelines.md
-        title: Application deployment guidelines
-  - file: install/docker.md
-    title: ROCm Docker containers
-  - file: install/pytorch-install.md
-    title: PyTorch for ROCm
-  - file: install/tensorflow-install.md
-    title: Tensorflow for ROCm
-  - file: install/magma-install.md
-    title: MAGMA for ROCm
-  - file: install/spack-intro.md
-    title: ROCm & Spack
+  - file: ${project:linux-install}
+    title: Install ROCm on Linux
+  - file: ${project:windows-install}
+    title: Install HIP SDK on Windows
 
 - caption: Compatibility & support
   entries:
@@ -42,8 +28,6 @@ subtrees:
     title: User/kernel space support
   - file: about/compatibility/docker-image-support-matrix.rst
     title: Docker
-  - file: about/compatibility/openmp.md
-    title: OpenMP
 
 - caption: Release information
   entries:
@@ -81,74 +65,6 @@ subtrees:
   entries:
     - file: reference/library-index.md
       title: API libraries & tools
-      subtrees:
-      - entries:
-        - url: ${project:composable_kernel}
-          title: Composable kernel
-        - url: ${project:hipblas}
-          title: hipBLAS
-        - url: ${project:hipblaslt}
-          title: hipBLASLt
-        - url: ${project:hipcc}
-          title: hipCC
-        - url: ${project:hipcub}
-          title: hipCUB
-        - url: ${project:hipfft}
-          title: hipFFT
-        - url: ${project:hipify}
-          title: HIPIFY
-        - url: ${project:hiprand}
-          title: hipRAND
-        - url: ${project:hip}
-          title: HIP runtime
-        - url: ${project:hipsolver}
-          title: hipSOLVER
-        - url: ${project:hipsparse}
-          title: hipSPARSE
-        - url: ${project:hipsparselt}
-          title: hipSPARSELt
-        - url: ${project:hiptensor}
-          title: hipTensor
-        - url: ${project:miopen}
-          title: MIOpen
-        - url: ${project:amdmigraphx}
-          title: MIGraphX
-        - url: ${project:rccl}
-          title: RCCL
-        - url: ${project:rocalution}
-          title: rocALUTION
-        - url: ${project:rocblas}
-          title: rocBLAS
-        - url: ${project:rocdbgapi}
-          title: ROCdbgapi
-        - url: ${project:rocfft}
-          title: rocFFT
-        - file: reference/rocmcc.md
-          title: ROCmCC
-        - url: ${project:rdc}
-          title: ROCm Data Center Tool
-        - url: ${project:rocm_smi_lib}
-          title: ROCm SMI LIB
-        - url: ${project:rocmvalidationsuite}
-          title: ROCm validation suite
-        - url: ${project:rocprim}
-          title: rocPRIM
-        - url: ${project:rocprofiler}
-          title: ROCProfiler
-        - url: ${project:rocrand}
-          title: rocRAND
-        - url: ${project:rocsolver}
-          title: rocSOLVER
-        - url: ${project:rocsparse}
-          title: rocSPARSE
-        - url: ${project:rocthrust}
-          title: rocThrust
-        - url: ${project:roctracer}
-          title: rocTracer
-        - url: ${project:rocwmma}
-          title: rocWMMA
-        - url: ${project:transferbench}
-          title: TransferBench
 
 - caption: Conceptual
   entries:
@@ -178,6 +94,8 @@ subtrees:
     title: GPU memory
   - file: conceptual/compiler-disambiguation.md
     title: Compiler disambiguation
+  - file: about/compatibility/openmp.md
+    title: OpenMP    
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md
