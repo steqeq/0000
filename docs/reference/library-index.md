@@ -8,7 +8,7 @@
 
 # ROCm API libraries & tools
 
-::::{grid} 1 2 2 2
+::::{grid} 1 3 3 3
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}

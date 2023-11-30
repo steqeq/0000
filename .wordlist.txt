@@ -84,6 +84,7 @@ CSE
 CSn
 csn
 CSV
+CTests
 CU
 cuBLAS
 CUDA
@@ -200,6 +201,7 @@ hipSPARSELt
 hipTensor
 HPC
 HPCG
+HPE
 HPL
 HSA
 hsa
@@ -245,6 +247,7 @@ KVM
 LAPACK
 LCLK
 LDS
+libfabric
 libjpeg
 libs
 linearized
@@ -350,6 +353,7 @@ prefetchable
 preprocess
 preprocessing
 preq
+prequantized
 prerequisites
 PRNG
 profiler
@@ -383,6 +387,7 @@ Rickle
 roadmap
 roc
 ROC
+RoCE
 rocAL
 rocALUTION
 rocalution
@@ -399,6 +404,7 @@ rocm
 ROCm
 ROCmCC
 rocminfo
+rocMLIR
 ROCmSoftwarePlatform
 ROCmValidationSuite
 rocPRIM
@@ -451,6 +457,7 @@ SKUs
 skylake
 sL
 SLES
+sm
 SMEM
 SMI
 smi
@@ -493,6 +500,7 @@ toolchains
 toolset
 toolsets
 TorchAudio
+TorchMIGraphX
 TorchScript
 TorchServe
 TorchVision
