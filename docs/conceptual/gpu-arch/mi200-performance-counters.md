@@ -45,7 +45,7 @@ The CP counters are further classified into CP-Fetcher (CPF) and CP-Compute (CPC
 #### CPC counters
 
 | Hardware Counter                 | Unit   | Definition                                          |
-|:---------------------------------|:-------|:--------------------------------------------------- |
+|:---------------------------------|:-------|:---------------------------------------------------|
 | `CPC_ME1_BUSY_FOR_PACKET_DECODE` | Cycles | Number of cycles CPC Micro Engine (ME1) is busy decoding packets                       |
 | `CPC_UTCL1_STALL_ON_TRANSLATION` | Cycles | Number of cycles one of the UTCL1s is stalled waiting on translation |
 | `CPC_CPC_STAT_BUSY`              | Cycles | Number of cycles CPC is busy                                            |
@@ -61,7 +61,7 @@ The CP counters are further classified into CP-Fetcher (CPF) and CP-Compute (CPC
 ### Shader Processor Input (SPI) counters
 
 | Hardware Counter             | Unit        | Definition                                                   |
-|:----------------------------|:-----------|:----------------------------------------------------------- |
+|:----------------------------|:-----------|:-----------------------------------------------------------|
 | `SPI_CSN_BUSY`                 | Cycles      | Number of cycles with outstanding waves                      |
 | `SPI_CSN_WINDOW_VALID`         | Cycles      | Number of cycles enabled by `perfcounter_start` event               |
 | `SPI_CSN_NUM_THREADGROUPS`     | Workgroups  | Number of dispatched workgroups                        |
@@ -130,7 +130,7 @@ The CU counters are further classified into instruction mix, Matrix Fused Multip
 #### MFMA operation counters
 
 | Hardware Counter             | Unit  | Definition                                      |
-|:----------------------------|:-----|:---------------------------------------------- |
+|:----------------------------|:-----|:----------------------------------------------|
 | `SQ_INSTS_VALU_MFMA_MOPS_I8`   | IOP   | Number of 8-bit integer MFMA ops in the unit of 512 |
 | `SQ_INSTS_VALU_MFMA_MOPS_F16`  | FLOP  | Number of F16 floating MFMA ops in the unit of 512  |
 | `SQ_INSTS_VALU_MFMA_MOPS_BF16` | FLOP  | Number of BF16 floating MFMA ops in the unit of 512 |
@@ -156,7 +156,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 #### Wavefront counters
 
 | Hardware Counter     | Unit  | Definition                                                        |
-|:--------------------|:-----|:---------------------------------------------------------------- |
+|:--------------------|:-----|:----------------------------------------------------------------|
 | `SQ_WAVES`             | Waves | Number of wavefronts dispatched to Sequencers (SQs), including both new and restored wavefronts  |
 | `SQ_WAVES_SAVED*`    | Waves | Number of context-saved waves                  |
 | `SQ_WAVES_RESTORED*` | Waves | Number of context-restored waves sent to SQs                  |
@@ -169,7 +169,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 #### Wavefront cycle counters
 
 | Hardware Counter         | Unit    | Definition                                                            |
-|:------------------------|:-------|:-------------------------------------------------------------------- |
+|:------------------------|:-------|:--------------------------------------------------------------------|
 | `SQ_CYCLES`                | Cycles  | Clock cycles.  |
 | `SQ_BUSY_CYCLES`           | Cycles  | Number of cycles while SQ reports it to be busy.                       |
 | `SQ_BUSY_CU_CYCLES`        | Qcycles | Number of quad-cycles each CU is busy.                                  |
@@ -213,7 +213,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 ### L1I and sL1D cache counters
 
 | Hardware Counter             | Unit   | Definition                                                        |
-|:----------------------------|:------|:---------------------------------------------------------------- |
+|:----------------------------|:------|:----------------------------------------------------------------|
 | `SQC_ICACHE_REQ`               | Req    | Number of `L1I` cache requests                                      |
 | `SQC_ICACHE_HITS`              | Count  | Number of `L1I` cache hits                                   |
 | `SQC_ICACHE_MISSES`            | Count  | Number of non-duplicate `L1I` cache misses including uncached requests                   |
@@ -243,7 +243,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TA counters
 
 | Hardware Counter                 | Unit   | Definition                                        |
-|:--------------------------------|:------|:------------------------------------------------ |
+|:--------------------------------|:------|:------------------------------------------------|
 | `TA_TA_BUSY[n]`                       | Cycles | TA busy cycles. Value range for n: [0-15]. |
 | `TA_TOTAL_WAVEFRONTS[n]`              | Instr  | Number of wavefronts processed by TA. Value range for n: [0-15].       |
 | `TA_BUFFER_WAVEFRONTS[n]`             | Instr  | Number of buffer wavefronts processed by TA. Value range for n: [0-15].       |
@@ -264,7 +264,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TD counters
 
 | Hardware Counter         | Unit  | Definition                                           |
-|:------------------------|:-----|:--------------------------------------------------- |
+|:------------------------|:-----|:---------------------------------------------------|
 | `TD_TD_BUSY[n]`               | Cycle | TD busy cycles while it is processing or waiting for data. Value range for n: [0-15].                            |
 | `TD_TC_STALL[n]`              | Cycle | Number of cycles TD is stalled waiting for TC data. Value range for n: [0-15].   |
 | `TD_SPI_STALL[n]`          | Cycle | Number of cycles TD is stalled by SPI. Value range for n: [0-15].      |
@@ -276,7 +276,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TCP counters
 
 | Hardware Counter                    | Unit   | Definition                                                  |
-|:-----------------------------------|:------|:---------------------------------------------------------- |
+|:-----------------------------------|:------|:----------------------------------------------------------|
 | `TCP_GATE_EN1[n]`                        | Cycles | Number of cycles vL1D interface clocks are turned on. Value range for n: [0-15].    |
 | `TCP_GATE_EN2[n]`                        | Cycles | Number of cycles vL1D core clocks are turned on. Value range for n: [0-15].  |
 | `TCP_TD_TCP_STALL_CYCLES[n]`             | Cycles | Number of cycles TD stalls vL1D. Value range for n: [0-15].                           |
@@ -322,7 +322,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TCA counters
 
 | Hardware Counter | Unit   | Definition                                  |
-|:----------------|:------|:------------------------------------------ |
+|:----------------|:------|:------------------------------------------|
 | `TCA_CYCLE[n]`        | Cycles | Number of TCA cycles. Value range for n: [0-31].                               |
 | `TCA_BUSY[n]`         | Cycles | Number of cycles TCA has a pending request. Value range for n: [0-31]. |
 
@@ -331,7 +331,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 L2 Cache is also known as Texture Cache per Channel (TCC).
 
 | Hardware Counter                 | Unit   | Definition                                                     |
-|:--------------------------------|:------|:------------------------------------------------------------- |
+|:--------------------------------|:------|:-------------------------------------------------------------|
 | `TCC_CYCLE[n]`                        |Cycle   | Number of L2 cache free-running clocks. Value range for n: [0-31].               |
 | `TCC_BUSY[n]`                         |Cycle   | Number of L2 cache busy cycles. Value range for n: [0-31].                                        |
 | `TCC_REQ[n]`                          |Req     | Number of L2 cache requests of all types. This is measured at the tag block. This may be more than the number of requests arriving at the TCC, but it is a good indication of the total amount of work that needs to be performed. Value range for n: [0-31].      |
@@ -518,7 +518,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 ## Abbreviations
 
 | Abbreviation | Meaning                                                                           |
-|:------------|:-------------------------------------------------------------------------------- |
+|:------------|:--------------------------------------------------------------------------------|
 | `ALU`          | Arithmetic Logic Unit                                                             |
 | `Arb`          | Arbiter                                                                           |
 | `BF16`         | Brain Floating Point - 16 bits                                                    |
