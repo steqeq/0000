@@ -8,13 +8,13 @@ This document lists and describes the hardware performance counters and derived 
 See the category-wise listing of MI200 performance counters in the following tables.
 
 ```{note}
-Preliminary validation of all MI200 performance counters is in progress. Those with “[*]” appended to the names require further evaluation.
+Preliminary validation of all MI200 performance counters is in progress. Those with “*” appended to the names require further evaluation.
 ```
 
 ### Graphics Register Bus Management (GRBM) counters
 
 | Hardware Counter   | Unit   | Definition                                                                |
-|--------------------|--------| --------------------------------------------------------------------------|
+|:--------------------|:--------|:--------------------------------------------------------------------------|
 | `GRBM_COUNT`       | Cycles | Number of free-running GPU cycles                                         |
 | `GRBM_GUI_ACTIVE`  | Cycles | Number of GPU active cycles                                               |
 | `GRBM_CP_BUSY`     | Cycles | Number of cycles any of the Command Processor (CP) blocks are busy                  |
@@ -33,19 +33,19 @@ The CP counters are further classified into CP-Fetcher (CPF) and CP-Compute (CPC
 #### CPF counters
 
 | Hardware Counter                     | Unit   | Definition                  |
-|--------------------------------------|--------|-------------------------------------------------------------|
+|:--------------------------------------|:--------|:-------------------------------------------------------------|
 | `CPF_CMP_UTCL1_STALL_ON_TRANSLATION` | Cycles | Number of cycles one of the Compute UTCL1s is stalled waiting on translation |
 | `CPF_CPF_STAT_BUSY`                  | Cycles | Number of cycles CPF is busy                                                   |
-| `CPF_CPF_STAT_IDLE[*]`               | Cycles | Number of cycles CPF is idle                                                   |
+| `CPF_CPF_STAT_IDLE*`               | Cycles | Number of cycles CPF is idle                                                   |
 | `CPF_CPF_STAT_STALL`                 | Cycles | Number of cycles CPF is stalled                                                  |
 | `CPF_CPF_TCIU_BUSY`                  | Cycles | Number of cycles CPF Texture Cache Interface Unit (TCIU) interface is busy                                    |
 | `CPF_CPF_TCIU_IDLE`                  | Cycles | Number of cycles CPF TCIU interface is idle                                    |
-| `CPF_CPF_TCIU_STALL[*]`              | Cycles | Number of cycles CPF TCIU interface is stalled waiting on free tags        |
+| `CPF_CPF_TCIU_STALL*`              | Cycles | Number of cycles CPF TCIU interface is stalled waiting on free tags        |
 
 #### CPC counters
 
 | Hardware Counter                 | Unit   | Definition                                          |
-| ---------------------------------| -------| --------------------------------------------------- |
+|:---------------------------------|:-------|:--------------------------------------------------- |
 | `CPC_ME1_BUSY_FOR_PACKET_DECODE` | Cycles | Number of cycles CPC Micro Engine (ME1) is busy decoding packets                       |
 | `CPC_UTCL1_STALL_ON_TRANSLATION` | Cycles | Number of cycles one of the UTCL1s is stalled waiting on translation |
 | `CPC_CPC_STAT_BUSY`              | Cycles | Number of cycles CPC is busy                                            |
@@ -61,7 +61,7 @@ The CP counters are further classified into CP-Fetcher (CPF) and CP-Compute (CPC
 ### Shader Processor Input (SPI) counters
 
 | Hardware Counter             | Unit        | Definition                                                   |
-| :----------------------------| :-----------| -----------------------------------------------------------: |
+|:----------------------------|:-----------|:----------------------------------------------------------- |
 | `SPI_CSN_BUSY`                 | Cycles      | Number of cycles with outstanding waves                      |
 | `SPI_CSN_WINDOW_VALID`         | Cycles      | Number of cycles enabled by `perfcounter_start` event               |
 | `SPI_CSN_NUM_THREADGROUPS`     | Workgroups  | Number of dispatched workgroups                        |
@@ -69,15 +69,15 @@ The CP counters are further classified into CP-Fetcher (CPF) and CP-Compute (CPC
 | `SPI_RA_REQ_NO_ALLOC`          | Cycles      | Number of Arb cycles with requests but no allocation |
 |`SPI_RA_REQ_NO_ALLOC_CSN`       | Cycles      | Number of Arb cycles with Compute Shader, n-th pipe (CSn) requests but no CSn allocation |
 | `SPI_RA_RES_STALL_CSN`         | Cycles      | Number of Arb stall cycles due to shortage of CSn pipeline slots |
-| `SPI_RA_TMP_STALL_CSN[*]`      | Cycles      | Number of stall cycles due to shortage of temp space |
+| `SPI_RA_TMP_STALL_CSN*`      | Cycles      | Number of stall cycles due to shortage of temp space |
 | `SPI_RA_WAVE_SIMD_FULL_CSN`    | SIMD-cycles | Accumulated number of Single Instruction Multiple Data (SIMDs) per cycle affected by shortage of wave slots for CSn wave dispatch   |
-| `SPI_RA_VGPR_SIMD_FULL_CSN[*]` | SIMD-cycles | Accumulated number of SIMDs per cycle affected by shortage of VGPR slots for CSn wave dispatch  |
-| `SPI_RA_SGPR_SIMD_FULL_CSN[*]` | SIMD-cycles | Accumulated number of SIMDs per cycle affected by shortage of SGPR slots for CSn wave dispatch    |
+| `SPI_RA_VGPR_SIMD_FULL_CSN*` | SIMD-cycles | Accumulated number of SIMDs per cycle affected by shortage of VGPR slots for CSn wave dispatch  |
+| `SPI_RA_SGPR_SIMD_FULL_CSN*` | SIMD-cycles | Accumulated number of SIMDs per cycle affected by shortage of SGPR slots for CSn wave dispatch    |
 | `SPI_RA_LDS_CU_FULL_CSN`       | CUs         | Number of Compute Units (CUs) affected by shortage of LDS space for CSn wave dispatch   |
-| `SPI_RA_BAR_CU_FULL_CSN[*]`    | CUs         | Number of CUs with CSn waves waiting at a BARRIER   |
-| `SPI_RA_BULKY_CU_FULL_CSN[*]`  | CUs         | Number of CUs with CSn waves waiting for BULKY resource     |
-| `SPI_RA_TGLIM_CU_FULL_CSN[*]`  | Cycles      | Number of CSn wave stall cycles due to restriction of `tg_limit` for thread group size    |
-| `SPI_RA_WVLIM_STALL_CSN[*]`  | Cycles      | Number of cycles CSn is stalled due to WAVE_LIMIT            |
+| `SPI_RA_BAR_CU_FULL_CSN*`    | CUs         | Number of CUs with CSn waves waiting at a BARRIER   |
+| `SPI_RA_BULKY_CU_FULL_CSN*`  | CUs         | Number of CUs with CSn waves waiting for BULKY resource     |
+| `SPI_RA_TGLIM_CU_FULL_CSN*`  | Cycles      | Number of CSn wave stall cycles due to restriction of `tg_limit` for thread group size    |
+| `SPI_RA_WVLIM_STALL_CSN*`  | Cycles      | Number of cycles CSn is stalled due to WAVE_LIMIT            |
 | `SPI_VWC_CSC_WR`               | Qcycles      | Number of quad-cycles taken to initialize Vector General Purpose Register (VGPRs) when launching waves |
 | `SPI_SWC_CSC_WR`               | Qcycles      | Number of quad-cycles taken to initialize Vector General Purpose Register (SGPRs) when launching waves |
 
@@ -88,7 +88,7 @@ The CU counters are further classified into instruction mix, Matrix Fused Multip
 #### Instruction mix
 
 | Hardware Counter        | Unit   | Definition                                                               |
-| :-----------------------| :-----:| -----------------------------------------------------------------------: |
+|:-----------------------|:-----|:-----------------------------------------------------------------------|
 | `SQ_INSTS`                | Instr | Number of instructions issued.                                              |
 | `SQ_INSTS_VALU`           | Instr | Number of Vector Arithmetic Logic Unit (VALU) instructions including MFMA issued.                         |
 | `SQ_INSTS_VALU_ADD_F16`   | Instr | Number of VALU Half Precision Floating Point (F16) ADD/SUB instructions issued.                            |
@@ -125,12 +125,12 @@ The CU counters are further classified into instruction mix, Matrix Fused Multip
 | `SQ_INSTS_EXP_GDS`        | Instr | Number of EXP and GDS instructions excluding skipped export instructions issued.  |
 | `SQ_INSTS_BRANCH`         | Instr | Number of Branch instructions issued.                                     |
 | `SQ_INSTS_SENDMSG`        | Instr | Number of `SENDMSG` instructions including `s_endpgm` issued.                 |
-| `SQ_INSTS_VSKIPPED[*]`    | Instr | Number of vector instructions skipped.                                 |
+| `SQ_INSTS_VSKIPPED*`    | Instr | Number of vector instructions skipped.                                 |
 
 #### MFMA operation counters
 
 | Hardware Counter             | Unit  | Definition                                      |
-| :----------------------------| :-----| ----------------------------------------------: |
+|:----------------------------|:-----|:---------------------------------------------- |
 | `SQ_INSTS_VALU_MFMA_MOPS_I8`   | IOP   | Number of 8-bit integer MFMA ops in the unit of 512 |
 | `SQ_INSTS_VALU_MFMA_MOPS_F16`  | FLOP  | Number of F16 floating MFMA ops in the unit of 512  |
 | `SQ_INSTS_VALU_MFMA_MOPS_BF16` | FLOP  | Number of BF16 floating MFMA ops in the unit of 512 |
@@ -144,7 +144,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 :::
 
 | Hardware Counter    | Unit  | Definition                             |
-| :-------------------| :-----| -------------------------------------: |
+|:-------------------|:-----|:-------------------------------------|
 | `SQ_ACCUM_PREV`       | Count | Accumulated counter sample value where accumulation takes place once every four cycles. |
 | `SQ_ACCUM_PREV_HIRES` | Count | Accumulated counter sample value where accumulation takes place once every cycle. |
 | `SQ_LEVEL_WAVES`      | Waves | Number of inflight waves. To calculate the wave latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_WAVE`.           |
@@ -156,10 +156,10 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 #### Wavefront counters
 
 | Hardware Counter     | Unit  | Definition                                                        |
-| :--------------------| :-----| ----------------------------------------------------------------: |
+|:--------------------|:-----|:---------------------------------------------------------------- |
 | `SQ_WAVES`             | Waves | Number of wavefronts dispatched to Sequencers (SQs), including both new and restored wavefronts  |
-| `SQ_WAVES_SAVED[*]`    | Waves | Number of context-saved waves                  |
-| `SQ_WAVES_RESTORED[*]` | Waves | Number of context-restored waves sent to SQs                  |
+| `SQ_WAVES_SAVED*`    | Waves | Number of context-saved waves                  |
+| `SQ_WAVES_RESTORED*` | Waves | Number of context-restored waves sent to SQs                  |
 | `SQ_WAVES_EQ_64`       | Waves | Number of wavefronts with exactly 64 active threads sent to SQs    |
 | `SQ_WAVES_LT_64`       | Waves | Number of wavefronts with less than 64 active threads sent to SQs  |
 | `SQ_WAVES_LT_48`       | Waves | Number of wavefronts with less than 48 active threads sent to SQs  |
@@ -169,7 +169,7 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 #### Wavefront cycle counters
 
 | Hardware Counter         | Unit    | Definition                                                            |
-| :------------------------| :-------| --------------------------------------------------------------------: |
+|:------------------------|:-------|:-------------------------------------------------------------------- |
 | `SQ_CYCLES`                | Cycles  | Clock cycles.  |
 | `SQ_BUSY_CYCLES`           | Cycles  | Number of cycles while SQ reports it to be busy.                       |
 | `SQ_BUSY_CU_CYCLES`        | Qcycles | Number of quad-cycles each CU is busy.                                  |
@@ -195,25 +195,25 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 #### LDS counters
 
 | Hardware Counter           | Unit   | Definition                                                |
-| :--------------------------| :------| --------------------------------------------------------: |
+|:--------------------------|:------|:--------------------------------------------------------|
 | `SQ_LDS_ATOMIC_RETURN`       | Cycles | Number of atomic return cycles in LDS                   |
 | `SQ_LDS_BANK_CONFLICT`       | Cycles | Number of cycles LDS is stalled by bank conflicts     |
-| `SQ_LDS_ADDR_CONFLICT[*]`    | Cycles | Number of cycles LDS is stalled by address conflicts     |
-| `SQ_LDS_UNALIGNED_STALL[*]` | Cycles | Number of cycles LDS is stalled processing flat unaligned load/store ops |
-| `SQ_LDS_MEM_VIOLATIONS[*]`   | Count  | Number of threads that have a memory violation in the LDS  |
+| `SQ_LDS_ADDR_CONFLICT*`    | Cycles | Number of cycles LDS is stalled by address conflicts     |
+| `SQ_LDS_UNALIGNED_STALL*` | Cycles | Number of cycles LDS is stalled processing flat unaligned load/store ops |
+| `SQ_LDS_MEM_VIOLATIONS*`   | Count  | Number of threads that have a memory violation in the LDS  |
 | `SQ_LDS_IDX_ACTIVE` | Cycles | Number of cycles LDS is used for indexed operations  |
 
 #### Miscellaneous counters
 
 | Hardware Counter           | Unit   | Definition                                                |
-| :--------------------------| :------| --------------------------------------------------------: |
+|:--------------------------|:------|:--------------------------------------------------------|
 | `SQ_IFETCH`        | Count   | Number of instruction fetch requests from `L1I` cache, in 32-byte width  |
 | `SQ_ITEMS`         | Threads | Number of valid items per wave                                  |
 
 ### L1I and sL1D cache counters
 
 | Hardware Counter             | Unit   | Definition                                                        |
-| :----------------------------| :------| ----------------------------------------------------------------: |
+|:----------------------------|:------|:---------------------------------------------------------------- |
 | `SQC_ICACHE_REQ`               | Req    | Number of `L1I` cache requests                                      |
 | `SQC_ICACHE_HITS`              | Count  | Number of `L1I` cache hits                                   |
 | `SQC_ICACHE_MISSES`            | Count  | Number of non-duplicate `L1I` cache misses including uncached requests                   |
@@ -228,13 +228,13 @@ All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure 
 | `SQC_DCACHE_REQ_READ_4`        | Req    | Number of constant cache read requests in four DW  |
 | `SQC_DCACHE_REQ_READ_8`        | Req    | Number of constant cache read requests in eight DW     |
 | `SQC_DCACHE_REQ_READ_16`       | Req    | Number of constant cache read requests in 16 DW      |
-| `SQC_DCACHE_ATOMIC[*]`         | Req    | Number of atomic requests                 |
+| `SQC_DCACHE_ATOMIC*`         | Req    | Number of atomic requests                 |
 | `SQC_TC_REQ`                   | Req    | Number of TC requests that were issued by instruction and constant caches  |
 | `SQC_TC_INST_REQ`              | Req    | Number of instruction requests to the L2 cache            |
 | `SQC_TC_DATA_READ_REQ`         | Req    | Number of data Read requests to the L2 cache                   |
-| `SQC_TC_DATA_WRITE_REQ[*]`     | Req    | Number of data write requests to the L2 cache                    |
-| `SQC_TC_DATA_ATOMIC_REQ[*]`    | Req    | Number of data atomic requests to the L2 cache              |
-| `SQC_TC_STALL[*]`              | Cycles | Number of cycles while the valid requests to the L2 cache are stalled |
+| `SQC_TC_DATA_WRITE_REQ*`     | Req    | Number of data write requests to the L2 cache                    |
+| `SQC_TC_DATA_ATOMIC_REQ*`    | Req    | Number of data atomic requests to the L2 cache              |
+| `SQC_TC_STALL*`              | Cycles | Number of cycles while the valid requests to the L2 cache are stalled |
 
 ### Vector L1 cache subsystem
 
@@ -243,7 +243,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TA counters
 
 | Hardware Counter                 | Unit   | Definition                                        |
-| :--------------------------------| :------| ------------------------------------------------: |
+|:--------------------------------|:------|:------------------------------------------------ |
 | `TA_TA_BUSY[n]`                       | Cycles | TA busy cycles. Value range for n: [0-15]. |
 | `TA_TOTAL_WAVEFRONTS[n]`              | Instr  | Number of wavefronts processed by TA. Value range for n: [0-15].       |
 | `TA_BUFFER_WAVEFRONTS[n]`             | Instr  | Number of buffer wavefronts processed by TA. Value range for n: [0-15].       |
@@ -264,7 +264,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TD counters
 
 | Hardware Counter         | Unit  | Definition                                           |
-| :------------------------| :-----| ---------------------------------------------------: |
+|:------------------------|:-----|:--------------------------------------------------- |
 | `TD_TD_BUSY[n]`               | Cycle | TD busy cycles while it is processing or waiting for data. Value range for n: [0-15].                            |
 | `TD_TC_STALL[n]`              | Cycle | Number of cycles TD is stalled waiting for TC data. Value range for n: [0-15].   |
 | `TD_SPI_STALL[n]`          | Cycle | Number of cycles TD is stalled by SPI. Value range for n: [0-15].      |
@@ -276,7 +276,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TCP counters
 
 | Hardware Counter                    | Unit   | Definition                                                  |
-| :-----------------------------------| :------| ----------------------------------------------------------: |
+|:-----------------------------------|:------|:---------------------------------------------------------- |
 | `TCP_GATE_EN1[n]`                        | Cycles | Number of cycles vL1D interface clocks are turned on. Value range for n: [0-15].    |
 | `TCP_GATE_EN2[n]`                        | Cycles | Number of cycles vL1D core clocks are turned on. Value range for n: [0-15].  |
 | `TCP_TD_TCP_STALL_CYCLES[n]`             | Cycles | Number of cycles TD stalls vL1D. Value range for n: [0-15].                           |
@@ -322,7 +322,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 #### TCA counters
 
 | Hardware Counter | Unit   | Definition                                  |
-| :----------------| :------| ------------------------------------------: |
+|:----------------|:------|:------------------------------------------ |
 | `TCA_CYCLE[n]`        | Cycles | Number of TCA cycles. Value range for n: [0-31].                               |
 | `TCA_BUSY[n]`         | Cycles | Number of cycles TCA has a pending request. Value range for n: [0-31]. |
 
@@ -331,7 +331,7 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 L2 Cache is also known as Texture Cache per Channel (TCC).
 
 | Hardware Counter                 | Unit   | Definition                                                     |
-| :--------------------------------| :------| -------------------------------------------------------------: |
+|:--------------------------------|:------|:------------------------------------------------------------- |
 | `TCC_CYCLE[n]`                        |Cycle   | Number of L2 cache free-running clocks. Value range for n: [0-31].               |
 | `TCC_BUSY[n]`                         |Cycle   | Number of L2 cache busy cycles. Value range for n: [0-31].                                        |
 | `TCC_REQ[n]`                          |Req     | Number of L2 cache requests of all types. This is measured at the tag block. This may be more than the number of requests arriving at the TCC, but it is a good indication of the total amount of work that needs to be performed. Value range for n: [0-31].      |
@@ -377,7 +377,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 ## MI200 derived metrics list
 
 | Derived Metric   | Description                                                                            |
-| :----------------| -------------------------------------------------------------------------------------: |
+|:----------------|:-------------------------------------------------------------------------------------|
 | `ALUStalledByLDS` | Percentage of GPU time ALU units are stalled due to the LDS input queue being full or the output queue not being ready. Reduce this by reducing the LDS bank conflicts or the number of LDS accesses if possible. Value range: 0% (optimal) to 100% (bad). |
 | `FetchSize` | Total kilobytes fetched from the video memory. This is measured with all extra fetches and any cache or memory effects taken into account. |
 | `FlatLDSInsts`     | Average number of FLAT instructions that read from or write to LDS, executed per work item (affected by flow control). |
@@ -518,7 +518,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 ## Abbreviations
 
 | Abbreviation | Meaning                                                                           |
-| :------------| --------------------------------------------------------------------------------: |
+|:------------|:-------------------------------------------------------------------------------- |
 | `ALU`          | Arithmetic Logic Unit                                                             |
 | `Arb`          | Arbiter                                                                           |
 | `BF16`         | Brain Floating Point - 16 bits                                                    |
@@ -558,7 +558,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 | `TC`           | Texture Cache                                                                     |
 | `TCA`          | Texture Cache Arbiter                                                             |
 | `TCC`          | Texture Cache per Channel, known as L2 Cache                                      |
-| `TCIU`         | Texture Cache Interface Unit, CP's interface to memory system |
+| `TCIU`         | Texture Cache Interface Unit. It is the interface between CP and the memory system |
 | `TCP`          | Texture Cache per Pipe, known as vector L1 Cache                                  |
 | `TCR`          | Texture Cache Router                                                              |
 | `TD`           | Texture Data Unit                                                                 |
