@@ -558,7 +558,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 | `TC`           | Texture Cache                                                                     |
 | `TCA`          | Texture Cache Arbiter                                                             |
 | `TCC`          | Texture Cache per Channel, known as L2 Cache                                      |
-| `TCIU`         | Texture Cache Interface Unit. It is the interface between CP and the memory system |
+| `TCIU`         | Texture Cache Interface Unit (interface between CP and the memory system) |
 | `TCP`          | Texture Cache per Pipe, known as vector L1 Cache                                  |
 | `TCR`          | Texture Cache Router                                                              |
 | `TD`           | Texture Data Unit                                                                 |
