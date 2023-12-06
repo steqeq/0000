@@ -496,29 +496,29 @@ To enable zero-copy behavior by default in the programs running on MI300A, follo
 
   See how to build a program with `unified_shared_memory` pragma and `xnack+` target feature:
 
-```bash
+  ```bash
   clang++ -fopenmp -offload-arch=gfx942:xnack+ -BUILD_WITH_USM vec_add.cpp -o vec_add
-```
+  ```
 
   You can also build using `xnack-any` which is the default when an XNACK target feature is not explicitly specified:
 
-```bash
+  ```bash
   clang++ -fopenmp -offload-arch=gfx942 -BUILD_WITH_USM vec_add.cpp -o vec_add
-```
+  ```
 
   Note that the `-BUILD_WITH_USM` macro has been defined in [vec_add.cpp](#sample-program) to enable `#pragma omp requires unified_shared_memory`.
 
   Alternatively, see how to build using the ROCm compiler option `-fopenmp-force-usm`:
 
-```bash
+  ```bash
   clang++ -fopenmp -offload-arch=gfx942 -fopenmp-force-usm vec_add.cpp -o vec_add
-```
+  ```
 
   Execute the above-compiled program with XNACK-enabled as shown below:
 
-```bash
+  ```bash
   HSA_XNACK=1 ./vec_add
-```
+  ```
 
 * When not using `unified_shared_memory` pragma in the program:
 
@@ -540,9 +540,9 @@ To enable zero-copy behavior by default in the programs running on MI300A, follo
 
   Execute the above-compiled program as shown below:
 
-```bash
+  ```bash
   OMPX_APU_MAPS=1 HSA_XNACK=1 ./vec_add
-```
+  ```
 
 To debug portability issues between GPU and APU systems, enable the legacy behavior on MI300A by disabling XNACK thus allowing extra memory allocations and copies. For example:
 
