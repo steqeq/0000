@@ -32,6 +32,7 @@ The list of maintainers are available in each repository, defined in the GitHub 
 ### Contributors
 
 Everyone else is a contributor.  The community is encouraged to contribute to ROCm in several ways:
+
 * Post questions/solutions on our [GitHub discussion forums][Github forums] to help out other community members
 * File an issue report on [GitHub Issues][Github issues] to notify us of a bug
 * Improve our documentation by submitting a pull request (PR) to our [documentation repository][Documentation Github]
@@ -49,8 +50,6 @@ For AMD components of ROCm which are hosted on GitHub, all users must abide by t
 [Documentation GitHub]: https://github.com/RadeonOpenCompute/ROCm
 [Github community guidelines]: https://docs.github.com/en/site-policy/github-terms/github-community-guidelines
 [Github community code of conduct]: https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct
-[ROCm licenses]: https://rocm.docs.amd.com/en/latest/release/licensing.html
 [Contribution guidelines]: contributing.md
 [Kernel Driver]: https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver
 [LLVM]: https://github.com/RadeonOpenCompute/llvm-project
-

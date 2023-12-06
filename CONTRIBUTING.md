@@ -79,4 +79,3 @@ The current ROCm development workflow is GitHub based.  However, ROCm can move t
 [ROCm licenses]: https://rocm.docs.amd.com/en/latest/release/licensing.html
 [Kernel Driver]: https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver
 [LLVM]: https://github.com/RadeonOpenCompute/llvm-project
-
