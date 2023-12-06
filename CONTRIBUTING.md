@@ -1,81 +1,93 @@
----
-main_title: Contributing to ROCm
-main_body: This is the high level contributing description.  Each component of ROCm can and should detail their own contributing.md which goes into detail about how community members can contribute to their component.
-slug: main_constributing_doc
----
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Contributing to ROCm">
+  <meta name="keywords" content="ROCm, contributing, contribute, maintainer, contributor">
+</head>
 
-# General Contribution Guidelines
+# Contribute to ROCm
 
-AMD values and encourages contributions to our code and documentation.
+AMD values and encourages contributions to our code and documentation. If you want to contribute
+to our ROCm repositories, first review the following guidance. For documentation-specific information,
+see [Contributing to ROCm docs](./docs/contribute/contribute-docs.md).
 
-This document captures the high-level general contribution guidelines and workflow.  Each component of ROCm should describe an in-depth contribution guide following their particular style and methods.  
+ROCm is a software stack made up of a collection of drivers, development tools, and APIs that enable
+GPU programming from low-level kernel to end-user applications. Because some of our components
+are inherited from external projects (such as
+[LLVM](https://github.com/RadeonOpenCompute/llvm-project) and
+[Kernel driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver)), these use
+project-specific contribution guidelines and workflow. Refer to their repositories for more information.
+All other ROCm components follow the workflow described in the following sections.
 
-## Scope
+## Development workflow
 
-ROCm is a software stack made up of a collection of drivers, development tools, and APIs that enable GPU programming from low-level kernel to end-user applications.
+ROCm uses GitHub to host code, collaborate, and manage version control. We use pull requests (PRs)
+for all changes within our repositories. We use
+[GitHub issues](https://github.com/RadeonOpenCompute/ROCm/issues) to track known issues, such as
+bugs.
 
-Components of ROCm that are inherited from external projects (such as [LLVM][LLVM], [Kernel driver][Kernel Driver], etc) shall continue to follow their existing contribution guidelines and workflow.
+### Issue tracking
 
-All other components of ROCm shall follow the workflow described by this document.
+Before filing a new issue, search the
+[existing issues](https://github.com/RadeonOpenCompute/ROCm/issues) to make sure your issue isn't
+already listed.
 
-## Development Workflow
+General issue guidelines:
 
-ROCm is currently using the GitHub platform for code hosting, collaboration and managing version control. All development will be done using the standard GitHub workflow of pull requests.
+* Use your best judgement for issue creation. If your issue is already listed, upvote the issue and
+  comment or post to provide additional details, such as how you reproduced this issue.
+* If you're not sure if your issue is the same, err on the side of caution and file your issue.
+  You can add a comment to include the issue number (and link) for the similar issue. If we evaluate
+  your issue as being the same as the existing issue, we'll close the duplicate.
+* If your issue doesn't exist, use the issue template to file a new issue.
+  * When filing an issue, be sure to provide as much information as possible, including script output so
+    we can collect information about your configuration. This helps reduce the time required to
+    reproduce your issue.
+  * Check your issue regularly, as we may require additional information to successfully reproduce the
+    issue.
 
-### Issue Tracking
+### Pull requests
 
-Issues are filed on GitHub Issues.
+Our repositories typically use the **develop** branch an integration branch for new code so, when
+making a PR, target this branch.
 
-* Search if issue already exists in [GitHub Issues list][Github issues].
-  * Use your best judgement.  If you believe your issue is the same as another, then you can just upvote the issue and comment/post to provide more details as to how you reproduced it.
-  * If you're not absolutely sure if the issue is the same, err on the side of caution and just file the issue.  You can add a comment saying it might be the same as another issue number.  Our team will assess and close as duplicate, if it is in fact a duplicate.
-  * If issue does NOT exist, use the template to file a new issue.
-* When filing the issue, please be sure to provide as much information as possible, including the output of the scripts to collect information about the configuration.  This will help reduce the churn required to understand how to reproduce the issue.
-* Check the issue regularly as there may be additional questions or information required to successfully reproduce the issue.
+When creating a PR, use the following process. Note that each repository may include additional,
+project-specific steps. Refer to each repository's PR process for any additional steps.
 
-### Pull Request Process
-
-Our repositories follow a workflow where all changes go into the **develop** branch. This branch serves as an integration branch for new code. Pull requests should follow the general flow below.  A particular repository may include additional steps.  Please refer to each repository's PR process for the most detailed steps.
-
-* Identify issue to fix
+* Identify the issue you want to fix
 * Target the **develop** branch for integration
-* Ensure code builds successfully
-* Ensure change meets acceptance criteria
-* Each component has a suite of test cases to run.  Please include the log of the successful test run in your PR
+* Ensure your code builds successfully
+* Each component has a suite of test cases to run; include the log of the successful test run in your PR
 * Do not break existing test cases
-* New functionality will only be merged with new unit tests
+* New functionality is only merged with new unit tests
+  * If your PR includes a new feature, you must provide an application or test so we can ensure that the
+    feature works and continues to be valid in the future
 * Tests must have good code coverage
-* Submit the pull request and work with reviewer/maintainer to get PR approved
-* Once approved, the PR will be brought onto internal CI systems and may be merged into the component at opportune intervals, coordinated by the maintainer
-* You will be informed on the PR once the change is committed.
+* Submit your PR and work with the reviewer or maintainer to get your PR approved
+* Once approved, the PR is brought onto internal CI systems and may be merged into the component
+  during our release cycle, as coordinated by the maintainer
+* We'll inform you once your change is committed
 
-**IMPORTANT:** By creating a pull request, you agree to allow your contribution to be licensed by the project owners under the terms of the license.txt in the corresponding repository.  Each repository may use a different license.  You can lookup the license on this [summary page][ROCm licenses].
+```important
+By creating a PR, you agree to allow your contribution to be licensed by the project owners under the
+terms of the LICENSE file in the corresponding repository. Different repositories may use different
+licenses. You can look up each license on the [ROCm licensing](./docs/about/license.md) page.
+```
 
-### New Feature Development
+### New feature development
 
-Proposed new features should be discussed actively on the [GitHub Discussion forum][Github forums], Ideas category.  Maintainers can provide direction and feedback on feature development.
-
-### Testing
-
-All PRs need to pass an existing test suite.  Please include a log of a successful test run with your PR.
-
-If your PR includes a new feature, an application or test must be provided so that we can test that the feature works & continues to be valid in the future.
-
-For the time being, pull requests will be run on internal CI systems to ensure functionality and robustness.
+Use the [GitHub Discussion forum](https://github.com/RadeonOpenCompute/ROCm/discussions)
+(Ideas category) to propose new features. Our maintainers are happy to provide direction and
+feedback on feature development.
 
 ### Documentation
 
-Changes to the main ROCm documentation can be submitted on the [Documentation GitHub][Documentation GitHub]. The documentation must be updated for any new feature or API update.
+Submit ROCm documentation changes to our
+[documentation repository](https://github.com/RadeonOpenCompute/ROCm). You must update
+documentation related to any new feature or API contribution.
 
-Each repository may use a different documentation method or style.  Please follow the documentation process for each repository.
+Note that each ROCm project uses its own repository for documentation.
 
-## Future Development Workflow
+## Future development workflow
 
-The current ROCm development workflow is GitHub based.  However, ROCm can move to a different platform.  If the platform does change, the tools and links may change, but the general development workflow shall remain similar to what is currently described above.  If such a change is to occur, please expect that this document will be updated to describe the new tools and links.  
-
-[Github forums]: https://github.com/RadeonOpenCompute/ROCm/discussions
-[Github issues]: https://github.com/RadeonOpenCompute/ROCm/issues
-[Documentation GitHub]: https://github.com/RadeonOpenCompute/ROCm
-[ROCm licenses]: https://rocm.docs.amd.com/en/latest/release/licensing.html
-[Kernel Driver]: https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver
-[LLVM]: https://github.com/RadeonOpenCompute/llvm-project
+The current ROCm development workflow is GitHub-based. If, in the future, we change this platform,
+the tools and links may change. In this instance, we will update contribution guidelines accordingly.
