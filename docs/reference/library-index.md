@@ -107,7 +107,7 @@
 
 ^^^
 
-* {doc}`ROCProfiler <rocprofiler:rocprof>`
+* {doc}`ROCProfiler <rocprofiler:index>`
 * {doc}`ROCTracer <roctracer:index>`
 
 :::

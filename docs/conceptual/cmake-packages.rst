@@ -6,12 +6,12 @@
 Using CMake
 *********************************
 
-Most components in ROCm support CMake. Projects depending on header-only or
-library components typically require CMake 3.5 or higher whereas those wanting
-to make use of the CMake HIP language support will require CMake 3.21 or higher.
+Most components in ROCm support CMake. Projects depending on header-only or library components
+typically require CMake 3.5 or higher whereas those wanting to make use of the CMake HIP language
+support will require CMake 3.21 or higher.
 
 Finding dependencies
-====================
+===========================================================
 
 .. note::
 
@@ -25,12 +25,13 @@ Finding dependencies
 
 In short, CMake supports finding dependencies in two ways:
 
-*  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to
-  find the component in typical install locations and layouts. CMake ships a
-  few dozen such scripts, but users and projects may ship them as well.
+*  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to find the component
+  in typical install locations and layouts. CMake ships a few dozen such scripts, but users and projects
+  may ship them as well.
+
 *  In Config mode, it locates a file named ``<packagename>-config.cmake`` or
-  ``<PackageName>Config.cmake`` which describes the installed component in all
-  regards needed to consume it.
+  ``<PackageName>Config.cmake`` which describes the installed component in all regards needed to
+  consume it.
 
 ROCm predominantly relies on Config mode, one notable exception being the Module
 driving the compilation of HIP programs on NVIDIA runtimes. As such, when
@@ -45,9 +46,9 @@ it to your CMake configuration command on the command line via
 ``-D CMAKE_PREFIX_PATH=....`` . AMD packaged ROCm installs can typically be
 added to the config file search paths such as:
 
--  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
+*  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
 
--  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
+*  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
 
 ROCm provides the respective *config-file* packages, and this enables
 ``find_package`` to be used directly. ROCm does not require any Find module as
@@ -55,11 +56,12 @@ the *config-file* packages are shipped with the upstream projects, such as
 rocPRIM and other ROCm libraries.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
-to the installation guides for `Linux <../install/linux/install.html>`_ and
+to the installation guides for {doc}`Linux <linux-install-docs:tutorial/install-overview>`
+ and
 `Windows <../install/windows/install.html>`_.
 
 Using HIP in CMake
-==================
+======================================
 
 ROCm components providing a C/C++ interface support consumption via any
 C/C++ toolchain that CMake knows how to drive. ROCm also supports the CMake HIP
@@ -69,7 +71,7 @@ compiling any GPU device code, HIP can be treated in CMake as a simple C/C++
 library.
 
 Using the HIP single-source programming model
----------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 
 Source code written in the HIP dialect of C++ typically uses the `.hip`
 extension. When the HIP CMake language is enabled, it will automatically
@@ -112,7 +114,7 @@ advised though that if a user knows what devices they wish to target, then set
 this variable explicitly.
 
 Consuming ROCm C/C++ libraries
-------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 Libraries such as rocBLAS, rocFFT, MIOpen, etc. behave as C/C++ libraries.
 Illustrated in the example below is a C++ application using MIOpen from CMake.
@@ -135,7 +137,7 @@ target. This can be linked with ``target_link_libraries``
   code.
 
 Consuming the HIP API in C++ code
----------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 Consuming the HIP API without compiling single-source GPU device code can be
 done using any C++ compiler. The ``find_package(hip)`` provides the
@@ -161,7 +163,7 @@ Having HIP sources in a target will turn the |LINK_LANG|_ into ``HIP``.
 .. _LINK_LANG: https://cmake.org/cmake/help/latest/prop_tgt/LINKER_LANGUAGE.html
 
 Compiling device code in C++ language mode
-------------------------------------------
+------------------------------------------------------------------------------------------------------
 
 .. attention::
 
@@ -212,7 +214,7 @@ default, this is set to some subset of the currently supported architectures of
 AMD ROCm. It can be set to the CMake option ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
 ROCm CMake packages
--------------------
+-------------------------------------------------------------------------------
 
 +-----------+----------+--------------------------------------------------------+
 | Component | Package  | Targets                                                |
@@ -253,7 +255,7 @@ ROCm CMake packages
 +-----------+----------+--------------------------------------------------------+
 
 Using CMake presets
-===================
+=========================================================
 
 CMake command lines depending on how specific users like to be when compiling
 code can grow to unwieldy lengths. This is the primary reason why projects tend
@@ -290,7 +292,7 @@ other JSON files and the user presets always implicitly includes the non-user
 variant.
 
 Using HIP with presets
-----------------------
+----------------------------------------------------------------------------------------------------------------
 
 Following is an example ``CMakeUserPresets.json`` file which actually compiles
 the `amd/rocm-examples <https://github.com/amd/rocm-examples>`_ suite of sample
@@ -401,5 +403,4 @@ applications on a typical ROCm installation:
   Getting presets to work reliably on Windows requires some CMake improvements
   and/or support from compiler vendors. (Refer to
   `Add support to the Visual Studio generators <https://gitlab.kitware.com/cmake/cmake/-/issues/24245>`_
-  and `Sourcing environment scripts <https://gitlab.kitware.com/cmake/cmake/-/issues/21619>`_
-  .)
+  and `Sourcing environment scripts <https://gitlab.kitware.com/cmake/cmake/-/issues/21619>`_.)

@@ -10,7 +10,7 @@ subtrees:
   - file: about/release-notes.md
     title: Release notes
     subtrees:
-    - entries:    
+    - entries:
       - file: about/CHANGELOG.md
         title: Changelog
       - file: about/whats-new/whats-new.md
@@ -85,8 +85,8 @@ subtrees:
     title: GPU memory
   - file: conceptual/compiler-disambiguation.md
     title: Compiler disambiguation
-  - file: about/compatibility/openmp.md
-    title: OpenMP    
+  - file: conceptual/openmp.md
+    title: OpenMP
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md

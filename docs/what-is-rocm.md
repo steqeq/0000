@@ -16,7 +16,7 @@ ecosystem. ROCm is particularly well-suited to GPU-accelerated high-performance 
 artificial intelligence (AI), scientific computing, and computer aided design (CAD).
 
 ROCm is powered by AMD’s
-[Heterogeneous-computing Interface for Portability (HIP)](https://rocm.docs.amd.com/projects/HIP/en/latest/index.html),
+{doc}`Heterogeneous-computing Interface for Portability (HIP) <hip:index>`,
 an open-source software C++ GPU programming environment and its corresponding runtime. HIP
 allows ROCm developers to create portable applications on different platforms by deploying code on a
 range of platforms, from dedicated gaming GPUs to exascale HPC clusters.

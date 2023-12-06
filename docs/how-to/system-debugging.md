@@ -64,4 +64,5 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 
 ## PCIe-debug
 
-For information on how to debug and profile HIP applications, see {doc}`hip:how_to_guides/debugging`
+For information on how to debug and profile HIP applications, see the
+{doc}`HIP debugging <hip:how_to_guides/debugging>` section.

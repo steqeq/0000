@@ -88,10 +88,8 @@ export OMP_DEFAULT_DEVICE="2"
 
 Docker uses Linux kernel namespaces to provide isolated environments for
 applications. This isolation applies to most devices by default, including
-GPUs. To access them in containers explicit access must be granted, please see
-{ref}`docker-access-gpus-in-container` for details.
-Specifically refer to {ref}`docker-restrict-gpus` on exposing just a subset
-of all GPUs.
+GPUs. To access them in containers explicit access must be granted; see
+{doc}`Accessing GPUs in containers <linux-install-docs:how-to/docker>` for details.
 
 Docker isolation is more secure than environment variables, and applies
 to all programs that use the `amdgpu` kernel module interfaces.

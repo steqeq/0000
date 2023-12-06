@@ -19,7 +19,7 @@ Training also includes the choice of an optimization algorithm that reduces the 
 
 Training occurs in multiple phases for every batch of training data. the following table provides an explanation of the types of training phases.
 
-:::{table} Types of Training Phases
+:::{table}
 :name: training-phases
 :widths: auto
 | Types of Phases   |     |
@@ -32,7 +32,7 @@ Training occurs in multiple phases for every batch of training data. the followi
 
 Training is different from inference, particularly from the hardware perspective. The following table shows the contrast between training and inference.
 
-:::{table} Training vs. Inference
+:::{table}
 :name: training-inference
 :widths: auto
 | Training | Inference |
@@ -63,7 +63,8 @@ This example is adapted from the PyTorch research hub page on [Inception V3](htt
 
 Follow these steps:
 
-1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](../install/pytorch-install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm-based Docker image or refer to the
+   {doc}`PyTorch install <linux-install-docs:install/pytorch-install>` section for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
@@ -131,7 +132,7 @@ Follow these steps:
     print(probabilities)
     ```
 
-9. To understand the probabilities, download and examine the ImageNet labels.
+9.  To understand the probabilities, download and examine the ImageNet labels.
 
     ```py
     wget https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt
@@ -153,7 +154,9 @@ The previous section focused on downloading and using the Inception V3 model for
 
 Follow these steps:
 
-1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](../install/pytorch-install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm Docker image or refer to the
+   {doc}`Installing PyTorch <linux-install-docs:how-to/3rd-party/pytorch-install>` section for setting up
+   a PyTorch environment on ROCm.
 
     ```dockerfile
     docker pull rocm/pytorch:latest
@@ -235,7 +238,7 @@ Follow these steps:
     train_crop_size = 299
     ```
 
-9. To smooth the image, use bilinear interpolation, a resampling method that uses the distance weighted average of the four nearest pixel values to estimate a new pixel value.
+9.  To smooth the image, use bilinear interpolation, a resampling method that uses the distance weighted average of the four nearest pixel values to estimate a new pixel value.
 
     ```py
     interpolation = "bilinear"

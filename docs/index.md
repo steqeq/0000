@@ -27,18 +27,19 @@ Installation guides
 ^^^
 
 * Linux
-  * [Quick-start (Linux)](./install/linux/install-quick.md)
-  * [Linux install guide](./install/linux/install.md)
-  * [Package manager integration](./install/linux/package-manager-integration.md)
+  * {doc}`Quick-start <linux-install-docs:tutorial/quick-start>`
+  * {doc}`Linux install guide <linux-install-docs:tutorial/install-overview>`
+  * {doc}`Package manager integration <linux-install-docs:how-to/amdgpu-install>`
+
 * Windows
   * [Quick-start (Windows)](./install/windows/install-quick.md)
   * [Windows install guide](./install/windows/install.md)
   * [Application deployment guidelines](./install/windows/windows-app-deployment-guidelines.md)
-* [Deploy ROCm Docker containers](./install/docker.md)
-* [PyTorch for ROCm](./install/pytorch-install.md)
-* [TensorFlow for ROCm](./install/tensorflow-install.md)
-* [MAGMA for ROCm](./install/magma-install.md)
-* [ROCm & Spack](./install/spack-intro.md)
+* {doc}`ROCm & Docker containers <linux-install-docs:how-to/docker>`
+* {doc}`PyTorch for ROCm <linux-install-docs:how-to/3rd-party/pytorch-install>`
+* {doc}`TensorFlow for ROCm <linux-install-docs:how-to/3rd-party/tensorflow-install>`
+* {doc}`MAGMA for ROCm <linux-install-docs:how-to/3rd-party/magma-install>`
+* {doc}`ROCm & Spack <linux-install-docs:how-to/spack>`
 
 :::
 
@@ -51,10 +52,9 @@ ROCm compatibility information
 
 * [Linux (GPU & OS)](./about/compatibility/linux-support.md)
 * [Windows (GPU & OS)](./about/compatibility/windows-support.md)
-* [Third-party](./about/compatibility/3rd-party-support-matrix.md)
-* [User/kernel space](./about/compatibility/user-kernel-space-compat-matrix.md)
-* [Docker](./about/compatibility/docker-image-support-matrix.rst)
-* [OpenMP](./about/compatibility/openmp.md)
+* {doc}`Third-party <linux-install-docs:reference/3rd-party-support-matrix>`
+* {doc}`User/kernel space <linux-install-docs:reference/user-kernel-space-compat-matrix>`
+* {doc}`Docker <linux-install-docs:reference/docker-image-support-matrix>`
 
 :::
 
@@ -107,7 +107,7 @@ Topic overviews & background information
 * [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
-* [OpenMP support in ROCm](./about/compatibility/openmp.md)
+* [OpenMP support in ROCm](./conceptual/openmp.md)
 
 :::
 

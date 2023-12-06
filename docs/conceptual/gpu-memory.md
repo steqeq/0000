@@ -7,11 +7,6 @@
 
 # GPU memory
 
-For the HIP reference documentation, see:
-
-* {doc}`hip:.doxygen/docBin/html/group___memory`
-* {doc}`hip:.doxygen/docBin/html/group___memory_m`
-
 Host memory exists on the host (e.g. CPU) of the machine in random access memory (RAM).
 
 Device memory exists on the device (e.g. GPU) of the machine in video random access memory (VRAM).
@@ -44,14 +39,13 @@ For example, migrating memory between CPU sockets on a motherboard, or a system 
 Pinned memory (or page-locked memory, or non-pageable memory) is host memory that is mapped into the address space of all GPUs, meaning that the pointer can be used on both host and device.
 Accessing host-resident pinned memory in device kernels is generally not recommended for performance, as it can force the data to traverse the host-device interconnect (e.g. PCIe), which is much slower than the on-device bandwidth (>40x on MI200).
 
-Pinned host memory can be allocated with one of two types of coherence support:
-
 :::{note}
 In HIP, pinned memory allocations are coherent by default (`hipHostMallocDefault`).
 There are additional pinned memory flags (e.g. `hipHostMallocMapped` and `hipHostMallocPortable`).
 On MI200 these options do not impact performance.
 <!-- TODO: link to programming_manual#memory-allocation-flags -->
-For more information, see the section *memory allocation flags* in the HIP Programming Guide: {doc}`hip:user_guide/programming_manual`.
+For more information, see the section *memory allocation flags* in the
+{doc`HIP Programming Guide: <hip:/user_guide/programming_manual>`.
 :::
 
 Much like how a process can be locked to a CPU core by setting affinity, a pinned memory allocator does this with the memory storage system.
@@ -107,7 +101,7 @@ Memory allocated through standard system allocators such as `malloc`, can be acc
 The device pointer to be used in kernels can be retrieved with `hipHostGetDevicePointer`.
 Registered memory is treated like `hipHostMalloc` and will have similar performance.
 
-On devices that support and have [](#xnack) enabled, such as the MI250X, `hipHostRegister` is not required as memory accesses are handled via automatic page migration.
+On devices that support and have [XNACK](#xnack) enabled, such as the MI250X, `hipHostRegister` is not required as memory accesses are handled via automatic page migration.
 :::
 
 ### XNACK

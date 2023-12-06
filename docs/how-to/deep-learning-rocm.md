@@ -17,6 +17,6 @@ Frameworks Release Notes for each framework's most current release notes at
 
 ## Frameworks installation
 
-* [Installing PyTorch](../install/pytorch-install.md)
-* [Installing TensorFlow](../install/tensorflow-install.md)
-* [Installing MAGMA](../install/magma-install.md)
+* {doc}`Installing PyTorch <linux-install-docs:how-to/3rd-party/pytorch-install>`
+* {doc}`Installing TensorFlow <linux-install-docs:how-to/3rd-party/tensorflow-install>`
+* {doc}`Installing MAGMA <linux-install-docs:how-to/3rd-party/magma-install>`
