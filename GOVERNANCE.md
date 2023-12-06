@@ -30,7 +30,7 @@ ROCm.
 ### Maintainers
 
 Maintainers are appointed by AMD. They are able to approve changes and can commit to our
-repositories. As with maintainers, they must use pull requests (PRs) for all changes.
+repositories. They must use pull requests (PRs) for all changes.
 
 You can find the list of maintainers in the CODEOWNERS file of each repository. Code owners differ
 between repositories.
@@ -45,7 +45,7 @@ several ways:
 * Notify us of a bugs by filing an issue report on
   [GitHub Issues](https://github.com/RadeonOpenCompute/ROCm/issues)
 * Improve our documentation by submitting a PR to our
-  [documentation repository](https://github.com/RadeonOpenCompute/ROCm)
+  [repository](https://github.com/RadeonOpenCompute/ROCm)
 * Improve the code base (for smaller or contained changes) by submitting a PR to the component
 * Suggest larger features by adding to the *Ideas* category in the
   [GitHub discussion forum](https://github.com/RadeonOpenCompute/ROCm/discussions)
