@@ -27,9 +27,9 @@ ROCm is currently using the GitHub platform for code hosting, collaboration and 
 Issues are filed on GitHub Issues.
 
 * Search if issue already exists in [GitHub Issues list][Github issues].
-  - Use your best judgement.  If you believe your issue is the same as another, then you can just upvote the issue and comment/post to provide more details as to how you reproduced it.
-  - If you're not absolutely sure if the issue is the same, err on the side of caution and just file the issue.  You can add a comment saying it might be the same as another issue number.  Our team will assess and close as duplicate, if it is in fact a duplicate.
-  - If issue does NOT exist, use the template to file a new issue.
+  * Use your best judgement.  If you believe your issue is the same as another, then you can just upvote the issue and comment/post to provide more details as to how you reproduced it.
+  * If you're not absolutely sure if the issue is the same, err on the side of caution and just file the issue.  You can add a comment saying it might be the same as another issue number.  Our team will assess and close as duplicate, if it is in fact a duplicate.
+  * If issue does NOT exist, use the template to file a new issue.
 * When filing the issue, please be sure to provide as much information as possible, including the output of the scripts to collect information about the configuration.  This will help reduce the churn required to understand how to reproduce the issue.
 * Check the issue regularly as there may be additional questions or information required to successfully reproduce the issue.
 
@@ -51,7 +51,6 @@ Our repositories follow a workflow where all changes go into the **develop** bra
 
 **IMPORTANT:** By creating a pull request, you agree to allow your contribution to be licensed by the project owners under the terms of the license.txt in the corresponding repository.  Each repository may use a different license.  You can lookup the license on this [summary page][ROCm licenses].
 
-
 ### New Feature Development
 
 Proposed new features should be discussed actively on the [GitHub Discussion forum][Github forums], Ideas category.  Maintainers can provide direction and feedback on feature development.
@@ -70,19 +69,13 @@ Changes to the main ROCm documentation can be submitted on the [Documentation Gi
 
 Each repository may use a different documentation method or style.  Please follow the documentation process for each repository.
 
-
 ## Future Development Workflow
 
 The current ROCm development workflow is GitHub based.  However, ROCm can move to a different platform.  If the platform does change, the tools and links may change, but the general development workflow shall remain similar to what is currently described above.  If such a change is to occur, please expect that this document will be updated to describe the new tools and links.  
 
-
-
-
 [Github forums]: https://github.com/RadeonOpenCompute/ROCm/discussions
 [Github issues]: https://github.com/RadeonOpenCompute/ROCm/issues
 [Documentation GitHub]: https://github.com/RadeonOpenCompute/ROCm
-[Github community guidelines]: https://docs.github.com/en/site-policy/github-terms/github-community-guidelines
-[Github community code of conduct]: https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct
 [ROCm licenses]: https://rocm.docs.amd.com/en/latest/release/licensing.html
 [Kernel Driver]: https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver
 [LLVM]: https://github.com/RadeonOpenCompute/llvm-project

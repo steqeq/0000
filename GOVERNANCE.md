@@ -18,12 +18,10 @@ All other components of ROCm shall be goverened by this document.
 
 ROCm is led and managed by AMD.  We welcome contributions from the community.  Maintainers will review and approve changes into ROCm.
 
-
 ## Roles
 
 * **Maintainers** are responsible for their designated component and repositories.
 * **Contributors** provide input and suggested changes to the existing components, as well as help identify and fix issues, by submitting Pull Requests (PR).
-
 
 ### Maintainers
 
@@ -42,14 +40,9 @@ Everyone else is a contributor.  The community is encouraged to contribute to RO
 
 For further details, please see our [contribution guidelines][Contribution guidelines].
 
-
 ## Code of Conduct
 
 For AMD components of ROCm which are hosted on GitHub, all users must abide by the [GitHub community guidelines][Github community guidelines] and the [GitHub community code of conduct][Github community code of conduct].
-
-
-
-
 
 [Github forums]: https://github.com/RadeonOpenCompute/ROCm/discussions
 [Github issues]: https://github.com/RadeonOpenCompute/ROCm/issues
