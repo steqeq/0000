@@ -1,9 +1,13 @@
+.. meta::
+   :description: Docker image support matrix
+   :keywords: Docker, support, PyTorch, TensorFlow, Ubuntu
+
 ******************************************************************
 Docker image support matrix
 ******************************************************************
 
 AMD validates and publishes `PyTorch <https://hub.docker.com/r/rocm/pytorch>`_ and
-`TensorFlow <https://hub.docker.com/r/rocm/tensorflow>`_ containers on dockerhub. The following
+`TensorFlow <https://hub.docker.com/r/rocm/tensorflow>`_ containers on Docker Hub. The following
 tags, and associated inventories, are validated with ROCm 5.7.
 
 .. tab-set::
@@ -22,7 +26,7 @@ tags, and associated inventories, are validated with ROCm 5.7.
                     * `Python 3.10 <https://www.python.org/downloads/release/python-31013/>`_
                     * `Torch 2.0.1 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/2.0>`_
                     * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
-                    * `Torchvision 0.15.0 <https://github.com/pytorch/vision/tree/release/0.15>`_
+                    * `Torchvision 0.15.2 <https://github.com/pytorch/vision/tree/release/0.15>`_
                     * `Tensorboard 2.14.0 <https://github.com/tensorflow/tensorboard/tree/2.14>`_
                     * `MAGMA <https://bitbucket.org/icl/magma/src/master/>`_
                     * `UCX 1.10.0 <https://github.com/openucx/ucx/tree/v1.10.0>`_

@@ -1,4 +1,4 @@
-# AMD ROCm™ platform
+# AMD ROCm Software
 
 ROCm is an open-source stack, composed primarily of open-source software, designed for graphics
 processing unit (GPU) computation. ROCm consists of a collection of drivers, development tools, and
@@ -44,7 +44,15 @@ pip3 install -r sphinx/requirements.txt
 python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
 ```
 
+Alternatively, CMake build is supported.
+
+```bash
+cmake -B build
+
+cmake --build build --target=doc
+```
+
 ## Older ROCm releases
 
-For release information for older ROCm releases, refer to
-[`CHANGELOG`](./CHANGELOG.md).
+For release information for older ROCm releases, refer to the
+[CHANGELOG](./CHANGELOG.md).

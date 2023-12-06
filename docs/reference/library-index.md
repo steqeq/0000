@@ -1,6 +1,14 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="ROCm API libraries & tools">
+  <meta name="keywords" content="ROCm, API, libraries, tools, artificial intelligence, development,
+  Communications, C++ primitives, Fast Fourier transforms, FFTs, random number generators, linear
+  algebra">
+</head>
+
 # ROCm API libraries & tools
 
-::::{grid} 1 2 2 2
+::::{grid} 1 3 3 3
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}

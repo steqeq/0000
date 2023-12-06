@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="GPU isolation techniques">
+  <meta name="keywords" content="GPU isolation techniques, UUID, universally unique identifier,
+  environment variables, virtual machines">
+</head>
+
 # GPU isolation techniques
 
 Restricting the access of applications to a subset of GPUs, aka isolating
@@ -22,7 +29,7 @@ A list of device indices or {abbr}`UUID (universally unique identifier)`s
 that will be exposed to applications.
 
 Runtime
-: ROCm Platform Runtime. Applies to all applications using the user mode ROCm
+: ROCm Software Runtime. Applies to all applications using the user mode ROCm
   software stack.
 
 ```{code-block} shell
