@@ -7,60 +7,40 @@ root: index
 subtrees:
 - entries:
   - file: what-is-rocm.md
-  - file: about/whats-new/whats-new.md
-
-- caption: Installation
-  entries:
-  - file: install/windows/install-quick.md
-    title: Quick start (Windows)
-  - file: install/windows/install.md
-    title: Windows install guide
-    subtrees:
-    - entries:
-      - file: install/windows/windows-app-deployment-guidelines.md
-        title: Application deployment guidelines
-  - file: install/docker.md
-    title: ROCm Docker containers
-  - file: install/pytorch-install.md
-    title: PyTorch for ROCm
-  - file: install/tensorflow-install.md
-    title: Tensorflow for ROCm
-  - file: install/magma-install.md
-    title: MAGMA for ROCm
-  - file: install/spack-intro.md
-    title: ROCm & Spack
-
-- caption: Compatibility & support
-  entries:
-  - file: about/compatibility/linux-support.md
-    title: Linux (GPU & OS)
-  - file: about/compatibility/windows-support.md
-    title: Windows (GPU & OS)
-  - file: about/compatibility/3rd-party-support-matrix.md
-    title: Third-party
-  - file: about/compatibility/user-kernel-space-compat-matrix.md
-    title: User/kernel space support
-  - file: about/compatibility/docker-image-support-matrix.rst
-    title: Docker
-  - file: about/compatibility/openmp.md
-    title: OpenMP
-
-- caption: Release information
-  entries:
   - file: about/release-notes.md
     title: Release notes
-  - file: about/CHANGELOG.md
-    title: Changelog
-  - file: about/release-history.md
-    title: Release history
+    subtrees:
+    - entries:    
+      - file: about/CHANGELOG.md
+        title: Changelog
+      - file: about/whats-new/whats-new.md
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known issues
+
+- caption: Install
+  entries:
+  - url: https://rocm.docs.amd.com/projects/linux-install/en/${branch}/
+    title: ROCm on Linux
+  - url: https://rocm.docs.amd.com/projects/linux-install/en/${branch}/
+    title: HIP SDK on Windows
+
+- caption: Supported configurations
+  entries:
+  - file: about/compatibility/linux-support.md
+    title: Linux
+  - file: about/compatibility/windows-support.md
+    title: Windows
+
+- caption: Reference
+  entries:
+    - file: reference/library-index.md
+      title: API libraries & tools
 
 - caption: How-to
   entries:
   - file: how-to/deep-learning-rocm.md
     title: Deep learning
-  - file: how-to/gpu-enabled-mpi.md
+  - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
   - file: how-to/system-debugging.md
     title: Debugging
@@ -76,79 +56,6 @@ subtrees:
         title: RDNA2
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
-
-- caption: Reference
-  entries:
-    - file: reference/library-index.md
-      title: API libraries & tools
-      subtrees:
-      - entries:
-        - url: ${project:composable_kernel}
-          title: Composable kernel
-        - url: ${project:hipblas}
-          title: hipBLAS
-        - url: ${project:hipblaslt}
-          title: hipBLASLt
-        - url: ${project:hipcc}
-          title: hipCC
-        - url: ${project:hipcub}
-          title: hipCUB
-        - url: ${project:hipfft}
-          title: hipFFT
-        - url: ${project:hipify}
-          title: HIPIFY
-        - url: ${project:hiprand}
-          title: hipRAND
-        - url: ${project:hip}
-          title: HIP runtime
-        - url: ${project:hipsolver}
-          title: hipSOLVER
-        - url: ${project:hipsparse}
-          title: hipSPARSE
-        - url: ${project:hipsparselt}
-          title: hipSPARSELt
-        - url: ${project:hiptensor}
-          title: hipTensor
-        - url: ${project:miopen}
-          title: MIOpen
-        - url: ${project:amdmigraphx}
-          title: MIGraphX
-        - url: ${project:rccl}
-          title: RCCL
-        - url: ${project:rocalution}
-          title: rocALUTION
-        - url: ${project:rocblas}
-          title: rocBLAS
-        - url: ${project:rocdbgapi}
-          title: ROCdbgapi
-        - url: ${project:rocfft}
-          title: rocFFT
-        - file: reference/rocmcc.md
-          title: ROCmCC
-        - url: ${project:rdc}
-          title: ROCm Data Center Tool
-        - url: ${project:rocm_smi_lib}
-          title: ROCm SMI LIB
-        - url: ${project:rocmvalidationsuite}
-          title: ROCm validation suite
-        - url: ${project:rocprim}
-          title: rocPRIM
-        - url: ${project:rocprofiler}
-          title: ROCProfiler
-        - url: ${project:rocrand}
-          title: rocRAND
-        - url: ${project:rocsolver}
-          title: rocSOLVER
-        - url: ${project:rocsparse}
-          title: rocSPARSE
-        - url: ${project:rocthrust}
-          title: rocThrust
-        - url: ${project:roctracer}
-          title: rocTracer
-        - url: ${project:rocwmma}
-          title: rocWMMA
-        - url: ${project:transferbench}
-          title: TransferBench
 
 - caption: Conceptual
   entries:
@@ -178,6 +85,8 @@ subtrees:
     title: GPU memory
   - file: conceptual/compiler-disambiguation.md
     title: Compiler disambiguation
+  - file: about/compatibility/openmp.md
+    title: OpenMP    
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md
@@ -204,6 +113,7 @@ subtrees:
       - file: contribute/building.md
         title: Building documentation
       - file: contribute/feedback.md
-        title: Providing feedback
+        title: Provide feedback
   - file: about/license.md
     title: ROCm license
+

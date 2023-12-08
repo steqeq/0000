@@ -8,15 +8,11 @@ import shutil
 import jinja2
 import os
 
-from rocm_docs import ROCmDocs
-
-# Environement to process Jinja templates.
+# Environment to process Jinja templates.
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
 
 # Jinja templates to render out.
-templates = [
-
-]
+templates = []
 
 # Render templates and output files without the last extension.
 # For example: 'install.md.jinja' becomes 'install.md'.
@@ -42,9 +38,9 @@ latex_elements = {
 # configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
-copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
-version = "5.7.1"
-release = "5.7.1"
+copyright = "Copyright (c) 2023-2024 Advanced Micro Devices, Inc. All rights reserved."
+version = "6.0.0"
+release = "6.0.0"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
@@ -95,13 +91,15 @@ exclude_patterns = ['temp']
 
 external_toc_path = "./sphinx/_toc.yml"
 
-docs_core = ROCmDocs("ROCm Documentation")
-docs_core.setup()
+extensions = ["rocm_docs"]
 
 external_projects_current_project = "rocm"
 
-for sphinx_var in ROCmDocs.SPHINX_VARS:
-    globals()[sphinx_var] = getattr(docs_core, sphinx_var)
+html_theme = "rocm_docs_theme"
+html_theme_options = {"flavor": "rocm-docs-home"}
+
+html_title = "ROCm Documentation"
+
 html_theme_options = {
     "link_main_doc": False
 }
