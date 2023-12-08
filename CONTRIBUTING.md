@@ -72,6 +72,7 @@ By creating a PR, you agree to allow your contribution to be licensed under the
 terms of the LICENSE.txt file in the corresponding repository. Different repositories may use different
 licenses.
 ```
+
 You can look up each license on the [ROCm licensing](./docs/about/licensing.md) page.
 
 ### New feature development
