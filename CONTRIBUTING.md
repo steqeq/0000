@@ -13,8 +13,8 @@ see [Contributing to ROCm docs](./docs/contribute/contribute-docs.md).
 ROCm is a software stack made up of a collection of drivers, development tools, and APIs that enable
 GPU programming from low-level kernel to end-user applications. Because some of our components
 are inherited from external projects (such as
-[LLVM](https://github.com/RadeonOpenCompute/llvm-project) and
-[Kernel driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver)), these use
+[LLVM](https://github.com/ROCm/llvm-project) and
+[Kernel driver](https://github.com/ROCm/ROCK-Kernel-Driver)), these use
 project-specific contribution guidelines and workflow. Refer to their repositories for more information.
 All other ROCm components follow the workflow described in the following sections.
 
@@ -22,13 +22,13 @@ All other ROCm components follow the workflow described in the following section
 
 ROCm uses GitHub to host code, collaborate, and manage version control. We use pull requests (PRs)
 for all changes within our repositories. We use
-[GitHub issues](https://github.com/RadeonOpenCompute/ROCm/issues) to track known issues, such as
+[GitHub issues](https://github.com/ROCm/ROCm/issues) to track known issues, such as
 bugs.
 
 ### Issue tracking
 
 Before filing a new issue, search the
-[existing issues](https://github.com/RadeonOpenCompute/ROCm/issues) to make sure your issue isn't
+[existing issues](https://github.com/ROCm/ROCm/issues) to make sure your issue isn't
 already listed.
 
 General issue guidelines:
@@ -68,21 +68,22 @@ project-specific steps. Refer to each repository's PR process for any additional
 * We'll inform you once your change is committed
 
 ```important
-By creating a PR, you agree to allow your contribution to be licensed by the project owners under the
-terms of the LICENSE file in the corresponding repository. Different repositories may use different
-licenses. You can look up each license on the [ROCm licensing](./docs/about/license.md) page.
+By creating a PR, you agree to allow your contribution to be licensed under the
+terms of the LICENSE.txt file in the corresponding repository. Different repositories may use different
+licenses.
 ```
+You can look up each license on the [ROCm licensing](./docs/about/licensing.md) page.
 
 ### New feature development
 
-Use the [GitHub Discussion forum](https://github.com/RadeonOpenCompute/ROCm/discussions)
+Use the [GitHub Discussion forum](https://github.com/ROCm/ROCm/discussions)
 (Ideas category) to propose new features. Our maintainers are happy to provide direction and
 feedback on feature development.
 
 ### Documentation
 
 Submit ROCm documentation changes to our
-[documentation repository](https://github.com/RadeonOpenCompute/ROCm). You must update
+[documentation repository](https://github.com/ROCm/ROCm). You must update
 documentation related to any new feature or API contribution.
 
 Note that each ROCm project uses its own repository for documentation.

@@ -10,14 +10,14 @@ ROCm is a software stack made up of a collection of drivers, development tools, 
 GPU programming from the low-level kernel to end-user applications.
 
 Components of ROCm that are inherited from external projects (such as
-[LLVM](https://github.com/RadeonOpenCompute/llvm-project) and
-[Kernel driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver)) follow their own
+[LLVM](https://github.com/ROCm/llvm-project) and
+[Kernel driver](https://github.com/ROCm/ROCK-Kernel-Driver)) follow their own
 governance model and code of conduct. All other components of ROCm are governed by this
 document.
 
 ## Governance
 
-ROCm is led and managed by AMD.
+ROCm is led and managed by Advanced Micro Devices, Inc (AMD).
 
 We welcome contributions from the community. Our maintainers review all proposed changes to
 ROCm.
@@ -41,16 +41,16 @@ If you're not a maintainer, you're a contributor. We encourage the ROCm communit
 several ways:
 
 * Help other community members by posting questions or solutions on our
-  [GitHub discussion forums](https://github.com/RadeonOpenCompute/ROCm/discussions)
+  [GitHub discussion forums](https://github.com/ROCm/ROCm/discussions)
 * Notify us of a bugs by filing an issue report on
-  [GitHub Issues](https://github.com/RadeonOpenCompute/ROCm/issues)
+  [GitHub Issues](https://github.com/ROCm/ROCm/issues)
 * Improve our documentation by submitting a PR to our
-  [repository](https://github.com/RadeonOpenCompute/ROCm)
+  [repository](https://github.com/ROCm/ROCm/)
 * Improve the code base (for smaller or contained changes) by submitting a PR to the component
 * Suggest larger features by adding to the *Ideas* category in the
-  [GitHub discussion forum](https://github.com/RadeonOpenCompute/ROCm/discussions)
+  [GitHub discussion forum](https://github.com/ROCm/ROCm/discussions)
 
-For more information, refer to our [contribution guidelines](./docs/contribute/index.md).
+For more information, refer to our [contribution guidelines](CONTRIBUTING.md).
 
 ## Code of conduct
 
