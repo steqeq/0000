@@ -93,6 +93,7 @@ Our documentation is organized into the following categories:
   * [MI100](./conceptual/gpu-arch/mi100.md)
   * [MI200](./conceptual/gpu-arch/mi200-performance-counters.md)
   * [MI250](./conceptual/gpu-arch/mi250.md)
+  * [MI300](./conceptual/gpu-arch/mi300.md)
 * [GPU memory](./conceptual/gpu-memory.md)
 * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
 * [File structure (Linux FHS)](./conceptual/file-reorg.md)
