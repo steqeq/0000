@@ -7,8 +7,19 @@
 
 # GPU architecture documentation
 
-:::::{grid} 1 1 2 2
+:::::{grid} 1 1 3 2
 :gutter: 1
+
+:::{grid-item-card}
+**AMD Instinct MI300 series**
+
+Review hardware aspects of the AMD Instinct™ MI300 series of GPU
+accelerators and the CDNA™ 3 architecture.
+
+* [AMD Instinct™ MI300 microarchitecture](./gpu-arch/mi300.md)
+* [White paper](https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf)
+
+:::
 
 :::{grid-item-card}
 **AMD Instinct MI200 series**
