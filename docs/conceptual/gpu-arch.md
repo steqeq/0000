@@ -18,7 +18,7 @@ accelerators and the CDNA™ 3 architecture.
 
 * [AMD Instinct™ MI300 microarchitecture](./gpu-arch/mi300.md)
 * [White paper](https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf)
-
+* [Performance counters](./gpu-arch/mi300-performance-counters.md)
 :::
 
 :::{grid-item-card}
