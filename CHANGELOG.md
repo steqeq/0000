@@ -21,11 +21,10 @@ This page contains the release notes for AMD ROCm Software.
 
 ### New in this release:
 
-#### OS and GPU support changes
-
-* AMD Instinct™ MI300A and MI300X support has been added
-* RHEL 9.3 support has been added
-* RHEL 8.9 support has been added
+* Added AMD Instinct™ MI300A and MI300X GPU support
+* Added support for the following operating systems:
+  * RHEL 9.3
+  * RHEL 8.9
 
 #### Documentation
 
