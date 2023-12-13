@@ -63,7 +63,7 @@ MIGraphX 2.8 for ROCm 6.0.0
 
 ##### Additions
 
-* Support for MI300 GPUs
+* Support for MI300 series GPUs
 * Support for TorchMIGraphX via PyTorch
 * Boosted overall performance by integrating rocMLIR
 * INT8 support for ONNX Runtime
