@@ -1,16 +1,4 @@
-# Release notes
-
-This page contains the release notes for AMD ROCm™ Software. For additional details on these release
-notes, you can refer to the
-[Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
-
--------------------
-
-## ROCm 6.0.0
-<!-- markdownlint-disable first-line-h1 -->
-<!-- markdownlint-disable no-duplicate-header -->
-
-### New in this release:
+# Release notes for AMD ROCm™ Software 6.0
 
 ROCm 6.0 is a major release with new performance optimizations, expanded frameworks and library
 support, and improved developer experience. Initial enablement of all AMD Instinct™ MI300-related
@@ -28,6 +16,9 @@ optimizations for this new platform.
 * AMD has consolidated developer resources and training on our new AMD ROCm Developer Hub.
   ROCm 6.0 has focused on performance tuning in key areas, such as lower precision math and
   attention layers.
+
+For additional details on these release notes, you can refer to the
+[Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
 
 #### OS and GPU support changes
 
