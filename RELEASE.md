@@ -23,7 +23,7 @@ This page contains the release notes for AMD ROCm™ Software.
 
 #### OS and GPU support changes
 
-* AMD Instinct™ MI300A and MI300X Accelerator support is enabled for supported OSes excluding RHEL9
+* AMD Instinct™ MI300A and MI300X Accelerator support is enabled for supported OSes excluding RHEL9.
 * Added support for the following operating systems:
   * RHEL 9.3
   * RHEL 8.9
@@ -41,7 +41,7 @@ The backward compatibility support for old file locations is removed.
 #### Compiler location change
 
 - The installation path of LLVM changes from `/opt/rocm-<rel>/llvm` to `/opt/rocm-<rel>/lib/llvm`.
-  For backbward compatibility, a symbolic link is provided to tyhe old location and will be rmoved in ROCm 7.0 or later.
+  For backward compatibility, a symbolic link is provided to the old location and will be removed in ROCm 7.0 or later.
 - The installation path of device library bitcode has changed from `/opt/rocm-<rel>/amdgcn` to `/opt/rocm-<rel>/lib/llvm/lib/clang/<ver>/lib/amdgcn`.
   For backward compatibility, a symbolic link is provided and will be removed in ROCm 7.0 or later.
 
