@@ -63,28 +63,23 @@ CMake support has been added for documentation in the
 
 #### AMD Instinct™ MI50 end-of-support notice
 
-AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter
-maintenance mode in ROCM 6.0.0.
+AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) enters
+maintenance mode in ROCm 6.0.0.
 
 As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 is the
 final release for gfx906 GPUs in a fully supported state.
 
-* ROCm 6.0 shows MI50s as "under maintenance" for
-  [Linux](../about/compatibility/linux-support.md) and
-  [Windows](../about/compatibility/windows-support.md)
+  * Henceforth, no new features and performance optimizations will be supported for the gfx906 GPUs.
 
-* No new features and performance optimizations will be supported for the gfx906 GPUs beyond
-  ROCm 5.7.
+  * Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2
+    2024 (end of maintenance \[EOM] will be aligned with the closest ROCm release).
 
-* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2
-  2024 (end of maintenance \[EOM] will be aligned with the closest ROCm release).
+  * Bug fixes will be made up to the next ROCm point release.
 
-* Bug fixes during the maintenance will be made to the next ROCm point release.
+  * Bug fixes will not be backported to older ROCm releases for gfx906.
 
-* Bug fixes will not be backported to older ROCm releases for gfx906.
-
-* Distribution and operating system updates will continue per the ROCm release cadence for gfx906
-  GPUs until EOM.
+  * Distribution and operating system updates will continue per the ROCm release cadence for gfx906
+    GPUs until EOM.
 
 ### AMD SMI
 
