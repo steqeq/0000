@@ -415,6 +415,12 @@ MIOpen 2.19.0 for ROCm 6.0.0
 * `[HOTFIX][MI200][FP16]` has been disabled for `ConvHipImplicitGemmBwdXdlops` when FP16_ALT is
   required
 
+####	MIVisionX
+
+* Added Comprehensive CTests to aid developers
+* Introduced Doxygen support for complete API documentation
+* Simplified dependencies for rocAL
+
 #### OpenMP
 
 * MI300:
