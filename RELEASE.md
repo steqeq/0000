@@ -60,7 +60,7 @@ The backward compatibility support for old file locations is removed.
 - The installation path of LLVM changes from `/opt/rocm-<rel>/llvm` to `/opt/rocm-<rel>/lib/llvm`.
   For backward compatibility, a symbolic link is provided to the old location and will be removed in ROCm 7.0 or later.
 - The installation path of device library bitcode has changed from `/opt/rocm-<rel>/amdgcn` to `/opt/rocm-<rel>/lib/llvm/lib/clang/<ver>/lib/amdgcn`.
-  For backward compatibility, a symbolic link is provided and will be removed in ROCm 7.0 or later.
+  For backward compatibility, a symbolic link is provided and will be removed in a future release.
 
 #### End of support of specific distros
 
