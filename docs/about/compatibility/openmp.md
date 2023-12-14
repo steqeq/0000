@@ -160,8 +160,6 @@ For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocpr
 The OpenMP programming model is greatly enhanced with the following new features
 implemented in the past releases.
 
-(openmp_usm)=
-
 ### Asynchronous behavior in OpenMP target regions
 
 * Controlling asynchronous behavior
