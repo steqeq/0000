@@ -1,4 +1,4 @@
-# Release notes for AMD ROCm™ Software 6.0
+# Release notes for AMD ROCm™ 6.0
 
 ROCm 6.0 is a major release with new performance optimizations, expanded frameworks and library
 support, and improved developer experience. Initial enablement of all AMD Instinct™ MI300-related
