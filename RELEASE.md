@@ -30,7 +30,7 @@ This page contains the release notes for AMD ROCm™ Software.
 
 #### New ROCm meta package
 
-A new ROCm meta packages has been added for easy installation of all ROCm core packages, tools, and libraries.
+A new ROCm meta package has been added for easy installation of all ROCm core packages, tools, and libraries.
 For example, the following command will install the full ROCm package: `apt-get install rocm` (Ubuntu), or `yum install rocm` (RHEL).
 
 #### Filesystem Hierarchy Standard
