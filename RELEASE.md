@@ -39,7 +39,8 @@ platform.
 
 #### OS and GPU support changes
 
-* AMD Instinct™ MI300A and MI300X Accelerator support is enabled for supported OSes excluding RHEL9.
+* AMD Instinct™ MI300A and MI300X Accelerator support has been enabled for supported operating systems, excluding
+  RHEL 9.
 * Added support for the following operating systems:
   * RHEL 9.3
   * RHEL 8.9
