@@ -102,14 +102,17 @@ final release for gfx906 GPUs in a fully supported state.
 
 ### HIP
 
-* **Added features for interoperability, environment variable for serialization on kernel execution, additional device property details
-  * **Added new fields and structs for external resource interoperability**.
-  * **Added a new environment variable: `HIP_LAUNCH_BLOCKING`** for serialization on kernel execution. 
-  * **Added additional members to HIP struct `hipDeviceProp_t` for new feature capabilities**.
-  * LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more members are added in the struct `hipDeviceProp_t`, as properties to identify each device:
+* **New features to improve resource interoperability**.
+  * You can now use new fields and structs for external resource interoperability for memory handles
+    and buffers, and semaphores.
+  * You can use the new environment variable, `HIP_LAUNCH_BLOCKING`, to control serialization on
+    kernel execution.
+  * Use additional members to HIP struct `hipDeviceProp_t` for surfaces, textures, and device identifiers.
+    * LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more
+     members are added in the struct `hipDeviceProp_t`, as properties to identify each device.
 
 * **Changes impacting backward compatibility**.
-  * Data types for members in `HIP_MEMCPY3D` structure are changed from `unsigned int` to `size_t`.
+  * We've changed data types for members in `HIP_MEMCPY3D` structure from `unsigned int` to `size_t`.
   * The value of the flag `hipIpcMemLazyEnablePeerAccess` is changed to `0x01`, which was previously
     defined as `0`.
   * Some device property attributes are not currently supported in HIP runtime. In order to maintain
