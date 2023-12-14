@@ -21,6 +21,22 @@ This page contains the release notes for AMD ROCm™ Software.
 
 ### New in this release:
 
+ROCm 6.0 is a major release with new performance optimizations, expanded frameworks and library support,
+and improved developer experience. Initial enablement of all AMD Instinct™ MI300-related features are
+delivered in ROCm 6.0. Future releases will provide additional enablement and optimizations for this new
+platform. 
+
+* FP8 support in PyTorch along with hipBLASLt enables optimized performance.
+* Upstream support is now available for popular AI frameworks like TensorFlow, JAX, and PyTorch  
+* ROCm 6.0 adds support for AI libraries, such as DeepSpeed, ONNX-RT, Jax, and CuPy. HPC frameworks are
+  optimized for ROCm, including multi-GPU and multi-server capabilities. 
+* hipSPARSELt provides AMD's sparse matrix core technique on AMD RDNA/CDNA GPUs, which has the potential
+  to speed up AI workloads and inference engines. 
+* Prepackaged HPC and AI containers are available on AMD Infinity Hub. We have improved documentation and
+  tutorials on the AMD ROCm Docs site.
+* AMD has consolidated developer resources and training on our new AMD ROCm Developer Hub. ROCm 6.0 has
+  focused on performance tuning in key areas, such as lower precision math and attention layers. 
+
 #### OS and GPU support changes
 
 * AMD Instinct™ MI300A and MI300X Accelerator support is enabled for supported OSes excluding RHEL9.
