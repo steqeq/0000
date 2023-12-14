@@ -61,7 +61,7 @@ CMake support is added for the documentation in the
 
 #### AMD Instinct™ MI50 end-of-support notice
 
-AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) enters
+AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) enter
 maintenance mode in ROCM 6.0.0.
 
 As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 is the
