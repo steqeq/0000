@@ -102,55 +102,11 @@ final release for gfx906 GPUs in a fully supported state.
 
 ### HIP
 
-* **Added new fields and structs for external resource interoperability**.
-  * `hipExternalMemoryHandleDesc_st`
-  * `hipExternalMemoryBufferDesc_st`
-  * `hipExternalSemaphoreHandleDesc_st`
-  * `hipExternalSemaphoreSignalParams_st`
-  * `hipExternalSemaphoreWaitParams_st Enumerations`
-  * `hipExternalMemoryHandleType_enum`
-  * `hipExternalSemaphoreHandleType_enum`
-  * `hipExternalMemoryHandleType_enum`
-
-* **Added a new environment variable: `HIP_LAUNCH_BLOCKING`**.\
-  This is for serialization on kernel execution. The default value is 0 (disable); kernel will run normally, as
-  defined in the queue. When this environment variable is set as 1 (enable), HIP runtime serializes the
-  kernel enqueue (behaves the same as `AMD_SERIALIZE_KERNEL`).
-
-* **Added more members to HIP struct `hipDeviceProp_t` for new feature capabilities**.
-  * Texture:
-    * `int maxTexture1DMipmap;`
-    * `int maxTexture2DMipmap[2];`
-    * `int maxTexture2DLinear[3];`
-    * `int maxTexture2DGather[2];`
-    * `int maxTexture3DAlt[3];`
-    * `int maxTextureCubemap;`
-    * `int maxTexture1DLayered[2];`
-    * `int maxTexture2DLayered[3];`
-    * `int maxTextureCubemapLayered[2];`
-  * Surface:
-    * `int maxSurface1D;`
-    * `int maxSurface2D[2];`
-    * `int maxSurface3D[3];`
-    * `int maxSurface1DLayered[2];`
-    * `int maxSurface2DLayered[3];`
-    * `int maxSurfaceCubemap;`
-    * `int maxSurfaceCubemapLayered[2];`
-  * Device:
-    * `hipUUID uuid;`
-    * `char luid[8];` this is an 8-byte unique identifier. Only valid on Windows
-    * `unsigned int luidDeviceNodeMask;`
-
-* LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more members are added in the struct `hipDeviceProp_t`, as properties to identify each device:
-  * `char luid[8];`
-  * `unsigned int luidDeviceNodeMask;`
-
-  Note: HIP only supports LUID on Windows operating systems.
-
-* Some OpenGL Interop HIP APIs are moved from the hip_runtime_api header to a new header file hip_gl_interop.h for the AMD platform, as follows:
-  * `hipGLGetDevices`
-  * `hipGraphicsGLRegisterBuffer`
-  * `hipGraphicsGLRegisterImage`
+* **Added features for interoperability, environment variable for serialization on kernel execution, additional device property details
+  * **Added new fields and structs for external resource interoperability**.
+  * **Added a new environment variable: `HIP_LAUNCH_BLOCKING`** for serialization on kernel execution. 
+  * **Added additional members to HIP struct `hipDeviceProp_t` for new feature capabilities**.
+  * LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more members are added in the struct `hipDeviceProp_t`, as properties to identify each device:
 
 * **Changes impacting backward compatibility**.
   * Data types for members in `HIP_MEMCPY3D` structure are changed from `unsigned int` to `size_t`.
@@ -168,33 +124,6 @@ final release for gfx906 GPUs in a fully supported state.
     * This allows `hipMemcpyAtoH` and `hipMemcpyHtoA` to have the correct array type which is
       equivalent to corresponding CUDA driver APIs.
   * For additional deprecation information, refer to the changelog.
-
-* **Made several fixes**.
-  * Kernel launch maximum dimension validation is added specifically on gridY and gridZ in the HIP API
-  `hipModule-LaunchKernel`. As a result,when `hipGetDeviceAttribute` is called for the value of
-  `hipDeviceAttributeMaxGrid-Dim`, the behavior on the AMD platform is equivalent to NVIDIA.
-
-  * The HIP stream synchronization behavior is changed in internal stream functions, in which a flag
-    "wait" is added and set when the current stream is null pointer while executing stream
-    synchronization on other explicitly created streams. This change avoids blocking of execution on
-    null/default stream. The change won't affect usage of applications, and makes them behave the
-    same on the AMD platform as NVIDIA.
-
-  * Error handling behavior on unsupported GPU is fixed, HIP runtime will log out error message,
-    instead of creating signal abortion error which is invisible to developers but continued kernel
-    execution process. This is for the case when developers compile any application via hipcc, setting the
-    option `--offload-arch` with GPU ID which is different from the one on the system.
-
-  * HIP complex vector type multiplication and division operations. On AMD platform, some duplicated
-    complex operators are removed to avoid compilation failures. In HIP, `hipFloatComplex` and
-    `hipDoubleComplex` are defined as complex data types:
-    `typedef float2 hipFloatComplex; typedef double2 hipDoubleComplex;` Any application that uses
-    complex multiplication and division operations needs to replace '*' and '/' operators with the
-    following:
-    * `hipCmulf()` and `hipCdivf()` for `hipFloatComplex`
-    * `hipCmul()` and `hipCdiv()` for `hipDoubleComplex`
-    Note: These complex operations are equivalent to corresponding types/functions on NVIDIA
-    platform.
 
 ### hipCUB
 
