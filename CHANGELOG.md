@@ -109,9 +109,9 @@ MIGraphX 2.8 for ROCm 6.0.0
 
 * Removed building Python 2.7 bindings
 
-#### HIP 6.0
+#### HIP 6.0.0
 
-HIP 6.0 for ROCm 6.0.0
+HIP 6.0.0 for ROCm 6.0.0
 
 ##### Additions
 

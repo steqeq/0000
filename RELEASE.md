@@ -38,7 +38,7 @@ CMake support is added for the documentation in the
 | Library | Version |
 |---------|---------|
 | AMDMIGraphX |  ⇒ [2.8](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-6.0.0) |
-| HIP | [6.0](https://github.com/ROCm/HIP/releases/tag/rocm-6.0.0) |
+| HIP | [6.0.0](https://github.com/ROCm/HIP/releases/tag/rocm-6.0.0) |
 | hipBLAS |  ⇒ [2.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-6.0.0) |
 | hipCUB |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-6.0.0) |
 | hipFFT |  ⇒ [1.0.13](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-6.0.0) |
@@ -112,9 +112,9 @@ MIGraphX 2.8 for ROCm 6.0.0
 
 * Removed building Python 2.7 bindings
 
-#### HIP 6.0
+#### HIP 6.0.0
 
-HIP 6.0 for ROCm 6.0.0
+HIP 6.0.0 for ROCm 6.0.0
 
 ##### Additions
 
