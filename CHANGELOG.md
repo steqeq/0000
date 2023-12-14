@@ -48,6 +48,7 @@ CMake support is added for the documentation in the [ROCm repository](https://gi
 | rocFFT |  ⇒ [1.0.25](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-6.0.0) |
 | rocm-cmake |  ⇒ [0.11.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-6.0.0) |
 | rocPRIM |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-6.0.0) |
+| rocprofiler | [2.0.0](https://github.com/ROCm/rocprofiler/releases/tag/rocm-6.0.0) |
 | rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-6.0.0) |
 | rocSOLVER |  ⇒ [3.24.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-6.0.0) |
 | rocSPARSE |  ⇒ [3.0.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-6.0.0) |
@@ -424,6 +425,21 @@ rocPRIM 3.0.0 for ROCm 6.0.0
 
 * Fixed `rocprim::MatchAny` for devices with 64-bit warp size
   * Note that `rocprim::MatchAny` is deprecated; use `rocprim::match_any` instead
+
+#### rocprofiler 2.0.0
+
+rocprofiler 2.0.0 for ROCm 6.0.0
+
+##### Additions
+
+* Updated supported GPU architectures in README with profiler versions
+* Automatic ISA dumping for ATT. See README.
+* CSV mode for ATT. See README.
+* Added option to control kernel name truncation.
+* Limit rocprof(v1) script usage to only supported architectures.
+* Added Tool versioning to be able to run rocprofv2 using rocprof. See README for more information.
+* Added Plugin Versioning way in rocprofv2. See README for more details.
+* Added `--version` in rocprof and rocprofv2 to be able to see the current rocprof/v2 version along with ROCm version information.
 
 #### rocRAND 2.10.17
 
