@@ -11,7 +11,7 @@
 
 <!-- spellcheck-disable -->
 
-This page contains the release notes for AMD ROCm Software.
+This page contains the release notes for AMD ROCm™ Software.
 
 -------------------
 
@@ -23,15 +23,67 @@ This page contains the release notes for AMD ROCm Software.
 
 #### OS and GPU support changes
 
-* AMD Instinct™ MI300A and MI300X support has been added
+* AMD Instinct™ MI300A and MI300X Accelerator support is enabled for supported OSes excluding RHEL9
 * Added support for the following operating systems:
   * RHEL 9.3
   * RHEL 8.9
+
+#### New ROCm meta package
+
+A new ROCm meta packages has been added for easy installation of all ROCm core packages, tools, and libraries.
+For example, the following command will install the full ROCm package: `apt-get install rocm` (Ubuntu), or `yum install rocm` (RHEL).
+
+#### Filesystem Hierarchy Standard
+
+ROCm 6.0 fully adopts the Filesystem Hierarchy Standard (FHS) reorganization goals.
+The backward compatibility support for old file locations is removed.
+
+#### Compiler location change
+
+- The installation path of LLVM changes from `/opt/rocm-<rel>/llvm` to `/opt/rocm-<rel>/lib/llvm`.
+  For backbward compatibility, a symbolic link is provided to tyhe old location and will be rmoved in ROCm 7.0 or later.
+- The installation path of device library bitcode has changed from `/opt/rocm-<rel>/amdgcn` to `/opt/rocm-<rel>/lib/llvm/lib/clang/<ver>/lib/amdgcn`.
+  For backward compatibility, a symbolic link is provided and will be removed in ROCm 7.0 or later.
+
+#### End of support of specific distros
+
+The following distros are planned for end of support in ROCm 6.2:
+
+- Ubuntu 20.04.5
+- SLES 15 SP4
+- RHEL 7.9
+- CentOS 7.9
 
 #### Documentation
 
 CMake support is added for the documentation in the
 [ROCm repository](https://github.com/RadeonOpenCompute/ROCm).
+
+#### AMD Instinct™ MI50 end-of-support notice
+
+AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) enters
+maintenance mode in ROCM 6.0.0.
+
+As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 is the
+final release for gfx906 GPUs in a fully supported state.
+
+* ROCm 6.0 shows MI50s as "under maintenance" for
+  [Linux](../about/compatibility/linux-support.md) and
+  [Windows](../about/compatibility/windows-support.md)
+
+* No new features and performance optimizations will be supported for the gfx906 GPUs beyond
+  ROCm 5.7.
+
+* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2
+  2024 (end of maintenance \[EOM] will be aligned with the closest ROCm release).
+
+* Bug fixes during the maintenance will be made to the next ROCm point release.
+
+* Bug fixes will not be backported to older ROCm releases for gfx906.
+
+* Distribution and operating system updates will continue per the ROCm release cadence for gfx906
+  GPUs until EOM.
+
 
 ### Library changes
 
@@ -66,7 +118,6 @@ MIGraphX 2.8 for ROCm 6.0.0
 
 ##### Additions
 
-* Support for MI300 series GPUs
 * Support for TorchMIGraphX via PyTorch
 * Boosted overall performance by integrating rocMLIR
 * INT8 support for ONNX Runtime
@@ -463,7 +514,7 @@ rocFFT 1.0.25 for ROCm 6.0.0
   * `rocfft_field_add_brick` can be called to describe the brick decomposition of an FFT field, where each
     brick can be assigned a different device
 
-  These interfaces are still experimental and subject to change. We are interested in getting feedback.
+  These interfaces are still experimental and subject to change. Your feedback is appreciated.
   You can raise questions and concerns by opening issues in the
   [rocFFT issue tracker](https://github.com/ROCmSoftwarePlatform/rocFFT/issues).
 
@@ -734,27 +785,3 @@ Tensile 4.39.0 for ROCm 6.0.0
 * Compiler directive for gfx941 and gfx942
 * Formatting for `DecisionTree_test.cpp`
 
-#### AMD Instinct™ MI50 end-of-support notice
-
-AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter
-maintenance mode starting Q3 2023.
-
-As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the
-final release for gfx906 GPUs to be in a fully supported state.
-
-* ROCm 6.0 shows MI50s as "under maintenance" for
-  [Linux](../about/compatibility/linux-support.md) and
-  [Windows](../about/compatibility/windows-support.md)
-
-* No new features and performance optimizations will be supported for the gfx906 GPUs beyond
-  ROCm 5.7.
-
-* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2
-  2024 (end of maintenance \[EOM] will be aligned with the closest ROCm release).
-
-* Bug fixes during the maintenance will be made to the next ROCm point release.
-
-* Bug fixes will not be backported to older ROCm releases for gfx906.
-
-* Distribution and operating system updates will continue per the ROCm release cadence for gfx906
-  GPUs until EOM.
