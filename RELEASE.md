@@ -11,9 +11,9 @@ optimizations for this new platform.
   frameworks are optimized for ROCm, including multi-GPU and multi-server capabilities.
 * hipSPARSELt provides AMD's sparse matrix core technique on AMD RDNA/CDNA GPUs, which has
   the potential to speed up AI workloads and inference engines.
-* Prepackaged HPC and AI containers are available on AMD Infinity Hub. We have improved
-  documentation and tutorials on the AMD ROCm Docs site.
-* AMD has consolidated developer resources and training on our new AMD ROCm Developer Hub.
+* Prepackaged HPC and AI containers are available on [AMD Infinity Hub](https://www.amd.com/en/developer/resources/infinity-hub.html). We have improved
+  documentation and tutorials on the [AMD ROCm Docs](https://rocm.docs.amd.com) site.
+* AMD has consolidated developer resources and training on our new [AMD ROCm Developer Hub](https://www.amd.com/en/developer/resources/rocm-hub.html).
   ROCm 6.0 has focused on performance tuning in key areas, such as lower precision math and
   attention layers.
 
