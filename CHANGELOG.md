@@ -16,19 +16,91 @@ This page contains the release notes for AMD ROCm Software.
 -------------------
 
 ## ROCm 6.0.0
-<!-- markdownlint-disable first-line-h1 -->
-<!-- markdownlint-disable no-duplicate-header -->
 
 ### New in this release:
 
-* Added AMD Instinct™ MI300A and MI300X GPU support
-* Added support for the following operating systems:
-  * RHEL 9.3
-  * RHEL 8.9
+ROCm 6.0 is a major release with new performance optimizations, expanded frameworks and library
+support, and improved developer experience. Initial enablement of all AMD Instinct™ MI300-related features are
+delivered in ROCm 6.0. Future releases will provide additional enablement and optimizations for this new
+platform.
+
+* FP8 support in PyTorch along with hipBLASLt enables optimized performance.
+* Upstream support is now available for popular AI frameworks like TensorFlow, JAX, and PyTorch
+* ROCm 6.0 adds support for AI libraries, such as DeepSpeed, ONNX-RT, Jax, and CuPy. HPC
+  frameworks are optimized for ROCm, including multi-GPU and multi-server capabilities.
+* hipSPARSELt provides AMD's sparse matrix core technique on AMD RDNA/CDNA GPUs, which has
+  the potential to speed up AI workloads and inference engines.
+* Prepackaged HPC and AI containers are available on AMD Infinity Hub. We have improved
+  documentation and tutorials on the AMD ROCm Docs site.
+* AMD has consolidated developer resources and training on our new AMD ROCm Developer Hub.
+  ROCm 6.0 has focused on performance tuning in key areas, such as lower precision math and
+  attention layers.
+
+#### OS and GPU support changes
+
+AMD Instinct™ MI300A and MI300X Accelerator support has been enabled for supported operating
+systems, excluding RHEL 9.
+
+We've added support for the following operating systems:
+
+* RHEL 9.3
+* RHEL 8.9
+
+Note that, of ROCm 6.2, we've planned for end-of-support for the following operating systems:
+
+* Ubuntu 20.04.5
+* SLES 15 SP4
+* RHEL/CentOS 7.9
+
+#### New ROCm meta package
+
+A new ROCm meta package has been added for easy installation of all ROCm core packages, tools, and libraries.
+For example, the following command will install the full ROCm package: `apt-get install rocm` (Ubuntu), or `yum install rocm` (RHEL).
+
+#### Filesystem Hierarchy Standard
+
+ROCm 6.0 fully adopts the Filesystem Hierarchy Standard (FHS) reorganization goals. We've removed
+the backward compatibility support for old file locations.
+
+#### Compiler location change
+
+* The installation path of LLVM has been changed from `/opt/rocm-<rel>/llvm` to
+  `/opt/rocm-<rel>/lib/llvm`. For backward compatibility, a symbolic link is provided to the old
+  location and will be removed in ROCm 7.0 or later.
+* The installation path of the device library bitcode has changed from `/opt/rocm-<rel>/amdgcn` to
+  `/opt/rocm-<rel>/lib/llvm/lib/clang/<ver>/lib/amdgcn`. For backward compatibility, a symbolic link
+  is provided and will be removed in a future release.
+
 
 #### Documentation
 
-CMake support is added for the documentation in the [ROCm repository](https://github.com/RadeonOpenCompute/ROCm).
+CMake support has been added for documentation in the
+[ROCm repository](https://github.com/RadeonOpenCompute/ROCm).
+
+#### AMD Instinct™ MI50 end-of-support notice
+
+AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter
+maintenance mode in ROCM 6.0.0.
+
+As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 is the
+final release for gfx906 GPUs in a fully supported state.
+
+* ROCm 6.0 shows MI50s as "under maintenance" for
+  [Linux](../about/compatibility/linux-support.md) and
+  [Windows](../about/compatibility/windows-support.md)
+
+* No new features and performance optimizations will be supported for the gfx906 GPUs beyond
+  ROCm 5.7.
+
+* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2
+  2024 (end of maintenance \[EOM] will be aligned with the closest ROCm release).
+
+* Bug fixes during the maintenance will be made to the next ROCm point release.
+
+* Bug fixes will not be backported to older ROCm releases for gfx906.
+
+* Distribution and operating system updates will continue per the ROCm release cadence for gfx906
+  GPUs until EOM.
 
 ### Library changes
 
@@ -64,7 +136,6 @@ MIGraphX 2.8 for ROCm 6.0.0
 
 ##### Additions
 
-* Support for AMD Instinct™ MI300 series GPUs
 * Support for TorchMIGraphX via PyTorch
 * Boosted overall performance by integrating rocMLIR
 * INT8 support for ONNX Runtime
@@ -109,6 +180,16 @@ MIGraphX 2.8 for ROCm 6.0.0
 ##### Removals
 
 * Removed building Python 2.7 bindings
+
+#### AMD SMI
+
+* Integrated the E-SMI library: You can now query CPU-related information directly through AMD SMI.
+  Metrics include power, energy, performance, and other system details.
+
+* Added support for gfx940/941/942 metrics: You can now query MI300 device metrics to get real-time
+  information. Metrics include power, temperature, energy, and performance.
+
+* Added support for compute and memory partitions
 
 #### HIP 6.0.0
 
@@ -184,7 +265,7 @@ Note: HIP supports LUID only on Windows OS.
 
 * Kernel launch maximum dimension validation is added specifically on gridY and gridZ in the HIP API `hipModule-LaunchKernel`. As a result,when `hipGetDeviceAttribute` is called for the value of `hipDeviceAttributeMaxGrid-Dim`, the behavior on the AMD platform is equivalent to NVIDIA.
 
-* The HIP stream synchronisation behaviour is changed in internal stream functions, in which a flag "wait" is added and set when the current stream is null pointer while executing stream synchronisation on other explicitly created streams. This change avoids blocking of execution on null/default stream. The change won't affect usage of applications, and makes them behave the same on the AMD platform as NVIDIA.
+* The HIP stream synchronization behavior is changed in internal stream functions, in which a flag "wait" is added and set when the current stream is null pointer while executing stream synchronization on other explicitly created streams. This change avoids blocking of execution on null/default stream. The change won't affect usage of applications, and makes them behave the same on the AMD platform as NVIDIA.
 
 * Error handling behavior on unsupported GPU is fixed, HIP runtime will log out error message, instead of creating signal abortion error which is invisible to developers but continued kernel execution process. This is for the case when developers compile any application via hipcc, setting the option `--offload-arch` with GPU ID which is different from the one on the system.
 
@@ -203,7 +284,7 @@ Note: These complex operations are equivalent to corresponding types/functions o
   * Compilation flags for the platform definitions
     * AMD platform
       * `HIP_PLATFORM_HCC`
-      * `HCC` 
+      * `HCC`
       * `HIP_ROCclr`
     * NVIDIA platform
       * `HIP_PLATFORM_NVCC`
@@ -334,6 +415,50 @@ MIOpen 2.19.0 for ROCm 6.0.0
 * `[HOTFIX][MI200][FP16]` has been disabled for `ConvHipImplicitGemmBwdXdlops` when FP16_ALT is
   required
 
+#### OpenMP
+
+* MI300:
+  * Added support for gfx940, gfx941, and gfx942 targets
+  * Support on gfx941 for atomics as CAS loop for certain operations and data types
+  * Fixed declare target variable access in unified_shared_memory mode
+  * Enabled OMPX_APU_MAPS environment variable for MI200 and gfx940, gfx941 and gfx942
+  * Handled global pointers in forced USM (`OMPX_APU_MAPS`)
+
+* Nextgen AMDGPU plugin:
+  * Respect `GPU_MAX_HW_QUEUES` in the AMDGPU Nextgen plugin, which takes precedence over the
+  standard `LIBOMPTARGET_AMDGPU_NUM_HSA_QUEUES` environment variable
+  * Changed the default for `LIBOMPTARGET_AMDGPU_TEAMS_PER_CU` from 4 to 6
+  * Fixed the behavior of the `OMPX_FORCE_SYNC_REGIONS` environment variable, which is used to
+  force synchronous target regions (the default is to use an asynchronous implementation)
+  * Added support for and enabled default of code object version 5
+  * Implemented target OMPT callbacks and trace records support in the nextgen plugin
+
+* Specialized kernels:
+* Removes redundant copying of arrays when xteam reductions are active but not offloaded
+* Tuned the number of teams for BigJumpLoop
+* Enables specialized kernel generation with nested OpenMP pragma, as long as there is no nested
+  omp-parallel directive
+
+##### Additions
+
+* `-fopenmp-runtimelib={lib,lib-perf,lib-debug}` to select libs
+* Warning if mixed HIP / OpenMP offloading (i.e., if HIP language mode is active, but OpenMP target
+  directives are encountered)
+* Introduced compile-time limit for the number of GPUs supported in a system: 16 GPUs in a single
+  node is currently the maximum supported
+
+##### Changes
+
+* Correctly compute number of waves when workgroup size is less than the wave size
+* Implemented `LIBOMPTARGET_KERNEL_TRACE=3`, which prints DEVID traces and API timings
+* ASAN support for openmp release, debug, and perf libraries
+* Changed LDS lowering default to hybrid
+
+##### Fixes
+
+* Fixed RUNPATH for gdb plugin
+* Fixed hang in OMPT support if flush trace is called when there are no helper threads
+
 #### rccl 2.15.5
 
 RCCL 2.15.5 for ROCm 6.0.0
@@ -461,7 +586,7 @@ rocFFT 1.0.25 for ROCm 6.0.0
   * `rocfft_field_add_brick` can be called to describe the brick decomposition of an FFT field, where each
     brick can be assigned a different device
 
-  These interfaces are still experimental and subject to change. We are interested in getting feedback.
+  These interfaces are still experimental and subject to change. Your feedback is appreciated.
   You can raise questions and concerns by opening issues in the
   [rocFFT issue tracker](https://github.com/ROCmSoftwarePlatform/rocFFT/issues).
 
@@ -510,7 +635,7 @@ ROCgdb 13.2 for ROCm 6.0.0
 
 * Improved performances when handling the end of a process with a large number of threads.
 
-##### Known Issues
+##### Known issues
 
 * On certain configurations, ROCgdb can show the following warning message:
   `warning: Probes-based dynamic linker interface failed. Reverting to original interface.`
@@ -753,31 +878,6 @@ Tensile 4.39.0 for ROCm 6.0.0
 * Bug in `forcestoresc1` arch selection
 * Compiler directive for gfx941 and gfx942
 * Formatting for `DecisionTree_test.cpp`
-
-#### AMD Instinct™ MI50 end-of-support notice
-
-AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter
-maintenance mode starting Q3 2023.
-
-As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the
-final release for gfx906 GPUs to be in a fully supported state.
-
-* ROCm 6.0 shows MI50s as "under maintenance" for
-  [Linux](../about/compatibility/linux-support.md) and
-  [Windows](../about/compatibility/windows-support.md)
-
-* No new features and performance optimizations will be supported for the gfx906 GPUs beyond
-  ROCm 5.7.
-
-* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2
-  2024 (end of maintenance \[EOM] will be aligned with the closest ROCm release).
-
-* Bug fixes during the maintenance will be made to the next ROCm point release.
-
-* Bug fixes will not be backported to older ROCm releases for gfx906.
-
-* Distribution and operating system updates will continue per the ROCm release cadence for gfx906
-  GPUs until EOM.
 
 -------------------
 
