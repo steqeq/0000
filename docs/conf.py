@@ -85,6 +85,7 @@ article_pages = [
 
     {"file":"rocm-a-z", "os":["linux", "windows"]},
 
+    {"file":"about/release-notes.md", "os":["linux"]},
 ]
 
 exclude_patterns = ['temp']
