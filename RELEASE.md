@@ -112,7 +112,7 @@ final release for gfx906 GPUs in a fully supported state.
   * `hipExternalSemaphoreHandleType_enum`
   * `hipExternalMemoryHandleType_enum`
 
-* **Added a new environment variable: `HIP_LAUNCH_BLOCKING`**.
+* **Added a new environment variable: `HIP_LAUNCH_BLOCKING`**.\
   This is for serialization on kernel execution. The default value is 0 (disable); kernel will run normally, as
   defined in the queue. When this environment variable is set as 1 (enable), HIP runtime serializes the
   kernel enqueue (behaves the same as `AMD_SERIALIZE_KERNEL`).
