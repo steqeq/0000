@@ -10,7 +10,8 @@ MI300 series. Future releases will further enable and optimize this new platfo
 * New support for libraries, such as DeepSpeed, ONNX-RT, and CuPy.
 * Prepackaged HPC and AI containers on AMD Infinity Hub, with improved documentation and
   tutorials on the [AMD ROCm Docs](https://rocm.docs.amd.com) site.
-* Consolidated developer resources and training on the new AMD ROCm Developer Hub.
+* Consolidated developer resources and training on the new
+  [AMD ROCm Developer Hub](https://www.amd.com/en/developer/resources/rocm-hub.html).
 
 The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
 the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
