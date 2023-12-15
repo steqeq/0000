@@ -26,7 +26,7 @@ Future releases will add additional OS's to match our general offering. ```
 | RHEL 8.9 | Supported |  |
 | SLES15 SP5 | Supported |  |
 
-We've added support for the following operating systems:
+For older generations of supported Instinct products we have added the following operating systems:
 
 * RHEL 9.3
 * RHEL 8.9
