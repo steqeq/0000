@@ -17,8 +17,8 @@ the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
 
 ## OS and GPU support changes
 
-ROCm 6.0 enables the use of MI300A and MI300X Accelerators with a limited operating systems support. 
-Future releases will add additional OS's to match our general offering. ```
+ROCm 6.0 enables the use of MI300A and MI300X Accelerators with a limited operating systems
+support. Future releases will add additional OS's to match our general offering.
 
 | Operating Systems | MI300A | MI300X |
 |:---:|:---:|:---:|
@@ -26,12 +26,13 @@ Future releases will add additional OS's to match our general offering. ```
 | RHEL 8.9 | Supported |  |
 | SLES15 SP5 | Supported |  |
 
-For older generations of supported Instinct products we have added the following operating systems:
+For older generations of supported Instinct products we've added the following operating systems:
 
 * RHEL 9.3
 * RHEL 8.9
 
-Note: For ROCm 6.2 and beyond, we've planned for end-of-support (EoS) for the following operating systems:
+Note: For ROCm 6.2 and beyond, we've planned for end-of-support (EoS) for the following operating
+systems:
 
 * Ubuntu 20.04.5
 * SLES 15 SP4
