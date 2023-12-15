@@ -24,7 +24,6 @@ support, and improved developer experience. Initial enablement of all AMD Instin
 delivered in ROCm 6.0. Future releases will provide additional enablement and optimizations for this new
 platform.
 
-* FP8 support in PyTorch along with hipBLASLt enables optimized performance.
 * Upstream support is now available for popular AI frameworks like TensorFlow, JAX, and PyTorch
 * ROCm 6.0 adds support for AI libraries, such as DeepSpeed, ONNX-RT, Jax, and CuPy. HPC
   frameworks are optimized for ROCm, including multi-GPU and multi-server capabilities.
