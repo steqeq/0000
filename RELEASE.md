@@ -196,9 +196,9 @@ can refer to the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELO
 * **Added GPU and operating system support**.
     We added support for MI300X GPU in GPU Stress Test (GST).
 
-### rocProfiler
+### Roc Profiler
 
-* **Added option to specify desired rocProf version**.
+* **Added option to specify desired Roc Profiler version**.
     You can now use rocProfV1 or rocProfV2 by specifying your desired version, as the legacy rocProf
     (`rocprofv1`) provides the option to use the latest version (`rocprofv2`).
 
