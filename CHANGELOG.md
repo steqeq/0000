@@ -401,7 +401,7 @@ MIOpen 2.19.0 for ROCm 6.0.0
 
 ##### Additions
 
-* ROCm 5.5 support for gfx1101 (Navi32)
+* ROCm 5.5 support for gfx1101 (Navi 32)
 
 ##### Changes
 
@@ -2483,7 +2483,7 @@ MIOpen 2.19.0 for ROCm 5.5.0
 
 ##### Added
 
-- ROCm 5.5 support for gfx1101 (Navi32)
+- ROCm 5.5 support for gfx1101 (Navi 32)
 
 ##### Changed
 
@@ -2527,7 +2527,7 @@ rocALUTION 2.1.8 for ROCm 5.5.0
 
 ##### Added
 
-- Added build support for Navi32
+- Added build support for Navi 32
 
 ##### Improved
 
@@ -2697,7 +2697,7 @@ rocSPARSE 2.5.1 for ROCm 5.5.0
 
 - Added bsrgemm and spgemm for BSR format
 - Added bsrgeam
-- Added build support for Navi32
+- Added build support for Navi 32
 - Added experimental hipGraph support for some rocSPARSE routines
 - Added csritsv, spitsv csr iterative triangular solve
 - Added mixed precisions for SpMV
@@ -3507,7 +3507,7 @@ rocALUTION 2.1.3 for ROCm 5.4.0
 
 ##### Added
 
-- Added build support for Navi31 and Navi33
+- Added build support for Navi 31 and Navi 33
 - Added support for non-squared global matrices
 
 ##### Improved
@@ -3634,7 +3634,7 @@ rocSPARSE 2.4.0 for ROCm 5.4.0
 - Added rocsparse_spmv_ex routine
 - Added rocsparse_bsrmv_ex_analysis and rocsparse_bsrmv_ex routines
 - Added csritilu0 routine
-- Added build support for Navi31 and Navi 33
+- Added build support for Navi 31 and Navi 33
 
 ##### Improved
 
@@ -5168,7 +5168,7 @@ rocBLAS 2.44.0 for ROCm 5.2.0
 
 ##### Removed
 
-- Remove Navi12 (gfx1011) from fat binary.
+- Remove Navi 12 (gfx1011) from fat binary.
 
 #### rocFFT 1.0.17
 

@@ -55,7 +55,6 @@ the backward compatibility support for old file locations.
   `/opt/rocm-<rel>/lib/llvm/lib/clang/<ver>/lib/amdgcn`. For backward compatibility, a symbolic link
   is provided and will be removed in a future release.
 
-
 #### Documentation
 
 CMake support has been added for documentation in the
@@ -175,7 +174,7 @@ final release for gfx906 GPUs in a fully supported state.
 ### ROCgdb
 
 * **Added support for additional GPU architectures**.
-  * NAVI 3 Series: gfx1100, gfx1101, and gfx1102.
+  * Navi 3 Series: gfx1100, gfx1101, and gfx1102.
   * MI300 Series: gfx940, gfx941, and gfx942.
 
 ### rocm-smi-lib
@@ -196,8 +195,8 @@ final release for gfx906 GPUs in a fully supported state.
 ### ROCmValidationSuite
 
 * **Added GPU and operating system support**.
-    ROCmValidationSuite (RVS) now supports the CBL-Mariner operating system, and Navi31 and
-    NAVI32 GPUs. We've also added GPU Stress Test (GST) support for MI300X GPUs.
+    ROCmValidationSuite (RVS) now supports the CBL-Mariner operating system, and Navi 31 and
+    Navi 32 GPUs. We've also added GPU Stress Test (GST) support for MI300X GPUs.
 
 ### rocProfiler
 
