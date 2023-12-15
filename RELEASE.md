@@ -5,8 +5,8 @@ support, and improved developer experience. This includes initial enablement of 
 MI300 series. Future releases will further enable and optimize this new platform. Key features include:
 
 * Improved performance in areas like lower precision math and attention layers.
-* New hipSPARSELt library to accelerate AI workloads via AMD's sparse matrix core technique.
-* Latest upstream support for popular AI frameworks like PyTorch, TensorFlow, and JAX.
+* New hipSPARSELt library accelerates AI workloads via AMD's sparse matrix core technique.
+* Upstream support is now available for popular AI frameworks like TensorFlow, JAX, and PyTorch.
 * New support for libraries, such as DeepSpeed, ONNX-RT, and CuPy.
 * Prepackaged HPC and AI containers on AMD Infinity Hub, with improved documentation and
   tutorials on the [AMD ROCm Docs](https://rocm.docs.amd.com) site.
@@ -96,30 +96,14 @@ can refer to the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELO
 ### HIP
 
 * **New features to improve resource interoperability**.
-  * You can now use new fields and structs for external resource interoperability for memory handles
-    and buffers, and semaphores.
-  * You can use the new environment variable, `HIP_LAUNCH_BLOCKING`, to control serialization on
-    kernel execution.
-  * Use additional members to HIP struct `hipDeviceProp_t` for surfaces, textures, and device identifiers.
-    * LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more
-     members are added in the struct `hipDeviceProp_t`, as properties to identify each device.
+  * For external resource interoperability, we've added new structs and enums.
+  * We've added new members to HIP struct `hipDeviceProp_t` for surfaces, textures, and device
+    identifiers.
 
 * **Changes impacting backward compatibility**.
-  * We've changed data types for members in `HIP_MEMCPY3D` structure from `unsigned int` to `size_t`.
-  * The value of the flag `hipIpcMemLazyEnablePeerAccess` is changed to `0x01`, which was previously
-    defined as `0`.
-  * Some device property attributes are not currently supported in HIP runtime. In order to maintain
-    consistency, the following related enumeration names are changed in `hipDeviceAttribute_t`
-    * `hipDeviceAttributeName` is changed to `hipDeviceAttributeUnused1`
-    * `hipDeviceAttributeUuid` is changed to `hipDeviceAttributeUnused2`
-    * `hipDeviceAttributeArch` is changed to `hipDeviceAttributeUnused3`
-    * `hipDeviceAttributeGcnArch` is changed to `hipDeviceAttributeUnused4`
-    * `hipDeviceAttributeGcnArchName` is changed to `hipDeviceAttributeUnused5`
-  * HIP struct `hipArray` is removed from driver type header to comply with CUDA
-  * `hipArray_t` replaces `hipArray*`, as the pointer to array.
-    * This allows `hipMemcpyAtoH` and `hipMemcpyHtoA` to have the correct array type which is
-      equivalent to corresponding CUDA driver APIs.
-  * For additional deprecation information, refer to the changelog.
+    There are several changes impacting backward compatibility: we changed some struct members and
+    some enum values, and removed some deprecated flags. For additional information, please refer to
+    the Changelog.
 
 ### hipCUB
 
@@ -189,6 +173,22 @@ can refer to the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELO
     We made GPU index sorting consistent with other ROCm software tools by optimizing it to use
     `Bus:Device.Function` (BDF) instead of the card number.
 
+### ROCm Compiler
+
+* **Added kernel argument optimization on gfx942**.
+    With the new feature, you can preload kernel arguments into Scalar General-Purpose Registers
+    (SGPRs) rather than pass them in memory. This feature is enabled with a compiler option, which also
+    controls the number of arguments to pass in SGPRs. For more information, see:
+    [https://llvm.org/docs/AMDGPUUsage.html#preloaded-kernel-arguments](https://llvm.org/docs/AMDGPUUsage.html#preloaded-kernel-arguments)
+
+* **Improved register allocation at -O0**.
+    We've improved the register allocator used at -O0 to avoid compiler crashes (when the signature is
+    'ran out of registers during register allocation').
+
+* **Improved generation of debug information**.
+    We've improved compile time when generating debug information for certain corner cases. We've
+    also improved the compiler to eliminate compiler crashes when generating debug information.
+
 ### ROCmValidationSuite
 
 * **Added GPU and operating system support**.
@@ -196,7 +196,7 @@ can refer to the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELO
 
 ### rocProfiler
 
-* **Added option to specify desired RocProf version**.
+* **Added option to specify desired rocProf version**.
     You can now use rocProfV1 or rocProfV2 by specifying your desired version, as the legacy rocProf
     (`rocprofv1`) provides the option to use the latest version (`rocprofv2`).
 
