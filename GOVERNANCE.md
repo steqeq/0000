@@ -17,7 +17,7 @@ document.
 
 ## Governance
 
-ROCm is led and managed by Advanced Micro Devices, Inc (AMD).
+ROCm is led and managed by AMD.
 
 We welcome contributions from the community. Our maintainers review all proposed changes to
 ROCm.
