@@ -10,8 +10,6 @@ subtrees:
   - file: about/whats-new/whats-new.md
     subtrees:
     - entries:
-      - file: about/release-notes.md
-        title: Latest release notes
       - file: about/CHANGELOG.md
         title: Changelog
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
@@ -19,9 +17,9 @@ subtrees:
 
 - caption: Install
   entries:
-  - url: https://rocm.docs.amd.com/projects/linux-install/en/${branch}/
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/
     title: ROCm on Linux
-  - url: https://rocm.docs.amd.com/projects/linux-install/en/${branch}/
+  - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/
     title: HIP SDK on Windows
 
 - caption: Supported configurations
