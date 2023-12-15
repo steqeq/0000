@@ -20,7 +20,7 @@ optimizations for this new platform.
 For additional details on these release notes, you can refer to the
 [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
 
-#### OS and GPU support changes
+## OS and GPU support changes
 
 AMD Instinct™ MI300A and MI300X Accelerator support has been enabled for supported operating
 systems, excluding RHEL 9.
@@ -36,17 +36,17 @@ Note that, of ROCm 6.2, we've planned for end-of-support for the following opera
 * SLES 15 SP4
 * RHEL/CentOS 7.9
 
-#### New ROCm meta package
+## New ROCm meta package
 
 A new ROCm meta package has been added for easy installation of all ROCm core packages, tools, and libraries.
 For example, the following command will install the full ROCm package: `apt-get install rocm` (Ubuntu), or `yum install rocm` (RHEL).
 
-#### Filesystem Hierarchy Standard
+## Filesystem Hierarchy Standard
 
 ROCm 6.0 fully adopts the Filesystem Hierarchy Standard (FHS) reorganization goals. We've removed
 the backward compatibility support for old file locations.
 
-#### Compiler location change
+## Compiler location change
 
 * The installation path of LLVM has been changed from `/opt/rocm-<rel>/llvm` to
   `/opt/rocm-<rel>/lib/llvm`. For backward compatibility, a symbolic link is provided to the old
@@ -55,12 +55,12 @@ the backward compatibility support for old file locations.
   `/opt/rocm-<rel>/lib/llvm/lib/clang/<ver>/lib/amdgcn`. For backward compatibility, a symbolic link
   is provided and will be removed in a future release.
 
-#### Documentation
+## Documentation
 
 CMake support has been added for documentation in the
 [ROCm repository](https://github.com/RadeonOpenCompute/ROCm).
 
-#### AMD Instinct™ MI50 end-of-support notice
+## AMD Instinct™ MI50 end-of-support notice
 
 AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) enters
 maintenance mode in ROCm 6.0.0.
@@ -79,6 +79,10 @@ final release for gfx906 GPUs in a fully supported state.
 
   * Distribution and operating system updates will continue per the ROCm release cadence for gfx906
     GPUs until EOM.
+
+## Known issues
+
+## ROCm projects
 
 ### AMD SMI
 
