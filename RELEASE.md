@@ -78,8 +78,6 @@ final release for gfx906 GPUs in a fully supported state.
   * Distribution and operating system updates will continue per the ROCm release cadence for gfx906
     GPUs until EOM.
 
-## Known issues
-
 ## ROCm projects
 
 The following sections contains project-specific release notes for ROCm 6.0. For additional details, you

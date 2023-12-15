@@ -17,8 +17,6 @@ This page contains the release notes for AMD ROCm Software.
 
 ## ROCm 6.0.0
 
-### New in this release:
-
 ROCm 6.0 is a major release with new performance optimizations, expanded frameworks and library
 support, and improved developer experience. This includes initial enablement of the AMD Instinct™
 MI300 series. Future releases will further enable and optimize this new platform. Key features include:
@@ -34,7 +32,7 @@ MI300 series. Future releases will further enable and optimize this new platfo
 The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
 the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
 
-## OS and GPU support changes
+### OS and GPU support changes
 
 AMD Instinct™ MI300A and MI300X Accelerator support has been enabled for limited operating
 systems.
@@ -54,18 +52,18 @@ Note that, of ROCm 6.2, we've planned for end-of-support (EoS) for the following
 * SLES 15 SP4
 * RHEL/CentOS 7.9
 
-## New ROCm meta package
+### New ROCm meta package
 
 We've added a new ROCm meta package for easy installation of all ROCm core packages, tools, and
 libraries. For example, the following command will install the full ROCm package: `apt-get install rocm`
 (Ubuntu), or `yum install rocm` (RHEL).
 
-## Filesystem Hierarchy Standard
+### Filesystem Hierarchy Standard
 
 ROCm 6.0 fully adopts the Filesystem Hierarchy Standard (FHS) reorganization goals. We've removed
 the backward compatibility support for old file locations.
 
-## Compiler location change
+### Compiler location change
 
 * The installation path of LLVM has been changed from `/opt/rocm-<rel>/llvm` to
   `/opt/rocm-<rel>/lib/llvm`. For backward compatibility, a symbolic link is provided to the old
@@ -74,12 +72,12 @@ the backward compatibility support for old file locations.
   `/opt/rocm-<rel>/lib/llvm/lib/clang/<ver>/lib/amdgcn`. For backward compatibility, a symbolic link
   is provided and will be removed in a future release.
 
-## Documentation
+### Documentation
 
 CMake support has been added for documentation in the
 [ROCm repository](https://github.com/RadeonOpenCompute/ROCm).
 
-## AMD Instinct™ MI50 end-of-support notice
+### AMD Instinct™ MI50 end-of-support notice
 
 AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) enters
 maintenance mode in ROCm 6.0.
@@ -94,8 +92,6 @@ final release for gfx906 GPUs in a fully supported state.
   * Bug fixes will not be backported to older ROCm releases for gfx906.
   * Distribution and operating system updates will continue per the ROCm release cadence for gfx906
     GPUs until EOM.
-
-### Known issues
 
 ### Library changes
 
@@ -181,7 +177,7 @@ MIGraphX 2.8 for ROCm 6.0.0
 * Integrated the E-SMI library: You can now query CPU-related information directly through AMD SMI.
   Metrics include power, energy, performance, and other system details.
 
-* Added support for gfx940/941/942 metrics: You can now query MI300 device metrics to get real-time
+* Added support for gfx942 metrics: You can now query MI300 device metrics to get real-time
   information. Metrics include power, temperature, energy, and performance.
 
 * Added support for compute and memory partitions
@@ -204,8 +200,8 @@ HIP 6.0.0 for ROCm 6.0.0
 
 * New environment variable `HIP_LAUNCH_BLOCKING`
   * For serialization on kernel execution. The default value is 0 (disable); kernel will execute normally as
-    defined in the queue. When this environment variable is set as 1 (enable), HIP runtime will
-    serialize kernel enqueue; behaves the same as AMD_SERIALIZE_KERNEL.
+        defined in the queue. When this environment variable is set as 1 (enable), HIP runtime will
+        serialize kernel enqueue; behaves the same as AMD_SERIALIZE_KERNEL.
 
 * More members are added in HIP struct `hipDeviceProp_t`, for new feature capabilities including:
   * Texture
@@ -231,9 +227,10 @@ HIP 6.0.0 for ROCm 6.0.0
       * `char luid[8];` this is an 8-byte unique identifier. Only valid on Windows
       * `unsigned int luidDeviceNodeMask;`
 
-* LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more members are added in the struct `hipDeviceProp_t`, as properties to identify each device:
-  * `char luid[8];`
-  * `unsigned int luidDeviceNodeMask;`
+* LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more
+        members are added in the struct `hipDeviceProp_t`, as properties to identify each device:
+    * `char luid[8];`
+    * `unsigned int luidDeviceNodeMask;`
 
 Note: HIP supports LUID only on Windows OS.
 
@@ -247,8 +244,10 @@ Note: HIP supports LUID only on Windows OS.
 ###### Changes impacting backward incompatibility
 
 * Data types for members in `HIP_MEMCPY3D` structure are changed from `unsigned int` to `size_t`.
-* The value of the flag `hipIpcMemLazyEnablePeerAccess` is changed to `0x01`, which was previously defined as `0`.
-* Some device property attributes are not currently supported in HIP runtime. In order to maintain consistency, the following related enumeration names are changed in `hipDeviceAttribute_t`
+* The value of the flag `hipIpcMemLazyEnablePeerAccess` is changed to `0x01`, which was previously
+  defined as `0`
+* Some device property attributes are not currently supported in HIP runtime. In order to maintain
+   consistency, the following related enumeration names are changed in `hipDeviceAttribute_t`
   * `hipDeviceAttributeName` is changed to `hipDeviceAttributeUnused1`
   * `hipDeviceAttributeUuid` is changed to `hipDeviceAttributeUnused2`
   * `hipDeviceAttributeArch` is changed to `hipDeviceAttributeUnused3`
@@ -256,7 +255,8 @@ Note: HIP supports LUID only on Windows OS.
   * `hipDeviceAttributeGcnArchName` is changed to `hipDeviceAttributeUnused5`
 * HIP struct `hipArray` is removed from driver type header to comply with CUDA
 * `hipArray_t` replaces `hipArray*`, as the pointer to array.
-  * This allows `hipMemcpyAtoH` and `hipMemcpyHtoA` to have the correct array type which is equivalent to corresponding CUDA driver APIs.
+  * This allows `hipMemcpyAtoH` and `hipMemcpyHtoA` to have the correct array type which is
+        equivalent to corresponding CUDA driver APIs.
 
 ##### Fixes
 
@@ -378,7 +378,7 @@ hipTensor 1.1.0 for ROCm 6.0.0
 
 ##### Additions
 
-* Architecture support for gfx940, gfx941, and gfx942
+* Architecture support for gfx942
 * Client tests configuration parameters now support YAML file input format
 
 ##### Changes
@@ -399,7 +399,7 @@ MIOpen 2.19.0 for ROCm 6.0.0
 
 ##### Additions
 
-* ROCm 5.5 support for gfx1101 (Navi 32)
+* ROCm 5.5 support for gfx1101 (Navi32)
 
 ##### Changes
 
@@ -421,9 +421,9 @@ MIOpen 2.19.0 for ROCm 6.0.0
 #### OpenMP
 
 * MI300:
-  * Added support for gfx940, gfx941, and gfx942 targets
+  * Added support for gfx942 targets
   * Fixed declare target variable access in unified_shared_memory mode
-  * Enabled OMPX_APU_MAPS environment variable for MI200 and gfx940, gfx941 and gfx942
+  * Enabled OMPX_APU_MAPS environment variable for MI200 and gfx942
   * Handled global pointers in forced USM (`OMPX_APU_MAPS`)
 
 * Nextgen AMDGPU plugin:
@@ -631,7 +631,7 @@ ROCgdb 13.2 for ROCm 6.0.0
 
 * Support for watchpoints on scratch memory addresses.
 * Added support for gfx1100, gfx1101, and gfx1102.
-* Added support for gfx940, gfx941 and gfx942.
+* Added support for gfx942.
 
 ##### Optimizations
 
@@ -660,6 +660,18 @@ rocm-cmake 0.11.0 for ROCm 6.0.0
 
 * Fixed extra `make` flags passed for Clang-Tidy (ROCMClangTidy).
 * Fixed issues with ROCMTest when using a module in a subdirectory
+
+#### ROCm Compiler
+
+* On MI300, kernel arguments can be preloaded into SGPRs rather than passed in memory. This
+  feature is enabled with a compiler option, which also controls the number of arguments to pass in
+   SGPRs.
+
+* Improved register allocation at -O0: Avoid compiler crashes ( 'ran out of registers during register allocation' )
+
+* Improved generation of debug information:
+    * Improve compile time
+    * Avoid compiler crashes
 
 #### rocPRIM 3.0.0
 
@@ -805,10 +817,10 @@ rocWMMA 1.3.0 for ROCm 6.0.0
 
 ##### Additions
 
-* Support for gfx940, gfx941, and gfx942 targets
+* Support for gfx942
 * Support for f8, bf8, and xfloat32 data types
 * support for `HIP_NO_HALF`, `__ HIP_NO_HALF_CONVERSIONS__`, and
-  `__ HIP_NO_HALF_OPERATORS__` (e.g., PyTorch environment)
+    `__ HIP_NO_HALF_OPERATORS__` (e.g., PyTorch environment)
 
 ##### Changes
 
@@ -827,7 +839,7 @@ Tensile 4.39.0 for ROCm 6.0.0
 
 ##### Additions
 
-* Added `aquavanjaram` support: gfx940/gfx941/gfx942, fp8/bf8 datatype, xf32 datatype, and
+* Added `aquavanjaram` support: gfx942, fp8/bf8 datatype, xf32 datatype, and
   stochastic rounding for various datatypes
 * Added and updated tuning scripts
 * Added `DirectToLds` support for larger data types with 32-bit global load (old parameter `DirectToLds`
@@ -866,7 +878,6 @@ Tensile 4.39.0 for ROCm 6.0.0
 * Supported multi-gpu for different architectures in lazy library loading
 * Enabled dtree library for batch &gt; 1
 * Added problem scale feature for dtree selection
-* Enabled ROCm SMI for gfx940/941
 * Modified non-lazy load build to skip experimental logic
 
 ##### Fixes
@@ -880,7 +891,7 @@ Tensile 4.39.0 for ROCm 6.0.0
 * Adding missing headers
 * Boost link for a clean build on Ubuntu 22
 * Bug in `forcestoresc1` arch selection
-* Compiler directive for gfx941 and gfx942
+* Compiler directive for gfx942
 * Formatting for `DecisionTree_test.cpp`
 
 -------------------
