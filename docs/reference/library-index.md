@@ -130,7 +130,7 @@
 ^^^
 
 * {doc}`ROCm Data Center Tool <rdc:index>`
-* {doc}`ROCm SMI LIB <rocm_smi_lib:index>`
+* {doc}`ROCm SMI <rocm_smi_lib:index>`
 * {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 * {doc}`TransferBench <transferbench:index>`
 
