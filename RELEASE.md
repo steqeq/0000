@@ -14,7 +14,8 @@ MI300 series. Future releases will further enable and optimize this new platfo
   [AMD ROCm Developer Hub](https://www.amd.com/en/developer/resources/rocm-hub.html).
 
 The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
-the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
+the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html). We list known
+issues on [GitHub](https://github.com/ROCm/ROCm/issues).
 
 ## OS and GPU support changes
 
