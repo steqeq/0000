@@ -31,7 +31,7 @@ For older generations of supported Instinct products we have added the following
 * RHEL 9.3
 * RHEL 8.9
 
-Note that, of ROCm 6.2, we've planned for end-of-support (EoS) for the following operating systems:
+Note: For ROCm 6.2 and beyond, we've planned for end-of-support (EoS) for the following operating systems:
 
 * Ubuntu 20.04.5
 * SLES 15 SP4
