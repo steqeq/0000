@@ -25,7 +25,7 @@ subtrees:
 
 - caption: Supported configurations
   entries:
-  - file: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
     title: Linux
 
 - caption: Reference
