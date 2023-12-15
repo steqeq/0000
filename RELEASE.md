@@ -19,7 +19,6 @@ the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
 
 ROCm 6.0 enables the use of MI300A and MI300X Accelerators with a limited operating systems support. 
 Future releases will add additional OS's to match our general offering. ```
-systems.
 
 * Ubuntu 22.04.5 (MI300A and MI300X)
 * RHEL 8.9 (MI300A)
