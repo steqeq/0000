@@ -215,9 +215,9 @@ Follow these steps:
 
 7. Set parameters to guide the training process.
 
-    ```{note}
+    :::{note}
     The device is set to `"cuda"`. In PyTorch, `"cuda"` is a generic keyword to denote a GPU.
-    ```
+    :::
 
     ```py
     device = "cuda"
@@ -277,9 +277,9 @@ Follow these steps:
     lr_gamma = 0.1
     ```
 
-    ```{note}
+    :::{note}
     One training epoch is when the neural network passes an entire dataset forward and backward.
-    ```
+    :::
 
     ```py
     epochs = 90
@@ -340,9 +340,9 @@ Follow these steps:
     )
     ```
 
-    ```{note}
+    :::{note}
     Use torchvision to obtain the Inception V3 model. Use the pre-trained model weights to speed up training.
-    ```
+    :::
 
     ```py
     print("Creating model")
@@ -1162,9 +1162,10 @@ To prepare the data for training, follow these steps:
     print("Accuracy: ", accuracy)
     ```
 
-    ```{note}
-    model.fit() returns a History object that contains a dictionary with everything that happened during training.
-    ```
+    :::{note}
+    `model.fit()` returns a History object that contains a dictionary with everything that happened during
+    training.
+    :::
 
     ```py
     history_dict = history.history
