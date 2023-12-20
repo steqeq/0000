@@ -15,7 +15,8 @@ Along with host APIs, the OpenMP compilers support offloading code and data onto
 GPU devices. This document briefly describes the installation location of the
 OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
-this ROCm release. See the list of supported GPUs for [Linux](../../about/compatibility/linux-support.md) and [Windows](../../about/compatibility/windows-support.md).
+this ROCm release. See the list of supported GPUs for {doc}`Linux<rocm-install-on-linux:reference/system-requirements>` and
+{doc}`Windows<rocm-install-on-windows:reference/system-requirements>`.
 
 The ROCm OpenMP compiler is implemented using LLVM compiler technology.
 The following image illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.

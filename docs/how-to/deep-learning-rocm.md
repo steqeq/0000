@@ -17,6 +17,6 @@ Frameworks Release Notes for each framework's most current release notes at
 
 ## Frameworks installation
 
-* {doc}`PyTorch for ROCm<rocm-install-on-linux:pytorch-install>`
-* {doc}`TensorFlow for ROCm<rocm-install-on-linux:tensorflow-install>`
-* {doc}`MAGMA for ROCm<rocm-install-on-linux:magma-install>`
+* {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
+* {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
+* {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
