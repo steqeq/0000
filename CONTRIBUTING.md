@@ -8,7 +8,7 @@
 
 AMD values and encourages contributions to our code and documentation. If you want to contribute
 to our ROCm repositories, first review the following guidance. For documentation-specific information,
-see [Contributing to ROCm docs](./contribute-docs.md).
+see [Contributing to ROCm docs](https://github.com/ROCm/ROCm/blob/develop/docs/contribute/contribute-docs.md).
 
 ROCm is a software stack made up of a collection of drivers, development tools, and APIs that enable
 GPU programming from low-level kernel to end-user applications. Because some of our components
