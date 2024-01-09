@@ -17,7 +17,6 @@ This page contains the release notes for AMD ROCm Software.
 
 ## ROCm 6.0.1
 
-
 ### Library changes in ROCM 6.0.1
 
 | Library | Version |
@@ -45,24 +44,78 @@ This page contains the release notes for AMD ROCm Software.
 | rocWMMA | [1.3.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-6.0.1) |
 | Tensile | [4.39.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.0.1) |
 
+
+#### hipBLAS 2.1.0
+
+hipBLAS 2.1.0 for ROCm 6.0.1
+
+#### Changes
+
+* Some Level 2 function argument names have changed from `m` to `n` to match legacy BLAS; there
+  was no change in implementation.
+* Updated client code to use YAML-based testing
+
+#### hipBLASLt 0.7.0
+
+hipBLASLt 0.7.0 for ROCm 6.0.1
+
+##### Additions
+
+* Extension APIs:
+  * `hipblasltExtSoftmax`
+  * `hipblasltExtLayerNorm`
+  * `hipblasltExtAMax`
+* `GemmTuning` extension parameter to set split-k by user
+* Support for mixed-precision datatype: FP16/FP8 in with FP16 out
+
 #### hipSPARSELt 0.1.0
 
 hipSPARSELt 0.1.0 for ROCm 6.0.1
 
-##### Added
+##### Additions
 
-- Enable hipSPARSELt APIs
-- Support platform: gfx940, gfx941, gfx942 
-- Support problem type: fp16, bf16, int8
-- Support activation: relu, gelu, abs, sigmod, tanh
-- Support gelu scaling
-- Support bias vector
-- Support batched computation (single sparse x multiple dense, multiple sparse x single dense)
-- Support cuSPARSELt v0.4 backend
-- Integreate with tensilelite kernel generator
-- Add Gtest: hipsparselt-test
-- Add benchmarking tool: hipsparselt-bench
-- Add sample app: example_spmm_strided_batched, example_prune, example_compress
+* Enabled hipSPARSELt APIs
+* Support for:
+  * gfx940, gfx941, and gfx942 platforms
+  * FP16, BF16, and INT8 problem types
+  * ReLU, GELU, abs, sigmod, and tanh activation
+  * GELU scaling
+  * Bias vectors
+  * cuSPARSELt v0.4 backend
+* Integrated with Tensile Lite kernel generator
+* Support for batched computation (single sparse x multiple dense and multiple sparse x
+single dense)
+* GoogleTest: hipsparselt-test
+* `hipsparselt-bench` benchmarking tool
+* Sample apps: `example_spmm_strided_batched`, `example_prune`, `example_compress`
+
+#### rocAL 1.0.0
+
+rocAL 1.0.0 for ROCm 6.0.1
+
+##### Changes
+
+* Removed CuPy from `setup.py`
+
+#### rocBLAS 4.1.0
+
+rocBLAS 4.1.0 for ROCm 6.0.1
+
+##### Additions
+
+* Level 1 and Level 1 Extension functions have additional ILP64 API for both C and Fortran (`_64` name
+  suffix) with int64_t function arguments
+* Cache flush timing for `gemm_ex`
+
+##### Changes
+
+* Some Level 2 function argument names have changed `m` to `n` to match legacy BLAS; there is no
+  change in implementation
+* Standardized the use of non-blocking streams for copying results from device to host
+
+##### Fixes
+
+* Fixed host-pointer mode reductions for non-blocking streams
 
 -------------------
 
@@ -477,11 +530,37 @@ MIOpen 2.19.0 for ROCm 6.0.0
 * `[HOTFIX][MI200][FP16]` has been disabled for `ConvHipImplicitGemmBwdXdlops` when FP16_ALT is
   required
 
-####	MIVisionX
+####	MIVisionX 2.5.0
 
-* Added Comprehensive CTests to aid developers
-* Introduced Doxygen support for complete API documentation
-* Simplified dependencies for rocAL
+### Additions
+
+* CTest: Tests for install verification
+* Hardware support updates
+* Doxygen support for API documentation
+
+### Optimizations
+
+* CMakeList Cleanup
+* Readme
+
+### Changes
+
+* rocAL: PyBind Link to prebuilt library
+  * PyBind11
+  * RapidJSON
+* Setup Updates
+* RPP - Use package install
+* Dockerfiles: Updates & bugfix
+* CuPy - No longer installed with setup.py
+
+### Fixes
+
+* rocAL bug fix and updates
+
+### Known issues
+
+* OpenCV 4.X support for some applications is missing
+* MIVisionX package install requires manual prerequisites installation
 
 #### OpenMP
 
@@ -2937,9 +3016,9 @@ MIGraphX 2.5 for ROCm 5.5.0
 ##### Added
 
 - Y-Model feature to store tuning information with the optimized model
-- Added Python 3.10 bindings 
+- Added Python 3.10 bindings
 - Accuracy checker tool based on ONNX Runtime
-- ONNX Operators parse_split, and Trilu 
+- ONNX Operators parse_split, and Trilu
 - Build support for ROCm MLIR
 - Added migraphx-driver flag to print optimizations in python (--python)
 - Added JIT implementation of the Gather and Pad operator which results in better handling of larger tensor sizes.
@@ -2953,9 +3032,9 @@ MIGraphX 2.5 for ROCm 5.5.0
 
 ##### Fixed
 
-- Improved parsing Tensorflow Protobuf files 
+- Improved parsing Tensorflow Protobuf files
 - Resolved various accuracy issues with some onnx models
-- Resolved a gcc-12 issue with mivisionx
+- Resolved a gcc-12 issue with MIVisionX
 - Improved support for larger sized models and batches
 - Use --offload-arch instead of --cuda-gpu-arch for the HIP compiler
 - Changes inside JIT to use float accumulator for large reduce ops of half type to avoid overflow.

@@ -14,7 +14,6 @@ This page contains the release notes for AMD ROCm Software.
 
 ## ROCm 6.0.1
 
-
 ### Library changes in ROCM 6.0.1
 
 | Library | Version |
@@ -42,21 +41,75 @@ This page contains the release notes for AMD ROCm Software.
 | rocWMMA | [1.3.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-6.0.1) |
 | Tensile | [4.39.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.0.1) |
 
+
+#### hipBLAS 2.1.0
+
+hipBLAS 2.1.0 for ROCm 6.0.1
+
+#### Changes
+
+* Some Level 2 function argument names have changed from `m` to `n` to match legacy BLAS; there
+  was no change in implementation.
+* Updated client code to use YAML-based testing
+
+#### hipBLASLt 0.7.0
+
+hipBLASLt 0.7.0 for ROCm 6.0.1
+
+##### Additions
+
+* Extension APIs:
+  * `hipblasltExtSoftmax`
+  * `hipblasltExtLayerNorm`
+  * `hipblasltExtAMax`
+* `GemmTuning` extension parameter to set split-k by user
+* Support for mixed-precision datatype: FP16/FP8 in with FP16 out
+
 #### hipSPARSELt 0.1.0
 
 hipSPARSELt 0.1.0 for ROCm 6.0.1
 
-##### Added
+##### Additions
 
-- Enable hipSPARSELt APIs
-- Support platform: gfx940, gfx941, gfx942 
-- Support problem type: fp16, bf16, int8
-- Support activation: relu, gelu, abs, sigmod, tanh
-- Support gelu scaling
-- Support bias vector
-- Support batched computation (single sparse x multiple dense, multiple sparse x single dense)
-- Support cuSPARSELt v0.4 backend
-- Integreate with tensilelite kernel generator
-- Add Gtest: hipsparselt-test
-- Add benchmarking tool: hipsparselt-bench
-- Add sample app: example_spmm_strided_batched, example_prune, example_compress
+* Enabled hipSPARSELt APIs
+* Support for:
+  * gfx940, gfx941, and gfx942 platforms
+  * FP16, BF16, and INT8 problem types
+  * ReLU, GELU, abs, sigmod, and tanh activation
+  * GELU scaling
+  * Bias vectors
+  * cuSPARSELt v0.4 backend
+* Integrated with Tensile Lite kernel generator
+* Support for batched computation (single sparse x multiple dense and multiple sparse x
+single dense)
+* GoogleTest: hipsparselt-test
+* `hipsparselt-bench` benchmarking tool
+* Sample apps: `example_spmm_strided_batched`, `example_prune`, `example_compress`
+
+#### rocAL 1.0.0
+
+rocAL 1.0.0 for ROCm 6.0.1
+
+##### Changes
+
+* Removed CuPy from `setup.py`
+
+#### rocBLAS 4.1.0
+
+rocBLAS 4.1.0 for ROCm 6.0.1
+
+##### Additions
+
+* Level 1 and Level 1 Extension functions have additional ILP64 API for both C and Fortran (`_64` name
+  suffix) with int64_t function arguments
+* Cache flush timing for `gemm_ex`
+
+##### Changes
+
+* Some Level 2 function argument names have changed `m` to `n` to match legacy BLAS; there is no
+  change in implementation
+* Standardized the use of non-blocking streams for copying results from device to host
+
+##### Fixes
+
+* Fixed host-pointer mode reductions for non-blocking streams
