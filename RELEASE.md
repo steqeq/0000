@@ -51,6 +51,8 @@ hipBLAS 2.1.0 for ROCm 6.0.1
 * Some Level 2 function argument names have changed from `m` to `n` to match legacy BLAS; there
   was no change in implementation.
 * Updated client code to use YAML-based testing
+* Renamed `.doxygen` and `.sphinx` folders to `doxygen` and `sphinx`, respectively
+* Added CMake support for documentation
 
 #### hipBLASLt 0.7.0
 
