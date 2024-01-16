@@ -91,7 +91,7 @@ subtrees:
   - file: conceptual/gpu-isolation.md
     title: GPU isolation techniques
   - file: conceptual/using-gpu-sanitizer.md
-    title: LLVN ASan
+    title: LLVM ASan
   - file: conceptual/cmake-packages.rst
     title: Using CMake
   - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst

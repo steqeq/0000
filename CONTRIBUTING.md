@@ -8,7 +8,7 @@
 
 AMD values and encourages contributions to our code and documentation. If you want to contribute
 to our ROCm repositories, first review the following guidance. For documentation-specific information,
-see [Contributing to ROCm docs](./contribute-docs.md).
+see [Contributing to ROCm docs](https://rocm.docs.amd.com/en/latest/contribute/contribute-docs.html).
 
 ROCm is a software stack made up of a collection of drivers, development tools, and APIs that enable
 GPU programming from low-level kernel to end-user applications. Because some of our components
@@ -47,14 +47,13 @@ General issue guidelines:
 
 ### Pull requests
 
-Our repositories typically use the **develop** branch an integration branch for new code so, when
-making a PR, target this branch.
+When you create a pull request, you should target the default branch.  Our repositories typically use the **develop** branch as the default integration branch.
 
 When creating a PR, use the following process. Note that each repository may include additional,
 project-specific steps. Refer to each repository's PR process for any additional steps.
 
 * Identify the issue you want to fix
-* Target the **develop** branch for integration
+* Target the default branch (usually the **develop** branch) for integration
 * Ensure your code builds successfully
 * Each component has a suite of test cases to run; include the log of the successful test run in your PR
 * Do not break existing test cases
@@ -73,7 +72,7 @@ terms of the LICENSE.txt file in the corresponding repository. Different reposit
 licenses.
 :::
 
-You can look up each license on the [ROCm licensing](../about/licensing.md) page.
+You can look up each license on the [ROCm licensing](https://rocm.docs.amd.com/en/latest/about/license.html) page.
 
 ### New feature development
 
