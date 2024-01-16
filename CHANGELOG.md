@@ -82,9 +82,6 @@ MI300 series. Future releases will further enable and optimize this new platfo
   tutorials on the [AMD ROCm Docs](https://rocm.docs.amd.com) site.
 * Consolidated developer resources and training on the new AMD ROCm Developer Hub.
 
-The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
-the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
-
 ### OS and GPU support changes
 
 AMD Instinct™ MI300A and MI300X Accelerator support has been enabled for limited operating
@@ -334,7 +331,10 @@ HIP only supports LUID on Windows OS.
 * HIP complex vector type multiplication and division operations. On AMD platform, some duplicated complex operators are removed to avoid compilation failures. In HIP, `hipFloatComplex` and `hipDoubleComplex` are defined as complex data types: `typedef float2 hipFloatComplex; typedef double2 hipDoubleComplex;` Any application that uses complex multiplication and division operations needs to replace '*' and '/' operators with the following:
   * `hipCmulf()` and `hipCdivf()` for `hipFloatComplex`
   * `hipCmul()` and `hipCdiv()` for `hipDoubleComplex`
-Note: These complex operations are equivalent to corresponding types/functions on NVIDIA platform.
+
+  :::{note}
+  These complex operations are equivalent to corresponding types/functions on NVIDIA platform.
+  :::
 
 ##### Removals
 
@@ -2798,6 +2798,7 @@ included symbolic-link and wrapper header files in its old location for backward
 :::{note}
 ROCm will continue supporting backward compatibility until the next major release.
 :::
+
 ##### Wrapper header files
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a
@@ -6149,7 +6150,9 @@ debug information.
 **Issue:** Random memory access fault issues are observed while running Math libraries unit tests.
 This issue is encountered in ROCm v5.0, ROCm v5.0.1, and ROCm v5.0.2.
 
-Note, the faults only occur in the SRIOV environment.
+:::{note}
+The faults only occur in the SRIOV environment.
+:::
 
 **Workaround:** Use SDMA to update the page table. The Guest set up steps are as follows:
 
@@ -6170,7 +6173,7 @@ Where expectation is 0.
 #### CU masking causes application to freeze
 
 Using CU Masking results in an application freeze or runs exceptionally slowly. This issue is noticed
-only in the GFX10 suite of products. Note, this issue is observed only in GFX10 suite of products.
+only in the GFX10 suite of products. Note that this issue is observed only in GFX10 suite of products.
 
 This issue is under active investigation at this time.
 
@@ -6575,7 +6578,7 @@ This fix may lead to breakage in some OpenMP offload use cases, which use print 
 and result in an abort in device code. The issue will be fixed in a future release.
 :::
 
-The compatibility matrix in the [Deep-learning guide](./how-to/deep-learning-rocm.md) is updated for
+The compatibility matrix in the [Deep-learning guide](../how-to/deep-learning-rocm.md) is updated for
 ROCm v5.0.2.
 
 ### Library changes in ROCM 5.0.2
@@ -7041,7 +7044,9 @@ During the deprecation, two macros `_HIP_ENABLE_COMPLEX_OPERATORS` and
 `_HIP_ENABLE_VECTOR_OPERATORS` are provided to allow users to conditionally enable arithmetic
 operators of HIP complex or vector types.
 
-Note, the two macros are mutually exclusive and, by default, set to Off.
+:::{note}
+The two macros are mutually exclusive and, by default, set to Off.
+:::
 
 The arithmetic operators of HIP complex and vector types will be removed in a future release.
 
