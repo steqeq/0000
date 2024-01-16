@@ -100,7 +100,7 @@ Topic overviews & background information
 * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
 * [File structure (Linux FHS)](./conceptual/file-reorg.md)
 * [GPU isolation techniques](./conceptual/gpu-isolation.md)
-* [LLVN ASan](./conceptual/using-gpu-sanitizer.md)
+* [LLVM ASan](./conceptual/using-gpu-sanitizer.md)
 * [Using CMake](./conceptual/cmake-packages.rst)
 * [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
