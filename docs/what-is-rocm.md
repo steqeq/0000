@@ -25,6 +25,11 @@ ROCm supports programming models, such as OpenMP and OpenCL, and includes all ne
 source software compilers, debuggers, and libraries. ROCm is fully integrated into machine learning
 (ML) frameworks, such as PyTorch and TensorFlow.
 
+```{tip}
+  If you're using Radeon GPUs, use the
+  [Radeon-specific ROCm documentation](https://rocm.docs.amd.com/projects/radeon/en/latest/index.html).
+```
+
 ## ROCm projects
 
 ROCm consists of the following drivers, development tools, and APIs.
