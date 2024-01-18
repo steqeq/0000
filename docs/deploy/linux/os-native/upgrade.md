@@ -57,9 +57,9 @@ sudo apt update
 :sync: RHEL
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
+:::{tab-item} RHEL 9.2
+:sync: RHEL-9.2
+:sync: RHEL-9
 
 ```shell
 # version
@@ -69,51 +69,7 @@ version=5.7
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.6/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
-:sync: RHEL-8
-
-```shell
-# version
-version=5.7
-
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.7/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-:::{tab-item} RHEL 8.8
-:sync: RHEL-8.8
-:sync: RHEL-8
-
-```shell
-# version
-version=5.7
-
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.8/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/9.2/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -145,9 +101,9 @@ sudo yum clean all
 ```
 
 :::
-:::{tab-item} RHEL 9.2
-:sync: RHEL-9.2
-:sync: RHEL-9
+:::{tab-item} RHEL 8.8
+:sync: RHEL-8.8
+:sync: RHEL-8
 
 ```shell
 # version
@@ -157,7 +113,29 @@ version=5.7
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/9.2/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.8/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 8.7
+:sync: RHEL-8.7
+:sync: RHEL-8
+
+```shell
+# version
+version=5.7
+
+
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.7/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -173,26 +151,6 @@ sudo yum clean all
 :sync: SLES
 
 ::::{tab-set}
-:::{tab-item} SLES 15.4
-:sync: SLES-15.4
-
-```shell
-# version
-version=5.7
-
-
-sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/sle/15.4/main/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo zypper ref
-```
-
-:::
 :::{tab-item} SLES 15.5
 :sync: SLES-15.5
 
@@ -205,6 +163,26 @@ sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/$version/sle/15.5/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo zypper ref
+```
+
+:::
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
+
+```shell
+# version
+version=5.7
+
+
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$version/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
