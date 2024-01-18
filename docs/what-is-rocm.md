@@ -26,7 +26,7 @@ source software compilers, debuggers, and libraries. ROCm is fully integrated in
 (ML) frameworks, such as PyTorch and TensorFlow.
 
 ```{tip}
-  If you're using Radeon GPUs, use the
+  If you're using Radeon GPUs, refer to the
   [Radeon-specific ROCm documentation](https://rocm.docs.amd.com/projects/radeon/en/latest/index.html).
 ```
 
