@@ -177,8 +177,8 @@ Fine-grained memory implies that up-to-date data may be made visible to others r
 
 | API                     | Flag                         | Coherence      |
 |-------------------------|------------------------------|----------------|
-| `hipExtMallocWithFlags` | `hipHostMallocDefault`       | Fine-grained   |
-| `hipExtMallocWithFlags` | `hipDeviceMallocFinegrained` | Coarse-grained |
+| `hipExtMallocWithFlags` | `hipDeviceMallocDefault`     | Coarse-grained |
+| `hipExtMallocWithFlags` | `hipDeviceMallocFinegrained` | Fine-grained   |
 
 | API                     | `hipMemAdvise` argument      | Coherence      |
 |-------------------------|------------------------------|----------------|
