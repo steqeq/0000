@@ -41,7 +41,7 @@ deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/am
 EOF
 # ROCm repository for {{ version.release }}
 sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
-deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian {{ version.release }} main
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/{{ family.amdgpu_version }} {{ version.release }} main
 EOF
 # Prefer packages from the rocm repository over system packages
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
