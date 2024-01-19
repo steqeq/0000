@@ -158,28 +158,6 @@ section.
 ```
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
-
-```shell
-# version
-ver=5.6.1
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.6/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-
 :::{tab-item} RHEL 8.7
 :sync: RHEL-8.7
 :sync: RHEL-8
