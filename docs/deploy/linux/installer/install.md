@@ -39,15 +39,6 @@ sudo apt install ./amdgpu-install_5.6.50601-1_all.deb
 :sync: RHEL
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.6.1/rhel/8.6/amdgpu-install-5.6.50601-1.el8.noarch.rpm
-```
-
-:::
 :::{tab-item} RHEL 8.7
 :sync: RHEL-8.7
 :sync: RHEL-8

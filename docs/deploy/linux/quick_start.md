@@ -73,33 +73,6 @@ sudo apt update
 ::::
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-
-```shell
-# Add the amdgpu module repository for RHEL 8.6
-sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.6/main/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-# Add the rocm repository for RHEL 8
-sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
-[rocm]
-name=rocm
-baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-```
-
-:::
-
 :::{tab-item} RHEL 8.7
 :sync: RHEL-8.7
 
