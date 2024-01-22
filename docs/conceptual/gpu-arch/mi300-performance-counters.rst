@@ -15,13 +15,13 @@ MI300 performance counters
 
 MI300 counters include:
 
-* ref:`graphics-register-bus-manager-counters`
-* ref:`command-processor-counters`
-* ref:`spi-counters`
-* ref:`compute-unit-counters`
-* ref:`l1i-and-sl1d-cache-counters`
-* ref:`vector-l1-cache-subsystem-counters`
-* ref:`l2-cache-access-counters`
+* :ref:`graphics-register-bus-manager-counters`
+* :ref:`command-processor-counters`
+* :ref:`spi-counters`
+* :ref:`compute-unit-counters`
+* :ref:`l1i-and-sl1d-cache-counters`
+* :ref:`vector-l1-cache-subsystem-counters`
+* :ref:`l2-cache-access-counters`
 
 The following sections provide additional details on all MI300 performance counters.
 
@@ -74,11 +74,11 @@ Command processor-fetcher counters
 
   "``CPF_CMP_UTCL1_STALL_ON_TRANSLATION``", "Cycles", "Number of cycles one of the compute unified translation caches (L1) is stalled waiting on translation"
   "``CPF_CPF_STAT_BUSY``", "Cycles", "Number of cycles command processor-fetcher is busy"
-  "``CPF_CPF_STAT_IDLE*``", "Cycles", "Number of cycles command processor-fetcher is idle"
+  "``CPF_CPF_STAT_IDLE``*", "Cycles", "Number of cycles command processor-fetcher is idle"
   "``CPF_CPF_STAT_STALL``", "Cycles", "Number of cycles command processor-fetcher is stalled"
   "``CPF_CPF_TCIU_BUSY``", "Cycles", "Number of cycles command processor-fetcher texture cache interface unit interface is busy"
   "``CPF_CPF_TCIU_IDLE``", "Cycles", "Number of cycles command processor-fetcher texture cache interface unit interface is idle"
-  "``CPF_CPF_TCIU_STALL*``", "Cycles", "Number of cycles command processor-fetcher texture cache interface unit interface is stalled waiting on free tags"
+  "``CPF_CPF_TCIU_STALL``*", "Cycles", "Number of cycles command processor-fetcher texture cache interface unit interface is stalled waiting on free tags"
 
 The texture cache interface unit is the interface between the command processor and the memory
 system.
@@ -118,17 +118,17 @@ Shader processor input counters
   "``SPI_CSN_NUM_THREADGROUPS``", "Workgroups", "Number of dispatched workgroups"
   "``SPI_CSN_WAVE``", "Wavefronts", "Number of dispatched wavefronts"
   "``SPI_RA_REQ_NO_ALLOC``", "Cycles", "Number of arbiter cycles with requests but no allocation"
-  "``SPI_RA_REQ_NO_ALLOC_CSN``", "Cycles", "Number of arbiter cycles with compute shader (n:sup:`th` pipe) requests but no compute shader (n:sup:`th` pipe) allocation"
-  "``SPI_RA_RES_STALL_CSN``", "Cycles", "Number of arbiter stall cycles due to shortage of compute shader (n:sup:`th` pipe) pipeline slots"
-  "``SPI_RA_TMP_STALL_CSN*``", "Cycles", "Number of stall cycles due to shortage of temp space"
-  "``SPI_RA_WAVE_SIMD_FULL_CSN``", "SIMD-cycles", "Accumulated number of single instruction, multiple data (SIMD) per cycle affected by shortage of wave slots for compute shader (n:sup:`th` pipe) wave dispatch"
-  "``SPI_RA_VGPR_SIMD_FULL_CSN*``", "SIMD-cycles", "Accumulated number of SIMDs per cycle affected by shortage of vector general-purpose register (VGPR) slots for compute shader (n:sup:`th` pipe) wave dispatch"
-  "``SPI_RA_SGPR_SIMD_FULL_CSN*``", "SIMD-cycles", "Accumulated number of SIMDs per cycle affected by shortage of scalar general-purpose register (SGPR) slots for compute shader (n:sup:`th` pipe) wave dispatch"
-  "``SPI_RA_LDS_CU_FULL_CSN``", "CU", "Number of compute units affected by shortage of local data share (LDS) space for compute shader (n:sup:`th` pipe) wave dispatch"
-  "``SPI_RA_BAR_CU_FULL_CSN*``", "CU", "Number of compute units with compute shader (n:sup:`th` pipe) waves waiting at a BARRIER"
-  "``SPI_RA_BULKY_CU_FULL_CSN*``", "CU", "Number of compute units with compute shader (n:sup:`th` pipe) waves waiting for BULKY resource"
-  "``SPI_RA_TGLIM_CU_FULL_CSN*``", "Cycles", "Number of compute shader (n:sup:`th` pipe) wave stall cycles due to restriction of ``tg_limit`` for thread group size"
-  "``SPI_RA_WVLIM_STALL_CSN*``", "Cycles", "Number of cycles compute shader (n:sup:`th` pipe) is stalled due to ``WAVE_LIMIT``"
+  "``SPI_RA_REQ_NO_ALLOC_CSN``", "Cycles", "Number of arbiter cycles with compute shader (n\ :sup:`th` pipe) requests but no compute shader (n\ :sup:`th` pipe) allocation"
+  "``SPI_RA_RES_STALL_CSN``", "Cycles", "Number of arbiter stall cycles due to shortage of compute shader (n\ :sup:`th` pipe) pipeline slots"
+  "``SPI_RA_TMP_STALL_CSN``*", "Cycles", "Number of stall cycles due to shortage of temp space"
+  "``SPI_RA_WAVE_SIMD_FULL_CSN``", "SIMD-cycles", "Accumulated number of single instruction, multiple data (SIMD) per cycle affected by shortage of wave slots for compute shader (n\ :sup:`th` pipe) wave dispatch"
+  "``SPI_RA_VGPR_SIMD_FULL_CSN``*", "SIMD-cycles", "Accumulated number of SIMDs per cycle affected by shortage of vector general-purpose register (VGPR) slots for compute shader (n\ :sup:`th` pipe) wave dispatch"
+  "``SPI_RA_SGPR_SIMD_FULL_CSN``*", "SIMD-cycles", "Accumulated number of SIMDs per cycle affected by shortage of scalar general-purpose register (SGPR) slots for compute shader (n\ :sup:`th` pipe) wave dispatch"
+  "``SPI_RA_LDS_CU_FULL_CSN``", "CU", "Number of compute units affected by shortage of local data share (LDS) space for compute shader (n\ :sup:`th` pipe) wave dispatch"
+  "``SPI_RA_BAR_CU_FULL_CSN``*", "CU", "Number of compute units with compute shader (n\ :sup:`th` pipe) waves waiting at a BARRIER"
+  "``SPI_RA_BULKY_CU_FULL_CSN``*", "CU", "Number of compute units with compute shader (n\ :sup:`th` pipe) waves waiting for BULKY resource"
+  "``SPI_RA_TGLIM_CU_FULL_CSN``*", "Cycles", "Number of compute shader (n\ :sup:`th` pipe) wave stall cycles due to restriction of ``tg_limit`` for thread group size"
+  "``SPI_RA_WVLIM_STALL_CSN``*", "Cycles", "Number of cycles compute shader (n\ :sup:`th` pipe) is stalled due to ``WAVE_LIMIT``"
   "``SPI_VWC_CSC_WR``", "Qcycles", "Number of quad-cycles taken to initialize VGPRs when launching waves"
   "``SPI_SWC_CSC_WR``", "Qcycles", "Number of quad-cycles taken to initialize SGPRs when launching waves"
 
@@ -174,22 +174,22 @@ Instruction mix
   "``SQ_INSTS_VMEM``", "Instr", "Number of vector memory instructions issued, including both flat and buffer instructions"
   "``SQ_INSTS_SALU``", "Instr", "Number of scalar arithmetic logic unit (SALU) instructions issued"
   "``SQ_INSTS_SMEM``", "Instr", "Number of scalar memory instructions issued"
-  "``SQ_INSTS_SMEM_NORM``", "Instr", "Number of scalar memory instructions normalized to match `smem_level` issued"
+  "``SQ_INSTS_SMEM_NORM``", "Instr", "Number of scalar memory instructions normalized to match ``smem_level`` issued"
   "``SQ_INSTS_FLAT``", "Instr", "Number of flat instructions issued"
   "``SQ_INSTS_LDS``", "Instr", "Number of LDS instructions issued (including flat)"
   "``SQ_INSTS_GDS``", "Instr", "Number of global data share instructions issued"
   "``SQ_INSTS_EXP_GDS``", "Instr", "Number of EXP and global data share instructions excluding skipped export instructions issued"
   "``SQ_INSTS_BRANCH``", "Instr", "Number of Branch instructions issued"
-  "``SQ_INSTS_SENDMSG``", "Instr", "Number of `SENDMSG` instructions including `s_endpgm` issued"
-  "``SQ_INSTS_VSKIPPED*``", "Instr", "Number of vector instructions skipped"
+  "``SQ_INSTS_SENDMSG``", "Instr", "Number of ``SENDMSG`` instructions including ``s_endpgm`` issued"
+  "``SQ_INSTS_VSKIPPED``*", "Instr", "Number of vector instructions skipped"
 
 Flat instructions allow read, write, and atomic access to a generic memory address pointer that can
 resolve to any of the following physical memories:
 
-  * Global Memory
-  * Scratch ("private")
-  * LDS ("shared")
-  * Invalid - MEM_VIOL TrapStatus
+* Global Memory
+* Scratch ("private")
+* LDS ("shared")
+* Invalid - MEM_VIOL TrapStatus
 
 Matrix fused multiply-add operation counters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -225,11 +225,11 @@ Level counters
 
 Use the following formulae to calculate latencies:
 
-* Vector memory latency = `SQ_ACCUM_PREV_HIRES` divided by `SQ_INSTS_VMEM`
-* Wave latency = `SQ_ACCUM_PREV_HIRES` divided by `SQ_WAVE`
-* LDS latency = `SQ_ACCUM_PREV_HIRES` divided by `SQ_INSTS_LDS`
-* Scalar memory latency = `SQ_ACCUM_PREV_HIRES` divided by `SQ_INSTS_SMEM_NORM`
-* Instruction fetch latency = `SQ_ACCUM_PREV_HIRES` divided by `SQ_IFETCH`
+* Vector memory latency = ``SQ_ACCUM_PREV_HIRES`` divided by ``SQ_INSTS_VMEM``
+* Wave latency = ``SQ_ACCUM_PREV_HIRES`` divided by ``SQ_WAVE``
+* LDS latency = ``SQ_ACCUM_PREV_HIRES`` divided by ``SQ_INSTS_LDS``
+* Scalar memory latency = ``SQ_ACCUM_PREV_HIRES`` divided by ``SQ_INSTS_SMEM_NORM``
+* Instruction fetch latency = ``SQ_ACCUM_PREV_HIRES`` divided by ``SQ_IFETCH``
 
 Wavefront counters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -239,8 +239,8 @@ Wavefront counters
   :header: "Hardware counter", "Unit", "Definition"
 
   "``SQ_WAVES``", "Waves", "Number of wavefronts dispatched to sequencers, including both new and restored wavefronts"
-  "``SQ_WAVES_SAVED*``", "Waves", "Number of context-saved waves"
-  "``SQ_WAVES_RESTORED*``", "Waves", "Number of context-restored waves sent to sequencers"
+  "``SQ_WAVES_SAVED``*", "Waves", "Number of context-saved waves"
+  "``SQ_WAVES_RESTORED``*", "Waves", "Number of context-restored waves sent to sequencers"
   "``SQ_WAVES_EQ_64``", "Waves", "Number of wavefronts with exactly 64 active threads sent to sequencers"
   "``SQ_WAVES_LT_64``", "Waves", "Number of wavefronts with less than 64 active threads sent to sequencers"
   "``SQ_WAVES_LT_48``", "Waves", "Number of wavefronts with less than 48 active threads sent to sequencers"
@@ -266,8 +266,8 @@ Wavefront cycle counters
   "``SQ_ACTIVE_INST_LDS``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on an LDS instruction"
   "``SQ_ACTIVE_INST_VALU``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on a VALU instruction"
   "``SQ_ACTIVE_INST_SCA``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on a SALU or scalar memory instruction"
-  "``SQ_ACTIVE_INST_EXP_GDS``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on an `EXPORT` or `GDS` instruction"
-  "``SQ_ACTIVE_INST_MISC``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on a `BRANCH` or `SENDMSG` instruction"
+  "``SQ_ACTIVE_INST_EXP_GDS``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on an ``EXPORT`` or ``GDS`` instruction"
+  "``SQ_ACTIVE_INST_MISC``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on a ``BRANCH`` or ``SENDMSG`` instruction"
   "``SQ_ACTIVE_INST_FLAT``", "Qcycles", "Number of quad-cycles spent by the sequencer instruction arbiter to work on a flat instruction"
   "``SQ_INST_CYCLES_VMEM_WR``", "Qcycles", "Number of quad-cycles spent to send addr and cmd data for vector memory write instructions"
   "``SQ_INST_CYCLES_VMEM_RD``", "Qcycles", "Number of quad-cycles spent to send addr and cmd data for vector memory read instructions"
@@ -288,9 +288,9 @@ LDS counters
 
   "``SQ_LDS_ATOMIC_RETURN``", "Cycles", "Number of atomic return cycles in LDS"
   "``SQ_LDS_BANK_CONFLICT``", "Cycles", "Number of cycles LDS is stalled by bank conflicts"
-  "``SQ_LDS_ADDR_CONFLICT*``", "Cycles", "Number of cycles LDS is stalled by address conflicts"
-  "``SQ_LDS_UNALIGNED_STALL*``", "Cycles", "Number of cycles LDS is stalled processing flat unaligned load/store ops"
-  "``SQ_LDS_MEM_VIOLATIONS*``", "Count", "Number of threads that have a memory violation in the LDS"
+  "``SQ_LDS_ADDR_CONFLICT``*", "Cycles", "Number of cycles LDS is stalled by address conflicts"
+  "``SQ_LDS_UNALIGNED_STALL``*", "Cycles", "Number of cycles LDS is stalled processing flat unaligned load/store ops"
+  "``SQ_LDS_MEM_VIOLATIONS``*", "Count", "Number of threads that have a memory violation in the LDS"
   "``SQ_LDS_IDX_ACTIVE``", "Cycles", "Number of cycles LDS is used for indexed operations"
 
 Miscellaneous counters
@@ -300,7 +300,7 @@ Miscellaneous counters
   :widths: 30, 10, 60
   :header: "Hardware counter", "Unit", "Definition"
 
-  "``SQ_IFETCH``", "Count", "Number of instruction fetch requests from `L1I` cache, in 32-byte width"
+  "``SQ_IFETCH``", "Count", "Number of instruction fetch requests from ``L1I`` cache, in 32-byte width"
   "``SQ_ITEMS``", "Threads", "Number of valid items per wave"
 
 .. _l1i-and-sl1d-cache-counters:
@@ -314,8 +314,8 @@ L1I and scalar L1 data cache counters
 
   "``SQC_ICACHE_REQ``", "Req", "Number of `L1I` cache requests"
   "``SQC_ICACHE_HITS``", "Count", "Number of `L1I` cache hits"
-  "``SQC_ICACHE_MISSES``", "Count", "Number of non-duplicate `L1I` cache misses including uncached requests"
-  "``SQC_ICACHE_MISSES_DUPLICATE``", "Count", "Number of duplicate `L1I` cache misses whose previous lookup miss on the same cache line is not fulfilled yet"
+  "``SQC_ICACHE_MISSES``", "Count", "Number of non-duplicate ``L1I`` cache misses including uncached requests"
+  "``SQC_ICACHE_MISSES_DUPLICATE``", "Count", "Number of duplicate ``L1I`` cache misses whose previous lookup miss on the same cache line is not fulfilled yet"
   "``SQC_DCACHE_REQ``", "Req", "Number of scalar L1 data cache requests"
   "``SQC_DCACHE_INPUT_VALID_READYB``", "Cycles", "Number of cycles while sequencer input is valid but scalar L1 data cache is not ready"
   "``SQC_DCACHE_HITS``", "Count", "Number of scalar L1 data cache hits"
@@ -326,13 +326,13 @@ L1I and scalar L1 data cache counters
   "``SQC_DCACHE_REQ_READ_4``", "Req", "Number of constant cache read requests in four 32-bit Data Words"
   "``SQC_DCACHE_REQ_READ_8``", "Req", "Number of constant cache read requests in eight 32-bit Data Words"
   "``SQC_DCACHE_REQ_READ_16``", "Req", "Number of constant cache read requests in 16 32-bit Data Words"
-  "``SQC_DCACHE_ATOMIC*``", "Req", "Number of atomic requests"
+  "``SQC_DCACHE_ATOMIC``*", "Req", "Number of atomic requests"
   "``SQC_TC_REQ``", "Req", "Number of texture cache requests that were issued by instruction and constant caches"
   "``SQC_TC_INST_REQ``", "Req", "Number of instruction requests to the L2 cache"
   "``SQC_TC_DATA_READ_REQ``", "Req", "Number of data Read requests to the L2 cache"
-  "``SQC_TC_DATA_WRITE_REQ*``", "Req", "Number of data write requests to the L2 cache"
-  "``SQC_TC_DATA_ATOMIC_REQ*``", "Req", "Number of data atomic requests to the L2 cache"
-  "``SQC_TC_STALL*``", "Cycles", "Number of cycles while the valid requests to the L2 cache are stalled"
+  "``SQC_TC_DATA_WRITE_REQ``*", "Req", "Number of data write requests to the L2 cache"
+  "``SQC_TC_DATA_ATOMIC_REQ``*", "Req", "Number of data atomic requests to the L2 cache"
+  "``SQC_TC_STALL``*", "Cycles", "Number of cycles while the valid requests to the L2 cache are stalled"
 
 .. _vector-l1-cache-subsystem-counters:
 
@@ -399,7 +399,7 @@ Texture cache per pipe counters
   "``TCP_TCP_TA_DATA_STALL_CYCLES``", "Cycles", "Number of cycles texture cache per pipe stalls texture addressing unit data interface", "NA"
   "``TCP_TA_TCP_STATE_READ[n]``", "Req", "Number of state reads", "0-15"
   "``TCP_VOLATILE[n]``", "Req", "Number of L1 volatile pixels/buffers from texture addressing unit", "0-15"
-  "``TCP_TOTAL_ACCESSES[n]``", "Req", "Number of vector L1 data cache accesses. Equals `TCP_PERF_SEL_TOTAL_READ`+`TCP_PERF_SEL_TOTAL_NONREAD`", "0-15"
+  "``TCP_TOTAL_ACCESSES[n]``", "Req", "Number of vector L1 data cache accesses. Equals ``TCP_PERF_SEL_TOTAL_READ`+`TCP_PERF_SEL_TOTAL_NONREAD``", "0-15"
   "``TCP_TOTAL_READ[n]``", "Req", "Number of vector L1 data cache read accesses", "0-15"
   "``TCP_TOTAL_WRITE[n]``", "Req", "Number of vector L1 data cache write accesses", "0-15"
   "``TCP_TOTAL_ATOMIC_WITH_RET[n]``", "Req", "Number of vector L1 data cache atomic requests with return", "0-15"
@@ -463,7 +463,7 @@ L2 cache is also known as texture cache per channel.
   "``TCC_CC_REQ[n]``", "Req", "Number of coherently cached requests. This is measured at the tag block", "0-31"
   "``TCC_RW_REQ[n]``", "Req", "Number of coherently cached with write requests. This is measured at the tag block", "0-31"
   "``TCC_PROBE[n]``", "Req", "Number of probe requests", "0-31"
-  "``TCC_PROBE_ALL[n]``", "Req", "Number of external probe requests with `EA0_TCC_preq_all`== 1", "0-31"
+  "``TCC_PROBE_ALL[n]``", "Req", "Number of external probe requests with ``EA0_TCC_preq_all == 1``", "0-31"
   "``TCC_READ[n]``", "Req", "Number of L2 cache read requests (includes compressed reads but not metadata reads)", "0-31"
   "``TCC_WRITE[n]``", "Req", "Number of L2 cache write requests", "0-31"
   "``TCC_ATOMIC[n]``", "Req", "Number of L2 cache atomic requests of all types", "0-31"
@@ -479,7 +479,7 @@ L2 cache is also known as texture cache per channel.
   "``TCC_EA0_WRREQ_DRAM_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of DRAM credits", "0-31"
   "``TCC_TOO_MANY_EA0_WRREQS_STALL[n]``", "Cycles", "Number of cycles the L2 cache is unable to send an efficiency arbiter write request due to it reaching its maximum capacity of pending efficiency arbiter write requests", "0-31"
   "``TCC_EA0_WRREQ_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter write requests in flight", "0-31"
-  "``TCC_EA0_ATOMIC[n]``", "Req", "Number of 32-byte or 64-byte atomic requests going over the `TC_EA0_wrreq` interface", "0-31"
+  "``TCC_EA0_ATOMIC[n]``", "Req", "Number of 32-byte or 64-byte atomic requests going over the ``TC_EA0_wrreq`` interface", "0-31"
   "``TCC_EA0_ATOMIC_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter atomic requests in flight", "0-31"
   "``TCC_EA0_RDREQ[n]``", "Req", "Number of 32-byte or 64-byte read requests to efficiency arbiter", "0-31"
   "``TCC_EA0_RDREQ_32B[n]``", "Req", "Number of 32-byte read requests to efficiency arbiter", "0-31"
@@ -492,9 +492,9 @@ L2 cache is also known as texture cache per channel.
   "``TCC_EA0_WRREQ_DRAM[n]``", "Req", "Number of 32-byte or 64-byte efficiency arbiter write requests to HBM", "0-31"
   "``TCC_TAG_STALL[n]``", "Cycles", "Number of cycles the normal request pipeline in the tag is stalled for any reason", "0-31"
   "``TCC_NORMAL_WRITEBACK[n]``", "Req", "Number of writebacks due to requests that are not writeback requests", "0-31"
-  "``TCC_ALL_TC_OP_WB_WRITEBACK[n]``", "Req", "Number of writebacks due to all `TC_OP` writeback requests", "0-31"
+  "``TCC_ALL_TC_OP_WB_WRITEBACK[n]``", "Req", "Number of writebacks due to all ``TC_OP`` writeback requests", "0-31"
   "``TCC_NORMAL_EVICT[n]``", "Req", "Number of evictions due to requests that are not invalidate or probe requests", "0-31"
-  "``TCC_ALL_TC_OP_INV_EVICT[n]``", "Req", "Number of evictions due to all `TC_OP` invalidate requests", "0-31"
+  "``TCC_ALL_TC_OP_INV_EVICT[n]``", "Req", "Number of evictions due to all ``TC_OP`` invalidate requests", "0-31"
 
 Note the following:
 
@@ -530,19 +530,19 @@ MI300 derived metrics list
   :widths: 30, 70
   :header: "Hardware counter", "Definition"
 
-  "``ALUStalledByLDS``", "Percentage of GPU time ALU units are stalled due to the LDS input queue being full or the output queue not being ready. Reduce this by reducing the LDS bank conflicts or the number of LDS accesses if possible. Value range: 0% (optimal) to 100% (bad)."
+  "``ALUStalledByLDS``", "Percentage of GPU time ALU units are stalled due to the LDS input queue being full or the output queue not being ready. Reduce this by reducing the LDS bank conflicts or the number of LDS accesses if possible. Value range: 0% (optimal) to 100%."
   "``FetchSize``", "Total kilobytes fetched from the video memory. This is measured with all extra fetches and any cache or memory effects taken into account."
   "``FlatLDSInsts``", "Average number of flat instructions that read from or write to LDS, executed per work item (affected by flow control)."
   "``FlatVMemInsts``", "Average number of flat instructions that read from or write to the video memory, executed per work item (affected by flow control). Includes FLAT instructions that read from or write to scratch."
   "``GDSInsts``", "Average number of global data share read/write instructions executed per work item (affected by flow control)."
   "``GPUBusy``", "Percentage of time GPU is busy."
   "``L2CacheHit``", "Percentage of fetch, write, atomic, and other instructions that hit the data in L2 cache. Value range: 0% (no hit) to 100% (optimal)."
-  "``LDSBankConflict``", "Percentage of GPU time LDS is stalled by bank conflicts. Value range: 0% (optimal) to 100% (bad)."
+  "``LDSBankConflict``", "Percentage of GPU time LDS is stalled by bank conflicts. Value range: 0% (optimal) to 100%."
   "``LDSInsts``", "Average number of LDS read/write instructions executed per work item (affected by flow control). Excludes FLAT instructions that read from or write to LDS."
   "``MemUnitBusy``", "Percentage of GPU time the memory unit is active. The result includes the stall time (`MemUnitStalled`). This is measured with all extra fetches and writes and any cache or memory effects taken into account. Value range: 0% to 100% (fetch-bound)."
-  "``MemUnitStalled``", "Percentage of GPU time the memory unit is stalled. Try reducing the number or size of fetches and writes if possible. Value range: 0% (optimal) to 100% (bad)."
+  "``MemUnitStalled``", "Percentage of GPU time the memory unit is stalled. Try reducing the number or size of fetches and writes if possible. Value range: 0% (optimal) to 100%."
   "``MemWrites32B``", "Total number of effective 32B write transactions to the memory."
-  "``SALUBusy``", "Percentage of GPU time scalar ALU instructions are processed. Value range: 0% (bad) to 100% (optimal)."
+  "``SALUBusy``", "Percentage of GPU time scalar ALU instructions are processed. Value range: 0% to 100% (optimal)."
   "``SALUInsts``", "Average number of scalar ALU instructions executed per work item (affected by flow control)."
   "``SFetchInsts``", "Average number of scalar fetch instructions from the video memory executed per work item (affected by flow control)."
   "``TA_ADDR_STALLED_BY_TC_CYCLES_sum``", "Total number of cycles texture addressing unit address path is stalled by texture cache, over all texture addressing unit instances."
@@ -599,7 +599,7 @@ MI300 derived metrics list
   "``TCC_NORMAL_WRITEBACK_sum``", "Total number of writebacks due to requests that are not writeback requests, over all texture cache per channel instances."
   "``TCC_NORMAL_EVICT_sum``", "Total number of evictions due to requests that are not invalidate or probe requests, over all texture cache per channel instances."
   "``TCC_PROBE_sum``", "Total number of probe requests over all texture cache per channel instances."
-  "``TCC_PROBE_ALL_sum``", "Total number of external probe requests with ``EA0_TCC_preq_all== 1``, over all texture cache per channel instances."
+  "``TCC_PROBE_ALL_sum``", "Total number of external probe requests with ``EA0_TCC_preq_all == 1``, over all texture cache per channel instances."
   "``TCC_READ_sum``", "Total number of L2 cache read requests (including compressed reads but not metadata reads) over all texture cache per channel instances."
   "``TCC_REQ_sum``", "Total number of all types of L2 cache requests over all texture cache per channel instances."
   "``TCC_RW_REQ_sum``", "Total number of coherently cached with write requests over all texture cache per channel instances."
@@ -657,12 +657,12 @@ MI300 derived metrics list
   "``TD_STORE_WAVEFRONT_sum``", "Total number of write wavefront instructions, over all texture data unit instances."
   "``TD_TC_STALL_sum``", "Total number of cycles texture data unit is stalled waiting for texture cache data, over all texture data unit instances."
   "``TD_TD_BUSY_sum``", "Total number of texture data unit busy cycles while it is processing or waiting for data, over all texture data unit instances."
-  "``VALUBusy``", "Percentage of GPU time vector ALU instructions are processed. Value range: 0% (bad) to 100% (optimal)."
+  "``VALUBusy``", "Percentage of GPU time vector ALU instructions are processed. Value range: 0% to 100% (optimal)."
   "``VALUInsts``", "Average number of vector ALU instructions executed per work item (affected by flow control)."
-  "``VALUUtilization``", "Percentage of active vector ALU threads in a wave. A lower number can mean either more thread divergence in a wave or that the work-group size is not a multiple of 64. Value range: 0% (bad), 100% (ideal - no thread divergence)."
+  "``VALUUtilization``", "Percentage of active vector ALU threads in a wave. A lower number can mean either more thread divergence in a wave or that the work-group size is not a multiple of 64. Value range: 0%, 100% (optimal - no thread divergence)."
   "``VFetchInsts``", "Average number of vector fetch instructions from the video memory executed per work-item (affected by flow control). Excludes FLAT instructions that fetch from video memory."
   "``VWriteInsts``", "Average number of vector write instructions to the video memory executed per work-item (affected by flow control). Excludes FLAT instructions that write to video memory."
   "``Wavefronts``", "Total wavefronts."
   "``WRITE_REQ_32B``", "Total number of 32-byte effective memory writes."
   "``WriteSize``", "Total kilobytes written to the video memory. This is measured with all extra fetches and any cache or memory effects taken into account."
-  "``WriteUnitStalled``", "Percentage of GPU time the write unit is stalled. Value range: 0% to 100% (bad)."
+  "``WriteUnitStalled``", "Percentage of GPU time the write unit is stalled. Value range: 0% (optimal) to 100%."
