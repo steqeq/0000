@@ -1,19 +1,19 @@
 .. meta::
-  :description: MI300 and Mi200 series performance counters and metrics
-  :keywords: MI300, Mi200, performance counters, command processor counters
+  :description: MI300 and MI200 series performance counters and metrics
+  :keywords: MI300, MI200, performance counters, command processor counters
 
 ***************************************************************************************************
-MI300 and Mi200 series performance counters and metrics
+MI300 and MI200 series performance counters and metrics
 ***************************************************************************************************
 
 This document lists and describes the hardware performance counters and derived metrics available
-for the AMD Instinct™ MI300 and Mi200 GPU. You can also access this information using the
+for the AMD Instinct™ MI300 and MI200 GPU. You can also access this information using the
 :doc:`ROCProfiler tool <rocprofiler:rocprofv1>`.
 
-MI300 and Mi200 series performance counters
+MI300 and MI200 series performance counters
 ===============================================================
 
-MI300 and Mi200 series counters include:
+MI300 and MI200 series counters include:
 
 * :ref:`graphics-register-bus-manager-counters`
 * :ref:`command-processor-counters`
@@ -23,11 +23,11 @@ MI300 and Mi200 series counters include:
 * :ref:`vector-l1-cache-subsystem-counters`
 * :ref:`l2-cache-access-counters`
 
-The following sections provide additional details on all MI300 and Mi200 series performance counters.
+The following sections provide additional details on all MI300 and MI200 series performance counters.
 
 .. note::
 
-  Preliminary validation of all MI300 and Mi200 series performance counters is in progress. Those with an asterisk (*)
+  Preliminary validation of all MI300 and MI200 series performance counters is in progress. Those with an asterisk (*)
   require further evaluation.
 
 .. _graphics-register-bus-manager-counters:
@@ -176,11 +176,11 @@ Instruction mix
   "``SQ_INSTS_SMEM``", "Instr", "Number of scalar memory instructions issued"
   "``SQ_INSTS_SMEM_NORM``", "Instr", "Number of scalar memory instructions normalized to match ``smem_level`` issued"
   "``SQ_INSTS_FLAT``", "Instr", "Number of flat instructions issued"
-  "``SQ_INSTS_FLAT_LDS_ONLY``", "Instr", "**Exist at Mi200 series only.** Number of FLAT instructions that read/write only from/to LDS issued. Works only if ``EARLY_TA_DONE`` is enabled."
-  "``SQ_INSTS_LDS``", "Instr", "Number of LDS instructions issued **(Mi200\: including flat, Mi300\: not including flat)**"
+  "``SQ_INSTS_FLAT_LDS_ONLY``", "Instr", "**MI200 series only** Number of FLAT instructions that read/write only from/to LDS issued. Works only if ``EARLY_TA_DONE`` is enabled."
+  "``SQ_INSTS_LDS``", "Instr", "Number of LDS instructions issued **(MI200: includes flat; MI300: does not include flat)**"
   "``SQ_INSTS_GDS``", "Instr", "Number of global data share instructions issued"
   "``SQ_INSTS_EXP_GDS``", "Instr", "Number of EXP and global data share instructions excluding skipped export instructions issued"
-  "``SQ_INSTS_BRANCH``", "Instr", "Number of Branch instructions issued"
+  "``SQ_INSTS_BRANCH``", "Instr", "Number of branch instructions issued"
   "``SQ_INSTS_SENDMSG``", "Instr", "Number of ``SENDMSG`` instructions including ``s_endpgm`` issued"
   "``SQ_INSTS_VSKIPPED``", "Instr", "Number of vector instructions skipped"
 
@@ -210,7 +210,7 @@ Level counters
 
 .. note::
 
-  All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure average latency.
+  All level counters must be followed by ``SQ_ACCUM_PREV_HIRES`` counter to measure average latency.
 
 .. csv-table::
   :widths: 30, 10, 60
@@ -347,7 +347,7 @@ TA counters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :widths: 30, 5, 60, 5
+  :widths: 25, 5, 60, 10
   :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
   "``TA_TA_BUSY[n]``", "Cycles", "TA busy cycles", "0-15"
@@ -371,7 +371,7 @@ Texture data unit counters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :widths: 30, 5, 60, 5
+  :widths: 25, 5, 60, 10
   :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
   "``TD_TD_BUSY[n]``", "Cycle", "Texture data unit busy cycles while it is processing or waiting for data", "0-15"
@@ -386,7 +386,7 @@ Texture cache per pipe counters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :widths: 30, 5, 60, 5
+  :widths: 25, 5, 60, 10
   :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
   "``TCP_GATE_EN1[n]``", "Cycles", "Number of cycles vector L1d interface clocks are turned on", "0-15"
@@ -411,9 +411,9 @@ Texture cache per pipe counters
   "``TCP_UTCL1_TRANSLATION_MISS[n]``", "Req", "Number of unified translation cache (L1) translation misses", "0-15"
   "``TCP_UTCL1_PERMISSION_MISS[n]``", "Req", "Number of unified translation cache (L1) permission misses", "0-15"
   "``TCP_TOTAL_CACHE_ACCESSES[n]``", "Req", "Number of vector L1d cache accesses including hits and misses", "0-15"
-  "``TCP_TCP_LATENCY[n]``", "Cycles", "**Exist at Mi200 series only.** Accumulated wave access latency to vL1D over all wavefronts", "0-15"
-  "``TCP_TCC_READ_REQ_LATENCY[n]``", "Cycles", "**Exist at Mi200 series only.** Total vL1D to L2 request latency over all wavefronts for reads and atomics with return", "0-15"
-  "``TCP_TCC_WRITE_REQ_LATENCY[n]``", "Cycles", "**Exist at Mi200 series only.** Total vL1D to L2 request latency over all wavefronts for writes and atomics without return", "0-15"
+  "``TCP_TCP_LATENCY[n]``", "Cycles", "**MI200 series only** Accumulated wave access latency to vL1D over all wavefronts", "0-15"
+  "``TCP_TCC_READ_REQ_LATENCY[n]``", "Cycles", "**MI200 series only** Total vL1D to L2 request latency over all wavefronts for reads and atomics with return", "0-15"
+  "``TCP_TCC_WRITE_REQ_LATENCY[n]``", "Cycles", "**MI200 series only** Total vL1D to L2 request latency over all wavefronts for writes and atomics without return", "0-15"
   "``TCP_TCC_READ_REQ[n]``", "Req", "Number of read requests to L2 cache", "0-15"
   "``TCP_TCC_WRITE_REQ[n]``", "Req", "Number of write requests to L2 cache", "0-15"
   "``TCP_TCC_ATOMIC_WITH_RET_REQ[n]``", "Req", "Number of atomic requests to L2 cache with return", "0-15"
@@ -441,10 +441,10 @@ Texture cache arbiter counters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :widths: 30, 5, 60, 5
+  :widths: 25, 5, 60, 10
   :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
-      "``TCA_CYCLE[n]``", "Cycles", "Number of texture cache arbiter cycles", "0-31"
+  "``TCA_CYCLE[n]``", "Cycles", "Number of texture cache arbiter cycles", "0-31"
   "``TCA_BUSY[n]``", "Cycles", "Number of cycles texture cache arbiter has a pending request", "0-31"
 
 .. _l2-cache-access-counters:
@@ -456,10 +456,10 @@ L2 cache is also known as texture cache per channel.
 
 .. tab-set::
 
-    .. tab-item:: Mi300 Hardware counter
+    .. tab-item:: MI300 hardware counter
 
       .. csv-table::
-        :widths: 30, 5, 60, 5
+        :widths: 25, 5, 60, 10
         :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
         "``TCC_CYCLE[n]``", "Cycles", "Number of L2 cache free-running clocks", "0-31"
@@ -504,10 +504,10 @@ L2 cache is also known as texture cache per channel.
         "``TCC_NORMAL_EVICT[n]``", "Req", "Number of evictions due to requests that are not invalidate or probe requests", "0-31"
         "``TCC_ALL_TC_OP_INV_EVICT[n]``", "Req", "Number of evictions due to all ``TC_OP`` invalidate requests", "0-31"
 
-    .. tab-item:: Mi200 Hardware counter
+    .. tab-item:: MI200 hardware counter
 
       .. csv-table::
-        :widths: 30, 5, 60, 5
+        :widths: 25, 5, 60, 10
         :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
         "``TCC_CYCLE[n]``", "Cycles", "Number of L2 cache free-running clocks", "0-31"
@@ -579,7 +579,7 @@ Note the following:
   ``TCC_TAG_STALL[n]``, probes can stall the pipeline at a variety of places. There is no single point that
   can accurately measure the total stalls
 
-MI300 and Mi200 series derived metrics list
+MI300 and MI200 series derived metrics list
 ==============================================================
 
 .. csv-table::
@@ -613,38 +613,45 @@ MI300 and Mi200 series derived metrics list
   "``WriteSize``", "Total kilobytes written to the video memory. This is measured with all extra fetches and any cache or memory effects taken into account."
   "``WriteUnitStalled``", "Percentage of GPU time the write unit is stalled. Value range: 0% (optimal) to 100%."
 
-Hardware counters by/over all texture addressing unit instances
------------------------------------------------------------------
+Hardware counters by and over all texture addressing unit instances
+---------------------------------------------------------------------------------------------------------------
 
-ATAUI means all texture addressing unit instances.
+The following table shows the hardware counters *by* all texture addressing unit instances.
 
 .. csv-table::
   :widths: 30, 70
   :header: "Hardware counter", "Definition"
 
-  "``TA_ADDR_STALLED_BY_TC_CYCLES_sum``", "Total number of cycles texture addressing unit address path is stalled by texture cache, over ATAUI"
-  "``TA_ADDR_STALLED_BY_TD_CYCLES_sum``", "Total number of cycles texture addressing unit address path is stalled by texture data unit, over ATAUI"
-  "``TA_BUFFER_WAVEFRONTS_sum``", "Total number of buffer wavefronts processed by ATAUI"
-  "``TA_BUFFER_READ_WAVEFRONTS_sum``", "Total number of buffer read wavefronts processed by ATAUI"
-  "``TA_BUFFER_WRITE_WAVEFRONTS_sum``", "Total number of buffer write wavefronts processed by ATAUI"
-  "``TA_BUFFER_ATOMIC_WAVEFRONTS_sum``", "Total number of buffer atomic wavefronts processed by ATAUI"
-  "``TA_BUFFER_TOTAL_CYCLES_sum``", "Total number of buffer cycles (including read and write) issued to texture cache by ATAUI"
-  "``TA_BUFFER_COALESCED_READ_CYCLES_sum``", "Total number of coalesced buffer read cycles issued to texture cache by ATAUI"
-  "``TA_BUFFER_COALESCED_WRITE_CYCLES_sum``", "Total number of coalesced buffer write cycles issued to texture cache by ATAUI"
-  "``TA_BUSY_avr``", "Average number of busy cycles over ATAUI"
-  "``TA_BUSY_max``", "Maximum number of texture addressing unit busy cycles over ATAUI"
-  "``TA_BUSY_min``", "Minimum number of texture addressing unit busy cycles over ATAUI"
-  "``TA_DATA_STALLED_BY_TC_CYCLES_sum``", "Total number of cycles texture addressing unit data path is stalled by texture cache, over ATAUI"
-  "``TA_FLAT_READ_WAVEFRONTS_sum``", "Sum of flat opcode reads processed by ATAUI"
-  "``TA_FLAT_WRITE_WAVEFRONTS_sum``", "Sum of flat opcode writes processed by ATAUI"
-  "``TA_FLAT_WAVEFRONTS_sum``", "Total number of flat opcode wavefronts processed by ATAUI"
-  "``TA_FLAT_READ_WAVEFRONTS_sum``", "Total number of flat opcode read wavefronts processed by ATAUI"
-  "``TA_FLAT_ATOMIC_WAVEFRONTS_sum``", "Total number of flat opcode atomic wavefronts processed by ATAUI"
-  "``TA_TA_BUSY_sum``", "Total number of texture addressing unit busy cycles over ATAUI"
-  "``TA_TOTAL_WAVEFRONTS_sum``", "Total number of wavefronts processed by ATAUI"
+  "``TA_BUFFER_WAVEFRONTS_sum``", "Total number of buffer wavefronts processed"
+  "``TA_BUFFER_READ_WAVEFRONTS_sum``", "Total number of buffer read wavefronts processed"
+  "``TA_BUFFER_WRITE_WAVEFRONTS_sum``", "Total number of buffer write wavefronts processed"
+  "``TA_BUFFER_ATOMIC_WAVEFRONTS_sum``", "Total number of buffer atomic wavefronts processed"
+  "``TA_BUFFER_TOTAL_CYCLES_sum``", "Total number of buffer cycles (including read and write) issued to texture cache"
+  "``TA_BUFFER_COALESCED_READ_CYCLES_sum``", "Total number of coalesced buffer read cycles issued to texture cache"
+  "``TA_BUFFER_COALESCED_WRITE_CYCLES_sum``", "Total number of coalesced buffer write cycles issued to texture cache"
+  "``TA_FLAT_READ_WAVEFRONTS_sum``", "Sum of flat opcode reads processed"
+  "``TA_FLAT_WRITE_WAVEFRONTS_sum``", "Sum of flat opcode writes processed"
+  "``TA_FLAT_WAVEFRONTS_sum``", "Total number of flat opcode wavefronts processed"
+  "``TA_FLAT_READ_WAVEFRONTS_sum``", "Total number of flat opcode read wavefronts processed"
+  "``TA_FLAT_ATOMIC_WAVEFRONTS_sum``", "Total number of flat opcode atomic wavefronts processed"
+  "``TA_TOTAL_WAVEFRONTS_sum``", "Total number of wavefronts processed"
+
+The following table shows the hardware counters *over* all texture addressing unit instances.
+
+.. csv-table::
+  :widths: 30, 70
+  :header: "Hardware counter", "Definition"
+
+  "``TA_ADDR_STALLED_BY_TC_CYCLES_sum``", "Total number of cycles texture addressing unit address path is stalled by texture cache"
+  "``TA_ADDR_STALLED_BY_TD_CYCLES_sum``", "Total number of cycles texture addressing unit address path is stalled by texture data unit"
+  "``TA_BUSY_avr``", "Average number of busy cycles"
+  "``TA_BUSY_max``", "Maximum number of texture addressing unit busy cycles"
+  "``TA_BUSY_min``", "Minimum number of texture addressing unit busy cycles"
+  "``TA_DATA_STALLED_BY_TC_CYCLES_sum``", "Total number of cycles texture addressing unit data path is stalled by texture cache"
+  "``TA_TA_BUSY_sum``", "Total number of texture addressing unit busy cycles"
 
 Hardware counters over all texture cache per channel instances
------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
 
 .. csv-table::
   :widths: 30, 70
