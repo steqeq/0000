@@ -18,8 +18,8 @@ This page contains the release notes for AMD ROCm Software.
 ## ROCm 6.0.2
 
 In addition to library updates for several ROCm projects, this release includes bug fixes and
-improvements for the following libraries: hipBLAS, hipBLASLt, hipSPARSELt, rocAL, and rocBLAS. You
-can find additional details in the following section.
+improvements for the following libraries: AMDMIGraphX, hipBLASLt, hipFFT, hipRAND, hipSPARSELt,
+rocSPARSE, rocThrust, rocWMMA, and Tensile. You can find additional details in the following section.
 
 ### Library changes in ROCM 6.0.2
 
