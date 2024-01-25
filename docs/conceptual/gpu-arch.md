@@ -18,7 +18,7 @@ architecture.
 
 * [AMD Instinct™ MI300 microarchitecture](./gpu-arch/mi300.md)
 * [White paper](https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf)
-* [Performance counters](./gpu-arch/mi300-performance-counters.rst)
+* [Performance counters](./gpu-arch/mi300-mi200-performance-counters.rst)
 :::
 
 :::{grid-item-card}
@@ -30,7 +30,7 @@ architecture.
 * [AMD Instinct™ MI250 microarchitecture](./gpu-arch/mi250.md)
 * [AMD Instinct MI200/CDNA2 ISA](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
 * [White paper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
-* [Performance counters](./gpu-arch/mi200-performance-counters.md)
+* [Performance counters](./gpu-arch/mi300-mi200-performance-counters.rst)
 
 :::
 

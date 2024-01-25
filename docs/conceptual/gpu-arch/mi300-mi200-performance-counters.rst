@@ -1,19 +1,19 @@
 .. meta::
-  :description: MI300 performance counters and metrics
-  :keywords: MI300, performance counters, command processor counters
+  :description: MI300 and Mi200 series performance counters and metrics
+  :keywords: MI300, Mi200, performance counters, command processor counters
 
 ***************************************************************************************************
-MI300 performance counters and metrics
+MI300 and Mi200 series performance counters and metrics
 ***************************************************************************************************
 
 This document lists and describes the hardware performance counters and derived metrics available
-for the AMD Instinct™ MI300 GPU. You can also access this information using the
+for the AMD Instinct™ MI300 and Mi200 GPU. You can also access this information using the
 :doc:`ROCProfiler tool <rocprofiler:rocprofv1>`.
 
-MI300 performance counters
+MI300 and Mi200 series performance counters
 ===============================================================
 
-MI300 counters include:
+MI300 and Mi200 series counters include:
 
 * :ref:`graphics-register-bus-manager-counters`
 * :ref:`command-processor-counters`
@@ -23,11 +23,11 @@ MI300 counters include:
 * :ref:`vector-l1-cache-subsystem-counters`
 * :ref:`l2-cache-access-counters`
 
-The following sections provide additional details on all MI300 performance counters.
+The following sections provide additional details on all MI300 and Mi200 series performance counters.
 
 .. note::
 
-  Preliminary validation of all MI300 performance counters is in progress. Those with an asterisk (*)
+  Preliminary validation of all MI300 and Mi200 series performance counters is in progress. Those with an asterisk (*)
   require further evaluation.
 
 .. _graphics-register-bus-manager-counters:
@@ -176,7 +176,8 @@ Instruction mix
   "``SQ_INSTS_SMEM``", "Instr", "Number of scalar memory instructions issued"
   "``SQ_INSTS_SMEM_NORM``", "Instr", "Number of scalar memory instructions normalized to match ``smem_level`` issued"
   "``SQ_INSTS_FLAT``", "Instr", "Number of flat instructions issued"
-  "``SQ_INSTS_LDS``", "Instr", "Number of LDS instructions issued (including flat)"
+  "``SQ_INSTS_FLAT_LDS_ONLY``", "Instr", "**Exist at Mi200 series only.** Number of FLAT instructions that read/write only from/to LDS issued. Works only if ``EARLY_TA_DONE`` is enabled."
+  "``SQ_INSTS_LDS``", "Instr", "Number of LDS instructions issued **(Mi200\: including flat, Mi300\: not including flat)**"
   "``SQ_INSTS_GDS``", "Instr", "Number of global data share instructions issued"
   "``SQ_INSTS_EXP_GDS``", "Instr", "Number of EXP and global data share instructions excluding skipped export instructions issued"
   "``SQ_INSTS_BRANCH``", "Instr", "Number of Branch instructions issued"
@@ -410,6 +411,9 @@ Texture cache per pipe counters
   "``TCP_UTCL1_TRANSLATION_MISS[n]``", "Req", "Number of unified translation cache (L1) translation misses", "0-15"
   "``TCP_UTCL1_PERMISSION_MISS[n]``", "Req", "Number of unified translation cache (L1) permission misses", "0-15"
   "``TCP_TOTAL_CACHE_ACCESSES[n]``", "Req", "Number of vector L1d cache accesses including hits and misses", "0-15"
+  "``TCP_TCP_LATENCY[n]``", "Cycles", "**Exist at Mi200 series only.** Accumulated wave access latency to vL1D over all wavefronts", "0-15"
+  "``TCP_TCC_READ_REQ_LATENCY[n]``", "Cycles", "**Exist at Mi200 series only.** Total vL1D to L2 request latency over all wavefronts for reads and atomics with return", "0-15"
+  "``TCP_TCC_WRITE_REQ_LATENCY[n]``", "Cycles", "**Exist at Mi200 series only.** Total vL1D to L2 request latency over all wavefronts for writes and atomics without return", "0-15"
   "``TCP_TCC_READ_REQ[n]``", "Req", "Number of read requests to L2 cache", "0-15"
   "``TCP_TCC_WRITE_REQ[n]``", "Req", "Number of write requests to L2 cache", "0-15"
   "``TCP_TCC_ATOMIC_WITH_RET_REQ[n]``", "Req", "Number of atomic requests to L2 cache with return", "0-15"
@@ -440,7 +444,7 @@ Texture cache arbiter counters
   :widths: 30, 5, 60, 5
   :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
-  "``TCA_CYCLE[n]``", "Cycles", "Number of texture cache arbiter cycles", "0-31"
+      "``TCA_CYCLE[n]``", "Cycles", "Number of texture cache arbiter cycles", "0-31"
   "``TCA_BUSY[n]``", "Cycles", "Number of cycles texture cache arbiter has a pending request", "0-31"
 
 .. _l2-cache-access-counters:
@@ -450,51 +454,103 @@ L2 cache access counters
 
 L2 cache is also known as texture cache per channel.
 
-.. csv-table::
-  :widths: 30, 5, 60, 5
-  :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
+.. tab-set::
 
-  "``TCC_CYCLE[n]``", "Cycles", "Number of L2 cache free-running clocks", "0-31"
-  "``TCC_BUSY[n]``", "Cycles", "Number of L2 cache busy cycles", "0-31"
-  "``TCC_REQ[n]``", "Req", "Number of L2 cache requests of all types (measured at the tag block)", "0-31"
-  "``TCC_STREAMING_REQ[n]``", "Req", "Number of L2 cache streaming requests (measured at the tag block)", "0-31"
-  "``TCC_NC_REQ[n]``", "Req", "Number of non-coherently cached requests (measured at the tag block)", "0-31"
-  "``TCC_UC_REQ[n]``", "Req", "Number of uncached requests. This is measured at the tag block", "0-31"
-  "``TCC_CC_REQ[n]``", "Req", "Number of coherently cached requests. This is measured at the tag block", "0-31"
-  "``TCC_RW_REQ[n]``", "Req", "Number of coherently cached with write requests. This is measured at the tag block", "0-31"
-  "``TCC_PROBE[n]``", "Req", "Number of probe requests", "0-31"
-  "``TCC_PROBE_ALL[n]``", "Req", "Number of external probe requests with ``EA0_TCC_preq_all == 1``", "0-31"
-  "``TCC_READ[n]``", "Req", "Number of L2 cache read requests (includes compressed reads but not metadata reads)", "0-31"
-  "``TCC_WRITE[n]``", "Req", "Number of L2 cache write requests", "0-31"
-  "``TCC_ATOMIC[n]``", "Req", "Number of L2 cache atomic requests of all types", "0-31"
-  "``TCC_HIT[n]``", "Req", "Number of L2 cache hits", "0-31"
-  "``TCC_MISS[n]``", "Req", "Number of L2 cache misses", "0-31"
-  "``TCC_WRITEBACK[n]``", "Req", "Number of lines written back to the main memory, including writebacks of dirty lines and uncached write or atomic requests", "0-31"
-  "``TCC_EA0_WRREQ[n]``", "Req", "Number of 32-byte and 64-byte transactions going over the ``TC_EA0_wrreq`` interface (doesn't include probe commands)", "0-31"
-  "``TCC_EA0_WRREQ_64B[n]``", "Req", "Total number of 64-byte transactions (write or ``CMPSWAP``) going over the ``TC_EA0_wrreq`` interface", "0-31"
-  "``TCC_EA0_WR_UNCACHED_32B[n]``", "Req", "Number of 32 or 64-byte write or atomic going over the ``TC_EA0_wrreq`` interface due to uncached traffic", "0-31"
-  "``TCC_EA0_WRREQ_STALL[n]``", "Cycles", "Number of cycles a write request is stalled", "0-31"
-  "``TCC_EA0_WRREQ_IO_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of input-output (IO) credits", "0-31"
-  "``TCC_EA0_WRREQ_GMI_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of GMI credits", "0-31"
-  "``TCC_EA0_WRREQ_DRAM_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of DRAM credits", "0-31"
-  "``TCC_TOO_MANY_EA0_WRREQS_STALL[n]``", "Cycles", "Number of cycles the L2 cache is unable to send an efficiency arbiter write request due to it reaching its maximum capacity of pending efficiency arbiter write requests", "0-31"
-  "``TCC_EA0_WRREQ_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter write requests in flight", "0-31"
-  "``TCC_EA0_ATOMIC[n]``", "Req", "Number of 32-byte or 64-byte atomic requests going over the ``TC_EA0_wrreq`` interface", "0-31"
-  "``TCC_EA0_ATOMIC_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter atomic requests in flight", "0-31"
-  "``TCC_EA0_RDREQ[n]``", "Req", "Number of 32-byte or 64-byte read requests to efficiency arbiter", "0-31"
-  "``TCC_EA0_RDREQ_32B[n]``", "Req", "Number of 32-byte read requests to efficiency arbiter", "0-31"
-  "``TCC_EA0_RD_UNCACHED_32B[n]``", "Req", "Number of 32-byte efficiency arbiter reads due to uncached traffic. A 64-byte request is counted as 2", "0-31"
-  "``TCC_EA0_RDREQ_IO_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of IO credits", "0-31"
-  "``TCC_EA0_RDREQ_GMI_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of GMI credits", "0-31"
-  "``TCC_EA0_RDREQ_DRAM_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of DRAM credits", "0-31"
-  "``TCC_EA0_RDREQ_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter read requests in flight", "0-31"
-  "``TCC_EA0_RDREQ_DRAM[n]``", "Req", "Number of 32-byte or 64-byte efficiency arbiter read requests to High Bandwidth Memory (HBM)", "0-31"
-  "``TCC_EA0_WRREQ_DRAM[n]``", "Req", "Number of 32-byte or 64-byte efficiency arbiter write requests to HBM", "0-31"
-  "``TCC_TAG_STALL[n]``", "Cycles", "Number of cycles the normal request pipeline in the tag is stalled for any reason", "0-31"
-  "``TCC_NORMAL_WRITEBACK[n]``", "Req", "Number of writebacks due to requests that are not writeback requests", "0-31"
-  "``TCC_ALL_TC_OP_WB_WRITEBACK[n]``", "Req", "Number of writebacks due to all ``TC_OP`` writeback requests", "0-31"
-  "``TCC_NORMAL_EVICT[n]``", "Req", "Number of evictions due to requests that are not invalidate or probe requests", "0-31"
-  "``TCC_ALL_TC_OP_INV_EVICT[n]``", "Req", "Number of evictions due to all ``TC_OP`` invalidate requests", "0-31"
+    .. tab-item:: Mi300 Hardware counter
+
+      .. csv-table::
+        :widths: 30, 5, 60, 5
+        :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
+
+        "``TCC_CYCLE[n]``", "Cycles", "Number of L2 cache free-running clocks", "0-31"
+        "``TCC_BUSY[n]``", "Cycles", "Number of L2 cache busy cycles", "0-31"
+        "``TCC_REQ[n]``", "Req", "Number of L2 cache requests of all types (measured at the tag block)", "0-31"
+        "``TCC_STREAMING_REQ[n]``", "Req", "Number of L2 cache streaming requests (measured at the tag block)", "0-31"
+        "``TCC_NC_REQ[n]``", "Req", "Number of non-coherently cached requests (measured at the tag block)", "0-31"
+        "``TCC_UC_REQ[n]``", "Req", "Number of uncached requests. This is measured at the tag block", "0-31"
+        "``TCC_CC_REQ[n]``", "Req", "Number of coherently cached requests. This is measured at the tag block", "0-31"
+        "``TCC_RW_REQ[n]``", "Req", "Number of coherently cached with write requests. This is measured at the tag block", "0-31"
+        "``TCC_PROBE[n]``", "Req", "Number of probe requests", "0-31"
+        "``TCC_PROBE_ALL[n]``", "Req", "Number of external probe requests with ``EA_TCC_preq_all == 1``", "0-31"
+        "``TCC_READ[n]``", "Req", "Number of L2 cache read requests (includes compressed reads but not metadata reads)", "0-31"
+        "``TCC_WRITE[n]``", "Req", "Number of L2 cache write requests", "0-31"
+        "``TCC_ATOMIC[n]``", "Req", "Number of L2 cache atomic requests of all types", "0-31"
+        "``TCC_HIT[n]``", "Req", "Number of L2 cache hits", "0-31"
+        "``TCC_MISS[n]``", "Req", "Number of L2 cache misses", "0-31"
+        "``TCC_WRITEBACK[n]``", "Req", "Number of lines written back to the main memory, including writebacks of dirty lines and uncached write or atomic requests", "0-31"
+        "``TCC_EA0_WRREQ[n]``", "Req", "Number of 32-byte and 64-byte transactions going over the ``TC_EA_wrreq`` interface (doesn't include probe commands)", "0-31"
+        "``TCC_EA0_WRREQ_64B[n]``", "Req", "Total number of 64-byte transactions (write or ``CMPSWAP``) going over the ``TC_EA_wrreq`` interface", "0-31"
+        "``TCC_EA0_WR_UNCACHED_32B[n]``", "Req", "Number of 32 or 64-byte write or atomic going over the ``TC_EA_wrreq`` interface due to uncached traffic", "0-31"
+        "``TCC_EA0_WRREQ_STALL[n]``", "Cycles", "Number of cycles a write request is stalled", "0-31"
+        "``TCC_EA0_WRREQ_IO_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of input-output (IO) credits", "0-31"
+        "``TCC_EA0_WRREQ_GMI_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of GMI credits", "0-31"
+        "``TCC_EA0_WRREQ_DRAM_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of DRAM credits", "0-31"
+        "``TCC_TOO_MANY_EA_WRREQS_STALL[n]``", "Cycles", "Number of cycles the L2 cache is unable to send an efficiency arbiter write request due to it reaching its maximum capacity of pending efficiency arbiter write requests", "0-31"
+        "``TCC_EA0_WRREQ_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter write requests in flight", "0-31"
+        "``TCC_EA0_ATOMIC[n]``", "Req", "Number of 32-byte or 64-byte atomic requests going over the ``TC_EA_wrreq`` interface", "0-31"
+        "``TCC_EA0_ATOMIC_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter atomic requests in flight", "0-31"
+        "``TCC_EA0_RDREQ[n]``", "Req", "Number of 32-byte or 64-byte read requests to efficiency arbiter", "0-31"
+        "``TCC_EA0_RDREQ_32B[n]``", "Req", "Number of 32-byte read requests to efficiency arbiter", "0-31"
+        "``TCC_EA0_RD_UNCACHED_32B[n]``", "Req", "Number of 32-byte efficiency arbiter reads due to uncached traffic. A 64-byte request is counted as 2", "0-31"
+        "``TCC_EA0_RDREQ_IO_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of IO credits", "0-31"
+        "``TCC_EA0_RDREQ_GMI_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of GMI credits", "0-31"
+        "``TCC_EA0_RDREQ_DRAM_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of DRAM credits", "0-31"
+        "``TCC_EA0_RDREQ_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter read requests in flight", "0-31"
+        "``TCC_EA0_RDREQ_DRAM[n]``", "Req", "Number of 32-byte or 64-byte efficiency arbiter read requests to High Bandwidth Memory (HBM)", "0-31"
+        "``TCC_EA0_WRREQ_DRAM[n]``", "Req", "Number of 32-byte or 64-byte efficiency arbiter write requests to HBM", "0-31"
+        "``TCC_TAG_STALL[n]``", "Cycles", "Number of cycles the normal request pipeline in the tag is stalled for any reason", "0-31"
+        "``TCC_NORMAL_WRITEBACK[n]``", "Req", "Number of writebacks due to requests that are not writeback requests", "0-31"
+        "``TCC_ALL_TC_OP_WB_WRITEBACK[n]``", "Req", "Number of writebacks due to all ``TC_OP`` writeback requests", "0-31"
+        "``TCC_NORMAL_EVICT[n]``", "Req", "Number of evictions due to requests that are not invalidate or probe requests", "0-31"
+        "``TCC_ALL_TC_OP_INV_EVICT[n]``", "Req", "Number of evictions due to all ``TC_OP`` invalidate requests", "0-31"
+
+    .. tab-item:: Mi200 Hardware counter
+
+      .. csv-table::
+        :widths: 30, 5, 60, 5
+        :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
+
+        "``TCC_CYCLE[n]``", "Cycles", "Number of L2 cache free-running clocks", "0-31"
+        "``TCC_BUSY[n]``", "Cycles", "Number of L2 cache busy cycles", "0-31"
+        "``TCC_REQ[n]``", "Req", "Number of L2 cache requests of all types (measured at the tag block)", "0-31"
+        "``TCC_STREAMING_REQ[n]``", "Req", "Number of L2 cache streaming requests (measured at the tag block)", "0-31"
+        "``TCC_NC_REQ[n]``", "Req", "Number of non-coherently cached requests (measured at the tag block)", "0-31"
+        "``TCC_UC_REQ[n]``", "Req", "Number of uncached requests. This is measured at the tag block", "0-31"
+        "``TCC_CC_REQ[n]``", "Req", "Number of coherently cached requests. This is measured at the tag block", "0-31"
+        "``TCC_RW_REQ[n]``", "Req", "Number of coherently cached with write requests. This is measured at the tag block", "0-31"
+        "``TCC_PROBE[n]``", "Req", "Number of probe requests", "0-31"
+        "``TCC_PROBE_ALL[n]``", "Req", "Number of external probe requests with ``EA_TCC_preq_all == 1``", "0-31"
+        "``TCC_READ[n]``", "Req", "Number of L2 cache read requests (includes compressed reads but not metadata reads)", "0-31"
+        "``TCC_WRITE[n]``", "Req", "Number of L2 cache write requests", "0-31"
+        "``TCC_ATOMIC[n]``", "Req", "Number of L2 cache atomic requests of all types", "0-31"
+        "``TCC_HIT[n]``", "Req", "Number of L2 cache hits", "0-31"
+        "``TCC_MISS[n]``", "Req", "Number of L2 cache misses", "0-31"
+        "``TCC_WRITEBACK[n]``", "Req", "Number of lines written back to the main memory, including writebacks of dirty lines and uncached write or atomic requests", "0-31"
+        "``TCC_EA_WRREQ[n]``", "Req", "Number of 32-byte and 64-byte transactions going over the ``TC_EA_wrreq`` interface (doesn't include probe commands)", "0-31"
+        "``TCC_EA_WRREQ_64B[n]``", "Req", "Total number of 64-byte transactions (write or ``CMPSWAP``) going over the ``TC_EA_wrreq`` interface", "0-31"
+        "``TCC_EA_WR_UNCACHED_32B[n]``", "Req", "Number of 32 write or atomic going over the ``TC_EA_wrreq`` interface due to uncached traffic. A 64-byte request will be counted as 2", "0-31"
+        "``TCC_EA_WRREQ_STALL[n]``", "Cycles", "Number of cycles a write request is stalled", "0-31"
+        "``TCC_EA_WRREQ_IO_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of input-output (IO) credits", "0-31"
+        "``TCC_EA_WRREQ_GMI_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of GMI credits", "0-31"
+        "``TCC_EA_WRREQ_DRAM_CREDIT_STALL[n]``", "Cycles", "Number of cycles an efficiency arbiter write request is stalled due to the interface running out of DRAM credits", "0-31"
+        "``TCC_TOO_MANY_EA_WRREQS_STALL[n]``", "Cycles", "Number of cycles the L2 cache is unable to send an efficiency arbiter write request due to it reaching its maximum capacity of pending efficiency arbiter write requests", "0-31"
+        "``TCC_EA_WRREQ_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter write requests in flight", "0-31"
+        "``TCC_EA_ATOMIC[n]``", "Req", "Number of 32-byte or 64-byte atomic requests going over the ``TC_EA_wrreq`` interface", "0-31"
+        "``TCC_EA_ATOMIC_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter atomic requests in flight", "0-31"
+        "``TCC_EA_RDREQ[n]``", "Req", "Number of 32-byte or 64-byte read requests to efficiency arbiter", "0-31"
+        "``TCC_EA_RDREQ_32B[n]``", "Req", "Number of 32-byte read requests to efficiency arbiter", "0-31"
+        "``TCC_EA_RD_UNCACHED_32B[n]``", "Req", "Number of 32-byte efficiency arbiter reads due to uncached traffic. A 64-byte request is counted as 2", "0-31"
+        "``TCC_EA_RDREQ_IO_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of IO credits", "0-31"
+        "``TCC_EA_RDREQ_GMI_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of GMI credits", "0-31"
+        "``TCC_EA_RDREQ_DRAM_CREDIT_STALL[n]``", "Cycles", "Number of cycles there is a stall due to the read request interface running out of DRAM credits", "0-31"
+        "``TCC_EA_RDREQ_LEVEL[n]``", "Req", "The accumulated number of efficiency arbiter read requests in flight", "0-31"
+        "``TCC_EA_RDREQ_DRAM[n]``", "Req", "Number of 32-byte or 64-byte efficiency arbiter read requests to High Bandwidth Memory (HBM)", "0-31"
+        "``TCC_EA_WRREQ_DRAM[n]``", "Req", "Number of 32-byte or 64-byte efficiency arbiter write requests to HBM", "0-31"
+        "``TCC_TAG_STALL[n]``", "Cycles", "Number of cycles the normal request pipeline in the tag is stalled for any reason", "0-31"
+        "``TCC_NORMAL_WRITEBACK[n]``", "Req", "Number of writebacks due to requests that are not writeback requests", "0-31"
+        "``TCC_ALL_TC_OP_WB_WRITEBACK[n]``", "Req", "Number of writebacks due to all ``TC_OP`` writeback requests", "0-31"
+        "``TCC_NORMAL_EVICT[n]``", "Req", "Number of evictions due to requests that are not invalidate or probe requests", "0-31"
+        "``TCC_ALL_TC_OP_INV_EVICT[n]``", "Req", "Number of evictions due to all ``TC_OP`` invalidate requests", "0-31"
 
 Note the following:
 
@@ -523,7 +579,7 @@ Note the following:
   ``TCC_TAG_STALL[n]``, probes can stall the pipeline at a variety of places. There is no single point that
   can accurately measure the total stalls
 
-MI300 derived metrics list
+MI300 and Mi200 series derived metrics list
 ==============================================================
 
 .. csv-table::
