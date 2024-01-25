@@ -111,7 +111,7 @@ We've added a new ROCm meta package for easy installation of all ROCm core packa
 libraries. For example, the following command will install the full ROCm package: `apt-get install rocm`
 (Ubuntu), or `yum install rocm` (RHEL).
 
-   > To use ROCm on Radeon GPUs, refer to [Install Radeon software for Linux with ROCm](https://rocm.docs.amd.com/projects/radeon/en/latest/docs/install/install-radeon.html)
+   > To use ROCm on Radeon GPUs, refer to [Install Radeon software for Linux with ROCm](https://rocm.docs.amd.com/projects/radeon/en/latest/docs/install/install-radeon.html).
 
 ### Filesystem Hierarchy Standard
 
