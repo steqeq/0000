@@ -748,7 +748,7 @@ Hardware counter over all texture data unit instances
 --------------------------------------------------------
 
 .. csv-table::
-  :header: "Hardware counter at all texture cache per pipe instances", "Definition"
+  :header: "Hardware counter", "Definition"
 
   "``TD_ATOMIC_WAVEFRONT_sum``", "Total number of atomic wavefront instructions"
   "``TD_COALESCABLE_WAVEFRONT_sum``", "Total number of coalescable wavefronts according to texture addressing unit"
