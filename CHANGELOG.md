@@ -20,7 +20,7 @@ This page contains the release notes for AMD ROCm Software.
 In addition to library updates for several ROCm projects, this release includes bug fixes and
 improvements for hipFFT and Tensile. You can find additional details in the following sections.
 
-### Library changes in ROCM 6.0.2
+### Library changes in ROCm 6.0.2
 
 | Library | Version |
 |---------|---------|
