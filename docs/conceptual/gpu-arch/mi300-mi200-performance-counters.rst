@@ -331,13 +331,13 @@ Vector L1 cache subsystem counters
 The vector L1 cache subsystem counters are further classified into texture addressing unit, texture data
 unit, vector L1d or texture cache per pipe, and texture cache arbiter counters.
 
-TA counters
+Texture addressing unit counters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
   :header: "Hardware counter", "Unit", "Definition", "Value range for ``n``"
 
-  "``TA_TA_BUSY[n]``", "Cycles", "TA busy cycles", "0-15"
+  "``TA_TA_BUSY[n]``", "Cycles", "Texture addressing unit busy cycles", "0-15"
   "``TA_TOTAL_WAVEFRONTS[n]``", "Instr", "Number of wavefronts processed by texture addressing unit", "0-15"
   "``TA_BUFFER_WAVEFRONTS[n]``", "Instr", "Number of buffer wavefronts processed by texture addressing unit", "0-15"
   "``TA_BUFFER_READ_WAVEFRONTS[n]``", "Instr", "Number of buffer read wavefronts processed by texture addressing unit", "0-15"
