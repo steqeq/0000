@@ -378,9 +378,9 @@ Texture cache per pipe counters
   "``TCP_GATE_EN2[n]``", "Cycles", "Number of cycles vector L1d core clocks are turned on", "0-15"
   "``TCP_TD_TCP_STALL_CYCLES[n]``", "Cycles", "Number of cycles texture data unit stalls vector L1d", "0-15"
   "``TCP_TCR_TCP_STALL_CYCLES[n]``", "Cycles", "Number of cycles texture cache router stalls vector L1d", "0-15"
-  "``TCP_READ_TAGCONFLICT_STALL_CYCLES[n]``", "Cycles", "Number of cycles tagram conflict stalls on a read", "0-15"
-  "``TCP_WRITE_TAGCONFLICT_STALL_CYCLES[n]``", "Cycles", "Number of cycles tagram conflict stalls on a write", "0-15"
-  "``TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES[n]``", "Cycles", "Number of cycles tagram conflict stalls on an atomic", "0-15"
+  "``TCP_READ_TAGCONFLICT_STALL_CYCLES[n]``", "Cycles", "Number of cycles tag RAM conflict stalls on a read", "0-15"
+  "``TCP_WRITE_TAGCONFLICT_STALL_CYCLES[n]``", "Cycles", "Number of cycles tag RAM conflict stalls on a write", "0-15"
+  "``TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES[n]``", "Cycles", "Number of cycles tag RAM conflict stalls on an atomic", "0-15"
   "``TCP_PENDING_STALL_CYCLES[n]``", "Cycles", "Number of cycles vector L1d is stalled due to data pending from L2 Cache", "0-15"
   "``TCP_TCP_TA_DATA_STALL_CYCLES``", "Cycles", "Number of cycles texture cache per pipe stalls texture addressing unit data interface", "NA"
   "``TCP_TA_TCP_STATE_READ[n]``", "Req", "Number of state reads", "0-15"
@@ -712,11 +712,11 @@ The following table shows the hardware counters *over* all texture cache per pip
 .. csv-table::
   :header: "Hardware counter", "Definition"
 
-  "``TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES_sum``", "Total number of cycles tagram conflict stalls on an atomic"
+  "``TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES_sum``", "Total number of cycles tag RAM conflict stalls on an atomic"
   "``TCP_GATE_EN1_sum``", "Total number of cycles vector L1d interface clocks are turned on"
   "``TCP_GATE_EN2_sum``", "Total number of cycles vector L1d core clocks are turned on"
   "``TCP_PENDING_STALL_CYCLES_sum``", "Total number of cycles vector L1d cache is stalled due to data pending from L2 Cache"
-  "``TCP_READ_TAGCONFLICT_STALL_CYCLES_sum``", "Total number of cycles tagram conflict stalls on a read"
+  "``TCP_READ_TAGCONFLICT_STALL_CYCLES_sum``", "Total number of cycles tag RAM conflict stalls on a read"
   "``TCP_TCC_ATOMIC_WITH_RET_REQ_sum``", "Total number of atomic requests to L2 cache with return"
   "``TCP_TCC_ATOMIC_WITHOUT_RET_REQ_sum``", "Total number of atomic requests to L2 cache without return"
   "``TCP_TCC_CC_READ_REQ_sum``", "Total number of coherently cached read requests to L2 cache"
@@ -742,7 +742,7 @@ The following table shows the hardware counters *over* all texture cache per pip
   "``TCP_TOTAL_ATOMIC_WITHOUT_RET_sum``", "Total number of vector L1d atomic requests without return"
   "``TCP_TOTAL_WRITEBACK_INVALIDATES_sum``", "Total number of vector L1d writebacks and invalidates"
   "``TCP_VOLATILE_sum``", "Total number of L1 volatile pixels or buffers from texture addressing unit"
-  "``TCP_WRITE_TAGCONFLICT_STALL_CYCLES_sum``", "Total number of cycles tagram conflict stalls on a write"
+  "``TCP_WRITE_TAGCONFLICT_STALL_CYCLES_sum``", "Total number of cycles tag RAM conflict stalls on a write"
 
 Hardware counter over all texture data unit instances
 --------------------------------------------------------
