@@ -27,7 +27,7 @@ source software compilers, debuggers, and libraries. ROCm is fully integrated in
 
 ```{tip}
   If you're using Radeon GPUs, refer to the
-  [Radeon-specific ROCm documentation](https://rocm.docs.amd.com/projects/radeon/en/latest/index.html).
+{doc}`Radeon-specific ROCm documentation<radeon:index>`
 ```
 
 ## ROCm projects
