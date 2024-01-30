@@ -1680,7 +1680,7 @@ the GPU in heterogeneous applications. Ideally, developers should treat heteroge
 OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
 Refer to the documentation on LLVM ASan with the GPU at
-[LLVM AddressSanitizer User Guide](../conceptual/using-gpu-sanitizer.md).
+{doc}`LLVM AddressSanitizer User Guide<rocm:conceptual/using-gpu-sanitizer>`.
 
 :::{note}
 The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
@@ -6617,7 +6617,7 @@ This fix may lead to breakage in some OpenMP offload use cases, which use print 
 and result in an abort in device code. The issue will be fixed in a future release.
 :::
 
-The compatibility matrix in the [Deep-learning guide](./how-to/deep-learning-rocm.md) is updated for
+The compatibility matrix in the {doc}`Deep-learning guide<rocm:how-to/deep-learning-rocm>` is updated for
 ROCm v5.0.2.
 
 ### Library changes in ROCM 5.0.2
