@@ -17,6 +17,7 @@ Review hardware aspects of the AMD Instinct™ MI300 series of GPU accelerators 
 architecture.
 
 * [AMD Instinct™ MI300 microarchitecture](./gpu-arch/mi300.md)
+* [AMD Instinct MI300/CDNA3 ISA](https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf)
 * [White paper](https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf)
 * [Performance counters](./gpu-arch/mi300-mi200-performance-counters.rst)
 :::
