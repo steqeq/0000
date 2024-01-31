@@ -13,6 +13,10 @@ resources to learn more about our products and what we support:
 * [What is ROCm?](./what-is-rocm.md)
 * [Release notes](./about/release-notes.md)
 
+You can install ROCm on our Radeon™, Radeon Pro™, and Instinct™ GPUs. If you're using Radeon
+GPUs, we recommend reading the
+{doc}`Radeon-specific ROCm documentation<radeon:index>`
+
 Our documentation is organized into the following categories:
 
 ::::{grid} 1 2 2 2
@@ -53,6 +57,7 @@ ROCm compatibility information
 * {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
+{doc}`ROCm on Radeon GPUs<radeon:index>`
 
 :::
 

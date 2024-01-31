@@ -7,7 +7,7 @@
     <remote name="gpuopen-libs" fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
     <remote name="gpuopen-tools" fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-6.0.0"
+    <default revision="refs/tags/rocm-6.0.2"
      remote="rocm-org"
      sync-c="true"
      sync-j="4" />
