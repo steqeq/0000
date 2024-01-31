@@ -17,8 +17,7 @@ This page contains the release notes for AMD ROCm Software.
 
 ## ROCm 6.0.2
 
-This release includes library updates for several ROCm projects. You can find additional details in the
-following sections.
+The ROCm 6.0.2 point release consists of minor bug fixes to improve the stability of MI300 GPU applications. This release introduces several new driver features for system qualification on our partner server offerings. 
 
 ### Library changes in ROCm 6.0.2
 
