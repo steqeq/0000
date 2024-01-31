@@ -372,7 +372,7 @@ hipBLAS 2.0.0 for ROCm 6.0.0
 
 #### hipBLASLt 0.6.0
 
-hipBLASLt 0.6.0 for ROCm 6.0.2
+hipBLASLt 0.6.0 for ROCm 6.0.0
 
 ##### Additions
 
