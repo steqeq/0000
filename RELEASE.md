@@ -14,8 +14,8 @@ This page contains the release notes for AMD ROCm Software.
 
 ## ROCm 6.0.2
 
-In addition to library updates for several ROCm projects, this release includes bug fixes and
-improvements for hipFFT. You can find additional details in the following sections.
+This release includes library updates for several ROCm projects. You can find additional details in the
+following sections.
 
 ### Library changes in ROCm 6.0.2
 
