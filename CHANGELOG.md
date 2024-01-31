@@ -18,7 +18,7 @@ This page contains the release notes for AMD ROCm Software.
 ## ROCm 6.0.2
 
 In addition to library updates for several ROCm projects, this release includes bug fixes and
-improvements for hipFFT and Tensile. You can find additional details in the following sections.
+improvements for hipFFT. You can find additional details in the following sections.
 
 ### Library changes in ROCm 6.0.2
 
@@ -56,18 +56,6 @@ hipFFT 1.0.13 for ROCm 6.0.2
 
 * Removed the Git submodule for shared files between rocFFT and hipFFT; instead, just copy the files
  over (this should help simplify downstream builds and packaging)
-
-#### Tensile 4.39.0
-
-Tensile 4.39.0 for ROCm 6.0.2
-
-##### Optimizations
-
-* Adjusted `miIssueLatency` for gfx940
-
-##### Changes
-
-* Enabled ROCm SMI for gfx940/941
 
 -------------------
 
