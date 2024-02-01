@@ -876,7 +876,7 @@ To understand the code step by step, follow these steps:
         thisplot[true_label].set_color('blue')
         ```
 
-    9. With the model trained, you can use it to make predictions about some images. Review the 0-th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
+    9. With the model trained, you can use it to make predictions about some images. Review the 0<sup>th</sup> image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
 
         ```py
         i = 0
