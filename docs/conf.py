@@ -50,7 +50,7 @@ article_pages = [
     {
         "file":"release",
         "os":["linux", "windows"],
-        "date":"2024-01-09"
+        "date":"2024-01-31"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
