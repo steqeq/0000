@@ -46,7 +46,7 @@ ROCm consists of the following drivers, development tools, and APIs.
 | {doc}`HIP <hip:index>` | AMD’s GPU programming language extension and the GPU runtime |
 | {doc}`hipBLAS <hipblas:index>` | A BLAS-marshaling library that supports [rocBLAS](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/) and cuBLAS backends |
 | {doc}`hipBLASLt <hipblaslt:index>` | A library that provides general matrix-matrix operations with a flexible API and extends functionalities beyond traditional BLAS library |
-| {doc}`hipCC <hipcc:index>` | A compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure |
+| [hipCC](https://github.com/ROCm/HIPCC) | A compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure |
 | {doc}`hipCUB <hipcub:index>` | A thin header-only wrapper library on top of [rocPRIM](https://rocm.docs.amd.com/projects/rocPRIM/en/latest/) or CUB that allows project porting using the CUB library to the HIP layer |
 | {doc}`hipFFT <hipfft:index>` | A fast Fourier transforms (FFT)-marshalling library that supports rocFFT or cuFFT backends |
 | {doc}`hipfort <hipfort:index>` | A Fortran interface library for accessing GPU Kernels |
