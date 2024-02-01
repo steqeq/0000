@@ -17,10 +17,13 @@
 
 ^^^
 
+* {doc}`rocAL <rocal:index>`
 * {doc}`Composable Kernel <composable_kernel:index>`
 * {doc}`MIGraphX <amdmigraphx:index>`
 * {doc}`MIOpen <miopen:index>`
 * {doc}`MIVisionX <mivisionx:doxygen/html/index>`
+* {doc}`rocDecode <rocdecode:index>`
+* {doc}`ROCm Performance Primitives Library <rpp:index>`
 
 :::
 
@@ -56,7 +59,6 @@
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
 * {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
-* {doc}`ROCTracer <roctracer:index>`
 
 :::
 
@@ -79,6 +81,7 @@
 
 * {doc}`HIP runtime <hip:index>`
 * {doc}`HIPIFY <hipify:index>`
+* {doc}`hipfort <hipfort:index>`
 
 :::
 

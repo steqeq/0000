@@ -57,7 +57,7 @@ ROCm compatibility information
 * {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
-{doc}`ROCm on Radeon GPUs<radeon:index>`
+* {doc}`ROCm on Radeon GPUs<radeon:index>`
 
 :::
 
