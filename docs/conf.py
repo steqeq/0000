@@ -48,9 +48,9 @@ all_article_info_author = ""
 # pages with specific settings
 article_pages = [
     {
-        "file":"release",
+        "file":"about/release-notes",
         "os":["linux", "windows"],
-        "date":"2024-01-09"
+        "date":"2024-01-31"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
