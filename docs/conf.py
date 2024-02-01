@@ -52,6 +52,11 @@ article_pages = [
         "os":["linux", "windows"],
         "date":"2024-01-31"
     },
+    {
+        "file":"about/CHANGELOG",
+        "os":["linux", "windows"],
+        "date":"2024-01-31"
+    },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
     {"file":"install/linux/install-quick", "os":["linux"]},
@@ -81,8 +86,6 @@ article_pages = [
     {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
 
     {"file":"rocm-a-z", "os":["linux", "windows"]},
-
-    {"file":"about/release-notes", "os":["linux"]},
 ]
 
 exclude_patterns = ['temp']
