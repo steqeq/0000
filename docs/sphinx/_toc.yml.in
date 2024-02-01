@@ -64,6 +64,8 @@ subtrees:
     title: GPU architectures
     subtrees:
     - entries:
+      - file: conceptual/gpu-arch/gpu-arch-info.rst
+        title: GPU Architecture Information
       - file: conceptual/gpu-arch/mi300.md
         title: MI300 microarchitecture
         subtrees:
