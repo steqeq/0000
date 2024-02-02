@@ -104,7 +104,7 @@ subtrees:
 - caption: Contribute
   entries:
   - file: contribute/contributing.md
-    title: Contribute to ROCm
+    title: Contribute to ROCm docs
     subtrees:
     - entries:
       - file: contribute/doc-structure.md
