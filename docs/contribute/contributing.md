@@ -28,7 +28,7 @@ LICENSE.txt file in the corresponding repository. Different repositories may use
 
 1. Identify the repository and the file you want to update. For example, to update this page, you would
   need to modify content located in this file:
-  `https://github.com/ROCm/ROCm/blob/develop/CONTRIBUTING.md`
+  `https://github.com/ROCm/ROCm/blob/develop/docs/contribute/contributing.md`
 
 2. Fork the repository.
 
@@ -61,7 +61,7 @@ LICENSE.txt file in the corresponding repository. Different repositories may use
 
 8. Make your changes locally using your preferred code editor. If you're editing documentation, follow
   the guidelines listed on the
-  [documentation structure](https://rocm.docs.amd.com/en/latest/contribute/docs-structure.html) page.
+  [documentation structure](./doc-structure.md) page.
 
 9. (optional) We recommend running a local test build to ensure the content looks the way you expect.
 
@@ -76,9 +76,9 @@ LICENSE.txt file in the corresponding repository. Different repositories may use
 
     The build files are located in the `docs/_build` folder. To preview your build, open the index file
     (`docs/_build/html/index.html`) file. For more information, see
-    [Building documentation](https://rocm.docs.amd.com/en/latest/contribute/building.html). To learn
+    [Building documentation](building.md). To learn
     more about our build tools, see
-    [Documentation toolchain](https://rocm.docs.amd.com/en/latest/contribute/toolchain.html).
+    [Documentation toolchain](toolchain.md).
 
 10. Commit your changes and push them to your fork. Run:
 
