@@ -20,17 +20,18 @@ All ROCm projects are GitHub-based, so if you want to contribute, you can do so 
 * [Creating an issue in the appropriate GitHub repository](#create-an-issue)
 * [Suggesting a new feature](#suggest-a-new-feature)
 
-> [!NOTE]
-> Because some of our components are inherited from external projects (such as
-> [LLVM](https://github.com/ROCm/llvm-project) and
-> [Kernel driver](https://github.com/ROCm/ROCK-Kernel-Driver)), they use project-specific
-> contribution guidelines and workflow.
-
+```{note}
+Because some of our components are inherited from external projects (such as
+[LLVM](https://github.com/ROCm/llvm-project) and
+[Kernel driver](https://github.com/ROCm/ROCK-Kernel-Driver)), they use project-specific
+contribution guidelines and workflow.
+```
 ## Submit a pull request
 
-> [!IMPORTANT]
-> By creating a PR, you agree to allow your contribution to be licensed under the terms of the
-> LICENSE.txt file in the corresponding repository. Different repositories may use different licenses.
+```{important}
+By creating a PR, you agree to allow your contribution to be licensed under the terms of the
+LICENSE.txt file in the corresponding repository. Different repositories may use different licenses.
+```
 
 1. Identify the repository and the file you want to update. For example, to update this page, you would
   need to modify content located in this file:
