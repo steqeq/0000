@@ -38,8 +38,8 @@ architecture.
 :::{grid-item-card}
 **AMD Instinct MI100**
 
-Review hardware aspects of the AMD Instinct™ MI100 accelerators and the CDNA™ 1 architecture that
-forms the foundation of these GPUs.
+Review hardware aspects of the AMD Instinct™ MI100 series of GPU accelerators and the CDNA™ 1
+architecture.
 
 * [AMD Instinct™ MI100 microarchitecture](./gpu-arch/mi100.md)
 * [AMD Instinct MI100/CDNA1 ISA](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
