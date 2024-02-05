@@ -38,7 +38,6 @@ Our documentation is organized into the following categories:
 * {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
 * {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
 * {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
-
 :::
 
 :::{grid-item-card}
@@ -52,7 +51,13 @@ Our documentation is organized into the following categories:
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
 {doc}`ROCm on Radeon GPUs<radeon:index>`
+:::
 
+:::{grid-item-card}
+:padding: 2
+:img-top: ./data/banner-reference.png
+
+* [API Libraries](./reference/library-index.md)
 :::
 
 :::{grid-item-card}
@@ -67,21 +72,11 @@ Our documentation is organized into the following categories:
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
 * [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
-
-:::
-
-:::{grid-item-card}
-:padding: 2
-:img-top: ./data/banner-reference.png
-
-* [API Libraries](./reference/library-index.md)
-
 :::
 
 :::{grid-item-card}
 :padding: 2
 :img-top: ./data/banner-conceptual.png
-
 
 * [GPU architecture](./conceptual/gpu-arch.md)
   * [MI100](./conceptual/gpu-arch/mi100.md)
@@ -97,7 +92,6 @@ Our documentation is organized into the following categories:
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
 * [OpenMP support in ROCm](./about/compatibility/openmp.md)
-
 :::
 
 ::::
