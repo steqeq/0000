@@ -43,10 +43,7 @@ Our documentation is organized into the following categories:
 
 :::{grid-item-card}
 :padding: 2
-**Compatibility & support**
-
-ROCm compatibility information
-^^^
+:img-top: ./data/banner-compatibility.png
 
 * {doc}`System requirements (Linux)<rocm-install-on-linux:reference/system-requirements>`
 * {doc}`System requirements (Windows)<rocm-install-on-windows:reference/system-requirements>`
@@ -60,10 +57,7 @@ ROCm compatibility information
 
 :::{grid-item-card}
 :padding: 2
-**How-to**
-
-Task-oriented walkthroughs
-^^^
+:img-top: ./data/banner-howto.png
 
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
@@ -78,10 +72,7 @@ Task-oriented walkthroughs
 
 :::{grid-item-card}
 :padding: 2
-**Reference**
-
-Collated information
-^^^
+:img-top: ./data/banner-reference.png
 
 * [API Libraries](./reference/library-index.md)
 
@@ -89,10 +80,8 @@ Collated information
 
 :::{grid-item-card}
 :padding: 2
-**Conceptual**
+:img-top: ./data/banner-conceptual.png
 
-Topic overviews & background information
-^^^
 
 * [GPU architecture](./conceptual/gpu-arch.md)
   * [MI100](./conceptual/gpu-arch/mi100.md)
