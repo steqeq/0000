@@ -4,7 +4,7 @@
   <meta name="keywords" content="ROCm, contributing, contribute, maintainer, contributor">
 </head>
 
-# Contribute to ROCm
+# Contribute to ROCm documentation
 
 All ROCm projects are GitHub-based, so if you want to contribute, you can do so by:
 
@@ -30,40 +30,40 @@ LICENSE.txt file in the corresponding repository. Different repositories may use
   need to modify content located in this file:
   `https://github.com/ROCm/ROCm/blob/develop/docs/contribute/contributing.md`
 
-2. Fork the repository.
+2. (optional, but recommended) Fork the repository.
 
-3. Clone the repository locally and add your fork. Select the green 'Code' button and copy the URL
-  (e.g., `git@github.com:ROCm/ROCm.git`).
+3. Clone the repository locally and (optionally) add your fork. Select the green 'Code' button and copy
+   the URL (e.g., `git@github.com:ROCm/ROCm.git`).
 
-4. From your terminal, run:
+   * From your terminal, run:
 
-    ```bash
-    git clone git@github.com:ROCm/ROCm.git
-    ```
+      ```bash
+      git clone git@github.com:ROCm/ROCm.git
+      ```
 
-5. Add your fork to this local copy of the repository. Run:
+   * Add your fork to this local copy of the repository. Run:
 
-    ```bash
-    git add remote <name-of-my-fork> <git@github.com:my-username/ROCm.git>
-    ```
+      ```bash
+      git add remote <name-of-my-fork> <git@github.com:my-username/ROCm.git>
+      ```
 
-    To get the URL of your fork, go to your GitHub profile, select the fork and click the green 'Code'
-    button (the same process you followed to get the main GitHub repository URL).
+      To get the URL of your fork, go to your GitHub profile, select the fork and click the green 'Code'
+      button (the same process you followed to get the main GitHub repository URL).
 
-6. Check out the **develop** branch and run 'git pull' (and/or 'git pull origin develop' to ensure your
+4. Check out the **develop** branch and run 'git pull' (and/or 'git pull origin develop' to ensure your
   local version has the most recent content.
 
-7. Create a new branch.
+5. Create a new branch.
 
     ```bash
     git checkout -b my-new-branch
     ```
 
-8. Make your changes locally using your preferred code editor. If you're editing documentation, follow
+6. Make your changes locally using your preferred code editor. If you're editing documentation, follow
   the guidelines listed on the
   [documentation structure](./doc-structure.md) page.
 
-9. (optional) We recommend running a local test build to ensure the content looks the way you expect.
+7. (optional) We recommend running a local test build to ensure the content looks the way you expect.
 
     In your terminal, run:
 
@@ -80,14 +80,14 @@ LICENSE.txt file in the corresponding repository. Different repositories may use
     more about our build tools, see
     [Documentation toolchain](toolchain.md).
 
-10. Commit your changes and push them to your fork. Run:
+8. Commit your changes and push them to GitHub. Run:
 
     ```bash
-    git add <path-to-my-modified-file> # to add all modified files, use: git add .
+    git add <path-to-my-modified-file> # to add all modified files, you can use: git add .
 
     git commit -m "my-updates"
 
-    git push name-of-my-fork
+    git push <name-of-my-fork>
     ```
 
     After pushing, you will get a GitHub link in the terminal output. Copy this link and paste it into a
