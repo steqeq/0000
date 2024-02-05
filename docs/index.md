@@ -24,10 +24,7 @@ Our documentation is organized into the following categories:
 
 :::{grid-item-card}
 :padding: 2
-**Installation**
-
-Installation guides
-^^^
+:img-top: ./data/banner-installation.png
 
 * Linux
   * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
