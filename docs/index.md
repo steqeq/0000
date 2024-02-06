@@ -77,6 +77,8 @@ Our documentation is organized into the following categories:
   * Development
   * Performance analysis
   * System
+* [GPU architectures](./reference/gpu-arch.rst)
+  * [GPU architecture hardware specification overview](./reference/gpu-arch/gpu-arch-spec-overview.rst)
 :::
 
 :::{grid-item-card}
@@ -102,7 +104,6 @@ Our documentation is organized into the following categories:
 :padding: 2
 
 * [GPU architecture](./conceptual/gpu-arch.md)
-  * [GPU Architecture information table](./conceptual/gpu-arch/gpu-arch-info.rst)
   * [MI100](./conceptual/gpu-arch/mi100.md)
   * [MI250](./conceptual/gpu-arch/mi250.md)
   * [MI300](./conceptual/gpu-arch/mi300.md)

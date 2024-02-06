@@ -2,6 +2,8 @@ AAC
 ABI
 ACE
 ACEs
+AccVGPR
+AccVGPRs
 ALU
 AMD
 AMDGPU
@@ -103,6 +105,7 @@ GDS
 GEMM
 GEMMs
 GFortran
+GiB
 GIM
 GL
 GLXT
@@ -154,6 +157,7 @@ Ioffe
 JSON
 Jupyter
 KFD
+KiB
 KVM
 Keras
 Khronos
@@ -170,6 +174,7 @@ LoRA
 MEM
 MERCHANTABILITY
 MFMA
+MiB
 MIGraphX
 MIOpen
 MIOpenGEMM

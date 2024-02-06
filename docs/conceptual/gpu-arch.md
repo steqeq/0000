@@ -5,6 +5,8 @@
   MI100, AMD Instinct">
 </head>
 
+(gpu-arch-documentation)=
+
 # GPU architecture documentation
 
 :::::{grid} 1 1 2 2
