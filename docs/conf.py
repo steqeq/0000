@@ -87,7 +87,7 @@ article_pages = [
     {"file":"rocm-a-z", "os":["linux", "windows"]},
 ]
 
-exclude_patterns = ['temp', 'release/versions.md']
+exclude_patterns = ['temp']
 
 external_toc_path = "./sphinx/_toc.yml"
 

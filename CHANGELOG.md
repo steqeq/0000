@@ -75,7 +75,7 @@ MI300 series. Future releases will further enable and optimize this new platfo
 * Consolidated developer resources and training on the new AMD ROCm Developer Hub.
 
 The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
-the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
+the [Changelog](https://rocm.docs.amd.com/en/docs-6.0.0/about/CHANGELOG.html).
 
 ### OS and GPU support changes
 
@@ -344,7 +344,7 @@ Note: These complex operations are equivalent to corresponding types/functions o
       * `HIP_ROCclr`
     * NVIDIA platform
       * `HIP_PLATFORM_NVCC`
-* File directories in the clr repository are removed, for more details see https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/hcc_detail and https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/nvcc_detail
+* The [hcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hip/hcc_detail) and [nvcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hips/nvcc_detail) directories in the clr repository are removed.
 * Deprecated gcnArch is removed from hip device struct `hipDeviceProp_t`.
 * Deprecated `enum hipMemoryType memoryType;` is removed from HIP struct `hipPointerAttribute_t` union.
 
@@ -2649,8 +2649,8 @@ The following hipcc changes are implemented in this release:
   `hipcc` package for installing `hipcc` binaries in future ROCm releases.
 
 * In a future ROCm release, the following samples will be removed from the `hip-tests` project.
-  * `hipBusbandWidth` from <https://github.com/ROCm/hip-tests/tree/develop/samples/1_Utils/>
-  * `hipCommander` from <https://github.com/ROCm/hip-tests/tree/develop/samples/1_Utils/>
+  * `hipBusbandWidth` at <https://github.com/ROCm/hip-tests/tree/752f3295baddeb122aa8dc18d254cb9df6fd619d/samples/1_Utils/hipBusBandwidth>
+  * `hipCommander` at <https://github.com/ROCm/hip-tests/tree/752f3295baddeb122aa8dc18d254cb9df6fd619d/samples/1_Utils/hipCommander>
 
   Note that the samples will continue to be available in previous release branches.
 * Removal of gcnarch from hipDeviceProp_t structure
@@ -3845,7 +3845,7 @@ For more information, refer to the HIP API Guide.
 
 With ROCm v5.4, a separate GitHub project is created at
 
-<https://github.com/ROCm-Developer-Tools/hip-tests>
+<https://github.com/ROCm/hip-tests>
 
 This contains HIP catch2 tests and samples, and new tests will continue to develop.
 
@@ -5141,7 +5141,7 @@ and can grow until the available free memory on the device is consumed.
 The test codes at the following link show how to implement applications using malloc and free
 functions in device kernels:
 
-<https://github.com/ROCm/hip-tests/blob/develop/catch/multiproc/deviceAllocationMproc.cc>
+<https://github.com/ROCm/HIP/blob/d6224a55390bf2d8fd0180c21bae44f0d718d1eb/tests/src/deviceLib/hipDeviceMalloc.cpp>
 
 ##### New HIP APIs in this release
 
@@ -6730,7 +6730,7 @@ Refer to the HIP API documentation for more details on managed memory APIs.
 
 For the application, see
 
-<https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp>
+<https://github.com/ROCm/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp>
 
 #### New environment variable
 
