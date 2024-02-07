@@ -28,7 +28,7 @@ and follow along on via public announcements.
 
 ## GitHub issue
 
-Issues on existing or absent docs can be filed in
+Issues on existing or absent documentation can be filed in
 [GitHub Issues](https://github.com/ROCm/ROCm/issues).
 
 ## Email
