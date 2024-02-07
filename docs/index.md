@@ -15,7 +15,7 @@ resources to learn more about our products and what we support:
 
 You can install ROCm on our Radeon™, Radeon Pro™, and Instinct™ GPUs. If you're using Radeon
 GPUs, we recommend reading the
-{doc}`Radeon-specific ROCm documentation<radeon:index>`
+{doc}`Radeon-specific ROCm documentation<radeon:index>`.
 
 Our documentation is organized into the following categories:
 
@@ -24,10 +24,7 @@ Our documentation is organized into the following categories:
 
 :::{grid-item-card}
 :padding: 2
-**Installation**
-
-Installation guides
-^^^
+:img-top: ./data/banner-installation.png
 
 * Linux
   * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
@@ -41,15 +38,11 @@ Installation guides
 * {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
 * {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
 * {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
-
 :::
 
 :::{grid-item-card}
 :padding: 2
-**Compatibility & support**
-
-ROCm compatibility information
-^^^
+:img-top: ./data/banner-compatibility.png
 
 * {doc}`System requirements (Linux)<rocm-install-on-linux:reference/system-requirements>`
 * {doc}`System requirements (Windows)<rocm-install-on-windows:reference/system-requirements>`
@@ -58,15 +51,30 @@ ROCm compatibility information
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
 {doc}`ROCm on Radeon GPUs<radeon:index>`
-
 :::
 
 :::{grid-item-card}
 :padding: 2
-**How-to**
+:img-top: ./data/banner-reference.png
 
-Task-oriented walkthroughs
-^^^
+* [API Libraries & tools](./reference/library-index.md)
+  * Libraries:
+    * Artificial intelligence
+    * C++ primitives
+    * Communication
+    * Fast Fourier transforms
+    * HIP
+    * Linear algebra
+    * Random number generators
+  * Tools for:
+    * Development
+    * Performance analysis
+    * System
+:::
+
+:::{grid-item-card}
+:padding: 2
+:img-top: ./data/banner-howto.png
 
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
@@ -76,26 +84,11 @@ Task-oriented walkthroughs
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
 * [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
-
 :::
 
 :::{grid-item-card}
 :padding: 2
-**Reference**
-
-Collated information
-^^^
-
-* [API Libraries](./reference/library-index.md)
-
-:::
-
-:::{grid-item-card}
-:padding: 2
-**Conceptual**
-
-Topic overviews & background information
-^^^
+:img-top: ./data/banner-conceptual.png
 
 * [GPU architecture](./conceptual/gpu-arch.md)
   * [MI100](./conceptual/gpu-arch/mi100.md)
@@ -111,13 +104,12 @@ Topic overviews & background information
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
 * [OpenMP support in ROCm](./about/compatibility/openmp.md)
-
 :::
 
 ::::
 
 We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
-on our [Contribute to ROCm docs](./contribute/index.md) page. Known issues are listed on
+on our [Contribute to ROCm docs](./contribute/contributing.md) page. Known issues are listed on
 [GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
 
 Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.
