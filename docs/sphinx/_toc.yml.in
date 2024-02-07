@@ -32,8 +32,10 @@ subtrees:
 
 - caption: Reference
   entries:
-    - file: reference/library-index.md
-      title: API libraries & tools
+    - file: reference/api-libraries.md
+      title: API libraries
+    - file: reference/rocm-tools.md
+      title: Tools
 
 - caption: How-to
   entries:
