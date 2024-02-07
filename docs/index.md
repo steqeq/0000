@@ -57,7 +57,19 @@ Our documentation is organized into the following categories:
 :padding: 2
 :img-top: ./data/banner-reference.png
 
-* [API Libraries](./reference/library-index.md)
+* [API Libraries & tools](./reference/library-index.md)
+  * Libraries:
+    * Artificial intelligence
+    * C++ primitives
+    * Communication
+    * Fast Fourier transforms
+    * HIP
+    * Linear algebra
+    * Random number generators
+  * Tools for:
+    * Development
+    * Performance analysis
+    * System
 :::
 
 :::{grid-item-card}
