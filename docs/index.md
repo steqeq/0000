@@ -13,7 +13,7 @@ resources to learn more about our products and what we support:
 * [What is ROCm?](./what-is-rocm.md)
 * [Release notes](./about/release-notes.md)
 
-You can install ROCm on our Radeon™, Radeon PRO™, and Instinct™ GPUs. If you're using Radeon
+You can install ROCm on our Radeon™, Radeon™ PRO, and Instinct™ GPUs. If you're using Radeon
 GPUs, we recommend reading the
 {doc}`Radeon-specific ROCm documentation<radeon:index>`.
 
