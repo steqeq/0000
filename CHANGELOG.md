@@ -5424,7 +5424,7 @@ illustrate example usages of the C++ API. GEMM matrix multiplication is used as 
 given the heavy precedent for the library. However, the usage portfolio is growing significantly and
 demonstrates different ways rocWMMA may be consumed.
 
-For more information, refer to [Communication Libraries](../reference/library-index.md)
+For more information, refer to [Communication libraries](../reference/api-libraries.md).
 
 #### OpenMP enhancements in this release
 

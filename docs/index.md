@@ -57,19 +57,18 @@ Our documentation is organized into the following categories:
 :padding: 2
 :img-top: ./data/banner-reference.png
 
-* [API Libraries & tools](./reference/library-index.md)
-  * Libraries:
-    * Artificial intelligence
-    * C++ primitives
-    * Communication
-    * Fast Fourier transforms
-    * HIP
-    * Linear algebra
-    * Random number generators
-  * Tools for:
-    * Development
-    * Performance analysis
-    * System
+* [API libraries](./reference/api-libraries.md)
+  * Artificial intelligence
+  * C++ primitives
+  * Communication
+  * Fast Fourier transforms
+  * HIP
+  * Linear algebra
+  * Random number generators
+* [Tools](./reference/rocm-tools.md)
+  * Development
+  * Performance analysis
+  * System
 :::
 
 :::{grid-item-card}
@@ -107,9 +106,3 @@ Our documentation is organized into the following categories:
 :::
 
 ::::
-
-We welcome collaboration! If you'd like to contribute to our documentation, you can find instructions
-on our [Contribute to ROCm docs](./contribute/contributing.md) page. Known issues are listed on
-[GitHub](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue).
-
-Licensing information for all ROCm components is listed on our [Licensing](./about/license.md) page.
