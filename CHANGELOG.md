@@ -126,7 +126,7 @@ CMake support has been added for documentation in the
 
 ### AMD Instinct™ MI50 end-of-support notice
 
-AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) enters
+AMD Instinct MI50, Radeon™ PRO VII, and Radeon™ VII products (collectively gfx906 GPUs) enters
 maintenance mode in ROCm 6.0.
 
 As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 was the
@@ -1602,7 +1602,7 @@ API, splitting rocRAND and hipRAND into separate packages, and reorganizing our 
 
 #### AMD Instinct™ MI50 end-of-support notice
 
-AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter
+AMD Instinct MI50, Radeon PRO VII, and Radeon VII products (collectively gfx906 GPUs) will enter
 maintenance mode starting Q3 2023.
 
 As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the
@@ -2125,7 +2125,7 @@ few examples include:
 ### OS and GPU support changes
 
 * SLES15 SP5 support was added this release. SLES15 SP3 support was dropped.
-* AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively referred to as gfx906 GPUs)
+* AMD Instinct MI50, Radeon PRO VII, and Radeon VII products (collectively referred to as gfx906 GPUs)
   will be entering the maintenance mode starting Q3 2023. This will be aligned with ROCm 5.7 GA
   release date.
   * No new features and performance optimizations will be supported for the gfx906 GPUs beyond
@@ -6084,7 +6084,7 @@ new inferior.
 
 #### MIOpen support for RDNA GPUs
 
-This release includes support for AMD Radeon™ Pro W6800, in addition to other bug fixes and
+This release includes support for AMD Radeon PRO W6800, in addition to other bug fixes and
 performance improvements as listed below:
 
 * MIOpen now supports RDNA GPUs!! (via MIOpen PRs 973, 780, 764, 740, 739, 677, 660, 653, 493, 498)
@@ -6230,7 +6230,7 @@ As a workaround, use an older version of the kernel. For example, Ubuntu 5.11.0-
 Workloads that use the cooperative groups function to ensure all waves can be resident at the same
 time may fail to restore correctly. This issue is under investigation and will be fixed in a future release.
 
-#### Radeon Pro V620 and W6800 workstation GPUs
+#### Radeon PRO V620 and W6800 workstation GPUs
 
 ##### No support for ROCDebugger on SRIOV
 
@@ -7013,7 +7013,7 @@ follows:
 
 5. Users can find the values of the collected counters in the output file generated in step 2.
 
-#### Radeon Pro V620 and W6800 workstation GPUs
+#### Radeon PRO V620 and W6800 workstation GPUs
 
 ##### No support for SMI and ROCDebugger on SRIOV
 
