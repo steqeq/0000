@@ -1,14 +1,4 @@
-# Contributing to ROCm documentation
-
-AMD values and encourages contributions to our code and documentation. If you choose to
-contribute, we encourage you to be polite and respectful. Improving documentation is a long-term
-process, to which we are dedicated.
-
-If you have issues when trying to contribute, refer to the
-[discussions](https://github.com/RadeonOpenCompute/ROCm/discussions) page in our GitHub
-repository.
-
-## Folder structure and naming convention
+# Documentation structure
 
 Our documentation follows the Pitchfork folder structure. Most documentation files are stored in the
 `/docs` folder. Some special files (such as release, contributing, and changelog) are stored in the root
