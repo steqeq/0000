@@ -29,11 +29,11 @@ wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | \
 ```shell
 # Kernel driver repository for focal
 sudo tee /etc/apt/sources.list.d/amdgpu.list <<'EOF'
-deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/latest/ubuntu focal main
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.5.1/ubuntu focal main
 EOF
 # ROCm repository for focal
 sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
-deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian focal main
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/5.5.1 focal main
 EOF
 ```
 
@@ -44,11 +44,11 @@ EOF
 ```shell
 # Kernel driver repository for jammy
 sudo tee /etc/apt/sources.list.d/amdgpu.list <<'EOF'
-deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/latest/ubuntu jammy main
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.5.1/ubuntu jammy main
 EOF
 # ROCm repository for jammy
 sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
-deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/5.5.1 jammy main
 EOF
 # Prefer packages from the rocm repository over system packages
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -81,7 +81,7 @@ sudo apt update
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.6/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.6/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -90,7 +90,7 @@ EOF
 sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
 [rocm]
 name=rocm
-baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
+baseurl=https://repo.radeon.com/rocm/rhel8/5.5.1/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -108,7 +108,7 @@ EOF
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.7/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.7/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -117,7 +117,7 @@ EOF
 sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
 [rocm]
 name=rocm
-baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
+baseurl=https://repo.radeon.com/rocm/rhel8/5.5.1/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -135,7 +135,7 @@ EOF
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.8/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.8/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -144,7 +144,7 @@ EOF
 sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
 [rocm]
 name=rocm
-baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
+baseurl=https://repo.radeon.com/rocm/rhel8/5.5.1/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -162,7 +162,7 @@ EOF
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/rhel/9.1/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/9.1/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -171,7 +171,7 @@ EOF
 sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
 [rocm]
 name=rocm
-baseurl=https://repo.radeon.com/rocm/rhel9/latest/main
+baseurl=https://repo.radeon.com/rocm/rhel9/5.5.1/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -189,7 +189,7 @@ EOF
 sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/rhel/9.2/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/9.2/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -198,7 +198,7 @@ EOF
 sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
 [rocm]
 name=rocm
-baseurl=https://repo.radeon.com/rocm/rhel9/latest/main
+baseurl=https://repo.radeon.com/rocm/rhel9/5.5.1/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -225,16 +225,16 @@ sudo yum clean all
 ::::
 
 ::::{tab-set}
-:::{tab-item} SLES 15.4
-:sync: SLES-15.4
+:::{tab-item} SLES 15.3
+:sync: SLES-15.3
 
 ```shell
 
-# Add the amdgpu module repository for SLES 15.4
+# Add the amdgpu module repository for SLES 15.3
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/sle/15.3/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -252,16 +252,16 @@ EOF
 ```
 
 :::
-:::{tab-item} SLES 15.5
-:sync: SLES-15.5
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 
-# Add the amdgpu module repository for SLES 15.5
+# Add the amdgpu module repository for SLES 15.4
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/latest/sle/15.5/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
