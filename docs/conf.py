@@ -47,9 +47,14 @@ all_article_info_author = ""
 # pages with specific settings
 article_pages = [
     {
-        "file":"release",
+        "file":"about/release-notes",
         "os":["linux", "windows"],
-        "date":"2024-01-09"
+        "date":"2024-01-31"
+    },
+    {
+        "file":"about/CHANGELOG",
+        "os":["linux", "windows"],
+        "date":"2024-01-31"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
@@ -80,8 +85,6 @@ article_pages = [
     {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
 
     {"file":"rocm-a-z", "os":["linux", "windows"]},
-
-    {"file":"about/release-notes", "os":["linux"]},
 ]
 
 exclude_patterns = ['temp']
