@@ -21,7 +21,7 @@ For more in-depth information on creating a pull request (PR), see
 ## GitHub discussions
 
 To ask questions or view answers to frequently asked questions, refer to
-[GitHub Discussions](https://github.com/RadeonOpenCompute/ROCm/discussions).
+[GitHub Discussions](https://github.com/ROCm/ROCm/discussions).
 On GitHub Discussions, in addition to asking and answering questions,
 members can share updates, have open-ended conversations,
 and follow along on via public announcements.

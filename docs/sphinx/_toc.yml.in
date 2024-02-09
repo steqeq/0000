@@ -13,7 +13,7 @@ subtrees:
     - entries:
       - file: about/CHANGELOG.md
         title: Changelog
-  - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
+  - url: https://github.com/ROCm/ROCm/labels/Verified%20Issue
     title: Known issues
 
 - caption: Install

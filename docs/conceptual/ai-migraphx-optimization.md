@@ -55,15 +55,15 @@ The header files and libraries are installed under `/opt/rocm-\<version\>`, wher
 
 There are two ways to build the MIGraphX sources.
 
-* [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses `[rbuild](https://github.com/RadeonOpenCompute/rbuild)` to install the prerequisites and build the libraries with just one command.
+* [Use the ROCm build tool](https://github.com/ROCm/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses `[rbuild](https://github.com/ROCm/rbuild)` to install the prerequisites and build the libraries with just one command.
 
   or
 
-* [Use CMake](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
+* [Use CMake](https://github.com/ROCm/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
 
 For detailed steps on building from source and installing dependencies, refer to the following `README` file:
 
-[https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source)
+[https://github.com/ROCm/AMDMIGraphX#building-from-source](https://github.com/ROCm/AMDMIGraphX#building-from-source)
 
 ### Option 3: use docker
 
@@ -72,7 +72,7 @@ To use Docker, follow these steps:
 1. The easiest way to set up the development environment is to use Docker. To build Docker from scratch, first clone the MIGraphX repository by running:
 
     ```bash
-    git clone --recursive https://github.com/ROCmSoftwarePlatform/AMDMIGraphX
+    git clone --recursive https://github.com/ROCm/AMDMIGraphX
     ```
 
 2. The repository contains a Dockerfile from which you can build a Docker image as:

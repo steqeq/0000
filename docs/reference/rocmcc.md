@@ -27,7 +27,7 @@ The differences are listed in [the table below](rocm-llvm-vs-alt).
 For more details, see:
 
 * AMD GPU usage: [llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)
-* Releases and source: <https://github.com/RadeonOpenCompute/llvm-project>
+* Releases and source: <https://github.com/ROCm/llvm-project>
 
 ### ROCm compiler interfaces
 
@@ -56,7 +56,7 @@ The major differences between `hipcc` and `amdclang++` are listed below:
 | Finding a HIP installation         | Finds the HIP installation based on its own location and its knowledge about the ROCm directory structure                | First looks for HIP under the same parent directory as its own LLVM directory and then falls back on `/opt/rocm`. Users can use the `--rocm-path` option to instruct the compiler to use HIP from the specified ROCm installation. |
 | Linking to the HIP runtime library | Is configured to automatically link to the HIP runtime from the detected HIP installation                                | Requires the `--hip-link` flag to be specified to link to the HIP runtime. Alternatively, users can use the `-l<dir> -lamdhip64` option to link to a HIP runtime library. |
 | Device function inlining           | Inlines all GPU device functions, which provide greater performance and compatibility for codes that contain file scoped or device function scoped `__shared__` variables. However, it may increase compile time. | Relies on inlining heuristics to control inlining. Users experiencing performance or compilation issues with code using file scoped or device function scoped `__shared__` variables could try `-mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false` to work around the issue. There are plans to address these issues with future compiler improvements. |
-| Source code location               | <https://github.com/ROCm-Developer-Tools/HIPCC>                                                                          | <https://github.com/RadeonOpenCompute/llvm-project> |
+| Source code location               | <https://github.com/ROCm/HIPCC>                                                                          | <https://github.com/ROCm/llvm-project> |
 ::::
 
 ## Compiler options and features
@@ -461,7 +461,7 @@ supports ASM statements, their use is not recommended for the following reasons:
 :::{note}
 For developers who choose to include ASM statements in the code, AMD is
 interested in understanding the use case and appreciates feedback at
-[https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)
+[https://github.com/ROCm/ROCm/issues](https://github.com/ROCm/ROCm/issues)
 :::
 
 ### Miscellaneous OpenMP compiler features

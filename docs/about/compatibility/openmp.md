@@ -78,7 +78,7 @@ Obtain the value of `gpu-arch` by running the following command:
 [//]: # (dated link below, needs updating)
 
 See the complete list of compiler command-line references
-[here](https://github.com/RadeonOpenCompute/llvm-project/blob/amd-stg-open/clang/docs/CommandGuide/clang.rst).
+[here](https://github.com/ROCm/llvm-project/blob/amd-stg-open/clang/docs/CommandGuide/clang.rst).
 
 ### Using `rocprof` with OpenMP
 
@@ -413,7 +413,7 @@ void  main() {
 ```
 
 See the complete sample code for heap buffer overflow
-[here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/heap_buffer_overflow/openmp/vecadd-HBO.cpp).
+[here](https://github.com/ROCm/aomp/blob/aomp-dev/examples/tools/asan/heap_buffer_overflow/openmp/vecadd-HBO.cpp).
 
 * Global buffer overflow
 
@@ -438,7 +438,7 @@ for(int i=0; i<N; i++){
 ```
 
 See the complete sample code for global buffer overflow
-[here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
+[here](https://github.com/ROCm/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
 
 ### Clang compiler option for kernel optimization
 

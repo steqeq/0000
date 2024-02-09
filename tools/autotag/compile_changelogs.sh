@@ -10,7 +10,7 @@ sed -i 's/^#{3} /##### /g' .changelogs.txt
 sed -i 's/^# /#### /g' .changelogs.txt
 
 [ -d ROCm ] && rm -rf ROCm
-git clone git@github.com:RadeonOpenCompute/ROCm.git
+git clone git@github.com:ROCm/ROCm.git
 
 awk -f- ROCm/README.md .changelogs.txt >.tmp.txt <<-'EOF'
 BEGIN {
