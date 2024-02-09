@@ -13,7 +13,7 @@ the sequential flow for the use of each framework. Refer to the ROCm Compatible
 Frameworks Release Notes for each framework's most current release notes at
 {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`.
 
-![ROCm Compatible Frameworks Flowchart](../data/install/magma-install/magma005.png "ROCm Compatible Frameworks")
+![ROCm Compatible Frameworks Flowchart](../data/how-to/magma005.png "ROCm Compatible Frameworks")
 
 ## Frameworks installation
 
