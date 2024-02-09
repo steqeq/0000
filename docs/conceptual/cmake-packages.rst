@@ -203,6 +203,10 @@ This project can then be configured with the following CMake commands:
 *  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
 *  Linux: ``cmake -D CMAKE_CXX_COMPILER:PATH=/opt/rocm/bin/amdclang++``
 
+Which use the device compiler provided from the binary packages of
+`ROCm HIP SDK <https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html>`_ and
+`repo.radeon.com <https://repo.radeon.com>`_ respectively.
+
 When using the ``CXX`` language support to compile HIP device code, selecting the
 target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
 ``CMAKE_HIP_ARCHITECTURES`` only exists when the HIP language is enabled. By
