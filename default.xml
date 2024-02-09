@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remote name="rocm-org" fetch="https://github.com/ROCm/" />
-    <remote name="roc-github" fetch="https://github.com/RadeonOpenCompute/" />
+    <remote name="roc-github" fetch="https://github.com/ROCm/" />
     <remote name="rocm-devtools" fetch="https://github.com/ROCm-Developer-Tools/" />
     <remote name="rocm-swplat" fetch="https://github.com/ROCmSoftwarePlatform/" />
     <remote name="gpuopen-libs" fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
