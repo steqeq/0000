@@ -21,7 +21,6 @@ for template in templates:
     with open(os.path.splitext(template)[0], 'w') as file:
         file.write(rendered)
 
-shutil.copy2('../CONTRIBUTING.md','./contribute/index.md')
 shutil.copy2('../RELEASE.md','./about/release-notes.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./about/CHANGELOG.md')
@@ -48,9 +47,14 @@ all_article_info_author = ""
 # pages with specific settings
 article_pages = [
     {
-        "file":"release",
+        "file":"about/release-notes",
         "os":["linux", "windows"],
-        "date":"2024-01-09"
+        "date":"2024-01-31"
+    },
+    {
+        "file":"about/CHANGELOG",
+        "os":["linux", "windows"],
+        "date":"2024-01-31"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
@@ -81,8 +85,6 @@ article_pages = [
     {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
 
     {"file":"rocm-a-z", "os":["linux", "windows"]},
-
-    {"file":"about/release-notes", "os":["linux"]},
 ]
 
 exclude_patterns = ['temp']

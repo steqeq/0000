@@ -32,8 +32,10 @@ subtrees:
 
 - caption: Reference
   entries:
-    - file: reference/library-index.md
-      title: API libraries & tools
+    - file: reference/api-libraries.md
+      title: API libraries
+    - file: reference/rocm-tools.md
+      title: Tools
 
 - caption: How-to
   entries:
@@ -103,20 +105,18 @@ subtrees:
 
 - caption: Contribute
   entries:
-  - file: contribute/index.md
-    title: Contribute to ROCm
+  - file: contribute/contributing.md
+    title: Contribute to ROCm docs
     subtrees:
     - entries:
-      - file: contribute/contribute-docs.md
-        title: Contribute to ROCm docs
-        subtrees:
-        - entries:
-          - file: contribute/toolchain.md
-            title: Documentation tools
-          - file: contribute/building.md
-            title: Building documentation
-          - file: contribute/feedback.md
-            title: Provide feedback
+      - file: contribute/doc-structure.md
+        title: Documentation structure
+      - file: contribute/toolchain.md
+        title: Documentation toolchain
+      - file: contribute/building.md
+        title: Build our documentation
+  - file: contribute/feedback.md
+    title: Provide feedback
   - file: about/license.md
     title: ROCm license
 

@@ -34,7 +34,7 @@ def mivisionx_processor(data: ReleaseLib, template: str, _) -> bool:
 </p>
 
 ## Online Documentation
-[MIVisionX Documentation](https://gpuopen-professionalcompute-libraries.github.io/MIVisionX)
+[MIVisionX Documentation](https://rocm.docs.amd.com/projects/MIVisionX/en/latest/doxygen/html/index.html)
 ## MIVisionX {match['lib_version']}
 {match["body"]}
 {dependency_map}

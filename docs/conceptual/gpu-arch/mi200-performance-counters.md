@@ -288,9 +288,9 @@ The vector L1 cache subsystem counters are further classified into Texture Addre
 | `TCP_GATE_EN2[n]`                        | Cycles | Number of cycles vL1D core clocks are turned on. Value range for n: [0-15].  |
 | `TCP_TD_TCP_STALL_CYCLES[n]`             | Cycles | Number of cycles TD stalls vL1D. Value range for n: [0-15].                           |
 | `TCP_TCR_TCP_STALL_CYCLES[n]`            | Cycles | Number of cycles TCR stalls vL1D. Value range for n: [0-15].                           |
-| `TCP_READ_TAGCONFLICT_STALL_CYCLES[n]`   | Cycles | Number of cycles tagram conflict stalls on a read. Value range for n: [0-15].          |
-| `TCP_WRITE_TAGCONFLICT_STALL_CYCLES[n]`  | Cycles | Number of cycles tagram conflict stalls on a write. Value range for n: [0-15].         |
-| `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES[n]` | Cycles | Number of cycles tagram conflict stalls on an atomic. Value range for n: [0-15].       |
+| `TCP_READ_TAGCONFLICT_STALL_CYCLES[n]`   | Cycles | Number of cycles tag RAM conflict stalls on a read. Value range for n: [0-15].          |
+| `TCP_WRITE_TAGCONFLICT_STALL_CYCLES[n]`  | Cycles | Number of cycles tag RAM conflict stalls on a write. Value range for n: [0-15].         |
+| `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES[n]` | Cycles | Number of cycles tag RAM conflict stalls on an atomic. Value range for n: [0-15].       |
 | `TCP_PENDING_STALL_CYCLES[n]`            | Cycles | Number of cycles vL1D cache is stalled due to data pending from L2 Cache. Value range for n: [0-15]. |
 | `TCP_TCP_TA_DATA_STALL_CYCLES` | Cycles | Number of cycles TCP stalls TA data interface. |
 | `TCP_TA_TCP_STATE_READ[n]`               | Req    | Number of state reads. Value range for n: [0-15].    |
@@ -454,7 +454,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 | `TCC_NORMAL_WRITEBACK_sum` | Total number of writebacks due to requests that are not writeback requests, over all TCC instances. |
 | `TCC_NORMAL_EVICT_sum` | Total number of evictions due to requests that are not invalidate or probe requests, over all TCC instances. |
 | `TCC_PROBE_sum` | Total number of probe requests over all TCC instances. |
-| `TCC_PROBE_ALL_sum` | Total number of external probe requests with EA_TCC_preq_all== 1, over all TCC instances. |
+| `TCC_PROBE_ALL_sum` | Total number of external probe requests with `EA_TCC_preq_all== 1`, over all TCC instances. |
 | `TCC_READ_sum` | Total number of L2 cache read requests (including compressed reads but not metadata reads) over all TCC instances. |
 | `TCC_REQ_sum` | Total number of all types of L2 cache requests over all TCC instances. |
 | `TCC_RW_REQ_sum` | Total number of RW requests over all TCC instances. |
@@ -465,11 +465,11 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 | `TCC_WRITE_sum` | Total number of L2 cache write requests over all TCC instances. |
 | `TCC_WRITEBACK_sum` | Total number of lines written back to the main memory including writebacks of dirty lines and uncached write/atomic requests, over all TCC instances. |
 | `TCC_WRREQ_STALL_max` | Maximum number of cycles a write request is stalled, over all TCC instances. |
-| `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on an atomic, over all TCP instances. |
+| `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tag RAM conflict stalls on an atomic, over all TCP instances. |
 | `TCP_GATE_EN1_sum` | Total number of cycles vL1D interface clocks are turned on, over all TCP instances. |
 | `TCP_GATE_EN2_sum` | Total number of cycles vL1D core clocks are turned on, over all TCP instances. |
 | `TCP_PENDING_STALL_CYCLES_sum` | Total number of cycles vL1D cache is stalled due to data pending from L2 Cache, over all TCP instances. |
-| `TCP_READ_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on a read, over all TCP instances. |
+| `TCP_READ_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tag RAM conflict stalls on a read, over all TCP instances. |
 | `TCP_TA_TCP_STATE_READ_sum` | Total number of state reads by all TCP instances. |
 | `TCP_TCC_ATOMIC_WITH_RET_REQ_sum` | Total number of atomic requests to L2 cache with return, over all TCP instances. |
 | `TCP_TCC_ATOMIC_WITHOUT_RET_REQ_sum` | Total number of atomic requests to L2 cache without return, over all TCP instances. |
@@ -504,7 +504,7 @@ L2 Cache is also known as Texture Cache per Channel (TCC).
 | `TCP_UTCL1_TRANSLATION_MISS_sum` | Total number of UTCL1 translation misses by all TCP instances. |
 | `TCP_UTCL1_TRANSLATION_HIT_sum` | Total number of UTCL1 translation hits by all TCP instances. |
 | `TCP_VOLATILE_sum` | Total number of L1 volatile pixels/buffers from TA, over all TCP instances. |
-| `TCP_WRITE_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on a write, over all TCP instances. |
+| `TCP_WRITE_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tag RAM conflict stalls on a write, over all TCP instances. |
 | `TD_ATOMIC_WAVEFRONT_sum` | Total number of atomic wavefront instructions, over all TD instances. |
 | `TD_COALESCABLE_WAVEFRONT_sum` | Total number of coalescable wavefronts according to TA, over all TD instances. |
 | `TD_LOAD_WAVEFRONT_sum` | Total number of wavefront instructions (read/write/atomic), over all TD instances. |
