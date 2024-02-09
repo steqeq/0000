@@ -198,15 +198,10 @@ all the flags necessary for device compilation.
 
   Compiling for the GPU device requires at least C++11.
 
-This project can then be configured with the following CMake commands.
+This project can then be configured with the following CMake commands:
 
--  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
-
--  Linux: ``cmake -D CMAKE_CXX_COMPILER:PATH=/opt/rocm/bin/amdclang++``
-
-Which use the device compiler provided from the binary packages of
-`ROCm HIP SDK <https://www.amd.com/en/developer/rocm-hub.html>`_ and
-`repo.radeon.com <https://repo.radeon.com>`_ respectively.
+*  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
+*  Linux: ``cmake -D CMAKE_CXX_COMPILER:PATH=/opt/rocm/bin/amdclang++``
 
 When using the ``CXX`` language support to compile HIP device code, selecting the
 target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
