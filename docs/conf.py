@@ -21,7 +21,6 @@ for template in templates:
     with open(os.path.splitext(template)[0], 'w') as file:
         file.write(rendered)
 
-shutil.copy2('../CONTRIBUTING.md','./contribute/index.md')
 shutil.copy2('../RELEASE.md','./about/release-notes.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./about/CHANGELOG.md')
