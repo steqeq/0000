@@ -1,5 +1,7 @@
 AAC
 ABI
+ACE
+ACEs
 ALU
 AMD
 AMDGPU
@@ -10,6 +12,7 @@ AOCC
 AOMP
 APIC
 APIs
+APU
 ASIC
 ASICs
 ASan
@@ -352,6 +355,8 @@ WikiText
 Wojna
 Workgroups
 Writebacks
+XCD
+XCDs
 XGBoost
 XGBoost's
 XGMI
@@ -498,6 +503,7 @@ invariants
 invocating
 ipo
 kdb
+latencies
 libfabric
 libjpeg
 libs
