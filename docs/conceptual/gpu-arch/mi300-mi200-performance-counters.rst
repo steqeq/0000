@@ -538,25 +538,18 @@ Note the following:
 
 * ``TCC_REQ[n]`` may be more than the number of requests arriving at the texture cache per channel,
   but it's a good indication of the total amount of work that needs to be performed.
-
 * For ``TCC_EA0_WRREQ[n]``, atomics may travel over the same interface and are generally classified as
   write requests.
-
 * CC mtypes can produce uncached requests, and those are included in
   ``TCC_EA0_WR_UNCACHED_32B[n]``
-
 * ``TCC_EA0_WRREQ_LEVEL[n]`` is primarily intended to measure average efficiency arbiter write latency.
   * Average write latency = ``TCC_PERF_SEL_EA0_WRREQ_LEVEL`` divided by ``TCC_PERF_SEL_EA0_WRREQ``
-
 * ``TCC_EA0_ATOMIC_LEVEL[n]`` is primarily intended to measure average efficiency arbiter atomic
   latency
   * Average atomic latency = ``TCC_PERF_SEL_EA0_WRREQ_ATOMIC_LEVEL`` divided by ``TCC_PERF_SEL_EA0_WRREQ_ATOMIC``
-
 * ``TCC_EA0_RDREQ_LEVEL[n]`` is primarily intended to measure average efficiency arbiter read latency.
   * Average read latency = ``TCC_PERF_SEL_EA0_RDREQ_LEVEL`` divided by ``TCC_PERF_SEL_EA0_RDREQ``
-
 * Stalls can occur regardless of the need for a read to be performed
-
 * Normally, stalls are measured exactly at one point in the pipeline however in the case of
   ``TCC_TAG_STALL[n]``, probes can stall the pipeline at a variety of places. There is no single point that
   can accurately measure the total stalls
