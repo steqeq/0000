@@ -2,7 +2,7 @@
   :description: Supported data types in ROCm
   :keywords: int8, float8, float8 (E4M3), float8 (E5M2), bfloat8, float16, half, bfloat16, tensorfloat32, float, float32, float64, double, AMD, ROCm, AMDGPU
 
-.. _rocm-data-types:
+.. _rocm-supported-data-types:
 
 *************************************************************
 ROCm data type specifications
