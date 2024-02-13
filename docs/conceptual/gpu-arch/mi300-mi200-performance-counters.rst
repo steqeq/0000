@@ -595,7 +595,7 @@ MI300 and MI200 series derived metrics list
 
 You can lower ``ALUStalledByLDS`` by reducing LDS bank conflicts or number of LDS accesses.
 You can lower ``MemUnitStalled`` by reducing the number or size of fetches and writes.
-``MemUnitBusy`` includes the stall time (`MemUnitStalled`).
+``MemUnitBusy`` includes the stall time (``MemUnitStalled``).
 
 Hardware counters by and over all texture addressing unit instances
 ---------------------------------------------------------------------------------------------------------------
