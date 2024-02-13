@@ -212,6 +212,7 @@ NUMA
 NVCC
 NVIDIA
 NVPTX
+NaN
 Nano
 Navi
 Noncoherently
@@ -392,6 +393,7 @@ awk
 backend
 backends
 benchmarking
+bfloat
 bilinear
 bitsandbytes
 blit
@@ -451,6 +453,7 @@ el
 embeddings
 enablement
 endpgm
+encodings
 env
 epilog
 etcetera
@@ -625,6 +628,7 @@ subexpression
 subfolder
 subfolders
 supercomputing
+tensorfloat
 th
 tokenization
 tokenize
