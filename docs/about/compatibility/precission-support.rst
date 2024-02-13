@@ -53,11 +53,11 @@ Floating-point Types
     *
       - float8 (E4M3)
       - ``-``
-      - A 8-bit floating-point number mostly following IEEE-754 conventions and bit layout **S1E4M3** described in [8-bit Numerical Formats for Deep Neural Networks](https://arxiv.org/abs/2206.02915), with expanded range and with no infinity or signed zero. NaN is represented as negative zero.
+      - A 8-bit floating-point number mostly following IEEE-754 conventions and bit layout **S1E4M3** described in `8-bit Numerical Formats for Deep Neural Networks <https://arxiv.org/abs/2206.02915>`_ , with expanded range and with no infinity or signed zero. NaN is represented as negative zero.
     *
       - float8 (E5M2)
       - ``-``
-      - A 8-bit floating-point number mostly following IEEE-754 conventions and bit layout **S1E5M2** described in [8-bit Numerical Formats for Deep Neural Networks](https://arxiv.org/abs/2206.02915), with expanded range and with no infinity or signed zero. NaN is represented as negative zero.
+      - A 8-bit floating-point number mostly following IEEE-754 conventions and bit layout **S1E5M2** described in `8-bit Numerical Formats for Deep Neural Networks <https://arxiv.org/abs/2206.02915>`_ , with expanded range and with no infinity or signed zero. NaN is represented as negative zero.
     *
       - float16
       - ``half``
@@ -69,7 +69,7 @@ Floating-point Types
     *
       - tensorfloat32
       - ``-``
-      - Floating-point number that occupies 32 bits or less of storage, providing improved range compared to half (16-bit) formats, at (potentially) greater throughput than single precision (32-bit) formats.
+      - Floating-point number that occupies 32 bits or less of storage, providing improved range compared to half (16-bit) format, at (potentially) greater throughput than single precision (32-bit) formats.
     *
       - float32
       - ``float``
@@ -82,7 +82,7 @@ Floating-point Types
 .. note::
 
   * The float8 and tensorfloat32 types are internal types used in calculations in the Matrix Cores and can be stored in any type of the same size.
-  * The encodings for FP8 (E5M2) and FP8 (E4M3) natively supported by MI300 differ from the FP8 (E5M2) and FP8 (E4M3) encodings used in H100 ([FP8 FORMAT SFOR DEEP LEARNING](https://arxiv.org/abs/2209.05433)).
+  * The encodings for FP8 (E5M2) and FP8 (E4M3) natively supported by MI300 differ from the FP8 (E5M2) and FP8 (E4M3) encodings used in H100 (`FP8 formats for Deep Learning <https://arxiv.org/abs/2209.05433>`_ ).
   * In some AMD documents and articles float8 (E5M2) is called bfloat8.
 
 The support icon description
@@ -91,47 +91,41 @@ The support icon description
 .. list-table::
     :header-rows: 1
 
-    * - The support icon explanation
+    * 
+      - The support icon explanation
+      - Support icon
+    * 
       - Not supported
-      - Partial support
-      - Support without hardware acceleration
-      - Full support
-
-    * - Support icon
       - ❌
+    * 
+      - Partial support
       - ⚠️
-      - ✔
+    * 
+      - Full support
       - ✅
 
 .. note::
 
-  Native support means, that the operations for that type are implemented in
-  hardware. Types that are not natively supported, are emulated with the
-  available hardware. The performance of non-natively supported types can differ
-  from the full instruction throughput rate. For example, 16-bit integer
-  operations can be performed on the 32-bit integer ALUs at full rate, however
-  64-bit integer operations might need several instructions on the 32-bit
-  integer ALUs.
+  * Full support means, the type is supported natively or with hardware emulation.
+  * Native support means, that the operations for that type are implemented in hardware. Types that are not natively supported, are emulated with the available hardware. The performance of non-natively supported types can differ from the full instruction throughput rate. For example, 16-bit integer operations can be performed on the 32-bit integer ALUs at full rate, however 64-bit integer operations might need several instructions on the 32-bit integer ALUs.
+  * Any type can be emulated by software, but this page does not cover such cases.
 
-Native hardware support
+Hardware type support
 ==========================================
 
-Hardware accelerated compute units support
+Compute units support
 -------------------------------------------------------------------------------
-
-Integer types
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. tab-set::
 
-  .. tab-item:: Integer types
-    :sync: integer-type
+  .. tab-item:: Integral types
+    :sync: integral-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Integer types name
+        - Type name
         - int8
         - int16
         - int32
@@ -155,14 +149,14 @@ Integer types
         - ✅
         - ✅
 
-  .. tab-item:: Floating-points types
+  .. tab-item:: Floating-point types
     :sync: floating-point-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Floating-point types name
+        - Type name
         - float8 (E4M3)
         - float8 (E5M2)
         - float16  
@@ -198,19 +192,19 @@ Integer types
         - ✅
         - ✅
 
-Hardware accelerated matrix core support
+Matrix core support
 -------------------------------------------------------------------------------
 
 .. tab-set::
 
-  .. tab-item:: Integer types
-    :sync: integer-type
+  .. tab-item:: Integral types
+    :sync: integral-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Integer types name
+        - Type name
         - int8
         - int16
         - int32
@@ -234,14 +228,14 @@ Hardware accelerated matrix core support
         - ❌
         - ❌
 
-  .. tab-item:: Floating-points types
+  .. tab-item:: Floating-point types
     :sync: floating-point-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Floating-point types name
+        - Type name
         - float8 (E4M3)
         - float8 (E5M2)
         - float16  
@@ -277,19 +271,19 @@ Hardware accelerated matrix core support
         - ✅
         - ✅
 
-Hardware accelerated global memory atomic operations
+Atomic operations support
 -------------------------------------------------------------------------------
 
 .. tab-set::
 
-  .. tab-item:: Integer types
-    :sync: integer-type
+  .. tab-item:: Integral types
+    :sync: integral-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Integer types name
+        - Type name
         - int8
         - int16
         - int32
@@ -313,14 +307,14 @@ Hardware accelerated global memory atomic operations
         - ✅
         - ✅
 
-  .. tab-item:: Floating-points types
+  .. tab-item:: Floating-point types
     :sync: floating-point-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Floating-point types name
+        - Type name
         - float8 (E4M3)
         - float8 (E5M2)
         - float16  
@@ -333,16 +327,16 @@ Hardware accelerated global memory atomic operations
         - ❌
         - ❌
         - ✅
-        - ✔
+        - ❌
         - ❌
         - ✅
-        - ✔
+        - ❌
       * 
         - Mi200 series
         - ❌
         - ❌
         - ✅
-        - ✔
+        - ❌
         - ❌
         - ✅
         - ✅
@@ -351,10 +345,16 @@ Hardware accelerated global memory atomic operations
         - ❌
         - ❌
         - ✅
-        - ✔
+        - ❌
         - ❌
         - ✅
         - ✅
+
+.. note::
+
+  At natively not supported cases, the atomic operations can be emulated by
+  software. Such software emulated atomic operations have high negative
+  performance impact, when they frequently acces the same memory address.
 
 Data Type support in ROCm Libraries
 ==========================================
@@ -367,19 +367,19 @@ Libraries input/output type support
 -------------------------------------------------------------------------------
 
 The ROCm™ components support of specific input and output data types is listed in
-the following two tables. For detailed description open the library data type
+the following two tables. For a detailed description open the library data type
 support page.
 
 .. tab-set::
 
-  .. tab-item:: Integer types
-    :sync: integer-type
+  .. tab-item:: Integral types
+    :sync: integral-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Library input/output integer types name
+        - Library input/output data type name
         - int8
         - int16
         - int32
@@ -421,14 +421,14 @@ support page.
         - ✅/✅
         - ✅/✅
 
-  .. tab-item:: Floating-points types
+  .. tab-item:: Floating-point types
     :sync: floating-point-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Library input/output floating-point types name  
+        - Library input/output data type name
         - float8 (E4M3)
         - float8 (E5M2)
         - float16  
@@ -496,19 +496,19 @@ Libraries internal calculations type support
 -------------------------------------------------------------------------------
 
 The ROCm™ components support of specific internal data types is listed in the
-following two tables. For detailed description open the library data type
+following two tables. For a detailed description open the library data type
 support page.
 
 .. tab-set::
 
-  .. tab-item:: Integer types
-    :sync: integer-type
+  .. tab-item:: Integral types
+    :sync: integral-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Library internal integer types name
+        - Library internal data type name
         - int8
         - int16
         - int32
@@ -521,14 +521,14 @@ support page.
         - ❌
 
 
-  .. tab-item:: Floating-points types
+  .. tab-item:: Floating-point types
     :sync: floating-point-type
 
     .. list-table::
       :header-rows: 1
 
       * 
-        - Library internal floating-point types name  
+        - Library internal data type name
         - float8 (E4M3)
         - float8 (E5M2)
         - float16  
