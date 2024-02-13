@@ -110,7 +110,7 @@ subtrees:
     title: LLVM ASan
   - file: conceptual/cmake-packages.rst
     title: Using CMake
-  - file: about/compatibility/precission-support.md
+  - file: about/compatibility/precission-support.rst
     title: Precission support in ROCm libraries
   - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
     title: ROCm & PCIe atomics

@@ -366,7 +366,7 @@ following tables.
 Libraries input/output type support
 -------------------------------------------------------------------------------
 
-The ROCm™ components support of specific input and output data type is listed in
+The ROCm™ components support of specific input and output data types is listed in
 the following two tables. For detailed description open the library data type
 support page.
 
