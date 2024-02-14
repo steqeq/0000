@@ -485,8 +485,8 @@ support page.
         - rocThrust (:doc:`details<rocthrust:data-type-support>`)  
         - ❌/❌ 
         - ❌/❌
-        - ✅/✅
-        - ✅/✅
+        - ⚠️/⚠️
+        - ⚠️/⚠️
         - ❌/❌
         - ✅/✅
         - ✅/✅
