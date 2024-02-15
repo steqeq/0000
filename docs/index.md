@@ -10,12 +10,14 @@
 Welcome to the ROCm docs home page! If you're new to ROCm, you can review the following
 resources to learn more about our products and what we support:
 
-* [What is ROCm?](./what-is-rocm.md)
+* [What is ROCm?](./what-is-rocm.rst)
 * [Release notes](./about/release-notes.md)
 
 You can install ROCm on our Radeon™, Radeon™ PRO, and Instinct™ GPUs. If you're using Radeon
 GPUs, we recommend reading the
 {doc}`Radeon-specific ROCm documentation<radeon:index>`.
+
+For hands-on applications, refer to our [ROCm blogs](https://rocm.blogs.amd.com/) site.
 
 Our documentation is organized into the following categories:
 

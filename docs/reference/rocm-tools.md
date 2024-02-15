@@ -17,14 +17,15 @@
 
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
+* [ROCm Debug Agent](https://github.com/ROCm/rocr_debug_agent)
 * {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
-* {doc}`ROCTracer <roctracer:index>`
 :::
 
 :::{grid-item-card}
 :padding: 2
 :img-top: ../data/reference/banner-performance.png
 
+* [RocBandwidthTest](https://github.com/ROCm/rocm_bandwidth_test)
 * {doc}`ROCProfiler <rocprofiler:profiler_home_page>`
 * {doc}`ROCTracer <roctracer:index>`
 :::
@@ -35,6 +36,7 @@
 
 * {doc}`AMD SMI <amdsmi:index>`
 * {doc}`ROCm Data Center Tool <rdc:index>`
+* [ROCm Info](https://github.com/ROCm/rocminfo)
 * {doc}`ROCm SMI <rocm_smi_lib:index>`
 * {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 * {doc}`TransferBench <transferbench:index>`
