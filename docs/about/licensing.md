@@ -16,6 +16,8 @@ additional licenses. Please review individual repositories for more information.
 |:---------------------|:-------------------------|
 | [AMD Compute Language Runtimes (CLR)](https://github.com/ROCm/clr) | [MIT](https://github.com/ROCm/clr/blob/develop/LICENCE) |
 | [AMD SMI](https://github.com/ROCm/amdsmi) | [MIT](https://github.com/ROCm/amdsmi/blob/develop/LICENSE) |
+| [AOMP](https://github.com/ROCm/aomp/) | [Apache 2.0](https://github.com/ROCm/aomp/blob/aomp-dev/LICENSE) |
+| [aomp-extras](https://github.com/ROCm/aomp-extras/) | [MIT](https://github.com/ROCm/aomp-extras/blob/aomp-dev/LICENSE) |
 | [Composable Kernel](https://github.com/ROCm/composable_kernel) | [MIT](https://github.com/ROCm/composable_kernel/blob/develop/LICENSE) |
 | [FLANG](https://github.com/ROCm/flang/) | [Apache 2.0](https://github.com/ROCm/flang/blob/master/LICENSE.txt) |
 | [half](https://github.com/ROCm/half/) | [MIT](https://github.com/ROCm/half/blob/master/LICENSE.txt) |
@@ -51,6 +53,7 @@ additional licenses. Please review individual repositories for more information.
 | [ROCm debugger (ROCgdb)](https://github.com/ROCm/ROCgdb/) | [GNU General Public License v2.0](https://github.com/ROCm/ROCgdb/blob/amd-master/COPYING) |
 | [ROCdbgapi](https://github.com/ROCm/ROCdbgapi/) | [MIT](https://github.com/ROCm/ROCdbgapi/blob/amd-master/LICENSE.txt) |
 | [rocminfo](https://github.com/ROCm/rocminfo/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocminfo/blob/master/License.txt) |
+| rocm-llvm-alt | [AMD Proprietary License](https://www.amd.com/en/support/amd-software-eula)
 | [ROCm Performance Primitives (RPP)](https://github.com/ROCm/rpp) | [MIT](https://github.com/ROCm/rpp/blob/master/LICENSE) |
 | [ROCm SMI](https://github.com/ROCm/rocm_smi_lib/tree/master/python_smi_tools) | [The University of Illinois/NCSA](https://github.com/ROCm/rocm_smi_lib/blob/master/License.txt) |
 | [ROCm Validation Suite](https://github.com/ROCm/ROCmValidationSuite/) | [MIT](https://github.com/ROCm/ROCmValidationSuite/blob/master/LICENSE) |
@@ -66,20 +69,6 @@ additional licenses. Please review individual repositories for more information.
 | [rocWMMA](https://github.com/ROCm/rocWMMA/) | [MIT](https://github.com/ROCm/rocWMMA/blob/develop/LICENSE.md) |
 | [Tensile](https://github.com/ROCm/Tensile/) | [MIT](https://github.com/ROCm/Tensile/blob/develop/LICENSE.md) |
 | [TransferBench](https://github.com/ROCm/TransferBench) | [MIT](https://github.com/ROCm/TransferBench/blob/develop/LICENSE.md) |
-| | |
-| | |
-| [aomp-extras](https://github.com/ROCm/aomp-extras/) | [MIT](https://github.com/ROCm/aomp-extras/blob/aomp-dev/LICENSE) |
-| [aomp](https://github.com/ROCm/aomp/) | [Apache 2.0](https://github.com/ROCm/aomp/blob/aomp-dev/LICENSE) |
-| rocm-llvm-alt | [AMD Proprietary License](https://www.amd.com/en/support/amd-software-eula)
-| | |
-| deprecated: | |
-| [ROCm-CompilerSupport](https://github.com/ROCm/ROCm-CompilerSupport/) | [The University of Illinois/NCSA](https://github.com/ROCm/ROCm-CompilerSupport/blob/amd-stg-open/LICENSE.txt) |
-| [ROCm-Device-Libs](https://github.com/ROCm/ROCm-Device-Libs/) | [The University of Illinois/NCSA](https://github.com/ROCm/ROCm-Device-Libs/blob/amd-stg-open/LICENSE.TXT) |
-| [ROCm-OpenCL-Runtime](https://github.com/ROCm/ROCm-OpenCL-Runtime/) | [MIT](https://github.com/ROCm/ROCm-OpenCL-Runtime/blob/develop/LICENSE.txt) |
-| [clang-ocl](https://github.com/ROCm/clang-ocl/) | [MIT](https://github.com/ROCm/clang-ocl/blob/master/LICENSE) |
-| [hipamd](https://github.com/ROCm/hipamd/) | [MIT](https://github.com/ROCm/hipamd/blob/develop/LICENSE.txt) |
-
-
 
 Open source ROCm components are released via public GitHub
 repositories, packages on https://repo.radeon.com, and other distribution channels.
