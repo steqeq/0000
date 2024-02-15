@@ -40,7 +40,6 @@ ROCm consists of the following projects.
   "`AMD Compute Language Runtimes (CLR) <https://github.com/ROCm/clr>`_", "Runtime", "Contains source code for AMD's compute languages runtimes: :doc:`HIP <hip:index>` and OpenCL", "MIT"
   ":doc:`AMD SMI <amdsmi:index>`", "Tool", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices", "MIT"
   "`AOMP <https://github.com/ROCm/aomp/>`_", "Compiler", "Scripted build of `LLVM <https://github.com/ROCm/llvm-project>`_ and supporting software", "Apache-2.0"
-  "`Asynchronous Task and Memory Interface (ATMI) <https://github.com/ROCm/atmi/>`_", "Runtime", "Runtime framework for efficient task management in heterogeneous CPU-GPU systems", "MIT"
   ":doc:`Composable Kernel <composable_kernel:index>`", "Library (AI/ML)", "Provides a programming model for writing performance critical kernels for machine learning workloads across multiple architectures", "MIT"
   "`FLANG <https://github.com/ROCm/flang/>`_", "Compiler", "An out-of-tree Fortran compiler targeting LLVM", "Apache-2.0"
   "`half <https://github.com/ROCm/half/>`_", "Library (math)", "C++ header-only library that provides an IEEE 754 conformant, 16-bit half-precision floating-point type, along with corresponding arithmetic operators, type conversions, and common mathematical functions", "MIT"
