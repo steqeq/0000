@@ -117,6 +117,6 @@ subtrees:
         title: Build our documentation
   - file: contribute/feedback.md
     title: Provide feedback
-  - file: about/license.md
+  - file: about/licensing.md
     title: ROCm license
 
