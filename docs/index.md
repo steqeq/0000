@@ -23,8 +23,10 @@ Our documentation is organized into the following categories:
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ./data/banner-installation.png
+:img-alt: Install documentation
+:padding: 2
 
 * Linux
   * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
@@ -41,8 +43,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ./data/banner-compatibility.png
+:img-alt: Compatibility information
+:padding: 2
 
 * {doc}`System requirements (Linux)<rocm-install-on-linux:reference/system-requirements>`
 * {doc}`System requirements (Windows)<rocm-install-on-windows:reference/system-requirements>`
@@ -54,8 +58,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ./data/banner-reference.png
+:img-alt: Reference documentation
+:padding: 2
 
 * [API libraries](./reference/api-libraries.md)
   * Artificial intelligence
@@ -72,8 +78,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ./data/banner-howto.png
+:img-alt: How-to documentation
+:padding: 2
 
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
@@ -86,8 +94,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ./data/banner-conceptual.png
+:img-alt: Conceptual documentation
+:padding: 2
 
 * [GPU architecture](./conceptual/gpu-arch.md)
   * [MI100](./conceptual/gpu-arch/mi100.md)

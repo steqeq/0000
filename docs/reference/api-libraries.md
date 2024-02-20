@@ -12,8 +12,10 @@
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ../data/reference/banner-ai.png
+:img-alt: Artificial intelligence APIs
+:padding: 2
 
 * {doc}`Composable Kernel <composable_kernel:index>`
 * {doc}`MIGraphX <amdmigraphx:index>`
@@ -22,8 +24,10 @@
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ../data/reference/banner-cpp-primitives.png
+:img-alt: C++ primitives
+:padding: 2
 
 * {doc}`hipCUB <hipcub:index>`
 * {doc}`hipTensor <hiptensor:index>`
@@ -32,23 +36,29 @@
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ../data/reference/banner-communication.png
+:img-alt: Communication APIs
+:padding: 2
 
 * {doc}`RCCL <rccl:index>`
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ../data/reference/banner-hip.png
+:img-alt: HIP APIs
+:padding: 2
 
 * {doc}`HIP runtime <hip:index>`
 * {doc}`HIPIFY <hipify:index>`
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ../data/reference/banner-math.png
+:img-alt: Math APIs
+:padding: 2
 
 * {doc}`hipBLAS <hipblas:index>` / {doc}`rocBLAS <rocblas:index>`
 * {doc}`hipBLASLt <hipblaslt:index>`
@@ -61,8 +71,10 @@
 :::
 
 :::{grid-item-card}
-:padding: 2
+:class-card: sd-text-black
 :img-top: ../data/reference/banner-random-number.png
+:img-alt: Random number APIs
+:padding: 2
 
 * {doc}`hipRAND <hiprand:index>`
 * {doc}`rocRAND <rocrand:index>`
