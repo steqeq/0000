@@ -13,7 +13,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-ai.png
+:img-top: ../data/reference/banner-ai.jpg
 :img-alt: Artificial intelligence APIs
 :padding: 2
 
@@ -25,7 +25,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-cpp-primitives.png
+:img-top: ../data/reference/banner-cpp-primitives.jpg
 :img-alt: C++ primitives
 :padding: 2
 
@@ -37,7 +37,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-communication.png
+:img-top: ../data/reference/banner-communication.jpg
 :img-alt: Communication APIs
 :padding: 2
 
@@ -46,7 +46,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-hip.png
+:img-top: ../data/reference/banner-hip.jpg
 :img-alt: HIP APIs
 :padding: 2
 
@@ -56,7 +56,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-math.png
+:img-top: ../data/reference/banner-math.jpg
 :img-alt: Math APIs
 :padding: 2
 
@@ -72,7 +72,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-random-number.png
+:img-top: ../data/reference/banner-random-number.jpg
 :img-alt: Random number APIs
 :padding: 2
 

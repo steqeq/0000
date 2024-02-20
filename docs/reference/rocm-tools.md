@@ -13,7 +13,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-development.png
+:img-top: ../data/reference/banner-development.jpg
 :img-alt: Development tools
 :padding: 2
 
@@ -25,7 +25,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-performance.png
+:img-top: ../data/reference/banner-performance.jpg
 :img-alt: Performance tools
 :padding: 2
 
@@ -35,7 +35,7 @@
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-system.png
+:img-top: ../data/reference/banner-system.jpg
 :img-alt: System tools
 :padding: 2
 
