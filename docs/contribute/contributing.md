@@ -54,8 +54,8 @@ To make edits to our documentation via PR, follow these steps:
     git checkout -b my-new-branch
     ```
 
-6. Make your changes locally using your preferred code editor. If you're editing documentation, follow
-  the guidelines listed on the [documentation structure](./doc-structure.md) page.
+6. Make your changes locally using your preferred code editor. Follow the guidelines listed on the
+   [documentation structure](./doc-structure.md) page.
 
 7. (optional) We recommend running a local test build to ensure the content looks the way you expect.
 
