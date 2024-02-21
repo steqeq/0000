@@ -60,7 +60,7 @@ To make edits to our documentation via PR, follow these steps:
 7. (optional) We recommend running a local test build to ensure the content looks the way you expect.
 
     In your terminal, run:
-   
+
      ```bash
      pip3 install -r sphinx/requirements.txt  # You only need to run this command once
      
