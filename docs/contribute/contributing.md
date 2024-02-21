@@ -69,6 +69,7 @@ To make edits to our documentation via PR, follow these steps:
      ```bash
      cd docs/
      python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
+     ```
 
     The build files are located in the `docs/_build` folder. To preview your build, open the index file
     (`docs/_build/html/index.html`) file. For more information, see
