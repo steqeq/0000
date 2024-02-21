@@ -55,8 +55,7 @@ To make edits to our documentation via PR, follow these steps:
     ```
 
 6. Make your changes locally using your preferred code editor. If you're editing documentation, follow
-  the guidelines listed on the
-  [documentation structure](./doc-structure.md) page.
+  the guidelines listed on the [documentation structure](./doc-structure.md) page.
 
 7. (optional) We recommend running a local test build to ensure the content looks the way you expect.
 
@@ -64,10 +63,9 @@ To make edits to our documentation via PR, follow these steps:
    
      ```bash
      pip3 install -r sphinx/requirements.txt  # You only need to run this command once
-     ```
      
-     ```bash
      cd docs/
+     
      python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
      ```
 
@@ -77,10 +75,10 @@ To make edits to our documentation via PR, follow these steps:
     more about our build tools, see
     [Documentation toolchain](toolchain.md).
 
-9. Commit your changes and push them to GitHub. Run:
+8. Commit your changes and push them to GitHub. Run:
 
     ```bash
-    git add <path-to-my-modified-file> # to add all modified files, you can use: git add .
+    git add <path-to-my-modified-file> # To add all modified files, you can use: git add .
 
     git commit -m "my-updates"
 
