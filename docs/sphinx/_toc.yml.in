@@ -13,7 +13,7 @@ subtrees:
     - entries:
       - file: about/CHANGELOG.md
         title: Changelog
-  - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
+  - url: https://github.com/ROCm/ROCm/labels/Verified%20Issue
     title: Known issues
 
 - caption: Install
@@ -64,6 +64,16 @@ subtrees:
     title: GPU architectures
     subtrees:
     - entries:
+      - file: conceptual/gpu-arch/mi300.md
+        title: MI300 microarchitecture
+        subtrees:
+        - entries:
+          - url: https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf
+            title: AMD Instinct MI300/CDNA3 ISA
+          - url: https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf
+            title: White paper
+          - file: conceptual/gpu-arch/mi300-mi200-performance-counters.rst
+            title: MI300 and MI200 Performance counter
       - file: conceptual/gpu-arch/mi250.md
         title: MI250 microarchitecture
         subtrees:
@@ -72,8 +82,6 @@ subtrees:
             title: AMD Instinct MI200/CDNA2 ISA
           - url: https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf
             title: White paper
-          - file: conceptual/gpu-arch/mi200-performance-counters.md
-            title: Performance counter
       - file: conceptual/gpu-arch/mi100.md
         title: MI100 microarchitecture
         subtrees:

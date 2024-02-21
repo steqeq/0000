@@ -30,7 +30,7 @@ def mivisionx_processor(data: ReleaseLib, template: str, _) -> bool:
     data.notes = f"""
 <p align="center">
     <img width="70%"
-        src="https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/raw/master/docs/images/MIVisionX.png" />
+        src="https://github.com/ROCm/MIVisionX/raw/master/docs/images/MIVisionX.png" />
 </p>
 
 ## Online Documentation

@@ -8,6 +8,7 @@
 
 | Version | Release date |
 | ------- | ------------ |
+| [6.0.2](https://rocm.docs.amd.com/en/docs-6.0.2/) | Jan 31, 2024 |
 | [6.0.0](https://rocm.docs.amd.com/en/docs-6.0.0/) | Dec 15, 2023 |
 | [5.7.1](https://rocm.docs.amd.com/en/docs-5.7.1/) | Oct 13, 2023 |
 | [5.7.0](https://rocm.docs.amd.com/en/docs-5.7.0/) | Sep 15, 2023 |

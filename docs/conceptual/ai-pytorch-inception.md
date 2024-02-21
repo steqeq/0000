@@ -681,7 +681,7 @@ The dataset has 60,000 images you will use to train the network and 10,000 to ev
 
 Access the source code from the following repository:
 
-[https://github.com/ROCmSoftwarePlatform/tensorflow_fashionmnist/blob/main/fashion_mnist.py](https://github.com/ROCmSoftwarePlatform/tensorflow_fashionmnist/blob/main/fashion_mnist.py)
+[https://github.com/ROCm/tensorflow_fashionmnist/blob/main/fashion_mnist.py](https://github.com/ROCm/tensorflow_fashionmnist/blob/main/fashion_mnist.py)
 
 To understand the code step by step, follow these steps:
 
