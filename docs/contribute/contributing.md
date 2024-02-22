@@ -59,12 +59,12 @@ To make edits to our documentation via PR, follow these steps:
 
 7. (optional) We recommend running a local test build to ensure the content looks the way you expect.
 
-    In your terminal, run:
+    In your terminal, run the following commands from within your cloned repository:
 
      ```bash
-     pip3 install -r sphinx/requirements.txt  # You only need to run this command once
+     cd docs/   # The other commands are run from within the ./docs folder
      
-     cd docs/
+     pip3 install -r sphinx/requirements.txt  # You only need to run this command once
      
      python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
      ```
