@@ -21,6 +21,7 @@
 * {doc}`MIGraphX <amdmigraphx:index>`
 * {doc}`MIOpen <miopen:index>`
 * {doc}`MIVisionX <mivisionx:doxygen/html/index>`
+* [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/latest/)
 :::
 
 :::{grid-item-card}
@@ -60,14 +61,17 @@
 :img-alt: Math APIs
 :padding: 2
 
+* [half](https://github.com/ROCm/half)
 * {doc}`hipBLAS <hipblas:index>` / {doc}`rocBLAS <rocblas:index>`
 * {doc}`hipBLASLt <hipblaslt:index>`
 * {doc}`hipFFT <hipfft:index>` / {doc}`rocFFT <rocfft:index>`
+* [hipfort](https://rocm.docs.amd.com/projects/hipfort/en/latest/)
 * {doc}`hipSOLVER <hipsolver:index>` / {doc}`rocSOLVER <rocsolver:index>`
 * {doc}`hipSPARSE <hipsparse:index>` / {doc}`rocSPARSE <rocsparse:index>`
 * {doc}`hipSPARSELt <hipsparselt:index>`
 * {doc}`rocALUTION <rocalution:index>`
 * {doc}`rocWMMA <rocwmma:index>`
+* [Tensile](https://github.com/ROCm/Tensile)
 :::
 
 :::{grid-item-card}
