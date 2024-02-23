@@ -143,4 +143,3 @@ For example, you can fetch the licensing information of the `_amd_comgr_`
 component (Code Object Manager) from the `amd_comgr` folder. A file named
 `LICENSE.txt` contains the license details at:
 `/opt/rocm-5.4.3/share/doc/amd_comgr/LICENSE.txt`
-
