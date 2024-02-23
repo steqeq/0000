@@ -54,20 +54,20 @@ To make edits to our documentation via PR, follow these steps:
     git checkout -b my-new-branch
     ```
 
-6. Make your changes locally using your preferred code editor. If you're editing documentation, follow
-  the guidelines listed on the
-  [documentation structure](./doc-structure.md) page.
+6. Make your changes locally using your preferred code editor. Follow the guidelines listed on the
+   [documentation structure](./doc-structure.md) page.
 
 7. (optional) We recommend running a local test build to ensure the content looks the way you expect.
 
-    In your terminal, run:
+    In your terminal, run the following commands from within your cloned repository:
 
-    ```bash
-    python3 -mvenv .venv
-
-    .venv/Scripts/python -m pip install -r docs/sphinx/requirements.txt
-    .venv/Scripts/python -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
-    ```
+     ```bash
+     cd docs/   # The other commands are run from within the ./docs folder
+     
+     pip3 install -r sphinx/requirements.txt  # You only need to run this command once
+     
+     python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
+     ```
 
     The build files are located in the `docs/_build` folder. To preview your build, open the index file
     (`docs/_build/html/index.html`) file. For more information, see
@@ -78,7 +78,7 @@ To make edits to our documentation via PR, follow these steps:
 8. Commit your changes and push them to GitHub. Run:
 
     ```bash
-    git add <path-to-my-modified-file> # to add all modified files, you can use: git add .
+    git add <path-to-my-modified-file> # To add all modified files, you can use: git add .
 
     git commit -m "my-updates"
 
