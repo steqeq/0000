@@ -12,8 +12,10 @@
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ../data/reference/banner-development.jpg
+:img-alt: Development tools
 :padding: 2
-:img-top: ../data/reference/banner-development.png
 
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
@@ -22,8 +24,10 @@
 :::
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ../data/reference/banner-performance.jpg
+:img-alt: Performance tools
 :padding: 2
-:img-top: ../data/reference/banner-performance.png
 
 * [RocBandwidthTest](https://github.com/ROCm/rocm_bandwidth_test)
 * {doc}`ROCProfiler <rocprofiler:profiler_home_page>`
@@ -31,8 +35,10 @@
 :::
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ../data/reference/banner-system.jpg
+:img-alt: System tools
 :padding: 2
-:img-top: ../data/reference/banner-system.png
 
 * {doc}`AMD SMI <amdsmi:index>`
 * {doc}`ROCm Data Center Tool <rdc:index>`
