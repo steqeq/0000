@@ -21,10 +21,11 @@ source software compilers, debuggers, and libraries. ROCm is fully integrated in
 
 ## ROCm documentation
 
-This repository contains the manifest file for ROCm releases, changelogs, and release information.
+This repository contains the [manifest file](https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md)
+for ROCm releases, changelogs, and release information.
 
 The `default.xml` file contains information for all repositories and the associated commit used to build
-the current ROCm release; `default.xml` uses the Manifest Format repository.
+the current ROCm release; `default.xml` uses the [Manifest Format repository](https://gerrit.googlesource.com/git-repo/).
 
 Source code for our documentation is located in the `/docs` folder of most ROCm repositories. The
 `develop` branch of our repositories contains content for the next ROCm release.

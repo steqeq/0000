@@ -10,12 +10,14 @@
 Welcome to the ROCm docs home page! If you're new to ROCm, you can review the following
 resources to learn more about our products and what we support:
 
-* [What is ROCm?](./what-is-rocm.md)
+* [What is ROCm?](./what-is-rocm.rst)
 * [Release notes](./about/release-notes.md)
 
 You can install ROCm on our Radeon™, Radeon™ PRO, and Instinct™ GPUs. If you're using Radeon
 GPUs, we recommend reading the
 {doc}`Radeon-specific ROCm documentation<radeon:index>`.
+
+For hands-on applications, refer to our [ROCm blogs](https://rocm.blogs.amd.com/) site.
 
 Our documentation is organized into the following categories:
 
@@ -23,8 +25,10 @@ Our documentation is organized into the following categories:
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ./data/banner-installation.jpg
+:img-alt: Install documentation
 :padding: 2
-:img-top: ./data/banner-installation.png
 
 * Linux
   * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
@@ -41,8 +45,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ./data/banner-compatibility.jpg
+:img-alt: Compatibility information
 :padding: 2
-:img-top: ./data/banner-compatibility.png
 
 * {doc}`System requirements (Linux)<rocm-install-on-linux:reference/system-requirements>`
 * {doc}`System requirements (Windows)<rocm-install-on-windows:reference/system-requirements>`
@@ -54,8 +60,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ./data/banner-reference.jpg
+:img-alt: Reference documentation
 :padding: 2
-:img-top: ./data/banner-reference.png
 
 * [API libraries](./reference/api-libraries.md)
   * Artificial intelligence
@@ -72,8 +80,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ./data/banner-howto.jpg
+:img-alt: How-to documentation
 :padding: 2
-:img-top: ./data/banner-howto.png
 
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
@@ -86,8 +96,10 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ./data/banner-conceptual.jpg
+:img-alt: Conceptual documentation
 :padding: 2
-:img-top: ./data/banner-conceptual.png
 
 * [GPU architecture](./conceptual/gpu-arch.md)
   * [MI100](./conceptual/gpu-arch/mi100.md)
