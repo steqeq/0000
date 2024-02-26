@@ -110,14 +110,14 @@ Sub-subsection title (H4)
 
 1. Add a tag to the section you want to reference:
 
-.. _my-section-tag: section-1
+.. _my-section-tag:
 
 Section 1
 ==========
 
 2. Link to your tag:
 
-As shown in :ref:`section-1`.
+As shown in :ref:`my-section-tag`.
 
 ```
 
@@ -208,9 +208,9 @@ guide our content.
 
 Font size and type, page layout, white space control, and other formatting
 details are controlled via
-[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). If you want to notify us
+[rocm-docs-core](https://github.com/ROCm/rocm-docs-core). If you want to notify us
 of any formatting issues, create a pull request in our
-[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core) GitHub repository.
+[rocm-docs-core](https://github.com/ROCm/rocm-docs-core) GitHub repository.
 
 ## Building our documentation
 

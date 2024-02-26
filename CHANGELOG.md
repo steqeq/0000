@@ -75,7 +75,7 @@ MI300 series. Future releases will further enable and optimize this new platfo
 * Consolidated developer resources and training on the new AMD ROCm Developer Hub.
 
 The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
-the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
+the [Changelog](https://rocm.docs.amd.com/en/docs-6.0.0/about/CHANGELOG.html).
 
 ### OS and GPU support changes
 
@@ -122,7 +122,7 @@ the backward compatibility support for old file locations.
 ### Documentation
 
 CMake support has been added for documentation in the
-[ROCm repository](https://github.com/RadeonOpenCompute/ROCm).
+[ROCm repository](https://github.com/ROCm/ROCm).
 
 ### AMD Instinct™ MI50 end-of-support notice
 
@@ -154,29 +154,29 @@ final release for gfx906 GPUs in a fully supported state.
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX |  ⇒ [2.8](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-6.0.0) |
+| AMDMIGraphX |  ⇒ [2.8](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-6.0.0) |
 | HIP | [6.0.0](https://github.com/ROCm/HIP/releases/tag/rocm-6.0.0) |
-| hipBLAS |  ⇒ [2.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-6.0.0) |
-| hipCUB |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-6.0.0) |
-| hipFFT |  ⇒ [1.0.13](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-6.0.0) |
-| hipSOLVER |  ⇒ [2.0.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-6.0.0) |
-| hipSPARSE |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-6.0.0) |
-| hipTensor |  ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/hipTensor/releases/tag/rocm-6.0.0) |
-| MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-6.0.0) |
-| rccl |  ⇒ [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-6.0.0) |
-| rocALUTION |  ⇒ [3.0.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-6.0.0) |
-| rocBLAS |  ⇒ [4.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-6.0.0) |
-| rocFFT |  ⇒ [1.0.25](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-6.0.0) |
+| hipBLAS |  ⇒ [2.0.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-6.0.0) |
+| hipCUB |  ⇒ [3.0.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-6.0.0) |
+| hipFFT |  ⇒ [1.0.13](https://github.com/ROCm/hipFFT/releases/tag/rocm-6.0.0) |
+| hipSOLVER |  ⇒ [2.0.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-6.0.0) |
+| hipSPARSE |  ⇒ [3.0.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-6.0.0) |
+| hipTensor |  ⇒ [1.1.0](https://github.com/ROCm/hipTensor/releases/tag/rocm-6.0.0) |
+| MIOpen |  ⇒ [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-6.0.0) |
+| rccl |  ⇒ [2.15.5](https://github.com/ROCm/rccl/releases/tag/rocm-6.0.0) |
+| rocALUTION |  ⇒ [3.0.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.0.0) |
+| rocBLAS |  ⇒ [4.0.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.0.0) |
+| rocFFT |  ⇒ [1.0.25](https://github.com/ROCm/rocFFT/releases/tag/rocm-6.0.0) |
 | ROCgdb | [13.2](https://github.com/ROCm/ROCgdb/releases/tag/rocm-6.0.0) |
-| rocm-cmake |  ⇒ [0.11.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-6.0.0) |
-| rocPRIM |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-6.0.0) |
+| rocm-cmake |  ⇒ [0.11.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.0.0) |
+| rocPRIM |  ⇒ [3.0.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-6.0.0) |
 | rocprofiler | [2.0.0](https://github.com/ROCm/rocprofiler/releases/tag/rocm-6.0.0) |
-| rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-6.0.0) |
-| rocSOLVER |  ⇒ [3.24.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-6.0.0) |
-| rocSPARSE |  ⇒ [3.0.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-6.0.0) |
-| rocThrust |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-6.0.0) |
-| rocWMMA |  ⇒ [1.3.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-6.0.0) |
-| Tensile |  ⇒ [4.39.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-6.0.0) |
+| rocRAND |  ⇒ [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-6.0.0) |
+| rocSOLVER |  ⇒ [3.24.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-6.0.0) |
+| rocSPARSE |  ⇒ [3.0.2](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-6.0.0) |
+| rocThrust |  ⇒ [3.0.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-6.0.0) |
+| rocWMMA |  ⇒ [1.3.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-6.0.0) |
+| Tensile |  ⇒ [4.39.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.0.0) |
 
 #### AMDMIGraphX 2.8
 
@@ -344,7 +344,7 @@ Note: These complex operations are equivalent to corresponding types/functions o
       * `HIP_ROCclr`
     * NVIDIA platform
       * `HIP_PLATFORM_NVCC`
-* File directories in the clr repository are removed, for more details see https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/hcc_detail and https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/nvcc_detail
+* The [hcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hip/hcc_detail) and [nvcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hips/nvcc_detail) directories in the clr repository are removed.
 * Deprecated gcnArch is removed from hip device struct `hipDeviceProp_t`.
 * Deprecated `enum hipMemoryType memoryType;` is removed from HIP struct `hipPointerAttribute_t` union.
 
@@ -590,7 +590,7 @@ RCCL 2.15.5 for ROCm 6.0.0
 ##### Removals
 
 * Removed TransferBench from tools as it exists in standalone repo:
-  [https://github.com/ROCmSoftwarePlatform/TransferBench](https://github.com/ROCmSoftwarePlatform/TransferBench)
+  [https://github.com/ROCm/TransferBench](https://github.com/ROCm/TransferBench)
 
 #### rocALUTION 3.0.3
 
@@ -694,7 +694,7 @@ rocFFT 1.0.25 for ROCm 6.0.0
 
   These interfaces are still experimental and subject to change. Your feedback is appreciated.
   You can raise questions and concerns by opening issues in the
-  [rocFFT issue tracker](https://github.com/ROCmSoftwarePlatform/rocFFT/issues).
+  [rocFFT issue tracker](https://github.com/ROCm/rocFFT/issues).
 
   Note that multi-device FFTs currently have several limitations (we plan to address these in future
   releases):
@@ -1267,7 +1267,7 @@ rocFFT 1.0.25 for ROCm 6.0.0
 
   `rocfft_field` is a new type that can be added to a plan description, to describe layout of FFT input or output.  `rocfft_field_add_brick` can be called one or more times to describe a brick decomposition of an FFT field, where each brick can be assigned a different device.
 
-  These interfaces are still experimental and subject to change.  We are interested to hear feedback on them.  Questions and concerns may be raised by opening issues on the [rocFFT issue tracker](https://github.com/ROCmSoftwarePlatform/rocFFT/issues).
+  These interfaces are still experimental and subject to change.  We are interested to hear feedback on them.  Questions and concerns may be raised by opening issues on the [rocFFT issue tracker](https://github.com/ROCm/rocFFT/issues).
 
   Note that at this time, multi-device FFTs have several limitations:
 
@@ -1680,7 +1680,7 @@ the GPU in heterogeneous applications. Ideally, developers should treat heteroge
 OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
 Refer to the documentation on LLVM ASan with the GPU at
-[LLVM AddressSanitizer User Guide](../conceptual/using-gpu-sanitizer.md).
+{doc}`LLVM AddressSanitizer User Guide<rocm:conceptual/using-gpu-sanitizer>`.
 
 :::{note}
 The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
@@ -2156,7 +2156,7 @@ few examples include:
 #### Fixes
 
 * Stability fix for multi GPU system reproducible via ROCm_Bandwidth_Test as reported in
-  [Issue 2198](https://github.com/RadeonOpenCompute/ROCm/issues/2198).
+  [Issue 2198](https://github.com/ROCm/ROCm/issues/2198).
 
 ### HIP 5.6 (for ROCm 5.6)
 
@@ -2485,7 +2485,7 @@ rocThrust 2.18.0 for ROCm 5.6.0
 
 ##### Changed
 
-- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
+- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/ROCm/rocm-docs-core).
 
 #### rocWMMA 1.1.0
 
@@ -2583,7 +2583,7 @@ Windows are described in detail in our
 page and differs from the Linux feature set. Visit
 [Quick Start](https://rocm.docs.amd.com/en/docs-5.5.1/deploy/windows/quick_start.html#)
 page to get started. Known issues are tracked on
-[GitHub](https://github.com/RadeonOpenCompute/ROCm/issues?q=is%3Aopen+label%3A5.5.1+label%3A%22Verified+Issue%22+label%3AWindows).
+[GitHub](https://github.com/ROCm/ROCm/issues?q=is%3Aopen+label%3A5.5.1+label%3A%22Verified+Issue%22+label%3AWindows).
 
 #### HIP API change
 
@@ -2649,8 +2649,8 @@ The following hipcc changes are implemented in this release:
   `hipcc` package for installing `hipcc` binaries in future ROCm releases.
 
 * In a future ROCm release, the following samples will be removed from the `hip-tests` project.
-  * `hipBusbandWidth` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/shipBusBandwidth>
-  * `hipCommander` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/hipCommander>
+  * `hipBusbandWidth` at <https://github.com/ROCm/hip-tests/tree/752f3295baddeb122aa8dc18d254cb9df6fd619d/samples/1_Utils/hipBusBandwidth>
+  * `hipCommander` at <https://github.com/ROCm/hip-tests/tree/752f3295baddeb122aa8dc18d254cb9df6fd619d/samples/1_Utils/hipCommander>
 
   Note that the samples will continue to be available in previous release branches.
 * Removal of gcnarch from hipDeviceProp_t structure
@@ -3142,7 +3142,7 @@ RCCL 2.15.5 for ROCm 5.5.0
 
 ##### Removed
 
-- Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
+- Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCm/TransferBench
 
 #### rocALUTION 2.1.8
 
@@ -3845,7 +3845,7 @@ For more information, refer to the HIP API Guide.
 
 With ROCm v5.4, a separate GitHub project is created at
 
-<https://github.com/ROCm-Developer-Tools/hip-tests>
+<https://github.com/ROCm/hip-tests>
 
 This contains HIP catch2 tests and samples, and new tests will continue to develop.
 
@@ -4602,7 +4602,7 @@ The compiler fix consists of the following patches:
 * The application of this attribute was refined such that it was not added to a specific compiler built-in
   where the compiler knows that inactive lanes do not impact program execution. For more
   information, see
-  <https://github.com/RadeonOpenCompute/llvm-project/commit/accf36c58409268ca1f216cdf5ad812ba97ceccd>.
+  <https://github.com/ROCm/llvm-project/commit/accf36c58409268ca1f216cdf5ad812ba97ceccd>.
 
 ### Known issues
 
@@ -5044,7 +5044,7 @@ debugger deployment and management tools
 No notable changes in this release for deployment and management tools.
 
 For release information for older ROCm releases, refer to
-<https://github.com/RadeonOpenCompute/ROCm/blob/master/CHANGELOG.md>
+<https://github.com/ROCm/ROCm/blob/master/CHANGELOG.md>
 
 ### Library changes in ROCM 5.2.3
 
@@ -5141,7 +5141,7 @@ and can grow until the available free memory on the device is consumed.
 The test codes at the following link show how to implement applications using malloc and free
 functions in device kernels:
 
-<https://github.com/ROCm-Developer-Tools/HIP/blob/develop/tests/src/deviceLib/hipDeviceMalloc.cpp>
+<https://github.com/ROCm/HIP/blob/d6224a55390bf2d8fd0180c21bae44f0d718d1eb/tests/src/deviceLib/hipDeviceMalloc.cpp>
 
 ##### New HIP APIs in this release
 
@@ -6134,7 +6134,7 @@ in this release.
 
 For more information, refer to the following websites:
 
-* <https://github.com/RadeonOpenCompute/criu/blob/amdgpu_plugin-03252022/Documentation/amdgpu_plugin.txt>
+* <https://github.com/ROCm/criu/blob/amdgpu_plugin-03252022/Documentation/amdgpu_plugin.txt>
 
 * <https://criu.org/Main_Page>
 
@@ -6462,7 +6462,7 @@ rocFFT 1.0.16 for ROCm 5.1.0
 
 ##### Removed
 
-- The hipFFT API (header) has been removed from after a long deprecation period.  Please use the [hipFFT](https://github.com/ROCmSoftwarePlatform/hipFFT) package/repository to obtain the hipFFT API.
+- The hipFFT API (header) has been removed from after a long deprecation period.  Please use the [hipFFT](https://github.com/ROCm/hipFFT) package/repository to obtain the hipFFT API.
 
 #### rocPRIM 2.10.13
 
@@ -6500,7 +6500,7 @@ rocRAND 2.10.13 for ROCm 5.1.0
 
 ##### Changed
 
-- [hipRAND](https://github.com/ROCmSoftwarePlatform/hipRAND.git) split into a separate package
+- [hipRAND](https://github.com/ROCm/hipRAND.git) split into a separate package
 - Header file installation location changed to match other libraries.
   - Using the `rocrand.h` header file should now use `#include &lt;rocrand/rocrand.h&gt;`, rather than `#include &lt;rocrand/rocrand.h&gt;`
 - rocRAND still includes hipRAND using a submodule
@@ -6617,7 +6617,7 @@ This fix may lead to breakage in some OpenMP offload use cases, which use print 
 and result in an abort in device code. The issue will be fixed in a future release.
 :::
 
-The compatibility matrix in the [Deep-learning guide](./how-to/deep-learning-rocm.md) is updated for
+The compatibility matrix in the {doc}`Deep-learning guide<rocm:how-to/deep-learning-rocm>` is updated for
 ROCm v5.0.2.
 
 ### Library changes in ROCM 5.0.2
@@ -6730,7 +6730,7 @@ Refer to the HIP API documentation for more details on managed memory APIs.
 
 For the application, see
 
-<https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp>
+<https://github.com/ROCm/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp>
 
 #### New environment variable
 
