@@ -219,9 +219,9 @@ VRAM
 Compute Units
   Number of compute units on the GPU.
 Wavefront Size
-  Amount of work-items that execute in parallel on a single compute unit.
+  Amount of work-items that execute in parallel on a single compute unit. This is equivalent to the warp size in HIP.
 LDS
-  The Local Data Share (LDS) is a low-latency, high-bandwidth scratch pad memory. It is local to the compute units, shared by all work-items in a work group.
+  The Local Data Share (LDS) is a low-latency, high-bandwidth scratch pad memory. It is local to the compute units, shared by all work-items in a work group. In HIP this is the shared memory, which is shared by all threads in a block.
 L3 Cache
   Size of the level 3 cache. Shared by all compute units on the same GPU. Caches vector and scalar data and instructions.
 L2 Cache
