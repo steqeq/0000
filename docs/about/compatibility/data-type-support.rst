@@ -11,8 +11,7 @@ ROCm data type specifications
 Integral Types
 ==========================================
 
-The ROCm™ components supported signed and unsigned integral types with different
-width listed with the HIP type and short description in the following table.
+The signed and unsigned integral types that are supported by ROCm™ are listed in the following table, together with their corresponding HIP type and a short description.
 
 
 .. list-table::
@@ -26,25 +25,24 @@ width listed with the HIP type and short description in the following table.
     * 
       - int8
       - ``int8_t``, ``uint8_t``
-      - An signed or unsigned 8-bit integer.
+      - A signed or unsigned 8-bit integer.
     * 
       - int16
       - ``int16_t``, ``uint16_t``
-      - An signed or unsigned 16-bit integer.
+      - A signed or unsigned 16-bit integer.
     * 
       - int32
       - ``int32_t``, ``uint32_t``
-      - An signed or unsigned 32-bit integer.
+      - A signed or unsigned 32-bit integer.
     * 
       - int64
       - ``int64_t``, ``uint64_t``
-      - An signed or unsigned 64-bit integer.
+      - A signed or unsigned 64-bit integer.
  
 Floating-point Types
 ==========================================
 
-The ROCm™ components supported floating-point types listed with the HIP type and
-short description in the following table:
+The floating-point types that are supported by ROCm™ are listed in the following table, together with their corresponding HIP type and a short description.
 
 .. image:: ../../data/about/compatibility/floating-point-data-types.png
     :alt: Supported floating-point types
@@ -95,8 +93,8 @@ short description in the following table:
 The support icon description
 ==========================================
 
-The ROCm™ data support icon explanation listed in the following table. These
-icons are used at the data type support pages with the same meaning.
+The ROCm™ data support icon explanation is listed in the following table. These
+icons are used at the data type support pages of the libraries with the same meaning.
 
 .. list-table::
     :header-rows: 1
@@ -210,7 +208,7 @@ The compute unit support of data types listed in the following table.
 Matrix core support
 -------------------------------------------------------------------------------
 
-The matrix core support of data types listed in the following table.
+The following table lists which data types are supported on the matrix cores of different AMD GPUs.
 
 .. tab-set::
 
@@ -379,14 +377,14 @@ Data Type support in ROCm Libraries
 ==========================================
 
 ROCm™ libraries support for int8, float8 (E4M3), float8 (E5M2), int16, float16,
-bfloat16, int32, tensorfloat32, float32, int64 and float64 listed in the
+bfloat16, int32, tensorfloat32, float32, int64 and float64 is listed in the
 following tables.
 
 Libraries input/output type support
 -------------------------------------------------------------------------------
 
-The ROCm™ libraries support of specific input and output data types listed in 
-the following tables. For a detailed description open the library data type
+The ROCm™ libraries support of specific input and output data types is listed in 
+the following tables. For a detailed description open the corresponding library data type
 support page.
 
 .. tab-set::
@@ -514,8 +512,8 @@ support page.
 Libraries internal calculations type support
 -------------------------------------------------------------------------------
 
-The ROCm™ libraries support of specific internal data types listed in the
-following tables. For a detailed description open the library data type support
+The ROCm™ libraries support of specific internal data types is listed in the
+following tables. For a detailed description open the corresponding library data type support
 page.
 
 .. tab-set::

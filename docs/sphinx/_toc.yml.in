@@ -111,7 +111,7 @@ subtrees:
   - file: conceptual/cmake-packages.rst
     title: Using CMake
   - file: about/compatibility/data-type-support.rst
-    title: Precission support in ROCm libraries
+    title: Precision support in ROCm libraries
   - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
     title: ROCm & PCIe atomics
   - file: conceptual/ai-pytorch-inception.md
