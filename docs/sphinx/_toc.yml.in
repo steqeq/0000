@@ -23,12 +23,16 @@ subtrees:
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/
     title: HIP SDK on Windows
 
-- caption: Supported configurations
+- caption: Compatibility
   entries:
   - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
     title: Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
     title: Windows
+  - file: about/compatibility/data-type-support.rst
+    title: Precision support
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/3rd-party-support-matrix.html
+    title: Third-party
 
 - caption: Reference
   entries:
@@ -110,8 +114,6 @@ subtrees:
     title: LLVM ASan
   - file: conceptual/cmake-packages.rst
     title: Using CMake
-  - file: about/compatibility/data-type-support.rst
-    title: Precision support in ROCm libraries
   - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
     title: ROCm & PCIe atomics
   - file: conceptual/ai-pytorch-inception.md
