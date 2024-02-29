@@ -371,7 +371,7 @@ The atomic operations support of data types listed in the following table.
 
   At natively not supported cases, the atomic operations can be emulated by
   software. Such software emulated atomic operations have high negative
-  performance impact, when they frequently acces the same memory address.
+  performance impact, when they frequently access the same memory address.
 
 Data Type support in ROCm Libraries
 ==========================================
