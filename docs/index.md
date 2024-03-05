@@ -77,6 +77,7 @@ Our documentation is organized into the following categories:
   * [Development](#development-tools)
   * [Performance analysis](#performance-analysis)
   * [System](#system-tools)
+* [Environment Variables](./reference/env-variables.rst)
 * [Hardware specifications](./reference/gpu-arch-specs.rst)
 :::
 <!-- markdownlint-enable MD051 -->
