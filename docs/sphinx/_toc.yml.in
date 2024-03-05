@@ -23,12 +23,16 @@ subtrees:
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/
     title: HIP SDK on Windows
 
-- caption: Supported configurations
+- caption: Compatibility
   entries:
   - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
     title: Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
     title: Windows
+  - file: about/compatibility/data-type-support.rst
+    title: Precision support
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/3rd-party-support-matrix.html
+    title: Third-party
 
 - caption: Reference
   entries:
