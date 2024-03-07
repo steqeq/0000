@@ -25,7 +25,7 @@ AMD ROCm is built from open source software. It is, therefore, possible to modif
 
 ### Installing the repo tool
 
-The repo tool from Google allows you to manage multiple git repositories simultaneously. Run the following commands to install the repo:
+The repo tool from Google allows you to manage multiple git repositories simultaneously. Run the following commands to install the repo tool:
 
 ```bash
 mkdir -p ~/bin/
@@ -45,7 +45,7 @@ sudo apt-get install git-lfs
 
 ### Downloading the ROCm source code
 
-The following example shows how to use the repo tool to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
+The following example shows how to use the repo tool to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo tool, you must use that chosen directory in the code as shown below:
 
 ```bash
 mkdir -p ~/ROCm/
@@ -54,7 +54,7 @@ cd ~/ROCm/
 ~/bin/repo sync
 ```
 
-**Note:** Using this sample code will cause the repo to download the open source code associated with the specified ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download as explained at [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
+**Note:** Using this sample code will cause the repo tool to download the open source code associated with the specified ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download as explained at [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
 ### Building the ROCm source code
 
