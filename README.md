@@ -37,7 +37,7 @@ chmod a+x ~/bin/repo
 
 ### Installing git-lfs
 
-Some ROCm projects use the Git Large File Storage (LFS) format that may require you to install git-lfs. Refer to [Git Large File Storage](https://github.com/git-lfs/git-lfs/blob/main/INSTALLING.md) for more information. For example, to install git-lfs for Ubuntu, use the following command: 
+Some ROCm projects use the Git Large File Storage (LFS) format that may require you to install git-lfs. Refer to [Git Large File Storage](https://github.com/git-lfs/git-lfs/blob/main/INSTALLING.md) for more information. For example, to install git-lfs for Ubuntu, use the following command:
 
 ```bash
 sudo apt-get install git-lfs
