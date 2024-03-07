@@ -36,7 +36,7 @@ To make edits to our documentation via PR, follow these steps:
       git clone git@github.com:ROCm/ROCm.git
       ```
 
-   * Add your fork to this local copy of the repository. Run:
+   * Optionally add your fork to this local copy of the repository by running:
 
       ```bash
       git add remote <name-of-my-fork> <git@github.com:my-username/ROCm.git>
@@ -45,43 +45,33 @@ To make edits to our documentation via PR, follow these steps:
       To get the URL of your fork, go to your GitHub profile, select the fork and click the green 'Code'
       button (the same process you followed to get the main GitHub repository URL).
 
-4. Check out the **develop** branch and run 'git pull' (and/or 'git pull origin develop' to ensure your
-  local version has the most recent content.
+4. Change directory into your local copy of the repository, and run ``git pull`` (or ``git pull origin develop``) to ensure your local copy has the most recent content.
 
-5. Create a new branch.
+5. Create and checkout a new branch using the following command:
 
     ```bash
-    git checkout -b my-new-branch
+    git checkout -b <branch_name>
     ```
 
-6. Make your changes locally using your preferred code editor. Follow the guidelines listed on the
+6. Change directory into the `./docs` folder and make any documentation changes locally using your preferred code editor. Follow the guidelines listed on the
    [documentation structure](./doc-structure.md) page.
 
-7. (optional) We recommend running a local test build to ensure the content looks the way you expect.
-
-    In your terminal, run the following commands from within your cloned repository:
+7. Optionally run a local test build of the documentation to ensure the content builds and looks as expected. In your terminal, run the following commands from within the `./docs` folder of your cloned repository:
 
      ```bash
-     cd docs/   # The other commands are run from within the ./docs folder
-     
      pip3 install -r sphinx/requirements.txt  # You only need to run this command once
-     
      python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
      ```
 
-    The build files are located in the `docs/_build` folder. To preview your build, open the index file
-    (`docs/_build/html/index.html`) file. For more information, see
-    [Building documentation](building.md). To learn
-    more about our build tools, see
-    [Documentation toolchain](toolchain.md).
+    The build output files are located in the `docs/_build` folder. To preview your build, open the index file
+    (`docs/_build/html/index.html`) file. For more information, see [Building documentation](building.md). To learn
+    more about our build tools, see [Documentation toolchain](toolchain.md).
 
-8. Commit your changes and push them to GitHub. Run:
+8. Commit your changes and push them to GitHub by running:
 
     ```bash
     git add <path-to-my-modified-file> # To add all modified files, you can use: git add .
-
     git commit -m "my-updates"
-
     git push <name-of-my-fork>
     ```
 

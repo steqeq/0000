@@ -23,7 +23,7 @@ source software compilers, debuggers, and libraries. ROCm is fully integrated in
 
 AMD ROCm is built from open source software. It is, therefore, possible to modify the various components of ROCm by downloading the source code and rebuilding the components. The source code for ROCm components can be cloned from each of the GitHub repositories using git.  For easy access to download the correct versions of each of these tools, the ROCm repository contains a repo manifest file called default.xml. You can use this manifest file to download the source code for ROCm software.
 
-### Installing the Repo
+### Installing the repo tool
 
 The repo tool from Google allows you to manage multiple git repositories simultaneously. Run the following commands to install the repo:
 
@@ -43,7 +43,7 @@ Some ROCm projects use the Git Large File Storage (LFS) format that may require 
 sudo apt-get install git-lfs
 ```
 
-### Downloading the ROCm Source Code
+### Downloading the ROCm source code
 
 The following example shows how to use the repo binary to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
 
@@ -56,7 +56,7 @@ cd ~/ROCm/
 
 **Note:** Using this sample code will cause the repo to download the open source code associated with the specified ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download as explained at [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
-### Building the ROCm Source Code
+### Building the ROCm source code
 
 Each ROCm component repository contains directions for building that component, such as the rocSPARSE documentation [Installation and Building for Linux](https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/Linux_Install_Guide.html). Refer to the specific component documentation for instructions on building the repository.
 
@@ -75,7 +75,7 @@ Source code for our documentation is located in the `/docs` folder of most ROCm 
 
 The ROCm documentation homepage is [rocm.docs.amd.com](https://rocm.docs.amd.com).
 
-### Building our documentation
+### Building the documentation
 
 For a quick-start build, use the following code. For more options and detail, refer to
 [Building documentation](./docs/contribute/building.md).
