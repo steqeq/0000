@@ -45,7 +45,7 @@ sudo apt-get install git-lfs
 
 ### Downloading the ROCm source code
 
-The following example shows how to use the repo binary to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
+The following example shows how to use the repo tool to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
 
 ```bash
 mkdir -p ~/ROCm/
