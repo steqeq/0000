@@ -33,7 +33,7 @@ curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ```
 
-**Note:** The ```~/bin/``` folder is used as an example. You can specify a different folder to install the repo into if you desire. 
+**Note:** The ```~/bin/``` folder is used as an example. You can specify a different folder to install the repo tool into if you desire.
 
 ### Installing git-lfs
 
