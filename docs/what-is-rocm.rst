@@ -59,7 +59,7 @@ see :doc:`ROCm licensing <./about/license>`.
   "`RocBandwidthTest <https://github.com/ROCm/rocm_bandwidth_test/>`_ ", "Tool", "Captures the performance characteristics of buffer copying and kernel read/write operations"
   ":doc:`rocBLAS <rocblas:index>`", "Library (math)", "BLAS implementation (in the HIP programming language) on the ROCm runtime and toolchains"
   ":doc:`rocFFT <rocfft:index>`", "Library (math)", "Software library for computing fast Fourier transforms (FFTs) written in HIP"
-  "`ROCmCC <./reference/rocmcc.md>`_ ", "Tool", "Clang/LLVM-based compiler"
+  ":doc:`ROCmCC <./reference/rocmcc>`", "Tool", "Clang/LLVM-based compiler"
   "`ROCm CMake <https://github.com/ROCm/rocm-cmake>`_ ", "Tool", "Collection of CMake modules for common build and development tasks"
   ":doc:`ROCm Data Center Tool <rdc:index>`", "Tool", "Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments"
   "`ROCm Debug Agent (ROCdebug-agent) <https://github.com/ROCm/rocr_debug_agent/>`_ ", "Tool", "Prints the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running"
