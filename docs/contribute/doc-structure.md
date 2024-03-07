@@ -110,14 +110,14 @@ Sub-subsection title (H4)
 
 1. Add a tag to the section you want to reference:
 
-.. _my-section-tag:
+.. _my-section-tag: section-1
 
 Section 1
 ==========
 
 2. Link to your tag:
 
-As shown in :ref:`my-section-tag`.
+As shown in :ref:`section-1`.
 
 ```
 
