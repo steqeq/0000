@@ -33,11 +33,11 @@ curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ```
 
-**Note:** The ```~/bin/``` folder is used as an example. You can specify a different folder to install the repo into if you desire. 
+**Note:** The ```~/bin/``` folder is used as an example. You can specify a different folder to install the repo tool into if you desire.
 
 ### Installing git-lfs
 
-Some ROCm projects use the Git Large File Storage (LFS) format that may require you to install git-lfs. Refer to [Git Large File Storage](https://github.com/git-lfs/git-lfs/blob/main/INSTALLING.md) for more information. For example, to install git-lfs for Ubuntu, use the following command: 
+Some ROCm projects use the Git Large File Storage (LFS) format that may require you to install git-lfs. Refer to [Git Large File Storage](https://github.com/git-lfs/git-lfs/blob/main/INSTALLING.md) for more information. For example, to install git-lfs for Ubuntu, use the following command:
 
 ```bash
 sudo apt-get install git-lfs
@@ -45,7 +45,7 @@ sudo apt-get install git-lfs
 
 ### Downloading the ROCm source code
 
-The following example shows how to use the repo binary to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
+The following example shows how to use the repo tool to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
 
 ```bash
 mkdir -p ~/ROCm/
@@ -60,7 +60,7 @@ cd ~/ROCm/
 
 Each ROCm component repository contains directions for building that component, such as the rocSPARSE documentation [Installation and Building for Linux](https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/Linux_Install_Guide.html). Refer to the specific component documentation for instructions on building the repository.
 
-Each release of the ROCm software supports specific hardware and software configurations. Refer to [System requirements (Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html) for the current supported hardware and OS. 
+Each release of the ROCm software supports specific hardware and software configurations. Refer to [System requirements (Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html) for the current supported hardware and OS.
 
 ## ROCm documentation
 
