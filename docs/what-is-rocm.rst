@@ -54,7 +54,7 @@ see :doc:`ROCm licensing <./about/license>`.
   ":doc:`MIVisionX <mivisionx:doxygen/html/index>`", "Library (AI/ML)", "Set of comprehensive computer vision and machine learning libraries, utilities, and applications"
   "`Radeon Compute Profiler (RCP) <https://github.com/GPUOpen-Tools/radeon_compute_profiler/>`_ ", "Tool", "Performance analysis tool that gathers data from the API run-time and GPU for OpenCL and ROCm/HSA applications"
   ":doc:`RCCL <rccl:index>`", "Library (communication)", "Standalone library that provides multi-GPU and multi-node collective communication primitives"
-  ":doc:`rocAL <rocal:index>`", "Library (AI/ML)", "An augmentation library designed to decode and process images and videos"
+  ":doc:`rocAL <rocal:doxygen/html/index>`", "Library (AI/ML)", "An augmentation library designed to decode and process images and videos"
   ":doc:`rocALUTION <rocalution:index>`", "Library (math)", "Sparse linear algebra library for exploring fine-grained parallelism on ROCm runtime and toolchains"
   "`RocBandwidthTest <https://github.com/ROCm/rocm_bandwidth_test/>`_ ", "Tool", "Captures the performance characteristics of buffer copying and kernel read/write operations"
   ":doc:`rocBLAS <rocblas:index>`", "Library (math)", "BLAS implementation (in the HIP programming language) on the ROCm runtime and toolchains"
