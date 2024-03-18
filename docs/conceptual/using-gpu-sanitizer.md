@@ -235,9 +235,9 @@ $ rocgdb <path to application>
 
 ### Using ASan with a short HIP application
 
-Refer to the following example to use ASan with a short HIP application,
+Refer to an [example](https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md) to use ASan with a short HIP application,
 
-https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md
+
 
 ### Known issues with using GPU sanitizer
 
