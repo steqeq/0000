@@ -91,7 +91,7 @@ exclude_patterns = ['temp']
 
 external_toc_path = "./sphinx/_toc.yml"
 
-extensions = ["rocm_docs"]
+extensions = ["rocm_docs", "sphinx_reredirects"]
 
 external_projects_current_project = "rocm"
 
@@ -102,4 +102,8 @@ html_title = "ROCm Documentation"
 
 html_theme_options = {
     "link_main_doc": False
+}
+
+redirects = {
+     "reference/openmp/openmp": "../../about/compatibility/openmp.html"
 }
