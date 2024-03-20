@@ -20,7 +20,7 @@ This page contains the release notes for AMD ROCm Software.
 
 ### Added
 - **Added Monitor Command**  
-Provides users the ability to customize GPU metrics to capture, collect, and observe. Output is provided in a table view. This aligns closer to ROCm SMI `rocm-smi` (no argument), additionally allows uers to customize what data is helpful for their use-case.
+Provides users the ability to customize GPU metrics to capture, collect, and observe. Output is provided in a table view. This aligns closer to ROCm SMI `rocm-smi` (no argument), additionally allows users to customize what data is helpful for their use-case.
 ```shell
 $ amd-smi monitor -h
 usage: amd-smi monitor [-h] [--json | --csv] [--file FILE] [--loglevel LEVEL]
