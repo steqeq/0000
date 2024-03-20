@@ -27,7 +27,7 @@ python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --do-previ
 To generate the changelog only for 6.0.1:
 
 ```sh
-python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --compile_file ../../CHANGELOG.md --branch release/rocm-rel-6.0 6.0.1
+python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --compile_file ../../CHANGELOG.md --branch release/rocm-rel-6.1 6.1.0
 ```
 
 ### Notes
