@@ -235,8 +235,6 @@ $ rocgdb <path to application>
 
 ### Using ASan with a short HIP application
 
-Refer to the following example to use ASan with a short HIP application.
-
 Consider the following simple and short demo of using the Address Sanitizer with a HIP application:
 
 ```C++
