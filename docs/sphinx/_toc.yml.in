@@ -8,7 +8,7 @@ subtrees:
 - entries:
   - file: what-is-rocm.rst
   - file: about/release-notes.md
-    title: Release notes
+    title: Release highlights
     subtrees:
     - entries:
       - file: about/CHANGELOG.md
