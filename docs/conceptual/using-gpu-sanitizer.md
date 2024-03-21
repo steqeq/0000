@@ -239,8 +239,6 @@ Consider the following simple and short demo of using the Address Sanitizer with
 
 ```bash
 
-```C++
-
 #include <cstdlib>
 #include <hip/hip_runtime.h>
 
@@ -278,6 +276,8 @@ Or, if `c < m`, the `hipMemcpy` function will copy past the end of the `malloc` 
 
 **Note**: The `hipcc` compiler is used here for simplicity. Compiling without XNACK results in a warning.
 
+```bash
+
 `$ hipcc -g --offload-arch=gfx90a:xnack- -fsanitize=address
 -shared-libsan mini.hip -o mini` `clang++: warning: ignoring` `-fsanitize=address' option for offload arch 'gfx90a:xnack-`, as it is not currently supported there. Use it with an offload arch containing 'xnack+' instead [-Woption-ignored]`.
 
@@ -312,6 +312,7 @@ This confirms that the address sanitizer runtime is linked in, and the ASAN inst
 Checking the `PATH` yields
 
 ```bash
+
 $ which llvm-symbolizer
 /opt/rocm-5.7.0-99999/llvm/bin/llvm-symbolizer
 
@@ -322,10 +323,8 @@ Lastly, a check of the OS kernel version yields
 $ uname -rv
 5.15.0-73-generic #80~20.04.1-Ubuntu SMP Wed May 17 14:58:14 UTC 2023
 
-```
-which indicates that the required HMM support (kernel version > 5.6) is available.
-This completes the necessary setup.
-Running with `m = 100`, `n1 = 11`, `n2 = 10` and `c = 100` should produce
+``` bash
+which indicates that the required HMM support (kernel version > 5.6) is available. This completes the necessary setup. Running with `m = 100`, `n1 = 11`, `n2 = 10` and `c = 100` should produce
 a report for an invalid access by the last 10 threads.
 
 ```bash
@@ -361,7 +360,7 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   ...
 ==3141==ABORTING
 
-```
+```bash
 Running with `m = 100`, `n1 = 10`, `n2 = 10` and `c = 99` should produce a report for an invalid copy.
 
 ```
