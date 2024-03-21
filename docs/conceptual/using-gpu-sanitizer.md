@@ -271,20 +271,18 @@ main(int argc, char **argv)
 
 This application will attempt to access invalid addresses for certain command line arguments. In particular, if `m < n1 * n2` some device threads will attempt to access
 unallocated device memory.
+
 Or, if `c < m`, the `hipMemcpy` function will copy past the end of the `malloc` allocated memory.
+
 **Note**: The `hipcc` compiler is used here for simplicity. Compiling without XNACK results in a warning.
-> `$ hipcc -g --offload-arch=gfx90a:xnack- -fsanitize=address
--shared-libsan mini.hip -o mini`
-> `clang++: warning: ignoring '-fsanitize=address' option for offload arch 'gfx90a:xnack-'
-as it is not currently supported there. Use it with an offload arch containing 'xnack+' instead [-Woption-ignored]`
-The binary compiled above will run, but the GPU code will not be
-instrumented and the `m < n1 * n2` error will not be detected.
-Switching to `--offload-arch=gfx90a:xnack+` in the command above
-results in a warning-free compilation and an instrumented application.
-After setting `PATH`, `LD_LIBRARY_PATH` and `HSA_XNACK` as described
-earlier, a check of the binary with `ldd` yields
+
+`$ hipcc -g --offload-arch=gfx90a:xnack- -fsanitize=address
+-shared-libsan mini.hip -o mini` `clang++: warning: ignoring` `-fsanitize=address' option for offload arch 'gfx90a:xnack-`, as it is not currently supported there. Use it with an offload arch containing 'xnack+' instead [-Woption-ignored]`.
+
+The binary compiled above will run, but the GPU code will not be instrumented and the `m < n1 * n2` error will not be detected. Switching to `--offload-arch=gfx90a:xnack+` in the command above results in a warning-free compilation and an instrumented application. After setting `PATH`, `LD_LIBRARY_PATH` and `HSA_XNACK` as described earlier, a check of the binary with `ldd` yields the following,
 
 ```
+
 $ ldd mini
         linux-vdso.so.1 (0x00007ffd1a5ae000)
         libclang_rt.asan-x86_64.so => /opt/rocm-5.7.0-99999/llvm/lib/clang/17.0.0/lib/linux/libclang_rt.asan-x86_64.so (0x00007fb9c14b6000)
