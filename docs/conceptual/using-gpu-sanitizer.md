@@ -238,6 +238,7 @@ $ rocgdb <path to application>
 Consider the following simple and short demo of using the Address Sanitizer with a HIP application:
 
 ```C++
+
 #include <cstdlib>
 #include <hip/hip_runtime.h>
 
@@ -267,6 +268,7 @@ main(int argc, char **argv)
     return 0;
 }
 ```
+
 This application will attempt to access invalid addresses for certain command line arguments. In particular, if `m < n1 * n2` some device threads will attempt to access
 unallocated device memory.
 Or, if `c < m`, the `hipMemcpy` function will copy past the end of the `malloc` allocated memory.
@@ -281,6 +283,7 @@ Switching to `--offload-arch=gfx90a:xnack+` in the command above
 results in a warning-free compilation and an instrumented application.
 After setting `PATH`, `LD_LIBRARY_PATH` and `HSA_XNACK` as described
 earlier, a check of the binary with `ldd` yields
+
 ```
 $ ldd mini
         linux-vdso.so.1 (0x00007ffd1a5ae000)
@@ -302,22 +305,29 @@ $ ldd mini
         libelf.so.1 => /lib/x86_64-linux-gnu/libelf.so.1 (0x00007fb9b3a89000)
         libdrm.so.2 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm.so.2 (0x00007fb9b3a70000)
         libdrm_amdgpu.so.1 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1 (0x00007fb9b3a62000)
+
 ```
+
 This confirms that the address sanitizer runtime is linked in, and the ASAN instrumented version of the runtime libraries are used.
 Checking the `PATH` yields
+
 ```
 $ which llvm-symbolizer
 /opt/rocm-5.7.0-99999/llvm/bin/llvm-symbolizer
+
 ```
 Lastly, a check of the OS kernel version yields
+
 ```
 $ uname -rv
 5.15.0-73-generic #80~20.04.1-Ubuntu SMP Wed May 17 14:58:14 UTC 2023
+
 ```
 which indicates that the required HMM support (kernel version > 5.6) is available.
 This completes the necessary setup.
 Running with `m = 100`, `n1 = 11`, `n2 = 10` and `c = 100` should produce
 a report for an invalid access by the last 10 threads.
+
 ```
 =================================================================
 ==3141==ERROR: AddressSanitizer: heap-buffer-overflow on amdgpu device 0 at pc 0x7fb1410d2cc4
@@ -350,8 +360,10 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Heap left redzone:       fa
   ...
 ==3141==ABORTING
+
 ```
 Running with `m = 100`, `n1 = 10`, `n2 = 10` and `c = 99` should produce a report for an invalid copy.
+
 ```
 =================================================================
 ==2817==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x514000150dcc at pc 0x7f5509551aca bp 0x7ffc90a7ae50 sp 0x7ffc90a7a610
@@ -384,9 +396,8 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Heap left redzone:       fa
   ...
 ==2817==ABORTING
+
 ```
-
-
 
 ### Known issues with using GPU sanitizer
 
