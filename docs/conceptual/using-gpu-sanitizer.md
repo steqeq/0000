@@ -323,7 +323,7 @@ Lastly, a check of the OS kernel version yields
 $ uname -rv
 5.15.0-73-generic #80~20.04.1-Ubuntu SMP Wed May 17 14:58:14 UTC 2023
 
-``` bash
+``` 
 which indicates that the required HMM support (kernel version > 5.6) is available. This completes the necessary setup. Running with `m = 100`, `n1 = 11`, `n2 = 10` and `c = 100` should produce
 a report for an invalid access by the last 10 threads.
 
@@ -361,6 +361,7 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 ==3141==ABORTING
 
 ```bash
+
 Running with `m = 100`, `n1 = 10`, `n2 = 10` and `c = 99` should produce a report for an invalid copy.
 
 ```
