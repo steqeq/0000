@@ -5,6 +5,7 @@
   libraries, instrumented applications, AMD, ROCm">
 </head>
 
+
 # Using the LLVM ASan on a GPU (beta release)
 
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
@@ -14,9 +15,7 @@ Until now, the LLVM ASan process was only available for traditional purely CPU a
 This document provides documentation on using ROCm ASan.
 For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-:::{note}
-The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
-:::
+**Note:** The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
 ## Compiling for ASan
 
@@ -25,15 +24,19 @@ The ASan process begins by compiling the application of interest with the ASan i
 Recommendations for doing this are:
 
 * Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as `amdclang++`.
-* Add the following options to the existing compiler and linker options:  
+* Add the following options to the existing compiler and linker options:
+  
   * `-fsanitize=address` - enables instrumentation
+    
   * `-shared-libsan` - use shared version of runtime
-  * `-g` - add debug info for improved reporting    
+    
+  * `-g` - add debug info for improved reporting
+    
 * Explicitly use `xnack+` in the offload architecture option. For example, `--offload-arch=gfx90a:xnack+`
 
 Other architectures are allowed, but their device code will not be instrumented and a warning will be emitted.
 
-It is not an error to compile some files without ASan instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the ASan runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
+**Note:** It is not an error to compile some files without ASan instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the ASan runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
 
 ### About compilation time
 
