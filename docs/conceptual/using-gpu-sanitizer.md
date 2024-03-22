@@ -56,7 +56,7 @@ For a complete ROCm GPU Sanitizer installation, including packages, instrumented
 ## Using AMD-supplied ASan instrumented libraries
 
 ROCm releases have optional packages that contain additional ASan instrumented builds of the ROCm libraries (usually found in `/opt/rocm-<version>/lib`). The instrumented libraries have identical names to the regular uninstrumented libraries, and are located in `/opt/rocm-<version>/lib/asan`.
-These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used but, as described above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
+These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with `g++`. The preexisting build options are used but, as described above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
 These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
 
@@ -95,6 +95,7 @@ There are two `ASAN_OPTION` flags of particular note.
 This tells the ASAN runtime to halt the application immediately after detecting and reporting an addressing error. The default makes sense because the application has entered the realm of undefined behavior. If the developer wishes to have the application continue anyway, this option can be set to zero. However, the application and libraries should then be compiled with the additional option `-fsanitize-recover=address`. Note that the ROCm optional ASan instrumented libraries are not compiled with this option and if an error is detected within one of them, but halt_on_error is set to 0, more undefined behavior will occur.
 
 * `detect_leaks=0/1 default 1`.
+
 This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSAN). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSAN suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
 ## Runtime overhead
@@ -237,7 +238,7 @@ $ rocgdb <path to application>
 
 Consider the following simple and short demo of using the Address Sanitizer with a HIP application:
 
-```bash
+```C++
 
 #include <cstdlib>
 #include <hip/hip_runtime.h>
@@ -274,21 +275,22 @@ unallocated device memory.
 
 Or, if `c < m`, the `hipMemcpy` function will copy past the end of the `malloc` allocated memory.
 
-**Note**: The `hipcc` compiler is used here for simplicity. Compiling without XNACK results in a warning.
+**Note**: The `hipcc` compiler is used here for simplicity.
+
+Compiling without XNACK results in a warning.
 
 ```bash
-
-`$ hipcc -g --offload-arch=gfx90a:xnack- -fsanitize=address
--shared-libsan mini.hip -o mini` `clang++: warning: ignoring` `-fsanitize=address' option for offload arch 'gfx90a:xnack-`, as it is not currently supported there. Use it with an offload arch containing 'xnack+' instead [-Woption-ignored]`.
+$ hipcc -g --offload-arch=gfx90a:xnack- -fsanitize=address -shared-libsan mini.hip -o mini
+clang++: warning: ignoring` `-fsanitize=address' option for offload arch 'gfx90a:xnack-`, as it is not currently supported there. Use it with an offload arch containing 'xnack+' instead [-Woption-ignored]`.
+```
 
 The binary compiled above will run, but the GPU code will not be instrumented and the `m < n1 * n2` error will not be detected. Switching to `--offload-arch=gfx90a:xnack+` in the command above results in a warning-free compilation and an instrumented application. After setting `PATH`, `LD_LIBRARY_PATH` and `HSA_XNACK` as described earlier, a check of the binary with `ldd` yields the following,
 
 ```bash
-
 $ ldd mini
         linux-vdso.so.1 (0x00007ffd1a5ae000)
-        libclang_rt.asan-x86_64.so => /opt/rocm-5.7.0-99999/llvm/lib/clang/17.0.0/lib/linux/libclang_rt.asan-x86_64.so (0x00007fb9c14b6000)
-        libamdhip64.so.5 => /opt/rocm-5.7.0-99999/lib/asan/libamdhip64.so.5 (0x00007fb9bedd3000)
+        libclang_rt.asan-x86_64.so => /opt/rocm-6.1.0-99999/llvm/lib/clang/17.0.0/lib/linux/libclang_rt.asan-x86_64.so (0x00007fb9c14b6000)
+        libamdhip64.so.5 => /opt/rocm-6.1.0-99999/lib/asan/libamdhip64.so.5 (0x00007fb9bedd3000)
         libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fb9beba8000)
         libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fb9bea59000)
         libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fb9bea3e000)
@@ -296,8 +298,8 @@ $ ldd mini
         libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fb9be844000)
         libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fb9be821000)
         librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007fb9be817000)
-        libamd_comgr.so.2 => /opt/rocm-5.7.0-99999/lib/asan/libamd_comgr.so.2 (0x00007fb9b4382000)
-        libhsa-runtime64.so.1 => /opt/rocm-5.7.0-99999/lib/asan/libhsa-runtime64.so.1 (0x00007fb9b3b00000)
+        libamd_comgr.so.2 => /opt/rocm-6.1.0-99999/lib/asan/libamd_comgr.so.2 (0x00007fb9b4382000)
+        libhsa-runtime64.so.1 => /opt/rocm-6.1.0-99999/lib/asan/libhsa-runtime64.so.1 (0x00007fb9b3b00000)
         libnuma.so.1 => /lib/x86_64-linux-gnu/libnuma.so.1 (0x00007fb9b3af3000)
         /lib64/ld-linux-x86-64.so.2 (0x00007fb9c2027000)
         libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007fb9b3ad7000)
@@ -312,9 +314,8 @@ This confirms that the address sanitizer runtime is linked in, and the ASAN inst
 Checking the `PATH` yields
 
 ```bash
-
 $ which llvm-symbolizer
-/opt/rocm-5.7.0-99999/llvm/bin/llvm-symbolizer
+/opt/rocm-6.1.0-99999/llvm/bin/llvm-symbolizer
 
 ```
 Lastly, a check of the OS kernel version yields
@@ -343,7 +344,7 @@ allocated by thread T0 here:
     #1 ...
 
     #12 0x7fb14fb99ec4 in hipMalloc /work/dave/git/compute/external/clr/hipamd/src/hip_memory.cpp:568:3
-    #13 0x226630 in hipError_t hipMalloc<int>(int**, unsigned long) /opt/rocm-5.7.0-99999/include/hip/hip_runtime_api.h:8367:12
+    #13 0x226630 in hipError_t hipMalloc<int>(int**, unsigned long) /opt/rocm-6.1.0-99999/include/hip/hip_runtime_api.h:8367:12
     #14 0x226630 in main /home/dave/mini/mini.cpp:19:5
     #15 0x7fb14ef02082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
 
@@ -360,7 +361,7 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   ...
 ==3141==ABORTING
 
-```bash
+```
 
 Running with `m = 100`, `n1 = 10`, `n2 = 10` and `c = 99` should produce a report for an invalid copy.
 
