@@ -6,6 +6,7 @@
 </head>
 
 # Using the LLVM ASan on a GPU (beta release)
+
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications exactly like pure CPU applications. However, this simplicity has not been achieved yet.
 This document provides documentation on using ROCm ASan.
@@ -24,11 +25,11 @@ Recommendations for doing this are:
 * Add the following options to the existing compiler and linker options:
   
   * `-fsanitize=address` - enables instrumentation
-    
+
   * `-shared-libsan` - use shared version of runtime
-    
+
   * `-g` - add debug info for improved reporting
-    
+
 * Explicitly use `xnack+` in the offload architecture option. For example, `--offload-arch=gfx90a:xnack+`
 
 Other architectures are allowed, but their device code will not be instrumented and a warning will be emitted.
@@ -317,15 +318,15 @@ Checking the `PATH` yields
 ```bash
 $ which llvm-symbolizer
 /opt/rocm-6.1.0-99999/llvm/bin/llvm-symbolizer
-
 ```
+
 Lastly, a check of the OS kernel version yields
 
 ```bash
 $ uname -rv
 5.15.0-73-generic #80~20.04.1-Ubuntu SMP Wed May 17 14:58:14 UTC 2023
+```
 
-``` 
 which indicates that the required HMM support (kernel version > 5.6) is available. This completes the necessary setup. Running with `m = 100`, `n1 = 11`, `n2 = 10` and `c = 100` should produce
 a report for an invalid access by the last 10 threads.
 
@@ -361,12 +362,11 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Heap left redzone:       fa
   ...
 ==3141==ABORTING
-
 ```
 
 Running with `m = 100`, `n1 = 10`, `n2 = 10` and `c = 99` should produce a report for an invalid copy.
 
-```
+```shell
 =================================================================
 ==2817==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x514000150dcc at pc 0x7f5509551aca bp 0x7ffc90a7ae50 sp 0x7ffc90a7a610
 WRITE of size 400 at 0x514000150dcc thread T0
@@ -398,7 +398,6 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Heap left redzone:       fa
   ...
 ==2817==ABORTING
-
 ```
 
 ### Known issues with using GPU sanitizer
