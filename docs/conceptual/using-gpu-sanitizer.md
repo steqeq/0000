@@ -25,8 +25,7 @@ The ASan process begins by compiling the application of interest with the ASan i
 Recommendations for doing this are:
 
 * Compile as many application and dependent library sources as possible using an AMD-built clang-based compiler such as `amdclang++`.
-* Add the following options to the existing compiler and linker options:
-* 
+* Add the following options to the existing compiler and linker options:  
   * `-fsanitize=address` - enables instrumentation
   * `-shared-libsan` - use shared version of runtime
   * `-g` - add debug info for improved reporting    
