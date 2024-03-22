@@ -5,14 +5,11 @@
   libraries, instrumented applications, AMD, ROCm">
 </head>
 
-
 # Using the LLVM ASan on a GPU (beta release)
-
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
-
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications exactly like pure CPU applications. However, this simplicity has not been achieved yet.
-
 This document provides documentation on using ROCm ASan.
+
 For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
 **Note:** The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
