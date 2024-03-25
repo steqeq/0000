@@ -125,7 +125,7 @@ Mar 25, 2024: We currently need to install the Perl module from SLES 15 SP5 as a
 :sync: SLES-15.4
 
 ```shell
-zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/SLE_15_SP5/devel:languages:perl.repo
+zypper addrepo https://download.opensuse.org/repositories/devel:/languages:/perl/15.5/devel:languages:perl.repo
 ```
 
 :::
