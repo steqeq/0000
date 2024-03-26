@@ -7,7 +7,7 @@ yourself with our documentation toolchain.
 
 ## ReadTheDocs
 
-[ReadTheDocs](https://docs.readthedocs.io/en/stable/) is our front end for the
+[Read the Docs](https://docs.readthedocs.io/en/stable/) is our front end for the
 our documentation. By front end, this is the tool that serves our HTML based
 documentation to our end users.
 
