@@ -63,7 +63,7 @@ see :doc:`ROCm licensing <./about/license>`.
   "`ROCm CMake <https://github.com/ROCm/rocm-cmake>`_ ", "Tool", "Collection of CMake modules for common build and development tasks"
   ":doc:`ROCm Data Center Tool <rdc:index>`", "Tool", "Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments"
   "`ROCm Debug Agent (ROCdebug-agent) <https://github.com/ROCm/rocr_debug_agent/>`_ ", "Tool", "Prints the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running"
-  ":doc:`ROCm debugger (ROCgdb) <rocgdb:index>`", "Tool", "Source-level debugger for Linux, based on the GNU Debugger (GDB)"
+  ":doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`", "Tool", "Source-level debugger for Linux, based on the GNU Debugger (GDB)"
   ":doc:`ROCdbgapi <rocdbgapi:index>`", "Tool", "ROCm debugger API library"
   "`rocminfo <https://github.com/ROCm/rocminfo/>`_ ", "Tool", "Reports system information"
   ":doc:`ROCm Performance Primitives (RPP) <rpp:index>`", "Library (AI/ML)", "Comprehensive high-performance computer vision library for AMD processors with HIP/OpenCL/CPU back-ends"
