@@ -13,12 +13,12 @@ The full list of HSA system architecture platform requirements are here: `HSA Sy
 
 The ROCm Platform uses the new PCI Express 3.0 (PCIe 3.0) features for Atomic Read-Modify-Write Transactions which extends inter-processor synchronization mechanisms to IO to support the defined set of HSA capabilities needed for queuing and signaling memory operations.
 
-The new PCIe atomic operations operate as completers for ``CAS`` (Compare and Swap), ``FetchADD``, ``SWAP`` atomics. The atomic operationss are initiated by the
+The new PCIe atomic operations operate as completers for ``CAS`` (Compare and Swap), ``FetchADD``, ``SWAP`` atomics. The atomic operations are initiated by the
 I/O device which support 32-bit, 64-bit and 128-bit operand which target address have to be naturally aligned to operation sizes.
 
 For ROCm the Platform atomics are used in ROCm in the following ways:
 
-   * Update HSA queue’s read_dispatch_id: 64 bit atomic add used by the command processor on the GPU agent to update the packet ID it 	  processed.
+   * Update HSA queue’s read_dispatch_id: 64 bit atomic add used by the command processor on the GPU agent to update the packet ID it processed.
    * Update HSA queue’s write_dispatch_id: 64 bit atomic add used by the CPU and GPU agent to support multi-writer queue insertions.
    * Update HSA Signals – 64bit atomic ops are used for CPU & GPU synchronization.
 
@@ -71,7 +71,7 @@ BAR Memory Overview
 *******************
 On a Xeon E5 based system in the BIOS we can turn on above 4GB PCIe addressing, if so he need to set MMIO Base address ( MMIOH Base) and Range ( MMIO High Size) in the BIOS.
 
-In SuperMicro system in the system bios you need to see the following
+In Supermicro system in the system bios you need to see the following
 
    * Advanced->PCIe/PCI/PnP configuration-> Above 4G Decoding = Enabled
   
@@ -79,7 +79,7 @@ In SuperMicro system in the system bios you need to see the following
 
    * Advanced->PCIe/PCI/PnP Configuration->MMIO High Size = 256G
 
-When we support Large Bar Capability there is a Large Bar Vbios which also disable the IO bar.
+When we support Large Bar Capability there is a Large Bar VBIOS which also disable the IO bar.
 
 For GFX9 and Vega10 which have Physical Address up 44 bit and 48 bit Virtual address.
 
