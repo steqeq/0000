@@ -81,7 +81,7 @@ The command processor counters are further classified into fetcher and compute.
 | `spi_ra_lds_cu_full_csn`       | CUs         | Sum of CU where LDS cannot take csn wave when not fits       |
 | `spi_ra_bar_cu_full_csn[∗]`    | CUs         | Sum of CU where BARRIER cannot take csn wave when not fits   |
 | `spi_ra_bulky_cu_full_csn[∗]`  | CUs         | Sum of CU where BULKY cannot take csn wave when not fits     |
-| `spi_ra_tglim_cu_full_csn[∗]`  | Cycles      | Cycles where csn wants to req but all CUs are at tg_limit    |
+| `spi_ra_tglim_cu_full_csn[∗]`  | Cycles      | Cycles where csn wants to req but all CUs are at `tg_limit`  |
 | `spi_ra_wvlim_cu_full_csn[∗]`  | Cycles      | Number of clocks csn is stalled due to WAVE LIMIT            |
 | `spi_vwc_csc_wr`               | Cycles      | Number of clocks to write CSC waves to VGPRs (need to multiply this value by 4) |
 | `spi_swc_csc_wr`               | Cycles      | Number of clocks to write CSC waves to SGPRs (need to multiply this value by 4) |
@@ -288,9 +288,9 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `tcp_gate_en2`                        | Cycles | Number of cycles vL1D core clocks are turned on           |
 | `tcp_td_tcp_stall_cycles`             | Cycles | Number of cycles TD stalls vL1D                           |
 | `tcp_tcr_tcp_stall_cycles`            | Cycles | Number of cycles TCR stalls vL1D                           |
-| `tcp_read_tagconflict_stall_cycles`   | Cycles | Number of cycles tagram conflict stalls on a Read          |
-| `tcp_write_tagconflict_stall_cycles`  | Cycles | Number of cycles tagram conflict stalls on a Write         |
-| `tcp_atomic_tagconflict_stall_cycles` | Cycles | Number of cycles tagram conflict stalls on an Atomic       |
+| `tcp_read_tagconflict_stall_cycles`   | Cycles | Number of cycles tag RAM conflict stalls on a Read         |
+| `tcp_write_tagconflict_stall_cycles`  | Cycles | Number of cycles tag RAM conflict stalls on a Write        |
+| `tcp_atomic_tagconflict_stall_cycles` | Cycles | Number of cycles tag RAM conflict stalls on an Atomic      |
 | `tcp_pending_stall_cycles`            | Cycles | Number of cycles vL1D cache is stalled due to data pending from L2 Cache |
 | `tcp_ta_tcp_state_read`               | Req    | Number of wavefront instruction requests to vL1D           |
 | `tcp_volatile[∗]`                     | Req    | Number of L1 volatile pixels/buffers from TA               |
@@ -347,7 +347,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `tcc_CC_req`                       |Req     | Number of CC requests                                         |
 | `tcc_RW_req`                       |Req     | Number of RW requests                                         |
 | `tcc_probe`                        |Req     | Number of L2 Cache probe requests                             |
-| `tcc_probe_all[∗]`                 |Req     | Number of external probe requests with EA_TCC_preq_all== 1    |
+| `tcc_probe_all[∗]`                 |Req     | Number of external probe requests with `EA_TCC_preq_all== 1`  |
 | `tcc_read_req`                     |Req     | Number of L2 Cache Read requests                              |
 | `tcc_write_req`                    |Req     | Number of L2 Cache Write requests                             |
 | `tcc_atomic_req`                   |Req     | Number of L2 Cache Atomic requests                            |
