@@ -403,37 +403,37 @@ description, refer to the corresponding library data type support page.
         - int32
         - int64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ✅/✅
         - ❌/❌
         - ❌/❌
         - ❌/❌
       *
-        - rocRAND (:doc:`details<rocrand:data-type-support>`)
+        - rocRAND (:doc:`details <rocrand:data-type-support>`)
         - -/✅
         - -/✅
         - -/✅
         - -/✅
       *
-        - hipRAND (:doc:`details<hiprand:data-type-support>`)
+        - hipRAND (:doc:`details <hiprand:data-type-support>`)
         - -/✅
         - -/✅
         - -/✅
         - -/✅
       *
-        - rocPRIM (:doc:`details<rocprim:data-type-support>`)
+        - rocPRIM (:doc:`details <rocprim:reference/data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (:doc:`details<hipcub:data-type-support>`)
+        - hipCUB (:doc:`details <hipcub:data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
         - ✅/✅
       *
-        - rocThrust (:doc:`details<rocthrust:data-type-support>`)
+        - rocThrust (:doc:`details <rocthrust:data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
@@ -455,7 +455,7 @@ description, refer to the corresponding library data type support page.
         - float32
         - float64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -464,7 +464,7 @@ description, refer to the corresponding library data type support page.
         - ❌/❌
         - ❌/❌
       *
-        - rocRAND (:doc:`details<rocrand:data-type-support>`)
+        - rocRAND (:doc:`details <rocrand:data-type-support>`)
         - -/❌
         - -/❌
         - -/✅
@@ -473,7 +473,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - hipRAND (:doc:`details<hiprand:data-type-support>`)
+        - hipRAND (:doc:`details <hiprand:data-type-support>`)
         - -/❌
         - -/❌
         - -/✅
@@ -482,7 +482,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - rocPRIM (:doc:`details<rocprim:data-type-support>`)
+        - rocPRIM (:doc:`details <rocprim:reference/data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -491,7 +491,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (:doc:`details<hipcub:data-type-support>`)
+        - hipCUB (:doc:`details <hipcub:data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -500,7 +500,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - rocThrust (:doc:`details<rocthrust:data-type-support>`)
+        - rocThrust (:doc:`details <rocthrust:data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ⚠️/⚠️
@@ -531,7 +531,7 @@ description, refer to the corresponding library data type support page.
         - int32
         - int64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ❌
         - ❌
         - ✅
@@ -554,7 +554,7 @@ description, refer to the corresponding library data type support page.
         - float32
         - float64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ❌
         - ❌
         - ❌
