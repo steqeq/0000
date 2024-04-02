@@ -659,4 +659,4 @@ accelerators, AMD Radeon™ and AMD Radeon™ Pro GPUs.
 
 For a detailed explanation of the terms refer to the
 :ref:`specific documents and guides <gpu-arch-documentation>` or the
-:ref:`HIP programming guide <HIP:understand/programming_model>`.
+:ref:`HIP programming guide <HIP:user_guide/hip_rtc>`.
