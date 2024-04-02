@@ -15,6 +15,9 @@ For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm
 
 **Note:** The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
+**Note:** When compiling OpenMP programs with ASAN instrumentation, it is currently necessary to set the environment variable
+`LIBRARY_PATH` to `/opt/rocm-<version>/lib/llvm/lib/asan:/opt/rocm-<version>/lib/asan`.
+
 ## Compiling for ASan
 
 The ASan process begins by compiling the application of interest with the ASan instrumentation.
