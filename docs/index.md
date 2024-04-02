@@ -67,17 +67,16 @@ Our documentation is organized into the following categories:
 :padding: 2
 
 * [API libraries](./reference/api-libraries.md)
-  * Artificial intelligence
-  * C++ primitives
-  * Communication
-  * Fast Fourier transforms
-  * HIP
-  * Linear algebra
-  * Random number generators
+  * [Artificial intelligence](#artificial-intelligence-apis)
+  * [C++ primitives](#cpp-primitives)
+  * [Communication](#communication-libraries)
+  * [Math](#math-apis)
+  * [Random number generators](#random-number-apis)
+  * [HIP runtime](#hip-runtime)
 * [Tools](./reference/rocm-tools.md)
-  * Development
-  * Performance analysis
-  * System
+  * [Development](#development-tools)
+  * [Performance analysis](#performance-analysis)
+  * [System](#system-tools)
 * [Hardware specifications](./reference/gpu-arch-specs.rst)
 :::
 

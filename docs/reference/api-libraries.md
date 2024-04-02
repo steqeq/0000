@@ -11,6 +11,8 @@
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
+(artificial-intelligence-apis)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-ai.jpg
@@ -24,6 +26,8 @@
 * [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/latest/)
 :::
 
+(cpp-primitives)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-cpp-primitives.jpg
@@ -36,6 +40,8 @@
 * {doc}`rocThrust <rocthrust:index>`
 :::
 
+(communication-libraries)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-communication.jpg
@@ -44,6 +50,8 @@
 
 * {doc}`RCCL <rccl:index>`
 :::
+
+(hip-runtime)=
 
 :::{grid-item-card}
 :class-card: sd-text-black
@@ -54,6 +62,8 @@
 * {doc}`HIP runtime <hip:index>`
 * {doc}`HIPIFY <hipify:index>`
 :::
+
+(math-apis)=
 
 :::{grid-item-card}
 :class-card: sd-text-black
@@ -73,6 +83,8 @@
 * {doc}`rocWMMA <rocwmma:index>`
 * [Tensile](https://github.com/ROCm/Tensile)
 :::
+
+(random-number-apis)=
 
 :::{grid-item-card}
 :class-card: sd-text-black
