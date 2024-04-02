@@ -15,7 +15,6 @@ For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm
 
 **Note:** The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
-
 ## Compiling for ASan
 
 The ASan process begins by compiling the application of interest with the ASan instrumentation.
