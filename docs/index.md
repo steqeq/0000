@@ -60,6 +60,7 @@ Our documentation is organized into the following categories:
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
+<!-- markdownlint-disable MD051 -->
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ./data/banner-reference.jpg
@@ -79,6 +80,7 @@ Our documentation is organized into the following categories:
   * [System](#system-tools)
 * [Hardware specifications](./reference/gpu-arch-specs.rst)
 :::
+<!-- markdownlint-enable MD051 -->
 
 :::{grid-item-card}
 :class-card: sd-text-black
