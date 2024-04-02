@@ -15,7 +15,6 @@ For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm
 
 **Note:** The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
-**Note:** When compiling OpenMP programs with ASan instrumentation, it is currently necessary to set the environment variable `LIBRARY_PATH` to `/opt/rocm-<version>/lib/llvm/lib/asan:/opt/rocm-<version>/lib/asan`. At runtime, it may be necessary to add `/opt/rocm-<version>/lib/llvm/lib/asan` to `LD_LIBRARY_PATH`.
 
 ## Compiling for ASan
 
@@ -37,6 +36,8 @@ Recommendations for doing this are:
 Other architectures are allowed, but their device code will not be instrumented and a warning will be emitted.
 
 **Note:** It is not an error to compile some files without ASan instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the ASan runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
+
+**Note:** When compiling OpenMP programs with ASan instrumentation, it is currently necessary to set the environment variable `LIBRARY_PATH` to `/opt/rocm-<version>/lib/llvm/lib/asan:/opt/rocm-<version>/lib/asan`. At runtime, it may be necessary to add `/opt/rocm-<version>/lib/llvm/lib/asan` to `LD_LIBRARY_PATH`.
 
 ### About compilation time
 
@@ -96,7 +97,7 @@ There are two `ASAN_OPTION` flags of particular note.
 
 * `halt_on_error=0/1 default 1`.
 
-This tells the ASAN runtime to halt the application immediately after detecting and reporting an addressing error. The default makes sense because the application has entered the realm of undefined behavior. If the developer wishes to have the application continue anyway, this option can be set to zero. However, the application and libraries should then be compiled with the additional option `-fsanitize-recover=address`. Note that the ROCm optional ASan instrumented libraries are not compiled with this option and if an error is detected within one of them, but halt_on_error is set to 0, more undefined behavior will occur.
+This tells the ASan runtime to halt the application immediately after detecting and reporting an addressing error. The default makes sense because the application has entered the realm of undefined behavior. If the developer wishes to have the application continue anyway, this option can be set to zero. However, the application and libraries should then be compiled with the additional option `-fsanitize-recover=address`. Note that the ROCm optional ASan instrumented libraries are not compiled with this option and if an error is detected within one of them, but halt_on_error is set to 0, more undefined behavior will occur.
 
 * `detect_leaks=0/1 default 1`.
 
