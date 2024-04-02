@@ -7,7 +7,7 @@
 Precision support
 *************************************************************
 
-The following sections provide ROCm data type specifications.
+Use the following sections to identify which data types and HIP types are supported with ROCm.
 
 Integral types
 ==========================================
