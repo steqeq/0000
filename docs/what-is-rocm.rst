@@ -29,22 +29,10 @@ ROCm project list
 ROCm consists of the following projects. For information on the license associated with each project,
 see :doc:`ROCm licensing <./about/license>`.
 
-Compilers
------------------------------------------------
-
-.. csv-table::
-  :header: "Project", "Description"
-
-  "`AOMP <https://github.com/ROCm/aomp/>`_", "Scripted build of `LLVM <https://github.com/ROCm/llvm-project>`_ and supporting software"
-  "`FLANG <https://github.com/ROCm/flang/>`_", "An out-of-tree Fortran compiler targeting LLVM"
-  "`hipCC <https://github.com/ROCm/HIPCC>`_ ", "Compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure"
-  ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
-  "`LLVM (amdclang) <https://github.com/ROCm/llvm-project>`_ ", "Toolkit for the construction of highly optimized compilers, optimizers, and runtime environments"
-
 Libraries
 -----------------------------------------------
 
-AI/ML
+Machine Learning & Computer Vision
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
@@ -64,17 +52,6 @@ Communication
   :header: "Project", "Description"
 
   ":doc:`RCCL <rccl:index>`", "Standalone library that provides multi-GPU and multi-node collective communication primitives"
-
-C++ primitives
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. csv-table::
-  :header: "Project", "Description"
-
-  ":doc:`hipCUB <hipcub:index>`", "Thin header-only wrapper library on top of `rocPRIM <https://rocm.docs.amd.com/projects/rocPRIM/en/latest/>`_ or CUB that allows project porting using the CUB library to the HIP layer"
-  ":doc:`hipTensor <hiptensor:index>`", "AMD's C++ library for accelerating tensor primitives based on the composable kernel library"
-  ":doc:`rocPRIM <rocprim:index>`", "Header-only library for HIP parallel primitives"
-  ":doc:`rocThrust <rocthrust:index>`", "Parallel algorithm library"
 
 Math
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -100,15 +77,16 @@ Math
   ":doc:`rocWMMA <rocwmma:index>`", "C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA) operations"
   "`Tensile <https://github.com/ROCm/Tensile>`_ ", "Creates benchmark-driven backend libraries for GEMMs, GEMM-like problems, and general N-dimensional tensor contractions"
 
-Runtimes
------------------------------------------------
+C++ primitives
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
   :header: "Project", "Description"
 
-  "`AMD Compute Language Runtimes (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's compute languages runtimes: :doc:`HIP <hip:index>` and OpenCL"
-  ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
-  "`ROCR-Runtime <https://github.com/ROCm/ROCR-Runtime/>`_ ", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"
+  ":doc:`hipCUB <hipcub:index>`", "Thin header-only wrapper library on top of `rocPRIM <https://rocm.docs.amd.com/projects/rocPRIM/en/latest/>`_ or CUB that allows project porting using the CUB library to the HIP layer"
+  ":doc:`hipTensor <hiptensor:index>`", "AMD's C++ library for accelerating tensor primitives based on the composable kernel library"
+  ":doc:`rocPRIM <rocprim:index>`", "Header-only library for HIP parallel primitives"
+  ":doc:`rocThrust <rocthrust:index>`", "Parallel algorithm library"
 
 Tools
 -----------------------------------------------
@@ -117,6 +95,7 @@ Tools
   :header: "Project", "Description"
 
   ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
+  ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
   "`Radeon Compute Profiler (RCP) <https://github.com/GPUOpen-Tools/radeon_compute_profiler/>`_ ", "Performance analysis tool that gathers data from the API runtime and GPU for OpenCL and ROCm/HSA applications"
   "`RocBandwidthTest <https://github.com/ROCm/rocm_bandwidth_test/>`_ ", "Captures the performance characteristics of buffer copying and kernel read/write operations"
   ":doc:`ROCmCC <./reference/rocmcc>`", "Clang/LLVM-based compiler"
@@ -131,3 +110,24 @@ Tools
   ":doc:`ROCProfiler <rocprofiler:profiler_home_page>`", "Profiling tool for HIP applications"
   ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
   ":doc:`TransferBench <transferbench:index>`", "Utility to benchmark simultaneous transfers between user-specified devices (CPUs/GPUs)"
+
+Compilers
+-----------------------------------------------
+
+.. csv-table::
+  :header: "Project", "Description"
+
+  "`AOMP <https://github.com/ROCm/aomp/>`_", "Scripted build of `LLVM <https://github.com/ROCm/llvm-project>`_ and supporting software"
+  "`FLANG <https://github.com/ROCm/flang/>`_", "An out-of-tree Fortran compiler targeting LLVM"
+  "`hipCC <https://github.com/ROCm/HIPCC>`_ ", "Compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure"
+  "`LLVM (amdclang) <https://github.com/ROCm/llvm-project>`_ ", "Toolkit for the construction of highly optimized compilers, optimizers, and runtime environments"
+
+Runtimes
+-----------------------------------------------
+
+.. csv-table::
+  :header: "Project", "Description"
+
+  "`AMD Compute Language Runtimes (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's compute languages runtimes: :doc:`HIP <hip:index>` and OpenCL"
+  ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
+  "`ROCR-Runtime <https://github.com/ROCm/ROCR-Runtime/>`_ ", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"
