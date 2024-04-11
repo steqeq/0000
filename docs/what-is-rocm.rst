@@ -10,6 +10,9 @@ ROCm is an open-source stack, composed primarily of open-source software, design
 graphics processing unit (GPU) computation. ROCm consists of a collection of drivers, development
 tools, and APIs that enable GPU programming from low-level kernel to end-user applications.
 
+.. image:: data/rocm-sw-stack-chart.png
+   :width: 800
+
 ROCm is powered by
 `Heterogeneous-computing Interface for Portability (HIP) <https://rocm.docs.amd.com/projects/HIP/en/latest/index.html>`_;
 it supports programming models, such as OpenMP and OpenCL, and includes all necessary open
