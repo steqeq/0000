@@ -10,7 +10,7 @@ ROCm is an open-source stack, composed primarily of open-source software, design
 graphics processing unit (GPU) computation. ROCm consists of a collection of drivers, development
 tools, and APIs that enable GPU programming from low-level kernel to end-user applications.
 
-.. figure:: data/rocm-sw-stack-chart.png
+.. figure:: data/rocm-software-stack-6_1_0.jpg
    :width: 800
 
 ROCm is powered by
