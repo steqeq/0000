@@ -31,7 +31,7 @@ Our documentation is organized into the following categories:
 :padding: 2
 
 * Linux
-  * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
+  * {doc}`Quick start guide<rocm-install-on-linux:tutorial/quick-start>`
   * {doc}`Linux install guide<rocm-install-on-linux:how-to/native-install/index>`
   * {doc}`Package manager integration<rocm-install-on-linux:how-to/native-install/package-manager-integration>`
 * Windows
