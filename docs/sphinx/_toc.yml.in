@@ -40,12 +40,12 @@ subtrees:
       title: API libraries
     - file: reference/rocm-tools.md
       title: Tools
-    - file: reference/gpu-arch.rst
-      title: GPU architectures
-      subtrees:
-      - entries:
-        - file: reference/gpu-arch/gpu-arch-spec-overview.rst
-          title: Hardware specifications overview
+    - file: reference/gpu-arch/gpu-arch-spec-overview.rst
+      title: Accelerator & GPU architectures
+      # subtrees:
+      # - entries:
+      #   - file: reference/gpu-arch/gpu-arch-spec-overview.rst
+      #     title: Hardware specifications overview
 
 - caption: How-to
   entries:
