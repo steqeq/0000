@@ -2,8 +2,8 @@
    :description: AMD Instinct™ GPU architecture information
    :keywords: Instinct, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
 
-GPU architecture hardware specifications
-########################################
+Accelerator & GPU architecture hardware specifications
+######################################################
 
 The following table provides an overview over the hardware specifications for the AMD Instinct accelerators, AMD Radeon and AMD Radeon Pro GPUs.
 
@@ -221,18 +221,18 @@ The following table provides an overview over the hardware specifications for th
           - Model
           - Architecture
           - LLVM target name
-          - VRAM
+          - VRAM (GiB)
           - Compute Units
           - Warp Size
-          - LDS
-          - Infinity Cache
-          - L2 Cache
-          - Graphics L1 Cache
-          - L0 Vector Cache
-          - L0 Scalar Cache
-          - L0 Instruction Cache
-          - VGPR File
-          - SGPR File
+          - LDS (KiB)
+          - Infinity Cache (MiB)
+          - L2 Cache (MiB)
+          - Graphics L1 Cache (KiB)
+          - L0 Vector Cache (KiB)
+          - L0 Scalar Cache (KiB)
+          - L0 Instruction Cache (KiB)
+          - VGPR File (KiB)
+          - SGPR File (KiB)
         *
           - Radeon PRO W7900
           - RDNA3
@@ -372,18 +372,18 @@ The following table provides an overview over the hardware specifications for th
           - Model
           - Architecture
           - LLVM target name
-          - VRAM
+          - VRAM (GiB)
           - Compute Units
           - Warp Size
-          - LDS
-          - Infinity Cache
-          - L2 Cache
-          - Graphics L1 Cache
-          - L0 Vector Cache
-          - L0 Scalar Cache
-          - L0 Instruction Cache
-          - VGPR File
-          - SGPR File
+          - LDS (KiB)
+          - Infinity Cache (MiB)
+          - L2 Cache (MiB)
+          - Graphics L1 Cache (KiB)
+          - L0 Vector Cache (KiB)
+          - L0 Scalar Cache (KiB)
+          - L0 Instruction Cache (KiB)
+          - VGPR File (KiB)
+          - SGPR File (KiB)
         *
           - Radeon RX 7900 XTX
           - RDNA3
