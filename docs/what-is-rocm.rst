@@ -1,6 +1,6 @@
 .. meta::
   :description: What is ROCm
-  :keywords: ROCm projects, introduction, ROCm, AMD, runtimes, compilers, tools, libraries, API
+  :keywords: ROCm components, ROCm projects, introduction, ROCm, AMD, runtimes, compilers, tools, libraries, API
 
 ***********************************************************
 What is ROCm?
@@ -28,7 +28,7 @@ frameworks, such as PyTorch and TensorFlow.
 ROCm components
 ===============================================
 
-ROCm consists of the following projects. For information on the license associated with each project,
+ROCm consists of the following components. For information on the license associated with each component,
 see :doc:`ROCm licensing <./about/license>`.
 
 Libraries
@@ -38,7 +38,7 @@ Machine Learning & Computer Vision
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :header: "Project", "Description"
+  :header: "Component", "Description"
 
   ":doc:`Composable Kernel <composable_kernel:index>`", "Provides a programming model for writing performance critical kernels for machine learning workloads across multiple architectures"
   ":doc:`MIGraphX <amdmigraphx:index>`", "Graph inference engine that accelerates machine learning model inference"
@@ -51,7 +51,7 @@ Communication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :header: "Project", "Description"
+  :header: "Component", "Description"
 
   ":doc:`RCCL <rccl:index>`", "Standalone library that provides multi-GPU and multi-node collective communication primitives"
 
@@ -59,7 +59,7 @@ Math
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :header: "Project", "Description"
+  :header: "Component", "Description"
 
   "`half <https://github.com/ROCm/half/>`_", "C++ header-only library that provides an IEEE 754 conformant, 16-bit half-precision floating-point type, along with corresponding arithmetic operators, type conversions, and common mathematical functions"
   ":doc:`hipBLAS <hipblas:index>`", "BLAS-marshaling library that supports `rocBLAS <https://rocm.docs.amd.com/projects/rocBLAS/en/latest/>`_ and cuBLAS backends"
@@ -79,11 +79,11 @@ Math
   ":doc:`rocWMMA <rocwmma:index>`", "C++ library for accelerating mixed-precision matrix multiply-accumulate (MMA) operations"
   "`Tensile <https://github.com/ROCm/Tensile>`_ ", "Creates benchmark-driven backend libraries for GEMMs, GEMM-like problems, and general N-dimensional tensor contractions"
 
-C++ primitives
+Primitives
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-  :header: "Project", "Description"
+  :header: "Component", "Description"
 
   ":doc:`hipCUB <hipcub:index>`", "Thin header-only wrapper library on top of `rocPRIM <https://rocm.docs.amd.com/projects/rocPRIM/en/latest/>`_ or CUB that allows project porting using the CUB library to the HIP layer"
   ":doc:`hipTensor <hiptensor:index>`", "AMD's C++ library for accelerating tensor primitives based on the composable kernel library"
@@ -94,7 +94,7 @@ Tools
 -----------------------------------------------
 
 .. csv-table::
-  :header: "Project", "Description"
+  :header: "Component", "Description"
 
   ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
   ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
@@ -117,7 +117,7 @@ Compilers
 -----------------------------------------------
 
 .. csv-table::
-  :header: "Project", "Description"
+  :header: "Component", "Description"
 
   "`AOMP <https://github.com/ROCm/aomp/>`_", "Scripted build of `LLVM <https://github.com/ROCm/llvm-project>`_ and supporting software"
   "`FLANG <https://github.com/ROCm/flang/>`_", "An out-of-tree Fortran compiler targeting LLVM"
@@ -128,7 +128,7 @@ Runtimes
 -----------------------------------------------
 
 .. csv-table::
-  :header: "Project", "Description"
+  :header: "Component", "Description"
 
   "`AMD Compute Language Runtimes (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's compute languages runtimes: :doc:`HIP <hip:index>` and OpenCL"
   ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
