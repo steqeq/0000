@@ -1,17 +1,18 @@
 .. meta::
   :description: Supported data types in ROCm
-  :keywords: int8, float8, float8 (E4M3), float8 (E5M2), bfloat8, float16, half, bfloat16, tensorfloat32, float, float32, float64, double, AMD, ROCm, AMDGPU
-
-.. _rocm-supported-data-types:
+  :keywords: int8, float8, float8 (E4M3), float8 (E5M2), bfloat8, float16, half, bfloat16, tensorfloat32, float,
+   float32, float64, double, AMD, ROCm, AMDGPU
 
 *************************************************************
-ROCm data type specifications
+Precision support
 *************************************************************
+
+Use the following sections to identify data types and HIP types ROCm™ supports.
 
 Integral types
 ==========================================
 
-The signed and unsigned integral types that are supported by ROCm™ are listed in the following table,
+The signed and unsigned integral types that are supported by ROCm are listed in the following table,
 together with their corresponding HIP type and a short description.
 
 
@@ -403,37 +404,37 @@ description, refer to the corresponding library data type support page.
         - int32
         - int64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ✅/✅
         - ❌/❌
         - ❌/❌
         - ❌/❌
       *
-        - rocRAND (:doc:`details<rocrand:data-type-support>`)
+        - rocRAND (`details <https://rocm.docs.amd.com/projects/rocRAND/en/develop/data-type-support.html>`_)
         - -/✅
         - -/✅
         - -/✅
         - -/✅
       *
-        - hipRAND (:doc:`details<hiprand:data-type-support>`)
+        - hipRAND (`details <https://rocm.docs.amd.com/projects/hipRAND/en/develop/data-type-support.html>`_)
         - -/✅
         - -/✅
         - -/✅
         - -/✅
       *
-        - rocPRIM (:doc:`details<rocprim:data-type-support>`)
+        - rocPRIM (`details <https://rocmdocs.amd.com/projects/rocPRIM/en/develop/reference/data-type-support.html>`_)
         - ✅/✅
         - ✅/✅
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (:doc:`details<hipcub:data-type-support>`)
+        - hipCUB (`details <https://rocm.docs.amd.com/projects/hipCUB/en/develop/data-type-support.html>`_)
         - ✅/✅
         - ✅/✅
         - ✅/✅
         - ✅/✅
       *
-        - rocThrust (:doc:`details<rocthrust:data-type-support>`)
+        - rocThrust (`details <https://rocm.docs.amd.com/projects/rocThrust/en/develop/data-type-support.html>`_)
         - ✅/✅
         - ✅/✅
         - ✅/✅
@@ -455,7 +456,7 @@ description, refer to the corresponding library data type support page.
         - float32
         - float64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -464,7 +465,7 @@ description, refer to the corresponding library data type support page.
         - ❌/❌
         - ❌/❌
       *
-        - rocRAND (:doc:`details<rocrand:data-type-support>`)
+        - rocRAND (`details <https://rocm.docs.amd.com/projects/rocRAND/en/develop/data-type-support.html>`_)
         - -/❌
         - -/❌
         - -/✅
@@ -473,7 +474,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - hipRAND (:doc:`details<hiprand:data-type-support>`)
+        - hipRAND (`details <https://rocm.docs.amd.com/projects/hipRAND/en/develop/data-type-support.html>`_)
         - -/❌
         - -/❌
         - -/✅
@@ -482,7 +483,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - rocPRIM (:doc:`details<rocprim:data-type-support>`)
+        - rocPRIM (`details <https://rocmdocs.amd.com/projects/rocPRIM/en/develop/reference/data-type-support.html>`_)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -491,7 +492,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (:doc:`details<hipcub:data-type-support>`)
+        - hipCUB (`details <https://rocm.docs.amd.com/projects/hipCUB/en/develop/data-type-support.html>`_)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -500,7 +501,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - rocThrust (:doc:`details<rocthrust:data-type-support>`)
+        - rocThrust (`details <https://rocm.docs.amd.com/projects/rocThrust/en/develop/data-type-support.html>`_)
         - ❌/❌
         - ❌/❌
         - ⚠️/⚠️
@@ -531,7 +532,7 @@ description, refer to the corresponding library data type support page.
         - int32
         - int64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ❌
         - ❌
         - ✅
@@ -554,7 +555,7 @@ description, refer to the corresponding library data type support page.
         - float32
         - float64
       *
-        - hipSPARSELt (:doc:`details<hipsparselt:reference/data-type-support>`)
+        - hipSPARSELt (:doc:`details <hipsparselt:reference/data-type-support>`)
         - ❌
         - ❌
         - ❌
