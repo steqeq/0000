@@ -7,12 +7,12 @@
 Precision support
 *************************************************************
 
-Use the following sections to identify which data types and HIP types are supported with ROCm.
+Use the following sections to identify data types and HIP types ROCm™ supports.
 
 Integral types
 ==========================================
 
-The signed and unsigned integral types that are supported by ROCm™ are listed in the following table,
+The signed and unsigned integral types that are supported by ROCm are listed in the following table,
 together with their corresponding HIP type and a short description.
 
 
