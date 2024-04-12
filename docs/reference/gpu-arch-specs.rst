@@ -1,6 +1,6 @@
 .. meta::
-   :description: AMD Instinct™ GPU architecture information
-   :keywords: Instinct, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
+   :description: AMD Instinct™ accelerator, AMD Radeon Pro™, and AMD Radeon™ GPU architecture information
+   :keywords: Instinct, Radeon, accelerator, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
 
 Accelerator & GPU hardware specifications
 ######################################################
