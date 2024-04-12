@@ -40,7 +40,7 @@ The following table provides an overview over the hardware specifications for th
           - 64
           - 256
           - 32
-          - 3
+          - 32
           - 16 per 2 CUs
           - 64 per 2 CUs
           - 512
