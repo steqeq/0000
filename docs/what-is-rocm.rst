@@ -25,7 +25,7 @@ frameworks, such as PyTorch and TensorFlow.
   If you're using Radeon GPUs, refer to the
   :doc:`Radeon-specific ROCm documentation <radeon:index>`.
 
-ROCm project list
+ROCm components
 ===============================================
 
 ROCm consists of the following projects. For information on the license associated with each project,
