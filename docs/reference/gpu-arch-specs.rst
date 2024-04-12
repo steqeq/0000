@@ -2,10 +2,10 @@
    :description: AMD Instinct™ GPU architecture information
    :keywords: Instinct, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
 
-Accelerator & GPU architecture hardware specifications
+Accelerator & GPU hardware specifications
 ######################################################
 
-The following table provides an overview over the hardware specifications for the AMD Instinct accelerators, AMD Radeon and AMD Radeon Pro GPUs.
+The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, AMD Radeon™ and AMD Radeon™ Pro GPUs.
 
 .. tab-set::
 
@@ -660,8 +660,6 @@ The following table provides an overview over the hardware specifications for th
 Glossary
 ========
 
-For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :ref:`HIP programming guide <HIP:understand/programming_model>`.
-
 LLVM target name
   Argument to pass to clang in `--offload-arch` to compile code for the given architecture.
 VRAM
@@ -689,3 +687,5 @@ SGPR File
   Size of the Scalar General Purpose Register (SGPR) file. Holds data used in scalar instructions.
 GCD
   Graphics Compute Die.
+
+For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :ref:`HIP programming guide <HIP:user_guide/hip_rtc>`.

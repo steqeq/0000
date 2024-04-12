@@ -29,7 +29,7 @@ subtrees:
     title: Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
     title: Windows
-  - file: about/compatibility/data-type-support.rst
+  - file: about/compatibility/precision-support.rst
     title: Precision support
   - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/3rd-party-support-matrix.html
     title: Third-party
@@ -40,14 +40,10 @@ subtrees:
       title: API libraries
     - file: reference/rocm-tools.md
       title: Tools
-    - file: reference/gpu-arch/gpu-arch-spec-overview.rst
-      title: Accelerator & GPU architectures
-      # subtrees:
-      # - entries:
-      #   - file: reference/gpu-arch/gpu-arch-spec-overview.rst
-      #     title: Hardware specifications overview
+    - file: reference/gpu-arch-specs.rst
+      title: Accelerator & GPU hardware specifications
 
-- caption: How-to
+- caption: How to
   entries:
   - file: how-to/deep-learning-rocm.md
     title: Deep learning
@@ -71,7 +67,7 @@ subtrees:
 - caption: Conceptual
   entries:
   - file: conceptual/gpu-arch.md
-    title: GPU architectures
+    title: GPU architecture overview
     subtrees:
     - entries:
       - file: conceptual/gpu-arch/mi300.md
