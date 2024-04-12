@@ -31,7 +31,7 @@ Our documentation is organized into the following categories:
 :padding: 2
 
 * Linux
-  * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
+  * {doc}`Quick start guide<rocm-install-on-linux:tutorial/quick-start>`
   * {doc}`Linux install guide<rocm-install-on-linux:how-to/native-install/index>`
   * {doc}`Package manager integration<rocm-install-on-linux:how-to/native-install/package-manager-integration>`
 * Windows
@@ -56,10 +56,11 @@ Our documentation is organized into the following categories:
 * {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
-* [Precision support](./about/compatibility/data-type-support.rst)
+* [Precision support](./about/compatibility/precision-support.rst)
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
+<!-- markdownlint-disable MD051 -->
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ./data/banner-reference.jpg
@@ -67,20 +68,19 @@ Our documentation is organized into the following categories:
 :padding: 2
 
 * [API libraries](./reference/api-libraries.md)
-  * Artificial intelligence
-  * C++ primitives
-  * Communication
-  * Fast Fourier transforms
-  * HIP
-  * Linear algebra
-  * Random number generators
+  * [Artificial intelligence](#artificial-intelligence-apis)
+  * [C++ primitives](#cpp-primitives)
+  * [Communication](#communication-libraries)
+  * [Math](#math-apis)
+  * [Random number generators](#random-number-apis)
+  * [HIP runtime](#hip-runtime)
 * [Tools](./reference/rocm-tools.md)
-  * Development
-  * Performance analysis
-  * System
-* [GPU architectures](./reference/gpu-arch.rst)
-  * [GPU architecture hardware specification overview](./reference/gpu-arch/gpu-arch-spec-overview.rst)
+  * [Development](#development-tools)
+  * [Performance analysis](#performance-analysis)
+  * [System](#system-tools)
+* [Hardware specifications](./reference/gpu-arch-specs.rst)
 :::
+<!-- markdownlint-enable MD051 -->
 
 :::{grid-item-card}
 :class-card: sd-text-black
