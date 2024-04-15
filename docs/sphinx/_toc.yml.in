@@ -41,7 +41,7 @@ subtrees:
     - file: reference/rocm-tools.md
       title: Tools
     - file: reference/gpu-arch-specs.rst
-      title: Accelerator & GPU hardware specifications
+      title: Accelerator & GPU specifications
 
 - caption: How to
   entries:
