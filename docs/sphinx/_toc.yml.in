@@ -40,8 +40,8 @@ subtrees:
       title: API libraries
     - file: reference/rocm-tools.md
       title: Tools
-    - file: reference/accelerator-gpu-hardware-specs.rst
-      title: Hardware specifications
+    - file: reference/gpu-arch-specs.rst
+      title: Accelerator & GPU specifications
 
 - caption: How to
   entries:

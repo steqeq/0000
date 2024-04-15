@@ -78,7 +78,7 @@ Our documentation is organized into the following categories:
   * [Development](#development-tools)
   * [Performance analysis](#performance-analysis)
   * [System](#system-tools)
-* [Hardware specifications](./reference/accelerator-gpu-hardware-specs.rst)
+* [Hardware specifications](./reference/gpu-arch-specs.rst)
 :::
 <!-- markdownlint-enable MD051 -->
 

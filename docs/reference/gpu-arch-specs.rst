@@ -2,10 +2,10 @@
    :description: AMD Instinct™ accelerator, AMD Radeon Pro™, and AMD Radeon™ GPU architecture information
    :keywords: Instinct, Radeon, accelerator, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
 
-Accelerator and GPU hardware specifications
+Accelerator & GPU hardware specifications
 ######################################################
 
-The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, and AMD Radeon™ Pro and Radeon™ GPUs.
+The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, AMD Radeon™ and AMD Radeon™ Pro GPUs.
 
 .. tab-set::
 
