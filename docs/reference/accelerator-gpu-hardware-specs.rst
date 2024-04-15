@@ -688,4 +688,4 @@ SGPR File
 GCD
   Graphics Compute Die.
 
-For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :ref:`HIP programming guide <HIP:user_guide/hip_rtc>`.
+For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :doc:`HIP programming guide <hip:user_guide/hip_rtc>`.
