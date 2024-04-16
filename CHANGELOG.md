@@ -78,6 +78,7 @@ do **not** recommend trying to install both sets of packages.
 | rccl | [2.18.6](https://github.com/ROCm/rccl/releases/tag/rocm-6.1.0) |
 | rocALUTION | 3.0.3 ⇒ [3.1.1](https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.1.0) |
 | rocBLAS | 4.0.0 ⇒ [4.1.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.1.0) |
+| rocDecode | [0.5.0](https://github.com/ROCm/rocDecode/releases/tag/rocm-6.1.0) |
 | rocFFT | 1.0.25 ⇒ [1.0.26](https://github.com/ROCm/rocFFT/releases/tag/rocm-6.1.0) |
 | rocm-cmake | 0.11.0 ⇒ [0.12.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.1.0) |
 | rocPRIM | 3.0.0 ⇒ [3.1.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-6.1.0) |
@@ -633,6 +634,8 @@ is fixed in the ROCm 6.1 release. You can now step over the last instruction of 
 debugger hangs or crashes.
 
 #### rocDecode
+
+rocDecode 0.5.0 for ROCm 6.1.0
 
 ##### Additions
 * AMDGPU package support
