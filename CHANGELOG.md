@@ -632,6 +632,21 @@ instruction at the end of a HIP kernel entry function, which caused the stepped 
 is fixed in the ROCm 6.1 release. You can now step over the last instruction of any HIP kernel without
 debugger hangs or crashes.
 
+#### rocDecode
+
+##### Additions
+* AMDGPU package support
+
+##### Changes
+* Set up updates
+* README updates
+
+##### Optimizations
+* Package dependencies
+
+##### Fixes
+* Minor bug fixes and updates
+
 #### ROCm SMI
 
 ROCm SMI for ROCm 6.1.0
