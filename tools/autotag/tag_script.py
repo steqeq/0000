@@ -236,9 +236,10 @@ def run_tagging():
 
     # Find all the math libraries and their remotes.
     included_names = [
-        "rocm-cmake",
-        "MIOpen",
         "AMDMIGraphX",
+        "MIOpen",
+        "rocDecode",
+        "rocm-cmake",
         "rocprofiler"
     ]
     included_groups = [
