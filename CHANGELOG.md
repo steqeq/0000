@@ -60,7 +60,6 @@ environments where legacy `DT_RPATH` is the preferred form of linking (instead o
 do **not** recommend trying to install both sets of packages.
 ```
 
-
 ### Library changes in ROCm 6.1.0
 
 | Library | Version |
@@ -319,53 +318,6 @@ rocWMMA 1.4.0 for ROCm 6.1.0
 * Built all test in large code model
 * Removed inefficient branching in layout loop unrolling
 
-#### Tensile
-
-Tensile 4.40.0 for ROCm 6.1.0
-
-##### Additions
-
-* New `DisableKernelPieces` values to invalidate local read, local write, and global read
-* Added Stream-K kernel generation, including two-tile Stream-K algorithm by setting `StreamK=3`
-* New feature to allow testing Stream-K grid multipliers
-* Added debug output to check occupancy for Stream-K
-* Added reject condition for FractionalLoad + DepthU!=power of 2
-* New `TENSILE_DB` debugging value to dump the common kernel parameters
-* Added predicate for APU libs
-* New parameter (`ClusterLocalRead`) to turn on/off wider local read opt for `TileMajorLDS`
-* New parameter (`ExtraLatencyForLR`) to add extra interval between local read and wait
-* New logic to check LDS size with auto LdsPad(=1) and change LdsPad to 0 if LDS overflows
-* Added initialization type and general batched options to the `rocblas-bench` input creator script
-
-##### Optimizations
-
-* Enabled `MFMA` + `LocalSplitU=4` for `MT16x16`
-* Enabled (`DirectToVgpr` + `MI4x4`) and supported skinny MacroTile
-* Optimized postGSU kernel: separate postGSU kernels for different GSU values, loop unroll for GSU
-  loop, wider global load depending on array size, and parallel reduction depending on array size
-* Auto LdsPad calculation for `TileMajorLds` + `MI16x16`
-* Auto LdsPad calculation for `UnrollMajorLds` + `MI16x16` + `VectorWidth`
-
-##### Changes
-
-* Cleared `hipErrorNotFound` error since it is an expected part of the search
-* Modified hipCC search path for Linux
-* Changed PCI ID from 32-bit to 64-bit for ROCm SMI HW monitor
-* Changed `LdsBlockSizePerPad` to `LdsBlockSizePerPadA`, B to specify LBSPP separately
-* Changed the default value of `LdsPadA`, B, `LdsBlockSizePerPadA`, B from 0 to -1
-* Updated test cases according to parameter changes for LdsPad, LBSPP and ClusterLocalRead
-* Replaced `std::regex` with `fnmatch()/PathMatchSpec` as a workaround to `std::regex` stack overflow
-  known bug
-
-##### Fixes
-
-* hipCC compile append flag `parallel-jobs=4`
-* Race condition in Stream-K that appeared with large grids and small sizes
-* Mismatch issue with `LdsPad` + `LdsBlockSizePerPad!=0` and `TailLoop`
-* Mismatch issue with `LdsPad` + `LdsBlockSizePerPad!=0` and `SplitLds`
-* Incorrect reject condition check for `DirectToLds` + `LdsBlockSizePerPad=-1` case
-* Small fix for `LdsPad` optimization (`LdsElement` calculation)  
-
 #### hipBLAS
 
 hipBLAS 2.1.0 for ROCm 6.1.0
@@ -404,7 +356,6 @@ hipTensor 1.2.0 for ROCm 6.1.0
 ##### Fixes
  
 * Fixed bug in contraction calculation with data type F32
-
 
 #### hipBLASLt
 
@@ -882,14 +833,12 @@ Tensile 4.40.0 for ROCm 6.1.0
 ##### Known issue
 
 * In a future release, the ROCm Validation Suite P2P Benchmark and Qualification Tool (PBQT) tests will be optimized to meet the target bandwidth requirements for MI300X.
-  
 
 #### MI200 SR-IOV 
 
 ##### Known issue
 
 * Multimedia applications may encounter compilation errors in the MI200 Single Root Input/Output Virtualization (SR-IOV) environment. This is because MI200 SR-IOV does not currently support multimedia applications. 
-
 
 ### AMD MI300A RAS
 
@@ -900,7 +849,6 @@ Tensile 4.40.0 for ROCm 6.1.0
 * Previously, the AMD CPU Reliability, Availability, and Serviceability (RAS) installation encountered correctable and uncorrectable failures while injecting an error.
 
   This issue is resolved in the ROCm 6.1 release, and users will no longer encounter the GFX correctable error (CE) and uncorrectable error (UE) failures.
-
 
 ## ROCm 6.0.2
 
