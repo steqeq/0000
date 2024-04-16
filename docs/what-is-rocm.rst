@@ -45,6 +45,7 @@ Machine Learning & Computer Vision
   ":doc:`MIOpen <miopen:index>`", "An open source deep-learning library"
   ":doc:`MIVisionX <mivisionx:doxygen/html/index>`", "Set of comprehensive computer vision and machine learning libraries, utilities, and applications"
   ":doc:`rocAL <rocal:doxygen/html/index>`", "An augmentation library designed to decode and process images and videos"
+  ":doc:`rocDecode <rocdecode:index>`", "High-performance SDK for access to video decoding features on AMD GPUs"
   ":doc:`ROCm Performance Primitives (RPP) <rpp:index>`", "Comprehensive high-performance computer vision library for AMD processors with HIP/OpenCL/CPU back-ends"
 
 Communication
@@ -130,6 +131,6 @@ Runtimes
 .. csv-table::
   :header: "Component", "Description"
 
-  "`AMD Compute Language Runtimes (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's compute languages runtimes: :doc:`HIP <hip:index>` and OpenCL"
+  "`AMD Common Language Runtime (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's common language runtimes: :doc:`HIP <hip:index>` and OpenCL"
   ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
   "`ROCR-Runtime <https://github.com/ROCm/ROCR-Runtime/>`_ ", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"
