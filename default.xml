@@ -44,6 +44,7 @@
     <project name="ROCmValidationSuite" />
     <project name="composable_kernel" />
     <project name="hipfort" />
+    <project name="rocDecode" />
     <project name="rpp" />
     <project groups="mathlibs" name="Tensile" />
     <project groups="mathlibs" name="hipBLAS" />
