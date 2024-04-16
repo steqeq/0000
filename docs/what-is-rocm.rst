@@ -131,6 +131,6 @@ Runtimes
 .. csv-table::
   :header: "Component", "Description"
 
-  "`AMD Compute Language Runtimes (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's compute languages runtimes: :doc:`HIP <hip:index>` and OpenCL"
+  "`AMD Common Language Runtime (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's compute language runtimes: :doc:`HIP <hip:index>` and OpenCL"
   ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
   "`ROCR-Runtime <https://github.com/ROCm/ROCR-Runtime/>`_ ", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"
