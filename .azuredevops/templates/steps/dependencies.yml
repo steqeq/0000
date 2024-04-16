@@ -1,0 +1,38 @@
+parameters:
+# space-delimited list of packages to install via apt-get install command
+# TODO convert to string array and split with spaces
+- name: aptPackages
+  type: string
+  default: ''
+- name: pipModules
+  type: string
+  default: ''
+
+steps:
+- task: Bash@3
+  displayName: 'sudo apt-get update'
+  inputs:
+    targetType: inline
+    script: sudo apt-get update
+- task: Bash@3
+  displayName: 'sudo apt-get upgrade'
+  inputs:
+    targetType: inline
+    script: sudo apt-get update
+- task: Bash@3
+  displayName: 'sudo apt-get fix'
+  inputs:
+    targetType: inline
+    script: sudo apt --yes --fix-broken install
+- ${{ if parameters.aptPackages }}:
+  - task: Bash@3
+    displayName: 'sudo apt-get install ...'
+    inputs:
+      targetType: inline
+      script: sudo apt-get --yes install ${{ parameters.aptPackages }}
+- ${{ if parameters.pipModules }}:
+  - task: Bash@3
+    displayName: 'pip install  ...'
+    inputs:
+      targetType: inline
+      script: pip install ${{ parameters.pipModules }}

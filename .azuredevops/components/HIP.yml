@@ -1,0 +1,73 @@
+parameters:
+- name: aptPackages
+  type: string
+  default: 'libnuma-dev mesa-common-dev'
+- name: pipModules
+  type: string
+  default: 'CppHeaderParser'
+
+# hip and clr are tightly-coupled
+# run this same template for both repos
+# any changes for clr should just trigger HIP pipeline
+jobs:
+- job: hip
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool:
+    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: clr_repo
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: hipcc_repo
+# ${{ }} are resolved during compile-time
+# so this next step is skipped completely until
+# we define explicit aptPackages needed to install
+  - ${{ if parameters.aptPackages }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+      parameters:
+        aptPackages: ${{ parameters.aptPackages }}
+        pipModules: ${{ parameters.pipModules }}
+# download tasks has built in 4x retry download count
+# these will download last passing build for that branch
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    parameters:
+      componentName: llvm-project
+      branchName: amd-staging
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    parameters:
+      componentName: ROCT-Thunk-Interface
+      branchName: master
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    parameters:
+      componentName: ROCR-Runtime
+      branchName: master
+  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
+    displayName: 'Artifact listing'
+# compile hipcc
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: hipcc
+      cmakeBuildDir: 'HIPCC/build'
+# compile clr
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: clr
+      cmakeBuildDir: 'clr/build'
+      installDir: '$(Build.BinariesDirectory)/hip'
+      extraBuildFlags: >-
+        -DHIP_COMMON_DIR="$(Build.SourcesDirectory)/HIP"
+        -DHIP_PLATFORM=amd
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DROCM_PATH="$(Agent.BuildDirectory)/rocm"
+        -DHIPCC_BIN_DIR="$(Build.SourcesDirectory)/HIPCC/build"
+        -DHIP_CATCH_TEST=1
+        -DCLR_BUILD_HIP=ON
+        -DCLR_BUILD_OCL=OFF
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

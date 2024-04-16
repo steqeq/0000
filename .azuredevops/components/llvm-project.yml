@@ -1,0 +1,64 @@
+parameters:
+- name: aptPackages
+  type: string
+  default: 'libnuma-dev ninja-build ccache'
+
+jobs:
+- job: llvm_project
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.HIGH_END_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/ccache.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+# ${{ }} are resolved during compile-time
+# so this next step is skipped completely until
+# we define explicit aptPackages needed to install
+  - ${{ if parameters.aptPackages }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+      parameters:
+        aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: rocm-llvm
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH="$(Build.BinariesDirectory)/llvm;$(Build.BinariesDirectory)"
+        -DCMAKE_BUILD_TYPE=Release
+        -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra"
+        -DLLVM_ENABLE_RUNTIMES="compiler-rt;libunwind"
+        -DCLANG_ENABLE_AMDCLANG="ON"
+        -DLLVM_TARGETS_TO_BUILD="AMDGPU;X86"
+        -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+        -GNinja
+      cmakeBuildDir: 'llvm/build'
+      installDir: '$(Build.BinariesDirectory)/llvm'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: device-libs
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/llvm/build"
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+        -GNinja
+      cmakeBuildDir: 'amd/device-libs/build'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: comgr
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/llvm/build;$(Build.SourcesDirectory)/amd/device-libs/build"
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+        -GNinja
+      cmakeBuildDir: 'amd/comgr/build'
+#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#    parameters:
+#      componentName: hipcc
+#      extraBuildFlags: >-
+#        -DCMAKE_BUILD_TYPE=Release
+#        -GNinja
+#      cmakeBuildDir: 'amd/hipcc/build'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

@@ -1,0 +1,29 @@
+parameters:
+# assumption componentName and pipeline name the same
+- name: componentName
+  type: string
+  default: ''
+- name: branchName
+  type: string
+  default: ''
+
+steps:
+- task: DownloadBuildArtifacts@1
+  displayName: Download ${{parameters.componentName }}
+  inputs:
+    buildType: 'specific'
+    project: ROCm-CI
+    pipeline: ${{parameters.componentName }}
+    specificBuildWithTriggering: true
+    branchName: ${{parameters.branchName }}
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.xz'
+    destinationFolder: '$(Agent.BuildDirectory)/rocm'
+    cleanDestinationFolder: false
+    overwriteExistingFiles: true
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(System.ArtifactsDirectory)'
+    Contents: '/**/*.tar.xz'
+    RemoveDotFiles: true

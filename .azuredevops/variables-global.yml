@@ -1,0 +1,13 @@
+# specify non-secret global variables reused across pipelines here
+
+variables:
+- name: CI_ROOT_PATH
+  value: /.azuredevops
+- name: CI_COMPONENT_PATH
+  value: ${{ variables.CI_ROOT_PATH }}/components
+- name: CI_TEMPLATE_PATH
+  value: ${{ variables.CI_ROOT_PATH }}/templates
+- name: LOW_END_BUILD_POOL
+  value: ubuntu-22.04
+- name: HIGH_END_BUILD_POOL
+  value: rocm-ci_build_pool
