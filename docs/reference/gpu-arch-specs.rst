@@ -5,7 +5,7 @@
 Accelerator & GPU hardware specifications
 ######################################################
 
-The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, AMD Radeon™ and AMD Radeon™ Pro GPUs.
+The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, and AMD Radeon™ PRO and Radeon™ GPUs.
 
 .. tab-set::
 
@@ -211,7 +211,7 @@ The following tables provide an overview of the hardware specifications for AMD 
           - 256
           - 12.5
 
-  .. tab-item:: AMD Radeon Pro GPUs
+  .. tab-item:: AMD Radeon PRO GPUs
 
     .. list-table::
         :header-rows: 1
@@ -657,35 +657,3 @@ The following tables provide an overview of the hardware specifications for AMD 
           - 256
           - 12.5
 
-Glossary
-========
-
-LLVM target name
-  Argument to pass to clang in `--offload-arch` to compile code for the given architecture.
-VRAM
-  Amount of memory available on the GPU.
-Compute Units
-  Number of compute units on the GPU.
-Wavefront Size
-  Amount of work-items that execute in parallel on a single compute unit. This is equivalent to the warp size in HIP.
-LDS
-  The Local Data Share (LDS) is a low-latency, high-bandwidth scratch pad memory. It is local to the compute units, shared by all work-items in a work group. In HIP this is the shared memory, which is shared by all threads in a block.
-L3 Cache
-  Size of the level 3 cache. Shared by all compute units on the same GPU. Caches vector and scalar data and instructions.
-L2 Cache
-  Size of the level 3 cache. Shared by all compute units on the same GCD. Caches vector and scalar data and instructions.
-L1 Vector Cache
-  Size of the level 1 vector data cache. Local to a compute unit. Caches vector data.
-L1 Scalar Cache
-  Size of the level 1 scalar data cache. Usually shared by several compute units. Caches scalar data.
-L1 Instruction Cache
-  Size of the level 1 instruction cache. Usually shared by several compute units.
-VGPR File
-  Size of the Vector General Purpose Register (VGPR) file. Holds data used in vector instructions.
-  GPUs with matrix cores also have AccVGPRs, which are Accumulation General Purpose Vector Registers, specifically used in matrix instructions.
-SGPR File
-  Size of the Scalar General Purpose Register (SGPR) file. Holds data used in scalar instructions.
-GCD
-  Graphics Compute Die.
-
-For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :doc:`HIP programming guide <hip:user_guide/hip_rtc>`.
