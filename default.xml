@@ -29,7 +29,6 @@
     <project name="hipother" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
     <project name="ROCm-CompilerSupport" />
-    <project name="ROCm-Device-Libs" />
     <project name="half" revision="37742ce15b76b44e4b271c1e66d13d2fa7bd003e" />
     <project name="llvm-project" />
 <!-- gdb projects -->
