@@ -183,7 +183,7 @@ AMD rocclr environment variables at release build:
       - GPU_DEVICE_ORDINAL
       - cstring
       - 
-      - Select the device ordinal , comma seperated list of available devices
+      - Select the device ordinal , comma separated list of available devices
     *
       - REMOTE_ALLOC
       - bool
@@ -313,7 +313,7 @@ AMD rocclr environment variables at release build:
       - OPENCL_VERSION
       - uint
       - 200
-      - Force GPU opencl verison
+      - Force GPU opencl version
     *
       - HSA_LOCAL_MEMORY_ENABLE
       - bool
