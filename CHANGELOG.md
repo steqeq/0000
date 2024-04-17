@@ -606,6 +606,8 @@ AddressSanitizer (ASan):
 * For ASan instrumented global, emit two symbols: one with actual size and the other with
   instrumented size.
 
+  [On GitHub](https://github.com/ROCm/ROCm/issues/2551)
+
 ##### Known issues
 
 * Due to an issue within the `amd-llvm` compiler shipping with ROCm 6.1, HIPSTDPAR's interposition mode, which is enabled by `--hipstdpar-interpose-alloc` is currently broken.
