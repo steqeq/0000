@@ -23,6 +23,7 @@
 * {doc}`MIGraphX <amdmigraphx:index>`
 * {doc}`MIOpen <miopen:index>`
 * {doc}`MIVisionX <mivisionx:doxygen/html/index>`
+* {doc}`rocAL <rocal:index>`
 * {doc}`rocDecode <rocdecode:index>`
 * [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/latest/)
 :::
