@@ -38,6 +38,7 @@ Our documentation is organized into the following categories:
   * {doc}`Windows install guide<rocm-install-on-windows:how-to/install>`
   * {doc}`Application deployment guidelines<rocm-install-on-windows:conceptual/deployment-guidelines>`
 * {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
+* {doc}`JAX for ROCm<rocm-install-on-linux:how-to/3rd-party/jax-install>`
 * {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
 * {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
 * {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
