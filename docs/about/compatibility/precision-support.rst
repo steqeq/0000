@@ -422,7 +422,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - rocPRIM (:doc:`details <rocprim:data-type-support>`)
+        - rocPRIM (:doc:`details <rocprim:reference/data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
@@ -483,7 +483,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - rocPRIM (:doc:`details <rocprim:data-type-support>`)
+        - rocPRIM (:doc:`details <rocprim:reference/data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
