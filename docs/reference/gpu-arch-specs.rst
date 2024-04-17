@@ -657,3 +657,5 @@ The following tables provide an overview of the hardware specifications for AMD 
           - 256
           - 12.5
 
+For more information on the terms used here, see the :ref:`specific documents and guides <gpu-arch-documentation>`, the :doc:`conceptual overview of the HIP programming model<hip:understand/programming_model>`, or the :doc:`HIP reference guide<hip:reference/programming_model>`.
+
