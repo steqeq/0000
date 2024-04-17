@@ -2,7 +2,7 @@
 <manifest>
     <remote name="rocm-org" fetch="https://github.com/ROCm/" />
     <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-6.0.2"
+    <default revision="refs/tags/rocm-6.1.0"
      remote="rocm-org"
      sync-c="true"
      sync-j="4" />
