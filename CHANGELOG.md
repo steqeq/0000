@@ -871,6 +871,7 @@ Tensile 4.40.0 for ROCm 6.1.0
 * Previously, the AMD CPU Reliability, Availability, and Serviceability (RAS) installation encountered correctable and uncorrectable failures while injecting an error.
 
   This issue is resolved in the ROCm 6.1 release, and users will no longer encounter the GFX correctable error (CE) and uncorrectable error (UE) failures.
+  
 
 ## ROCm 6.0.2
 
@@ -1654,7 +1655,7 @@ rocPRIM 3.0.0 for ROCm 6.0.0
 ##### Fixes
 
 * Fixed `rocprim::MatchAny` for devices with 64-bit warp size
-  * Note that `rocprim::MatchAny` is deprecated; use `rocprim::match_any` instead
+* Note that `rocprim::MatchAny` is deprecated; use `rocprim::match_any` instead
 
 #### Roc Profiler 2.0.0
 
