@@ -20,6 +20,7 @@
     <project name="rocm-core" />
     <project name="rocminfo" />
     <project name="rocprofiler" />
+    <project name="rocprofiler-register" />
     <project name="roctracer" />
 <!--HIP Projects-->
     <project name="HIP" />
@@ -28,7 +29,7 @@
     <project name="clr" />
     <project name="hipother" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="half" revision="37742ce15b76b44e4b271c1e66d13d2fa7bd003e" />
+    <project name="half" />
     <project name="llvm-project" />
 <!-- gdb projects -->
     <project name="ROCdbgapi" />
