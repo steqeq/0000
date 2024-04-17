@@ -24,7 +24,6 @@
 <!--HIP Projects-->
     <project name="HIP" />
     <project name="HIP-Examples" />
-    <project name="HIPCC" />
     <project name="HIPIFY" />
     <project name="clr" />
     <project name="hipother" />
