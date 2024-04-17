@@ -23,9 +23,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: clr_repo
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: hipcc_repo
 # ${{ }} are resolved during compile-time
 # so this next step is skipped completely until
 # we define explicit aptPackages needed to install
@@ -50,11 +47,6 @@ jobs:
       branchName: master
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
     displayName: 'Artifact listing'
-# compile hipcc
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      componentName: hipcc
-      cmakeBuildDir: 'HIPCC/build'
 # compile clr
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -66,8 +58,7 @@ jobs:
         -DHIP_PLATFORM=amd
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -DROCM_PATH="$(Agent.BuildDirectory)/rocm"
-        -DHIPCC_BIN_DIR="$(Build.SourcesDirectory)/HIPCC/build"
-        -DHIP_CATCH_TEST=1
+        -DHIPCC_BIN_DIR="$(Agent.BuildDirectory)/rocm/bin"
         -DCLR_BUILD_HIP=ON
-        -DCLR_BUILD_OCL=OFF
+        -DCLR_BUILD_OCL=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

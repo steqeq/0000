@@ -54,11 +54,12 @@ jobs:
         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
         -GNinja
       cmakeBuildDir: 'amd/comgr/build'
-#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-#    parameters:
-#      componentName: hipcc
-#      extraBuildFlags: >-
-#        -DCMAKE_BUILD_TYPE=Release
-#        -GNinja
-#      cmakeBuildDir: 'amd/hipcc/build'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: hipcc
+      extraBuildFlags: >-
+        -DCMAKE_BUILD_TYPE=Release
+        -DHIPCC_BACKWARD_COMPATIBILITY=OFF
+        -GNinja
+      cmakeBuildDir: 'amd/hipcc/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
