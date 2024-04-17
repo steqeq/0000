@@ -169,3 +169,6 @@
 [submodule "libs/ROCm-OpenCL-Runtime/api/opencl/khronos/icd"]
 	path = libs/ROCm-OpenCL-Runtime/api/opencl/khronos/icd
 	url = git@github.com:KhronosGroup/OpenCL-ICD-Loader.git
+[submodule "libs/rocDecode"]
+	path = libs/rocDecode
+	url = ../rocDecode
