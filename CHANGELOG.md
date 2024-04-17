@@ -852,11 +852,15 @@ Tensile 4.40.0 for ROCm 6.1.0
 
 * In a future release, the ROCm Validation Suite P2P Benchmark and Qualification Tool (PBQT) tests will be optimized to meet the target bandwidth requirements for MI300X.
 
+  [On GitHub](https://github.com/ROCm/ROCm/issues/3027)
+
 #### MI200 SR-IOV 
 
 ##### Known issue
 
-* Multimedia applications may encounter compilation errors in the MI200 Single Root Input/Output Virtualization (SR-IOV) environment. This is because MI200 SR-IOV does not currently support multimedia applications. 
+* Multimedia applications may encounter compilation errors in the MI200 Single Root Input/Output Virtualization (SR-IOV) environment. This is because MI200 SR-IOV does not currently support multimedia applications.
+
+  [On GitHub](https://github.com/ROCm/ROCm/issues/3028)
 
 ### AMD MI300A RAS
 
