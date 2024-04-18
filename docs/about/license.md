@@ -92,7 +92,7 @@ repositories to distinguish from open sourced packages.
 The following additional terms and conditions apply to your use of ROCm technical documentation.
 ```
 
-©2023 Advanced Micro Devices, Inc. All rights reserved.
+©2024 Advanced Micro Devices, Inc. All rights reserved.
 
 The information presented in this document is for informational purposes only
 and may contain technical inaccuracies, omissions, and typographical errors. The
