@@ -235,6 +235,7 @@ def run_tagging():
     # Find all the math libraries and their remotes.
     included_names = [
         "AMDMIGraphX",
+        "HIPIFY",
         "MIOpen",
         "MIVisionX",
         "ROCmValidationSuite",
