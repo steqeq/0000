@@ -22,6 +22,7 @@
     <project name="rdc" />
 <!--HIP Projects-->
     <project name="HIP" />
+    <project name="hip-tests" />
     <project name="HIP-Examples" />
     <project name="clr" />
     <project name="hipother" />
