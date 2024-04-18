@@ -11,6 +11,8 @@
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
+(development-tools)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-development.jpg
@@ -23,6 +25,8 @@
 * {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
 :::
 
+(performance-tools)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-performance.jpg
@@ -33,6 +37,8 @@
 * {doc}`ROCProfiler <rocprofiler:profiler_home_page>`
 * {doc}`ROCTracer <roctracer:index>`
 :::
+
+(system-tools)=
 
 :::{grid-item-card}
 :class-card: sd-text-black

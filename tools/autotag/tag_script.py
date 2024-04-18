@@ -240,7 +240,9 @@ def run_tagging():
         "ROCmValidationSuite",
         "composable_kernel",
         "hipfort",
+        "rocDecode",
         "rocm-cmake",
+        "rocprofiler",
         "rpp",
     ]
     included_groups = [

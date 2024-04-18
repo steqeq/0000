@@ -11,6 +11,8 @@
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
+(artificial-intelligence-apis)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-ai.jpg
@@ -21,8 +23,12 @@
 * {doc}`MIGraphX <amdmigraphx:index>`
 * {doc}`MIOpen <miopen:index>`
 * {doc}`MIVisionX <mivisionx:doxygen/html/index>`
-* [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/latest/)
+* {doc}`rocAL <rocal:index>`
+* {doc}`rocDecode <rocdecode:index>`
+* {doc}`ROCm Performance Primitives (RPP) <rpp:index>`
 :::
+
+(cpp-primitives)=
 
 :::{grid-item-card}
 :class-card: sd-text-black
@@ -36,6 +42,8 @@
 * {doc}`rocThrust <rocthrust:index>`
 :::
 
+(communication-libraries)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-communication.jpg
@@ -44,6 +52,8 @@
 
 * {doc}`RCCL <rccl:index>`
 :::
+
+(hip-runtime)=
 
 :::{grid-item-card}
 :class-card: sd-text-black
@@ -55,6 +65,8 @@
 * {doc}`HIPIFY <hipify:index>`
 :::
 
+(math-apis)=
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ../data/reference/banner-math.jpg
@@ -65,7 +77,7 @@
 * {doc}`hipBLAS <hipblas:index>` / {doc}`rocBLAS <rocblas:index>`
 * {doc}`hipBLASLt <hipblaslt:index>`
 * {doc}`hipFFT <hipfft:index>` / {doc}`rocFFT <rocfft:index>`
-* [hipfort](https://rocm.docs.amd.com/projects/hipfort/en/latest/)
+* {doc}`hipfort <hipfort:index>`
 * {doc}`hipSOLVER <hipsolver:index>` / {doc}`rocSOLVER <rocsolver:index>`
 * {doc}`hipSPARSE <hipsparse:index>` / {doc}`rocSPARSE <rocsparse:index>`
 * {doc}`hipSPARSELt <hipsparselt:index>`
@@ -73,6 +85,8 @@
 * {doc}`rocWMMA <rocwmma:index>`
 * [Tensile](https://github.com/ROCm/Tensile)
 :::
+
+(random-number-apis)=
 
 :::{grid-item-card}
 :class-card: sd-text-black

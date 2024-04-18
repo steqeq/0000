@@ -2,14 +2,14 @@
    :description: AMD Instinct™ GPU architecture information
    :keywords: Instinct, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
 
-GPU architecture hardware specifications
+AMD hardware specifications
 ########################################
 
-The following table provides an overview over the hardware specifications for the AMD Instinct accelerators, AMD Radeon and AMD Radeon Pro GPUs.
+The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, AMD Radeon™ and AMD Radeon™ Pro GPUs.
 
 .. tab-set::
 
-  .. tab-item:: AMD Instinct GPUs
+  .. tab-item:: AMD Instinct Accelerators
 
     .. list-table::
         :header-rows: 1
@@ -657,4 +657,4 @@ The following table provides an overview over the hardware specifications for th
           - 256 KiB
           - 12.5 KiB
 
-For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :ref:`HIP programming guide <HIP:understand/programming_model>`.
+For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :ref:`HIP programming guide <HIP:user_guide/hip_rtc>`.
