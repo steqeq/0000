@@ -16,6 +16,7 @@ This page contains the release notes for AMD ROCm Software.
 -------------------
 
 ## ROCm 6.1.0
+
 The ROCm™ 6.1 release consists of new features and fixes to improve the stability and
 performance of AMD Instinct™ MI300 GPU applications. Notably, we've added:
 
