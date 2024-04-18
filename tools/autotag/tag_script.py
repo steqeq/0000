@@ -243,7 +243,6 @@ def run_tagging():
         "hipfort",
         "rocDecode",
         "rocm-cmake",
-        "rocprofiler",
         "rpp",
     ]
     included_groups = [
