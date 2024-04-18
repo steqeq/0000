@@ -1,4 +1,4 @@
-* @saadrahim @Rmalavally @amd-aakash @jlgreathouse @samjwu @MathiasMagnus @ROCm/rocm-documentation
+* @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
 # Documentation files
 docs/* @ROCm/rocm-documentation
 *.md @ROCm/rocm-documentation
