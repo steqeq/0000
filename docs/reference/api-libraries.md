@@ -23,8 +23,9 @@
 * {doc}`MIGraphX <amdmigraphx:index>`
 * {doc}`MIOpen <miopen:index>`
 * {doc}`MIVisionX <mivisionx:doxygen/html/index>`
+* {doc}`rocAL <rocal:index>`
 * {doc}`rocDecode <rocdecode:index>`
-* [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/latest/)
+* {doc}`ROCm Performance Primitives (RPP) <rpp:index>`
 :::
 
 (cpp-primitives)=
@@ -76,7 +77,7 @@
 * {doc}`hipBLAS <hipblas:index>` / {doc}`rocBLAS <rocblas:index>`
 * {doc}`hipBLASLt <hipblaslt:index>`
 * {doc}`hipFFT <hipfft:index>` / {doc}`rocFFT <rocfft:index>`
-* [hipfort](https://rocm.docs.amd.com/projects/hipfort/en/latest/)
+* {doc}`hipfort <hipfort:index>`
 * {doc}`hipSOLVER <hipsolver:index>` / {doc}`rocSOLVER <rocsolver:index>`
 * {doc}`hipSPARSE <hipsparse:index>` / {doc}`rocSPARSE <rocsparse:index>`
 * {doc}`hipSPARSELt <hipsparselt:index>`

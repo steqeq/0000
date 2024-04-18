@@ -40,6 +40,7 @@ Our documentation is organized into the following categories:
 * {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
 * {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
 * {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
+* {doc}`JAX for ROCm<rocm-install-on-linux:how-to/3rd-party/jax-install>`
 * {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
 * {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
 :::
