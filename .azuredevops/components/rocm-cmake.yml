@@ -1,3 +1,11 @@
+parameters:
+- name: aptPackages
+  type: string
+  default: 'doxygen doxygen-doc ninja-build python3-sphinx'
+- name: pipModules
+  type: string
+  default: 'cget ninja'
+
 jobs:
 - job: rocm_cmake
   variables:
@@ -10,12 +18,19 @@ jobs:
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-# ${{ }} are resolved during compile-time
-# so this next step is skipped completely until
-# we define explicit aptPackages needed to install
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+# dependencies are only for testing, so done after compilation
   - ${{ if parameters.aptPackages }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
       parameters:
         aptPackages: ${{ parameters.aptPackages }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+        pipModules: ${{ parameters.pipModules }}
+# extra steps for ctest suite
+  - script: |
+      python -m pip install -r $(Build.SourcesDirectory)/docs/requirements.txt
+      python -m pip install -r $(Build.SourcesDirectory)/test/docsphinx/docs/.sphinx/requirements.txt
+      git config --global user.email "you@example.com"
+      git config --global user.name "Your Name"
+    displayName: "ctest prereqs"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
