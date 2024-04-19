@@ -235,10 +235,10 @@ def run_tagging():
     # Find all the math libraries and their remotes.
     included_names = [
         "AMDMIGraphX",
-        "HIPIFY",
+        "HIPIFY", #
         "MIOpen",
         "MIVisionX",
-        "ROCmValidationSuite",
+        "ROCmValidationSuite", #
         "composable_kernel",
         "hipfort",
         "rocDecode",
