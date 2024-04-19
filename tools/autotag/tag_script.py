@@ -84,11 +84,9 @@ class TaggingArgs(argparse.Namespace):
             "MIOpenGEMM",
             "MIOpenKernels",
             "MIOpenTensile",
-            "ROCmValidationSuite",
-            "half",
-            "hipFORT",
-            "rccl-rdma-sharp-plugins",
             "MLSEQA_TestRepo",
+            "half",
+            "rccl-rdma-sharp-plugins",
         ]
         return defaults + (self._exclude if self._exclude is not None else [])
 
@@ -237,10 +235,15 @@ def run_tagging():
     # Find all the math libraries and their remotes.
     included_names = [
         "AMDMIGraphX",
+        "HIPIFY", #
         "MIOpen",
+        "MIVisionX",
+        "ROCmValidationSuite", #
+        "composable_kernel",
+        "hipfort",
         "rocDecode",
         "rocm-cmake",
-        "rocprofiler"
+        "rpp",
     ]
     included_groups = [
         "mathlibs"
