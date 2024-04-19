@@ -21,7 +21,7 @@ The following tables provide an overview of the hardware specifications for AMD 
           - LLVM target name
           - VRAM (GiB)
           - Compute Units
-          - Warp Size
+          - Wavefront Size
           - LDS (KiB)
           - L3 Cache (MiB)
           - L2 Cache (MiB)
@@ -223,7 +223,7 @@ The following tables provide an overview of the hardware specifications for AMD 
           - LLVM target name
           - VRAM (GiB)
           - Compute Units
-          - Warp Size
+          - Wavefront Size
           - LDS (KiB)
           - Infinity Cache (MiB)
           - L2 Cache (MiB)
@@ -374,7 +374,7 @@ The following tables provide an overview of the hardware specifications for AMD 
           - LLVM target name
           - VRAM (GiB)
           - Compute Units
-          - Warp Size
+          - Wavefront Size
           - LDS (KiB)
           - Infinity Cache (MiB)
           - L2 Cache (MiB)
