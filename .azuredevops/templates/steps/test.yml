@@ -11,6 +11,12 @@ parameters:
 - name: testParameters
   type: string
   default: '--output-on-failure --output-junit test_output.xml'
+- name: testOutputFile
+  type: string
+  default: test_output.xml
+- name: testOutputFormat
+  type: string
+  default: 'junit'
 
 steps:
 # run test, continue on failure to publish results
@@ -23,8 +29,8 @@ steps:
     script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
     workingDirectory: ${{ parameters.testDir }}
 - task: PublishTestResults@2
-  displayName: 'Results'
+  displayName: '${{ parameters.componentName }} Publish Results'
   inputs:
-    testResultsFormat: 'junit'
-    testResultsFiles: '**/test_output.xml'
+    testResultsFormat: ${{ parameters.testOutputFormat }}
+    testResultsFiles: '**/${{ parameters.testOutputFile }}'
   condition: succeededOrFailed()

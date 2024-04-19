@@ -1,7 +1,7 @@
 parameters:
 - name: aptPackages
   type: string
-  default: 'libnuma-dev ninja-build ccache'
+  default: 'libnuma-dev libdwarf-dev ninja-build ccache'
 
 jobs:
 - job: llvm_project
@@ -28,7 +28,7 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Build.BinariesDirectory)/llvm;$(Build.BinariesDirectory)"
         -DCMAKE_BUILD_TYPE=Release
-        -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra"
+        -DLLVM_ENABLE_PROJECTS="llvm;clang;lld;clang-tools-extra"
         -DLLVM_ENABLE_RUNTIMES="compiler-rt;libunwind"
         -DCLANG_ENABLE_AMDCLANG="ON"
         -DLLVM_TARGETS_TO_BUILD="AMDGPU;X86"
@@ -36,6 +36,28 @@ jobs:
         -GNinja
       cmakeBuildDir: 'llvm/build'
       installDir: '$(Build.BinariesDirectory)/llvm'
+# use llvm-lit to run unit tests for llvm, clang, and lld
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: check-llvm
+      testDir: 'llvm/build'
+      testExecutable: './bin/llvm-lit'
+      testParameters: '-q --xunit-xml-output=llvm_test_output.xml ./test'
+      testOutputFile: llvm_test_output.xml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: check-clang
+      testDir: 'llvm/build'
+      testExecutable: './bin/llvm-lit'
+      testParameters: '-q --xunit-xml-output=clang_test_output.xml ./tools/clang/test'
+      testOutputFile: clang_test_output.xml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: check-lld
+      testDir: 'llvm/build'
+      testExecutable: './bin/llvm-lit'
+      testParameters: '-q --xunit-xml-output=lld_test_output.xml ./tools/lld/test'
+      testOutputFile: lld_test_output.xml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: device-libs
@@ -43,7 +65,6 @@ jobs:
         -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/llvm/build"
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-        -GNinja
       cmakeBuildDir: 'amd/device-libs/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -52,8 +73,13 @@ jobs:
         -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/llvm/build;$(Build.SourcesDirectory)/amd/device-libs/build"
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-        -GNinja
       cmakeBuildDir: 'amd/comgr/build'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: comgr
+      testParameters: '--output-on-failure --force-new-ctest-process --output-junit comgr_test_output.xml'
+      testDir: 'amd/comgr/build'
+      testOutputFile: comgr_test_output.xml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: hipcc
