@@ -17,12 +17,14 @@ steps:
     specificBuildWithTriggering: true
     branchName: ${{parameters.branchName }}
 - task: ExtractFiles@1
+  displayName: Extract ${{parameters.componentName }}
   inputs:
     archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.xz'
     destinationFolder: '$(Agent.BuildDirectory)/rocm'
     cleanDestinationFolder: false
     overwriteExistingFiles: true
 - task: DeleteFiles@1
+  displayName: Cleanup Compressed ${{parameters.componentName }}
   inputs:
     SourceFolder: '$(System.ArtifactsDirectory)'
     Contents: '/**/*.tar.xz'

@@ -1,7 +1,7 @@
 parameters:
 - name: aptPackages
   type: string
-  default: 'libnuma-dev libdwarf-dev ninja-build ccache'
+  default: 'libnuma-dev ninja-build ccache'
 
 jobs:
 - job: llvm_project

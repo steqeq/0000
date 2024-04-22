@@ -10,7 +10,7 @@ parameters:
 # run this same template for both repos
 # any changes for clr should just trigger HIP pipeline
 jobs:
-- job: hip
+- job: hip_clr_combined
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -19,10 +19,13 @@ jobs:
   workspace:
     clean: all
   steps:
+# checkout triggering repo (either HIP or clr)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+# if this is triggered by HIP repo, matching repo is clr
+# if this is triggered by clr repo, matching repo is HIP
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
-      checkoutRepo: clr_repo
+      checkoutRepo: matching_repo
 # ${{ }} are resolved during compile-time
 # so this next step is skipped completely until
 # we define explicit aptPackages needed to install
@@ -45,6 +48,10 @@ jobs:
     parameters:
       componentName: ROCR-Runtime
       branchName: master
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    parameters:
+      componentName: rocprofiler-register
+      branchName: amd-mainline
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
     displayName: 'Artifact listing'
 # compile clr
@@ -52,7 +59,6 @@ jobs:
     parameters:
       componentName: clr
       cmakeBuildDir: 'clr/build'
-      installDir: '$(Build.BinariesDirectory)/hip'
       extraBuildFlags: >-
         -DHIP_COMMON_DIR="$(Build.SourcesDirectory)/HIP"
         -DHIP_PLATFORM=amd

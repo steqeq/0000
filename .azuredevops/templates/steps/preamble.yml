@@ -6,7 +6,6 @@ steps:
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)/s'
     Contents: '**/*'
-- script: echo "Do security check here"
 - task: Bash@3
   displayName: 'apt installed list'
   inputs:
