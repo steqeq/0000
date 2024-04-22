@@ -13,7 +13,7 @@
 
 ## Updating the changelog
 
-> IMPORTANT: It is key to update the template Markdown files in `tools/autotag/templates/rocm_changes` (eg: `5.6.0.md`) and not the `CHANGELOG.md` itself to ensure that updates are not overwritten by the script
+> IMPORTANT: It is key to update the template Markdown files in `tools/autotag/templates/rocm_changes` (eg: `5.6.0.md`) and not the `CHANGELOG.md` itself to ensure that updates are not overwritten by the autotag script. The template should only have content from changelogs that are not included by the script to avoid duplicating data.
 
 * Add or update the release specific notes in `tools/autotag/templates/rocm_changes`
 * Ensure the all the repositories have their release specific branch with the updated changelogs
