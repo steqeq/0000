@@ -1,15 +1,15 @@
 .. meta::
-   :description: AMD Instinct™ GPU architecture information
-   :keywords: Instinct, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
+   :description: AMD Instinct™ accelerator, AMD Radeon PRO™, and AMD Radeon™ GPU architecture information
+   :keywords: Instinct, Radeon, accelerator, CDNA, GPU, architecture, VRAM, Compute Units, Cache, Registers, LDS, Register File
 
-AMD hardware specifications
-########################################
+Accelerator and GPU hardware specifications
+######################################################
 
-The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, AMD Radeon™ and AMD Radeon™ Pro GPUs.
+The following tables provide an overview of the hardware specifications for AMD Instinct™ accelerators, and AMD Radeon™ PRO and Radeon™ GPUs.
 
 .. tab-set::
 
-  .. tab-item:: AMD Instinct Accelerators
+  .. tab-item:: AMD Instinct accelerators
 
     .. list-table::
         :header-rows: 1
@@ -19,199 +19,199 @@ The following tables provide an overview of the hardware specifications for AMD 
           - Model
           - Architecture
           - LLVM target name
-          - VRAM
+          - VRAM (GiB)
           - Compute Units
-          - Warp Size
-          - LDS
-          - L3 Cache
-          - L2 Cache
-          - L1 Vector Cache
-          - L1 Scalar Cache
-          - L1 Instruction Cache
-          - VGPR File
-          - SGPR File
+          - Wavefront Size
+          - LDS (KiB)
+          - L3 Cache (MiB)
+          - L2 Cache (MiB)
+          - L1 Vector Cache (KiB)
+          - L1 Scalar Cache (KiB)
+          - L1 Instruction Cache (KiB)
+          - VGPR File (KiB)
+          - SGPR File (KiB)
         *
           - MI300X
           - CDNA3
           - gfx941 or gfx942
-          - 192 GiB
+          - 192
           - 304
           - 64
-          - 64 KiB
-          - 256 MiB
-          - 32 MiB
-          - 32 KiB
-          - 16 KiB per 2 CUs
-          - 64 KiB per 2 CUs
-          - 512 KiB
-          - 12.5 KiB
+          - 64
+          - 256
+          - 32
+          - 32
+          - 16 per 2 CUs
+          - 64 per 2 CUs
+          - 512
+          - 12.5
         *
           - MI300A
           - CDNA3
           - gfx940 or gfx942
-          - 128 GiB
+          - 128
           - 228
           - 64
-          - 64 KiB
-          - 256 MiB
-          - 24 MiB
-          - 32 KiB
-          - 16 KiB per 2 CUs
-          - 64 KiB per 2 CUs
-          - 512 KiB
-          - 12.5 KiB
+          - 64
+          - 256
+          - 24
+          - 32
+          - 16 per 2 CUs
+          - 64 per 2 CUs
+          - 512
+          - 12.5
         *
           - MI250X
           - CDNA2
           - gfx90a
-          - 128 GiB
+          - 128
           - 220 (110 per GCD)
           - 64
-          - 64 KiB
+          - 64
           -
-          - 16 MiB (8 MiB per GCD)
-          - 16 KiB
-          - 16 KiB per 2 CUs
-          - 32 KiB per 2 CUs
-          - 512 KiB
-          - 12.5 KiB
+          - 16 (8 per GCD)
+          - 16
+          - 16 per 2 CUs
+          - 32 per 2 CUs
+          - 512
+          - 12.5
         *
           - MI250
           - CDNA2
           - gfx90a
-          - 128 GiB
+          - 128
           - 208
           - 64
-          - 64 KiB
+          - 64
           -
-          - 16 MiB (8 MiB per GCD)
-          - 16 KiB
-          - 16 KiB per 2 CUs
-          - 32 KiB per 2 CUs
-          - 512 KiB
-          - 12.5 KiB
+          - 16 (8 per GCD)
+          - 16
+          - 16 per 2 CUs
+          - 32 per 2 CUs
+          - 512
+          - 12.5
         *
            - MI210
            - CDNA2
            - gfx90a
-           - 64 GiB
+           - 64
            - 104
            - 64
-           - 64 KiB
+           - 64
            -
-           - 8 MiB
-           - 16 KiB
-           - 16 KiB per 2 CUs
-           - 32 KiB per 2 CUs
-           - 512 KiB
-           - 12.5 KiB
+           - 8
+           - 16
+           - 16 per 2 CUs
+           - 32 per 2 CUs
+           - 512
+           - 12.5
         *
           - MI100
           - CDNA
           - gfx908
-          - 32 GiB
+          - 32
           - 120
           - 64
-          - 64 KiB
+          - 64
           -
-          - 8 MiB
-          - 16 KiB
-          - 16 KiB per 3 CUs
-          - 32 KiB per 3 CUs
-          - 256 KiB VGPR and 256 KiB AccVGPR
-          - 12.5 KiB
+          - 8
+          - 16
+          - 16 per 3 CUs
+          - 32 per 3 CUs
+          - 256 VGPR and 256 AccVGPR
+          - 12.5
         *
           - MI60
           - GCN5.1
           - gfx906
-          - 32 GiB
+          - 32
           - 64
           - 64
-          - 64 KiB
+          - 64
           -
-          - 4 MiB
-          - 16 KiB
-          - 16 KiB per 3 CUs
-          - 32 KiB per 3 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 4
+          - 16
+          - 16 per 3 CUs
+          - 32 per 3 CUs
+          - 256
+          - 12.5
         *
           - MI50 (32GB)
           - GCN5.1
           - gfx906
-          - 32 GiB
+          - 32
           - 60
           - 64
-          - 64 KiB
+          - 64
           -
-          - 4 MiB
-          - 16 KiB
-          - 16 KiB per 3 CUs
-          - 32 KiB per 3 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 4
+          - 16
+          - 16 per 3 CUs
+          - 32 per 3 CUs
+          - 256
+          - 12.5
         *
           - MI50 (16GB)
           - GCN5.1
           - gfx906
-          - 16 GiB
+          - 16
           - 60
           - 64
-          - 64 KiB
+          - 64
           -
-          - 4 MiB
-          - 16 KiB
-          - 16 KiB per 3 CUs
-          - 32 KiB per 3 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 4
+          - 16
+          - 16 per 3 CUs
+          - 32 per 3 CUs
+          - 256
+          - 12.5
         *
           - MI25
           - GCN5.0
           - gfx900
-          - 16 GiB
+          - 16 
           - 64
           - 64
-          - 64 KiB
+          - 64 
           -
-          - 4 MiB
-          - 16 KiB
-          - 16 KiB per 3 CUs
-          - 32 KiB per 3 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 4 
+          - 16 
+          - 16 per 3 CUs
+          - 32 per 3 CUs
+          - 256
+          - 12.5
         *
           - MI8
           - GCN3.0
           - gfx803
-          - 4 GiB
+          - 4
           - 64
           - 64
-          - 64 KiB
+          - 64
           -
-          - 2 MiB
-          - 16 KiB
-          - 16 KiB per 4 CUs
-          - 32 KiB per 4 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 2
+          - 16
+          - 16 per 4 CUs
+          - 32 per 4 CUs
+          - 256
+          - 12.5
         *
           - MI6
           - GCN4.0
           - gfx803
-          - 16 GiB
+          - 16
           - 36
           - 64
-          - 64 KiB
+          - 64
           -
-          - 2 MiB
-          - 16 KiB
-          - 16 KiB per 4 CUs
-          - 32 KiB per 4 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 2
+          - 16
+          - 16 per 4 CUs
+          - 32 per 4 CUs
+          - 256
+          - 12.5
 
-  .. tab-item:: AMD Radeon Pro GPUs
+  .. tab-item:: AMD Radeon PRO GPUs
 
     .. list-table::
         :header-rows: 1
@@ -221,146 +221,146 @@ The following tables provide an overview of the hardware specifications for AMD 
           - Model
           - Architecture
           - LLVM target name
-          - VRAM
+          - VRAM (GiB)
           - Compute Units
-          - Warp Size
-          - LDS
-          - Infinity Cache
-          - L2 Cache
-          - Graphics L1 Cache
-          - L0 Vector Cache
-          - L0 Scalar Cache
-          - L0 Instruction Cache
-          - VGPR File
-          - SGPR File
+          - Wavefront Size
+          - LDS (KiB)
+          - Infinity Cache (MiB)
+          - L2 Cache (MiB)
+          - Graphics L1 Cache (KiB)
+          - L0 Vector Cache (KiB)
+          - L0 Scalar Cache (KiB)
+          - L0 Instruction Cache (KiB)
+          - VGPR File (KiB)
+          - SGPR File (KiB)
         *
           - Radeon PRO W7900
           - RDNA3
           - gfx1100
-          - 48 GiB
+          - 48
           - 96
           - 32
-          - 128 KiB
-          - 96 MiB
-          - 6 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 96
+          - 6
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon PRO W7800
           - RDNA3
           - gfx1100
-          - 32 GiB
+          - 32
           - 70
           - 32
-          - 128 KiB
-          - 64 MiB
-          - 6 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 64
+          - 6
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon PRO W7700
           - RDNA3
           - gfx1101
-          - 16 GiB
+          - 16
           - 48
           - 32
-          - 128 KiB
-          - 64 MiB
-          - 4 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 64
+          - 4
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon PRO W6800
           - RDNA2
           - gfx1030
-          - 32 GiB
+          - 32
           - 60
           - 32
-          - 128 KiB
-          - 128 MiB
-          - 4 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 128
+          - 4
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon PRO W6600
           - RDNA2
           - gfx1032
-          - 8 GiB
+          - 8
           - 28
           - 32
-          - 128 KiB
-          - 32 MiB
-          - 2 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 32
+          - 2
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon PRO V620
           - RDNA2
           - gfx1030
-          - 32 GiB
+          - 32
           - 72
           - 32
-          - 128 KiB
-          - 128 MiB
-          - 4 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 128
+          - 4
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon Pro W5500
           - RDNA
           - gfx1012
-          - 8 GiB
+          - 8
           - 22
           - 32
-          - 128 KiB
+          - 128
           -
-          - 4 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 4
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon Pro VII
           - GCN5.1
           - gfx906
-          - 16 GiB
+          - 16
           - 60
           - 64
-          - 64 KiB
+          - 64
           -
-          - 4 MiB
+          - 4
           -
-          - 16 KiB
-          - 16 KiB per 3 CUs
-          - 32 KiB per 3 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 16
+          - 16 per 3 CUs
+          - 32 per 3 CUs
+          - 256
+          - 12.5
 
   .. tab-item:: AMD Radeon GPUs
 
@@ -372,289 +372,290 @@ The following tables provide an overview of the hardware specifications for AMD 
           - Model
           - Architecture
           - LLVM target name
-          - VRAM
+          - VRAM (GiB)
           - Compute Units
-          - Warp Size
-          - LDS
-          - Infinity Cache
-          - L2 Cache
-          - Graphics L1 Cache
-          - L0 Vector Cache
-          - L0 Scalar Cache
-          - L0 Instruction Cache
-          - VGPR File
-          - SGPR File
+          - Wavefront Size
+          - LDS (KiB)
+          - Infinity Cache (MiB)
+          - L2 Cache (MiB)
+          - Graphics L1 Cache (KiB)
+          - L0 Vector Cache (KiB)
+          - L0 Scalar Cache (KiB)
+          - L0 Instruction Cache (KiB)
+          - VGPR File (KiB)
+          - SGPR File (KiB)
         *
           - Radeon RX 7900 XTX
           - RDNA3
           - gfx1100
-          - 24 GiB
+          - 24
           - 96
           - 32
-          - 128 KiB
-          - 96 MiB
-          - 6 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 96
+          - 6
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon RX 7900 XT
           - RDNA3
           - gfx1100
-          - 20 GiB
+          - 20
           - 84
           - 32
-          - 128 KiB
-          - 80 MiB
-          - 6 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 80
+          - 6
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon RX 7900 GRE
           - RDNA3
           - gfx1100
-          - 16 GiB
+          - 16
           - 80
           - 32
-          - 128 KiB
-          - 64 MiB
-          - 6 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 64
+          - 6
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon RX 7800 XT
           - RDNA3
           - gfx1101
-          - 16 GiB
+          - 16
           - 60
           - 32
-          - 128 KiB
-          - 64 MiB
-          - 4 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 64
+          - 4
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon RX 7700 XT
           - RDNA3
           - gfx1101
-          - 12 GiB
+          - 12
           - 54
           - 32
-          - 128 KiB
-          - 48 MiB
-          - 4 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 384 KiB
-          - 20 KiB
+          - 128
+          - 48
+          - 4
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
         *
           - Radeon RX 7600
           - RDNA3
           - gfx1102
-          - 8 GiB
+          - 8
           - 32
           - 32
-          - 128 KiB
-          - 32 MiB
-          - 2 MiB
-          - 256 KiB
-          - 32 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 32
+          - 2
+          - 256
+          - 32
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6950 XT
           - RDNA2
           - gfx1030
-          - 16 GiB
+          - 16
           - 80
           - 32
-          - 128 KiB
-          - 128 MiB
-          - 4 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 128
+          - 4
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6900 XT
           - RDNA2
           - gfx1030
-          - 16 GiB
+          - 16
           - 80
           - 32
-          - 128 KiB
-          - 128 MiB
-          - 4 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 128
+          - 4
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6800 XT
           - RDNA2
           - gfx1030
-          - 16 GiB
+          - 16
           - 72
           - 32
-          - 128 KiB
-          - 128 MiB
-          - 4 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 128
+          - 4
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6800
           - RDNA2
           - gfx1030
-          - 16 GiB
+          - 16
           - 60
           - 32
-          - 128 KiB
-          - 128 MiB
-          - 4 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 128
+          - 4
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6750 XT
           - RDNA2
           - gfx1031
-          - 12 GiB
+          - 12
           - 40
           - 32
-          - 128 KiB
-          - 96 MiB
-          - 3 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 96
+          - 3
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6700 XT
           - RDNA2
           - gfx1031
-          - 12 GiB
+          - 12
           - 40
           - 32
-          - 128 KiB
-          - 96 MiB
-          - 3 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 96
+          - 3
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6700
           - RDNA2
           - gfx1031
-          - 10 GiB
+          - 10
           - 36
           - 32
-          - 128 KiB
-          - 80 MiB
-          - 3 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 80
+          - 3
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6650 XT
           - RDNA2
           - gfx1032
-          - 8 GiB
+          - 8
           - 32
           - 32
-          - 128 KiB
-          - 32 MiB
-          - 2 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 32
+          - 2
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6600 XT
           - RDNA2
           - gfx1032
-          - 8 GiB
+          - 8
           - 32
           - 32
-          - 128 KiB
-          - 32 MiB
-          - 2 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 32
+          - 2
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon RX 6600
           - RDNA2
           - gfx1032
-          - 8 GiB
+          - 8
           - 28
           - 32
-          - 128 KiB
-          - 32 MiB
-          - 2 MiB
-          - 128 KiB
-          - 16 KiB
-          - 16 KiB
-          - 32 KiB
-          - 256 KiB
-          - 20 KiB
+          - 128
+          - 32
+          - 2
+          - 128
+          - 16
+          - 16
+          - 32
+          - 256
+          - 20
         *
           - Radeon VII
           - GCN5.1
           - gfx906
-          - 16 GiB
+          - 16
           - 60
           - 64
-          - 64 KiB per CU
+          - 64 per CU
           -
-          - 4 MiB
+          - 4
           -
-          - 16 KiB
-          - 16 KiB per 3 CUs
-          - 32 KiB per 3 CUs
-          - 256 KiB
-          - 12.5 KiB
+          - 16
+          - 16 per 3 CUs
+          - 32 per 3 CUs
+          - 256
+          - 12.5
 
-For a detailed explanation of the terms refer to the :ref:`specific documents and guides <gpu-arch-documentation>` or the :ref:`HIP programming guide <HIP:user_guide/hip_rtc>`.
+For more information on the terms used here, see the :ref:`specific documents and guides <gpu-arch-documentation>`, the :doc:`conceptual overview of the HIP programming model<hip:understand/programming_model>`, or the :doc:`HIP reference guide<hip:reference/programming_model>`.
+
