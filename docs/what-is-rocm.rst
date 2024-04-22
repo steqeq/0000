@@ -16,7 +16,7 @@ tools, and APIs that enable GPU programming from low-level kernel to end-user ap
   :align: center
 
 ROCm is powered by
-`Heterogeneous-computing Interface for Portability (HIP) <https://rocm.docs.amd.com/projects/HIP/en/latest/index.html>`_;
+:doc:`Heterogeneous-computing Interface for Portability (HIP) <hip:index>`;
 it supports programming models, such as OpenMP and OpenCL, and includes all necessary open
 source software compilers, debuggers, and libraries. It's fully integrated into machine learning (ML)
 frameworks, such as PyTorch and TensorFlow.
@@ -44,7 +44,7 @@ Machine Learning & Computer Vision
   ":doc:`MIGraphX <amdmigraphx:index>`", "Graph inference engine that accelerates machine learning model inference"
   ":doc:`MIOpen <miopen:index>`", "An open source deep-learning library"
   ":doc:`MIVisionX <mivisionx:doxygen/html/index>`", "Set of comprehensive computer vision and machine learning libraries, utilities, and applications"
-  ":doc:`rocAL <rocal:doxygen/html/index>`", "An augmentation library designed to decode and process images and videos"
+  ":doc:`rocAL <rocal:index>`", "An augmentation library designed to decode and process images and videos"
   ":doc:`rocDecode <rocdecode:index>`", "High-performance SDK for access to video decoding features on AMD GPUs"
   ":doc:`ROCm Performance Primitives (RPP) <rpp:index>`", "Comprehensive high-performance computer vision library for AMD processors with HIP/OpenCL/CPU back-ends"
 
@@ -63,13 +63,13 @@ Math
   :header: "Component", "Description"
 
   "`half <https://github.com/ROCm/half/>`_", "C++ header-only library that provides an IEEE 754 conformant, 16-bit half-precision floating-point type, along with corresponding arithmetic operators, type conversions, and common mathematical functions"
-  ":doc:`hipBLAS <hipblas:index>`", "BLAS-marshaling library that supports `rocBLAS <https://rocm.docs.amd.com/projects/rocBLAS/en/latest/>`_ and cuBLAS backends"
+  ":doc:`hipBLAS <hipblas:index>`", "BLAS-marshaling library that supports :doc:`rocBLAS <rocblas:index>` and cuBLAS backends"
   ":doc:`hipBLASLt <hipblaslt:index>`", "Provides general matrix-matrix operations with a flexible API and extends functionalities beyond traditional BLAS library"
   ":doc:`hipFFT <hipfft:index>`", "Fast Fourier transforms (FFT)-marshalling library that supports rocFFT or cuFFT backends"
   ":doc:`hipfort <hipfort:index>`", "Fortran interface library for accessing GPU Kernels"
   ":doc:`hipRAND <hiprand:index>`", "Ports CUDA applications that use the cuRAND library into the HIP layer"
-  ":doc:`hipSOLVER <hipsolver:index>`", "An LAPACK-marshalling library that supports `rocSOLVER <https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/>`_ and cuSOLVER backends"
-  ":doc:`hipSPARSE <hipsparse:index>`", "SPARSE-marshalling library that supports `rocSPARSE <https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/>`_ and cuSPARSE backends"
+  ":doc:`hipSOLVER <hipsolver:index>`", "An LAPACK-marshalling library that supports :doc:`rocSOLVER <rocsolver:index>` and cuSOLVER backends"
+  ":doc:`hipSPARSE <hipsparse:index>`", "SPARSE-marshalling library that supports :doc:`rocSPARSE <rocsparse:index>` and cuSPARSE backends"
   ":doc:`hipSPARSELt <hipsparselt:index>`", "SPARSE-marshalling library with multiple supported backends"
   ":doc:`rocALUTION <rocalution:index>`", "Sparse linear algebra library for exploring fine-grained parallelism on ROCm runtime and toolchains"
   ":doc:`rocBLAS <rocblas:index>`", "BLAS implementation (in the HIP programming language) on the ROCm runtime and toolchains"
@@ -86,7 +86,7 @@ Primitives
 .. csv-table::
   :header: "Component", "Description"
 
-  ":doc:`hipCUB <hipcub:index>`", "Thin header-only wrapper library on top of `rocPRIM <https://rocm.docs.amd.com/projects/rocPRIM/en/latest/>`_ or CUB that allows project porting using the CUB library to the HIP layer"
+  ":doc:`hipCUB <hipcub:index>`", "Thin header-only wrapper library on top of :doc:`rocPRIM <rocprim:index>` or CUB that allows project porting using the CUB library to the HIP layer"
   ":doc:`hipTensor <hiptensor:index>`", "AMD's C++ library for accelerating tensor primitives based on the composable kernel library"
   ":doc:`rocPRIM <rocprim:index>`", "Header-only library for HIP parallel primitives"
   ":doc:`rocThrust <rocthrust:index>`", "Parallel algorithm library"

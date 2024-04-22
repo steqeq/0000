@@ -410,31 +410,31 @@ description, refer to the corresponding library data type support page.
         - ❌/❌
         - ❌/❌
       *
-        - rocRAND (`details <https://rocm.docs.amd.com/projects/rocRAND/en/develop/data-type-support.html>`_)
+        - rocRAND (:doc:`details <rocrand:data-type-support>`)
         - -/✅
         - -/✅
         - -/✅
         - -/✅
       *
-        - hipRAND (`details <https://rocm.docs.amd.com/projects/hipRAND/en/develop/data-type-support.html>`_)
+        - hipRAND (:doc:`details <hiprand:data-type-support>`)
         - -/✅
         - -/✅
         - -/✅
         - -/✅
       *
-        - rocPRIM (`details <https://rocmdocs.amd.com/projects/rocPRIM/en/develop/reference/data-type-support.html>`_)
+        - rocPRIM (:doc:`details <rocprim:reference/data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (`details <https://rocm.docs.amd.com/projects/hipCUB/en/develop/data-type-support.html>`_)
+        - hipCUB (:doc:`details <hipcub:data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
         - ✅/✅
       *
-        - rocThrust (`details <https://rocm.docs.amd.com/projects/rocThrust/en/develop/data-type-support.html>`_)
+        - rocThrust (:doc:`details <rocthrust:data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
@@ -465,7 +465,7 @@ description, refer to the corresponding library data type support page.
         - ❌/❌
         - ❌/❌
       *
-        - rocRAND (`details <https://rocm.docs.amd.com/projects/rocRAND/en/develop/data-type-support.html>`_)
+        - rocRAND (:doc:`details <rocrand:data-type-support>`)
         - -/❌
         - -/❌
         - -/✅
@@ -474,7 +474,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - hipRAND (`details <https://rocm.docs.amd.com/projects/hipRAND/en/develop/data-type-support.html>`_)
+        - hipRAND (:doc:`details <hiprand:data-type-support>`)
         - -/❌
         - -/❌
         - -/✅
@@ -483,7 +483,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - rocPRIM (`details <https://rocmdocs.amd.com/projects/rocPRIM/en/develop/reference/data-type-support.html>`_)
+        - rocPRIM (:doc:`details <rocprim:reference/data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -492,7 +492,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (`details <https://rocm.docs.amd.com/projects/hipCUB/en/develop/data-type-support.html>`_)
+        - hipCUB (:doc:`details <hipcub:data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
@@ -501,7 +501,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - rocThrust (`details <https://rocm.docs.amd.com/projects/rocThrust/en/develop/data-type-support.html>`_)
+        - rocThrust (:doc:`details <rocthrust:data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ⚠️/⚠️
