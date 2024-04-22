@@ -1,6 +1,6 @@
 .. meta::
     :description: Environment variables reference
-    :keywords: AMD, ROCm, Environment variables, Environment, reference
+    :keywords: AMD, ROCm, environment variables, environment, reference
 
 .. _env-variables-reference:
 
@@ -23,8 +23,8 @@ Environment variables that impact libraries in ROCm software stack
       - Description
     *
       - HIP_PLATFORM
-      - amd, nvidia
-      - The platform where the HIP backend is used. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
+      - ``amd``, ``nvidia``
+      - The platform HIP backend is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
     *
       - ROCM_BUILD_ID
       - 
@@ -36,7 +36,7 @@ Environment variables that impact libraries in ROCm software stack
     *
       - HIP_PATH
       - 
-      - The path of the HIP sdk.
+      - The path of the HIP SDK.
     *
       - HIP_DIR
       - 
@@ -55,9 +55,9 @@ Environment variables in ROCm library.
 clr
 ==========================================
 
-Environment variables effecting the all of the backends of project clr.
+Environment variables affecting all backends of project clr.
 
-.. list-table:: Environment variables effecting the all of the backends of project clr
+.. list-table:: Environment variables affecting all backends of project clr
     :header-rows: 1
     :name: clr-env-variables-all-table
 
@@ -67,8 +67,8 @@ Environment variables effecting the all of the backends of project clr.
       - Description
     *
       - HIP_PLATFORM
-      - amd, nvidia
-      - The platform where the HIP backend is used. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
+      - ``amd``, ``nvidia``
+      - The platform HIP backend is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
     *
       - ROCM_HEADER_WRAPPER_WERROR
       - ON, OFF
@@ -78,9 +78,9 @@ Environment variables effecting the all of the backends of project clr.
       - ON, OFF
       - Used to disable L2 cache.
 
-Environment variables effecting the opencl backend of project clr.
+Environment variables affecting the opencl backend of project clr.
 
-.. list-table:: Environment variables effecting the opencl backend of project clr
+.. list-table:: Environment variables affecting the opencl backend of project clr
     :header-rows: 1
     :name: clr-env-variables-opencl-table
 
@@ -98,9 +98,9 @@ Environment variables effecting the opencl backend of project clr.
       - This is the numbering of the Debian package itself, i.e. the version of the packaging and not the version of the content.
 
 
-Environment variables effecting the hipamd backend of project clr.
+Environment variables affecting the hipamd backend of project clr.
 
-.. list-table:: Environment variables effecting the hipamd backend of project clr
+.. list-table:: Environment variables affecting the hipamd backend of project clr
     :header-rows: 1
     :name: clr-env-variables-hipamd-table
 
@@ -125,21 +125,6 @@ Environment variables effecting the hipamd backend of project clr.
       - 1, 2, ... 7
       - When set to the highest level, the system will print memory allocation info.
 
-Environment variables effecting the rocclr backend of project clr.
-
-.. list-table:: Environment variables effecting the rocclr backend of project clr
-    :header-rows: 1
-    :name: clr-env-variables-rocclr-table
-
-    *
-      - Environment variable
-      - Values
-      - Description
-    *
-      - 
-      - 
-      - 
-
 rocclr environment variables
 ----------------------------------
 
@@ -152,7 +137,7 @@ AMD rocclr environment variables at release build:
     *
       - Environment variable
       - Variable type
-      - Default type
+      - Default value
       - Description
     *
       - AMD_LOG_LEVEL
@@ -183,7 +168,7 @@ AMD rocclr environment variables at release build:
       - GPU_DEVICE_ORDINAL
       - cstring
       - 
-      - Select the device ordinal , comma separated list of available devices
+      - Select the device ordinal, a comma separated list of available devices
     *
       - REMOTE_ALLOC
       - bool
@@ -228,27 +213,27 @@ AMD rocclr environment variables at release build:
       - AMD_OCL_BUILD_OPTIONS
       - cstring
       - 0
-      - Set clBuildProgram,  and clCompileProgram, 's options , override
+      - Set the options for clBuildProgram and clCompileProgram, override
     *
       - AMD_OCL_BUILD_OPTIONS_APPEND
       - cstring
       - 0
-      - Append clBuildProgram,  and clCompileProgram, 's options
+      - Append the options for clBuildProgram and clCompileProgram
     *
       - AMD_OCL_LINK_OPTIONS
       - cstring
       - 0
-      - Set clLinkProgram, 's options , override
+      - Set the options for clLinkProgram, override
     *
       - AMD_OCL_LINK_OPTIONS_APPEND
       - cstring
       - 0
-      - Append clLinkProgram, 's options
+      - Append the options for clLinkProgram
     *
       - GPU_PINNED_XFER_SIZE
       - size_t
       - 32
-      - The pinned buffer size for pinning in read/write transfers in MiB
+      - The buffer size for pinning in read/write transfers in MiB
     *
       - GPU_PINNED_MIN_XFER_SIZE
       - size_t
@@ -288,7 +273,7 @@ AMD rocclr environment variables at release build:
       - GPU_NUM_COMPUTE_RINGS
       - uint
       - 2
-      - GPU number of compute rings. 0 - disabled, 1 , 2,.. - the number of compute rings
+      - GPU number of compute rings. 0 - disabled, 1, 2, ... - the number of compute rings
     *
       - AMD_OCL_WAIT_COMMAND
       - bool
@@ -478,7 +463,7 @@ AMD rocclr environment variables at release build:
       - AMD_OPT_FLUSH
       - uint
       - 1
-      - Kernel flush option , 0x0 = Use system-scope fence operations. 0x1 = Use device-scope fence operations when possible.
+      - Kernel flush option, 0x0 = Use system-scope fence operations. 0x1 = Use device-scope fence operations when possible.
     *
       - AMD_DIRECT_DISPATCH
       - bool
@@ -498,7 +483,7 @@ AMD rocclr environment variables at release build:
       - ROC_ACTIVE_WAIT_TIMEOUT
       - uint
       - 0
-      - Forces active wait of GPU interrup for the timeout, us unit
+      - Forces active wait of GPU interrupt for the timeout, us unit
     *
       - ROC_ENABLE_LARGE_BAR
       - bool
@@ -538,7 +523,7 @@ AMD rocclr environment variables at release build:
       - PAL_FORCE_ASIC_REVISION
       - uint
       - 0
-      - Force a specific asic revision for all devices
+      - Force a specific ASIC revision for all devices
     *
       - PAL_EMBED_KERNEL_MD
       - bool
@@ -548,12 +533,12 @@ AMD rocclr environment variables at release build:
       - ROC_GLOBAL_CU_MASK
       - cstring
       - 
-      - Sets a global CU mask , entered as hex value for all queues, Each active bit represents using one CU , e.g., 0xf enables only 4 CUs
+      - Sets a global CU mask, entered as hex value for all queues, Each active bit represents using one CU, e.g. 0xf enables only 4 CUs
     *
       - AMD_LOG_LEVEL_FILE
       - cstring
       - 
-      - Set output file for AMD_LOG_LEVEL, Default is stderr
+      - Set output file for AMD_LOG_LEVEL. Default is stderr
     *
       - PAL_PREPINNED_MEMORY_SIZE
       - size_t
@@ -568,7 +553,7 @@ AMD rocclr environment variables at release build:
       - ROC_USE_FGS_KERNARG
       - bool
       - TRUE
-      - Use fine grain kernel args segment for supported asics
+      - Use fine grain kernel args segment for supported ASICs
     *
       - ROC_P2P_SDMA_SIZE
       - uint
@@ -612,8 +597,8 @@ AMD rocclr environment variables at release build:
     *
       - HIP_INITIAL_DM_SIZE
       - size_t
-      - 8 * Mi
-      - Set initial heap size for device malloc.
+      - 8388608
+      - Set initial heap size for device malloc. The default value corresponds to 8 MiB
     *
       - HIP_FORCE_DEV_KERNARG
       - bool
@@ -628,7 +613,7 @@ AMD rocclr environment variables at release build:
       - GPU_DEBUG_ENABLE
       - bool
       - FALSE
-      - Enables collection of extra info for debugger at some perf cost
+      - Enables collection of extra info for debugger at some performance cost
     *
       - HIPRTC_COMPILE_OPTIONS_APPEND
       - cstring
@@ -648,7 +633,7 @@ AMD rocclr environment variables at release build:
       - HIPCC_VERBOSE
       - uint
       - 0
-      - How much extra info to show during build. E.G: compiler flags, paths.
+      - How much extra info to show during build. E.g: compiler flags, paths.
     *
       - ROCPROFILER_REGISTER_ROOT
       - cstring
@@ -664,7 +649,7 @@ AMD rocclr environment variables at debug build:
     *
       - Environment variable
       - Variable type
-      - Default type
+      - Default value
       - Description
     *
       - DEBUG_GPU_FLAGS
@@ -694,8 +679,8 @@ AMD rocclr environment variables at debug build:
     *
       - MEMOBJ_BASE_ADDR_ALIGN
       - size_t
-      - 4*Ki
-      - Alignment of the base address of any allocate memory object
+      - 4096
+      - Alignment of the base address of any allocate memory object. The default value corresponds to 4 KiB.
     *
       - AMD_OCL_SUBST_OBJFILE
       - cstring
