@@ -24,7 +24,7 @@ Environment variables that impact libraries in ROCm software stack
     *
       - HIP_PLATFORM
       - ``amd``, ``nvidia``
-      - The platform HIP backend is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
+      - The platform HIP is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
     *
       - ROCM_BUILD_ID
       - 
@@ -68,7 +68,7 @@ Environment variables affecting all backends of project clr.
     *
       - HIP_PLATFORM
       - ``amd``, ``nvidia``
-      - The platform HIP backend is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
+      - The platform HIP is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
     *
       - ROCM_HEADER_WRAPPER_WERROR
       - ON, OFF

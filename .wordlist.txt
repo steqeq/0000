@@ -547,7 +547,6 @@ inlining
 installable
 interprocedural
 interprocess
-interrup
 intra
 invariants
 invocating
@@ -594,7 +593,6 @@ pageable
 parallelization
 parameterization
 passthrough
-perf
 perfcounter
 performant
 perl
