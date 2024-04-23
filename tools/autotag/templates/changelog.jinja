@@ -42,7 +42,7 @@ This page contains the release notes for AMD ROCm Software.
 {%- for lib_name, lib in release.libraries | dictsort %}
 {%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version and lib.lib_version%}
 
-#### {{lib_name}} {{lib.lib_version}}
+#### {{lib_name}}
 
 {{lib.message}}
 
