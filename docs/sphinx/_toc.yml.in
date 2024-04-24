@@ -111,7 +111,7 @@ subtrees:
   - file: conceptual/gpu-memory.md
     title: GPU memory
   - file: conceptual/setting-cus
-    title: Configuring CUs
+    title: Setting the number of CUs
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md
