@@ -98,6 +98,8 @@ subtrees:
             title: White paper
   - file: conceptual/gpu-memory.md
     title: GPU memory
+  - file: conceptual/setting-cus
+    title: Configuring CUs
   - file: conceptual/compiler-disambiguation.md
     title: Compiler disambiguation
   - file: about/compatibility/openmp.md
