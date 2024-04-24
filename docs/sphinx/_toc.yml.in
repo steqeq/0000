@@ -99,7 +99,7 @@ subtrees:
   - file: conceptual/gpu-memory.md
     title: GPU memory
   - file: conceptual/setting-cus
-    title: Configuring CUs
+    title: Setting the number of CUs
   - file: conceptual/compiler-disambiguation.md
     title: Compiler disambiguation
   - file: about/compatibility/openmp.md
