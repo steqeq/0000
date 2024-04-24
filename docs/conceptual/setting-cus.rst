@@ -8,9 +8,9 @@
 Setting the number of CUs
 *************************************************************
 
-When using GPUs to accelerate compute workloads, it becames necessary sometimes
+When using GPUs to accelerate compute workloads, it becomes necessary sometimes
 to configure the usage of Compute Units (CU) of the hardware. This is a more advanced
-option, so please read this explainer before experimentation.
+option, so please read this page before experimentation.
 
 The GPU driver provides two environment variables to set the number of CUs used. The
 first one is ``HSA_CU_MASK`` and the second one is ``ROC_GLOBAL_CU_MASK``. The main
@@ -34,7 +34,7 @@ The GPU indices are taken post ``ROCR_VISIBLE_DEVICES`` reordering. For GPUs lis
 the listed or masked CUs will be enabled, the rest disabled. Unlisted GPUs will not
 be affected, their CUs will all be enabled.
 
-The parsing of the variable is stopped when a syntax error occurs. The erroneus set
+The parsing of the variable is stopped when a syntax error occurs. The erroneous set
 and the ones following will be ignored. Repeating GPU or CU ids are a syntax error.
 Specifying a mask with no usable CUs (CU_list is 0x0) is a syntax error, for excluding
 GPU devices use ``ROCR_VISIBLE_DEVICES``.
