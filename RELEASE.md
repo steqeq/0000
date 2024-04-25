@@ -1,4 +1,4 @@
-# ROCm 6.1.1 release highlights
+# ROCm 6.1.1 release notes
 
 <!-- Disable lints since this is an auto-generated file.    -->
 <!-- markdownlint-disable blanks-around-headers             -->
@@ -11,13 +11,9 @@
 
 ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and libraries.
 
-In addition, ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel 6.8).
-
 ## AMD SMI
 
 AMD SMI for ROCm 6.1.1
-
-See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/develop/CHANGELOG.md) with code samples for more information.
 
 ### Additions
 
@@ -31,8 +27,8 @@ See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/develop/CHANGEL
 
 ### Fixes
 
-- Fixed `amd-smi metric --clock`'s clock lock status and deep sleep status.
-- Fixed an issue that would cause an error when attempting to reset non-AMD GPUs.
+- Fixed `amd-smi metric --clock`'s clock lock and deep sleep status.
+- Fixed an issue that would cause an error when resetting non-AMD GPUs.
 - Fixed `amd-smi metric --pcie` and `amdsmi_get_pcie_info()` when using Navi 32 and Navi 31 hardware to prevent "UNKNOWN" reports.
 - Fixed the output results of `amd-smi process` when getting processes running on a device.
 
@@ -42,7 +38,11 @@ See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/develop/CHANGEL
 
 ### Known issues
 
-- `amd-smi bad-pages` can result in a `ValueError: Null pointer access` error when using certain PMU firmware versions.
+- `amd-smi bad-pages` can result in a `ValueError: Null pointer access` error when using some PMU firmware versions.
+
+```{note}
+See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/docs/6.1.1/CHANGELOG.md) with code samples for more information.
+```
 
 ## HIPCC
 
@@ -50,7 +50,7 @@ HIPCC for ROCm 6.1.1
 
 ### Changes
 
-- **Upcoming:** ROCm 6.2 will enable use of compiled binaries `hipcc.bin` and `hipconfig.bin` by default. No action is needed by users; you may continue calling high-level Perl scripts `hipcc` and `hipconfig`. `hipcc.bin` and `hipconfig.bin` will be invoked by the high-level Perl scripts. To revert to the previous behavior and invoke `hipcc.pl` and `hipconfig.pl`, set the `HIP_USE_PERL_SCRIPTS` environment variable to `1`.
+- **Upcoming:** ROCm 6.2 will enable use of compiled binaries `hipcc.bin` and `hipconfig.bin` by default. No action is needed by users. You can continue calling high-level Perl scripts `hipcc` and `hipconfig`. `hipcc.bin` and `hipconfig.bin` will be invoked by the high-level Perl scripts. To revert to the previous behavior and invoke `hipcc.pl` and `hipconfig.pl`, set the `HIP_USE_PERL_SCRIPTS` environment variable to `1`.
 - **Upcoming:** ROCm 6.3 will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
 - **Upcoming:** ROCm 7.0 will remove `hipcc.pl` and `hipconfig.pl`.
 
@@ -60,31 +60,58 @@ HIPIFY for ROCm 6.1.1
 
 ### Additions
 
-* Added support for LLVM 18.1.2.
-* Added support for cuDNN 9.0.0.
-* Added new options:
-  * `--clang-resource-directory` to specify the clang resource path (the path to the parent folder for the `include` folder that contains `__clang_cuda_runtime_wrapper.h` and other header files used during the hipification process).
+- Added support for LLVM 18.1.2.
+- Added support for cuDNN 9.0.0.
+- Added a new option: `--clang-resource-directory` to specify the clang resource path (the path to the parent folder for the `include` folder that contains `__clang_cuda_runtime_wrapper.h` and other header files used during the hipification process).
 
-## hipSOLVER 2.1.1
+## Library changes in ROCm 6.1.1
+
+| Library | Version |
+|---------|---------|
+| AMDMIGraphX | [2.9](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-6.1.1) |
+| hipBLAS | [2.1.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-6.1.1) |
+| hipCUB | [3.1.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-6.1.1) |
+| hipFFT | [1.0.14](https://github.com/ROCm/hipFFT/releases/tag/rocm-6.1.1) |
+| hipRAND | [2.10.17](https://github.com/ROCm/hipRAND/releases/tag/rocm-6.1.1) |
+| hipSOLVER | 2.1.0 ⇒ [2.1.1](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-6.1.1) |
+| hipSPARSE | [3.0.1](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-6.1.1) |
+| hipTensor | [1.2.0](https://github.com/ROCm/hipTensor/releases/tag/rocm-6.1.1) |
+| MIOpen | [3.1.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-6.1.1) |
+| MIVisionX | [2.5.0](https://github.com/ROCm/MIVisionX/releases/tag/rocm-6.1.1) |
+| rccl | [2.18.6](https://github.com/ROCm/rccl/releases/tag/rocm-6.1.1) |
+| rocALUTION | [3.1.1](https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.1.1) |
+| rocBLAS | [4.1.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.1.1) |
+| rocFFT | 1.0.26 ⇒ [1.0.27](https://github.com/ROCm/rocFFT/releases/tag/rocm-6.1.1) |
+| rocm-cmake | [0.12.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.1.1) |
+| rocPRIM | [3.1.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-6.1.1) |
+| rocRAND | [3.0.1](https://github.com/ROCm/rocRAND/releases/tag/rocm-6.1.1) |
+| rocSOLVER | [3.25.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-6.1.1) |
+| rocSPARSE | [3.1.2](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-6.1.1) |
+| rocThrust | [3.0.1](https://github.com/ROCm/rocThrust/releases/tag/rocm-6.1.1) |
+| rocWMMA | [1.4.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-6.1.1) |
+| rpp | [1.5.0](https://github.com/ROCm/rpp/releases/tag/rocm-6.1.1) |
+| Tensile | [4.40.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.1.1) |
+
+### hipSOLVER 2.1.1
 
 hipSOLVER 2.1.1 for ROCm 6.1.1
 
-### Changes
+#### Changes
 
-- `BUILD_WITH_SPARSE` now defaults to OFF on Windows.
+- By default, `BUILD_WITH_SPARSE` is now set to OFF on Microsoft Windows.
 
-### Fixes
+#### Fixes
 
 - Fixed benchmark client build when `BUILD_WITH_SPARSE` is OFF.
 
-## rocFFT 1.0.27
+### rocFFT 1.0.27
 
 rocFFT 1.0.27 for ROCm 6.1.1
 
-### Additions
+#### Additions
 
-- Enabled multi-GPU testing on systems without direct GPU-interconnects.
+- Enable multi-gpu testing on systems without direct GPU-interconnects
 
-### Fixes
+#### Fixes
 
-- Fixed kernel launch failure when executing very large odd-length real-complex transforms.
+- Fixed kernel launch failure on execute of very large odd-length real-complex transforms.

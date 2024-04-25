@@ -19,13 +19,9 @@ This page contains the changelog for AMD ROCm Software.
 
 ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and libraries.
 
-In addition, ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel 6.8). 
-
 #### AMD SMI
 
 AMD SMI for ROCm 6.1.1
-
-See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/develop/CHANGELOG.md) with code samples for more information.
 
 ##### Additions
 
@@ -52,6 +48,10 @@ See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/develop/CHANGEL
 
 * `amd-smi bad-pages` can result in a `ValueError: Null pointer access` error when using certain PMU firmware versions.
 
+```{note}
+See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/docs/6.1.1/CHANGELOG.md) with code samples for more information.
+```
+
 #### HIPCC
 
 HIPCC for ROCm 6.1.1
@@ -70,38 +70,15 @@ HIPIFY for ROCm 6.1.1
 
 * Added support for LLVM 18.1.2.
 * Added support for cuDNN 9.0.0.
-* Added new options:
+* Added new option:
   * `--clang-resource-directory` to specify the clang resource path (the path to the parent folder for the `include` folder that contains `__clang_cuda_runtime_wrapper.h` and other header files used during the hipification process).
-
-#### hipSOLVER 2.1.1
-
-hipSOLVER 2.1.1 for ROCm 6.1.1
-
-##### Changes
-
-* `BUILD_WITH_SPARSE` now defaults to OFF on Windows.
-
-##### Fixes
-
-* Fixed benchmark client build when `BUILD_WITH_SPARSE` is OFF.
-
-#### rocFFT 1.0.27
-
-rocFFT 1.0.27 for ROCm 6.1.1
-
-##### Additions
-
-* Enabled multi-GPU testing on systems without direct GPU-interconnects.
-
-##### Fixes
-
-* Fixed kernel launch failure when executing very large odd-length real-complex transforms.
 
 ### Library changes in ROCm 6.1.1
 
 | Library | Version |
 |---------|---------|
 | AMDMIGraphX | [2.9](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-6.1.1) |
+| composable_kernel | [0.2.0](https://github.com/ROCm/composable_kernel/releases/tag/rocm-6.1.1) |
 | hipBLAS | [2.1.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-6.1.1) |
 | hipCUB | [3.1.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-6.1.1) |
 | hipFFT | [1.0.14](https://github.com/ROCm/hipFFT/releases/tag/rocm-6.1.1) |
@@ -163,7 +140,7 @@ performance of AMD Instinct™ MI300 GPU applications. Notably, we've added:
   YUV frames in video memory. With decoded frames in video memory, you can run video
   post-processing using ROCm HIP, avoiding unnecessary data copies via the PCIe bus.
 
-  To learn more, refer to the rocDecode 
+  To learn more, refer to the rocDecode
   [documentation](https://rocm.docs.amd.com/projects/rocDecode/en/latest/).
 
 ### OS and GPU support changes
@@ -454,11 +431,11 @@ ROCProfiler for ROCm 6.1.0
 
   [On GitHub](https://github.com/ROCm/ROCm/issues/3027)
 
-#### MI200 SR-IOV 
+#### MI200 SR-IOV
 
 ##### Known issue
 
-* Multimedia applications may encounter compilation errors in the MI200 Single Root Input/Output Virtualization (SR-IOV) environment. This is because MI200 SR-IOV does not currently support multimedia applications. 
+* Multimedia applications may encounter compilation errors in the MI200 Single Root Input/Output Virtualization (SR-IOV) environment. This is because MI200 SR-IOV does not currently support multimedia applications.
 
   [On GitHub](https://github.com/ROCm/ROCm/issues/3028)
 
@@ -1006,7 +983,8 @@ Tensile 4.40.0 for ROCm 6.1.0
 -------------------
 
 ## ROCm 6.0.2
-The ROCm 6.0.2 point release consists of minor bug fixes to improve the stability of MI300 GPU applications. This release introduces several new driver features for system qualification on our partner server offerings. 
+
+The ROCm 6.0.2 point release consists of minor bug fixes to improve the stability of MI300 GPU applications. This release introduces several new driver features for system qualification on our partner server offerings.
 
 #### hipFFT 1.0.13
 
@@ -1057,7 +1035,7 @@ would copy internal references to the generators and would lead to double free o
   These types should be moved instead of copied, and move constructors and operators are now defined
   for them.
 
-##### Optimized  
+##### Optimized
 
 - Improved MT19937 initialization and generation performance.
 
@@ -2087,8 +2065,8 @@ hipFFT 1.0.13 for ROCm 6.0.0
 
 ##### Changed
 
-- hipfft-rider has been renamed to hipfft-bench, controlled by the BUILD_CLIENTS_BENCH CMake option.  A link for the 
-  old file name is installed, and the old BUILD_CLIENTS_RIDER CMake option is accepted for compatibility but both 
+- hipfft-rider has been renamed to hipfft-bench, controlled by the BUILD_CLIENTS_BENCH CMake option.  A link for the
+  old file name is installed, and the old BUILD_CLIENTS_RIDER CMake option is accepted for compatibility but both
   will be removed in a future release.
 - Binaries in debug builds no longer have a &#34;-d&#34; suffix.
 - The minimum rocFFT required version has been updated to 1.0.21.
@@ -2882,7 +2860,7 @@ MIGraphX 2.7 for ROCm 5.7.0
 - Improved compile times by only building for the GPU on the system
 - Improve performance of pointwise/reduction kernels when using NHWC layouts
 - Load specific version of the migraphx_py library
-- Annotate functions with the block size so the compiler can do a better job of optimizing 
+- Annotate functions with the block size so the compiler can do a better job of optimizing
 - Enable reshape on nonstandard shapes
 - Use half HIP APIs to compute max and min
 - Added support for broadcasted scalars to unsqueeze operator
@@ -3794,7 +3772,7 @@ rocSPARSE 2.5.2 for ROCm 5.6.0
 
 rocThrust 2.18.0 for ROCm 5.6.0
 
-##### Fixed 
+##### Fixed
 
 - `lower_bound`, `upper_bound`, and `binary_search` failed to compile for certain types.
 
@@ -4297,9 +4275,9 @@ MIGraphX 2.5 for ROCm 5.5.0
 ##### Added
 
 - Y-Model feature to store tuning information with the optimized model
-- Added Python 3.10 bindings 
+- Added Python 3.10 bindings
 - Accuracy checker tool based on ONNX Runtime
-- ONNX Operators parse_split, and Trilu 
+- ONNX Operators parse_split, and Trilu
 - Build support for ROCm MLIR
 - Added migraphx-driver flag to print optimizations in python (--python)
 - Added JIT implementation of the Gather and Pad operator which results in better handling of larger tensor sizes.
@@ -4313,7 +4291,7 @@ MIGraphX 2.5 for ROCm 5.5.0
 
 ##### Fixed
 
-- Improved parsing Tensorflow Protobuf files 
+- Improved parsing Tensorflow Protobuf files
 - Resolved various accuracy issues with some onnx models
 - Resolved a gcc-12 issue with mivisionx
 - Improved support for larger sized models and batches
@@ -5415,7 +5393,7 @@ function or by parameters.
 
 ##### Changed
 
-- Improved build parallelism of the test suite by splitting up large compilation units for `DeviceRadixSort`, 
+- Improved build parallelism of the test suite by splitting up large compilation units for `DeviceRadixSort`,
 `DeviceSegmentedRadixSort` and `DeviceSegmentedSort`.
 - CUB backend references CUB and thrust version 1.17.1.
 
@@ -5535,8 +5513,8 @@ rocFFT 1.0.19 for ROCm 5.4.0
 
 ##### Changed
 
-- Moved runtime compilation cache to in-memory by default.  A default on-disk cache can encounter contention problems 
-on multi-node clusters with a shared filesystem.  rocFFT can still be told to use an on-disk cache by setting the 
+- Moved runtime compilation cache to in-memory by default.  A default on-disk cache can encounter contention problems
+on multi-node clusters with a shared filesystem.  rocFFT can still be told to use an on-disk cache by setting the
 ROCFFT_RTC_CACHE_PATH environment variable.
 
 #### rocPRIM 2.12.0
@@ -5545,7 +5523,7 @@ rocPRIM 2.12.0 for ROCm 5.4.0
 
 ##### Changed
 
-- `device_partition`, `device_unique`, and `device_reduce_by_key` now support problem 
+- `device_partition`, `device_unique`, and `device_reduce_by_key` now support problem
   sizes larger than 2^32 items.
 
 ##### Removed
@@ -7269,7 +7247,7 @@ rocSPARSE 2.2.0 for ROCm 5.2.0
 
 ##### Added
 
-- batched SpMM for CSR, COO and Blocked ELL formats. 
+- batched SpMM for CSR, COO and Blocked ELL formats.
 - Packages for test and benchmark executables on all supported OSes using CPack.
 - Clients file importers and exporters.
 
@@ -8006,7 +7984,7 @@ rocSPARSE 2.1.0 for ROCm 5.1.0
 
 ##### Added
 
-- gtsv_interleaved_batch 
+- gtsv_interleaved_batch
 - gpsv_interleaved_batch
 - SpGEMM_reuse
 - Allow copying of mat info struct
