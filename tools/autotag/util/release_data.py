@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 import os
 import re
 import shutil
+import sys
 from typing import Optional, Union, Dict, List, Tuple
 from github import Github, UnknownObjectException
 from github.Repository import Repository
@@ -352,6 +353,8 @@ class ReleaseBundleFactory:
         """Create a release bundle of libraries."""
         tag_name = f"rocm-{version}"
         libraries = { }
+
+        missing_branches = []
         
         print(f"\nLibraries for rocm-{version}:")
         for name, remote in names_and_remotes:
@@ -365,7 +368,13 @@ class ReleaseBundleFactory:
                     continue
 
                 print(f"  Defaulting to branch: {self.branch}")
-                commit = repo.get_branch(self.branch).commit.sha
+                try:
+                    repo_branch = repo.get_branch(self.branch)
+                    commit = repo_branch.commit.sha
+                except Exception:
+                    print(f"  - Could not find branch : {self.branch}")
+                    missing_branches.append(f"{self.branch} for {name}")
+                    continue
             
             libraries[name] = ReleaseLib(
                 name=name,
@@ -380,6 +389,9 @@ class ReleaseBundleFactory:
             version=version,
             libraries=libraries
         )
+
+        for missing in missing_branches:
+            print(f"Could not find the following branch: {missing}")
 
         return data
 
