@@ -106,11 +106,11 @@ HIPIFY for ROCm 6.1.1
 
 hipSOLVER 2.1.1 for ROCm 6.1.1
 
-##### Changed
+##### Changes
 
 - `BUILD_WITH_SPARSE` now defaults to OFF on Windows.
 
-##### Fixed
+##### Fixes
 
 - Fixed benchmark client build when `BUILD_WITH_SPARSE` is OFF.
 
@@ -118,13 +118,13 @@ hipSOLVER 2.1.1 for ROCm 6.1.1
 
 rocFFT 1.0.27 for ROCm 6.1.1
 
-##### Fixes
-
-* Fixed kernel launch failure on execute of very large odd-length real-complex transforms.
-
 ##### Additions
 
 * Enable multi-gpu testing on systems without direct GPU-interconnects
+
+##### Fixes
+
+* Fixed kernel launch failure on execute of very large odd-length real-complex transforms.
 
 -------------------
 
@@ -320,11 +320,6 @@ ROCm Compiler for ROCm 6.1.0
 
 * `rocm-clang-ocl` is now an optional package and will require manual installation.
 
-##### Deprecations
-
-* hipCC adds `-mllvm`, `-amdgpu-early-inline-all=true`, and `-mllvm` `-amdgpu-function-calls=false` by
-  default to compiler invocations. These flags will be removed from hipCC in a future ROCm release.
-
 ##### Fixes
 
 AddressSanitizer (ASan):
@@ -333,6 +328,11 @@ AddressSanitizer (ASan):
   instrumented size.
 
   [On GitHub](https://github.com/ROCm/ROCm/issues/2551)
+
+##### Deprecations
+
+* hipCC adds `-mllvm`, `-amdgpu-early-inline-all=true`, and `-mllvm` `-amdgpu-function-calls=false` by
+  default to compiler invocations. These flags will be removed from hipCC in a future ROCm release.
 
 ##### Known issues
 
@@ -439,15 +439,13 @@ ROCProfiler for ROCm 6.1.0
 
   [On GitHub](https://github.com/ROCm/ROCm/issues/3028)
 
-### AMD MI300A RAS
+#### AMD MI300A RAS
 
-#### Fixed defect
+##### Fixes
 
-##### GFX correctable and uncorrectable error inject failures
+* GFX correctable and uncorrectable error inject failures. Previously, the AMD CPU Reliability, Availability, and Serviceability (RAS) installation encountered correctable and uncorrectable failures while injecting an error.
 
-* Previously, the AMD CPU Reliability, Availability, and Serviceability (RAS) installation encountered correctable and uncorrectable failures while injecting an error.
-
-  This issue is resolved in the ROCm 6.1 release, and users will no longer encounter the GFX correctable error (CE) and uncorrectable error (UE) failures.
+This issue is resolved in the ROCm 6.1 release, and users will no longer encounter the GFX correctable error (CE) and uncorrectable error (UE) failures.
 
 ### Library changes in ROCm 6.1.0
 
@@ -563,10 +561,6 @@ hipBLAS 2.1.0 for ROCm 6.1.0
   suffix) with int64_t function arguments
 * New functions hipblasGetMathMode and hipblasSetMathMode
 
-##### Deprecations
-
-* USE_CUDA build option; use HIP_PLATFORM=amd or HIP_PLATFORM=nvidia to override hipconfig
-
 ##### Changes
 
 * Some Level 2 function argument names have changed from `m` to `n` to match legacy BLAS; there
@@ -574,6 +568,10 @@ hipBLAS 2.1.0 for ROCm 6.1.0
 * Updated client code to use YAML-based testing
 * Renamed `.doxygen` and `.sphinx` folders to `doxygen` and `sphinx`, respectively
 * Added CMake support for documentation
+
+##### Deprecations
+
+* USE_CUDA build option; use HIP_PLATFORM=amd or HIP_PLATFORM=nvidia to override hipconfig
 
 #### hipBLASLt 0.7.0
 
@@ -591,19 +589,19 @@ hipBLASLt 0.7.0 for ROCm 6.1.0
 
 hipCUB 3.1.0 for ROCm 6.1.0
 
-##### Changed
+##### Additions
+
+- Added interface `DeviceMemcpy::Batched` for batched memcpy from rocPRIM and CUB.
+
+##### Changes
 
 - CUB backend references CUB and Thrust version 2.1.0.
 - Updated `HIPCUB_HOST_WARP_THREADS` macro definition to match `host_warp_size` changes from rocPRIM 3.0.
 - Implemented `__int128_t` and `__uint128_t` support for radix_sort.
 
-##### Fixed
+##### Fixes
 
 - Fixed build issues with `rmake.py` on Windows when using VS 2017 15.8 or later due to a breaking fix with extended aligned storage.
-
-##### Added
-
-- Added interface `DeviceMemcpy::Batched` for batched memcpy from rocPRIM and CUB.
 
 #### hipFFT 1.0.14
 
@@ -621,7 +619,7 @@ hipFFT 1.0.14 for ROCm 6.1.0
 
 hipSOLVER 2.1.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - Added compatibility API with hipsolverSp prefix
 - Added compatibility-only functions
@@ -632,11 +630,11 @@ hipSOLVER 2.1.0 for ROCm 6.1.0
   functionality for the hipsolverSp API (on by default).
 - Added hipSPARSE as an optional dependency to hipsolver-test. Use the `BUILD_WITH_SPARSE` CMake option to enable tests of the hipsolverSp API (on by default).
 
-##### Changed
+##### Changes
 
 - Relax array length requirements for GESVDA.
 
-##### Fixed
+##### Fixes
 
 - Fixed incorrect singular vectors returned from GESVDA.
 
@@ -652,7 +650,7 @@ hipSPARSE 3.0.1 for ROCm 6.1.0
 
 hipSPARSELt 0.2.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - Support Matrix B is a Structured Sparsity Matrix.
 
@@ -675,7 +673,7 @@ hipTensor 1.2.0 for ROCm 6.1.0
 
 MIOpen 3.1.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - CK-based 2d/3d convolution solvers to support nchw/ncdhw layout
 - Fused solver for Fwd Convolution with Residual, Bias and activation
@@ -685,18 +683,18 @@ MIOpen 3.1.0 for ROCm 6.1.0
 - Integrate CK&#39;s layer norm
 - Combine gtests into single binary
 
-##### Fixed
+##### Changes
+
+- Standardize workspace abstraction
+- Use split CK libraries
+
+##### Fixes
 
 - fix for backward passes bwd/wrw for CK group conv 3d
 - Fixed out-of-bounds memory access : ConvOclDirectFwdGen
 - fixed build failure due to hipRTC
 
-##### Changed
-
-- Standardize workspace abstraction
-- Use split CK libraries
-
-##### Removed
+##### Removals
 
 - clamping to MAX from CastTensor used in Bwd and WrW convolution
 
@@ -791,7 +789,7 @@ rocFFT 1.0.26 for ROCm 6.1.0
 
 rocm-cmake 0.12.0 for ROCm 6.1.0
 
-##### Changed
+##### Changes
 
 - ROCMSphinxDoc: Allow separate source and config directories.
 - ROCMCreatePackage: Allow additional `PROVIDES` on header-only packages.
@@ -799,7 +797,7 @@ rocm-cmake 0.12.0 for ROCm 6.1.0
 - ROCMTest: Add RPATH for installed tests.
 - Finalize rename to ROCmCMakeBuildTools
 
-##### Fixed
+##### Fixes
 
 - ROCMClangTidy: Fixed invalid list index.
 - Test failures when ROCM_CMAKE_GENERATOR is empty.
@@ -850,7 +848,7 @@ rocRAND 3.0.1 for ROCm 6.1.0
 
 rocSOLVER 3.25.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - Eigensolver routines for symmetric/hermitian matrices using Divide &amp; Conquer and Jacobi algorithm:
     - SYEVDJ (with batched and strided\_batched versions)
@@ -859,15 +857,15 @@ rocSOLVER 3.25.0 for ROCm 6.1.0
     - SYGVDJ (with batched and strided\_batched versions)
     - HEGVDJ (with batched and strided\_batched versions)
 
-##### Changed
+##### Changes
 
 - Relaxed array length requirements for GESVDX with `rocblas_srange_index`.
 
-##### Removed
+##### Removals
 
 - Removed gfx803 and gfx900 from default build targets.
 
-##### Fixed
+##### Fixes
 
 - Corrected singular vector normalization in BDSVDX and GESVDX
 - Fixed potential memory access fault in STEIN, SYEVX/HEEVX, SYGVX/HEGVX, BDSVDX and GESVDX
