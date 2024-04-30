@@ -115,6 +115,7 @@ Our documentation is organized into the following categories:
   * [MI250](./conceptual/gpu-arch/mi250.md)
   * [MI300](./conceptual/gpu-arch/mi300.md)
 * [GPU memory](./conceptual/gpu-memory.md)
+* [Setting the number of CUs](./conceptual/setting-cus.md)
 * [File structure (Linux FHS)](./conceptual/file-reorg.md)
 * [GPU isolation techniques](./conceptual/gpu-isolation.md)
 * [Using CMake](./conceptual/cmake-packages.rst)
