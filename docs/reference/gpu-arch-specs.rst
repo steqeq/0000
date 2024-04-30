@@ -658,5 +658,54 @@ The following tables provide an overview of the hardware specifications for AMD 
             - 32 per 3 CUs
             - 256
             - 12.5
+Glossary
+########
 
-For more information on the terms used here, see the :ref:`specific documents and guides <gpu-arch-documentation>` or :doc:`Understanding the HIP programming model<hip:understand/programming_model>`.
+For more information on the terms used here, see the
+:ref:`specific documents and guides <gpu-arch-documentation>`, the
+:doc:`conceptual overview of the HIP programming model<hip:understand/programming_model>`,
+or the :doc:`HIP reference guide<hip:reference/programming_model>`.
+
+LLVM target name
+  Argument to pass to clang in `--offload-arch` to compile code for the given
+  architecture.
+VRAM
+  Amount of memory available on the GPU.
+Compute Units
+  Number of compute units on the GPU.
+Wavefront Size
+  Amount of work-items that execute in parallel on a single compute unit. This
+  is equivalent to the warp size in HIP.
+LDS
+  The Local Data Share (LDS) is a low-latency, high-bandwidth scratch pad
+  memory. It is local to the compute units, and can be shared by all work-items
+  in a work group. In HIP the LDS can be used for the shared memory, which is
+  shared by all threads in a block.
+L3 Cache
+  Size of the level 3 cache. Shared by all compute units on the same GPU. Caches
+  data and instructions. Similar to the Infinity Cache on RDNA architectures.
+L2 Cache
+  Size of the level 3 cache. Shared by all compute units on the same GCD. Caches
+  data and instructions.
+Graphics L1 Cache
+  An additional cache level, that only exists in RDNA architectures. Local to a
+  work group processor.
+L1 Vector Cache
+  Size of the level 1 vector data cache. Local to a compute unit. This is the L0
+  vector cache in RDNA architectures.
+L1 Scalar Cache
+  Size of the level 1 scalar data cache. Usually shared by several compute
+  units. This is the L0 scalar cache in RDNA architectures.
+L1 Instruction Cache
+  Size of the level 1 instruction cache. Usually shared by several compute
+  units. This is the L0 instruction cache in RDNA architectures.
+VGPR File
+  Size of the Vector General Purpose Register (VGPR) file. Holds data used in
+  vector instructions.
+  GPUs with matrix cores also have AccVGPRs, which are Accumulation General
+  Purpose Vector Registers, specifically used in matrix instructions.
+SGPR File
+  Size of the Scalar General Purpose Register (SGPR) file. Holds data used in
+  scalar instructions.
+GCD
+  Graphics Compute Die.
