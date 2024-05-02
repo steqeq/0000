@@ -1,0 +1,33 @@
+variables:
+- group: common
+- template: /.azuredevops/variables-global.yml@pipelines_repo
+
+parameters:
+- name: checkoutRef
+  type: string
+  default: refs/tags/$(LATEST_RELEASE_TAG)
+
+resources:
+  repositories:
+  - repository: pipelines_repo
+    type: github
+    endpoint: ROCm
+    name: ROCm/ROCm
+  - repository: release_repo
+    type: github
+    endpoint: ROCm
+    name: ROCm/HIP
+    ref: ${{ parameters.checkoutRef }}
+  - repository: matching_repo
+    type: github
+    endpoint: ROCm
+    name: ROCm/clr
+    ref: ${{ parameters.checkoutRef }}
+
+trigger: none
+
+jobs:
+  - template: ${{ variables.CI_COMPONENT_PATH }}/HIP.yml@pipelines_repo
+    parameters:
+      checkoutRepo: release_repo
+      checkoutRef: ${{ parameters.checkoutRef }}

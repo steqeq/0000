@@ -1,0 +1,42 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+
+jobs:
+- job: rocminfo
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool:
+    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: ROCR-Runtime
+        branchName: master
+        pipelineId: $(rocr-runtime-pipeline-id)
+        testFailuresOkay: true
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\ROCR-Runtime
+        pipelineId: $(rocr-runtime-tagged-pipeline-id)
+        testFailuresOkay: true
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

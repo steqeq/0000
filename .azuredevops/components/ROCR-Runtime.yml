@@ -1,0 +1,62 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+- name: aptPackages
+  type: object
+  default:
+    - libelf-dev
+    - g++
+    - libdrm-dev
+    - libnuma-dev
+
+jobs:
+- job: ROCR_Runtime
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool:
+    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: llvm-project
+        branchName: amd-staging
+        pipelineId: $(llvm-project-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: ROCT-Thunk-Interface
+        branchName: master
+        pipelineId: $(roct-thunk-interface-pipeline-id)
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\llvm-project
+        pipelineId: $(llvm-project-tagged-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\ROCT-Thunk-Interface
+        pipelineId: $(roct-thunk-interface-tagged-pipeline-id)
+  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
+    displayName: 'Artifact listing'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+      cmakeBuildDir: 'src/build'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
