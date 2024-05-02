@@ -6,6 +6,7 @@ hip-python
 hip-python-as-cuda
 numpy
 sphinx-collapse
+sphinx-reredirects
 sphinxcontrib-bibtex
 sphinxcontrib-moderncmakedomain
 sphinxcontrib.datatemplates
