@@ -8,13 +8,12 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - libelf-dev
-    - g++
-    - libdrm-dev
+    - cmake
+    - ninja-build
     - libnuma-dev
 
 jobs:
-- job: ROCR_Runtime
+- job: HIPIFY
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -37,26 +36,17 @@ jobs:
         componentName: llvm-project
         branchName: amd-staging
         pipelineId: $(llvm-project-pipeline-id)
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: ROCT-Thunk-Interface
-        branchName: master
-        pipelineId: $(roct-thunk-interface-pipeline-id)
 # manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
         componentName: \tag-builds\llvm-project
         pipelineId: $(llvm-project-tagged-pipeline-id)
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: \tag-builds\ROCT-Thunk-Interface
-        pipelineId: $(roct-thunk-interface-tagged-pipeline-id)
-  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
-    displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
-      cmakeBuildDir: 'src/build'
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm/llvm"
+        -DROCM_PATH="$(Agent.BuildDirectory)/rocm"
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

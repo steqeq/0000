@@ -8,16 +8,22 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - libnuma-dev
-    - libdrm-dev
+    - cmake
+    - libboost-program-options-dev
+    - libgtest-dev
+    - libfftw3-dev
+    - git
+    - mpich
 
 jobs:
-- job: ROCT_Thunk_Interface
+- job: rocALUTION
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool:
     vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  container:
+    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -28,5 +34,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-script.yml
+    parameters:
+      scriptExecutable: ./install.sh
+      scriptParameters: -i -c -d

@@ -8,6 +8,7 @@ ROCm-CI Azure DevOps Pipelines contains markup language files that orchestrate b
   - protected keywords such as tokens and passwords are kept as secrets within the Azure DevOps project
 - `/.azuredevops/components` - the sequence of templated steps for the job that checks out source, builds, packages, and runs tests for a ROCm repo
 - `/.azuredevops/scheduled` - the sequence of templated steps for jobs that are schedule-based and not tied to a specific ROCm repo
+- `/.azuredevops/tag-builds` - yml files to orchestrate manual builds based on specific tags (e.g., releases) without needing the corresponding yaml file in the component's repo
 - `/.azuredevops/templates` - reusable yml files representing the templated steps that form the sequences in the above directories
 
 ### Per ROCm Repo

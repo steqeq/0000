@@ -1,10 +1,10 @@
 parameters:
-- name: aptPackages
+- name: checkoutRepo
   type: string
-  default: 'libnuma-dev mesa-common-dev'
-- name: pipModules
+  default: 'self'
+- name: checkoutRef
   type: string
-  default: 'CppHeaderParser'
+  default: ''
 
 # hip and clr are tightly-coupled
 # run this same template for both repos

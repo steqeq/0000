@@ -8,23 +8,34 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - doxygen
-    - doxygen-doc
-    - ninja-build
-    - python3-sphinx
+    - cmake
+    - libgtest-dev
+    - libdw-dev
+    - libsystemd-dev
+    - libelf-dev
+    - libnuma-dev
+    - libpciaccess-dev
+    - rocm-llvm-dev
 - name: pipModules
   type: object
   default:
-    - cget
-    - ninja
+    - pyyaml==5.3.1
+    - Cppheaderparser
+    - websockets
+    - matplotlib
+    - lxml
+    - barectf
+    - pandas
 
 jobs:
-- job: rocm_cmake
+- job: rocprofiler
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool:
     vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  container:
+    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -37,12 +48,11 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-# extra steps for ctest suite
-  - script: |
-      python -m pip install -r $(Build.SourcesDirectory)/docs/requirements.txt
-      python -m pip install -r $(Build.SourcesDirectory)/test/docsphinx/docs/.sphinx/requirements.txt
-      git config --global user.email "you@example.com"
-      git config --global user.name "Your Name"
-    displayName: "ctest setup"
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_MODULE_PATH="$(Build.SourcesDirectory)/cmake_modules;/opt/rocm/lib/cmake"
+        -DCMAKE_PREFIX_PATH="/opt/rocm"
+        -DENABLE_LDCONFIG=OFF
+        -DUSE_PROF_API=1
+        -DGPU_TARGETS="gfx1100"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

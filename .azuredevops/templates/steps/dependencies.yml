@@ -2,11 +2,11 @@ parameters:
 # space-delimited list of packages to install via apt-get install command
 # TODO convert to string array and split with spaces
 - name: aptPackages
-  type: string
-  default: ''
+  type: object
+  default: []
 - name: pipModules
-  type: string
-  default: ''
+  type: object
+  default: []
 
 steps:
 - task: Bash@3
@@ -24,15 +24,15 @@ steps:
   inputs:
     targetType: inline
     script: sudo apt --yes --fix-broken install
-- ${{ if parameters.aptPackages }}:
+- ${{ if gt(length(parameters.aptPackages), 0) }}:
   - task: Bash@3
     displayName: 'sudo apt-get install ...'
     inputs:
       targetType: inline
-      script: sudo apt-get --yes install ${{ parameters.aptPackages }}
-- ${{ if parameters.pipModules }}:
+      script: sudo apt-get --yes install ${{ join(' ', parameters.aptPackages) }}
+- ${{ if gt(length(parameters.pipModules), 0) }}:
   - task: Bash@3
     displayName: 'pip install  ...'
     inputs:
       targetType: inline
-      script: pip install ${{ parameters.pipModules }}
+      script: pip install ${{ join(' ', parameters.pipModules) }}

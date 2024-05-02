@@ -16,8 +16,8 @@ steps:
   inputs:
     includeRootFolder: false
     archiveType: 'tar'
-    tarCompression: 'xz'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.DefinitionName)_$(Build.SourceBranchName)_$(Build.BuildId)_$(Build.BuildNumber)_ubuntu2204_${{ parameters.artifactName }}.tar.xz'
+    tarCompression: 'gz'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.DefinitionName)_$(Build.SourceBranchName)_$(Build.BuildId)_$(Build.BuildNumber)_ubuntu2204_${{ parameters.artifactName }}.tar.gz'
 - task: DeleteFiles@1
   displayName: 'Cleanup Staging Area'
   inputs:
@@ -26,6 +26,8 @@ steps:
     RemoveDotFiles: true
 # then publish it
 - ${{ if parameters.publish }}:
-  - task: PublishBuildArtifacts@1
+  - task: PublishPipelineArtifact@1
     displayName: '${{ parameters.artifactName }} Publish'
     retryCountOnTaskFailure: 3
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'

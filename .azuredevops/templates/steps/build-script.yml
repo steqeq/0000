@@ -14,7 +14,7 @@ parameters:
 
 steps:
 - task: Bash@3
-  displayName: '${{ parameters.componentName }} Test'
+  displayName: '${{ parameters.componentName }} Building via script'
   continueOnError: true
   inputs:
     targetType: inline

@@ -1,27 +1,52 @@
 parameters:
-- name: aptPackages
+- name: checkoutRepo
   type: string
-  default: 'libnuma-dev ninja-build ccache'
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+- name: aptPackages
+  type: object
+  default:
+    - cmake
+    - python3-pip
+    - libnuma-dev
+    - ninja-build
+    - ccache
 
 jobs:
 - job: llvm_project
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.HIGH_END_BUILD_POOL }}
+  - name: HIP_DEVICE_LIB_PATH
+    value: '$(Build.BinariesDirectory)/amdgcn/bitcode'
+  pool: ${{ variables.CLOUD_BUILD_POOL }}
   workspace:
     clean: all
   steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/ccache.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-# ${{ }} are resolved during compile-time
-# so this next step is skipped completely until
-# we define explicit aptPackages needed to install
-  - ${{ if parameters.aptPackages }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
-        aptPackages: ${{ parameters.aptPackages }}
+        componentName: rocm-cmake
+        branchName: develop
+        pipelineId: $(rocm-cmake-pipeline-id)
+        testFailuresOkay: true
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\rocm-cmake
+        pipelineId: $(rocm-cmake-tagged-pipeline-id)
+        testFailuresOkay: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: rocm-llvm
@@ -32,7 +57,6 @@ jobs:
         -DLLVM_ENABLE_RUNTIMES="compiler-rt;libunwind"
         -DCLANG_ENABLE_AMDCLANG="ON"
         -DLLVM_TARGETS_TO_BUILD="AMDGPU;X86"
-        -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
         -GNinja
       cmakeBuildDir: 'llvm/build'
       installDir: '$(Build.BinariesDirectory)/llvm'
@@ -64,7 +88,6 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/llvm/build"
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
       cmakeBuildDir: 'amd/device-libs/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -72,7 +95,6 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/llvm/build;$(Build.SourcesDirectory)/amd/device-libs/build"
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
       cmakeBuildDir: 'amd/comgr/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
@@ -86,6 +108,5 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
         -DHIPCC_BACKWARD_COMPATIBILITY=OFF
-        -GNinja
       cmakeBuildDir: 'amd/hipcc/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
