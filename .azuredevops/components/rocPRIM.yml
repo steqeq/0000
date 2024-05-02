@@ -41,7 +41,6 @@ jobs:
         -DBUILD_BENCHMARK=ON
         -DCMAKE_CXX_COMPILER=hipcc
         -DAMDGPU_TARGETS=gfx1100
-        -DAMDGPU_TARGETS=gfx1100
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
