@@ -14,7 +14,6 @@ parameters:
     - libfftw3-dev
     - rocsparse
     - git
-    - rocprim-dev 
 jobs:
 - job: hipSPARSE
   variables:
