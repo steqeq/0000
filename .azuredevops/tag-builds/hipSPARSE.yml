@@ -1,6 +1,6 @@
 variables:
 - group: common
-- template: /.azuredevops/variables-global.yml@pipelines_repo
+- template: /.azuredevops/variables-global.yml
 
 parameters:
 - name: checkoutRef
@@ -9,20 +9,16 @@ parameters:
 
 resources:
   repositories:
-  - repository: pipelines_repo
-    type: github
-    endpoint: ROCm
-    name: ROCm/ROCm
   - repository: release_repo
     type: github
     endpoint: ROCm
-    name: ROCm/hipSPARSE
+    name: ROCm/rocSPARSE
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/hipSPARSE.yml@pipelines_repo
+  - template: ${{ variables.CI_COMPONENT_PATH }}/rocALUTION.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}
