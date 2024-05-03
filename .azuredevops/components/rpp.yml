@@ -44,7 +44,8 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
         componentName: \tag-builds\half
-        pipelineId: $(half-tagged-pipeline-id)
+        # pipelineId: $(half-tagged-pipeline-id)
+        pipelineId: 11
         testFailuresOkay: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
