@@ -13,7 +13,7 @@ parameters:
     - cmake
 
 jobs:
-- job: amdsmi
+- job: hipfort
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
