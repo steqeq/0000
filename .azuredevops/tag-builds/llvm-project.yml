@@ -20,6 +20,7 @@ resources:
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
+pr: none
 
 jobs:
   - template: ${{ variables.CI_COMPONENT_PATH }}/llvm-project.yml@pipelines_repo

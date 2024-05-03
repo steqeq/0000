@@ -8,20 +8,15 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - cmake
-    - libboost-program-options-dev
-    - googletest
-    - libfftw3-dev
-    - git
+    - libdrm-dev
 
 jobs:
-- job: rccl
+- job: amdsmi
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
+  pool:
+    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -32,7 +27,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-script.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      scriptExecutable: ./install.sh
-      scriptParameters: -d -t
+      extraBuildFlags: >-
+        -DBUILD_TESTS=ON
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

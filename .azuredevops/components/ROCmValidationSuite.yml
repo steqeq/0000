@@ -9,17 +9,21 @@ parameters:
   type: object
   default:
     - cmake
-    - libboost-program-options-dev
+    - ninja-build
+    - rocblas
+    - libyaml-cpp-dev
+    - libpci-dev
+    - libpci3
     - googletest
-    - libfftw3-dev
     - git
 
 jobs:
-- job: rccl
+- job: ROCmValidationSuite
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool:
+    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -32,7 +36,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-script.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      scriptExecutable: ./install.sh
-      scriptParameters: -d -t
+      extraBuildFlags: >-
+        -DROCM_PATH=/opt/rocm
+        -DCMAKE_PREFIX_PATH=/opt/rocm
+        -DCPACK_PACKAGING_INSTALL_PREFIX='$(Build.BinariesDirectory)'
+        -DAMDGPU_TARGETS=gfx1100
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

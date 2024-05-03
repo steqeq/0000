@@ -10,14 +10,14 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - rocrand
-    - hiprand
-    - libboost-program-options-dev
-    - libgtest-dev
-    - libfftw3-dev
+    - rocblas
+    - rocsolver
+    - gfortran
+    - libopenblas-dev
+    - git
 
 jobs:
-- job: rocFFT
+- job: hipBLAS
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -34,15 +34,21 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+# build external gtest and lapack
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: external
+      cmakeBuildDir: 'deps/build'
+      installDir: '$(Pipeline.Workspace)/deps-install'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
+        -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
+        -DCMAKE_PREFIX_PATH="/opt/rocm;$(Pipeline.Workspace)/deps-install"
+        -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_C_COMPILER=hipcc
-        -DCMAKE_PREFIX_PATH=/opt/rocm
-        -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1100
-        -DUSE_HIP_CLANG=ON
-        -DHIP_COMPILER=clang
+        -DHIP_PLATFORM=amd
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
