@@ -18,7 +18,7 @@ resources:
 trigger: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/composable_kernel.yml@pipelines_repo
+  - template: ${{ variables.CI_COMPONENT_PATH }}/composable_kernel.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}
