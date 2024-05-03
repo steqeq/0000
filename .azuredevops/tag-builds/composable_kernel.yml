@@ -9,10 +9,6 @@ parameters:
 
 resources:
   repositories:
-  - repository: pipelines_repo
-    type: github
-    endpoint: ROCm
-    name: ROCm/ROCm
   - repository: release_repo
     type: github
     endpoint: ROCm
