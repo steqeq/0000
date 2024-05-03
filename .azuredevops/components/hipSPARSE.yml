@@ -14,6 +14,7 @@ parameters:
     - libfftw3-dev
     - rocsparse
     - git
+    - gfortran
 jobs:
 - job: hipSPARSE
   variables:
