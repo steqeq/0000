@@ -12,7 +12,7 @@ resources:
   - repository: release_repo
     type: github
     endpoint: ROCm
-    name: ROCm/rocSPARSE
+    name: ROCm/hipSPARSE
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
