@@ -18,7 +18,7 @@ resources:
 trigger: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/rocALUTION.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/hipSPARSE.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}
