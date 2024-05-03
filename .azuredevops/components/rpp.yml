@@ -10,6 +10,7 @@ parameters:
   default:
     - cmake
     - ninja-build
+    - clang
 
 jobs:
 - job: rpp
