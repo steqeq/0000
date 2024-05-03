@@ -39,6 +39,5 @@ jobs:
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/" 
-        -DBUILD_TESTS=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
