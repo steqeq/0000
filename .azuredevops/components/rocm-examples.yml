@@ -5,34 +5,20 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
-- name: aptPackages
-  type: object
-  default:
-    - cmake
-    - ninja-build
 
 jobs:
-- job: MIVisionX
+- job: rocm_examples
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
+  pool:
+    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - task: Bash@3
-    displayName: 'Dependency Setup'
-    inputs:
-      targetType: inline
-      script: 'python3 MIVisionX-setup.py'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
