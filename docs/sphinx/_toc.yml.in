@@ -25,6 +25,8 @@ subtrees:
 
 - caption: Compatibility
   entries:
+  - file: compatibility/compatibility-matrix.rst
+    title: Compatibility matrix
   - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
     title: Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
