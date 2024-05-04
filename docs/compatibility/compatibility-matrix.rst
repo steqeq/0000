@@ -51,9 +51,9 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       ML & COMPUTER VISION LIBS:,,
       :doc:`Composable Kernel <composable_kernel:index>`,1.1.0,1.1.0
       :doc:`MIGraphX <amdmigraphx:index>`,2.9.0,2.8.0
-      :doc:`MIVisionX <mivisionx:doxygen/html/index>`,2.5.0,2.5.0
       :doc:`MIOpen <miopen:index>`,3.1.0,3.0.0
-      :doc:`rocDecode <rocDecode:index>`,0.5.0,N/A
+      :doc:`MIVisionX <mivisionx:doxygen/html/index>`,2.5.0,2.5.0
+      :doc:`rocDecode <rocdecode:index>`,0.5.0,N/A
       :doc:`RPP <rpp:index>`,1.5.0,1.4.0
       ,,
       COMMUNICATION:,,
@@ -86,6 +86,7 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       ,,
       SUPPORT LIBS:,,
       `hipother <https://github.com/ROCm/hipother>`_,6.1.40091,6.0.32830
+      `rocm-cmake <https://github.com/ROCm/rocm-cmake>`_,0.12.0,0.11.0
       `rocm-core <https://github.com/ROCm/rocm-core>`_,6.1.0,6.0.0
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,20240125.3.30,20231016.2.245
       ,,
@@ -98,7 +99,6 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       `rocprofiler-register <https://github.com/ROCm/rocprofiler-register>`_,0.3.0,N/A
       :doc:`rocTracer <roctracer:index>`,4.1.60100,4.1.0
       `rocm_bandwidth_test <https://github.com/ROCm/rocm_bandwidth_test>`_,1.4.0,1.4.0
-      `rocm-cmake <https://github.com/ROCm/rocm-cmake>`_,0.12.0,0.11.0
       :doc:`ROCm Data Center Tool <rdc:index>`,0.3.0,0.3.0
       `rocminfo <https://github.com/ROCm/rocminfo>`_,1.0.0,1.0.0
       :doc:`ROCm SMI Lib <rocm_smi_lib:index>`,7.0.0,6.0.0
