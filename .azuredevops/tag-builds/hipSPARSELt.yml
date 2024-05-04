@@ -16,24 +16,14 @@ resources:
   - repository: release_repo
     type: github
     endpoint: ROCm
-    name: ROCm/HIP
-    ref: ${{ parameters.checkoutRef }}
-  - repository: matching_repo
-    type: github
-    endpoint: ROCm
-    name: ROCm/clr
-    ref: ${{ parameters.checkoutRef }}
-  - repository: hipother_repo
-    type: github
-    endpoint: ROCm
-    name: ROCm/hipother
+    name: ROCm/hipSPARSELt
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
 pr: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/HIP.yml@pipelines_repo
+  - template: ${{ variables.CI_COMPONENT_PATH }}/hipSPARSELt.yml@pipelines_repo
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}

@@ -20,7 +20,7 @@ jobs:
     clean: all
   steps:
 # checkout nothing, just copy artifacts from triggering HIP job
-# and then publish for this clr job to maintain latest
+# and then publish for this clr job or for this hipother job to maintain latest
   - checkout: none
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
     parameters:

@@ -10,19 +10,22 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - rocblas
-    - rocsparse
-    - rocsolver
-    - gfortran
-    - libopenblas-dev
+    - python3-venv
+    - libmsgpack-dev
+    - hipsparse-dev
     - git
+- name: pipModules
+  type: object
+  default:
+    - joblib
 
 jobs:
-- job: hipBLAS
+- job: hipSPARSELt
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool:
+    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -31,25 +34,22 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# build external gtest and lapack
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      componentName: external
-      cmakeBuildDir: 'deps/build'
-      installDir: '$(Pipeline.Workspace)/deps-install'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
-        -DCMAKE_PREFIX_PATH="/opt/rocm;$(Pipeline.Workspace)/deps-install"
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_C_COMPILER=hipcc
-        -DAMDGPU_TARGETS=gfx1100
-        -DHIP_PLATFORM=amd
+        -DAMDGPU_TARGETS=all
+        -DTensile_LOGIC=
+        -DTensile_CPU_THREADS=
+        -DTensile_CODE_OBJECT_VERSION=default
+        -DTensile_LIBRARY_FORMAT=msgpack
+        -DCMAKE_PREFIX_PATH="/opt/rocm"
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
