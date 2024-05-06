@@ -1,5 +1,5 @@
 * @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
 # Documentation files
-docs/* @ROCm/rocm-documentation
-*.md @ROCm/rocm-documentation
-*.rst @ROCm/rocm-documentation
+docs/* @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
+*.md @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
+*.rst @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
