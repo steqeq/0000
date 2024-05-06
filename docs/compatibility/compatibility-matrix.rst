@@ -91,6 +91,7 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,20240125.3.30,20231016.2.245
       ,,
       TOOLS:,,
+      :doc:`AMD SMI <amdsmi:index>`,24.4.1,23.4.2
       :doc:`HIPIFY <hipify:index>`,17.0.0,17.0.0
       :doc:`ROCdbgapi <rocdbgapi:index>`,0.71.0,0.71.0
       `ROCdebug-Agent <https://github.com/ROCm/rocr_debug_agent>`_,2.0.3,2.0.3
