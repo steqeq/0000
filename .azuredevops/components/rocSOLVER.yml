@@ -14,6 +14,7 @@ parameters:
     - rocblas
     - hipsparse
     - ninja-build
+    - gfortran
 jobs:
 - job: rocSOLVER
   variables:
