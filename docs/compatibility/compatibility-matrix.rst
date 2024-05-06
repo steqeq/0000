@@ -15,11 +15,11 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :header: "ROCm Version", "6.1.0", "6.0.0"
       :stub-columns: 1
 
-      :doc:`Operating Systems <rocm-install-on-linux:reference/system-requirements>`, Ubuntu 22.04.z (z=3-4),Ubuntu 22.04.z (z=3-4)
-      ,Ubuntu 20.04.z (z=5-6),Ubuntu 20.04.z (z=5-6)
-      ,RHEL 9.y (y=2-3),RHEL 9.y (y=2-3)
-      ,RHEL 8.y (y=8-9),RHEL 8.y (y=8-9)
-      ,SLES 15 SPy (y=4-5),SLES 15 SPy (y=4-5)
+      :doc:`Operating Systems <rocm-install-on-linux:reference/system-requirements>`, "Ubuntu 22.04.4, 22.04.3","Ubuntu 22.04.4, 22.04.3"
+      ,"Ubuntu 20.04.6, 20.04.5","Ubuntu 20.04.6, 20.04.5"
+      ,"RHEL 9.3, 9.2","RHEL 9.3, 9.2"
+      ,"RHEL 8.9, 8.8","RHEL 8.9, 8.8"
+      ,"SLES 15 SP5, SP4","SLES 15 SP5, SP4"
       ,CentOS 7.9,CentOS 7.9
       ,,
       :doc:`GFX Architecture <rocm-install-on-linux:reference/system-requirements>`,CDNA3,CDNA3
@@ -35,8 +35,8 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       ,gfx908,gfx908
       ,,
       ECOSYSTEM SUPPORT:,,
-      :doc:`PyTorch <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`,2.y (y=0-1) and 1.13,2.y (y=0-1) and 1.13
-      :doc:`Tensorflow <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`,2.1y (y=3-5),2.1y (y=2-4)
+      :doc:`PyTorch <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`,"2.1, 2.0, 1.13","2.1, 2.0, 1.13"
+      :doc:`Tensorflow <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`,"2.15, 2.14, 2.13","2.14, 2.13, 2.12"
       :doc:`JAX <rocm-install-on-linux:how-to/3rd-party/jax-install>`,0.4.26,0.4.26
       `ONNX-RT <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.14.1
       ,,
