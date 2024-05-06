@@ -18,6 +18,7 @@ parameters:
     - liblapack-dev
     - liblapacke-dev
     - libblas-dev
+    - libatlas-dev
 jobs:
 - job: rocSOLVER
   variables:
