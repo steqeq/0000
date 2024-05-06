@@ -19,7 +19,7 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool:
-    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+    vmImage: ${{ variables.HIGH_END_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -39,4 +39,5 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DBUILD_CLIENTS=ON
         -DGPU_TARGETS=gfx1100
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
