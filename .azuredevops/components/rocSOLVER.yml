@@ -11,6 +11,7 @@ parameters:
     - git
     - cmake
     - libfmt-dev
+    - rocblas
 jobs:
 - job: rocSOLVER
   variables:
