@@ -35,7 +35,7 @@ jobs:
   - script: cd rocSOLVER
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      workingDirectory: rocSOLVER
+      cmakeBuildDir: rocSOLVER
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_BUILD_TYPE=Release
