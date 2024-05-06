@@ -12,6 +12,7 @@ parameters:
     - ninja-build
     - libboost-program-options-dev
     - libgtest-dev
+    - googletest
     - libfftw3-dev
 jobs:
 - job: rocWMMA
