@@ -12,6 +12,7 @@ parameters:
     - ninja-build
     - clang
     - half
+    - libomp-dev
 
 jobs:
 - job: rpp
