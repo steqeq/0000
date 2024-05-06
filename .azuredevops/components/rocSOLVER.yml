@@ -33,7 +33,6 @@ jobs:
     parameters:
       cmakeTargetDir: rocSOLVER
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER="/usr/bin/hipcc"
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/" 
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
