@@ -32,6 +32,7 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - script: pwd && ls
+  - script: cd rocSOLVER
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
