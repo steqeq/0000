@@ -15,7 +15,7 @@ parameters:
     - hipsparse
     - ninja-build
     - gfortran
-    - liblapack
+    - liblapack*
     - liblapacke-dev
     - libblas-dev
     - libatlas-base-dev
