@@ -11,6 +11,7 @@ parameters:
     - cmake
     - ninja-build
     - composablekernel-dev
+    - git
 
 jobs:
 - job: hipTensor
