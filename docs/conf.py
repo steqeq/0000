@@ -98,6 +98,9 @@ external_projects_current_project = "rocm"
 html_theme = "rocm_docs_theme"
 html_theme_options = {"flavor": "rocm-docs-home"}
 
+html_static_path = ["sphinx/static/css"]
+html_css_files = ["rocm_custom.css"]
+
 html_title = "ROCm Documentation"
 
 html_theme_options = {
