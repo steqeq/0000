@@ -1,6 +1,6 @@
 .. meta::
     :description: ROCm compatibility matrix
-    :keywords: AMD, GPU, architecture, hardware, compatibility
+    :keywords: AMD, GPU, architecture, hardware, compatibility, requirements
 
 **************************************************************************************
 Compatibility matrix
