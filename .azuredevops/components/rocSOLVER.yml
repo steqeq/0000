@@ -15,6 +15,7 @@ parameters:
     - hipsparse
     - ninja-build
     - gfortran
+    - liblapack-dev
 jobs:
 - job: rocSOLVER
   variables:
