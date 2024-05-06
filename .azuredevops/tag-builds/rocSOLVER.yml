@@ -1,0 +1,24 @@
+variables:
+- group: common
+- template: /.azuredevops/variables-global.yml
+
+parameters:
+- name: checkoutRef
+  type: string
+  default: refs/tags/$(LATEST_RELEASE_TAG)
+
+resources:
+  repositories:
+  - repository: release_repo
+    type: github
+    endpoint: ROCm
+    name: ROCm/rocSOLVER
+    ref: ${{ parameters.checkoutRef }}
+
+trigger: none
+
+jobs:
+  - template: ${{ variables.CI_COMPONENT_PATH }}/rocSOLVER.yml
+    parameters:
+      checkoutRepo: release_repo
+      checkoutRef: ${{ parameters.checkoutRef }}
