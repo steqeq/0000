@@ -1,0 +1,53 @@
+
+/* Adds container for big tables, used for Compatibility Matrix */
+
+
+/* Header row to have opaque background colour when sticky */
+.format-big-table th {
+    background-color: var(--pst-color-background);
+    white-space: nowrap;
+  }
+  
+  /* Turn on borders for whole table */
+  .format-big-table th,
+  .format-big-table td {
+    border-width: 1px;
+  }
+  
+  /* .format-big-table th.head { */
+  /*   background-color: var(--pst-color-on-surface); */
+  /* } */
+  
+  /* Sticky header for table excluding the stub*/
+  .format-big-table th.head:not(.stub) {
+    position: sticky;
+    top: 3rem;
+    z-index: 1;
+  }
+
+  /* Sticky header for the head & stub: top left cell */
+  .format-big-table th.head.stub {
+    position: sticky;
+    top: 3rem;
+    z-index: 1;
+    background-color: var(--pst-color-background);
+    white-space: nowrap;
+  }
+  
+  /* Sticky for the stub column */
+  /*.format-big-table tbody th:not(:empty) {
+    position: sticky;
+    top: 3rem;
+    z-index: 2;
+  }*/
+  
+  /* Removes borders for stub column */
+  .format-big-table tbody th {
+    border-top: none;
+    border-bottom: none;
+  }
+  
+  /* For horizontal scrolling only.  Can't be combined with format-big-table container */
+  .horizontal-scrolling-container {
+    overflow-x: scroll;
+  }

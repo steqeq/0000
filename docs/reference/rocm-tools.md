@@ -19,6 +19,7 @@
 :img-alt: Development tools
 :padding: 2
 
+* {doc}`HIPIFY <hipify:index>`
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
 * [ROCm Debug Agent](https://github.com/ROCm/rocr_debug_agent)
@@ -35,6 +36,7 @@
 
 * [RocBandwidthTest](https://github.com/ROCm/rocm_bandwidth_test)
 * {doc}`ROCProfiler <rocprofiler:profiler_home_page>`
+* [rocprofiler-register](https://github.com/ROCm/rocprofiler-register)
 * {doc}`ROCTracer <roctracer:index>`
 :::
 
