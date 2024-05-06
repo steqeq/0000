@@ -14,7 +14,7 @@ parameters:
     - half
     - rocrand
     - rocblas
-    - sqlite3
+    - libsqlite3-dev
 
 jobs:
 - job: MIOpen
@@ -38,6 +38,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
+        -DMIOPEN_BACKEND=HIP
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
