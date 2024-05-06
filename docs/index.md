@@ -51,13 +51,14 @@ Our documentation is organized into the following categories:
 :img-alt: Compatibility information
 :padding: 2
 
+* [Compatibility matrix](./compatibility/compatibility-matrix.rst)
 * {doc}`System requirements (Linux)<rocm-install-on-linux:reference/system-requirements>`
 * {doc}`System requirements (Windows)<rocm-install-on-windows:reference/system-requirements>`
 * {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`
 * {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
-* [Precision support](./about/compatibility/precision-support.rst)
+* [Precision support](./compatibility/precision-support.rst)
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
