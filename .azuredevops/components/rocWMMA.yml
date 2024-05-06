@@ -11,7 +11,7 @@ parameters:
     - cmake
     - ninja-build
     - libboost-program-options-dev
-    - googletest
+    - libgtest-dev
     - libfftw3-dev
 jobs:
 - job: rocWMMA
