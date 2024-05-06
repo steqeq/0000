@@ -15,6 +15,7 @@ parameters:
     - rocrand
     - rocblas
     - libsqlite3-dev
+    - libbz2-dev
 
 jobs:
 - job: MIOpen
