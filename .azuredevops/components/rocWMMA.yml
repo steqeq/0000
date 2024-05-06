@@ -15,6 +15,7 @@ parameters:
     - googletest
     - libfftw3-dev
     - git
+    - rocblas
 jobs:
 - job: rocWMMA
   variables:
