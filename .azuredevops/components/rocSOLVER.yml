@@ -16,6 +16,7 @@ parameters:
     - ninja-build
     - gfortran
     - liblapack-dev
+    - libblas-dev
 jobs:
 - job: rocSOLVER
   variables:
