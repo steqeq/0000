@@ -8,7 +8,6 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - gfortran
     - git
     - cmake
 
