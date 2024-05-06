@@ -29,8 +29,10 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - script: pwd && ls
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-script.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-     scriptParameters: -i
-        
+      cmakeTargetDir: rocSOLVER
+      extraBuildFlags: >-
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/" 
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
