@@ -10,8 +10,6 @@ parameters:
   default:
     - git
     - cmake
-    - hip
-
 jobs:
 - job: rocSOLVER
   variables:
