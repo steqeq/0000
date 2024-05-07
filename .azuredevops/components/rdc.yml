@@ -39,19 +39,18 @@ jobs:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # Build grpc
   - task: Bash@3
-    displayName: 'git clone 3rd party source'
+    displayName: 'git clone grpc'
     inputs:
       targetType: inline
       script: git clone --recurse-submodules -b v1.62.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc
       workingDirectory: $(Build.SourcesDirectory)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      cmakeBuildDir: $(Build.SourcesDirectory)
+      cmakeBuildDir: $(Build.SourcesDirectory)/grpc/build
       installDir: $(Build.SourcesDirectory)/bin
       extraBuildFlags: >-
         -DgRPC_INSTALL=ON \
         -DgRPC_BUILD_TESTS=OFF \
-        -DCMAKE_INSTALL_PREFIX="$(Build.SourcesDirectory)/bin" \
   
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
