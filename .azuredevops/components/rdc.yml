@@ -13,6 +13,16 @@ parameters:
     - git
     - libcap-dev
     - protobuf-compiler
+    - unzip
+    - build-essential
+    - autoconf
+    - libtool
+    - pkg-config
+    - libgflags-dev 
+    - libgtest-dev 
+    - libc++-dev
+    - curl
+
 
 jobs:
 - job: rdc
