@@ -13,16 +13,10 @@ parameters:
     - git
     - libcap-dev
     - protobuf-compiler
-    - unzip
-    - build-essential
-    - autoconf
-    - libtool
-    - pkg-config
-    - libgflags-dev 
-    - libgtest-dev 
-    - libc++-dev
-    - curl
-
+- name: pipModules
+  type: object
+  default:
+    - grpcio
 
 jobs:
 - job: rdc
@@ -48,8 +42,6 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_CC_COMPILER=hipcc
-        -DGRPC_ROOT="$(Build.SourcesDirectory)/grpc"
-        -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/grpc"
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
