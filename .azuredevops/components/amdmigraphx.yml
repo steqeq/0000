@@ -13,6 +13,7 @@ parameters:
     - cmake
     - rocm-cmake
     - clang
+    - rbuild
 jobs:
 - job: amdmigraphx
   variables:
