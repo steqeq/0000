@@ -33,6 +33,11 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - script: pip3 install https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
-  - script: pip3 install rbuild
-  - script: rbuild build -d depend -B build
+  - script: export PATH=$HOME/.local/bin:$PATH
+  - script: rbuild prepare -d depend
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -CXX=/opt/rocm/llvm/bin/clang++
+        -DAMDGPU_TARGETS=gfx1100
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
