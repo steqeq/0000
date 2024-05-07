@@ -652,11 +652,6 @@ AMD rocclr environment variables at debug build:
       - Default value
       - Description
     *
-      - DEBUG_GPU_FLAGS
-      - uint
-      - 0
-      - The debug options for GPU device
-    *
       - CPU_MEMORY_GUARD_PAGES
       - bool
       - FALSE
