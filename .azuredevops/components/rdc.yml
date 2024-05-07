@@ -13,10 +13,10 @@ parameters:
     - git
     - libcap-dev
     - protobuf-compiler
-- name: pipModules
-  type: object
-  default:
-    - grpcio
+    - build-essential
+    - autoconf
+    - libtool
+    - pkg-config
 
 jobs:
 - job: rdc
