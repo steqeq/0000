@@ -43,6 +43,6 @@ jobs:
     parameters:
       cmakeTargetDir: rocSOLVER
       extraBuildFlags: >-
-      -S .
-      -B build
+        -S .
+        -B build
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
