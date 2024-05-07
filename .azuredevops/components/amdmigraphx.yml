@@ -58,6 +58,6 @@ jobs:
         -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1100
-        -DCMAKE_PREFIX_PATH=/opt/rocm
+        -DCMAKE_PREFIX_PATH=/opt/rocm/llvm;opt/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
