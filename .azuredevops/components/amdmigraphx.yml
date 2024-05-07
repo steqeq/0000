@@ -33,6 +33,7 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - script: pip3 install https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
+  - script: which rbuild
   - script: export PATH=$HOME/.local/bin:$PATH
   - script: rbuild prepare -d depend
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
