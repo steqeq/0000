@@ -20,6 +20,7 @@ parameters:
 
 jobs:
 - job: rdc
+  timeoutInMinutes: 200
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
