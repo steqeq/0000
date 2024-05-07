@@ -12,7 +12,7 @@ parameters:
     - python3-pip
     - libnuma-dev
     - ninja-build
-    - ccache
+    - python-is-python3
 
 jobs:
 - job: llvm_project
@@ -53,10 +53,12 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Build.BinariesDirectory)/llvm;$(Build.BinariesDirectory)"
         -DCMAKE_BUILD_TYPE=Release
-        -DLLVM_ENABLE_PROJECTS="llvm;clang;lld;clang-tools-extra"
-        -DLLVM_ENABLE_RUNTIMES="compiler-rt;libunwind"
-        -DCLANG_ENABLE_AMDCLANG="ON"
-        -DLLVM_TARGETS_TO_BUILD="AMDGPU;X86"
+        -DLLVM_ENABLE_PROJECTS=llvm;clang;lld;clang-tools-extra;mlir
+        -DLLVM_ENABLE_RUNTIMES=compiler-rt;libunwind;libcxx;libcxxabi
+        -DCLANG_ENABLE_AMDCLANG=ON
+        -DLLVM_TARGETS_TO_BUILD=AMDGPU;X86
+        -DROCM_LLVM_BACKWARD_COMPAT_LINK=$(Build.BinariesDirectory)/llvm
+        -DROCM_LLVM_BACKWARD_COMPAT_LINK_TARGET=./lib/llvm
         -GNinja
       cmakeBuildDir: 'llvm/build'
       installDir: '$(Build.BinariesDirectory)/llvm'
