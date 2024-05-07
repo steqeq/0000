@@ -29,8 +29,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -CXX=/opt/rocm/llvm/bin/clang++
+  - script: pip3 install https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
+  - script: rbuild build -d depend -B build -DGPU_TARGETS=$(/opt/rocm/bin/rocminfo -T check| grep -o -m1 'gfx.*')
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
