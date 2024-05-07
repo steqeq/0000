@@ -13,7 +13,6 @@ parameters:
     - cmake
     - rocm-cmake
     - clang
-    - rbuild
 jobs:
 - job: amdmigraphx
   variables:
@@ -34,5 +33,6 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - script: pip3 install https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
+  - script: pip3 install rbuild
   - script: rbuild build -d depend -B build
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
