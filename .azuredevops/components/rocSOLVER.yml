@@ -16,6 +16,7 @@ parameters:
     - rocsolver
     - libsuitesparse-dev
     - gfortran
+    - libfmt-dev
     - git
 jobs:
 - job: rocSOLVER
