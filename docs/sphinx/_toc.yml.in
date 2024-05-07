@@ -100,16 +100,19 @@ subtrees:
             title: White paper
   - file: conceptual/gpu-memory.md
     title: GPU memory
-  - file: conceptual/compiler-disambiguation.md
-    title: Compiler disambiguation
-  - file: about/compatibility/openmp.md
-    title: OpenMP
+  - file: conceptual/compiler-topics.md
+    subtrees:
+    - entries:
+      - file: conceptual/using-gpu-sanitizer.md
+        title: Using AddressSanitizer
+      - file: conceptual/compiler-disambiguation.md
+        title: Compiler disambiguation
+      - file: about/compatibility/openmp.md
+        title: OpenMP support
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md
     title: GPU isolation techniques
-  - file: conceptual/using-gpu-sanitizer.md
-    title: LLVM ASan
   - file: conceptual/cmake-packages.rst
     title: Using CMake
   - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
