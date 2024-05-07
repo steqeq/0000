@@ -12,11 +12,6 @@ parameters:
     - git
     - cmake
     - rocm-cmake
-    - rocblas
-    - miopen-hip
-    - pip3
-    - rbuild
-
 jobs:
 - job: amdmigraphx
   variables:
