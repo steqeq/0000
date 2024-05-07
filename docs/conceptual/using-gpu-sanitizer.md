@@ -91,7 +91,7 @@ If it does not appear, when executed the application will quickly output an ASan
 
 * Ensure that the application `llvm-symbolizer` can be executed, and that it is located in `/opt/rocm-<version>/llvm/bin`. This executable is not strictly required, but if found is used to translate ("symbolize") a host-side instruction address into a more useful function name, file name, and line number (assuming the application has been built to include debug information).
 
-There is an environment variable, `ASAN_OPTIONS`, that can be used to adjust the runtime behavior of the Asan runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host Asan runtime. The device runtime only currently supports the default settings for the few relevant options.
+There is an environment variable, `ASAN_OPTIONS`, that can be used to adjust the runtime behavior of the ASan runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASan runtime. The device runtime only currently supports the default settings for the few relevant options.
 
 There are two `ASAN_OPTION` flags of particular note.
 
@@ -101,7 +101,7 @@ This tells the ASan runtime to halt the application immediately after detecting 
 
 * `detect_leaks=0/1 default 1`.
 
-This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (Lsan). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an Lsan suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
+This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSan). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSan suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
 ## Runtime overhead
 
@@ -316,7 +316,7 @@ $ ldd mini
 
 ```
 
-This confirms that the address sanitizer runtime is linked in, and the Asan instrumented version of the runtime libraries are used.
+This confirms that the address sanitizer runtime is linked in, and the ASan instrumented version of the runtime libraries are used.
 Checking the `PATH` yields
 
 ```bash

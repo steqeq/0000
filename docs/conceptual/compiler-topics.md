@@ -7,6 +7,6 @@
 
 # Compiler topics
 
-* [Address sanitizer](./using-gpu-sanitizer.md)
+* [Using AddressSanitizer](./using-gpu-sanitizer.md)
 * [Compiler disambiguation](./compiler-disambiguation.md)
 * [OpenMP support in ROCm](./compatibility/openmp.md)
