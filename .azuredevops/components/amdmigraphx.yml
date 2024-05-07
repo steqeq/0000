@@ -33,5 +33,4 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -CXX=/opt/rocm/llvm/bin/clang++
-        -DGPU_TARGETS=$(/opt/rocm/bin/rocminfo | grep -o -m1 'gfx.*')
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
