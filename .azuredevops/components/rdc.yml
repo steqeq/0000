@@ -23,8 +23,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  pool: ${{ variables.HIGH_END_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -49,12 +48,14 @@ jobs:
       cmakeBuildDir: $(Build.SourcesDirectory)/grpc/build
       installDir: $(Build.SourcesDirectory)/bin
       extraBuildFlags: >-
-        -DgRPC_INSTALL=ON \
-        -DgRPC_BUILD_TESTS=OFF \
+        -DgRPC_INSTALL=ON
+        -DgRPC_BUILD_TESTS=OFF
+        -GNinja
   
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
+        -DGRPC_ROOT="$(Build.SourcesDirectory)/bin"
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_CC_COMPILER=hipcc
         -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/bin"
