@@ -8,17 +8,15 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - git
     - cmake
-    - libfmt-dev
-    - rocblas
-    - hipsparse
     - ninja-build
+    - rocblas
+    - rocsparse
+    - hipsparse
+    - rocsolver
+    - libsuitesparse-dev
     - gfortran
-    - liblapack*
-    - liblapacke-dev
-    - libblas-dev
-    - libatlas-base-dev
+    - git
 jobs:
 - job: rocSOLVER
   variables:
@@ -45,5 +43,6 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="/opt/rocm;$(Pipeline.Workspace)/deps-install"
         -DCMAKE_CXX_COMPILER=hipcc
+        -DUSE_CUDA=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
