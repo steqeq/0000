@@ -32,13 +32,13 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - script: pip3 install https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
-  - script: which rbuild
-  - script: export PATH=$HOME/.local/bin:$PATH
-  - script: rbuild prepare -d depend
+  - script: mkdir prereqs
+  - script: prereqs_dir=$'prereqs'
+  - script: sudo ./tools/install_prereqs.sh $prereqs_dir
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -CXX=/opt/rocm/llvm/bin/clang++
         -DAMDGPU_TARGETS=gfx1100
+        -DCMAKE_PREFIX_PATH=$your_loc=$prereqs_dir
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
