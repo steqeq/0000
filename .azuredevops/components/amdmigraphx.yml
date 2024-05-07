@@ -8,16 +8,31 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - gfortran
     - git
     - cmake
+    - ninja-build
     - rocm-cmake
-    - clang
-    - clang-format
-    - protobuf-compiler
+    - libnuma-dev
+    - miopen-hip-dev
+    - openmp-extras
+    - python3-dev
+    - python3-pip
+    - python3-venv
+    - rocblas-dev
+    - libtbb-dev
+- name: pipModules
+  type: object
+  default:
+    - https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
+    - onnx==1.14.1
+    - numpy==1.21.6
+    - typing==3.7.4
+    - pytest==6.0.1
+    - packaging==23.0
+    - protobuf==3.20.2
+
 jobs:
-- job: amdmigraphx
-  timeoutInMinutes: 180
+- job: AMDMIGraphX
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -30,20 +45,19 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - script: mkdir prereqs
-  - script: prereqs_dir=$'prereqs'
-  - script: sudo ./tools/install_prereqs.sh $prereqs_dir
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=hipcc
-        -DCMAKE_C_COMPILER=hipcc
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
+        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
         -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1100
-        -DCMAKE_PREFIX_PATH=$your_loc=$prereqs_dir
+        -DCMAKE_PREFIX_PATH=/opt/rocm
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
