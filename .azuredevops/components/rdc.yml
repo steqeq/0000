@@ -37,11 +37,28 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+# Build grpc
+  - task: Bash@3
+    displayName: 'git clone 3rd party source'
+    inputs:
+      targetType: inline
+      script: git clone --recurse-submodules -b v1.62.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc
+      workingDirectory: $(Build.SourcesDirectory)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      cmakeBuildDir: $(Build.SourcesDirectory)
+      installDir: $(Build.SourcesDirectory)/bin
+      extraBuildFlags: >-
+        -DgRPC_INSTALL=ON \
+        -DgRPC_BUILD_TESTS=OFF \
+        -DCMAKE_INSTALL_PREFIX="$(Build.SourcesDirectory)/bin" \
+  
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_CC_COMPILER=hipcc
+        -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/bin"
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
