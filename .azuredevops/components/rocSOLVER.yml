@@ -44,9 +44,6 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="/opt/rocm;$(Pipeline.Workspace)/deps-install"
-        -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=hipcc
-        -DAMDGPU_TARGETS=gfx1100
-        -DUSE_CUDA=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
