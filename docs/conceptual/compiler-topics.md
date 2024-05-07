@@ -7,6 +7,13 @@
 
 # Compiler topics
 
+:::::{grid} 1 1 2 2
+:gutter: 1
+
+:::{grid-item-card}
 * [Using AddressSanitizer](./using-gpu-sanitizer.md)
 * [Compiler disambiguation](./compiler-disambiguation.md)
-* [OpenMP support in ROCm](./compatibility/openmp.md)
+* [OpenMP support in ROCm](../about/compatibility/openmp.md)
+:::
+
+:::::
