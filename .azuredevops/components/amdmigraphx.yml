@@ -30,5 +30,6 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - script: pip3 install https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
+  - script: pip3 install rbuild
   - script: rbuild build -d depend -B build -DGPU_TARGETS=$(/opt/rocm/bin/rocminfo -T check| grep -o -m1 'gfx.*')
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
