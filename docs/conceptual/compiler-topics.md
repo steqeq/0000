@@ -11,9 +11,11 @@
 :gutter: 1
 
 :::{grid-item-card}
+
 * [Using AddressSanitizer](./using-gpu-sanitizer.md)
 * [Compiler disambiguation](./compiler-disambiguation.md)
 * [OpenMP support in ROCm](../about/compatibility/openmp.md)
+
 :::
 
 :::::
