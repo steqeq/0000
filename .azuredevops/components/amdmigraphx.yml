@@ -12,6 +12,7 @@ parameters:
     - git
     - cmake
     - rocm-cmake
+    - clang
 jobs:
 - job: amdmigraphx
   variables:
