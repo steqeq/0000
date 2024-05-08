@@ -45,7 +45,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - script: 'sudo cget install ROCm/frugally-deep@9683d557eb672ee2304f80f6682c51242d748a50'
+  - script: 'cget install ROCm/frugally-deep@9683d557eb672ee2304f80f6682c51242d748a50'
     displayName: 'Install frugally-deep'
   # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
