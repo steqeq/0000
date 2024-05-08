@@ -660,4 +660,3 @@ The following tables provide an overview of the hardware specifications for AMD 
             - 12.5
 
 For more information on the terms used here, see the :ref:`specific documents and guides <gpu-arch-documentation>` or :doc:`Understanding the HIP programming model<hip:understand/programming_model>`.
-

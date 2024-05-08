@@ -878,7 +878,7 @@ rocRAND 3.0.1 for ROCm 6.1.0
 
 rocSOLVER 3.25.0 for ROCm 6.1.0
 
-##### Additions
+##### Added
 
 - Eigensolver routines for symmetric/hermitian matrices using Divide &amp; Conquer and Jacobi algorithm:
     - SYEVDJ (with batched and strided\_batched versions)
@@ -887,11 +887,11 @@ rocSOLVER 3.25.0 for ROCm 6.1.0
     - SYGVDJ (with batched and strided\_batched versions)
     - HEGVDJ (with batched and strided\_batched versions)
 
-##### Changes
+##### Changed
 
 - Relaxed array length requirements for GESVDX with `rocblas_srange_index`.
 
-##### Fixes
+##### Fixed
 
 - Corrected singular vector normalization in BDSVDX and GESVDX
 - Fixed potential memory access fault in STEIN, SYEVX/HEEVX, SYGVX/HEGVX, BDSVDX and GESVDX
@@ -4259,9 +4259,9 @@ MIGraphX 2.5 for ROCm 5.5.0
 ##### Added
 
 - Y-Model feature to store tuning information with the optimized model
-- Added Python 3.10 bindings
+- Added Python 3.10 bindings 
 - Accuracy checker tool based on ONNX Runtime
-- ONNX Operators parse_split, and Trilu
+- ONNX Operators parse_split, and Trilu 
 - Build support for ROCm MLIR
 - Added migraphx-driver flag to print optimizations in python (--python)
 - Added JIT implementation of the Gather and Pad operator which results in better handling of larger tensor sizes.
@@ -4275,7 +4275,7 @@ MIGraphX 2.5 for ROCm 5.5.0
 
 ##### Fixed
 
-- Improved parsing Tensorflow Protobuf files
+- Improved parsing Tensorflow Protobuf files 
 - Resolved various accuracy issues with some onnx models
 - Resolved a gcc-12 issue with mivisionx
 - Improved support for larger sized models and batches
