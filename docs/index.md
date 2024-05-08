@@ -96,7 +96,7 @@ Our documentation is organized into the following categories:
   * [RDNA2](./how-to/tuning-guides/w6000-v620.md)
 * [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
-* [Using compilation features](./conceptual/compiler-topics.md)
+* [Using compiler features](./conceptual/compiler-topics.md)
   * [Using AddressSanitizer](./conceptual/using-gpu-sanitizer.md)
   * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
   * [OpenMP support in ROCm](./about/compatibility/openmp.md)
