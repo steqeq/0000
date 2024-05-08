@@ -63,6 +63,6 @@ jobs:
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
-        -DHIP_OC_COMPILER="/opt/rocm/bin/clang-ocl
+        -DHIP_OC_COMPILER=/opt/rocm/bin/clang-ocl
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
