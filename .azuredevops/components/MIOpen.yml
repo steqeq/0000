@@ -20,6 +20,7 @@ parameters:
     - libboost-dev
     - libboost-system-dev
     - libboost-filesystem-dev
+    - libeigen3-dev
 - name: pipModules
   type: object
   default:
