@@ -42,7 +42,7 @@ jobs:
     displayName: 'git clone grpc'
     inputs:
       targetType: inline
-      script: git clone --recurse-submodules -b v1.62.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc
+      script: git clone -b v1.61.0 https://github.com/grpc/grpc --depth=1 --shallow-submodules --recurse-submodules
       workingDirectory: $(Build.SourcesDirectory)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -51,16 +51,14 @@ jobs:
       extraBuildFlags: >-
         -DgRPC_INSTALL=ON
         -DgRPC_BUILD_TESTS=OFF
+        -DBUILD_SHARED_LIBS=ON
+        -DCMAKE_INSTALL_LIBDIR=lib
+        -DCMAKE_BUILD_TYPE=Release
         -GNinja
   
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        --cxx="${ROCM_PATH}/llvm/bin/clang++"
-        --cc="${ROCM_PATH}/llvm/bin/clang"
         -DGRPC_ROOT="$(Build.SourcesDirectory)/bin"
-        -DCMAKE_CXX_COMPILER=hipcc
-        -DCMAKE_CC_COMPILER=hipcc
-        -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/bin"
-        -DCMAKE_BUILD_TYPE=Release
+
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
