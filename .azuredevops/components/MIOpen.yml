@@ -21,6 +21,7 @@ parameters:
     - libboost-system-dev
     - libboost-filesystem-dev
     - libgtest-dev
+    - libstdc++-12-dev
 
 jobs:
 - job: MIOpen
