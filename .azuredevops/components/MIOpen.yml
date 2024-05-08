@@ -41,12 +41,12 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
+  - script: 'cget install ROCm/frugally-deep@9683d557eb672ee2304f80f6682c51242d748a50'
+    displayName: 'Install frugally-deep'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - script: 'cget install ROCm/frugally-deep@9683d557eb672ee2304f80f6682c51242d748a50'
-    displayName: 'Install frugally-deep'
   # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
