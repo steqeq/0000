@@ -94,6 +94,7 @@ jobs:
         -DHALF_INCLUDE_DIR="$(Agent.BuildDirectory)/rocm/include"
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DMIGRAPHX_ENABLE_MLIR=OFF
+        -DBUILD_TESTING=OFF
         -GNinja
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
