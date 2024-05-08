@@ -68,7 +68,7 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DMIOPEN_BACKEND=HIP
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/__w/1/s/cget/cget/pkg/ROCm__frugally-deep/"
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/__w/1/s/cget/cget/pkg/ROCm__frugally-deep/install"
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
