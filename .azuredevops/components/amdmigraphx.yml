@@ -21,6 +21,8 @@ parameters:
     - nlohmann-json3-dev
     - libmsgpack-dev
     - libsqlite3-dev
+    - libprotobuf-dev
+    - protobuf-compiler
 - name: pipModules
   type: object
   default:
