@@ -20,6 +20,7 @@ parameters:
     - libboost-dev
     - libboost-system-dev
     - libboost-filesystem-dev
+    - libgtest-dev
 
 jobs:
 - job: MIOpen
