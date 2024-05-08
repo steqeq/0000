@@ -47,7 +47,7 @@ Floating-point types
 The floating-point types that are supported by ROCm are listed in the following table, together with
 their corresponding HIP type and a short description.
 
-.. image:: ../../data/about/compatibility/floating-point-data-types.png
+.. image:: ../data/about/compatibility/floating-point-data-types.png
     :alt: Supported floating-point types
 
 .. list-table::
