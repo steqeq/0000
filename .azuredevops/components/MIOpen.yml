@@ -63,6 +63,7 @@ jobs:
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+        -DCXXFLAGS="-fPIC"
+        -DCFLAGS="-fPIC"  
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
