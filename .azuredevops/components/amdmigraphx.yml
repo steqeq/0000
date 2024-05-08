@@ -18,6 +18,8 @@ parameters:
     - rocblas-dev
     - libtbb-dev
     - half
+    - nlohmann-json3-dev
+    - msgpack
 - name: pipModules
   type: object
   default:
