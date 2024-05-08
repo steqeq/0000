@@ -20,9 +20,6 @@ parameters:
     - libboost-dev
     - libboost-system-dev
     - libboost-filesystem-dev
-- name: pipModules
-  type: object
-  default:
     - cget
 
 jobs:
@@ -40,7 +37,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
   - script: 'cget install ROCm/frugally-deep@9683d557eb672ee2304f80f6682c51242d748a50'
     displayName: 'Install frugally-deep'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
