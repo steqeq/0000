@@ -43,6 +43,8 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
+  - script: 'rbuild prepare -s develop'
+    displayName: 'rbuild prepare'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -58,5 +60,6 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1100
         -DCMAKE_PREFIX_PATH=/opt/rocm/llvm;opt/rocm
+        -DONNX_USE_PROTOBUF_SHARED_LIBS=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
