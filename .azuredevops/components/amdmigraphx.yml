@@ -14,8 +14,6 @@ parameters:
     - libnuma-dev
     - miopen-hip-dev
     - openmp-extras
-    - python3-dev
-    - python3-pip
     - python3-venv
     - rocblas-dev
     - libtbb-dev
@@ -49,6 +47,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
+    displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
