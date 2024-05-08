@@ -55,6 +55,30 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: rocm-cmake
+        branchName: develop
+        pipelineId: $(rocm-cmake-pipeline-id)
+        testFailuresOkay: true
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: half
+        branchName: master
+        pipelineId: $(half-pipeline-id)
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\rocm-cmake
+        pipelineId: $(rocm-cmake-tagged-pipeline-id)
+        testFailuresOkay: true
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\half
+        pipelineId: $(half-tagged-pipeline-id)
   - script: 'ls -1R /opt/rocm'
     displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
@@ -65,8 +89,7 @@ jobs:
         -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1100
-        -DCMAKE_PREFIX_PATH=/opt/rocm
-        -DONNX_USE_PROTOBUF_SHARED_LIBS=ON
+        -DCMAKE_PREFIX_PATH="$(Build.BinariesDirectory)/rocm;/opt/rocm/llvm;opt/rocm"
         -DMIGRAPHX_ENABLE_GPU=ON
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DMIGRAPHX_ENABLE_MLIR=OFF
