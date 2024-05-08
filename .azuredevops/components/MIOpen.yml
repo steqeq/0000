@@ -44,7 +44,7 @@ jobs:
       pipModules: ${{ parameters.pipModules }}
   - script: |
       /home/vsts_azpcontainer/.local/bin/cget init --std=c++14
-      /home/vsts_azpcontainer/.local/bin/cget Dobiasd/FunctionalPlus
+      /home/vsts_azpcontainer/.local/bin/cget install Dobiasd/FunctionalPlus
       /home/vsts_azpcontainer/.local/bin/cget install ROCm/frugally-deep@9683d557eb672ee2304f80f6682c51242d748a50
     displayName: 'Install frugally-deep and its dependencies'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
