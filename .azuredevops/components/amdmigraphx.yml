@@ -19,7 +19,7 @@ parameters:
     - libtbb-dev
     - half
     - nlohmann-json3-dev
-    - msgpack
+    - libmsgpack-dev
 - name: pipModules
   type: object
   default:
