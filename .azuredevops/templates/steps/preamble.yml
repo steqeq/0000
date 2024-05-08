@@ -1,0 +1,27 @@
+# build artifacts not automatically cleaned up
+# force cleanup, always
+# also display installed components and packages
+steps:
+- task: Bash@3
+  displayName: 'apt installed list'
+  inputs:
+    targetType: inline
+    script: apt list --installed
+- task: Bash@3
+  displayName: 'python version'
+  inputs:
+    targetType: inline
+    script: python3 --version
+- script: pip list
+  displayName: 'list python packages'
+- task: DeleteFiles@1
+  displayName: 'Cleanup checkout space'
+  inputs:
+    SourceFolder: '$(Agent.BuildDirectory)/s'
+    Contents: '**/*'
+- task: DeleteFiles@1
+  displayName: 'Cleanup Staging Area'
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '/**/*'
+    RemoveDotFiles: true
