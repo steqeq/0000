@@ -5,7 +5,9 @@
   reference, ROCm, AMD">
 </head>
 
-# Compiler topics
+# Using compiler features
+
+The following topics describe using specific features of the compilation tools:
 
 :::::{grid} 1 1 2 2
 :gutter: 1
