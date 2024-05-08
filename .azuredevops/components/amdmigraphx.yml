@@ -91,6 +91,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1100
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/opt/rocm/llvm;opt/rocm"
+        -DCMAKE_CXX_FLAGS="-I$(Agent.BuildDirectory)/include"
         -DMIGRAPHX_ENABLE_GPU=ON
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DMIGRAPHX_ENABLE_MLIR=OFF
