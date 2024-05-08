@@ -15,6 +15,149 @@ This page contains the changelog for AMD ROCm Software.
 
 -------------------
 
+## ROCm 6.1.1
+
+ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and libraries.
+
+### OS support
+
+ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel 6.8).
+
+### AMD SMI
+
+AMD SMI for ROCm 6.1.1
+
+#### Additions
+
+* Added deferred error correctable counts to `amd-smi metric -ecc -ecc-blocks`.
+
+#### Changes
+
+* Updated the output of `amd-smi metric --ecc-blocks` to show counters available from blocks.
+* Updated the output of `amd-smi metric --clock` to reflect each engine.
+* Updated the output of `amd-smi topology --json` to align with output reported by host and guest systems.
+
+#### Fixes
+
+* Fixed `amd-smi metric --clock`'s clock lock status and deep sleep status.
+* Fixed an issue that would cause an error when attempting to reset non-AMD GPUs.
+* Fixed `amd-smi metric --pcie` and `amdsmi_get_pcie_info()` when using RDNA3 (Navi 32 and Navi 31) hardware to prevent "UNKNOWN" reports.
+* Fixed the output results of `amd-smi process` when getting processes running on a device.
+
+##### Removals
+
+* Removed the `amdsmi_get_gpu_process_info` API from the Python library. It was removed from the C library in an earlier release.
+
+##### Known issues
+
+* `amd-smi bad-pages` can result in a `ValueError: Null pointer access` error when using certain PMU firmware versions.
+
+```{note}
+See the [detailed changelog](https://github.com/ROCm/amdsmi/blob/docs/6.1.1/CHANGELOG.md) with code samples for more information.
+```
+
+#### HIPCC
+
+HIPCC for ROCm 6.1.1
+
+##### Changes
+
+* **Upcoming:** a future release will enable use of compiled binaries `hipcc.bin` and `hipconfig.bin` by default. No action is needed by users; you may continue calling high-level Perl scripts `hipcc` and `hipconfig`. `hipcc.bin` and `hipconfig.bin` will be invoked by the high-level Perl scripts. To revert to the previous behavior and invoke `hipcc.pl` and `hipconfig.pl`, set the `HIP_USE_PERL_SCRIPTS` environment variable to `1`.
+* **Upcoming:** a subsequent release will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
+* **Upcoming:** a subsequent release will remove `hipcc.pl` and `hipconfig.pl`.
+
+### HIPIFY
+
+HIPIFY for ROCm 6.1.1
+
+#### Additions
+
+* Added support for LLVM 18.1.2.
+* Added support for cuDNN 9.0.0.
+* Added a new option: `--clang-resource-directory` to specify the clang resource path (the path to the parent folder for the `include` folder that contains `__clang_cuda_runtime_wrapper.h` and other header files used during the hipification process).
+
+### ROCm SMI
+
+ROCm SMI for ROCm 6.1.1
+
+##### Known issues
+
+* ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations.
+
+### Library changes in ROCm 6.1.1
+
+| Library | Version |
+|---------|---------|
+| AMDMIGraphX | [2.9](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-6.1.1) |
+| composable_kernel | [0.2.0](https://github.com/ROCm/composable_kernel/releases/tag/rocm-6.1.1) |
+| hipBLAS | [2.1.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-6.1.1) |
+| hipBLASLt | [0.7.0](https://github.com/ROCm/hipBLASLt/releases/tag/rocm-6.1.1) |
+| hipCUB | [3.1.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-6.1.1) |
+| hipFFT | [1.0.14](https://github.com/ROCm/hipFFT/releases/tag/rocm-6.1.1) |
+| hipRAND | [2.10.17](https://github.com/ROCm/hipRAND/releases/tag/rocm-6.1.1) |
+| hipSOLVER | 2.1.0 ⇒ [2.1.1](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-6.1.1) |
+| hipSPARSE | [3.0.1](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-6.1.1) |
+| hipSPARSELt | [0.2.0](https://github.com/ROCm/hipSPARSELt/releases/tag/rocm-6.1.1) |
+| hipTensor | [1.2.0](https://github.com/ROCm/hipTensor/releases/tag/rocm-6.1.1) |
+| MIOpen | [3.1.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-6.1.1) |
+| MIVisionX | [2.5.0](https://github.com/ROCm/MIVisionX/releases/tag/rocm-6.1.1) |
+| rccl | [2.18.6](https://github.com/ROCm/rccl/releases/tag/rocm-6.1.1) |
+| rocALUTION | [3.1.1](https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.1.1) |
+| rocBLAS | [4.1.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.1.1) |
+| rocDecode | [0.5.0](https://github.com/ROCm/rocDecode/releases/tag/rocm-6.1.1) |
+| rocFFT | 1.0.26 ⇒ [1.0.27](https://github.com/ROCm/rocFFT/releases/tag/rocm-6.1.1) |
+| rocm-cmake | [0.12.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.1.1) |
+| rocPRIM | [3.1.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-6.1.1) |
+| rocRAND | [3.0.1](https://github.com/ROCm/rocRAND/releases/tag/rocm-6.1.1) |
+| rocSOLVER | [3.25.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-6.1.1) |
+| rocSPARSE | [3.1.2](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-6.1.1) |
+| rocThrust | [3.0.1](https://github.com/ROCm/rocThrust/releases/tag/rocm-6.1.1) |
+| rocWMMA | [1.4.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-6.1.1) |
+| rpp | [1.5.0](https://github.com/ROCm/rpp/releases/tag/rocm-6.1.1) |
+| Tensile | [4.40.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.1.1) |
+
+#### hipBLASLt 0.7.0
+
+hipBLASLt 0.7.0 for ROCm 6.1.1
+
+##### Additions
+
+- Added `hipblasltExtSoftmax` extension API.
+- Added `hipblasltExtLayerNorm` extension API.
+- Added `hipblasltExtAMax` extension API.
+- Added `GemmTuning` extension parameter to set split-k by user.
+- Added support for mixed precision datatype: fp16/fp8 in with fp16 outk.
+
+##### Deprecations
+
+- **Upcoming**: `algoGetHeuristic()` ext API for GroupGemm will be deprecated in a future release of hipBLASLt.
+
+#### hipSOLVER 2.1.1
+
+hipSOLVER 2.1.1 for ROCm 6.1.1
+
+##### Changes
+
+- `BUILD_WITH_SPARSE` now defaults to OFF on Windows.
+
+##### Fixes
+
+- Fixed benchmark client build when `BUILD_WITH_SPARSE` is OFF.
+
+#### rocFFT 1.0.27
+
+rocFFT 1.0.27 for ROCm 6.1.1
+
+##### Additions
+
+* Enable multi-GPU testing on systems without direct GPU-interconnects.
+
+##### Fixes
+
+* Fixed kernel launch failure on execute of very large odd-length real-complex transforms.
+
+-------------------
+
 ## ROCm 6.1.0
 
 The ROCm™ 6.1 release consists of new features and fixes to improve the stability and
@@ -27,7 +170,7 @@ performance of AMD Instinct™ MI300 GPU applications. Notably, we've added:
   YUV frames in video memory. With decoded frames in video memory, you can run video
   post-processing using ROCm HIP, avoiding unnecessary data copies via the PCIe bus.
 
-  To learn more, refer to the rocDecode 
+  To learn more, refer to the rocDecode
   [documentation](https://rocm.docs.amd.com/projects/rocDecode/en/latest/).
 
 ### OS and GPU support changes
@@ -60,11 +203,11 @@ environments where legacy `DT_RPATH` is the preferred form of linking (instead o
 do **not** recommend trying to install both sets of packages.
 ```
 
-#### AMD SMI
+### AMD SMI
 
 AMD SMI for ROCm 6.1.0
 
-##### Additions
+#### Additions
 
 * **Added Monitor command**. This provides users the ability to customize GPU metrics to capture,
   collect, and observe. Output is provided in a table view. This aligns closer to ROCm SMI `rocm-smi`
@@ -98,14 +241,14 @@ AMD SMI for ROCm 6.1.0
 * **Added units of measure to JSON output.**. We added unit of measure to JSON/CSV
   `amd-smi metric`, `amd-smi static`, and `amd-smi monitor` commands.
 
-##### Changes
+#### Changes
 
 * **Topology is now left-aligned with BDF for each device listed individual table's row/columns**.
   We provided each device's BDF for every table's row/columns, then left-aligned data. We want AMD
   SMI Tool output to be easy to understand and digest. Having to scroll up to find this information
   made it difficult to follow, especially for devices that have many devices associated with one ASIC.
 
-##### Fixes
+#### Fixes
 
 * **Fix for RDNA3/RDNA2/MI100 'amdsmi_get_gpu_pci_bandwidth()' in 'frequencies_read' tests**.
   For devices that do not report (e.g., RDNA3/RDNA2/MI100), we have added checks to confirm that
@@ -125,18 +268,18 @@ AMD SMI for ROCm 6.1.0
   same mutex handler for devices as ROCm SMI. This helps avoid crashes when DRM/device data are
   inaccessible to the logged-in user.
 
-##### Known issues
+#### Known issues
 
 * There is an `AttributeError` while running `amd-smi process --csv`
 * GPU reset results in an "*Unable to reset non-amd GPU*" error
 * bad pages results with "ValueError: NULL pointer access"
 * Some RDNA3 cards may enumerate to `Slot type = UNKNOWN`
 
-#### HIP
+### HIP
 
 HIP 6.1 for ROCm 6.1
 
-##### Additions
+#### Additions
 
 * New environment variable, `HIP_LAUNCH_BLOCKING`, which is used for serialization on kernel
   execution.
@@ -147,12 +290,12 @@ HIP 6.1 for ROCm 6.1
   `math_functions`, `hip_math_constants`, `channel_descriptor`, `device_functions`, `hip_complex`,
   `surface_types`, `texture_types`
 
-##### Changes
+#### Changes
 
 * HIPRTC now assumes WGP mode for gfx10+. You can enable CU mode by passing `-mcumode` to the
   compile options from `hiprtcCompileProgram`.
 
-##### Fixes
+#### Fixes
 
 * HIP complex vector type multiplication and division operations.
   On an AMD platform, some duplicated complex operators are removed to avoid compilation failures.
@@ -168,11 +311,30 @@ HIP 6.1 for ROCm 6.1
   Note that these complex operations are equivalent to corresponding types/functions on an NVIDIA
   platform.
 
-#### ROCm Compiler
+### HIPIFY
+
+HIPIFY for ROCm 6.1.0
+
+#### Additions
+
+* CUDA 12.3.2 support
+* cuDNN 8.9.7 support
+* LLVM 17.0.6 support
+* Full `hipSOLVER` support
+* Full `rocSPARSE` support
+* New option: `--amap`, which will hipify as much as possible, ignoring `--default-preprocessor`
+  behavior
+
+#### Fixes
+
+* Code blocks skipped by the preprocessor are no longer hipified under the `--default-preprocessor`
+  option
+
+### ROCm Compiler
 
 ROCm Compiler for ROCm 6.1.0
 
-##### Additions
+#### Additions
 
 * Compiler now generates `.uniform_work_group_size` and records it in the metadata. It indicates if the
   kernel requires that each dimension of global size is a multiple of the corresponding dimension of
@@ -184,16 +346,11 @@ ROCm Compiler for ROCm 6.1.0
 * Added support for C++ Parallel Algorithm Offload via HIP (HIPSTDPAR), which allows parallel
   algorithms to run on the GPU.
 
-##### Changes
+#### Changes
 
 * `rocm-clang-ocl` is now an optional package and will require manual installation.
 
-##### Deprecations
-
-* hipCC adds `-mllvm`, `-amdgpu-early-inline-all=true`, and `-mllvm` `-amdgpu-function-calls=false` by
-  default to compiler invocations. These flags will be removed from hipCC in a future ROCm release.
-
-##### Fixes
+#### Fixes
 
 AddressSanitizer (ASan):
 * Added `sanitized_padded_global` LLVM ir attribute to identify sanitizer instrumented globals.
@@ -202,38 +359,43 @@ AddressSanitizer (ASan):
 
   [On GitHub](https://github.com/ROCm/ROCm/issues/2551)
 
-##### Known issues
+#### Deprecations
+
+* hipCC adds `-mllvm`, `-amdgpu-early-inline-all=true`, and `-mllvm` `-amdgpu-function-calls=false` by
+  default to compiler invocations. These flags will be removed from hipCC in a future ROCm release.
+
+#### Known issues
 
 * Due to an issue within the `amd-llvm` compiler shipping with ROCm 6.1, HIPSTDPAR's interposition mode, which is enabled by `--hipstdpar-interpose-alloc` is currently broken.
 
 The temporary workaround is to use the upstream LLVM 18 (or newer) compiler. This issue will be addressed in a future ROCm release ."
 
-#### ROCm Data Center (RDC)
+### ROCm Data Center (RDC)
 
 RDC for ROCm 6.1.0
 
-##### Changes
+#### Changes
 
 * Added `--address` flag to rdcd
 * Upgraded from C++11 to C++17
 * Upgraded gRPC
 
-#### ROCDebugger (ROCgdb)
+### ROCDebugger (ROCgdb)
 
 ROCgdb for ROCm 6.1.0
 
-##### Fixes
+#### Fixes
 
 Previously, ROCDebugger encountered hangs and crashes when stepping over the `s_endpgm`
 instruction at the end of a HIP kernel entry function, which caused the stepped wave to exit. This issue
 is fixed in the ROCm 6.1 release. You can now step over the last instruction of any HIP kernel without
 debugger hangs or crashes.
 
-#### ROCm SMI
+### ROCm SMI
 
 ROCm SMI for ROCm 6.1.0
 
-##### Additions
+#### Additions
 
 * **Added support to set max/min clock level for sclk ('RSMI_CLK_TYPE_SYS') or mclk ('RSMI_CLK_TYPE_MEM')**.
   You can now set a maximum or minimum `sclk` or `mclk` value through the
@@ -244,7 +406,7 @@ ROCm SMI for ROCm 6.1.0
   (`rsmi_dev_target_graphics_version_get()`) to retreive the target graphics version for a GPU device.
   Currently, this output is not supplied through our ROCm SMI CLI.
 
-##### Changes
+#### Changes
 
 * **Removed non-unified API headers: Individual GPU metric APIs are no longer supported**.
   The individual metric APIs (`rsmi_dev_metrics_*`) were removed in order to keep updates easier for
@@ -258,7 +420,7 @@ ROCm SMI for ROCm 6.1.0
   outlined in the change for 6.0.0 (*Added a generic power API: rsmi_dev_power_get*), is now
   deprecated. You must update your ROCm SMI API calls accordingly.
 
-##### Fixes
+#### Fixes
 
 * Fixed `--showpids` reporting `[PID] [PROCESS NAME] 1 UNKNOWN UNKNOWN UNKNOWN`.
   Output was failing because `cu_occupancy debugfs` method is not provided on some graphics cards
@@ -281,41 +443,39 @@ ROCm SMI for ROCm 6.1.0
 * Fixed `rocm-smi --showclkvolt` and `rocm-smi --showvc`, which were displaying 0 for overdrive and
   that the voltage curve is not supported.
 
-#### ROCProfiler
+### ROCProfiler
 
 ROCProfiler for ROCm 6.1.0
 
-##### Fixes
+#### Fixes
 
 * Fixed ROCprofiler to match versioning changes in HIP Runtime
 * Fixed plugins race condition
 * Updated metrics to MI300
 
-#### ROCm Validation Suite
+### ROCm Validation Suite
 
-##### Known issue
+#### Known issue
 
 * In a future release, the ROCm Validation Suite P2P Benchmark and Qualification Tool (PBQT) tests will be optimized to meet the target bandwidth requirements for MI300X.
 
   [On GitHub](https://github.com/ROCm/ROCm/issues/3027)
 
-#### MI200 SR-IOV 
+### MI200 SR-IOV
 
-##### Known issue
+#### Known issue
 
-* Multimedia applications may encounter compilation errors in the MI200 Single Root Input/Output Virtualization (SR-IOV) environment. This is because MI200 SR-IOV does not currently support multimedia applications. 
+* Multimedia applications may encounter compilation errors in the MI200 Single Root Input/Output Virtualization (SR-IOV) environment. This is because MI200 SR-IOV does not currently support multimedia applications.
 
   [On GitHub](https://github.com/ROCm/ROCm/issues/3028)
 
 ### AMD MI300A RAS
 
-#### Fixed defect
+#### Fixes
 
-##### GFX correctable and uncorrectable error inject failures
+* GFX correctable and uncorrectable error inject failures. Previously, the AMD CPU Reliability, Availability, and Serviceability (RAS) installation encountered correctable and uncorrectable failures while injecting an error.
 
-* Previously, the AMD CPU Reliability, Availability, and Serviceability (RAS) installation encountered correctable and uncorrectable failures while injecting an error.
-
-  This issue is resolved in the ROCm 6.1 release, and users will no longer encounter the GFX correctable error (CE) and uncorrectable error (UE) failures.
+This issue is resolved in the ROCm 6.1 release, and users will no longer encounter the GFX correctable error (CE) and uncorrectable error (UE) failures.
 
 ### Library changes in ROCm 6.1.0
 
@@ -396,6 +556,12 @@ MIGraphX 2.9 for ROCm 6.1.0
 * Added support for uneven Split operations
 * Improved unit testing to run in python virtual environments
 
+##### Changes
+
+* Cleanup LSTM and RNN activation functions
+* Placed gemm_pointwise at a higher priority than layernorm_pointwise
+* Updated README to mention the need to include GPU_TARGETS when building MIGraphX
+
 ##### Fixes
 
 * Fixed outstanding issues in autogenerated documentation
@@ -408,12 +574,6 @@ MIGraphX 2.9 for ROCm 6.1.0
 * Fixed Round operator inaccuracy
 * Fixed wrong size check when axes not present for slice
 * Set the .SO version correctly
-
-##### Changes
-
-* Cleanup LSTM and RNN activation functions
-* Placed gemm_pointwise at a higher priority than layernorm_pointwise
-* Updated README to mention the need to include GPU_TARGETS when building MIGraphX
 
 ##### Removals
 
@@ -431,10 +591,6 @@ hipBLAS 2.1.0 for ROCm 6.1.0
   suffix) with int64_t function arguments
 * New functions hipblasGetMathMode and hipblasSetMathMode
 
-##### Deprecations
-
-* USE_CUDA build option; use HIP_PLATFORM=amd or HIP_PLATFORM=nvidia to override hipconfig
-
 ##### Changes
 
 * Some Level 2 function argument names have changed from `m` to `n` to match legacy BLAS; there
@@ -442,6 +598,10 @@ hipBLAS 2.1.0 for ROCm 6.1.0
 * Updated client code to use YAML-based testing
 * Renamed `.doxygen` and `.sphinx` folders to `doxygen` and `sphinx`, respectively
 * Added CMake support for documentation
+
+##### Deprecations
+
+* USE_CUDA build option; use HIP_PLATFORM=amd or HIP_PLATFORM=nvidia to override hipconfig
 
 #### hipBLASLt 0.7.0
 
@@ -459,19 +619,19 @@ hipBLASLt 0.7.0 for ROCm 6.1.0
 
 hipCUB 3.1.0 for ROCm 6.1.0
 
-##### Changed
+##### Additions
+
+- Added interface `DeviceMemcpy::Batched` for batched memcpy from rocPRIM and CUB.
+
+##### Changes
 
 - CUB backend references CUB and Thrust version 2.1.0.
 - Updated `HIPCUB_HOST_WARP_THREADS` macro definition to match `host_warp_size` changes from rocPRIM 3.0.
 - Implemented `__int128_t` and `__uint128_t` support for radix_sort.
 
-##### Fixed
+##### Fixes
 
 - Fixed build issues with `rmake.py` on Windows when using VS 2017 15.8 or later due to a breaking fix with extended aligned storage.
-
-##### Added
-
-- Added interface `DeviceMemcpy::Batched` for batched memcpy from rocPRIM and CUB.
 
 #### hipFFT 1.0.14
 
@@ -489,7 +649,7 @@ hipFFT 1.0.14 for ROCm 6.1.0
 
 hipSOLVER 2.1.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - Added compatibility API with hipsolverSp prefix
 - Added compatibility-only functions
@@ -500,11 +660,11 @@ hipSOLVER 2.1.0 for ROCm 6.1.0
   functionality for the hipsolverSp API (on by default).
 - Added hipSPARSE as an optional dependency to hipsolver-test. Use the `BUILD_WITH_SPARSE` CMake option to enable tests of the hipsolverSp API (on by default).
 
-##### Changed
+##### Changes
 
 - Relax array length requirements for GESVDA.
 
-##### Fixed
+##### Fixes
 
 - Fixed incorrect singular vectors returned from GESVDA.
 
@@ -520,7 +680,7 @@ hipSPARSE 3.0.1 for ROCm 6.1.0
 
 hipSPARSELt 0.2.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - Support Matrix B is a Structured Sparsity Matrix.
 
@@ -543,7 +703,7 @@ hipTensor 1.2.0 for ROCm 6.1.0
 
 MIOpen 3.1.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - CK-based 2d/3d convolution solvers to support nchw/ncdhw layout
 - Fused solver for Fwd Convolution with Residual, Bias and activation
@@ -553,18 +713,18 @@ MIOpen 3.1.0 for ROCm 6.1.0
 - Integrate CK&#39;s layer norm
 - Combine gtests into single binary
 
-##### Fixed
+##### Changes
+
+- Standardize workspace abstraction
+- Use split CK libraries
+
+##### Fixes
 
 - fix for backward passes bwd/wrw for CK group conv 3d
 - Fixed out-of-bounds memory access : ConvOclDirectFwdGen
 - fixed build failure due to hipRTC
 
-##### Changed
-
-- Standardize workspace abstraction
-- Use split CK libraries
-
-##### Removed
+##### Removals
 
 - clamping to MAX from CastTensor used in Bwd and WrW convolution
 
@@ -572,7 +732,7 @@ MIOpen 3.1.0 for ROCm 6.1.0
 
 RCCL 2.18.6 for ROCm 6.1.0
 
-##### Changed
+##### Changes
 
 - Compatibility with NCCL 2.18.6
 
@@ -634,7 +794,7 @@ rocDecode 0.5.0 for ROCm 6.1.0
 
 * Minor bug fix and updates
 
-##### Tested Configurations
+###### Tested Configurations
 
 * Linux distribution
   * Ubuntu - `20.04` / `22.04`
@@ -659,7 +819,7 @@ rocFFT 1.0.26 for ROCm 6.1.0
 
 rocm-cmake 0.12.0 for ROCm 6.1.0
 
-##### Changed
+##### Changes
 
 - ROCMSphinxDoc: Allow separate source and config directories.
 - ROCMCreatePackage: Allow additional `PROVIDES` on header-only packages.
@@ -667,7 +827,7 @@ rocm-cmake 0.12.0 for ROCm 6.1.0
 - ROCMTest: Add RPATH for installed tests.
 - Finalize rename to ROCmCMakeBuildTools
 
-##### Fixed
+##### Fixes
 
 - ROCMClangTidy: Fixed invalid list index.
 - Test failures when ROCM_CMAKE_GENERATOR is empty.
@@ -696,15 +856,15 @@ rocPRIM 3.1.0 for ROCm 6.1.0
 * Added support for `__int128_t` in `device_radix_sort` and `block_radix_sort`
 * Improved the performance of `match_any`, and `block_histogram` which uses it
 
-##### Deprecations
-
-* Removed `reduce_by_key_config`, `MatchAny`, `scan_config`, `scan_by_key_config`, and
-  `radix_sort_config`
-
 ##### Fixes
 
 * Build issues with `rmake.py` on Windows when using VS 2017 15.8 or later (due to a breaking fix with
   extended aligned storage)
+
+##### Deprecations
+
+* Removed `reduce_by_key_config`, `MatchAny`, `scan_config`, `scan_by_key_config`, and
+  `radix_sort_config`
 
 #### rocRAND 3.0.1
 
@@ -718,7 +878,7 @@ rocRAND 3.0.1 for ROCm 6.1.0
 
 rocSOLVER 3.25.0 for ROCm 6.1.0
 
-##### Added
+##### Additions
 
 - Eigensolver routines for symmetric/hermitian matrices using Divide &amp; Conquer and Jacobi algorithm:
     - SYEVDJ (with batched and strided\_batched versions)
@@ -727,18 +887,18 @@ rocSOLVER 3.25.0 for ROCm 6.1.0
     - SYGVDJ (with batched and strided\_batched versions)
     - HEGVDJ (with batched and strided\_batched versions)
 
-##### Changed
+##### Changes
 
 - Relaxed array length requirements for GESVDX with `rocblas_srange_index`.
 
-##### Removed
-
-- Removed gfx803 and gfx900 from default build targets.
-
-##### Fixed
+##### Fixes
 
 - Corrected singular vector normalization in BDSVDX and GESVDX
 - Fixed potential memory access fault in STEIN, SYEVX/HEEVX, SYGVX/HEGVX, BDSVDX and GESVDX
+
+##### Removals
+
+- Removed gfx803 and gfx900 from default build targets.
 
 #### rocSPARSE 3.1.2
 
@@ -792,7 +952,7 @@ rpp for ROCm 6.1.0
 
 * Prerequisites
 
-##### Tested Configurations
+###### Tested Configurations
 
 * Linux distribution
   * Ubuntu - `20.04` / `22.04`
@@ -851,7 +1011,8 @@ Tensile 4.40.0 for ROCm 6.1.0
 -------------------
 
 ## ROCm 6.0.2
-The ROCm 6.0.2 point release consists of minor bug fixes to improve the stability of MI300 GPU applications. This release introduces several new driver features for system qualification on our partner server offerings. 
+
+The ROCm 6.0.2 point release consists of minor bug fixes to improve the stability of MI300 GPU applications. This release introduces several new driver features for system qualification on our partner server offerings.
 
 #### hipFFT 1.0.13
 
@@ -895,23 +1056,18 @@ hipFFT 1.0.13 for ROCm 6.0.2
 
 rocRAND 3.0.0 for ROCm 6.0.2
 
-##### Changed
+##### Optimizations
+
+- Improved MT19937 initialization and generation performance.
+
+##### Changes
 
 - Generator classes from `rocrand.hpp` are no longer copyable, in previous versions these copies
 would copy internal references to the generators and would lead to double free or memory leak errors.
   These types should be moved instead of copied, and move constructors and operators are now defined
   for them.
 
-##### Optimized  
-
-- Improved MT19937 initialization and generation performance.
-
-##### Removed
-
-- Removed hipRAND submodule from rocRAND. hipRAND is now only available as a separate package.
-- Removed references to and workarounds for deprecated hcc
-
-##### Fixed
+##### Fixes
 
 - `mt19937_engine` from `rocrand.hpp` is now move-constructible and move-assignable. Previously the
 move constructor and move assignment operator was deleted for this class.
@@ -921,6 +1077,11 @@ move constructor and move assignment operator was deleted for this class.
   - added missing `order` setter method for `threefry4x64`
   - fixed the default ordering parameter for `lfsr113`
 - Build error when using clang++ directly due to unsupported references to amdgpu-target
+
+##### Removals
+
+- Removed hipRAND submodule from rocRAND. hipRAND is now only available as a separate package.
+- Removed references to and workarounds for deprecated hcc
 
 -------------------
 
@@ -1019,6 +1180,7 @@ final release for gfx906 GPUs in a fully supported state.
 | Library | Version |
 |---------|---------|
 | AMDMIGraphX |  ⇒ [2.8](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-6.0.0) |
+| composable_kernel | [0.2.0](https://github.com/ROCm/composable_kernel/releases/tag/rocm-6.0.0) |
 | HIP | [6.0.0](https://github.com/ROCm/HIP/releases/tag/rocm-6.0.0) |
 | hipBLAS |  ⇒ [2.0.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-6.0.0) |
 | hipCUB |  ⇒ [3.0.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-6.0.0) |
@@ -1247,6 +1409,11 @@ hipCUB 3.0.0 for ROCm 6.0.0
 
 hipFFT 1.0.13 for ROCm 6.0.0
 
+##### Additions
+
+* `hipfftXtSetGPUs`, `hipfftXtMalloc, hipfftXtMemcpy`, `hipfftXtFree`, and `hipfftXtExecDescriptor` APIs
+  have been implemented to allow FFT computing on multiple devices in a single process
+
 ##### Changes
 
 * `hipfft-rider` has been renamed to `hipfft-bench`; it is controlled by the `BUILD_CLIENTS_BENCH`
@@ -1254,11 +1421,6 @@ hipFFT 1.0.13 for ROCm 6.0.0
   CMake option is accepted for backwards compatibility, but both will be removed in a future release)
 * Binaries in debug builds no longer have a `-d` suffix
 * The minimum rocFFT required version has been updated to 1.0.21
-
-##### Additions
-
-* `hipfftXtSetGPUs`, `hipfftXtMalloc, hipfftXtMemcpy`, `hipfftXtFree`, and `hipfftXtExecDescriptor` APIs
-  have been implemented to allow FFT computing on multiple devices in a single process
 
 #### hipSOLVER 2.0.0
 
@@ -1388,17 +1550,17 @@ MIOpen 2.19.0 for ROCm 6.0.0
 
 RCCL 2.15.5 for ROCm 6.0.0
 
-##### Changes
-
-* Compatibility with NCCL 2.15.5
-* Renamed the unit test executable to `rccl-UnitTests`
-
 ##### Additions
 
 * HW-topology-aware binary tree implementation
 * Experimental support for MSCCL
 * New unit tests for hipGraph support
 * NPKit integration
+
+##### Changes
+
+* Compatibility with NCCL 2.15.5
+* Renamed the unit test executable to `rccl-UnitTests`
 
 ##### Fixes
 
@@ -1433,6 +1595,12 @@ rocALUTION 3.0.3 for ROCm 6.0.0
 * Matrix dimensions and number of non-zeros are now stored using 64-bit integers
 * Improved the ILUT preconditioner
 
+##### Fixes
+
+* Unit tests no longer ignore BCSR block dimension
+* Fixed documentation typos
+* Bug in multi-coloring for non-symmetric matrix patterns
+
 ##### Removals
 
 * `LocalVector::GetIndexValues(ValueType*)`
@@ -1442,12 +1610,6 @@ rocALUTION 3.0.3 for ROCm 6.0.0
 * `LocalMatrix::RugeStueben()`
 * `LocalMatrix::AMGSmoothedAggregation(ValueType, const LocalVector&, const LocalVector&, LocalMatrix*, LocalMatrix*, int)`
 * `LocalMatrix::AMGAggregation(const LocalVector&, LocalMatrix*, LocalMatrix*)`
-
-##### Fixes
-
-* Unit tests no longer ignore BCSR block dimension
-* Fixed documentation typos
-* Bug in multi-coloring for non-symmetric matrix patterns
 
 #### rocBLAS 4.0.0
 
@@ -1467,6 +1629,20 @@ rocBLAS 4.0.0 for ROCm 6.0.0
 
 * TRSM performance for small sizes (m < 32 && n < 32)
 
+##### Fixes
+
+* Made offset calculations for 64-bit rocBLAS functions safe
+  * Fixes for very large leading dimension or increment potentially causing overflow:
+    * Level2: `gbmv`, `gemv`, `hbmv`, `sbmv`, `spmv`, `tbmv`, `tpmv`, `tbsv`, and `tpsv`
+* Lazy loading supports heterogeneous architecture setup and load-appropriate tensile library files,
+  based on device architecture
+* Guards against no-op kernel launches that result in a potential `hipGetLastError`
+
+##### Changes
+
+* Reduced the default verbosity of `rocblas-test` (you can see all tests by setting the
+  `GTEST_LISTENER=PASS_LINE_IN_LOG` environment variable)
+
 ##### Deprecations
 
 * Atomic operations will be disabled by default in a future release of rocBLAS (you can enable atomic
@@ -1482,20 +1658,6 @@ rocBLAS 4.0.0 for ROCm 6.0.0
   ISO/IEC TS 18661-3:2015 functionality, you must define `__STDC_WANT_IEC_60559_TYPES_EXT__`
   before including `float.h`, `math.h`, and `rocblas.h`)
 * The default build removes device code for gfx803 architecture from the fat binary
-
-##### Fixes
-
-* Made offset calculations for 64-bit rocBLAS functions safe
-  * Fixes for very large leading dimension or increment potentially causing overflow:
-    * Level2: `gbmv`, `gemv`, `hbmv`, `sbmv`, `spmv`, `tbmv`, `tpmv`, `tbsv`, and `tpsv`
-* Lazy loading supports heterogeneous architecture setup and load-appropriate tensile library files,
-  based on device architecture
-* Guards against no-op kernel launches that result in a potential `hipGetLastError`
-
-##### Changes
-
-* Reduced the default verbosity of `rocblas-test` (you can see all tests by setting the
-  `GTEST_LISTENER=PASS_LINE_IN_LOG` environment variable)
 
 #### rocFFT 1.0.25
 
@@ -1635,7 +1797,11 @@ Roc Profiler 2.0.0 for ROCm 6.0.0
 
 rocRAND 2.10.17 for ROCm 6.0.0
 
-### Changes
+##### Optimizations
+
+* Improved MT19937 initialization and generation performance
+
+##### Changes
 
 * Generator classes from `rocrand.hpp` are no longer copyable (in previous versions these copies
   would copy internal references to the generators and would lead to double free or memory leak
@@ -1643,17 +1809,7 @@ rocRAND 2.10.17 for ROCm 6.0.0
   * These types should be moved instead of copied; move constructors and operators are now
     defined
 
-### Optimizations
-
-* Improved MT19937 initialization and generation performance
-
-### Removals
-
-* Removed the hipRAND submodule from rocRAND; hipRAND is now only available as a separate
-  package
-* Removed references to, and workarounds for, the deprecated hcc
-
-### Fixes
+##### Fixes
 
 * `mt19937_engine` from `rocrand.hpp` is now move-constructible and move-assignable (the move
   constructor and move assignment operator was deleted for this class)
@@ -1663,6 +1819,12 @@ rocRAND 2.10.17 for ROCm 6.0.0
   * Added the missing `order` setter method for `threefry4x64`
   * Fixed the default ordering parameter for `lfsr113`
 * Build error when using Clang++ directly resulting from unsupported `amdgpu-target` references
+
+##### Removals
+
+* Removed the hipRAND submodule from rocRAND; hipRAND is now only available as a separate
+  package
+* Removed references to, and workarounds for, the deprecated hcc
 
 #### rocSOLVER 3.24.0
 
@@ -1681,6 +1843,12 @@ rocSOLVER 3.24.0 for ROCm 6.0.0
 
 rocSPARSE 3.0.2 for ROCm 6.0.0
 
+##### Additions
+
+* `rocsparse_inverse_permutation`
+* Mixed-precisions for SpVV
+* Uniform int8 precision for gather and scatter
+
 ##### Changes
 
 * Function arguments for `rocsparse_spmv`
@@ -1690,23 +1858,17 @@ rocSPARSE 3.0.2 for ROCm 6.0.0
 * Improved documentation
 * Improved verbose output during argument checking on API function calls
 
-##### Removals
-
-* Auto stages from `spmv`, `spmm`, `spgemm`, `spsv`, `spsm`, and `spitsv`
-* Formerly deprecated `rocsparse_spmm_ex` routine
-
-### Fixes
+##### Fixes
 
 * Bug in `rocsparse-bench` where the SpMV algorithm was not taken into account in CSR format
 * BSR and GEBSR routines (`bsrmv`, `bsrsv`, `bsrmm`, `bsrgeam`, `gebsrmv`, `gebsrmm`) didn't always
   show `block_dim==0` as an invalid size
 * Passing `nnz = 0` to `doti` or `dotci` wasn't always returning a dot product of 0
 
-### Additions
+##### Removals
 
-* `rocsparse_inverse_permutation`
-* Mixed-precisions for SpVV
-* Uniform int8 precision for gather and scatter
+* Auto stages from `spmv`, `spmm`, `spgemm`, `spsv`, `spsm`, and `spitsv`
+* Formerly deprecated `rocsparse_spmm_ex` routine
 
 #### rocThrust 3.0.0
 
@@ -1902,18 +2064,18 @@ MIGraphX 2.8 for ROCm 6.0.0
 
 hipBLAS 2.0.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - added option to define HIPBLAS_USE_HIP_BFLOAT16 to switch API to use hip_bfloat16 type
 - added hipblasGemmExWithFlags API
 
-##### Deprecated
+##### Deprecatations
 
 - hipblasDatatype_t is deprecated and will be removed in a future release and replaced with hipDataType
 - hipblasComplex and hipblasDoubleComplex are deprecated and will be removed in a future release and replaced with hipComplex and hipDoubleComplex
 - use of hipblasDatatype_t for hipblasGemmEx for compute-type is deprecated and will be replaced with hipblasComputeType_t in a future release
 
-##### Removed
+##### Removals
 
 - hipblasXtrmm that calculates B &lt;- alpha * op(A) * B is removed and replaced with hipblasXtrmm that calculates C &lt;- alpha * op(A) * B
 
@@ -1921,7 +2083,7 @@ hipBLAS 2.0.0 for ROCm 6.0.0
 
 hipCUB 3.0.0 for ROCm 6.0.0
 
-##### Changed
+##### Changes
 
 - Removed `DOWNLOAD_ROCPRIM`, forcing rocPRIM to download can be done with `DEPENDENCIES_FORCE_DOWNLOAD`.
 
@@ -1929,23 +2091,23 @@ hipCUB 3.0.0 for ROCm 6.0.0
 
 hipFFT 1.0.13 for ROCm 6.0.0
 
-##### Changed
+##### Additions
 
-- hipfft-rider has been renamed to hipfft-bench, controlled by the BUILD_CLIENTS_BENCH CMake option.  A link for the 
-  old file name is installed, and the old BUILD_CLIENTS_RIDER CMake option is accepted for compatibility but both 
+- Implemented hipfftXtSetGPUs, hipfftXtMalloc, hipfftXtMemcpy, hipfftXtFree, hipfftXtExecDescriptor APIs to allow computing FFTs on multiple devices in a single process.
+
+##### Changes
+
+- hipfft-rider has been renamed to hipfft-bench, controlled by the BUILD_CLIENTS_BENCH CMake option.  A link for the
+  old file name is installed, and the old BUILD_CLIENTS_RIDER CMake option is accepted for compatibility but both
   will be removed in a future release.
 - Binaries in debug builds no longer have a &#34;-d&#34; suffix.
 - The minimum rocFFT required version has been updated to 1.0.21.
-
-##### Added
-
-- Implemented hipfftXtSetGPUs, hipfftXtMalloc, hipfftXtMemcpy, hipfftXtFree, hipfftXtExecDescriptor APIs to allow computing FFTs on multiple devices in a single process.
 
 #### hipRAND 2.10.17
 
 hipRAND 2.10.17 for ROCm 6.0.0
 
-##### Fixed
+##### Fixes
 
 - Fixed benchmark and unit test builds on Windows.
 
@@ -1953,15 +2115,15 @@ hipRAND 2.10.17 for ROCm 6.0.0
 
 hipSOLVER 2.0.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Added hipBLAS as an optional dependency to hipsolver-test. Use the `BUILD_HIPBLAS_TESTS` CMake option to test compatibility between hipSOLVER and hipBLAS.
 
-##### Changed
+##### Changes
 
 - Types hipsolverOperation_t, hipsolverFillMode_t, and hipsolverSideMode_t are now aliases of hipblasOperation_t, hipblasFillMode_t, and hipblasSideMode_t.
 
-##### Fixed
+##### Fixes
 
 - Fixed tests for hipsolver info updates in ORGBR/UNGBR, ORGQR/UNGQR,
   ORGTR/UNGTR, ORMQR/UNMQR, and ORMTR/UNMTR.
@@ -1970,11 +2132,11 @@ hipSOLVER 2.0.0 for ROCm 6.0.0
 
 hipSPARSE 3.0.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Added hipsparseGetErrorName and hipsparseGetErrorString
 
-##### Changed
+##### Changes
 
 - Changed hipsparseSpSV_solve() API function to match cusparse API
 - Changed generic API functions to use const descriptors
@@ -2005,7 +2167,7 @@ hipTensor 1.1.0 for ROCm 6.0.0
 
 rocALUTION 3.0.3 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Added support for 64bit integer vectors
 - Added inclusive and exclusive sum functionality for Vector classes
@@ -2014,16 +2176,22 @@ rocALUTION 3.0.3 for ROCm 6.0.0
 - Added Sort() function for LocalVector class
 - Added multiple stream support to the HIP backend
 
-##### Optimized
+##### Optimizations
 
 - GlobalMatrix::Apply() now uses multiple streams to better hide communication
 
-##### Changed
+##### Changes
 
 - Matrix dimensions and number of non-zeros are now stored using 64bit integers
 - Improved ILUT preconditioner
 
-##### Removed
+##### Fixes
+
+- Unit tests do not ignore BCSR block dimension anymore
+- Fixed typos in the documentation
+- Fixed a bug in multicoloring for non-symmetric matrix patterns
+
+##### Removals
 
 - Removed LocalVector::GetIndexValues(ValueType\*)
 - Removed LocalVector::SetIndexValues(const ValueType\*)
@@ -2033,32 +2201,37 @@ rocALUTION 3.0.3 for ROCm 6.0.0
 - Removed LocalMatrix::AMGSmoothedAggregation(ValueType, const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*, int)
 - Removed LocalMatrix::AMGAggregation(const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*)
 
-##### Fixed
-
-- Unit tests do not ignore BCSR block dimension anymore
-- Fixed typos in the documentation
-- Fixed a bug in multicoloring for non-symmetric matrix patterns
-
 #### rocBLAS 4.0.0
 
 rocBLAS 4.0.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Addition of beta API rocblas_gemm_batched_ex3 and rocblas_gemm_strided_batched_ex3
 - Added input/output type f16_r/bf16_r and execution type f32_r support for Level 2 gemv_batched and gemv_strided_batched
 - Added rocblas_status_excluded_from_build to be used when calling functions which require Tensile when using rocBLAS built without Tensile
 - Added system for async kernel launches setting a failure rocblas_status based on hipPeekAtLastError discrepancy
 
-##### Optimized
+##### Optimizations
 
 - Trsm performance for small sizes m &lt; 32 &amp;&amp; n &lt; 32
 
-##### Deprecated
+##### Fixes
+
+- Make offset calculations for rocBLAS functions 64 bit safe. Fixes for very large leading dimension or increment potentially causing overflow:
+  - Level2: gbmv, gemv, hbmv, sbmv, spmv, tbmv, tpmv, tbsv, tpsv
+- Lazy loading to support heterogeneous architecture setup and load appropriate tensile library files based on the device&#39;s architecture
+- Guard against no-op kernel launches resulting in potential hipGetLastError
+
+##### Changes
+
+- Default verbosity of rocblas-test reduced. To see all tests set environment variable GTEST_LISTENER=PASS_LINE_IN_LOG
+
+##### Deprecatations
 
 - In a future release atomic operations will be disabled by default so results will be repeatable. Atomic operations can always be enabled or disabled using the function rocblas_set_atomics_mode. Enabling atomic operations can improve performance.
 
-##### Removed
+##### Removals
 
 - rocblas_gemm_ext2 API function is removed
 - in-place trmm API from Legacy BLAS is removed. It is replaced by an API that supports both in-place and out-of-place trmm
@@ -2066,22 +2239,11 @@ rocBLAS 4.0.0 for ROCm 6.0.0
 - The #define STDC_WANT_IEC_60559_TYPES_EXT has been removed from rocblas-types.h. Users who want ISO/IEC TS 18661-3:2015 functionality must define STDC_WANT_IEC_60559_TYPES_EXT before including float.h, math.h, and rocblas.h
 - The default build removes device code for gfx803 architecture from the fat binary
 
-##### Fixed
-
-- Make offset calculations for rocBLAS functions 64 bit safe. Fixes for very large leading dimension or increment potentially causing overflow:
-  - Level2: gbmv, gemv, hbmv, sbmv, spmv, tbmv, tpmv, tbsv, tpsv
-- Lazy loading to support heterogeneous architecture setup and load appropriate tensile library files based on the device&#39;s architecture
-- Guard against no-op kernel launches resulting in potential hipGetLastError
-
-##### Changed
-
-- Default verbosity of rocblas-test reduced. To see all tests set environment variable GTEST_LISTENER=PASS_LINE_IN_LOG
-
 #### rocFFT 1.0.25
 
 rocFFT 1.0.25 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Implemented experimental APIs to allow computing FFTs on data distributed across multiple devices in a single process.
 
@@ -2104,7 +2266,7 @@ rocFFT 1.0.25 for ROCm 6.0.0
   by offline tuning.
 - Removed an extra kernel launch from even-length real-complex FFTs that use callbacks.
 
-##### Changed
+##### Changes
 
 - Built kernels in solution-map to library kernel cache.
 - Real forward transforms (real-to-complex) no longer overwrite input.  rocFFT still may overwrite real inverse (complex-to-real) input, as this allows for faster performance.
@@ -2114,7 +2276,7 @@ rocFFT 1.0.25 for ROCm 6.0.0
   BUILD_CLIENTS_RIDER CMake option is accepted for compatibility but both will be removed in a future release.
 - Binaries in debug builds no longer have a &#34;-d&#34; suffix.
 
-##### Fixed
+##### Fixes
 
 - rocFFT now correctly handles load callbacks that convert data from a smaller data type (e.g. 16-bit integers -&gt; 32-bit float).
 
@@ -2122,11 +2284,11 @@ rocFFT 1.0.25 for ROCm 6.0.0
 
 rocm-cmake 0.11.0 for ROCm 6.0.0
 
-##### Changed
+##### Changes
 
 - ROCMSphinxDoc: Improved validation, documentation and rocm-docs-core integration.
 
-##### Fixed
+##### Fixes
 
 - ROCMClangTidy: Fixed extra make flags passed for clang tidy.
 - ROCMTest: Fixed issues when using module in a subdirectory.
@@ -2135,7 +2297,7 @@ rocm-cmake 0.11.0 for ROCm 6.0.0
 
 rocPRIM 3.0.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - `block_sort::sort()` overload for keys and values with a dynamic size, for all block sort algorithms. Additionally, all `block_sort::sort()` overloads with a dynamic size are now supported for `block_sort_algorithm::merge_sort` and `block_sort_algorithm::bitonic_sort`.
 - New two-way partition primitive `partition_two_way` which can write to two separate iterators.
@@ -2144,7 +2306,7 @@ rocPRIM 3.0.0 for ROCm 6.0.0
 
 - Improved the performance of `partition`.
 
-##### Fixed
+##### Fixes
 
 - Fixed `rocprim::MatchAny` for devices with 64-bit warp size. The function `rocprim::MatchAny` is deprecated and `rocprim::match_any` is preferred instead.
 
@@ -2152,13 +2314,13 @@ rocPRIM 3.0.0 for ROCm 6.0.0
 
 rocSOLVER 3.24.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Cholesky refactorization for sparse matrices
     - CSRRF_REFACTCHOL
 - Added `rocsolver_rfinfo_mode` and the ability to specify the desired refactorization routine (see `rocsolver_set_rfinfo_mode`).
 
-##### Changed
+##### Changes
 
 - CSRRF_ANALYSIS and CSRRF_SOLVE now support sparse Cholesky factorization
 
@@ -2166,18 +2328,18 @@ rocSOLVER 3.24.0 for ROCm 6.0.0
 
 rocSPARSE 3.0.2 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Added rocsparse_inverse_permutation
 - Added mixed precisions for SpVV
 - Added uniform int8 precision for Gather and Scatter
 
-##### Optimized
+##### Optimizations
 
 - Optimization to doti routine
 - Optimization to spin-looping algorithms
 
-##### Changed
+##### Changes
 
 - Changed rocsparse_spmv function arguments
 - Changed rocsparse_xbsrmv routines function arguments
@@ -2185,47 +2347,47 @@ rocSPARSE 3.0.2 for ROCm 6.0.0
 - Improved documentation
 - Improved verbose output during argument checking on API function calls
 
-##### Deprecated
-
-- Deprecated rocsparse_spmv_ex
-- Deprecated rocsparse_xbsrmv_ex routines
-
-##### Removed
-
-- Removed auto stages from spmv, spmm, spgemm, spsv, spsm, and spitsv.
-- Removed rocsparse_spmm_ex routine
-
-##### Fixed
+##### Fixes
 
 - Fixed a bug in rocsparse-bench, where SpMV algorithm was not taken into account in CSR format
 - Fixed the BSR/GEBSR routines bsrmv, bsrsv, bsrmm, bsrgeam, gebsrmv, gebsrmm so that block_dim==0 is considered an invalid size
 - Fixed bug where passing nnz = 0 to doti or dotci did not always return a dot product of 0
 
+##### Deprecatations
+
+- Deprecated rocsparse_spmv_ex
+- Deprecated rocsparse_xbsrmv_ex routines
+
+##### Removals
+
+- Removed auto stages from spmv, spmm, spgemm, spsv, spsm, and spitsv.
+- Removed rocsparse_spmm_ex routine
+
 #### rocThrust 3.0.0
 
 rocThrust 3.0.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Updated to match upstream Thrust 2.0.1
 - NV_IF_TARGET macro from libcu++ for NVIDIA backend and HIP implementation for HIP backend.
 
-##### Changed
+##### Changes
 
 - The cmake build system now additionally accepts `GPU_TARGETS` in addition to `AMDGPU_TARGETS` for
   setting the targeted gpu architectures. `GPU_TARGETS=all` will compile for all supported architectures.
   `AMDGPU_TARGETS` is only provided for backwards compatibility, `GPU_TARGETS` should be preferred.
 
-##### Removed
+##### Fixes
+
+- Fixed a segmentation fault when binary search / upper bound / lower bound / equal range was invoked with `hip_rocprim::execute_on_stream_base` policy.
+
+##### Removals
 
 - Removed cub symlink from the root of the repository.
 - Removed support for deprecated macros (THRUST_DEVICE_BACKEND and THRUST_HOST_BACKEND).
 
-##### Fixed
-
-- Fixed a segmentation fault when binary search / upper bound / lower bound / equal range was invoked with `hip_rocprim::execute_on_stream_base` policy.
-
-##### Known Issues
+##### Known issues
 
 - For NVIDIA backend, `NV_IF_TARGET` and `THRUST_RDC_ENABLED` intend to substitute the `THRUST_HAS_CUDART` macro, which is now no longer used in Thrust (provided for legacy support only). However, there is no `THRUST_RDC_ENABLED` macro available for the HIP backend, so some branches in Thrust&#39;s code may be unreachable in the HIP backend.
 
@@ -2233,19 +2395,19 @@ rocThrust 3.0.0 for ROCm 6.0.0
 
 rocWMMA 1.3.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Added support for gfx940, gfx941 and gfx942 targets
 - Added support for f8, bf8 and xfloat32 datatypes
 - Added support for HIP_NO_HALF, __ HIP_NO_HALF_CONVERSIONS__ and __ HIP_NO_HALF_OPERATORS__ (e.g. pytorch environment)
 
-##### Changed
+##### Changes
 
 - rocWMMA with hipRTC now supports bfloat16_t datatype
 - gfx11 wmma now uses lane swap instead of broadcast for layout adjustment
 - Updated samples GEMM parameter validation on host arch
 
-##### Fixed
+##### Fixes
 
 - Disabled gtest static library deployment
 - Extended tests now build in large code model
@@ -2254,7 +2416,7 @@ rocWMMA 1.3.0 for ROCm 6.0.0
 
 rpp for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 * New Tests
 
@@ -2262,15 +2424,15 @@ rpp for ROCm 6.0.0
 
 * Readme Updates
 
-##### Changed
+##### Changes
 
 * **Backend** - Default Backend set to `HIP`
 
-##### Fixed
+##### Fixes
 
 * Minor bugs and warnings
 
-##### Tested Configurations
+###### Tested Configurations
 
 * Linux distribution
   + Ubuntu - `18.04` / `20.04`
@@ -2281,55 +2443,11 @@ rpp for ROCm 6.0.0
 * Boost - Version `1.72`
 * IEEE 754-based half-precision floating-point library - Version `1.12.0`
 
-##### Rpp 1.3.0
-
-
-
-##### Rpp 1.2.0
-
-
-
-##### Known Issues
-
-* `CPU` only backend not enabled
-
-##### Rpp 1.1.0
-
-
-
-##### Rpp 1.0.0
-
-
-
-##### Rpp 0.99
-
-
-
-##### Rpp 0.98
-
-
-
-##### Rpp 0.97
-
-
-
-##### Rpp 0.96
-
-
-
-##### Rpp 0.95
-
-
-
-##### Rpp 0.93
-
-
-
 #### Tensile 4.39.0
 
 Tensile 4.39.0 for ROCm 6.0.0
 
-##### Added
+##### Additions
 
 - Added aquavanjaram support: gfx940/gfx941/gfx942, fp8/bf8 datatype, xf32 datatype, and stochastic rounding for various datatypes
 - Added/updated tuning scripts
@@ -2350,7 +2468,7 @@ Tensile 4.39.0 for ROCm 6.0.0
 - Supported DGEMM TLUB + RLVW=2 for odd N (edge shift change)
 - Enabled miLatency optimization for (gfx940/gfx941 + MFMA) for specific data types, and fixed instruction scheduling
 
-##### Changed
+##### Changes
 
 - Removed old code for DTL + (bpe * GlobalReadVectorWidth &gt; 4)
 - Changed/updated failed CI tests for gfx11xx, InitAccVgprOpt, and DTLds
@@ -2368,7 +2486,7 @@ Tensile 4.39.0 for ROCm 6.0.0
 - Enabled ROCm SMI for gfx940/941.
 - Modified non-lazy load build to skip experimental logic
 
-##### Fixed
+##### Fixes
 
 - Fixed predicate ordering for fp16alt impl round near zero mode to unbreak distance modes
 - Fixed boundary check for mirror dims and re-enable disabled mirror dims test cases
@@ -2726,7 +2844,7 @@ MIGraphX 2.7 for ROCm 5.7.0
 - Improved compile times by only building for the GPU on the system
 - Improve performance of pointwise/reduction kernels when using NHWC layouts
 - Load specific version of the migraphx_py library
-- Annotate functions with the block size so the compiler can do a better job of optimizing 
+- Annotate functions with the block size so the compiler can do a better job of optimizing
 - Enable reshape on nonstandard shapes
 - Use half HIP APIs to compute max and min
 - Added support for broadcasted scalars to unsqueeze operator
@@ -3638,7 +3756,7 @@ rocSPARSE 2.5.2 for ROCm 5.6.0
 
 rocThrust 2.18.0 for ROCm 5.6.0
 
-##### Fixed 
+##### Fixed
 
 - `lower_bound`, `upper_bound`, and `binary_search` failed to compile for certain types.
 
@@ -4141,9 +4259,9 @@ MIGraphX 2.5 for ROCm 5.5.0
 ##### Added
 
 - Y-Model feature to store tuning information with the optimized model
-- Added Python 3.10 bindings 
+- Added Python 3.10 bindings
 - Accuracy checker tool based on ONNX Runtime
-- ONNX Operators parse_split, and Trilu 
+- ONNX Operators parse_split, and Trilu
 - Build support for ROCm MLIR
 - Added migraphx-driver flag to print optimizations in python (--python)
 - Added JIT implementation of the Gather and Pad operator which results in better handling of larger tensor sizes.
@@ -4157,7 +4275,7 @@ MIGraphX 2.5 for ROCm 5.5.0
 
 ##### Fixed
 
-- Improved parsing Tensorflow Protobuf files 
+- Improved parsing Tensorflow Protobuf files
 - Resolved various accuracy issues with some onnx models
 - Resolved a gcc-12 issue with mivisionx
 - Improved support for larger sized models and batches
@@ -5259,7 +5377,7 @@ function or by parameters.
 
 ##### Changed
 
-- Improved build parallelism of the test suite by splitting up large compilation units for `DeviceRadixSort`, 
+- Improved build parallelism of the test suite by splitting up large compilation units for `DeviceRadixSort`,
 `DeviceSegmentedRadixSort` and `DeviceSegmentedSort`.
 - CUB backend references CUB and thrust version 1.17.1.
 
@@ -5379,8 +5497,8 @@ rocFFT 1.0.19 for ROCm 5.4.0
 
 ##### Changed
 
-- Moved runtime compilation cache to in-memory by default.  A default on-disk cache can encounter contention problems 
-on multi-node clusters with a shared filesystem.  rocFFT can still be told to use an on-disk cache by setting the 
+- Moved runtime compilation cache to in-memory by default.  A default on-disk cache can encounter contention problems
+on multi-node clusters with a shared filesystem.  rocFFT can still be told to use an on-disk cache by setting the
 ROCFFT_RTC_CACHE_PATH environment variable.
 
 #### rocPRIM 2.12.0
@@ -5389,7 +5507,7 @@ rocPRIM 2.12.0 for ROCm 5.4.0
 
 ##### Changed
 
-- `device_partition`, `device_unique`, and `device_reduce_by_key` now support problem 
+- `device_partition`, `device_unique`, and `device_reduce_by_key` now support problem
   sizes larger than 2^32 items.
 
 ##### Removed
@@ -7113,7 +7231,7 @@ rocSPARSE 2.2.0 for ROCm 5.2.0
 
 ##### Added
 
-- batched SpMM for CSR, COO and Blocked ELL formats. 
+- batched SpMM for CSR, COO and Blocked ELL formats.
 - Packages for test and benchmark executables on all supported OSes using CPack.
 - Clients file importers and exporters.
 
@@ -7850,7 +7968,7 @@ rocSPARSE 2.1.0 for ROCm 5.1.0
 
 ##### Added
 
-- gtsv_interleaved_batch 
+- gtsv_interleaved_batch
 - gpsv_interleaved_batch
 - SpGEMM_reuse
 - Allow copying of mat info struct
