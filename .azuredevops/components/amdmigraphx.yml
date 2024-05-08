@@ -20,7 +20,7 @@ parameters:
     - half
     - nlohmann-json3-dev
     - libmsgpack-dev
-    - sqlite3
+    - libsqlite3-dev
 - name: pipModules
   type: object
   default:
