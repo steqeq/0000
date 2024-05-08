@@ -40,3 +40,4 @@ jobs:
         -DGPU_TARGETS=gfx1100
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  
