@@ -72,7 +72,7 @@ idna==3.7
     # via requests
 imagesize==1.4.1
     # via sphinx
-jinja2==3.1.3
+jinja2==3.1.4
     # via
     #   myst-parser
     #   sphinx
@@ -141,7 +141,7 @@ requests==2.31.0
     # via
     #   pygithub
     #   sphinx
-rocm-docs-core[api_reference]==1.1.1
+rocm-docs-core==1.1.1
     # via -r requirements.in
 six==1.16.0
     # via pybtex
@@ -205,23 +205,9 @@ sphinxcontrib-runcmd==0.2.0
     # via sphinxcontrib-datatemplates
 sphinxcontrib-serializinghtml==1.1.10
     # via sphinx
-tomli==2.0.1
-    # via sphinx
-tqdm==4.66.2
-    # via mpire
-typing-extensions==4.11.0
-    # via
-    #   pydata-sphinx-theme
-    #   pygithub
-urllib3==2.2.1
-    # via
-    #   pygithub
-    #   requests
-waitress==3.0.0
-    # via webtest
-webob==1.8.7
-    # via webtest
-webtest==3.0.0
-    # via autodoc
-wrapt==1.16.0
+typing-extensions==4.5.0
+    # via pydata-sphinx-theme
+urllib3==1.26.18
+    # via requests
+wrapt==1.14.1
     # via deprecated
