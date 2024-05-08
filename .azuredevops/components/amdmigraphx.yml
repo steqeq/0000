@@ -17,7 +17,6 @@ parameters:
     - python3-venv
     - rocblas-dev
     - libtbb-dev
-    - half
     - nlohmann-json3-dev
     - libmsgpack-dev
     - libsqlite3-dev
