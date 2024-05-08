@@ -24,6 +24,8 @@ parameters:
     - libprotobuf-dev
     - protobuf-compiler
     - python3-pybind11
+    - composablekernel-dev
+    - rocmlir-dev
 - name: pipModules
   type: object
   default:
