@@ -91,10 +91,8 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1100
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/opt/rocm/llvm;opt/rocm"
-        -DCMAKE_CXX_FLAGS="-I$(Agent.BuildDirectory)/include"
-        -DMIGRAPHX_ENABLE_GPU=ON
+        -DHALF_INCLUDE_DIR="$(Agent.BuildDirectory)/rocm/include"
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
-        -DMIGRAPHX_ENABLE_MLIR=OFF
         -GNinja
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
