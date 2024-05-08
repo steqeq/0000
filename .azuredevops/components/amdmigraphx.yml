@@ -17,6 +17,7 @@ parameters:
     - python3-venv
     - rocblas-dev
     - libtbb-dev
+    - half
 - name: pipModules
   type: object
   default:
@@ -43,8 +44,6 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
-  - script: 'rbuild prepare -s develop'
-    displayName: 'rbuild prepare'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
