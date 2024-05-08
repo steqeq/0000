@@ -1,6 +1,6 @@
 variables:
 - group: common
-- template: /.azuredevops/variables-global.yml
+- template: /.azuredevops/variables-global.yml@pipelines_repo
 
 parameters:
 - name: checkoutRef
@@ -9,6 +9,10 @@ parameters:
 
 resources:
   repositories:
+  - repository: pipelines_repo
+    type: github
+    endpoint: ROCm
+    name: ROCm/ROCm
   - repository: release_repo
     type: github
     endpoint: ROCm
@@ -18,7 +22,7 @@ resources:
 trigger: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/rdc.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/rdc.yml@pipelines_repo
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}
