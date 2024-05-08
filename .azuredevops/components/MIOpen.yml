@@ -20,11 +20,6 @@ parameters:
     - libboost-dev
     - libboost-system-dev
     - libboost-filesystem-dev
-    - libeigen3-dev
-- name: pipModules
-  type: object
-  default:
-    - cget
 
 jobs:
 - job: MIOpen
@@ -41,11 +36,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - script: |
-      /home/vsts_azpcontainer/.local/bin/cget init --std=c++14
-      /home/vsts_azpcontainer/.local/bin/cget install Dobiasd/FunctionalPlus
-      /home/vsts_azpcontainer/.local/bin/cget install ROCm/frugally-deep@9683d557eb672ee2304f80f6682c51242d748a50
     displayName: 'Install frugally-deep and its dependencies'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
@@ -68,7 +58,9 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DMIOPEN_BACKEND=HIP
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/__w/1/s/cget/cget/pkg/ROCm__frugally-deep/install/lib/cmake"
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
+        -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
