@@ -61,7 +61,6 @@ jobs:
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
-        -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
