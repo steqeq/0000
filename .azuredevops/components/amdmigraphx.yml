@@ -23,6 +23,7 @@ parameters:
     - libsqlite3-dev
     - libprotobuf-dev
     - protobuf-compiler
+    - python3-pybind11
 - name: pipModules
   type: object
   default:
@@ -33,7 +34,6 @@ parameters:
     - pytest==6.0.1
     - packaging==23.0
     - protobuf==3.20.2
-    - pybind11
 
 jobs:
 - job: AMDMIGraphX
