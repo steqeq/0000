@@ -47,6 +47,8 @@ subtrees:
 
 - caption: How to
   entries:
+  - file: how-to/rocgdb.rst
+    title: ROCgdb
   - file: how-to/tuning-guides.md
     title: Tuning guides
     subtrees:

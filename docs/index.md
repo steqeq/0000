@@ -101,6 +101,7 @@ Our documentation is organized into the following categories:
   * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
   * [OpenMP support in ROCm](./about/compatibility/openmp.md)
 * [System level debugging](./how-to/system-debugging.md)
+* [ROCgdb](./how-to/rocgdb.rst)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 :::
 

@@ -29,6 +29,7 @@ BMC
 BitCode
 Blit
 Bluefield
+breakpoint
 CCD
 CDNA
 CIFAR
