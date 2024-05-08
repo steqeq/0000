@@ -12,13 +12,13 @@ resources:
   - repository: release_repo
     type: github
     endpoint: ROCm
-    name: ROCm/AMDMIGraphX 
+    name: ROCm/AMDMIGraphX
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/amdmigraphx.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/AMDMIGraphX.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}

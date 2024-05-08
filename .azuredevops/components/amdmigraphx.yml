@@ -67,6 +67,11 @@ jobs:
         componentName: half
         branchName: master
         pipelineId: $(half-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: rocmlir
+        branchName: develop
+        pipelineId: $(rocmlir-pipeline-id)
 # manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
@@ -78,6 +83,10 @@ jobs:
       parameters:
         componentName: \tag-builds\half
         pipelineId: $(half-tagged-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\rocmlir
+        pipelineId: $(rocmlir-tagged-pipeline-id)
   - script: 'ls -1R /opt/rocm'
     displayName: 'Artifact listing'
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
@@ -93,7 +102,6 @@ jobs:
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/opt/rocm/llvm;opt/rocm"
         -DHALF_INCLUDE_DIR="$(Agent.BuildDirectory)/rocm/include"
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
-        -DMIGRAPHX_ENABLE_MLIR=OFF
         -DBUILD_TESTING=OFF
         -GNinja
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
