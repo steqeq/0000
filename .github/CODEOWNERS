@@ -3,3 +3,5 @@
 docs/* @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
 *.md @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
 *.rst @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
+# External CI
+.azuredevops/* @ROCm/external-ci
