@@ -9,6 +9,10 @@ parameters:
 
 resources:
   repositories:
+  - repository: pipelines_repo
+    type: github
+    endpoint: ROCm
+    name: ROCm/ROCm
   - repository: release_repo
     type: github
     endpoint: ROCm
@@ -16,6 +20,7 @@ resources:
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
+pr: none
 
 jobs:
   - template: ${{ variables.CI_COMPONENT_PATH }}/rocALUTION.yml
