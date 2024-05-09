@@ -14,7 +14,7 @@ parameters:
     - libfftw3-dev
     - rocsparse
     - git
-
+    - gfortran
 jobs:
 - job: hipSPARSE
   variables:
@@ -34,7 +34,11 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-script.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      scriptExecutable: sudo ./install.sh
-      scriptParameters: -c -i -d
+      extraBuildFlags: >-
+        -DCMAKE_CXX_COMPILER=hipcc
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/" 
+        -DBUILD_TESTS=ON
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
