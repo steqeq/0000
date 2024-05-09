@@ -9,19 +9,22 @@ parameters:
   type: object
   default:
     - cmake
-    - libboost-program-options-dev
-    - googletest
-    - libfftw3-dev
-    - rocsparse
+    - ninja-build
     - git
-    - gfortran
+    - libcap-dev
+    - protobuf-compiler
+    - build-essential
+    - autoconf
+    - libtool
+    - pkg-config
+
 jobs:
-- job: hipSPARSE
+- job: rdc
+  timeoutInMinutes: 200
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  pool: ${{ variables.CLOUD_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -34,11 +37,29 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+# Build grpc
+  - task: Bash@3
+    displayName: 'git clone grpc'
+    inputs:
+      targetType: inline
+      script: git clone -b v1.61.0 https://github.com/grpc/grpc --depth=1 --shallow-submodules --recurse-submodules
+      workingDirectory: $(Build.SourcesDirectory)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      cmakeBuildDir: $(Build.SourcesDirectory)/grpc/build
+      installDir: $(Build.SourcesDirectory)/bin
+      extraBuildFlags: >-
+        -DgRPC_INSTALL=ON
+        -DgRPC_BUILD_TESTS=OFF
+        -DBUILD_SHARED_LIBS=ON
+        -DCMAKE_INSTALL_LIBDIR=lib
+        -DCMAKE_BUILD_TYPE=Release
+        -GNinja
+  
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=hipcc
-        -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/" 
-        -DBUILD_TESTS=ON
+        -DGRPC_ROOT="$(Build.SourcesDirectory)/bin"
+
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  
