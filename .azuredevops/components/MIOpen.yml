@@ -10,17 +10,17 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - composablekernel-dev
-    - half
-    - rocrand
-    - rocblas
-    - libsqlite3-dev
-    - libbz2-dev
-    - nlohmann-json3-dev
-    - libboost-dev
-    - libboost-system-dev
-    - libboost-filesystem-dev
-    - libgtest-dev
+    # - composablekernel-dev
+    # - half
+    # - rocrand
+    # - rocblas
+    # - libsqlite3-dev
+    # - libbz2-dev
+    # - nlohmann-json3-dev
+    # - libboost-dev
+    # - libboost-system-dev
+    # - libboost-filesystem-dev
+    # - libgtest-dev
 
 jobs:
 - job: MIOpen
@@ -40,26 +40,33 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: rocmlir
-        branchName: develop
-        pipelineId: $(rocmlir-pipeline-id)
-  # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: \tag-builds\rocmlir
-        pipelineId: $(rocmlir-tagged-pipeline-id)
+  # # CI case: download latest default branch build
+  # - ${{ if eq(parameters.checkoutRef, '') }}:
+  #   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+  #     parameters:
+  #       componentName: rocmlir
+  #       branchName: develop
+  #       pipelineId: $(rocmlir-pipeline-id)
+  # # manual build case: triggered by ROCm/ROCm repo
+  # - ${{ if ne(parameters.checkoutRef, '') }}:
+  #   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+  #     parameters:
+  #       componentName: \tag-builds\rocmlir
+  #       pipelineId: $(rocmlir-tagged-pipeline-id)
+  - task: Bash@3
+    displayName: 'install dependencies'
+    inputs:
+      targetType: inline
+      script: sudo cmake -P ./install_deps.cmake --prefix $(Build.SourceDirectory)/bin
+      workingDirectory: $(Pipeline.Workspace)/MIOpen
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DMIOPEN_BACKEND=HIP
         -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
         -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+#        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/bin"
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
