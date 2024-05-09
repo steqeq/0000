@@ -23,7 +23,7 @@ trigger: none
 pr: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/hipSPARSE.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/hipSPARSE.yml@pipelines_repo
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}
