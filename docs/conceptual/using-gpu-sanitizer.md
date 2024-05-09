@@ -5,7 +5,7 @@
   libraries, instrumented applications, AMD, ROCm">
 </head>
 
-# Using the LLVM ASan on a GPU (beta release)
+# Using the AddressSanitizer on a GPU (beta release)
 
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications exactly like pure CPU applications. However, this simplicity has not been achieved yet.
@@ -40,7 +40,7 @@ Other architectures are allowed, but their device code will not be instrumented 
 
 ### About compilation time
 
-When `-fsanitize=address` is used, the LLVM compiler adds instrumentation code around every memory operation. This added code must be handled by all of the downstream components of the compiler toolchain and results in increased overall compilation time. This increase is especially evident in the AMDGPU device compiler and has in a few instances raised the compile time to an unacceptable level.
+When `-fsanitize=address` is used, the LLVM compiler adds instrumentation code around every memory operation. This added code must be handled by all downstream components of the compiler toolchain and results in increased overall compilation time. This increase is especially evident in the AMDGPU device compiler and has in a few instances raised the compile time to an unacceptable level.
 
 There are a few options if the compile time becomes unacceptable:
 
@@ -90,7 +90,7 @@ If it does not appear, when executed the application will quickly output an ASan
 
 * Ensure that the application `llvm-symbolizer` can be executed, and that it is located in `/opt/rocm-<version>/llvm/bin`. This executable is not strictly required, but if found is used to translate ("symbolize") a host-side instruction address into a more useful function name, file name, and line number (assuming the application has been built to include debug information).
 
-There is an environment variable, `ASAN_OPTIONS`, that can be used to adjust the runtime behavior of the ASAN runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASAN runtime. The device runtime only currently supports the default settings for the few relevant options.
+There is an environment variable, `ASAN_OPTIONS`, that can be used to adjust the runtime behavior of the ASan runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASan runtime. The device runtime only currently supports the default settings for the few relevant options.
 
 There are two `ASAN_OPTION` flags of particular note.
 
@@ -100,7 +100,7 @@ This tells the ASan runtime to halt the application immediately after detecting 
 
 * `detect_leaks=0/1 default 1`.
 
-This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSAN). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSAN suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
+This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSan). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSan suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
 ## Runtime overhead
 
@@ -139,7 +139,7 @@ instrumentation.
 
 ## Runtime reporting
 
-It is not the intention of this document to provide a detailed explanation of all of the types of reports that can be output by the ASan runtime. Instead, the focus is on the differences between the standard reports for CPU issues, and reports for GPU issues.
+It is not the intention of this document to provide a detailed explanation of all the types of reports that can be output by the ASan runtime. Instead, the focus is on the differences between the standard reports for CPU issues, and reports for GPU issues.
 
 An invalid address detection report for the CPU always starts with
 
@@ -203,7 +203,7 @@ This is solved by setting environment variable `LD_PRELOAD` to the path to the A
 amdclang++ -print-file-name=libclang_rt.asan-x86_64.so
 ```
 
-It is also recommended to set the environment variable `HIP_ENABLE_DEFERRED_LOADING=0` before debugging HIP applications.
+You should also set the environment variable `HIP_ENABLE_DEFERRED_LOADING=0` before debugging HIP applications.
 
 After starting `rocgdb` breakpoints can be set on the ASan runtime error reporting entry points of interest. For example, if an ASan error report includes
 
@@ -314,7 +314,7 @@ $ ldd mini
 
 ```
 
-This confirms that the address sanitizer runtime is linked in, and the ASAN instrumented version of the runtime libraries are used.
+This confirms that the address sanitizer runtime is linked in, and the ASan instrumented version of the runtime libraries are used.
 Checking the `PATH` yields
 
 ```bash
@@ -404,10 +404,10 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 
 ### Known issues with using GPU sanitizer
 
-* Red zones must have limited size and it is possible for an invalid access to completely miss a red zone and not be detected.
+* Red zones must have limited size. It is possible for an invalid access to completely miss a red zone and not be detected.
 
 * Lack of detection or false reports can be caused by the runtime not properly maintaining red zone shadows.
 
 * Lack of detection on the GPU might also be due to the implementation not instrumenting accesses to all GPU specific address spaces. For example, in the current implementation accesses to "private" or "stack" variables on the GPU are not instrumented, and accesses to HIP shared variables (also known as "local data store" or "LDS") are also not instrumented.
 
-* It can also be the case that a memory fault is hit for an invalid address even with the instrumentation. This is usually caused by the invalid address being so wild that its shadow address is outside of any memory region, and the fault actually occurs on the access to the shadow address. It is also possible to hit a memory fault for the `NULL` pointer. While address 0 does have a shadow location, it is not poisoned by the runtime.
+* It can also be the case that a memory fault is hit for an invalid address even with the instrumentation. This is usually caused by the invalid address being so wild that its shadow address is outside any memory region, and the fault actually occurs on the access to the shadow address. It is also possible to hit a memory fault for the `NULL` pointer. While address 0 does have a shadow location, it is not poisoned by the runtime.
