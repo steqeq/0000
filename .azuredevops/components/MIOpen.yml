@@ -69,6 +69,5 @@ jobs:
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
-        -DBoost_USE_STATIC_LIBS=Off
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
