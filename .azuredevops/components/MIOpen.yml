@@ -53,6 +53,7 @@ jobs:
   #     parameters:
   #       componentName: \tag-builds\rocmlir
   #       pipelineId: $(rocmlir-tagged-pipeline-id)
+  #        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
   - task: Bash@3
     displayName: 'install dependencies'
     inputs:
@@ -65,7 +66,6 @@ jobs:
         -DMIOPEN_BACKEND=HIP
         -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
         -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
-#        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/bin"
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
