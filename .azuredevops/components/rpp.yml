@@ -9,14 +9,13 @@ parameters:
   type: object
   default:
     - cmake
-    - libboost-program-options-dev
-    - googletest
-    - libfftw3-dev
-    - rocsparse
-    - git
-    - gfortran
+    - ninja-build
+    - clang
+    - half
+    - libomp-dev
+
 jobs:
-- job: hipSPARSE
+- job: rpp
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -39,6 +38,8 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/" 
-        -DBUILD_TESTS=ON
+        -DBUILD_CLIENTS=ON
+        -L
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  

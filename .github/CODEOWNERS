@@ -1,5 +1,7 @@
-* @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
+* @amd-aakash @jlgreathouse @samjwu @yhuiYH @ROCm/rocm-documentation
 # Documentation files
-docs/* @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
-*.md @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
-*.rst @amd-aakash @jlgreathouse @samjwu @ROCm/rocm-documentation
+docs/* @amd-aakash @jlgreathouse @samjwu @yhuiYH @ROCm/rocm-documentation
+*.md @amd-aakash @jlgreathouse @samjwu @yhuiYH @ROCm/rocm-documentation
+*.rst @amd-aakash @jlgreathouse @samjwu @yhuiYH @ROCm/rocm-documentation
+# External CI
+.azuredevops/* @ROCm/external-ci
