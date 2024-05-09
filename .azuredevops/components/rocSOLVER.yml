@@ -18,6 +18,7 @@ parameters:
     - gfortran
     - libfmt-dev
     - git
+    
 jobs:
 - job: rocSOLVER
   variables:
