@@ -96,6 +96,10 @@ Our documentation is organized into the following categories:
   * [RDNA2](./how-to/tuning-guides/w6000-v620.md)
 * [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
+* [Using compiler features](./conceptual/compiler-topics.md)
+  * [Using AddressSanitizer](./conceptual/using-gpu-sanitizer.md)
+  * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
+  * [OpenMP support in ROCm](./about/compatibility/openmp.md)
 * [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 :::
@@ -111,15 +115,12 @@ Our documentation is organized into the following categories:
   * [MI250](./conceptual/gpu-arch/mi250.md)
   * [MI300](./conceptual/gpu-arch/mi300.md)
 * [GPU memory](./conceptual/gpu-memory.md)
-* [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
 * [File structure (Linux FHS)](./conceptual/file-reorg.md)
 * [GPU isolation techniques](./conceptual/gpu-isolation.md)
-* [LLVM ASan](./conceptual/using-gpu-sanitizer.md)
 * [Using CMake](./conceptual/cmake-packages.rst)
 * [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
-* [OpenMP support in ROCm](./about/compatibility/openmp.md)
 :::
 
 ::::
