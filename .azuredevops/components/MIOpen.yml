@@ -61,7 +61,6 @@ jobs:
       parameters:
         componentName: \tag-builds\rocmlir
         pipelineId: $(rocmlir-tagged-pipeline-id)
-         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
