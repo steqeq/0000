@@ -1,6 +1,6 @@
 variables:
 - group: common
-- template: /.azuredevops/variables-global.yml
+- template: /.azuredevops/variables-global.yml@pipelines_repo
 
 parameters:
 - name: checkoutRef
