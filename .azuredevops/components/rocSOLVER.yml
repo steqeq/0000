@@ -20,7 +20,6 @@ parameters:
     - git
 jobs:
 - job: rocSOLVER
-  timeoutInMinutes: 180
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
