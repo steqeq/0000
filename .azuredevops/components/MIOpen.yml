@@ -34,6 +34,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+  # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
+  # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest 
   - task: Bash@3
     displayName: 'update boost version'
     inputs:
