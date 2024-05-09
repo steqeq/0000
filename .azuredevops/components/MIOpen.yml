@@ -54,6 +54,10 @@ jobs:
   #       componentName: \tag-builds\rocmlir
   #       pipelineId: $(rocmlir-tagged-pipeline-id)
   #        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+  - script: pwd
+    displayName: pwd
+  - script: ls
+    displayName: ls
   - task: Bash@3
     displayName: 'install dependencies'
     inputs:
