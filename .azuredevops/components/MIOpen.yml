@@ -67,7 +67,7 @@ jobs:
         -DMIOPEN_BACKEND=HIP
         -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
         -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
-        -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/bin"
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
