@@ -8,6 +8,7 @@ parameters:
 - name: aptPackages
   type: object
   default:
+    - software-properties-common
     - cmake
     - ninja-build
     - composablekernel-dev
@@ -17,9 +18,6 @@ parameters:
     - libsqlite3-dev
     - libbz2-dev
     - nlohmann-json3-dev
-    - libboost1.83-dev
-    - libboost-system1.83-dev
-    - libboost-filesystem1.83-dev
     - libgtest-dev
 
 jobs:
@@ -33,14 +31,19 @@ jobs:
   workspace:
     clean: all
   steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
   - task: Bash@3
     displayName: 'update boost version'
     inputs:
       targetType: inline
-      script: sudo sudo add-apt-repository ppa:mhier/libboost-latest -y
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
+      script: sudo add-apt-repository ppa:mhier/libboost-latest -y
+  - task: Bash@3
+    displayName: 'install boost'
+    inputs:
+      targetType: inline
+      script: sudo apt-get --yes install libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
