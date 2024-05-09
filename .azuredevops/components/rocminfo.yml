@@ -32,7 +32,7 @@ jobs:
   - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
-        componentName: \tag-builds\ROCR-Runtime
+        componentName: ROCR-Runtime
         pipelineId: $(rocr-runtime-tagged-pipeline-id)
         testFailuresOkay: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml

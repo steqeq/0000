@@ -44,7 +44,7 @@ jobs:
   - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
-        componentName: \tag-builds\rocm-cmake
+        componentName: rocm-cmake
         pipelineId: $(rocm-cmake-tagged-pipeline-id)
         testFailuresOkay: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml

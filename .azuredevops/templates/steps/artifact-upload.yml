@@ -3,7 +3,7 @@
 # publish can be toggled off for jobs that produce multiple tarballs
 # for those cases, only publish the last call which puts all the tarballs in one container folder
 parameters:
-- name: artifactName # REQUIRED PARAMETER
+- name: artifactName
   type: string
   default: 'drop'
 - name: publish

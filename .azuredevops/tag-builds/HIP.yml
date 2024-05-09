@@ -23,8 +23,14 @@ resources:
     endpoint: ROCm
     name: ROCm/clr
     ref: ${{ parameters.checkoutRef }}
+  - repository: hipother_repo
+    type: github
+    endpoint: ROCm
+    name: ROCm/hipother
+    ref: ${{ parameters.checkoutRef }}
 
 trigger: none
+pr: none
 
 jobs:
   - template: ${{ variables.CI_COMPONENT_PATH }}/HIP.yml@pipelines_repo

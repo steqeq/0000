@@ -46,11 +46,11 @@ jobs:
   - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
-        componentName: \tag-builds\llvm-project
+        componentName: llvm-project
         pipelineId: $(llvm-project-tagged-pipeline-id)
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
-        componentName: \tag-builds\ROCT-Thunk-Interface
+        componentName: ROCT-Thunk-Interface
         pipelineId: $(roct-thunk-interface-tagged-pipeline-id)
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
     displayName: 'Artifact listing'
