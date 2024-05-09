@@ -1,0 +1,107 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+- name: aptPackages
+  type: object
+  default:
+    - git
+    - cmake
+    - ninja-build
+    - libnuma-dev
+    - miopen-hip-dev
+    - openmp-extras
+    - python3-venv
+    - rocblas-dev
+    - libtbb-dev
+    - nlohmann-json3-dev
+    - libmsgpack-dev
+    - libsqlite3-dev
+    - libprotobuf-dev
+    - protobuf-compiler
+    - python3-pybind11
+    - composablekernel-dev
+- name: pipModules
+  type: object
+  default:
+    - https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
+    - onnx==1.14.1
+    - numpy==1.21.6
+    - typing==3.7.4
+    - pytest==6.0.1
+    - packaging==23.0
+    - protobuf==3.20.2
+
+jobs:
+- job: AMDMIGraphX
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  container:
+    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: rocm-cmake
+        branchName: develop
+        pipelineId: $(rocm-cmake-pipeline-id)
+        testFailuresOkay: true
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: half
+        branchName: master
+        pipelineId: $(half-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: rocmlir
+        branchName: develop
+        pipelineId: $(rocmlir-pipeline-id)
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\rocm-cmake
+        pipelineId: $(rocm-cmake-tagged-pipeline-id)
+        testFailuresOkay: true
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\half
+        pipelineId: $(half-tagged-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\rocmlir
+        pipelineId: $(rocmlir-tagged-pipeline-id)
+  - script: 'ls -1R /opt/rocm'
+    displayName: 'Artifact listing'
+  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
+    displayName: 'Artifact listing'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
+        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
+        -DCMAKE_BUILD_TYPE=Release
+        -DAMDGPU_TARGETS=gfx1100
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/opt/rocm/llvm;opt/rocm"
+        -DHALF_INCLUDE_DIR="$(Agent.BuildDirectory)/rocm/include"
+        -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
+        -DBUILD_TESTING=OFF
+        -GNinja
+# REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
