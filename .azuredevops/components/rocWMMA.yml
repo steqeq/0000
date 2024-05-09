@@ -19,7 +19,6 @@ parameters:
   
 jobs:
 - job: rocWMMA
-  timeoutInMinutes: 180
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
