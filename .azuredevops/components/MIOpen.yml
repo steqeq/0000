@@ -10,17 +10,17 @@ parameters:
   default:
     - cmake
     - ninja-build
-    # - composablekernel-dev
-    # - half
-    # - rocrand
-    # - rocblas
-    # - libsqlite3-dev
-    # - libbz2-dev
-    # - nlohmann-json3-dev
-    # - libboost-dev
-    # - libboost-system-dev
-    # - libboost-filesystem-dev
-    # - libgtest-dev
+    - composablekernel-dev
+    - half
+    - rocrand
+    - rocblas
+    - libsqlite3-dev
+    - libbz2-dev
+    - nlohmann-json3-dev
+    - libboost1.83-dev
+    - libboost-system1.83-dev
+    - libboost-filesystem1.83-dev
+    - libgtest-dev
 
 jobs:
 - job: MIOpen
@@ -33,6 +33,11 @@ jobs:
   workspace:
     clean: all
   steps:
+  - task: Bash@3
+  displayName: 'update boost version'
+  inputs:
+    targetType: inline
+    script: sudo sudo add-apt-repository ppa:mhier/libboost-latest -y
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
@@ -40,30 +45,20 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  # # CI case: download latest default branch build
-  # - ${{ if eq(parameters.checkoutRef, '') }}:
-  #   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-  #     parameters:
-  #       componentName: rocmlir
-  #       branchName: develop
-  #       pipelineId: $(rocmlir-pipeline-id)
-  # # manual build case: triggered by ROCm/ROCm repo
-  # - ${{ if ne(parameters.checkoutRef, '') }}:
-  #   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-  #     parameters:
-  #       componentName: \tag-builds\rocmlir
-  #       pipelineId: $(rocmlir-tagged-pipeline-id)
-  #        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
-  - script: pwd
-    displayName: pwd
-  - script: ls
-    displayName: ls
-  - task: Bash@3
-    displayName: 'install dependencies'
-    inputs:
-      targetType: inline
-      script: sudo cmake -P ./install_deps.cmake --prefix $(Build.SourceDirectory)/bin
-      workingDirectory: "."
+  # CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: rocmlir
+        branchName: develop
+        pipelineId: $(rocmlir-pipeline-id)
+  # manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \tag-builds\rocmlir
+        pipelineId: $(rocmlir-tagged-pipeline-id)
+         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
