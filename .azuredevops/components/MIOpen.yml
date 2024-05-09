@@ -34,10 +34,10 @@ jobs:
     clean: all
   steps:
   - task: Bash@3
-  displayName: 'update boost version'
-  inputs:
-    targetType: inline
-    script: sudo sudo add-apt-repository ppa:mhier/libboost-latest -y
+    displayName: 'update boost version'
+    inputs:
+      targetType: inline
+      script: sudo sudo add-apt-repository ppa:mhier/libboost-latest -y
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
