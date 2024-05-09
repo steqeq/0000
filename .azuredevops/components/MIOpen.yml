@@ -59,7 +59,7 @@ jobs:
     inputs:
       targetType: inline
       script: sudo cmake -P ./install_deps.cmake --prefix $(Build.SourceDirectory)/bin
-      workingDirectory: $(Pipeline.Workspace)/MIOpen
+      workingDirectory: /home/rocm/AzureAgent/$(Pipeline.Workspace)/MIOpen
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
