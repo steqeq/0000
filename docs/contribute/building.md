@@ -23,8 +23,11 @@ If you don't see this line, click `Show all checks` to get an itemized view.
 
 ## Command line
 
-You can build our documentation via the command line using Python. We use Python 3.8; other
-versions may not support the build.
+You can build our documentation via the command line using Python.
+
+See the `build.tools.python` setting in the [ReadtheDocs configuration file](https://github.com/ROCm/ROCm/blob/develop/.readthedocs.yaml) for the Python version used by ReadtheDocs to build documentation.
+
+See the [Python requirements file](https://github.com/ROCm/ROCm/blob/develop/docs/sphinx/requirements.txt) for Python packages needed to build the documentation.
 
 Use the Python Virtual Environment (`venv`) and run the following commands from the project root:
 
