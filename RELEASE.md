@@ -74,7 +74,7 @@ ROCm SMI for ROCm 6.1.1
 
 ### Known issues
 
-- ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations. See the issue on [GitHub](https://github.com/ROCm/ROCm/issues/2551).
+- ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations. See the issue on [GitHub](https://github.com/ROCm/ROCm/issues/3112).
 
 ## Library changes in ROCm 6.1.1
 
