@@ -21,7 +21,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.HIGH_BUILD_POOL }}
+  pool: ${{ variables.ULTRA_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
