@@ -19,7 +19,7 @@ parameters:
     - libgtest-dev
 
 jobs:
-- job: hipSPARSE
+- job: rocSPARSE
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -43,9 +43,10 @@ jobs:
         -DCMAKE_CXX_COMPILER=/opt/rocm/bin/amdclang++
         -DCMAKE_C_COMPILER=/opt/rocm/bin/amdclang
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/"
-        -DBUILD_CLIENTS_TESTS=ON
+        -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DBUILD_CLIENTS_SAMPLES=OFF
+        -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_BENCHMARKS=OFF
+        -DCMAKE_MODULE_PATH="/opt/rocm/lib/cmake/hip;/opt/rocm/hip/cmake"
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
