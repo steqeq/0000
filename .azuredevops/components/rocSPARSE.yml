@@ -16,6 +16,7 @@ parameters:
     - rocsparse
     - git
     - gfortran
+    - rocprim-dev
     - libgtest-dev
 
 jobs:
