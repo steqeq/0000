@@ -24,7 +24,6 @@ parameters:
     - protobuf-compiler
     - python3-pybind11
     - composablekernel-dev
-    - half
 - name: pipModules
   type: object
   default:
@@ -41,7 +40,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.LOW_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -68,6 +67,11 @@ jobs:
         componentName: rocmlir
         branchName: develop
         pipelineId: $(rocmlir-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: half560
+        branchName: develop
+        pipelineId: $(half560-pipeline-id)
 # manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
@@ -79,6 +83,10 @@ jobs:
       parameters:
         componentName: \tag-builds\rocmlir
         pipelineId: $(rocmlir-tagged-pipeline-id)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+      parameters:
+        componentName: \dependencies\half560
+        pipelineId: $(half560-tagged-pipeline-id)
   - script: 'ls -1R /opt/rocm'
     displayName: 'Artifact listing'
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
@@ -91,7 +99,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/opt/rocm/llvm;opt/rocm"
-        -DHALF_INCLUDE_DIR="/opt/rocm/include"
+        -DHALF_INCLUDE_DIR="$(Agent.BuildDirectory)/rocm/include"
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DBUILD_TESTING=ON
         -GNinja
