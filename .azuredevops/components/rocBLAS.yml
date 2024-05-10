@@ -14,6 +14,8 @@ parameters:
     - git
     - libmsgpack-dev
     - gfortran
+    - googletest
+    - libgtest-dev
 - name: pipModules
   type: object
   default:
