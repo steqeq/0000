@@ -47,6 +47,11 @@ jobs:
       installDir: '$(Pipeline.Workspace)/deps-install'
       extraBuildFlags: >-
         -DBUILD_GTEST=OFF
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls
+        -DBUILD_TESTING=OFF
+        -DCBLAS=ON
+        -DLAPACKE=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
