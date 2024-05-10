@@ -15,7 +15,11 @@ parameters:
     - rocsolver
     - gfortran
     - libopenblas-dev
+    - googletest
     - git
+    - libgtest-dev
+    - libblis-dev
+    - libatlas-base-dev
 
 jobs:
 - job: hipBLAS
@@ -41,6 +45,9 @@ jobs:
       componentName: external
       cmakeBuildDir: 'deps/build'
       installDir: '$(Pipeline.Workspace)/deps-install'
+      extraBuildFlags: >-
+        -DBUILD_GTEST=OFF
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -52,6 +59,7 @@ jobs:
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DHIP_PLATFORM=amd
         -DLINK_BLIS=ON
+        -DUSE_CUDA=OFF
         -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_BENCHMARKS=OFF
         -DBUILD_CLIENTS_SAMPLES=OFF

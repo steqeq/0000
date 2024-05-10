@@ -32,8 +32,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  pool: ${{ variables.LOW_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -54,5 +53,5 @@ jobs:
         -DCMAKE_PREFIX_PATH="/opt/rocm"
         -DENABLE_LDCONFIG=OFF
         -DUSE_PROF_API=1
-        -DGPU_TARGETS="gfx1100"
+        -DGPU_TARGETS=gfx1030;gfx1100
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

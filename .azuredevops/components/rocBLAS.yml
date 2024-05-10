@@ -13,6 +13,7 @@ parameters:
     - python3-venv
     - git
     - libmsgpack-dev
+    - gfortran
 - name: pipModules
   type: object
   default:
