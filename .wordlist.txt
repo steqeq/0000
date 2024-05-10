@@ -18,6 +18,7 @@ APU
 ASIC
 ASICs
 ASan
+ASAN
 ASm
 ATI
 AddressSanitizer
@@ -169,6 +170,7 @@ LLMs
 LLVM
 LM
 LSAN
+LSan
 LTS
 LoRA
 MEM

@@ -1,0 +1,33 @@
+# compress build products into tarball
+# delete build products after compression
+# publish can be toggled off for jobs that produce multiple tarballs
+# for those cases, only publish the last call which puts all the tarballs in one container folder
+parameters:
+- name: artifactName
+  type: string
+  default: 'drop'
+- name: publish
+  type: boolean
+  default: true
+
+steps:
+- task: ArchiveFiles@2
+  displayName: '${{ parameters.artifactName }} Compress'
+  inputs:
+    includeRootFolder: false
+    archiveType: 'tar'
+    tarCompression: 'gz'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.DefinitionName)_$(Build.SourceBranchName)_$(Build.BuildId)_$(Build.BuildNumber)_ubuntu2204_${{ parameters.artifactName }}.tar.gz'
+- task: DeleteFiles@1
+  displayName: 'Cleanup Staging Area'
+  inputs:
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: '/**/*'
+    RemoveDotFiles: true
+# then publish it
+- ${{ if parameters.publish }}:
+  - task: PublishPipelineArtifact@1
+    displayName: '${{ parameters.artifactName }} Publish'
+    retryCountOnTaskFailure: 3
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'
