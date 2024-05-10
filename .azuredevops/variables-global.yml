@@ -7,6 +7,8 @@ variables:
   value: ${{ variables.CI_ROOT_PATH }}/components
 - name: CI_TEMPLATE_PATH
   value: ${{ variables.CI_ROOT_PATH }}/templates
+- name: CI_DEPENDENCIES_PATH
+  value: ${{ variables.CI_ROOT_PATH }}/dependencies
 - name: BASE_BUILD_POOL
   value: ubuntu-22.04
 - name: LOW_BUILD_POOL
