@@ -13,7 +13,6 @@ parameters:
     - rocblas
     - rocsparse
     - hipsparse
-    - rocsolver
     - libsuitesparse-dev
     - gfortran
     - libfmt-dev
