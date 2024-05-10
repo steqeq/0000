@@ -21,7 +21,7 @@ ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and librarie
 
 ### OS support
 
-ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel 6.8).
+ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel: 5.15 [GA], 6.8 [HWE]).
 
 ### AMD SMI
 
@@ -82,7 +82,7 @@ ROCm SMI for ROCm 6.1.1
 
 ##### Known issues
 
-* ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations.
+* ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations. See the issue on [GitHub](https://github.com/ROCm/ROCm/issues/3112).
 
 ### Library changes in ROCm 6.1.1
 
@@ -4259,9 +4259,9 @@ MIGraphX 2.5 for ROCm 5.5.0
 ##### Added
 
 - Y-Model feature to store tuning information with the optimized model
-- Added Python 3.10 bindings 
+- Added Python 3.10 bindings
 - Accuracy checker tool based on ONNX Runtime
-- ONNX Operators parse_split, and Trilu 
+- ONNX Operators parse_split, and Trilu
 - Build support for ROCm MLIR
 - Added migraphx-driver flag to print optimizations in python (--python)
 - Added JIT implementation of the Gather and Pad operator which results in better handling of larger tensor sizes.
@@ -4275,7 +4275,7 @@ MIGraphX 2.5 for ROCm 5.5.0
 
 ##### Fixed
 
-- Improved parsing Tensorflow Protobuf files 
+- Improved parsing Tensorflow Protobuf files
 - Resolved various accuracy issues with some onnx models
 - Resolved a gcc-12 issue with mivisionx
 - Improved support for larger sized models and batches
