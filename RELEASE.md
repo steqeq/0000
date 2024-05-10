@@ -13,7 +13,7 @@ ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and librarie
 
 ## OS support
 
-ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel 6.8).
+ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel: 5.15 [GA], 6.8 [HWE]).
 
 ## AMD SMI
 
@@ -74,7 +74,7 @@ ROCm SMI for ROCm 6.1.1
 
 ### Known issues
 
-- ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations.
+- ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations. See the issue on [GitHub](https://github.com/ROCm/ROCm/issues/3112).
 
 ## Library changes in ROCm 6.1.1
 
