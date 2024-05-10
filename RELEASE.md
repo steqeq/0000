@@ -13,7 +13,7 @@ ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and librarie
 
 ## OS support
 
-ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel 6.8).
+ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel: GA 5.15, HWE 6.8).
 
 ## AMD SMI
 
