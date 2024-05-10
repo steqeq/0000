@@ -47,8 +47,17 @@ subtrees:
 
 - caption: How to
   entries:
+  - file: how-to/rocm-for-ai/index.rst
+    title: Using ROCm for AI
+    subtrees:
+    - entries:
+      - file: how-to/rocm-for-ai/install.rst
+        title: Installation
+      - file: how-to/rocm-for-ai/train-a-model.rst
+      - file: how-to/rocm-for-ai/deploy-your-model.rst
+      - file: how-to/rocm-for-ai/hugging-face-models.rst
   - file: how-to/tuning-guides.md
-    title: Tuning guides
+    title: System tuning guides
     subtrees:
     - entries:
       - file: how-to/tuning-guides/mi100.md
@@ -139,4 +148,3 @@ subtrees:
     title: Provide feedback
   - file: about/license.md
     title: ROCm license
-
