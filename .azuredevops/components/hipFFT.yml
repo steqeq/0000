@@ -23,7 +23,7 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool:
-    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -39,9 +39,13 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=hipcc
+        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/amdclang++
+        -DCMAKE_C_COMPILER=/opt/rocm/bin/amdclang
         -DCMAKE_BUILD_TYPE=Release
-        -DBUILD_CLIENTS=ON
+        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DBUILD_CLIENTS_TESTS=ON
+        -DBUILD_CLIENTS_BENCH=OFF
+        -DBUILD_CLIENTS_SAMPLES=OFF
         -L
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

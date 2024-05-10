@@ -24,6 +24,7 @@ parameters:
     - protobuf-compiler
     - python3-pybind11
     - composablekernel-dev
+    - half
 - name: pipModules
   type: object
   default:
@@ -40,7 +41,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -64,11 +65,6 @@ jobs:
         testFailuresOkay: true
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
-        componentName: half
-        branchName: master
-        pipelineId: $(half-pipeline-id)
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
         componentName: rocmlir
         branchName: develop
         pipelineId: $(rocmlir-pipeline-id)
@@ -79,10 +75,6 @@ jobs:
         componentName: \tag-builds\rocm-cmake
         pipelineId: $(rocm-cmake-tagged-pipeline-id)
         testFailuresOkay: true
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: \tag-builds\half
-        pipelineId: $(half-tagged-pipeline-id)
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
       parameters:
         componentName: \tag-builds\rocmlir
@@ -97,11 +89,11 @@ jobs:
         -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
         -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
         -DCMAKE_BUILD_TYPE=Release
-        -DAMDGPU_TARGETS=gfx1100
+        -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;/opt/rocm/llvm;opt/rocm"
-        -DHALF_INCLUDE_DIR="$(Agent.BuildDirectory)/rocm/include"
+        -DHALF_INCLUDE_DIR="/opt/rocm/include"
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
-        -DBUILD_TESTING=OFF
+        -DBUILD_TESTING=ON
         -GNinja
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

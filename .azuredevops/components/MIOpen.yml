@@ -25,7 +25,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -35,7 +35,7 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
-  # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest 
+  # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest
   - task: Bash@3
     displayName: 'update boost version'
     inputs:
@@ -73,5 +73,6 @@ jobs:
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
+        -DBUILD_TESTING=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

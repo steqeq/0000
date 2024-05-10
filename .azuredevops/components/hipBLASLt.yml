@@ -24,7 +24,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -42,8 +42,8 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=hipcc
-        -DCMAKE_C_COMPILER=hipcc
+        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/amdclang++
+        -DCMAKE_C_COMPILER=/opt/rocm/bin/amdclang
         -DAMDGPU_TARGETS=gfx90a
         -DTensile_LOGIC=
         -DTensile_CPU_THREADS=

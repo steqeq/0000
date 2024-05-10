@@ -21,7 +21,7 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: HIP_DEVICE_LIB_PATH
     value: '$(Build.BinariesDirectory)/amdgcn/bitcode'
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
