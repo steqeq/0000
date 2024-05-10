@@ -59,8 +59,8 @@ jobs:
         -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
         -DCMAKE_PREFIX_PATH="/opt/rocm;$(Pipeline.Workspace)/deps-install"
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/amdclang++
-        -DCMAKE_C_COMPILER=/opt/rocm/bin/amdclang
+        -DCMAKE_CXX_COMPILER=hipcc
+        -DCMAKE_C_COMPILER=hipcc
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DHIP_PLATFORM=amd
         -DLINK_BLIS=ON
