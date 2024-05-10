@@ -56,6 +56,6 @@ jobs:
         -DCMAKE_MODULE_PATH="$(Agent.BuildDirectory)/rocm/lib/cmake"
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm"
         -DENABLE_LDCONFIG=OFF
-        -DGPU_TARGETS="gfx1100"
+        -DGPU_TARGETS=gfx1030;gfx1100
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

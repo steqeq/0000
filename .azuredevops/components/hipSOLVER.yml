@@ -17,6 +17,8 @@ parameters:
     - libsuitesparse-dev
     - gfortran
     - git
+    - googletest
+    - libgtest-dev
 
 jobs:
 - job: hipSOLVER
@@ -43,7 +45,10 @@ jobs:
       componentName: external
       cmakeBuildDir: 'deps/build'
       installDir: '$(Pipeline.Workspace)/deps-install'
-      extraBuildFlags: -DBUILD_BOOST=OFF
+      extraBuildFlags: >-
+        -DBUILD_BOOST=OFF
+        -DBUILD_GTEST=OFF
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-

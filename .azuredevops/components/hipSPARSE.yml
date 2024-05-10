@@ -16,6 +16,7 @@ parameters:
     - rocsparse
     - git
     - gfortran
+    - libgtest-dev
 
 jobs:
 - job: hipSPARSE
@@ -45,5 +46,6 @@ jobs:
         -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/"
         -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_SAMPLES=OFF
+        -DBUILD_CLIENTS_BENCHMARKS=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

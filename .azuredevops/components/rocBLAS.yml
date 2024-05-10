@@ -13,6 +13,9 @@ parameters:
     - python3-venv
     - git
     - libmsgpack-dev
+    - gfortran
+    - googletest
+    - libgtest-dev
 - name: pipModules
   type: object
   default:
@@ -37,6 +40,15 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+# build external lapack
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: external
+      cmakeBuildDir: 'deps/build'
+      installDir: '$(Pipeline.Workspace)/deps-install'
+      extraBuildFlags: >-
+        -DBUILD_GTEST=OFF
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-

@@ -9,6 +9,7 @@ parameters:
   type: object
   default:
     - cmake
+    - ninja-build
     - rocprim
     - googletest
     - git
@@ -18,7 +19,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.LOW_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -39,4 +40,5 @@ jobs:
         -DCMAKE_PREFIX_PATH="/opt/rocm"
         -DBUILD_TEST=ON
         -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
