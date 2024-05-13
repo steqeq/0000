@@ -11,7 +11,7 @@ subtrees:
     title: Release notes
     subtrees:
     - entries:
-      - file: about/CHANGELOG.md
+      - file: about/changelog.md
         title: Changelog
   - url: https://github.com/ROCm/ROCm/labels/Verified%20Issue
     title: Known issues

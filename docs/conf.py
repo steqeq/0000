@@ -23,7 +23,7 @@ for template in templates:
 
 shutil.copy2('../RELEASE.md','./about/release-notes.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
-shutil.copy2('../CHANGELOG.md','./about/CHANGELOG.md')
+shutil.copy2('../CHANGELOG.md','./about/changelog.md')
 
 latex_engine = "xelatex"
 latex_elements = {
@@ -52,7 +52,7 @@ article_pages = [
         "date":"2024-01-31"
     },
     {
-        "file":"about/CHANGELOG",
+        "file":"about/changelog",
         "os":["linux", "windows"],
         "date":"2024-01-31"
     },
