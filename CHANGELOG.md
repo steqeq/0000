@@ -66,16 +66,6 @@ HIPCC for ROCm 6.1.1
 * **Upcoming:** a subsequent release will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
 * **Upcoming:** a subsequent release will remove `hipcc.pl` and `hipconfig.pl`.
 
-### HIPIFY
-
-HIPIFY for ROCm 6.1.1
-
-#### Additions
-
-* Added support for LLVM 18.1.2.
-* Added support for cuDNN 9.0.0.
-* Added a new option: `--clang-resource-directory` to specify the clang resource path (the path to the parent folder for the `include` folder that contains `__clang_cuda_runtime_wrapper.h` and other header files used during the hipification process).
-
 ### ROCm SMI
 
 ROCm SMI for ROCm 6.1.1
