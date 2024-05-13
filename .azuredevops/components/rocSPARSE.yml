@@ -41,8 +41,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/amdclang++
-        -DCMAKE_C_COMPILER=/opt/rocm/bin/amdclang
+        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc
+        -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DBUILD_CLIENTS_SAMPLES=OFF
