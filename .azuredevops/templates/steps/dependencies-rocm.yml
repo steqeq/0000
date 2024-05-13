@@ -13,7 +13,7 @@ parameters:
     - fixed
 # required values for fixed selection
 - name: fixedPipelineIdentifier
-  type: number
+  type: string
   default: 0
 - name: fixedComponentName
   type: string
