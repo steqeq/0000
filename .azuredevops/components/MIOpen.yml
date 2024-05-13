@@ -19,6 +19,10 @@ parameters:
     - libbz2-dev
     - nlohmann-json3-dev
     - libgtest-dev
+- name: rocmDependencies
+  type: object
+  default:
+    - rocMLIR
 
 jobs:
 - job: MIOpen
@@ -31,7 +35,7 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
@@ -50,19 +54,18 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  # CI case: download latest default branch build
+# CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: rocmlir
-        branchName: develop
-        pipelineId: $(rocmlir-pipeline-id)
-  # manual build case: triggered by ROCm/ROCm repo
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: \tag-builds\rocmlir
-        pipelineId: $(rocmlir-tagged-pipeline-id)
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-

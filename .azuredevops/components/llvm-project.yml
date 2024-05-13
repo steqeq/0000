@@ -13,6 +13,10 @@ parameters:
     - libnuma-dev
     - ninja-build
     - python-is-python3
+- name: rocmDependencies
+  type: object
+  default:
+    - rocm-cmake
 
 jobs:
 - job: llvm_project
@@ -25,7 +29,7 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
@@ -34,19 +38,16 @@ jobs:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: rocm-cmake
-        branchName: develop
-        pipelineId: $(rocm-cmake-pipeline-id)
-        testFailuresOkay: true
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: rocm-cmake
-        pipelineId: $(rocm-cmake-tagged-pipeline-id)
-        testFailuresOkay: true
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: rocm-llvm

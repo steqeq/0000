@@ -1,0 +1,61 @@
+# download and install rocm dependencies through pipeline builds in the project
+# REQUIRED
+parameters:
+- name: dependencyList
+  type: object
+  default: []
+- name: dependencySource
+  type: string
+  default: staging
+  values:
+    - staging
+    - tag-builds
+    - fixed
+# required values for fixed selection
+- name: fixedPipelineIdentifier
+  type: number
+  default: 0
+- name: fixedComponentName
+  type: string
+  default: ''
+# match case of the repo in this object for the left side of the maps
+# should not need to replace these parameters
+- name: stagingPipelineIdentifiers
+  type: object
+  default:
+    half: $(half-pipeline-id)
+    llvm-project: $(llvm-project-pipeline-id)
+    rocm-cmake: $(rocm-cmake-pipeline-id)
+    rocmlir: $(rocmlir-pipeline-id)
+    rocprofiler-register: $(rocprofiler-register-pipeline-id)
+    ROCR-Runtime: $(rocr-runtime-pipeline-id)
+    ROCT-Thunk-Interface: $(roct-thunk-interface-pipeline-id)
+- name: taggedPipelineIdentifiers
+  type: object
+  default:
+    half: $(half-tagged-pipeline-id)
+    llvm-project: $(llvm-project-tagged-pipeline-id)
+    rocm-cmake: $(rocm-cmake-tagged-pipeline-id)
+    rocmlir: $(rocmlir-tagged-pipeline-id)
+    rocprofiler-register: $(rocprofiler-register-tagged-pipeline-id)
+    ROCR-Runtime: $(rocr-runtime-tagged-pipeline-id)
+    ROCT-Thunk-Interface: $(roct-thunk-interface-tagged-pipeline-id)
+
+steps:
+# assuming artifact-download.yml template file in same directory
+- ${{ each dependency in parameters.dependencyList }}:
+  - ${{ if eq(parameters.dependencySource, 'staging') }}:
+    - template: artifact-download.yml
+      parameters:
+        componentName: ${{ dependency }}
+        pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+  - ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
+    - template: artifact-download.yml
+      parameters:
+        componentName: ${{ dependency }}
+        pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
+  - ${{ if eq(parameters.dependencySource, 'fixed') }}:
+    - template: artifact-download.yml
+      parameters:
+        componentName: ${{ parameters.fixedComponentName }}
+        pipelineId: ${{ parameters.fixedPipelineIdentifier }}

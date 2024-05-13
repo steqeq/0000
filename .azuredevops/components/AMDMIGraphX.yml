@@ -34,6 +34,11 @@ parameters:
     - pytest==6.0.1
     - packaging==23.0
     - protobuf==3.20.2
+- name: rocmDependencies
+  type: object
+  default:
+    - rocm-cmake
+    - rocMLIR
 
 jobs:
 - job: AMDMIGraphX
@@ -46,7 +51,7 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
@@ -54,39 +59,26 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+# half version should be fixed to 5.6.0
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList:
+        - half
+      dependencySource: fixed
+      fixedPipelineIdentifier: $(half560-pipeline-id)
+      fixedComponentName: 'half 5.6.0'
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: rocm-cmake
-        branchName: develop
-        pipelineId: $(rocm-cmake-pipeline-id)
-        testFailuresOkay: true
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: rocmlir
-        branchName: develop
-        pipelineId: $(rocmlir-pipeline-id)
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: half560
-        branchName: develop
-        pipelineId: $(half560-pipeline-id)
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: \tag-builds\rocm-cmake
-        pipelineId: $(rocm-cmake-tagged-pipeline-id)
-        testFailuresOkay: true
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: \tag-builds\rocmlir
-        pipelineId: $(rocmlir-tagged-pipeline-id)
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: \dependencies\half560
-        pipelineId: $(half560-tagged-pipeline-id)
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - script: 'ls -1R /opt/rocm'
     displayName: 'Artifact listing'
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
