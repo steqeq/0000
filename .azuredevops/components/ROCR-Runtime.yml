@@ -12,6 +12,11 @@ parameters:
     - g++
     - libdrm-dev
     - libnuma-dev
+- name: rocmDependencies
+  type: object
+  default:
+    - llvm-project
+    - ROCT-Thunk-Interface
 
 jobs:
 - job: ROCR_Runtime
@@ -23,7 +28,7 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
@@ -32,26 +37,16 @@ jobs:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: llvm-project
-        branchName: amd-staging
-        pipelineId: $(llvm-project-pipeline-id)
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: ROCT-Thunk-Interface
-        branchName: master
-        pipelineId: $(roct-thunk-interface-pipeline-id)
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: llvm-project
-        pipelineId: $(llvm-project-tagged-pipeline-id)
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
-      parameters:
-        componentName: ROCT-Thunk-Interface
-        pipelineId: $(roct-thunk-interface-tagged-pipeline-id)
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
     displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
