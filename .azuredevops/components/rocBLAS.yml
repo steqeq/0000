@@ -14,6 +14,7 @@ parameters:
     - git
     - libmsgpack-dev
     - gfortran
+    - libopenblas-dev
     - googletest
     - libgtest-dev
     - wget
