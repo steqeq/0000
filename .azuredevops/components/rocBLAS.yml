@@ -67,18 +67,18 @@ jobs:
 #      targetType: inline
 #      script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
 #      workingDirectory: '$(Build.SourcesDirectory)'
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      componentName: lapack
-      extraBuildFlags: >-
-        -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls
-        -DBUILD_TESTING=OFF
-        -DCBLAS=ON
-        -DLAPACKE=OFF
-        -GNinja
-      cmakeBuildDir: '$(Build.SourcesDirectory)/lapack/build'
-      installDir: '$(Pipeline.Workspace)/deps-install'
+#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#    parameters:
+#      componentName: lapack
+#      extraBuildFlags: >-
+#        -DCMAKE_BUILD_TYPE=Release
+#        -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls
+#        -DBUILD_TESTING=OFF
+#        -DCBLAS=ON
+#        -DLAPACKE=OFF
+#        -GNinja
+#      cmakeBuildDir: '$(Build.SourcesDirectory)/lapack/build'
+#      installDir: '$(Pipeline.Workspace)/deps-install'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
