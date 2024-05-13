@@ -47,6 +47,8 @@ subtrees:
 
 - caption: How to
   entries:
+  - file: how-to/fine-tuning-llms/index.rst
+    title: Fine-tuning LLMs
   - file: how-to/tuning-guides.md
     title: Tuning guides
     subtrees:
