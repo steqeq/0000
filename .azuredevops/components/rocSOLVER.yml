@@ -17,6 +17,8 @@ parameters:
     - gfortran
     - libfmt-dev
     - git
+    - googletest
+    - libgtest-dev
 
 jobs:
 - job: rocSOLVER
@@ -36,7 +38,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-
   - task: Bash@3
     displayName: 'Clone lapack'
     inputs:
