@@ -16,6 +16,7 @@ parameters:
     - gfortran
     - googletest
     - libgtest-dev
+    - wget
 - name: pipModules
   type: object
   default:
