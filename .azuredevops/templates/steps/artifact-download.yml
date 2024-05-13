@@ -16,7 +16,7 @@ parameters:
     HIP: develop
     llvm-project: amd-staging
     rocm-cmake: develop
-    rocmlir: develop
+    rocMLIR: develop
     rocprofiler-register: amd-mainline
     ROCR-Runtime: master
     ROCT-Thunk-Interface: master
