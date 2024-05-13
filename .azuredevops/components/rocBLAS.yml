@@ -28,7 +28,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.HIGH_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -42,31 +42,31 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - task: Bash@3
-    displayName: 'Download AOCL'
-    inputs:
-      targetType: inline
-      script: wget -nv -O blis.tar.gz https://github.com/amd/blis/releases/download/2.0/aocl-blis-mt-ubuntu-2.0.tar.gz
-      workingDirectory: '$(System.ArtifactsDirectory)'
-  - task: ExtractFiles@1
-    displayName: Extract AOCL
-    inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
-      destinationFolder: '$(Agent.BuildDirectory)/rocm'
-      cleanDestinationFolder: false
-      overwriteExistingFiles: true
-  - task: DeleteFiles@1
-    displayName: Cleanup Compressed AOCL
-    inputs:
-      SourceFolder: '$(System.ArtifactsDirectory)'
-      Contents: '/**/*.tar.gz'
-      RemoveDotFiles: true
-  - task: Bash@3
-    displayName: 'Clone lapack'
-    inputs:
-      targetType: inline
-      script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
-      workingDirectory: '$(Build.SourcesDirectory)'
+#  - task: Bash@3
+#    displayName: 'Download AOCL'
+#    inputs:
+#      targetType: inline
+#      script: wget -nv -O blis.tar.gz https://github.com/amd/blis/releases/download/2.0/aocl-blis-mt-ubuntu-2.0.tar.gz
+#      workingDirectory: '$(System.ArtifactsDirectory)'
+#  - task: ExtractFiles@1
+#    displayName: Extract AOCL
+#    inputs:
+#      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+#      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+#      cleanDestinationFolder: false
+#      overwriteExistingFiles: true
+#  - task: DeleteFiles@1
+#    displayName: Cleanup Compressed AOCL
+#    inputs:
+#      SourceFolder: '$(System.ArtifactsDirectory)'
+#      Contents: '/**/*.tar.gz'
+#      RemoveDotFiles: true
+#  - task: Bash@3
+#    displayName: 'Clone lapack'
+#    inputs:
+#      targetType: inline
+#      script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
+#      workingDirectory: '$(Build.SourcesDirectory)'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: lapack
