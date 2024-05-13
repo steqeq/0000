@@ -48,9 +48,28 @@ subtrees:
 - caption: How to
   entries:
   - file: how-to/fine-tuning-llms/index.rst
-    title: Fine-tuning LLMs
+    title: Fine-tuning LLMs with ROCm
+    subtrees:
+    - entries:
+      - file: how-to/fine-tuning-llms/overview.rst
+        title: Conceptual overview
+      - file: how-to/fine-tuning-llms/fine-tuning-and-inference.rst
+        subtrees:
+        - entries:
+          - file: how-to/fine-tuning-llms/single-gpu-fine-tuning-and-inference.rst
+            title: Using a single accelerator
+          - file: how-to/fine-tuning-llms/multi-gpu-fine-tuning-and-inference.rst
+            title: Using multiple accelerators
+      - file: how-to/fine-tuning-llms/llm-inference-frameworks.rst
+      - file: how-to/fine-tuning-llms/model-quantization.rst
+      - file: how-to/fine-tuning-llms/model-acceleration-libraries.rst
+      - file: how-to/fine-tuning-llms/kernel-fusion-using-ck.md
+        title: Optimizing with Composable Kernel
+      - file: how-to/fine-tuning-llms/triton-kernel-performance-optimization.rst
+        title: Optimizing Triton kernels
+      - file: how-to/fine-tuning-llms/profiling-and-debugging.rst
   - file: how-to/tuning-guides.md
-    title: Tuning guides
+    title: System tuning guides
     subtrees:
     - entries:
       - file: how-to/tuning-guides/mi100.md

@@ -110,3 +110,6 @@ html_theme_options = {
 redirects = {
      "reference/openmp/openmp": "../../about/compatibility/openmp.html"
 }
+
+# Override rocm_docs defaults
+numfig = False

@@ -90,6 +90,7 @@ Our documentation is organized into the following categories:
 :img-alt: How-to documentation
 :padding: 2
 
+* [Fine-tuning LLMs](./how-to/fine-tuning-llms/index.rst)
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
   * [MI200](./how-to/tuning-guides/mi200.md)
