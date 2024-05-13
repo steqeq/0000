@@ -9,7 +9,7 @@ Setting the number of CUs
 *************************************************************
 
 When using GPUs to accelerate compute workloads, it sometimes becomes necessary
-to configure the usage of Compute Units (CU) of the hardware. This is a more advanced
+to configure the hardware's usage of Compute Units (CU). This is a more advanced
 option, so please read this page before experimentation.
 
 The GPU driver provides two environment variables to set the number of CUs used. The
