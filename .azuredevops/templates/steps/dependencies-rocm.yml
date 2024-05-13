@@ -54,8 +54,9 @@ steps:
       parameters:
         componentName: ${{ dependency }}
         pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
-  - ${{ if eq(parameters.dependencySource, 'fixed') }}:
-    - template: artifact-download.yml
-      parameters:
-        componentName: ${{ parameters.fixedComponentName }}
-        pipelineId: ${{ parameters.fixedPipelineIdentifier }}
+# fixed case only accepts one component at a time, so no array input
+- ${{ if eq(parameters.dependencySource, 'fixed') }}:
+  - template: artifact-download.yml
+    parameters:
+      componentName: ${{ parameters.fixedComponentName }}
+      pipelineId: ${{ parameters.fixedPipelineIdentifier }}

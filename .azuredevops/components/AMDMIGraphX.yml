@@ -62,11 +62,9 @@ jobs:
 # half version should be fixed to 5.6.0
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList:
-        - half
       dependencySource: fixed
+      fixedComponentName: half
       fixedPipelineIdentifier: $(half560-pipeline-id)
-      fixedComponentName: 'half 5.6.0'
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
