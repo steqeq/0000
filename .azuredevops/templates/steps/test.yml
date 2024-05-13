@@ -1,0 +1,36 @@
+parameters:
+- name: componentName
+  type: string
+  default: ''
+- name: testDir
+  type: string
+  default: 'build'
+- name: testExecutable
+  type: string
+  default: 'ctest'
+- name: testParameters
+  type: string
+  default: '--output-on-failure --force-new-ctest-process --output-junit test_output.xml'
+- name: testOutputFile
+  type: string
+  default: test_output.xml
+- name: testOutputFormat
+  type: string
+  default: 'junit'
+
+steps:
+# run test, continue on failure to publish results
+# and to publish build artifacts
+- task: Bash@3
+  displayName: '${{ parameters.componentName }} Test'
+  continueOnError: true
+  inputs:
+    targetType: inline
+    script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
+    workingDirectory: ${{ parameters.testDir }}
+- task: PublishTestResults@2
+  displayName: '${{ parameters.componentName }} Publish Results'
+  inputs:
+    testResultsFormat: ${{ parameters.testOutputFormat }}
+    testResultsFiles: '**/${{ parameters.testOutputFile }}'
+  condition: succeededOrFailed()

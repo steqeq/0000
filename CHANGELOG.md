@@ -21,7 +21,7 @@ ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and librarie
 
 ### OS support
 
-ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel 6.8).
+ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel: 5.15 [GA], 6.8 [HWE]).
 
 ### AMD SMI
 
@@ -66,23 +66,13 @@ HIPCC for ROCm 6.1.1
 * **Upcoming:** a subsequent release will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
 * **Upcoming:** a subsequent release will remove `hipcc.pl` and `hipconfig.pl`.
 
-### HIPIFY
-
-HIPIFY for ROCm 6.1.1
-
-#### Additions
-
-* Added support for LLVM 18.1.2.
-* Added support for cuDNN 9.0.0.
-* Added a new option: `--clang-resource-directory` to specify the clang resource path (the path to the parent folder for the `include` folder that contains `__clang_cuda_runtime_wrapper.h` and other header files used during the hipification process).
-
 ### ROCm SMI
 
 ROCm SMI for ROCm 6.1.1
 
 ##### Known issues
 
-* ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations.
+* ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations. See the issue on [GitHub](https://github.com/ROCm/ROCm/issues/3112).
 
 ### Library changes in ROCm 6.1.1
 
@@ -878,7 +868,7 @@ rocRAND 3.0.1 for ROCm 6.1.0
 
 rocSOLVER 3.25.0 for ROCm 6.1.0
 
-##### Additions
+##### Added
 
 - Eigensolver routines for symmetric/hermitian matrices using Divide &amp; Conquer and Jacobi algorithm:
     - SYEVDJ (with batched and strided\_batched versions)
@@ -887,11 +877,11 @@ rocSOLVER 3.25.0 for ROCm 6.1.0
     - SYGVDJ (with batched and strided\_batched versions)
     - HEGVDJ (with batched and strided\_batched versions)
 
-##### Changes
+##### Changed
 
 - Relaxed array length requirements for GESVDX with `rocblas_srange_index`.
 
-##### Fixes
+##### Fixed
 
 - Corrected singular vector normalization in BDSVDX and GESVDX
 - Fixed potential memory access fault in STEIN, SYEVX/HEEVX, SYGVX/HEGVX, BDSVDX and GESVDX

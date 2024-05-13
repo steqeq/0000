@@ -1,0 +1,80 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+- name: aptPackages
+  type: object
+  default:
+    - cmake
+    - ninja-build
+    - git
+    - wget
+    - unzip
+    - pkg-config
+    - half
+    - rocblas-dev
+    - miopen-hip-dev
+    - migraphx-dev
+    - protobuf-compiler
+    - libprotoc-dev
+    - ffmpeg
+    - libavcodec-dev
+    - libavformat-dev
+    - libavutil-dev
+    - libswscale-dev
+    - rpp
+    - rpp-dev
+    - build-essential
+    - libgtk2.0-dev
+    - libavcodec-dev
+    - libavformat-dev
+    - libswscale-dev
+    - libtbb2
+    - libtbb-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libtiff-dev
+    - libdc1394-dev
+    - libgmp-dev
+- name: pipModules
+  type: object
+  default:
+    - future==0.18.2
+    - pytz==2022.1
+    - numpy==1.21
+    - google==3.0.0
+    - protobuf==3.12.4
+    - onnx==1.12.0
+
+jobs:
+- job: MIVisionX
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  container:
+    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_BUILD_TYPE=Release
+        -DROCM_PATH=/opt/rocm
+        -DBUILD_DEV=ON
+        -DROCM_DEP_ROCMCORE=ON
+        -DROCAL_PYTHON=OFF
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
