@@ -33,7 +33,6 @@ parameters:
     rocSPARSE: develop
     ROCT-Thunk-Interface: master
     rpp: master
-
 - name: componentsFailureOkay
   type: object
   default:
