@@ -19,8 +19,6 @@ parameters:
     - git
     - libgtest-dev
     - libblis-dev
-#    - libatlas-base-dev
-    - wget
 
 jobs:
 - job: hipBLAS
@@ -50,8 +48,7 @@ jobs:
     parameters:
       componentName: lapack
       extraBuildFlags: >-
-        -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls
+        -DCMAKE_INSTALL_LIBDIR=lib
         -DBUILD_TESTING=OFF
         -DCBLAS=ON
         -DLAPACKE=OFF
