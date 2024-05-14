@@ -73,6 +73,12 @@ jobs:
       targetType: inline
       script: sudo cp -r * /usr/local
       workingDirectory: '$(Pipeline.Workspace)/deps-install'
+ - task: Bash@3
+    displayName: 'ldconfig'
+    inputs:
+      targetType: inline
+      script: sudo ldconfig
+      workingDirectory: '/usr/local/lib'
   - script: 'ls -1R /usr/local'
     displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
