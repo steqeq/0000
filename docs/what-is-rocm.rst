@@ -99,7 +99,6 @@ Tools
 
   ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
   ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
-  "`Radeon Compute Profiler (RCP) <https://github.com/GPUOpen-Tools/radeon_compute_profiler/>`_ ", "Performance analysis tool that gathers data from the API runtime and GPU for OpenCL and ROCm/HSA applications"
   "`RocBandwidthTest <https://github.com/ROCm/rocm_bandwidth_test/>`_ ", "Captures the performance characteristics of buffer copying and kernel read/write operations"
   ":doc:`ROCmCC <./reference/rocmcc>`", "Clang/LLVM-based compiler"
   "`ROCm CMake <https://github.com/ROCm/rocm-cmake>`_ ", "Collection of CMake modules for common build and development tasks"
