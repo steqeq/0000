@@ -64,14 +64,15 @@ jobs:
       targetType: inline
       script: sudo cp -r * /usr/local
       workingDirectory: '$(Pipeline.Workspace)/deps-install'
+  - script: 'ls -1R /usr/local'
+    displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
         -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=hipcc
-        -DCMAKE_C_COMPILER=hipcc
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
+        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DHIP_PLATFORM=amd
         -DLINK_BLIS=ON
