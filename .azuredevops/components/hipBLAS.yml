@@ -10,9 +10,9 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - rocblas
+    - rocblas-dev
     - rocsparse
-    - rocsolver
+    - rocsolver-dev
     - gfortran
     - libopenblas-dev
     - googletest
@@ -48,19 +48,12 @@ jobs:
     parameters:
       componentName: lapack
       extraBuildFlags: >-
-        -DCMAKE_INSTALL_LIBDIR=lib
         -DBUILD_TESTING=OFF
         -DCBLAS=ON
         -DLAPACKE=OFF
         -GNinja
       cmakeBuildDir: '$(Build.SourcesDirectory)/lapack/build'
-      installDir: '$(Pipeline.Workspace)/deps-install'
-  - task: Bash@3
-    displayName: 'Move lapack to /usr/local'
-    inputs:
-      targetType: inline
-      script: sudo cp -r * /usr/local
-      workingDirectory: '$(Pipeline.Workspace)/deps-install'
+      installDir: '/usr/local'
   - script: 'ls -1R /usr/local'
     displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
@@ -69,7 +62,6 @@ jobs:
         -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DHIP_PLATFORM=amd
         -DLINK_BLIS=ON
