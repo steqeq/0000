@@ -18,7 +18,7 @@ parameters:
     - googletest
     - git
     - libgtest-dev
-#    - libblis-dev
+    - libblis-dev
 #    - libatlas-base-dev
     - wget
 
