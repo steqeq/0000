@@ -19,6 +19,7 @@ parameters:
     - git
     - libgtest-dev
     - libblis-dev
+    - wget
 
 jobs:
 - job: hipBLAS
@@ -44,6 +45,18 @@ jobs:
       targetType: inline
       script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
       workingDirectory: '$(Build.SourcesDirectory)'
+  - task: Bash@3
+    displayName: 'Download AOCL'
+    inputs:
+      targetType: inline
+      script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-aocc-4.2.0_1_amd64.deb
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Install AOCL'
+    inputs:
+      targetType: inline
+      script: sudo apt install --yes ./aocl-linux-aocc-4.2.0_1_amd64.deb
+      workingDirectory: '$(Pipeline.Workspace)'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: lapack
