@@ -64,8 +64,6 @@ jobs:
         -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DHIP_PLATFORM=amd
-        -DLINK_BLIS=ON
-        -DUSE_CUDA=OFF
         -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_BENCHMARKS=OFF
         -DBUILD_CLIENTS_SAMPLES=OFF
