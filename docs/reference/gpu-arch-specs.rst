@@ -661,10 +661,9 @@ The following tables provide an overview of the hardware specifications for AMD 
 Glossary
 ########
 
-For more information on the terms used here, see the
-:ref:`specific documents and guides <gpu-arch-documentation>`, the
-:doc:`conceptual overview of the HIP programming model<hip:understand/programming_model>`,
-or the :doc:`HIP reference guide<hip:reference/programming_model>`.
+For more information about the terms used, see the
+:ref:`specific documents and guides <gpu-arch-documentation>`, or 
+:doc:`Understanding the HIP programming model<hip:understand/programming_model>`.
 
 LLVM target name
   Argument to pass to clang in `--offload-arch` to compile code for the given
