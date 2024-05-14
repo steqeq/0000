@@ -4,27 +4,27 @@
   :keywords: AMD, ROCm, HIP, ROCgdb, performance, debugging
 
 *******************************************************************************
-ROCgdb
+ROCgdb debugger for Linux targets
 *******************************************************************************
 
 .. _rocgdb_introduction:
 Introduction
 ===============================================================================
-This document introduces ROCgdb, the AMD ROCm debugger for Linux targets.
+`ROCgdb <https://github.com/ROCm/ROCgdb>`_ is the AMD ROCm debugger for Linux targets.
 
 ROCgdb is an extension to GDB, the GNU Project debugger. The tool provides developers
-with a mechanism for debugging CUDA applications running on actual hardware. This
+with a mechanism for debugging CUDA applications running on actual hardware. This tool
 enables developers to debug applications without the potential variations introduced
-by simulation and emulation environments. It is meant to present a seamless debugging
-environment that allows simultaneous debugging of both GPU and CPU code within the
-same application, just like programming in HIP is a seamless extension of C++
+by simulation and emulation environments. It presents a seamless debugging
+environment that allows simultaneous GPU and CPU code debugging within the same
+application, just like programming in HIP, which is a seamless extension of C++
 programming. The existing GDB debugging features are inherently present for debugging
 the host code, and additional features have been provided to support debugging ROCm
 device code.
 
-ROCgdb supports HIP kernel debugging. It allows the user to set breakpoints, to 
-single-step ROCm applications, and also to inspect and modify the memory and variables
-of any given thread running on the hardware.
+ROCgdb supports HIP kernel debugging. It allows you to set breakpoints, single-step
+ROCm applications, and inspect and modify the memory and variables of any given thread
+running on the hardware.
 
 .. _rocgdb_installation:
 Installation
@@ -35,17 +35,16 @@ before using the debugger.
 .. _rocgdb_setup:
 Setup
 ===============================================================================
-Before debugging you have to compile your software with debug information. To do this
-you have to add the '-g' flag for your compilation command. This will generate debug
-information even when optimizations are turned on. Notice that higher optimization
-levels make the debugging more difficult, so it might be useful to turn off these
-optimizations by using the '-O0' compiler option.
+Before debugging, compile your software with debug information. Add the ‘-g’ flag to your
+compilation command to do this. This generates debug information even when optimizations
+are turned on. Notice that higher optimization levels make the debugging more difficult,
+so it might be helpful to turn off these optimizations using the ‘-O0’ compiler option.
 
 .. _rocgdb_debugging:
 Debugging
 ===============================================================================
-This section is a brief introduction on how to use ROCgdb. For a more information on the
-functionality of gdb look up the gdb documentation.
+This section introduces how to use ROCgdb. For more information about GDB, see the `GDB
+documentation <https://www.sourceware.org/gdb/documentation/>`_.
 
 First step is to run ROCgdb with your ROCm application:
 
@@ -55,7 +54,7 @@ At this point the application is not running, but you'll have access to the debu
 console. Here you can use every gdb option for host debugging and you can use them and
 extra ROCgdb specific features for device debugging.
 
-Before you run your application with the debugger, you'll need to set a breakpoint.
+You'll need to set a breakpoint before you run your application with the debugger.
 
 ``tbreak my_app.cpp:458``
 
@@ -64,9 +63,9 @@ command:
 
 ``run``
 
-If the breakpoint is in device code the debugger will show the device and host threads as
-well. The device threads will not be individual threads, instead they represent a
-wavefront on the device. You can switch between the device wavefronts, like you would
+If the breakpoint is in the device code, the debugger will also show the device and host
+threads. The device threads will not be individual threads; instead, they represent a
+wavefront on the device. You can switch between the device wavefronts as you would
 between host threads.
 
 You can also switch between layouts. Use different layouts for different situations while
@@ -77,7 +76,8 @@ debugging.
 ``layout asm``
 
 The `src` layout is the source code view, while the `asm` is the assembly view. There are
-further layouts you can look up on the gdb documentation.
+further layouts you can look up in the `GDB documentation
+<https://www.sourceware.org/gdb/documentation/>`_.
 
 ``info threads``
 
@@ -95,5 +95,5 @@ To dump the content of the current wavefronts registers use:
 
 ``i r``
 
-For further information on the usage of gdb, you can go to the `gdb documentation
-<https://www.sourceware.org/gdb/documentation/>`_.
+The result of this command is just the register dump, which is the all-inclusive data
+about the state of the current wavefront, but very difficult to parse.
