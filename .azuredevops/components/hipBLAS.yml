@@ -14,11 +14,11 @@ parameters:
     - rocsparse
     - rocsolver-dev
     - gfortran
-    - libopenblas-dev
+#    - libopenblas-dev
     - googletest
     - git
     - libgtest-dev
-    - libblis-dev
+#    - libblis-dev
     - wget
 
 jobs:
@@ -42,39 +42,39 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - task: Bash@3
-    displayName: 'Clone lapack'
-    inputs:
-      targetType: inline
-      script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
-      workingDirectory: '$(Build.SourcesDirectory)'
-  - task: Bash@3
     displayName: 'Download AOCL'
     inputs:
       targetType: inline
-      script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-aocc-4.2.0_1_amd64.deb
+      script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb
       workingDirectory: '$(Pipeline.Workspace)'
   - task: Bash@3
     displayName: 'Install AOCL'
     inputs:
       targetType: inline
-      script: sudo apt install --yes ./aocl-linux-aocc-4.2.0_1_amd64.deb
+      script: sudo apt install --yes ./aocl-linux-gcc-4.2.0_1_amd64.deb
       workingDirectory: '$(Pipeline.Workspace)'
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      componentName: lapack
-      extraBuildFlags: >-
-        -DBUILD_TESTING=OFF
-        -DCBLAS=ON
-        -DLAPACKE=OFF
-        -GNinja
-      cmakeBuildDir: '$(Build.SourcesDirectory)/lapack/build'
-      installDir: '$(Pipeline.Workspace)/deps-install'
-  - task: Bash@3
-    displayName: 'Move lapack to /usr/local'
-    inputs:
-      targetType: inline
-      script: sudo cp -r * /usr/local
-      workingDirectory: '$(Pipeline.Workspace)/deps-install'
+#  - task: Bash@3
+#    displayName: 'Clone lapack'
+#    inputs:
+#      targetType: inline
+#      script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
+#      workingDirectory: '$(Build.SourcesDirectory)'
+#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#    parameters:
+#      componentName: lapack
+#      extraBuildFlags: >-
+#        -DBUILD_TESTING=OFF
+#        -DCBLAS=ON
+#        -DLAPACKE=OFF
+#        -GNinja
+#      cmakeBuildDir: '$(Build.SourcesDirectory)/lapack/build'
+#      installDir: '$(Pipeline.Workspace)/deps-install'
+#  - task: Bash@3
+#    displayName: 'Move lapack to /usr/local'
+#    inputs:
+#      targetType: inline
+#      script: sudo cp -r * /usr/local
+#      workingDirectory: '$(Pipeline.Workspace)/deps-install'
   - task: Bash@3
     displayName: 'ldconfig'
     inputs:
