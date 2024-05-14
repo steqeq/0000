@@ -73,7 +73,7 @@ jobs:
       targetType: inline
       script: sudo cp -r * /usr/local
       workingDirectory: '$(Pipeline.Workspace)/deps-install'
- - task: Bash@3
+  - task: Bash@3
     displayName: 'ldconfig'
     inputs:
       targetType: inline
