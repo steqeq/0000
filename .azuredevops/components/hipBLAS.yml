@@ -14,11 +14,9 @@ parameters:
     - rocsparse
     - rocsolver-dev
     - gfortran
-#    - libopenblas-dev
     - googletest
     - git
     - libgtest-dev
-#    - libblis-dev
     - wget
 
 jobs:
@@ -53,28 +51,6 @@ jobs:
       targetType: inline
       script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
       workingDirectory: '$(Pipeline.Workspace)'
-#  - task: Bash@3
-#    displayName: 'Clone lapack'
-#    inputs:
-#      targetType: inline
-#      script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
-#      workingDirectory: '$(Build.SourcesDirectory)'
-#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-#    parameters:
-#      componentName: lapack
-#      extraBuildFlags: >-
-#        -DBUILD_TESTING=OFF
-#        -DCBLAS=ON
-#        -DLAPACKE=OFF
-#        -GNinja
-#      cmakeBuildDir: '$(Build.SourcesDirectory)/lapack/build'
-#      installDir: '$(Pipeline.Workspace)/deps-install'
-#  - task: Bash@3
-#    displayName: 'Move lapack to /usr/local'
-#    inputs:
-#      targetType: inline
-#      script: sudo cp -r * /usr/local
-#      workingDirectory: '$(Pipeline.Workspace)/deps-install'
   - task: Bash@3
     displayName: 'ldconfig'
     inputs:
