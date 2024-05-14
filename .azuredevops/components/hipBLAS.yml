@@ -18,8 +18,8 @@ parameters:
     - googletest
     - git
     - libgtest-dev
-    - libblis-dev
-    - libatlas-base-dev
+#    - libblis-dev
+#    - libatlas-base-dev
     - wget
 
 jobs:
@@ -41,25 +41,6 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - task: Bash@3
-    displayName: 'Download AOCL'
-    inputs:
-      targetType: inline
-      script: wget -nv -O blis.tar.gz https://github.com/amd/blis/releases/download/2.0/aocl-blis-mt-ubuntu-2.0.tar.gz
-      workingDirectory: '$(System.ArtifactsDirectory)'
-  - task: ExtractFiles@1
-    displayName: Extract AOCL
-    inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
-      destinationFolder: '$(Agent.BuildDirectory)/rocm'
-      cleanDestinationFolder: false
-      overwriteExistingFiles: true
-  - task: DeleteFiles@1
-    displayName: Cleanup Compressed AOCL
-    inputs:
-      SourceFolder: '$(System.ArtifactsDirectory)'
-      Contents: '/**/*.tar.gz'
-      RemoveDotFiles: true
-  - task: Bash@3
     displayName: 'Clone lapack'
     inputs:
       targetType: inline
@@ -77,11 +58,17 @@ jobs:
         -GNinja
       cmakeBuildDir: '$(Build.SourcesDirectory)/lapack/build'
       installDir: '$(Pipeline.Workspace)/deps-install'
+  - task: Bash@3
+    displayName: 'Move lapack to /usr/local'
+    inputs:
+      targetType: inline
+      script: sudo cp -r * /usr/local
+      workingDirectory: '$(Pipeline.Workspace)/deps-install'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
-        -DCMAKE_PREFIX_PATH="/opt/rocm;$(Pipeline.Workspace)/deps-install"
+        -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=hipcc
         -DCMAKE_C_COMPILER=hipcc
