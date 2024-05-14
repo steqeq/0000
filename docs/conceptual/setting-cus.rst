@@ -14,9 +14,9 @@ option, so please read this page before experimentation.
 
 The GPU driver provides two environment variables to set the number of CUs used. The
 first one is ``HSA_CU_MASK`` and the second one is ``ROC_GLOBAL_CU_MASK``. The main
-difference is, that ``ROC_GLOBAL_CU_MASK`` sets the CU mask on queues created by
-the HIP or the OpenCL runtimes. While ``HSA_CU_MASK`` sets the mask on a lower level of
-queue creation in the driver, this mask will also be set for queues being profiled.
+difference is that ``ROC_GLOBAL_CU_MASK`` sets the CU mask on queues created by the HIP
+or the OpenCL runtimes. While ``HSA_CU_MASK`` sets the mask on a lower level of queue
+creation in the driver, this mask will also be set for queues being profiled.
 
 The environment variables have the following syntax:
 
