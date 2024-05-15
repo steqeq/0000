@@ -16,14 +16,14 @@ resources:
   - repository: release_repo
     type: github
     endpoint: ROCm
-    name: ROCm/hipBLAS
+    name: ROCm/rocSPARSE
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
 pr: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/hipBLAS.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/rocSPARSE.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}

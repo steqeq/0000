@@ -8,21 +8,16 @@ parameters:
 - name: aptPackages
   type: object
   default:
+    - git
     - cmake
     - ninja-build
-- name: pipModules
-  type: object
-  default:
-    - CppHeaderParser
-    - argparse
 
 jobs:
-- job: rocm_bandwidth_test
+- job: lapack
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -31,7 +26,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -39,8 +33,10 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_BUILD_TYPE=release
-        -DCMAKE_MODULE_PATH="$(Build.SourcesDirectory)/cmake_modules"
-        -DCMAKE_PREFIX_PATH=/opt/rocm
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls
+        -DBUILD_TESTING=OFF
+        -DCBLAS=ON
+        -DLAPACKE=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

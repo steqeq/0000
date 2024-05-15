@@ -5,7 +5,7 @@ variables:
 parameters:
 - name: checkoutRef
   type: string
-  default: refs/tags/$(LATEST_RELEASE_TAG)
+  default: refs/tags/v3.9.1
 
 resources:
   repositories:
@@ -15,15 +15,15 @@ resources:
     name: ROCm/ROCm
   - repository: release_repo
     type: github
-    endpoint: ROCm
-    name: ROCm/hipBLAS
+    endpoint: Reference-LAPACK
+    name: Reference-LAPACK/lapack
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
 pr: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/hipBLAS.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/lapack.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}

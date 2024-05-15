@@ -19,23 +19,27 @@ parameters:
     - libbz2-dev
     - nlohmann-json3-dev
     - libgtest-dev
+- name: rocmDependencies
+  type: object
+  default:
+    - rocMLIR
 
 jobs:
 - job: MIOpen
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
-  # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest 
+  # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest
   - task: Bash@3
     displayName: 'update boost version'
     inputs:
@@ -50,19 +54,18 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  # CI case: download latest default branch build
+# CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: rocmlir
-        branchName: develop
-        pipelineId: $(rocmlir-pipeline-id)
-  # manual build case: triggered by ROCm/ROCm repo
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        componentName: \tag-builds\rocmlir
-        pipelineId: $(rocmlir-tagged-pipeline-id)
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -73,5 +76,6 @@ jobs:
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
+        -DBUILD_TESTING=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

@@ -18,14 +18,13 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+  pool: ${{ variables.LOW_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
@@ -39,7 +38,9 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DBUILD_BENCHMARK=ON
-        -DCMAKE_CXX_COMPILER=hipcc
-        -DAMDGPU_TARGETS=gfx1100
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
+        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
+        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DBUILD_TEST=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

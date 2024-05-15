@@ -10,19 +10,20 @@ parameters:
   default:
     - cmake
     - ninja-build
-- name: pipModules
-  type: object
-  default:
-    - CppHeaderParser
-    - argparse
+    - libboost-program-options-dev
+    - googletest
+    - libfftw3-dev
+    - git
+    - gfortran
+    - rocprim-dev
+    - libgtest-dev
 
 jobs:
-- job: rocm_bandwidth_test
+- job: rocSPARSE
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  pool: ${{ variables.LOW_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -31,7 +32,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -39,8 +39,13 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_BUILD_TYPE=release
-        -DCMAKE_MODULE_PATH="$(Build.SourcesDirectory)/cmake_modules"
-        -DCMAKE_PREFIX_PATH=/opt/rocm
+        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc
+        -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc
+        -DCMAKE_BUILD_TYPE=Release
+        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DBUILD_CLIENTS_SAMPLES=OFF
+        -DBUILD_CLIENTS_TESTS=ON
+        -DBUILD_CLIENTS_BENCHMARKS=OFF
+        -DCMAKE_MODULE_PATH="/opt/rocm/lib/cmake/hip;/opt/rocm/hip/cmake"
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

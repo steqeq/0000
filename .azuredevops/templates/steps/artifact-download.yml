@@ -6,12 +6,41 @@ parameters:
 - name: pipelineId
   type: string
   default: ''
+- name: useDefaultBranch
+  type: boolean
+  default: true
+- name: defaultBranchList
+  type: object
+  default:
+    AMDMIGraphX: develop
+    composable_kernel: develop
+    half: master
+    HIP: develop
+    hipBLAS: develop
+    hipRAND: develop
+    hipSPARSE: develop
+    llvm-project: amd-staging
+    MIOpen: develop
+    rocBLAS: develop
+    rocFFT: develop
+    rocm-cmake: develop
+    rocMLIR: develop
+    rocPRIM: develop
+    rocprofiler-register: amd-mainline
+    ROCR-Runtime: master
+    rocRAND: develop
+    rocSOLVER: develop
+    rocSPARSE: develop
+    ROCT-Thunk-Interface: master
+    rpp: master
+- name: componentsFailureOkay
+  type: object
+  default:
+    - rocm-cmake
+# BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
   default: '$(Build.SourceBranchName)' # for tagged builds
-- name: testFailuresOkay
-  type: boolean
-  default: false
 
 steps:
 - task: DownloadPipelineArtifact@2
@@ -21,8 +50,12 @@ steps:
     project: ROCm-CI
     pipeline: ${{ parameters.pipelineId }}
     specificBuildWithTriggering: true
-    allowPartiallySucceededBuilds: ${{ parameters.testFailuresOkay }}
-    branchName: ${{ parameters.branchName }}
+    ${{ if eq(parameters.useDefaultBranch, true) }}:
+      branchName: ${{ parameters.defaultBranchList[parameters.componentName] }}
+    ${{ else }}:
+      branchName: ${{ parameters.branchName }}
+    ${{ if in(parameters.componentName, parameters.componentsFailureOkay) }}:
+      allowPartiallySucceededBuilds: true
     targetPath: '$(System.ArtifactsDirectory)'
 - task: ExtractFiles@1
   displayName: Extract ${{ parameters.componentName }}
