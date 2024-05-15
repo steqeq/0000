@@ -13,7 +13,6 @@ parameters:
     - libboost-program-options-dev
     - googletest
     - libfftw3-dev
-    - rocsparse
     - git
     - gfortran
     - rocprim-dev
