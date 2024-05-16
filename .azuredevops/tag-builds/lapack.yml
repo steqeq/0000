@@ -11,7 +11,6 @@ resources:
 
 trigger: none
 pr: none
-ci: none
 
 jobs:
   - template: ${{ variables.CI_COMPONENT_PATH }}/lapack.yml
