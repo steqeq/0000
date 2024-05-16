@@ -14,6 +14,7 @@ parameters:
     - wget
     - cmake
     - ninja-build
+    - gfortran
 
 jobs:
 - job: lapack
@@ -55,6 +56,7 @@ jobs:
       cmakeBuildDir: $(Agent.BuildDirectory)/lapack-${{ parameters.lapackVersion }}/build
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_Fortran_COMPILER=gfortran
         -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls
         -DBUILD_TESTING=OFF
         -DCBLAS=ON
