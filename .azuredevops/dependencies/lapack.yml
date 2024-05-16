@@ -5,6 +5,9 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
+- name: lapackVersion
+  type: string
+  default: '3.9.1'
 - name: aptPackages
   type: object
   default:
@@ -17,7 +20,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.BASE_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -27,9 +30,25 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - task: Bash@3
+    displayName: 'Download lapack Source Code'
+    inputs:
+      targetType: inline
+      script: wget -nv -O lapack-${{ lapackVersion }}.tar.gz https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v${{ lapackVersion }}.tar.gz
+      workingDirectory: '$(System.ArtifactsDirectory)'
+  - task: ExtractFiles@1
+    displayName: Extract lapack Source Code
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    displayName: Cleanup Compressed lapack
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.gz'
+      RemoveDotFiles: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
