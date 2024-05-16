@@ -34,7 +34,7 @@ jobs:
     displayName: 'Download lapack Source Code'
     inputs:
       targetType: inline
-      script: wget -nv -O lapack-${{ lapackVersion }}.tar.gz https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v${{ lapackVersion }}.tar.gz
+      script: wget -nv -O lapack-${{ parameters.lapackVersion }}.tar.gz https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v${{ parameters.lapackVersion }}.tar.gz
       workingDirectory: '$(System.ArtifactsDirectory)'
   - task: ExtractFiles@1
     displayName: Extract lapack Source Code
