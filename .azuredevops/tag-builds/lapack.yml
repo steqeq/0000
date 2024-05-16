@@ -14,5 +14,3 @@ pr: none
 
 jobs:
   - template: ${{ variables.CI_COMPONENT_PATH }}/lapack.yml
-    parameters:
-      checkoutRef: ${{ parameters.checkoutRef }}
