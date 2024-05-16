@@ -10,6 +10,8 @@ parameters:
   default:
     - cmake
     - ninja-build
+    - doxygen
+    - graphviz
 - name: pipModules
   type: object
   default:
@@ -19,16 +21,20 @@ parameters:
   type: object
   default:
     - llvm-project
+    - ROCR-Runtime
+    - rocprofiler-register
+    - clr
+    - rocminfo
 
 jobs:
 - job: roctracer
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  - name: HIP_ROCCLR_HOME
+    value: $(Build.BinariesDirectory)/rocm
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -56,9 +62,15 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=release
-        -DCMAKE_MODULE_PATH="$(Agent.BuildDirectory)/rocm/lib/cmake"
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm"
-        -DENABLE_LDCONFIG=OFF
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DGPU_TARGETS=gfx1030;gfx1100
         -GNinja
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+#  - task: Bash@3
+#    displayName: 'Tests'
+#    inputs:
+#      targetType: inline
+#      script: ./run.sh
+#      workingDirectory: build
