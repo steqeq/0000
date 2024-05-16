@@ -39,6 +39,7 @@ jobs:
     parameters:
       cmakeBuildDir: $(Agent.BuildDirectory)/googletest/build
       extraBuildFlags: >-
-        -DBUILD_GMOCK=OFF
+        -DGTEST_FORCE_SHARED_CRT=ON
+        -DCMAKE_DEBUG_POSTFIX=d
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
