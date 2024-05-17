@@ -17,6 +17,7 @@ parameters:
   default:
     - llvm-project
     - ROCT-Thunk-Interface
+    - rocprofiler-register
 
 jobs:
 - job: ROCR_Runtime
@@ -53,5 +54,7 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        "-DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN"
+        "-DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN/../lib"
       cmakeBuildDir: 'src/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
