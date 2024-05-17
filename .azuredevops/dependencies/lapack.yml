@@ -7,7 +7,7 @@ parameters:
   default: ''
 - name: lapackVersion
   type: string
-  default: '3.9.1'
+  default: ''
 - name: aptPackages
   type: object
   default:

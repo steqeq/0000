@@ -7,7 +7,7 @@ parameters:
   default: ''
 - name: gtestVersion
   type: string
-  default: 'main'
+  default: ''
 - name: aptPackages
   type: object
   default:
