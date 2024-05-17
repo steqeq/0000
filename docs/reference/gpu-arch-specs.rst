@@ -711,7 +711,7 @@ L0 Instruction Cache (RDNA only)
   Size of the level 0 instruction cache. Usually shared by several compute
   units. This is the L1 instruction cache in CDNA/GCN architectures.
 VGPR File
-  Size of the Vector General Purpose Register (VGPR) file. Holds data used in
+  Size of the Vector General Purpose Register (VGPR) file and. It holds data used in
   vector instructions.
   GPUs with matrix cores also have AccVGPRs, which are Accumulation General
   Purpose Vector Registers, specifically used in matrix instructions.
