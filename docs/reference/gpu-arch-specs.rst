@@ -714,7 +714,7 @@ VGPR File
   Size of the Vector General Purpose Register (VGPR) file and. It holds data used in
   vector instructions.
   GPUs with matrix cores also have AccVGPRs, which are Accumulation General
-  Purpose Vector Registers, specifically used in matrix instructions.
+  Purpose Vector Registers, used specifically in matrix instructions.
 SGPR File
   Size of the Scalar General Purpose Register (SGPR) file. Holds data used in
   scalar instructions.
