@@ -690,7 +690,7 @@ L2 Cache
   Size of the level 3 cache. Shared by all compute units on the same GCD. Caches
   data and instructions.
 Graphics L1 Cache (RDNA only)
-  An additional cache level, that only exists in RDNA architectures. Local to a
+  An additional cache level that only exists in RDNA architectures. Local to a
   work group processor.
 L1 Vector Cache (CDNA/GCN only)
   Size of the level 1 vector data cache. Local to a compute unit. This is the L0
