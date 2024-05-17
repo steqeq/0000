@@ -678,7 +678,7 @@ Wavefront Size
 LDS
   The Local Data Share (LDS) is a low-latency, high-bandwidth scratch pad
   memory. It is local to the compute units, and can be shared by all work-items
-  in a work group. In HIP the LDS can be used for the shared memory, which is
+  in a work group. In HIP, the LDS can be used for shared memory, which is
   shared by all threads in a block.
 L3 Cache (CDNA/GCN only)
   Size of the level 3 cache. Shared by all compute units on the same GPU. Caches
