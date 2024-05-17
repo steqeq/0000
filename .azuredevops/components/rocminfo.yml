@@ -40,4 +40,8 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DCMAKE_SKIP_BUILD_RPATH=TRUE
+        -DROCRTST_BLD_TYPE=release
+        "-DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN"
+        "-DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN/../lib"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
