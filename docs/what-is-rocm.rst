@@ -132,4 +132,4 @@ Runtimes
 
   "`AMD Common Language Runtime (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's common language runtimes: :doc:`HIP <hip:index>` and OpenCL"
   ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
-  "`ROCR-Runtime <https://rocm.docs.amd.com/projects/ROCR-Runtime/en/latest>`_", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"
+  ":doc:`ROCR-Runtime <rocr-runtime:index>`", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"
