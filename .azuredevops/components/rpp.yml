@@ -11,12 +11,12 @@ parameters:
     - cmake
     - ninja-build
     - clang
-    - half
     - libomp-dev
 - name: rocmDependencies
   type: object
   default:
     - clr
+    - half
     - llvm-project
     - rocminfo
     - ROCR-Runtime
