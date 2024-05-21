@@ -24,6 +24,7 @@ parameters:
   type: object
   default:
     AMDMIGraphX: $(amdmigraphx-pipeline-id)
+    clr: $(clr-pipeline-id)
     composable_kernel: $(composable-kernel-pipeline-id)
     half: $(half-pipeline-id)
     hipBLAS: $(hipblas-pipeline-id)
@@ -34,6 +35,7 @@ parameters:
     rocBLAS: $(rocblas-pipeline-id)
     rocFFT: $(rotfft-pipeline-id)
     rocm-cmake: $(rocm-cmake-pipeline-id)
+    rocminfo: $(rocminfo-pipeline-id)
     rocMLIR: $(rocmlir-pipeline-id)
     rocPRIM: $(rocprim-pipeline-id)
     rocprofiler-register: $(rocprofiler-register-pipeline-id)
@@ -47,6 +49,7 @@ parameters:
   type: object
   default:
     AMDMIGraphX: $(amdmigraphx-tagged-pipeline-id)
+    clr: $(clr-tagged-pipeline-id)
     composable_kernel: $(composable-kernel-tagged-pipeline-id)
     half: $(half-tagged-pipeline-id)
     hipBLAS: $(hipblas-tagged-pipeline-id)
@@ -57,6 +60,7 @@ parameters:
     rocBLAS: $(rocblas-tagged-pipeline-id)
     rocFFT: $(rotfft-tagged-pipeline-id)
     rocm-cmake: $(rocm-cmake-tagged-pipeline-id)
+    rocminfo: $(rocminfo-tagged-pipeline-id)
     rocMLIR: $(rocmlir-tagged-pipeline-id)
     rocPRIM: $(rocprim-tagged-pipeline-id)
     rocprofiler-register: $(rocprofiler-register-tagged-pipeline-id)
@@ -66,6 +70,11 @@ parameters:
     rocSPARSE: $(rocsparse-tagged-pipeline-id)
     ROCT-Thunk-Interface: $(roct-thunk-interface-tagged-pipeline-id)
     rpp: $(rpp-tagged-pipeline-id)
+# set to true if you're calling this template file multiple files in same pipeline
+# only leave last call false to optimize sequence
+- name: skipLibraryLinking
+  type: boolean
+  default: false
 
 steps:
 # assuming artifact-download.yml template file in same directory
@@ -86,3 +95,20 @@ steps:
     parameters:
       componentName: ${{ parameters.fixedComponentName }}
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
+- task: Bash@3
+  displayName: 'list downloaded ROCm files'
+  inputs:
+    targetType: inline
+    script: ls -1R $(Agent.BuildDirectory)/rocm
+- ${{ if eq(parameters.skipLibraryLinking, false) }}:
+  - task: Bash@3
+    displayName: 'link ROCm shared libraries'
+    inputs:
+      targetType: inline
+# OS ignores if the ROCm lib folder shows up more than once
+      script: |
+        echo "$(Agent.BuildDirectory)/rocm/lib
+        " | sudo tee -a /etc/ld.so.conf
+        sudo cat /etc/ld.so.conf
+        sudo ldconfig -v
+        ldconfig -p

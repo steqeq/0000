@@ -48,13 +48,9 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds
-  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
-    displayName: 'Artifact listing'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
-        "-DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN"
-        "-DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN/../lib"
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
       cmakeBuildDir: 'src/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

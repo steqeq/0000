@@ -67,19 +67,17 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmDependenciesAMD }}
         dependencySource: tag-builds
-  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
-    displayName: 'Artifact listing'
 # compile clr
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: clr
       cmakeBuildDir: 'clr/build'
       extraBuildFlags: >-
-        -DHIP_COMMON_DIR="$(Build.SourcesDirectory)/HIP"
+        -DHIP_COMMON_DIR=$(Build.SourcesDirectory)/HIP
         -DHIP_PLATFORM=amd
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
-        -DROCM_PATH="$(Agent.BuildDirectory)/rocm"
-        -DHIPCC_BIN_DIR="$(Agent.BuildDirectory)/rocm/bin"
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DHIPCC_BIN_DIR=$(Agent.BuildDirectory)/rocm/bin
         -DCLR_BUILD_HIP=ON
         -DCLR_BUILD_OCL=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
@@ -132,12 +130,12 @@ jobs:
       componentName: clr
       cmakeBuildDir: 'clr/build'
       extraBuildFlags: >-
-        -DHIP_COMMON_DIR="$(Build.SourcesDirectory)/HIP"
+        -DHIP_COMMON_DIR=$(Build.SourcesDirectory)/HIP
         -DHIP_PLATFORM=nvidia
-        -DHIPCC_BIN_DIR="$(Agent.BuildDirectory)/rocm/bin"
+        -DHIPCC_BIN_DIR=$(Agent.BuildDirectory)/rocm/bin
         -DCLR_BUILD_HIP=ON
         -DCLR_BUILD_OCL=OFF
-        -DHIPNV_DIR="$(Build.SourcesDirectory)/hipother/hipnv"
+        -DHIPNV_DIR=$(Build.SourcesDirectory)/hipother/hipnv
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       artifactName: nvidia

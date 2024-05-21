@@ -26,7 +26,7 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: LD_LIBRARY_PATH
     value: '/lib:/usr/lib:/usr/local/lib'
-  pool: ${{ variables.LOW_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -64,7 +64,7 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DHIP_PLATFORM=amd
         -DBUILD_CLIENTS_TESTS=ON
