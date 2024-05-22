@@ -12,6 +12,8 @@ parameters:
 - name: defaultBranchList
   type: object
   default:
+    aomp: aomp-dev
+    aomp-extras: aomp-dev
     AMDMIGraphX: develop
     clr: develop
     composable_kernel: develop
