@@ -23,6 +23,7 @@ parameters:
     - rocBLAS
     - rocm-cmake
     - rocminfo
+    - rocprofiler-register
     - ROCR-Runtime
 
 jobs:
