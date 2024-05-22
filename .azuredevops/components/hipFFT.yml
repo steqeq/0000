@@ -20,6 +20,11 @@ parameters:
   default:
     - rocRAND
     - hipRAND
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
 jobs:
 - job: hipFFT
   variables:
