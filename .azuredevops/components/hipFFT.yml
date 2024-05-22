@@ -18,8 +18,8 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocRand
-    - hipRand
+    - rocRAND
+    - hipRAND
 jobs:
 - job: hipFFT
   variables:
