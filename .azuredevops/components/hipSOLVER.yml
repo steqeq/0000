@@ -72,8 +72,8 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm;$(Pipeline.Workspace)/deps-install"
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/bin/amdclang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/bin/amdclang
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DBUILD_CLIENTS_TESTS=ON
         -DUSE_CUDA=OFF
