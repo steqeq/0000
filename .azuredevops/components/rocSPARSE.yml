@@ -58,7 +58,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DBUILD_CLIENTS_SAMPLES=OFF
