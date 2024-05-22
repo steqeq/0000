@@ -9,6 +9,7 @@ parameters:
   type: object
   default:
     - software-properties-common
+    - python3-pip
     - cmake
     - ninja-build
     - libsqlite3-dev
