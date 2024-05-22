@@ -11,10 +11,6 @@ parameters:
     - software-properties-common
     - cmake
     - ninja-build
-    - composablekernel-dev
-    - half
-    - rocrand
-    - rocblas
     - libsqlite3-dev
     - libbz2-dev
     - nlohmann-json3-dev
@@ -23,6 +19,10 @@ parameters:
   type: object
   default:
     - rocMLIR
+    - rocRAND
+    - rocBLAS
+    - half
+    - composable_kernel
 
 jobs:
 - job: MIOpen
@@ -70,9 +70,8 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DMIOPEN_BACKEND=HIP
-        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/amdclang
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
