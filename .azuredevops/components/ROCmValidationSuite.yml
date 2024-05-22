@@ -57,8 +57,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DROCM_PATH=/opt/rocm
-        -DCMAKE_PREFIX_PATH=/opt/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCPACK_PACKAGING_INSTALL_PREFIX='$(Build.BinariesDirectory)'
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
