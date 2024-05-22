@@ -12,7 +12,7 @@ parameters:
     - cmake
     - ninja-build
     - libnuma-dev
-    - libomp-dev
+    - openmp-extras
     - python3-venv
     - libtbb-dev
     - nlohmann-json3-dev
@@ -20,6 +20,7 @@ parameters:
     - libsqlite3-dev
     - libprotobuf-dev
     - protobuf-compiler
+    - python3-pip
     - python3-pybind11
 - name: pipModules
   type: object
