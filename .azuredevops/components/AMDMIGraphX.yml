@@ -12,6 +12,7 @@ parameters:
     - cmake
     - ninja-build
     - libnuma-dev
+    - libomp-dev
     - openmp-extras
     - python3-venv
     - libtbb-dev
