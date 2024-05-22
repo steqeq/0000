@@ -10,22 +10,24 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - rocrand
-    - hiprand
-    - rocfft
     - libboost-program-options-dev
-    - googletest
+    - libgtest-dev
     - libfftw3-dev
-
+# rocm dependencies should match dependencies-rocm.yml
+- name: rocmDependencies
+  type: object
+  default:
+    - rocRand
+    - hipRand
 jobs:
-- job: hipFFT
+- job: rocFFT
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
+  - name: HIP_ROCCLR_HOME
+    value: $(Build.BinariesDirectory)/rocm
+  pool: 
+    vmImage: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -36,16 +38,30 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  # CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/amdclang++
-        -DCMAKE_C_COMPILER=/opt/rocm/bin/amdclang
+        -DCMAKE_CXX_COMPILER=/$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=/$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_PREFIX_PATH=/$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DUSE_HIP_CLANG=ON
+        -DHIP_COMPILER=clang
         -DBUILD_CLIENTS_TESTS=ON
-        -DBUILD_CLIENTS_BENCH=OFF
+        -DBUILD_CLIENTS_BENCHMARKS=OFF
         -DBUILD_CLIENTS_SAMPLES=OFF
-        -L
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
