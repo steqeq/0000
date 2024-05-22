@@ -20,7 +20,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.LOW_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
@@ -36,8 +36,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/amdclang
         -DCMAKE_BUILD_TYPE=Release
         -DBUILD_TESTS=ON
         -DCMAKE_PREFIX_PATH="/opt/rocm;/opt/rocm/share/rocm/cmake/"
