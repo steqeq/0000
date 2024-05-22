@@ -25,6 +25,7 @@ parameters:
     rocBLAS: develop
     rocFFT: develop
     rocm-cmake: develop
+    rocm_smi_lib: develop
     rocminfo: master
     rocMLIR: develop
     rocPRIM: develop
