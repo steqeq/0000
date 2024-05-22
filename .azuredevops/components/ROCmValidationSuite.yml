@@ -26,6 +26,7 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
+    - ROCT-Thunk-Interface
 
 jobs:
 - job: ROCmValidationSuite
