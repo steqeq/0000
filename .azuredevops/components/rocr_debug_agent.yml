@@ -17,6 +17,7 @@ parameters:
   default:
     - clr
     - llvm-project
+    - ROCdbgapi
     - rocminfo
     - ROCR-Runtime
 
@@ -55,5 +56,6 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake
+        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
