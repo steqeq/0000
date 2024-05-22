@@ -13,6 +13,7 @@ parameters:
     - libboost-program-options-dev
     - libgtest-dev
     - libfftw3-dev
+    - pip
 # rocm dependencies should match dependencies-rocm.yml
 - name: rocmDependencies
   type: object
@@ -20,7 +21,7 @@ parameters:
     - rocRand
     - hipRand
 jobs:
-- job: rocFFT
+- job: hipFFT
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
