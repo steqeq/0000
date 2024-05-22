@@ -23,6 +23,11 @@ parameters:
     - rocBLAS
     - half
     - composable_kernel
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
 
 jobs:
 - job: MIOpen
