@@ -18,6 +18,7 @@ parameters:
     - ROCR-Runtime
     - clr
     - rocminfo
+    - python3-pip
 
 jobs:
 - job: half
