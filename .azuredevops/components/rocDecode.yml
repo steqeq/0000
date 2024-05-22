@@ -17,6 +17,7 @@ parameters:
     - libavformat-dev
     - libavutil-dev
     - libstdc++-12-dev
+    - libva-dev
 - name: rocmDependencies
   type: object
   default:
