@@ -13,7 +13,7 @@ parameters:
     - libboost-program-options-dev
     - libgtest-dev
     - libfftw3-dev
-    - pip
+    - python3-pip
 # rocm dependencies should match dependencies-rocm.yml
 - name: rocmDependencies
   type: object
