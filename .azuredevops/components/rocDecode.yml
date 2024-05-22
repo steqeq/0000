@@ -18,6 +18,7 @@ parameters:
     - libavutil-dev
     - libstdc++-12-dev
     - libva-dev
+    - mesa-amdgpu-multimedia-devel
 - name: rocmDependencies
   type: object
   default:
