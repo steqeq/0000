@@ -14,6 +14,7 @@ parameters:
     - ninja-build
     - python-is-python3
     - zlib1g-dev
+    - pkg-config
 - name: rocmDependencies
   type: object
   default:
@@ -68,8 +69,6 @@ jobs:
         -DLIBCXXABI_INSTALL_STATIC_LIBRARY=OFF
         -DLLVM_BUILD_DOCS=OFF
         -DLLVM_ENABLE_SPHINX=OFF
-        -DSPHINX_WARNINGS_AS_ERRORS=OFF
-        -DSPHINX_OUTPUT_MAN=OFF
         -DLLVM_ENABLE_ASSERTIONS=OFF
         -DLLVM_ENABLE_Z3_SOLVER=OFF
         -DLLVM_ENABLE_ZLIB=ON
@@ -80,7 +79,6 @@ jobs:
         -DPACKAGE_VENDOR=AMD
         -DCLANG_LINK_FLANG_LEGACY=ON
         -DCMAKE_CXX_STANDARD=17
-        -DFLANG_INCLUDE_DOCS=OFF
         -DROCM_LLVM_BACKWARD_COMPAT_LINK=$(Build.BinariesDirectory)/llvm
         -DROCM_LLVM_BACKWARD_COMPAT_LINK_TARGET=./lib/llvm
         -GNinja
