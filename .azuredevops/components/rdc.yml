@@ -8,6 +8,7 @@ parameters:
 - name: aptPackages
   type: object
   default:
+    - python3-pip
     - cmake
     - ninja-build
     - git
@@ -25,7 +26,6 @@ parameters:
     - ROCR-Runtime
     - clr
     - rocminfo
-    - python3-pip
 
 jobs:
 - job: rdc
