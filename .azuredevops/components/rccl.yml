@@ -23,6 +23,7 @@ parameters:
     - ROCR-Runtime
     - clr
     - rocminfo
+    - rocm-smi-lib
 
 jobs:
 - job: rccl
