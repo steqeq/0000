@@ -17,7 +17,6 @@ parameters:
     - git
     - gfortran
     - libgtest-dev
-    - libstdc++-12-dev
 - name: rocmDependencies
   type: object
   default:
