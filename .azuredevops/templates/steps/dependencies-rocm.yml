@@ -23,6 +23,8 @@ parameters:
 - name: stagingPipelineIdentifiers
   type: object
   default:
+    aomp: $(aomp-pipeline-id)
+    aomp-extras: $(aomp-extras-pipeline-id)
     AMDMIGraphX: $(amdmigraphx-pipeline-id)
     clr: $(clr-pipeline-id)
     composable_kernel: $(composable-kernel-pipeline-id)
@@ -51,6 +53,8 @@ parameters:
 - name: taggedPipelineIdentifiers
   type: object
   default:
+    aomp: $(aomp-tagged-pipeline-id)
+    aomp-extras: $(aomp-extras-tagged-pipeline-id)
     AMDMIGraphX: $(amdmigraphx-tagged-pipeline-id)
     clr: $(clr-tagged-pipeline-id)
     composable_kernel: $(composable-kernel-tagged-pipeline-id)
@@ -113,8 +117,8 @@ steps:
       targetType: inline
 # OS ignores if the ROCm lib folder shows up more than once
       script: |
-        echo "$(Agent.BuildDirectory)/rocm/lib
-        " | sudo tee -a /etc/ld.so.conf
+        echo $(Agent.BuildDirectory)/rocm/lib | sudo tee -a /etc/ld.so.conf
+        echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf
         sudo cat /etc/ld.so.conf
         sudo ldconfig -v
         ldconfig -p
