@@ -18,7 +18,7 @@ parameters:
     - libavutil-dev
     - libstdc++-12-dev
     - libva-dev
-    - mesa-amdgpu-multimedia-devel
+    - $(Agent.BuildDirectory)/mesa-amdgpu-multimedia_24.1.0.60100-1756574.22.04_amd64.deb
 - name: rocmDependencies
   type: object
   default:
@@ -28,7 +28,6 @@ parameters:
     - clr
     - rocminfo
     - rocm-core
-    - $(Agent.BuildDirectory)/mesa-amdgpu-multimedia_24.1.0.60100-1756574.22.04_amd64.deb
 
 jobs:
 - job: rocDecode
