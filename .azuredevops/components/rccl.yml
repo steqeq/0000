@@ -25,6 +25,7 @@ parameters:
     - rocminfo
     - rocm-smi-lib
     - rocprofiler-register
+    - rocm-core
 
 jobs:
 - job: rccl
