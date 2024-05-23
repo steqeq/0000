@@ -36,6 +36,7 @@ parameters:
     rocSOLVER: develop
     rocSPARSE: develop
     ROCT-Thunk-Interface: master
+    roctracer: amd-master
     rpp: master
 - name: componentsFailureOkay
   type: object

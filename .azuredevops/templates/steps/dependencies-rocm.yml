@@ -46,6 +46,7 @@ parameters:
     rocSOLVER: $(rocsolver-pipeline-id)
     rocSPARSE: $(rocsparse-pipeline-id)
     ROCT-Thunk-Interface: $(roct-thunk-interface-pipeline-id)
+    roctracer: $(roctracer-pipeline-id)
     rpp: $(rpp-pipeline-id)
 - name: taggedPipelineIdentifiers
   type: object
@@ -73,6 +74,7 @@ parameters:
     rocSOLVER: $(rocsolver-tagged-pipeline-id)
     rocSPARSE: $(rocsparse-tagged-pipeline-id)
     ROCT-Thunk-Interface: $(roct-thunk-interface-tagged-pipeline-id)
+    roctracer: $(roctracer-tagged-pipeline-id)
     rpp: $(rpp-tagged-pipeline-id)
 # set to true if you're calling this template file multiple files in same pipeline
 # only leave last call false to optimize sequence
