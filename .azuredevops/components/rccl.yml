@@ -31,6 +31,8 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  - name: HIP_ROCCLR_HOME
+    value: $(Build.BinariesDirectory)/rocm
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
