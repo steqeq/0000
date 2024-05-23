@@ -33,7 +33,7 @@ parameters:
     llvm-project: $(llvm-project-pipeline-id)
     MIOpen: $(miopen-pipeline-id)
     rocBLAS: $(rocblas-pipeline-id)
-    rocFFT: $(rotfft-pipeline-id)
+    rocFFT: $(rocfft-pipeline-id)
     rocm-cmake: $(rocm-cmake-pipeline-id)
     rocminfo: $(rocminfo-pipeline-id)
     rocMLIR: $(rocmlir-pipeline-id)
