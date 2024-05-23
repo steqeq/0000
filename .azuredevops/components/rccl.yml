@@ -26,6 +26,7 @@ parameters:
     - rocm-smi-lib
     - rocprofiler-register
     - rocm-core
+    - HIPIFY
 
 jobs:
 - job: rccl
