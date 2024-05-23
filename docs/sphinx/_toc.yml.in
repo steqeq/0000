@@ -50,7 +50,7 @@ subtrees:
 - caption: How to
   entries:
   - file: how-to/tuning-guides.md
-    title: Hardware optimization
+    title: System optimization
     subtrees:
     - entries:
       - file: how-to/tuning-guides/mi100.md

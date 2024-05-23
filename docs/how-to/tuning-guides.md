@@ -5,7 +5,7 @@
   Radeon, tuning, tuning guide, AMD, ROCm">
 </head>
 
-# Hardware optimization
+# System optimization
 
 This guide outlines system setup and tuning suggestions for AMD hardware to optimize performance for specific types of
 workloads or use-cases.
