@@ -24,6 +24,7 @@ parameters:
     - ROCR-Runtime
     - clr
     - rocminfo
+    - rocprofiler-register
 jobs:
 - job: rocFFT
   variables:
