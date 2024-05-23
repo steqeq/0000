@@ -38,6 +38,9 @@ jobs:
   workspace:
     clean: all
   steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
   - task: Bash@3
     displayName: 'Download mesa-amdgpu deb file'
     inputs:
@@ -50,9 +53,6 @@ jobs:
       targetType: inline
       script: sudo apt -y install ./mesa-amdgpu-multimedia-devel_24.1.0.60100-1756574.22.04_amd64.deb
       workingDirectory: $(Agent.BuildDirectory)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
