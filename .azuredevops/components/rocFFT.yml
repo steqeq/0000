@@ -25,6 +25,7 @@ parameters:
     - clr
     - rocminfo
     - rocprofiler-register
+    - aomp
 jobs:
 - job: rocFFT
   variables:
