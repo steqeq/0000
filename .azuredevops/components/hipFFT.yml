@@ -26,6 +26,7 @@ parameters:
     - clr
     - rocminfo
     - rocFFT
+    - aomp
 jobs:
 - job: hipFFT
   variables:
