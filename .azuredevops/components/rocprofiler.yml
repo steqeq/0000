@@ -16,6 +16,9 @@ parameters:
     - libnuma-dev
     - libpciaccess-dev
     - python3-pip
+    - wget
+    - tar
+    - zstd
 - name: pipModules
   type: object
   default:
@@ -53,6 +56,16 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - task: Bash@3
+    displayName: 'Download aqlprofile'
+    inputs:
+      targetType: inline
+      script: wget -P $(Agent.BuildDirectory) https://ftp.sh.cvut.cz/arch/extra/os/x86_64/hsa-amd-aqlprofile-bin-6.0.2-1-x86_64.pkg.tar.zst
+  - task: Bash@3
+    displayName: 'Extract aqlprofile'
+    inputs:
+      targetType: inline
+      script: tar --zstd -xf $(Agent.BuildDirectory)/hsa-amd-aqlprofile-bin-6.0.2-1-x86_64.pkg.tar.zst
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
