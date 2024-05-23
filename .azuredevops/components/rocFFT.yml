@@ -23,6 +23,7 @@ parameters:
     - clr
     - rocminfo
     - rocprofiler-register
+    - hipRAND
 jobs:
 - job: rocFFT
   variables:
