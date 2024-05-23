@@ -15,6 +15,7 @@ parameters:
     - libfftw3-dev
     - git
     - ninja-build
+    - libstdc++-12-dev
 - name: rocmDependencies
   type: object
   default:
