@@ -27,6 +27,7 @@ parameters:
     - ROCR-Runtime
     - clr
     - rocminfo
+    - rocm-core
 
 jobs:
 - job: rocDecode
@@ -35,8 +36,6 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
