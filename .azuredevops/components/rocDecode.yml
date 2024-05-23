@@ -18,7 +18,6 @@ parameters:
     - libavutil-dev
     - libstdc++-12-dev
     - libva-dev
-    - $(Agent.BuildDirectory)/mesa-amdgpu-multimedia_24.1.0.60100-1756574.22.04_amd64.deb
 - name: rocmDependencies
   type: object
   default:
@@ -43,7 +42,13 @@ jobs:
     displayName: 'Download mesa-amdgpu deb file'
     inputs:
       targetType: inline
-      script: wget https://repo.radeon.com/amdgpu/6.1/ubuntu/pool/main/m/mesa-amdgpu/mesa-amdgpu-multimedia_24.1.0.60100-1756574.22.04_amd64.deb
+      script: wget https://repo.radeon.com/amdgpu/6.1/ubuntu/pool/main/m/mesa-amdgpu/mesa-amdgpu-multimedia-devel_24.1.0.60100-1756574.22.04_amd64.deb
+      workingDirectory: $(Agent.BuildDirectory)
+  - task: Bash@3
+    displayName: 'Install mesa-amdgpu deb file'
+    inputs:
+      targetType: inline
+      script: sudo apt -y install ./mesa-amdgpu-multimedia-devel_24.1.0.60100-1756574.22.04_amd64.deb
       workingDirectory: $(Agent.BuildDirectory)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
