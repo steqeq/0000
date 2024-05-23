@@ -34,6 +34,7 @@ parameters:
     - rocminfo
     - ROCR-Runtime
     - ROCT-Thunk-Interface
+    - roctracer
 
 jobs:
 - job: rocprofiler
@@ -67,8 +68,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_MODULE_PATH="$(Build.SourcesDirectory)/cmake_modules;$(Agent.BuildDirectory)/rocm/lib/cmake"
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules;$(Agent.BuildDirectory)/rocm/lib/cmake
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DENABLE_LDCONFIG=OFF
         -DUSE_PROF_API=1
         -DGPU_TARGETS=gfx1030;gfx1100
