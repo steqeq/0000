@@ -7,7 +7,7 @@ Installing deep learning frameworks for ROCm
 ********************************************
 
 ROCm provides a comprehensive ecosystem for deep learning development, including :doc:`libraries
-<reference/api-libraries>` for optimized deep learning operations and ROCm-aware versions of popular deep learning
+<rocm:reference/api-libraries>` for optimized deep learning operations and ROCm-aware versions of popular deep learning
 frameworks such as PyTorch and TensorFlow.
 
 ROCm works closely with popular deep learning frameworks like PyTorch, TensorFlow, JAX, and MAGMA to ensure seamless
