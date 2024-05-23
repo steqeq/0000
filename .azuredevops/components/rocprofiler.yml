@@ -33,6 +33,7 @@ parameters:
     - llvm-project
     - rocminfo
     - ROCR-Runtime
+    - ROCT-Thunk-Interface
 
 jobs:
 - job: rocprofiler
