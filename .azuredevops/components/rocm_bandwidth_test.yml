@@ -23,6 +23,7 @@ parameters:
     - llvm-project
     - rocminfo
     - ROCR-Runtime
+    - ROCT-Thunk-Interface
 
 jobs:
 - job: rocm_bandwidth_test
