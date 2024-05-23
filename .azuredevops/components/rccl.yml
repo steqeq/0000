@@ -58,6 +58,7 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_BUILD_TYPE=Release
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DBUILD_TESTS=ON
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/share/rocm/cmake/
         -DAMDGPU_TARGETS=gfx1030;gfx1100
