@@ -31,9 +31,9 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   - name: ROCR_INC_DIR
-    value: $(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/include
+    value: $(Agent.BuildDirectory)/rocm/include
   - name: ROCR_LIB_DIR
-    value: $(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/include
+    value: $(Agent.BuildDirectory)/rocm
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
