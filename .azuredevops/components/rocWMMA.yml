@@ -16,6 +16,7 @@ parameters:
     - googletest
     - libfftw3-dev
     - git
+    - libomp-dev
 - name: rocmDependencies
   type: object
   default:
