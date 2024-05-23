@@ -44,7 +44,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.BASE_BUILD_POOL }} # change this later
+  pool: ${{ variables.LOW_BUILD_POOL }} # change this later
   workspace:
     clean: all
   steps:
