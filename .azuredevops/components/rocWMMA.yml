@@ -27,6 +27,7 @@ parameters:
     - rocminfo
     - rocBLAS
     - aomp
+    - rocm-smi-lib
 
 jobs:
 - job: rocWMMA
