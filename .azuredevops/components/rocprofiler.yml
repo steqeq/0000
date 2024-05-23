@@ -44,7 +44,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.LOW_BUILD_POOL }}
+  pool: ${{ variables.LOW_BUILD_POOL }} # change this later
   workspace:
     clean: all
   steps:
@@ -86,6 +86,7 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules;$(Agent.BuildDirectory)/rocm/lib/cmake
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DPROF_API_HEADER_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/include
         -DENABLE_LDCONFIG=OFF
         -DUSE_PROF_API=1
         -DGPU_TARGETS=gfx1030;gfx1100
