@@ -18,8 +18,6 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocRAND
-    - hipRAND
     - llvm-project
     - ROCR-Runtime
     - clr
