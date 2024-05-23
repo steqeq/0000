@@ -32,7 +32,7 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: HIP_ROCCLR_HOME
     value: $(Build.BinariesDirectory)/rocm
-  pool: ${{ variables.HIGH_BUILD_POOL }}
+  pool: ${{ variables.ULTRA_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -60,6 +60,7 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1030;gfx1100
