@@ -30,6 +30,10 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  - name: ROCR_INC_DIR
+    value: $(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/include
+  - name: ROCR_LIB_DIR
+    value: $(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/include
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
@@ -59,7 +63,7 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=release
-        -DCMAKE_MODULE_PATH="$(Build.SourcesDirectory)/cmake_modules"
+        -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/include;$(Agent.BuildDirectory)/rocm/include/hsa
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

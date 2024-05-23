@@ -64,6 +64,6 @@ jobs:
       extraBuildFlags: >-
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DCPACK_PACKAGING_INSTALL_PREFIX='$(Build.BinariesDirectory)'
+        -DCPACK_PACKAGING_INSTALL_PREFIX=$(Build.BinariesDirectory)
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
