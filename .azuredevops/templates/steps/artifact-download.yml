@@ -25,6 +25,7 @@ parameters:
     llvm-project: amd-staging
     MIOpen: develop
     rocBLAS: develop
+    rocDecode: develop
     rocFFT: develop
     rocm-cmake: develop
     rocminfo: master
