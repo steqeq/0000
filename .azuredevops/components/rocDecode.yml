@@ -16,7 +16,8 @@ parameters:
     - libavformat-dev
     - libavutil-dev
     - libstdc++-12-dev
-    - mesa-amdgpu-multimedia-devel
+    - libva-dev
+    - mesa-amdgpu-va-drivers
 
 jobs:
 - job: rocDecode
@@ -41,7 +42,6 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
-        -DBUILD_CLIENTS=ON
         -L
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
