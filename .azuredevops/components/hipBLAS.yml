@@ -36,8 +36,6 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  - name: LD_LIBRARY_PATH
-    value: '/lib:/usr/lib:/usr/local/lib'
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
