@@ -27,6 +27,8 @@ parameters:
     - libswscale-dev
     - rpp
     - rpp-dev
+    - rocdecode
+    - rocdecode-dev
     - build-essential
     - libgtk2.0-dev
     - libavcodec-dev
@@ -74,8 +76,6 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
         -DROCM_PATH=/opt/rocm
-        -DBUILD_DEV=ON
         -DROCM_DEP_ROCMCORE=ON
-        -DROCAL_PYTHON=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
