@@ -12,6 +12,7 @@ parameters:
     - libboost-program-options-dev
     - libgtest-dev
     - libfftw3-dev
+    - libomp-dev
     - git
     - mpich
     - ninja-build
@@ -23,6 +24,8 @@ parameters:
     - rocBLAS
     - rocminfo
     - ROCR-Runtime
+    - rocRAND
+    - rocSPARSE
 
 jobs:
 - job: rocALUTION
