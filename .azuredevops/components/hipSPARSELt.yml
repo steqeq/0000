@@ -18,7 +18,7 @@ parameters:
 - name: pipModules
   type: object
   default:
-    - python==3.10  
+    - Tensile==4.39.0   
     - joblib
 
 jobs:
