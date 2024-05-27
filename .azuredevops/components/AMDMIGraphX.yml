@@ -12,16 +12,18 @@ parameters:
     - cmake
     - ninja-build
     - libnuma-dev
+    - miopen-hip-dev
     - openmp-extras
     - python3-venv
+    - rocblas-dev
     - libtbb-dev
     - nlohmann-json3-dev
     - libmsgpack-dev
     - libsqlite3-dev
     - libprotobuf-dev
     - protobuf-compiler
-    - python3-pip
     - python3-pybind11
+    - composablekernel-dev
 - name: pipModules
   type: object
   default:
@@ -35,15 +37,8 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - clr
-    - composable_kernel
-    - llvm-project
-    - MIOpen
-    - rocBLAS
     - rocm-cmake
-    - rocminfo
     - rocMLIR
-    - ROCR-Runtime
 
 jobs:
 - job: AMDMIGraphX
@@ -51,6 +46,8 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  container:
+    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -83,11 +80,11 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/amdclang
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=gfx1030;gfx1100
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;/opt/rocm/llvm;opt/rocm
         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DBUILD_TESTING=ON
