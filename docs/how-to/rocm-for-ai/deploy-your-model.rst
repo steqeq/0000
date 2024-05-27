@@ -22,7 +22,7 @@ vLLM is a fast and easy-to-use library for LLM inference and serving. vLLM offic
 See the `GitHub repository <https://github.com/vllm-project/vllm>`_ and `official vLLM documentation
 <https://docs.vllm.ai/>`_ for more information.
 
-For guidance on using vLLM with ROCM, refer to `Installation with ROCm
+For guidance on using vLLM with ROCm, refer to `Installation with ROCm
 <https://docs.vllm.ai/en/latest/getting_started/amd-installation.html>`_.
 
 Installation
@@ -46,7 +46,7 @@ Blogs <https://rocm.blogs.amd.com/artificial-intelligence/vllm/README.html>`_
 Serving using Hugging Face TGI
 ==============================
 
-The Hugging Face `Text Generation Inference <https://huggingface.co/docs/text-generation-inference/index>`_
+The `Hugging Face Text Generation Inference <https://huggingface.co/docs/text-generation-inference/index>`_
 (TGI) library is designed for low-latency LLMs serving. Refer to the `Quick tour of TGI
 <https://huggingface.co/docs/text-generation-inference/quicktour>`_ for more details.
 
@@ -88,21 +88,21 @@ Step-by-step
       pip install request
       PYTHONPATH=/usr/lib/python3/dist-packages python requests_model.py
 
-   ``requests_model.py`` should look like:
+      ``requests_model.py`` should look like:
 
-   .. code-block:: python
+      .. code-block:: python
 
-      import requests
+         import requests
 
-      headers = {
-        "Content-Type": "application/json",
-      }
+         headers = {
+           "Content-Type": "application/json",
+         }
 
-      data = {
-         'inputs': 'What is Deep Learning?',
-         'parameters': { 'max_new_tokens': 20 },
-      }
+         data = {
+            'inputs': 'What is Deep Learning?',
+            'parameters': { 'max_new_tokens': 20 },
+         }
 
-      response = requests.post('http://127.0.0.1:8080/generate', headers=headers, json=data)
+         response = requests.post('http://127.0.0.1:8080/generate', headers=headers, json=data)
 
-      print(response.json())
+         print(response.json())

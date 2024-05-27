@@ -21,7 +21,7 @@ PyTorch offers distributed training solutions to facilitate this.
 PyTorch distributed
 -------------------
 
-As of PyTorch 1.6.0, features in `torch.distributed` are categorized into three main components:
+As of PyTorch 1.6.0, features in ``torch.distributed`` are categorized into three main components:
 
 - `Distributed data-parallel training
   <https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html>`_ (DDP)
@@ -30,7 +30,7 @@ As of PyTorch 1.6.0, features in `torch.distributed` are categorized into three 
 
 - `Collective communication <https://pytorch.org/docs/stable/distributed.html>`_
 
-In this guide, we focus on the distributed data-parallelism strategy as it’s the most popular. To get started with DDP,
+In this guide, the focus is on the distributed data-parallelism strategy as it’s the most popular. To get started with DDP,
 let’s first understand how to coordinate the model and its training data across multiple accelerators or GPUs.
 
 The DDP workflow on multiple accelerators or GPUs is as follows:
@@ -61,7 +61,7 @@ See the following developer blogs for more in-depth explanations and examples.
 PyTorch FSDP
 ------------
 
-As we saw in :ref:`PyTorch distributed <rocm-for-ai-pytorch-distributed>`, in DDP, model weights and optimizer states
+As noted in :ref:`PyTorch distributed <rocm-for-ai-pytorch-distributed>`, in DDP model weights and optimizer states
 are evenly replicated across all workers. Fully Sharded Data Parallel (FSDP) is a type of data parallelism that shards
 model parameters, optimizer states, and gradients across DDP ranks.
 
@@ -94,21 +94,20 @@ training with DeepSpeed on an AMD accelerator or GPU.
 Automatic mixed precision (AMP)
 -------------------------------
 
-As models increase in size, the time and memory needed to train them–that is, their cost–also increases. Any measure we
-can take to reduce training time and memory usage through Automatic Mixed Precision (AMP) is highly beneficial for most
-use cases.
+As models increase in size, the time and memory needed to train them; that is, their cost also increases. Any measure we
+can take to reduce training time and memory usage through `automatic mixed precision
+<https://pytorch.org/docs/stable/amp.html>`_ (AMP) is highly beneficial for most use cases.
 
 See `Automatic mixed precision in PyTorch using AMD GPUs — ROCm Blogs
 <https://rocm.blogs.amd.com/artificial-intelligence/automatic-mixed-precision/README.html#automatic-mixed-precision-in-pytorch-using-amd-gpus>`_
-for more information on running AMP on an AMD accelerator.
+for more information about running AMP on an AMD accelerator.
 
 .. _rocm-for-ai-fine-tune:
 
 Fine-tuning your model
 ======================
 
-ROCm supports multiple fine-tuning techniques, for example, LoRA, QLoRA, PEFT, and FSDP. See
-:doc:`How to fine-tune LLMs with ROCm <how-to/fine-tuning-llms/index>` for explanations, walkthroughs, and use-cases.
+ROCm supports multiple fine-tuning techniques, for example, LoRA, QLoRA, PEFT, and FSDP.
 
 The following developer blogs showcase examples of how to fine-tune a model on an AMD accelerator or GPU.
 

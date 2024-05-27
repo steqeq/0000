@@ -7,8 +7,8 @@ Running models from Hugging Face
 ********************************
 
 `Hugging Face <https://huggingface.co>`_ hosts the world’s largest AI model repository for developers to obtain
-state-of-the-art transformer models. This section describes how to run the popular community transformer models from
-Hugging Face on AMD accelerators and GPUs.
+transformer models. This section describes how to run the popular community transformer models from Hugging Face on AMD
+accelerators and GPUs.
 
 .. _rocm-for-ai-hugging-face-transformers:
 
@@ -126,7 +126,7 @@ Flash Attention
 GPTQ
 ----
 
-To enable GPTQ, hosted wheels are available for ROCm.
+To enable `GPTQ <https://arxiv.org/abs/2210.17323>`_, hosted wheels are available for ROCm.
 
 #. First, :ref:`install Optimum-AMD <rocm-for-ai-install-optimum-amd>`.
 
@@ -144,8 +144,8 @@ To enable GPTQ, hosted wheels are available for ROCm.
       ROCM_VERSION=6.1 pip install -vvv --no-build-isolation -e .
 
 
-#. Load `GPTQ <https://arxiv.org/abs/2210.17323>`_ quantized models in Transformers using the backend `AutoGPTQ 
-   library <https://github.com/PanQiWei/AutoGPTQ>`_:
+#. Load GPTQ-quantized models in Transformers using the backend `AutoGPTQ library
+   <https://github.com/PanQiWei/AutoGPTQ>`_:
 
    .. code-block:: python
 
@@ -165,7 +165,8 @@ To enable GPTQ, hosted wheels are available for ROCm.
 ONNX
 ----
 
-Hugging Face Optimum also supports the ONNX Runtime integration. For ONNX models, usage is straightforward.
+Hugging Face Optimum also supports the `ONNX Runtime <https://onnxruntime.ai>`_ integration. For ONNX models, usage is
+straightforward.
 
 #. Specify the provider argument in the ``ORTModel.from_pretrained()`` method:
 
@@ -178,7 +179,8 @@ Hugging Face Optimum also supports the ONNX Runtime integration. For ONNX models
       provider="ROCMExecutionProvider"
       )
 
-#. Try running a BERT text classification ONNX model with ROCm:
+#. Try running a `BERT text classification
+   <https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english>`_ ONNX model with ROCm:
 
    .. code-block:: python
 
@@ -203,3 +205,7 @@ Hugging Face Optimum also supports the ONNX Runtime integration. For ONNX models
       pipe = pipeline(task="text-classification", model=ort_model, tokenizer=tokenizer, device="cuda:0")
 
       result = pipe("Both the music and visual were astounding, not to mention the actors performance.")
+|
+
+Overall, Hugging Face models and tools significantly enhance productivity, performance, and accessibility in developing
+and deploying AI solutions. Review the basics of :doc:`Using ROCm for AI <index>`.

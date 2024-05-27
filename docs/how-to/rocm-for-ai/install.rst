@@ -42,9 +42,13 @@ methods. You can also opt for :ref:`single-version or multi-version installation
       If you encounter any issues during installation, refer to the
       :doc:`Installation troubleshooting <rocm-install-on-linux:how-to/native-install/install-faq>` guide.
 
-ROCm supports popular machine learning frameworks including `PyTorch
-<https://pytorch.org/blog/pytorch-for-amd-rocm-platform-now-available-as-python-package>`_, TensorFlow, JAX, MAGMA, and
-DeepSpeed.
+Machine learning frameworks
+===========================
+
+ROCm supports popular machine learning frameworks and libraries including `PyTorch
+<https://pytorch.org/blog/pytorch-for-amd-rocm-platform-now-available-as-python-package>`_, `TensorFlow
+<https://tensorflow.org>`_, `JAX <https://jax.readthedocs.io/en/latest>`_, and `DeepSpeed
+<https://cloudblogs.microsoft.com/opensource/2022/03/21/supporting-efficient-large-model-training-on-amd-instinct-gpus-with-deepspeed/>`_.
 
 Review the framework installation documentation. For ease-of-use, it's recommended to use official ROCm prebuilt Docker
 images with the framework pre-installed.
@@ -52,6 +56,5 @@ images with the framework pre-installed.
 * :doc:`PyTorch for ROCm <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
 * :doc:`TensorFlow for ROCm <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
 * :doc:`JAX for ROCm <rocm-install-on-linux:how-to/3rd-party/jax-install>`
-* :doc:`MAGMA for ROCm <rocm-install-on-linux:how-to/3rd-party/magma-install>`
 
 The sections that follow in :doc:`Training a model <train-a-model>` are geared for a ROCm with PyTorch installation.
