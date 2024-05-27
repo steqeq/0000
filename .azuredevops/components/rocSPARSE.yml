@@ -26,6 +26,7 @@ parameters:
     - clr
     - rocminfo
     - rocPRIM
+    - rocprofiler-register
 
 jobs:
 - job: rocSPARSE
