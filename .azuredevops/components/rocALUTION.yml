@@ -12,6 +12,7 @@ parameters:
     - libboost-program-options-dev
     - libgtest-dev
     - libfftw3-dev
+    - libomp-dev
     - git
     - mpich
     - ninja-build
@@ -20,6 +21,7 @@ parameters:
   default:
     - clr
     - llvm-project
+    - rocBLAS
     - rocminfo
     - ROCR-Runtime
 
@@ -58,7 +60,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/share/rocm/cmake/
-        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/lib/cmake
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_BENCHMARKS=OFF
