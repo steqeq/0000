@@ -28,6 +28,7 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - hipSPARSE
+    - rocBLAS
 
 jobs:
 - job: hipSPARSELt
@@ -60,6 +61,8 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds 
+  - script: cd
+  - script: pwd
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -74,4 +77,3 @@ jobs:
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-
