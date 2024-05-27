@@ -54,7 +54,6 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
-        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake;$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja

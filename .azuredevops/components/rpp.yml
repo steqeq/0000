@@ -57,7 +57,6 @@ jobs:
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DHALF_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include
         -DCMAKE_BUILD_TYPE=Release
-        -DBUILD_CLIENTS=ON
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

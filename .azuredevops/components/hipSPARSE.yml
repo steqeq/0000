@@ -59,11 +59,9 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/share/rocm/cmake/
         -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_SAMPLES=OFF
-        -DBUILD_CLIENTS_BENCHMARKS=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
