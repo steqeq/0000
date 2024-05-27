@@ -27,6 +27,8 @@ parameters:
     - libswscale-dev
     - rpp
     - rpp-dev
+    - rocdecode
+    - rocdecode-dev
     - build-essential
     - libgtk2.0-dev
     - libavcodec-dev
@@ -54,13 +56,14 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.CLOUD_BUILD_POOL }}
+  pool:
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
@@ -73,8 +76,6 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
         -DROCM_PATH=/opt/rocm
-        -DBUILD_DEV=ON
         -DROCM_DEP_ROCMCORE=ON
-        -DROCAL_PYTHON=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

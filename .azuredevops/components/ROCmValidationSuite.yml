@@ -23,13 +23,13 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool:
-    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   container:
     image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
@@ -42,6 +42,5 @@ jobs:
         -DROCM_PATH=/opt/rocm
         -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCPACK_PACKAGING_INSTALL_PREFIX='$(Build.BinariesDirectory)'
-        -DAMDGPU_TARGETS=gfx1100
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

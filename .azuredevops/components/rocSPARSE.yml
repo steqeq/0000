@@ -1,0 +1,51 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+- name: aptPackages
+  type: object
+  default:
+    - cmake
+    - ninja-build
+    - libboost-program-options-dev
+    - googletest
+    - libfftw3-dev
+    - git
+    - gfortran
+    - rocprim-dev
+    - libgtest-dev
+
+jobs:
+- job: rocSPARSE
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  container:
+    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc
+        -DCMAKE_C_COMPILER=/opt/rocm/bin/hipcc
+        -DCMAKE_BUILD_TYPE=Release
+        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DBUILD_CLIENTS_SAMPLES=OFF
+        -DBUILD_CLIENTS_TESTS=ON
+        -DBUILD_CLIENTS_BENCHMARKS=OFF
+        -DCMAKE_MODULE_PATH="/opt/rocm/lib/cmake/hip;/opt/rocm/hip/cmake"
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
