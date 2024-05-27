@@ -19,6 +19,7 @@ parameters:
     - libstdc++-12-dev
     - libva-dev
     - mesa-amdgpu-va-drivers
+    - libdrm-dev
 - name: rocmDependencies
   type: object
   default:
