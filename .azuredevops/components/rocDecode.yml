@@ -17,7 +17,6 @@ parameters:
     - libavformat-dev
     - libavutil-dev
     - libstdc++-12-dev
-    - mesa-amdgpu-multimedia-devel
     - libva-dev
     - libdrm-dev
 - name: rocmDependencies
