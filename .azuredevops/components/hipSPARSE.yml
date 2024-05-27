@@ -22,6 +22,7 @@ parameters:
     - clr
     - llvm-project
     - rocminfo
+    - rocprofiler-register
     - ROCR-Runtime
     - rocSPARSE
 
