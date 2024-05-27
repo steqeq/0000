@@ -18,6 +18,7 @@ parameters:
     - libavutil-dev
     - libstdc++-12-dev
     - libva-dev
+    - mesa-amdgpu-multimedia-devel
 - name: rocmDependencies
   type: object
   default:
@@ -42,17 +43,29 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - task: Bash@3
-    displayName: 'Download mesa-amdgpu deb file'
+    displayName: 'Register ROCm packages'
     inputs:
       targetType: inline
-      script: wget https://repo.radeon.com/amdgpu/6.1/ubuntu/pool/main/m/mesa-amdgpu/mesa-amdgpu-multimedia-devel_24.1.0.60100-1756574.22.04_amd64.deb
-      workingDirectory: $(Agent.BuildDirectory)
-  - task: Bash@3
-    displayName: 'Install mesa-amdgpu deb file'
-    inputs:
-      targetType: inline
-      script: sudo apt -y install ./mesa-amdgpu-multimedia-devel_24.1.0.60100-1756574.22.04_amd64.deb
-      workingDirectory: $(Agent.BuildDirectory)
+      script: |
+        sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+        wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
+        echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/6.1.1/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/amdgpu.list
+        echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/6.1.1 jammy main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
+        echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+        sudo apt update
+      
+  # - task: Bash@3
+  #   displayName: 'Download mesa-amdgpu deb file'
+  #   inputs:
+  #     targetType: inline
+  #     script: wget https://repo.radeon.com/amdgpu/6.1/ubuntu/pool/main/m/mesa-amdgpu/mesa-amdgpu-multimedia-devel_24.1.0.60100-1756574.22.04_amd64.deb
+  #     workingDirectory: $(Agent.BuildDirectory)
+  # - task: Bash@3
+  #   displayName: 'Install mesa-amdgpu deb file'
+  #   inputs:
+  #     targetType: inline
+  #     script: sudo apt -y install ./mesa-amdgpu-multimedia-devel_24.1.0.60100-1756574.22.04_amd64.deb
+  #     workingDirectory: $(Agent.BuildDirectory)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
