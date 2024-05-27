@@ -18,6 +18,7 @@ parameters:
 - name: pipModules
   type: object
   default:
+    - python==3.10  
     - joblib
 
 jobs:
