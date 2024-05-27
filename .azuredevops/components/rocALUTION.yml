@@ -23,6 +23,7 @@ parameters:
     - llvm-project
     - rocBLAS
     - rocminfo
+    - rocPRIM
     - ROCR-Runtime
     - rocRAND
     - rocSPARSE
