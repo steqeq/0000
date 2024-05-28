@@ -18,6 +18,6 @@ In this guide, you'll learn about:
 
 - :doc:`Training a model <train-a-model>`
 
-- :doc:`Deploying your model <deploy-your-model>`
-
 - :doc:`Running models from Hugging Face <hugging-face-models>`
+
+- :doc:`Deploying your model <deploy-your-model>`

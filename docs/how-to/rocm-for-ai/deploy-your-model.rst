@@ -25,8 +25,8 @@ See the `GitHub repository <https://github.com/vllm-project/vllm>`_ and `officia
 For guidance on using vLLM with ROCm, refer to `Installation with ROCm
 <https://docs.vllm.ai/en/latest/getting_started/amd-installation.html>`_.
 
-Installation
-------------
+vLLM installation
+-----------------
 
 vLLM supports two ROCm-capable installation methods. Refer to the official documentation use the following links.
 
@@ -35,8 +35,8 @@ vLLM supports two ROCm-capable installation methods. Refer to the official docum
 
 -  `Build from source <https://docs.vllm.ai/en/latest/getting_started/amd-installation.html#build-from-source-rocm>`_
 
-Step-by-step
-------------
+vLLM walkthrough
+----------------
 
 Refer to this developer blog for guidance on serving with vLLM `Inferencing and serving with vLLM on AMD GPUs — ROCm
 Blogs <https://rocm.blogs.amd.com/artificial-intelligence/vllm/README.html>`_
@@ -47,17 +47,17 @@ Serving using Hugging Face TGI
 ==============================
 
 The `Hugging Face Text Generation Inference <https://huggingface.co/docs/text-generation-inference/index>`_
-(TGI) library is designed for low-latency LLMs serving. Refer to the `Quick tour of TGI
+(TGI) library is optimized for serving LLMs with low latency. Refer to the `Quick tour of TGI
 <https://huggingface.co/docs/text-generation-inference/quicktour>`_ for more details.
 
-Installation
-------------
+TGI installation
+----------------
 
 The easiest way to use Hugging Face TGI with ROCm on AMD Instinct accelerators is to use the official Docker image at
 `<https://github.com/huggingface/text-generation-inference/pkgs/container/text-generation-inference>`__.
 
-Step-by-step
-------------
+TGI walkthrough
+---------------
 
 #. Set up the LLM server.
 
@@ -106,3 +106,8 @@ Step-by-step
          response = requests.post('http://127.0.0.1:8080/generate', headers=headers, json=data)
 
          print(response.json())
+
+vLLM and Hugging Face TGI are robust solutions for anyone looking to deploy LLMs for applications that demand high
+performance, low latency, and scalability.
+
+Visit the topics in :doc:`Using ROCm for AI <index>` to learn about other ROCm-aware solutions for AI development.

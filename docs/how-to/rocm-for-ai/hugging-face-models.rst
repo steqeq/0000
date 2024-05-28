@@ -7,8 +7,10 @@ Running models from Hugging Face
 ********************************
 
 `Hugging Face <https://huggingface.co>`_ hosts the world’s largest AI model repository for developers to obtain
-transformer models. This section describes how to run the popular community transformer models from Hugging Face on AMD
-accelerators and GPUs.
+transformer models. Hugging Face models and tools significantly enhance productivity, performance, and accessibility in
+developing and deploying AI solutions.
+
+This section describes how to run popular community transformer models from Hugging Face on AMD accelerators and GPUs.
 
 .. _rocm-for-ai-hugging-face-transformers:
 
@@ -205,7 +207,4 @@ straightforward.
       pipe = pipeline(task="text-classification", model=ort_model, tokenizer=tokenizer, device="cuda:0")
 
       result = pipe("Both the music and visual were astounding, not to mention the actors performance.")
-|
 
-Overall, Hugging Face models and tools significantly enhance productivity, performance, and accessibility in developing
-and deploying AI solutions. Review the basics of :doc:`Using ROCm for AI <index>`.
