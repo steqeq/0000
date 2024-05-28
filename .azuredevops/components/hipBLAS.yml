@@ -10,25 +10,33 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - rocblas-dev
-    - rocsparse
-    - rocsolver-dev
     - gfortran
     - googletest
     - git
     - libgtest-dev
     - wget
+    - python3-pip
+    - libomp-dev
+- name: rocmDependencies
+  type: object
+  default:
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
+    - rocprofiler-register
+    - rocBLAS
+    - rocSPARSE
+    - rocSOLVER
+    - aomp
 
 jobs:
 - job: hipBLAS
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  - name: LD_LIBRARY_PATH
-    value: '/lib:/usr/lib:/usr/local/lib'
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -51,20 +59,24 @@ jobs:
       targetType: inline
       script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
       workingDirectory: '$(Pipeline.Workspace)'
-  - task: Bash@3
-    displayName: 'ldconfig'
-    inputs:
-      targetType: inline
-      script: sudo ldconfig
-      workingDirectory: '/usr/local/lib'
-  - script: 'ls -1R /usr/local'
-    displayName: 'Artifact listing'
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH=/opt/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DHIP_PLATFORM=amd
         -DBUILD_CLIENTS_TESTS=ON
