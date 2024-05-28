@@ -13,6 +13,8 @@ parameters:
     - python3-venv
     - libmsgpack-dev
     - git
+    - python3-pip
+
 - name: pipModules
   type: object
   default:
