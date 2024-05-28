@@ -29,7 +29,7 @@ parameters:
     - rocm-core
     - HIPIFY
     - aomp
-    - aomp-extra
+    - aomp-extras
 
 jobs:
 - job: rccl
