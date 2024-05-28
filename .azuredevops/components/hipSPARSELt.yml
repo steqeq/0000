@@ -75,6 +75,6 @@ jobs:
         -DTensile_LIBRARY_FORMAT=msgpack
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -DTENSILE_ROCM_ASSEMBLER_PATH=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DROCM_PATH=$(Agent.BuildDirectory)/rocm works too
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
