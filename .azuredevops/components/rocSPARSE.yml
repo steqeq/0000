@@ -17,6 +17,7 @@ parameters:
     - git
     - gfortran
     - libgtest-dev
+    - libdrm-dev
 - name: rocmDependencies
   type: object
   default:
