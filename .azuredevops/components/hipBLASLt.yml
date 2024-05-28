@@ -38,7 +38,7 @@ jobs:
   - name: HIP_ROCCLR_HOME
     value: $(Build.BinariesDirectory)/rocm
   - name: TENSILE_ROCM_ASSEMBLER_PATH
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang
+    value: $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
   - name: CMAKE_CXX_COMPILER
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
   - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
