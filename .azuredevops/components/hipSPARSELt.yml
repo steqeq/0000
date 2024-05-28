@@ -62,8 +62,6 @@ jobs:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds 
   - script: pwd
-  - script: cd /agent/_work/1/s/build/library
-  - script: ls
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
