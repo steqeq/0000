@@ -66,23 +66,36 @@ HIPCC for ROCm 6.1.1
 * **Upcoming:** a subsequent release will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
 * **Upcoming:** a subsequent release will remove `hipcc.pl` and `hipconfig.pl`.
 
-### HIPIFY
-
-HIPIFY for ROCm 6.1.1
-
-#### Additions
-
-* Added support for LLVM 18.1.2.
-* Added support for cuDNN 9.0.0.
-* Added a new option: `--clang-resource-directory` to specify the clang resource path (the path to the parent folder for the `include` folder that contains `__clang_cuda_runtime_wrapper.h` and other header files used during the hipification process).
-
 ### ROCm SMI
 
 ROCm SMI for ROCm 6.1.1
 
+##### Additions
+
+* Added the capability to unlock mutex when a process is dead. Added related debug output.
+* Added the `Partition ID` field to the `rocm-smi` CLI.
+* Added `NODE`, `GUID`, and `GFX Version` fields to the CLI.
+* Documentation now includes C++ and Python tutorials, API guides, and reference material.
+
+##### Changes
+
+* Some `rocm-smi` fields now display `N/A` instead of `unknown/unsupported` for consistency.
+* Changed stacked ID formatting in the `rocm-smi` CLI to make it easier to spot identifiers.
+
+##### Fixes
+
+* Fixed HIP and ROCm SMI mismatch on GPU bus assignments.
+* Fixed memory leaks caused by not closing directories and creating maps nodes instead of using `.at()`.
+* Fixed initializing calls which reuse `rocmsmi.initializeRsmi()` bindings in the `rocmsmi` Python API.
+* Fixed an issue causing `rsmi_dev_activity_metric_get` gfx/memory to not update with GPU activity.
+
 ##### Known issues
 
 * ROCm SMI reports GPU utilization incorrectly for RDNA3 GPUs in some situations. See the issue on [GitHub](https://github.com/ROCm/ROCm/issues/3112).
+
+```{note}
+See the [detailed ROCm SMI changelog](https://github.com/ROCm/rocm_smi_lib/blob/docs/6.1.1/CHANGELOG.md) with code samples for more information.
+```
 
 ### Library changes in ROCm 6.1.1
 
