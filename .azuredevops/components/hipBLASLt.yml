@@ -14,6 +14,7 @@ parameters:
     - libmsgpack-dev
     - git
     - python3-pip
+    - clang
 
 - name: pipModules
   type: object
