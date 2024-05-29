@@ -6,6 +6,8 @@
 Profiling and debugging
 ***********************
 
+This section discusses profiling and debugging tools and their common usage patterns with ROCm applications.
+
 PyTorch Profiler
 ================
 
@@ -143,7 +145,7 @@ supported by the ROCm Debugger API (:doc:`ROCdbgapi <rocdbgapi:index>`).
   violation, executing an ``s_trap2``, or executing an illegal instruction.
 
 * Print the state of all AMD accelerator or GPU wavefronts by sending a ``SIGQUIT`` signal to the process in question;
-  for example, by pressing ``Ctrl + \\`` while the process is executing.
+  for example, by pressing ``Ctrl + \`` while the process is executing.
 
 Debugging memory access faults
 ------------------------------
@@ -163,9 +165,9 @@ When the debug agent traps the fault, it will produce an extremely
 verbose output of all wavefront registers and memory content.
 Importantly, it also prints something like:
 
-Disassembly for function ``vector_add_assert_trap(int*, int*, int*)``:
-
 .. code-block:: shell
+
+   Disassembly for function vector_add_assert_trap(int*, int*, int*):
 
    code object:
    file:////rocm-debug-agent/build/test/rocm-debug-agent-test#offset=14309&size=31336
@@ -174,23 +176,23 @@ Disassembly for function ``vector_add_assert_trap(int*, int*, int*)``:
 
 The kernel name and the code object file should be listed. In the
 example above, the kernel name is ``vector_add_assert_trap``, but this might
-also look like
+also look like:
 
 .. code-block:: shell
 
    Disassembly for function memory:///path/to/codeobject#offset=1234&size=567:
 
 In this case, it is an in-memory kernel that was generated at runtime.
-Using the env var
+
+Using the following environment variable, the debug agent will save all code objects to the current directory (use
+``--save-code-objects=[DIR]`` to place them in another location). The code objects will be renamed from the URI format
+with special characters replaced by ‘_’. 
 
 .. code-block:: shell
 
    ROCM_DEBUG_AGENT_OPTIONS="--all --save-code-objects"
 
-The debug agent will save all code objects to the current directory (use
-``--save-code-objects=[DIR]`` to place them in another location). The code
-objects will be renamed from the URI format with special characters
-replaced by ‘_’. Use ``llvm-objdump`` to disassemble the indicated in-memory
+Use ``llvm-objdump`` to disassemble the indicated in-memory
 code object that has now been saved to disk. The name of the kernel is
 often found inside the disassembled code object.
 
