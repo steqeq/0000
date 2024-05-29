@@ -26,6 +26,7 @@ parameters:
     MIOpen: develop
     rocBLAS: develop
     ROCdbgapi : amd-master
+    rocDecode: develop
     rocFFT: develop
     rocm-cmake: develop
     rocm_smi_lib: develop
