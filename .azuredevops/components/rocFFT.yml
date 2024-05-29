@@ -24,6 +24,7 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - hipRAND
+    - rocRAND
     - rocm-cmake
 jobs:
 - job: rocFFT
