@@ -71,5 +71,4 @@ jobs:
         -DBUILD_CLIENTS_BENCHMARKS=OFF
         -DBUILD_CLIENTS_SAMPLES=OFF
         -GNinja
-        
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
