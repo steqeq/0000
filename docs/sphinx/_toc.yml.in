@@ -60,9 +60,9 @@ subtrees:
             title: Using a single accelerator
           - file: how-to/fine-tuning-llms/multi-gpu-fine-tuning-and-inference.rst
             title: Using multiple accelerators
-      - file: how-to/fine-tuning-llms/llm-inference-frameworks.rst
       - file: how-to/fine-tuning-llms/model-quantization.rst
       - file: how-to/fine-tuning-llms/model-acceleration-libraries.rst
+      - file: how-to/fine-tuning-llms/llm-inference-frameworks.rst
       - file: how-to/fine-tuning-llms/kernel-fusion-using-ck.md
         title: Optimizing with Composable Kernel
       - file: how-to/fine-tuning-llms/triton-kernel-performance-optimization.rst

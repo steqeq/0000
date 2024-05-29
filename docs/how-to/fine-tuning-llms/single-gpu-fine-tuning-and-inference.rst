@@ -41,7 +41,7 @@ Setting up the base implementation environment
    :doc:`PyTorch installation guide <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`. For a consistent
    installation, it’s recommended to use official ROCm prebuilt Docker images with the framework pre-installed.
 
-#. In the Docker container, check the availability of ROCM-capable accelerators using the following command.
+#. In the Docker container, check the availability of ROCm-capable accelerators using the following command.
 
    .. code-block:: shell
 
@@ -78,6 +78,12 @@ Setting up the base implementation environment
       How many ROCm-GPUs are detected?  4
 
 #. Install the required dependencies.
+
+   bitsandbytes is a library that facilitates quantization to improve the efficiency of deep learning models. Learn more
+   about its use in :doc:`model-quantization`.
+
+   See the :ref:`Optimizations for model fine-tuning <fine-tuning-llms-concept-optimizations>` for a brief discussion on
+   PEFT and TRL.
 
    .. code-block:: shell
 
@@ -126,8 +132,8 @@ Download the base model and fine-tuning dataset
 
    .. note::
 
-      You can also use the `NousResearch Llama-2-7b-chat-hf<https://huggingface.co/NousResearch/Llama-2-7b-chat-hf>`_ as
-      a substitute. It has the same model weights as the original.
+      You can also use the `NousResearch Llama-2-7b-chat-hf <https://huggingface.co/NousResearch/Llama-2-7b-chat-hf>`_ 
+      as a substitute. It has the same model weights as the original.
 
 #. Run the following code to load the base model and tokenizer.
 
@@ -200,128 +206,126 @@ To set up ``SFTTrainer`` parameters, you can use the following code as reference
 Fine-tuning
 ===========
 
-In this section, you'll see two ways of training: with LoRA and without.
+In this section, you'll see two ways of training: with the LoRA technique and without. See :ref:`Optimizations for model
+fine-tuning <fine-tuning-llms-concept-optimizations>` for an introduction to LoRA. Training with LoRA uses the
+``SFTTrainer`` API with its PEFT integration. Training without LoRA forgoes these benefits.
 
-:ref:`Training with LoRA <fine-tuning-llms-training-with-lora>` uses the ``SFTTrainer`` API with its PEFT integration.
-:ref:`Training without LoRA <fine-tuning-llms-training-without-lora>` forgoes these benefits.
+Compare the number of trainable parameters and training time under the two different methodologies.
 
-The section estimates and compares the number of trainable parameters and training time under the two different
-methodologies.
+.. tab-set::
 
-.. _fine-tuning-llms-training-with-lora:
+   .. tab-item:: Fine-tuning with LoRA and PEFT
+      :sync: with
 
-Training with LoRA
-------------------
+      1. Configure LoRA using the following code snippet.
 
-1. Configure LoRA as follows.
+         .. code-block:: python
 
-   .. code-block:: python
+            peft_config = LoraConfig(
+                    lora_alpha = 16,
+                    lora_dropout = 0.1,
+                    r = 64,
+                    bias = "none",
+                    task_type = "CAUSAL_LM"
+            )
+            # View the number of Trainable Params
+            from peft import get_peft_model
+            peft_model = get_peft_model(base_model, peft_config)
+            peft_model.print_trainable_parameters()
 
-      peft_config = LoraConfig(
-              lora_alpha = 16,
-              lora_dropout = 0.1,
-              r = 64,
-              bias = "none",
-              task_type = "CAUSAL_LM"
-      )
-      # View the number of Trainable Params
-      from peft import get_peft_model
-      peft_model = get_peft_model(base_model, peft_config)
-      peft_model.print_trainable_parameters()
+         The output should look like this. Compare the number of trainable parameters to that when fine-tuning without
+         LoRA and PEFT.
 
-   The output should look like this:
+         .. code-block:: shell
 
-   .. code-block:: shell
+            trainable params: 33,554,432 || all params: 6,771,970,048 || trainable%: 0.49548996469513035
 
-      trainable params: 33,554,432 || all params: 6,771,970,048 || trainable%: 0.49548996469513035
+      2. Initialize ``SFTTrainer`` with a PEFT LoRA configuration and run the trainer.
 
-2. Initialize ``SFTTrainer`` with a PEFT LoRA configuration and run the trainer.
+         .. code-block:: python
 
-   .. code-block:: python
+            # Initialize a sft trainer
+            sft_trainer = SFTTrainer(
+                    model = base_model,
+                    train_dataset = training_dataset,
+                    peft_config = peft_config,
+                    dataset_text_field = "text",
+                    tokenizer = tokenizer,
+                    args = training_arguments
+            ) 
+            
+            # Run the trainer
+            sft_trainer.train()
 
-      # Initialize a sft trainer
-      sft_trainer = SFTTrainer(
-              model = base_model,
-              train_dataset = training_dataset,
-              peft_config = peft_config,
-              dataset_text_field = "text",
-              tokenizer = tokenizer,
-              args = training_arguments
-      ) 
-      
-      # Run the trainer
-      sft_trainer.train()
+         The output should look like this:
 
-   The output should look like this:
+         .. code-block:: shell
 
-   .. code-block:: shell
+            {'loss': 1.5973, 'grad_norm': 0.25271978974342346, 'learning_rate': 4e-05, 'epoch': 0.16}
+            {'loss': 2.0519, 'grad_norm': 0.21817368268966675, 'learning_rate': 4e-05, 'epoch': 0.32}
+            {'loss': 1.6147, 'grad_norm': 0.3046981394290924, 'learning_rate': 4e-05, 'epoch': 0.48}
+            {'loss': 1.4124, 'grad_norm': 0.11534837633371353, 'learning_rate': 4e-05, 'epoch': 0.64}
+            {'loss': 1.5627, 'grad_norm': 0.09108350425958633, 'learning_rate': 4e-05, 'epoch': 0.8}
+            {'loss': 1.417, 'grad_norm': 0.2536439299583435, 'learning_rate': 4e-05, 'epoch': 0.96}
+            {'train_runtime': 197.4947, 'train_samples_per_second': 5.063, 'train_steps_per_second': 0.633, 'train_loss': 1.6194254455566406, 'epoch': 1.0}
+            100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 125/125 [03:17<00:00,  1.58s/it]
 
-      {'loss': 1.5973, 'grad_norm': 0.25271978974342346, 'learning_rate': 4e-05, 'epoch': 0.16}
-      {'loss': 2.0519, 'grad_norm': 0.21817368268966675, 'learning_rate': 4e-05, 'epoch': 0.32}
-      {'loss': 1.6147, 'grad_norm': 0.3046981394290924, 'learning_rate': 4e-05, 'epoch': 0.48}
-      {'loss': 1.4124, 'grad_norm': 0.11534837633371353, 'learning_rate': 4e-05, 'epoch': 0.64}
-      {'loss': 1.5627, 'grad_norm': 0.09108350425958633, 'learning_rate': 4e-05, 'epoch': 0.8}
-      {'loss': 1.417, 'grad_norm': 0.2536439299583435, 'learning_rate': 4e-05, 'epoch': 0.96}
-      {'train_runtime': 197.4947, 'train_samples_per_second': 5.063, 'train_steps_per_second': 0.633, 'train_loss': 1.6194254455566406, 'epoch': 1.0}
-      100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 125/125 [03:17<00:00,  1.58s/it]
+   .. tab-item:: Fine-tuning without LoRA and PEFT
+      :sync: without
 
-.. _fine-tuning-llms-training-without-lora:
+      1. Use the following code to get started.
 
-Training without LoRA
----------------------
+         .. code-block:: python
 
-1. Use the following code sample to get started.
+            def print_trainable_parameters(model):
+                # Prints the number of trainable parameters in the model.
+                trainable_params = 0
+                all_param = 0
+                for _, param in model.named_parameters():
+                    all_param += param.numel()
+                    if param.requires_grad:
+                        trainable_params += param.numel()
+                print(f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param:.2f}")
+            
+            sft_trainer.peft_config = None
+            print_trainable_parameters(sft_trainer.model)
 
-   .. code-block:: python
+         The output should look like this. Compare the number of trainable parameters to that when fine-tuning with LoRA
+         and PEFT.
 
-      def print_trainable_parameters(model):
-          # Prints the number of trainable parameters in the model.
-          trainable_params = 0
-          all_param = 0
-          for _, param in model.named_parameters():
-              all_param += param.numel()
-              if param.requires_grad:
-                  trainable_params += param.numel()
-          print(f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param:.2f}")
-      
-      sft_trainer.peft_config = None
-      print_trainable_parameters(sft_trainer.model)
+         .. code-block:: shell
 
-   The output should look like this:
-
-   .. code-block:: shell
-
-      trainable params: 6738415616 || all params: 6738415616 || trainable%: 100.00
+            trainable params: 6,738,415,616 || all params: 6,738,415,616 || trainable%: 100.00
 
 
-2. Run the trainer.
+      2. Run the trainer.
 
-   .. code-block:: python
+         .. code-block:: python
 
-      # Trainer without LoRA config
-      trainer_full = SFTTrainer(
-              model = base_model,
-              train_dataset = training_dataset,
-              dataset_text_field = "text",
-              tokenizer = tokenizer,
-              args = training_arguments
-      ) 
-      
-      # Training 
-      trainer_full.train()
+            # Trainer without LoRA config
+            trainer_full = SFTTrainer(
+                    model = base_model,
+                    train_dataset = training_dataset,
+                    dataset_text_field = "text",
+                    tokenizer = tokenizer,
+                    args = training_arguments
+            ) 
+            
+            # Training 
+            trainer_full.train()
 
-   The output should look like this:
+         The output should look like this:
 
-   .. code-block:: shell
+         .. code-block:: shell
 
-      {'loss': 1.5975, 'grad_norm': 0.25113457441329956, 'learning_rate': 4e-05, 'epoch': 0.16}
-      {'loss': 2.0524, 'grad_norm': 0.2180655151605606, 'learning_rate': 4e-05, 'epoch': 0.32}
-      {'loss': 1.6145, 'grad_norm': 0.2949850261211395, 'learning_rate': 4e-05, 'epoch': 0.48}
-      {'loss': 1.4118, 'grad_norm': 0.11036080121994019, 'learning_rate': 4e-05, 'epoch': 0.64}
-      {'loss': 1.5595, 'grad_norm': 0.08962831646203995, 'learning_rate': 4e-05, 'epoch': 0.8}
-      {'loss': 1.4119, 'grad_norm': 0.25422757863998413, 'learning_rate': 4e-05, 'epoch': 0.96}
-      {'train_runtime': 419.5154, 'train_samples_per_second': 2.384, 'train_steps_per_second': 0.298, 'train_loss': 1.6171623611450194, 'epoch': 1.0}
-      100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 125/125 [06:59<00:00,  3.36s/it]
+            {'loss': 1.5975, 'grad_norm': 0.25113457441329956, 'learning_rate': 4e-05, 'epoch': 0.16}
+            {'loss': 2.0524, 'grad_norm': 0.2180655151605606, 'learning_rate': 4e-05, 'epoch': 0.32}
+            {'loss': 1.6145, 'grad_norm': 0.2949850261211395, 'learning_rate': 4e-05, 'epoch': 0.48}
+            {'loss': 1.4118, 'grad_norm': 0.11036080121994019, 'learning_rate': 4e-05, 'epoch': 0.64}
+            {'loss': 1.5595, 'grad_norm': 0.08962831646203995, 'learning_rate': 4e-05, 'epoch': 0.8}
+            {'loss': 1.4119, 'grad_norm': 0.25422757863998413, 'learning_rate': 4e-05, 'epoch': 0.96}
+            {'train_runtime': 419.5154, 'train_samples_per_second': 2.384, 'train_steps_per_second': 0.298, 'train_loss': 1.6171623611450194, 'epoch': 1.0}
+            100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 125/125 [06:59<00:00,  3.36s/it]
 
 Saving adapters or fully fine-tuned models
 ------------------------------------------
@@ -331,47 +335,57 @@ parameters, namely the adapters, on top of it. The adapters are trained to learn
 trained with PEFT are usually an order of magnitude smaller than the full base model, making them convenient to share,
 store, and load.
 
-To save a PEFT adapter once the fine-tuning is completed:
+.. tab-set::
 
-.. code-block:: python
+   .. tab-item:: Saving a PEFT adapter
+      :sync: with
 
-   # PEFT adapter name
-   adapter_name = "llama-2-7b-enhanced-adapter"
-   
-   # Save PEFT adapter
-   sft_trainer.model.save_pretrained(adapter_name)
+      If you're using LoRA and PEFT, use the following code to save a PEFT adapter to your system once the fine-tuning
+      is completed.
 
-Or, if there is no PEFT LoRA configuration for training:
+      .. code-block:: python
 
-.. code-block:: python
+         # PEFT adapter name
+         adapter_name = "llama-2-7b-enhanced-adapter"
+         
+         # Save PEFT adapter
+         sft_trainer.model.save_pretrained(adapter_name)
 
-   # fully fine-tuned model name
-   new_model_name = "llama-2-7b-enhanced"
-   
-   # Save the fully fine-tuned model
-   full_trainer.model.save_pretrained(new_model_name)
+      The saved PEFT adapter should look like this on your system:
 
-The saved PEFT adapter should look like this:
+      .. code-block:: shell
 
-.. code-block:: shell
+         # Access adapter directory
+         cd llama-2-7b-enhanced-adapter
+         
+         # List all adapter files
+         README.md  adapter_config.json  adapter_model.safetensors
 
-   # Access adapter directory
-   cd llama-2-7b-enhanced-adapter
-   
-   # List all adapter files
-   README.md  adapter_config.json  adapter_model.safetensors
+   .. tab-item:: Saving a fully fine-tuned model
+      :sync: without
 
-The saved new full model should look like this:
+      If you're not using LoRA and PEFT so there is no PEFT LoRA configuration used for training, use the following code 
+      to save your fine-tuned model to your system.
 
-.. code-block:: shell
+      .. code-block:: python
 
-   # Access new model directory
-   cd llama-2-7b-enhanced
-   
-   # List all model files
-   config.json                       model-00002-of-00006.safetensors  model-00005-of-00006.safetensors
-   generation_config.json            model-00003-of-00006.safetensors  model-00006-of-00006.safetensors
-   model-00001-of-00006.safetensors  model-00004-of-00006.safetensors  model.safetensors.index.json
+         # fully fine-tuned model name
+         new_model_name = "llama-2-7b-enhanced"
+         
+         # Save the fully fine-tuned model
+         full_trainer.model.save_pretrained(new_model_name)
+
+      The saved new full model should look like this on your system:
+
+      .. code-block:: shell
+
+         # Access new model directory
+         cd llama-2-7b-enhanced
+         
+         # List all model files
+         config.json                       model-00002-of-00006.safetensors  model-00005-of-00006.safetensors
+         generation_config.json            model-00003-of-00006.safetensors  model-00006-of-00006.safetensors
+         model-00001-of-00006.safetensors  model-00004-of-00006.safetensors  model.safetensors.index.json
 
 .. note::
 
@@ -379,30 +393,27 @@ The saved new full model should look like this:
    full model parameters and model configurations, for example, ``config.json``. To use it as a normal transformer
    model, you need to merge them into the base model.
 
-Single-accelerator model inference
-==================================
+Basic model inference
+=====================
 
 A trained model can be classified into one of three types:
 
-*  A pre-trained language model in Hugging Face
+*  :ref:`A pre-trained language model in Hugging Face <fine-tuning-llms-pre-trained-fully-fine-tuned-inference>`
 
-*  A fully fine-tuned model without the use of PEFT
+*  :ref:`A fully fine-tuned model not using PEFT <fine-tuning-llms-pre-trained-fully-fine-tuned-inference>`
 
-*  A PEFT adapter
+*  :ref:`A PEFT adapter <fine-tuning-llms-peft-adapter-inference>`
 
-.. note::
+Let's look at achieving model inference using these types of models.
 
-   This section provides the general methods for model inference on a single AMD MI300X accelerator. Note the
-   implementation environment here is based on the :ref:`setup for single-accelerator model fine-tuning
-   <fine-tuning-llms-single-gpu-env>`.
+.. _fine-tuning-llms-pre-trained-fully-fine-tuned-inference:
 
-Read more about inference frameworks in :doc:`LLM inference frameworks <llm-inference-frameworks>`.
-
-Using pre-trained or fully fine-tuned models
---------------------------------------------
+Inference using pre-trained or fully fine-tuned models
+------------------------------------------------------
 
 If you have a fully fine-tuned model not using PEFT, you can load it like any other pre-trained language model in
-`Hugging Face Hub <https://huggingface.co/docs/hub/en/index>`_ using the Transformers library.
+`Hugging Face Hub <https://huggingface.co/docs/hub/en/index>`_ using the `Transformers
+<https://huggingface.co/docs/transformers/en/index>`_ library.
 
 .. code-block:: python
 
@@ -448,11 +459,13 @@ model inference easily.
    # Token generation
    print(pipe("What is a large language model?")[0]["generated_text"])
 
-Using PEFT adapters
--------------------
+.. _fine-tuning-llms-peft-adapter-inference:
 
-To use PEFT adapters like a normal transformer model, you can run the
-generation by loading a base model along with PEFT adapters as:
+Inference using PEFT adapters
+-----------------------------
+
+To use PEFT adapters like a normal transformer model, you can run the generation by loading a base model along with PEFT 
+adapters as follows.
 
 .. code-block:: python
 
@@ -490,3 +503,9 @@ needed if someone wants to save the adapted model into local storage and use it 
    # Save the merged model into local
    model.save_pretrained("merged_adpaters")
 
+If using multiple accelerators, see
+:ref:`Multi-accelerator fine-tuning and inference <fine-tuning-llms-multi-gpu-hugging-face-accelerate>` to explore
+popular libraries that simplify fine-tuning and inference in a multi-accelerator system.
+
+Read more about inference frameworks like vLLM and Hugging Face TGI in
+:doc:`LLM inference frameworks <llm-inference-frameworks>`.

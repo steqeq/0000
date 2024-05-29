@@ -14,22 +14,27 @@ Hardware resource utilization
 
 Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do computation in parallel. So, how many CUs can
 a compute kernel can allocate its task to? For AMD MI300X, the grid should have at least 1024 thread blocks or
-workgroups (WGs). To increase hardware utilization, more parallelism needs to be found in the algorithm (for example,
-by using larger split-K for GEMMs).
+workgroups (WGs).
 
-Hardware resources can be queried with the command ``rocminfo`` (in the ``/opt/rocm/bin`` directory). For instance,
-query the number of CUs, # of SIMD, and wavefront size using the following commands.
+To increase hardware utilization and maximize parallelism, it is necessary to design algorithms that can exploit more
+parallelism. One approach to achieving this is by using larger split-K techniques for General Matrix Multiply (GEMM)
+operations, which can further distribute the computation across more CUs, thereby enhancing performance.
 
-.. code-block:: shell
+.. tip::
 
-   rocminfo | grep "Compute Unit"
+   Hardware resources can be queried with the command ``rocminfo`` (in the ``/opt/rocm/bin`` directory). For instance,
+   query the number of CUs, # of SIMD, and wavefront size using the following commands.
 
-   rocminfo | grep "SIMD"
+   .. code-block:: shell
 
-   rocminfo | grep "Wavefront Size"
+      rocminfo | grep "Compute Unit"
 
-On an MI300X device, there are 304 CUs, 4 SIMD per CU, and the wavefront size (warp size) is 64. See :doc:`Hardware
-specifications <rocm:reference/gpu-arch-specs>` for a full list of AMD accelerators and GPUs.
+      rocminfo | grep "SIMD"
+
+      rocminfo | grep "Wavefront Size"
+
+   On an MI300X device, there are 304 CUs, 4 SIMD per CU, and the wavefront size (warp size) is 64. See :doc:`Hardware
+   specifications <rocm:reference/gpu-arch-specs>` for a full list of AMD accelerators and GPUs.
 
 Autotunable kernel configurations and environment variables
 ===========================================================
@@ -232,10 +237,10 @@ Understand and compute the occupancy of the kernel
 
   c. ``python kernel.py | | grep "triton_gpu.shared = " | tail -n 1``
 
-  d. Look for something like ``triton_gpu.shared = 65536``. It means
-  65536 bytes LDS is allocated for the kernel.
+  d. You should see something like ``triton_gpu.shared = 65536``, indicating 65536 bytes of LDS are allocated for the
+     kernel.
 
-3. Get number of waves per workgroup following the steps (say you got nW)
+3. Get number of waves per workgroup using the following steps (say you got nW)
 
   a. ``export MLIR_ENABLE_DUMP=1``
 
@@ -243,8 +248,7 @@ Understand and compute the occupancy of the kernel
 
   c. ``python kernel.py | | grep "triton_gpu.num-warps " | tail -n 1``
 
-  d. Look for something like ``“triton_gpu.num-warps" = 8``, indicating 8
-  waves per workgroup
+  d. You should see something like ``“triton_gpu.num-warps" = 8``, indicating 8 waves per workgroup.
 
 4. Compute occupancy limited by VGPR based on N according to table 1 in this link. For example, waves per EU as
    ``occ_vgpr``.

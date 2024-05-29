@@ -59,7 +59,7 @@ overcome this issue of high memory consumption.
 
 LoRA accelerates the adjustment process and reduces related memory costs. To be precise, LoRA decomposes the portion of
 weight changes :math:`ΔW` into high-precision low-rank representations, which do not require the calculations of all
-:math:`ΔW`. On the contrary, LoRA learns the decomposition representation of :math:`ΔW` during training, as shown in
+:math:`ΔW`. It learns the decomposition representation of :math:`ΔW` during training, as shown in
 :ref:`the weight update diagram (Figure 1) <fine-tuning-llms-concept-challenge>`. This is how LoRA saves on
 computing resources.
 

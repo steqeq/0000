@@ -32,7 +32,7 @@ The template parameters of the instance are grouped into four parameter types:
 ================
  ### Figure 1
 ================ -->
-```{figure} images/template_parameters.jpg
+```{figure} ../../data/how-to/fine-tuning-llms/ck-template_parameters.jpg
 Figure 1: The template parameters of the selected GEMM kernel are classified into four groups. These template parameter groups should be defined properly before running the instance.
 ```
 
@@ -118,7 +118,7 @@ The row and column, and stride information of input matrices are also passed to 
 ================
  ### Figure 2
 ================ -->
-```{figure} images/kernel_launch.jpg
+```{figure} ../../data/how-to/fine-tuning-llms/ck-kernel_launch.jpg
 Figure 2: Templated kernel launching consists of kernel instantiation, making arguments by passing in actual application parameters, creating an invoker, and running the instance through the invoker.
 ```
 
@@ -147,7 +147,7 @@ The first operation in the process is to perform the multiplication of input mat
 ================
  ### Figure 3
 ================ -->
-```{figure} images/operation_flow.jpg
+```{figure} ../../data/how-to/fine-tuning-llms/ck-operation_flow.jpg
 Figure 3: Operation flow.
 ```
 
@@ -163,7 +163,7 @@ Here, we use [DeviceBatchedGemmMultiD_Xdl](https://github.com/ROCm/composable_ke
 ================
  ### Figure 4
 ================ -->
-```{figure} images/root_instance.jpg
+```{figure} ../../data/how-to/fine-tuning-llms/ck-root_instance.jpg
 Figure 4: Use the ‘DeviceBatchedGemmMultiD_Xdl’ instance as a root.
 ```
 
@@ -413,7 +413,7 @@ Run `python setup.py install` to build and install the extension. It should look
 ================
  ### Figure 5
 ================ -->
-```{figure} images/compilation.jpg
+```{figure} ../../data/how-to/fine-tuning-llms/ck-compilation.jpg
 Figure 5: Compilation and installation of the INT8 kernels.
 ```
 
@@ -425,7 +425,7 @@ The implementation architecture of running SmoothQuant models on MI300X GPUs is 
 ================
  ### Figure 6
 ================ -->
-```{figure} images/inference_flow.jpg
+```{figure} ../../data/how-to/fine-tuning-llms/ck-inference_flow.jpg
 Figure 6: The implementation architecture of running SmoothQuant models on AMD MI300X accelerators.
 ```
 
@@ -451,7 +451,7 @@ Figure 7 shows the performance comparisons between the original FP16 and the Smo
 ================
  ### Figure 7
 ================ -->
-```{figure} images/comparisons.jpg
+```{figure} ../../data/how-to/fine-tuning-llms/ck-comparisons.jpg
 Figure 7: Performance comparisons between the original FP16 and the SmoothQuant-quantized INT8 models on a single MI300X accelerator.
 ```
 
