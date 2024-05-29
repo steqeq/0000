@@ -14,6 +14,7 @@ parameters:
     - libmsgpack-dev
     - git
     - python3-pip
+    - gfortran
 
 - name: pipModules
   type: object
