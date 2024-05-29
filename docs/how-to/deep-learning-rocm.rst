@@ -42,3 +42,7 @@ For guidance on installing ROCm itself, refer to :doc:`ROCm installation for Lin
 ..    * :doc:`How to fine-tune LLMs with ROCm <how-to/fine-tuning-llms/index>`
 ..
 
+.. note::
+
+   For guidance on installing ROCm itself, refer to :doc:`ROCm installation for Linux <rocm-install-on-linux:index>`.
+
