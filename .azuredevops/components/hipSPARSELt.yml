@@ -74,6 +74,8 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DAMDGPU_TARGETS=all
         -DTensile_LOGIC=
         -DTensile_CPU_THREADS=
