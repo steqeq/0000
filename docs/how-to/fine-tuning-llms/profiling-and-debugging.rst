@@ -107,7 +107,7 @@ a web-based GUI or command-line analyzer, depending on the your preference.
 Omnitrace
 ---------
 
-`Omnitrace <https://rocm.github.io/omnitrace>` is a comprehensive profiling and tracing tool for parallel applications,
+`Omnitrace <https://rocm.github.io/omnitrace>`_ is a comprehensive profiling and tracing tool for parallel applications,
 including HPC and ML packages, written in C, C++, Fortran, HIP, OpenCL, and Python which execute on the CPU or CPU and
 GPU. It is capable of gathering the performance information of functions through any combination of binary
 instrumentation, call-stack sampling, user-defined regions, and Python interpreter hooks.
