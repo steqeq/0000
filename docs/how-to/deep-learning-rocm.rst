@@ -14,28 +14,38 @@ frameworks to ensure that framework-specific optimizations take advantage of AMD
 The following guides cover installation processes for ROCm-aware deep learning frameworks.
 
 .. grid::
-   :margin: 0 0 5 0
-   :padding: 0 0 5 0
 
    .. grid-item::
-      :columns: 6
+      :columns: 3
 
       :doc:`PyTorch for ROCm <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
 
    .. grid-item::
-      :columns: 6
+      :columns: 3
 
       :doc:`TensorFlow for ROCm <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
 
    .. grid-item::
-      :columns: 6
+      :columns: 3
+
+   .. grid-item::
+      :columns: 3
+
+   .. grid-item::
+      :columns: 3
 
       :doc:`JAX for ROCm <rocm-install-on-linux:how-to/3rd-party/jax-install>`
 
    .. grid-item::
-      :columns: 6
+      :columns: 3
 
       :doc:`MAGMA for ROCm <rocm-install-on-linux:how-to/3rd-party/magma-install>`
+
+   .. grid-item::
+      :columns: 3
+
+   .. grid-item::
+      :columns: 3
 
 The following chart steps through typical installation workflows for installing deep learning frameworks for ROCm.
 
