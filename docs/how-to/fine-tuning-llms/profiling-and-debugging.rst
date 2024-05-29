@@ -16,29 +16,28 @@ collect CPU and GPU performance metrics while the script is running. See the `Py
 You can then visualize and view these metrics using an open-source profile visualization tool like
 `Perfetto UI <https://ui.perfetto.dev>`_.
 
-.. code-block:: python
+#. Use the following snippet to invoke PyTorch Profiler in your code.
 
-   model = models.resnet18().cuda()
-   inputs = torch.randn(5, 3, 224, 224).cuda()
+   .. code-block:: python
 
-   with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
-       model(inputs)
+      import torch
+      import torchvision.models as models
+      from torch.profiler import profile, record_function, ProfilerActivity
+      model = models.resnet18().cuda()
+      inputs = torch.randn(2000, 3, 224, 224).cuda()
+      
+      with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA]) as prof:
+          with record_function("model_inference"):
+              model(inputs)
+      prof.export_chrome_trace("resnet18_profile.json")
 
-   prof.export_chrome_trace("trace.json")
+#. Profile results in ``resnet18_profile.json`` can be viewed by the Perfetto visualization tool. Go to
+   `https://ui.perfetto.dev`__ and import the file.
 
-See the following example profiling jobs.
+   .. figure:: ../../data/how-to/fine-tuning-llms/profiling-perfetto-ui.png
 
-Profile A:
-
-.. figure:: ../../data/how-to/fine-tuning-llms/profile-a.png
-
-   Unopt: vanilla transformers
-
-Profile B:
-
-.. figure:: ../../data/how-to/fine-tuning-llms/profile-b.png
-
-   Oopt: vllm + FA + PA + TP + cuda_graph
+      The above transactions denote the CPU activities that launches GPU kernels.
+      The bottom transaction is the actual GPU activities where GPU processes the resnet18 inferences layer by layer. 
 
 ROCm profiling tools
 ====================
@@ -51,11 +50,11 @@ With AMD's profiling tools, developers are able to gain important insight into h
 using hardware resources and effectively diagnose potential bottlenecks contributing to poor performance. Developers
 working with AMD Instinct accelerators have multiple tools depending on their specific profiling needs; these are:
 
-1. rocprofiler
-2. Omniperf
-3. Omnitrace
+1. :ref:`rocprofiler <fine-tuning-llms-profiling-rocprof>`
+2. :ref:`Omniperf <fine-tuning-llms-profiling-omniperf>`
+3. :ref:`Omnitrace <fine-tuning-llms-profiling-omnitrace>`
 
-.. _fine-tuning-llms-rocprof:
+.. _fine-tuning-llms-profiling-rocprof:
 
 rocprofiler
 -----------
@@ -68,63 +67,70 @@ available hardware counters for your specific accelerator or GPU, and run applic
 their execution.
 
 This ``rocprof`` utility also depends on the :doc:`ROCTracer and ROC-TX libraries <roctracer:index>`, giving it the
-ability to collect timeline traces of the GPU software stack as well as user-annotated code regions.
+ability to collect timeline traces of the accelerator software stack as well as user-annotated code regions.
 
 Note that ``rocprof`` is a CLI-only utility so input and output takes the format of ``.txt`` and CSV files. These
 formats provide a raw view of the data and puts the onus on the user to parse and analyze. Therefore, ``rocprof`` gives
 the user full access and control of raw performance profiling data, but requires extra effort to analyze the collected
 data.
 
-.. _fine-tuning-llms-omniperf:
+.. _fine-tuning-llms-profiling-omniperf:
 
 Omniperf
 --------
-Omniperf is a system performance profiler for high-performance computing (HPC) and machine learning (ML) workloads using
-Instinct accelerators. Under the hood, Omniperf uses :ref:`rocprofiler <fine-tuning-llms-rocprof>` to collect hardware
-performance counters. The Omniperf tool performs system profiling based on all approved hardware counters for Instinct
+`Omniperf <https://rocm.github.io/omniperf>`_ is a system performance profiler for high-performance computing (HPC) and
+machine learning (ML) workloads using Instinct accelerators. Under the hood, Omniperf uses
+:ref:`rocprofiler <fine-tuning-llms-rocprof>` to collect hardware performance counters. The Omniperf tool performs
+system profiling based on all approved hardware counters for Instinct
 accelerator architectures. It provides high level performance analysis features including System Speed-of-Light, IP
 block Speed-of-Light, Memory Chart Analysis, Roofline Analysis, Baseline Comparisons, and more.
 
 Omniperf takes the guesswork out of profiling by removing the need to provide text input files with lists of counters
 to collect and analyze raw CSV output files as is the case with ROC-profiler. Instead, Omniperf automates the collection
 of all available hardware counters in one command and provides a graphical interface to help users understand and
-analyze bottlenecks and stressors for their computational workloads on AMD Instinct™ accelerators. Note that Omniperf
-collects hardware counters in multiple passes, and will therefore re-run the application during each pass to collect
-different sets of metrics.
+analyze bottlenecks and stressors for their computational workloads on AMD Instinct accelerators.
+
+.. note::
+
+   Omniperf collects hardware counters in multiple passes, and will therefore re-run the application during each pass
+   to collect different sets of metrics.
 
 .. figure:: ../../data/how-to/fine-tuning-llms/omniperf-analysis.png
 
    Omniperf memory chat analysis panel.
 
 In a nutshell, Omniperf provides details about hardware activity for a particular GPU kernel. It also supports both
-a web-based GUI or command-line analyzer, depending on the user's preference.
+a web-based GUI or command-line analyzer, depending on the your preference.
 
-.. _fine-tuning-llms-omnitrace:
+.. _fine-tuning-llms-profiling-omnitrace:
 
 Omnitrace
 ---------
 
-Omnitrace is a comprehensive profiling and tracing tool for parallel applications, including HPC and ML packages,
-written in C, C++, Fortran, HIP, OpenCL, and Python which execute on the CPU or CPU+GPU. It is capable of gathering
-the performance information of functions through any combination of binary instrumentation, call-stack sampling,
-user-defined regions, and Python interpreter hooks. Omnitrace supports interactive visualization of comprehensive
-traces in the web browser in addition to high-level summary profiles with mean/min/max/stddev statistics. Beyond runtime
+`Omnitrace <https://rocm.github.io/omnitrace>` is a comprehensive profiling and tracing tool for parallel applications,
+including HPC and ML packages, written in C, C++, Fortran, HIP, OpenCL, and Python which execute on the CPU or CPU and
+GPU. It is capable of gathering the performance information of functions through any combination of binary
+instrumentation, call-stack sampling, user-defined regions, and Python interpreter hooks.
+
+Omnitrace supports interactive visualization of comprehensive traces in the web browser in addition to high-level
+summary profiles with ``mean/min/max/stddev`` statistics. Beyond runtime
 information, Omnitrace supports the collection of system-level metrics such as CPU frequency, GPU temperature, and GPU
 utilization. Process and thread level metrics such as memory usage, page faults, context switches, and numerous other
 hardware counters are also included.
 
-When analyzing the performance of an application, it is always best to NOT assume you know where the performance
-bottlenecks are and why they are happening. Omnitrace is the ideal tool for characterizing where optimization would have
-the greatest impact on the end-to-end execution of the application and/or viewing what else is happening on the system
-during a performance bottleneck.
+.. tip::
+
+   When analyzing the performance of an application, it is always best to NOT assume you know where the performance
+   bottlenecks are and why they are happening. Omnitrace is the ideal tool for characterizing where optimization would
+   have the greatest impact on the end-to-end execution of the application and to discover what else is happening on the
+   system during a performance bottleneck.
 
 .. figure:: ../../data/how-to/fine-tuning-llms/omnitrace-timeline.png
 
    Omnitrace timeline trace example.
 
-For details usage and examples of using these tools, refer to the Application tracing and profiling tech blog.
-
-
+For details usage and examples of using these tools, refer to the `Introduction to profiling tools for AMD hardware
+<https://rocm.blogs.amd.com/software-tools-optimization/profilers/README.html>`_ developer blog.
 
 Debugging with ROCm Debug Agent
 ===============================
