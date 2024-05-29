@@ -10,12 +10,17 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - composablekernel-dev
+    - python3-pip
     - git
 - name: rocmDependencies
   type: object
   default:
+    - rocm-cmake
     - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
+    - composable_kernel
 
 jobs:
 - job: hipTensor
@@ -23,8 +28,6 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -50,9 +53,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=/opt/rocm/bin/amdclang++
-        -DCMAKE_C_COMPILER=/opt/rocm/bin/amdclang
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm/llvm"
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/llvm
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DROCM_PATH="$(Agent.BuildDirectory)/rocm"
         -DCMAKE_BUILD_TYPE=Release
         -DHIPTENSOR_BUILD_TESTS=ON
