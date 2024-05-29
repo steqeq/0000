@@ -10,15 +10,24 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - rocblas
-    - rocsparse
-    - hipsparse
     - libsuitesparse-dev
     - gfortran
     - libfmt-dev
     - git
     - googletest
     - libgtest-dev
+    - python3-pip
+- name: rocmDependencies
+  type: object
+  default:
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
+    - rocBLAS
+    - rocSPARSE
+    - hipSPARSE
 
 jobs:
 - job: rocSOLVER
@@ -26,8 +35,6 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -44,6 +51,18 @@ jobs:
       targetType: inline
       script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
       workingDirectory: '$(Build.SourcesDirectory)'
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: lapack
@@ -59,11 +78,10 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH="/opt/rocm;$(Pipeline.Workspace)/deps-install"
-        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/amdclang
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Pipeline.Workspace)/deps-install
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DAMDGPU_TARGETS=gfx1030;gfx1100
-        -DUSE_CUDA=OFF
         -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_BENCHMARKS=OFF
         -DBUILD_CLIENTS_SAMPLES=OFF
