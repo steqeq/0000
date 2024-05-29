@@ -14,43 +14,36 @@ General overview
 Environment variables that impact libraries in ROCm software stack
 
 .. list-table:: Environment variables that impact libraries in ROCm software stack
+    :widths: 80,20
     :header-rows: 1
     :name: clr-env-variables-general-table
 
-    *
-      - Environment variable
+    * - Environment variable
       - Values
-      - Description
-    *
-      - HIP_DIR
-      - 
-      - The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
-    *
-      - HIP_OFFICIAL_BUILD
-      - 
-      - Enable/Disable for mainline/staging builds. End users should not set this.
-    *
-      - HIP_PATH
-      - 
-      - The path of the HIP SDK.
-    *
-      - HIP_PLATFORM
+
+    * - | ``HIP_DIR``
+        | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
+      -
+
+    * - | ``HIP_OFFICIAL_BUILD``
+        | Enable/Disable for mainline/staging builds. End users should not set this.
+      -
+
+    * - | ``HIP_PATH``
+        | The path of the HIP SDK.
+      -
+ 
+    * - | ``HIP_PLATFORM``
+        | The platform HIP is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
       - ``amd``, ``nvidia``
-      - The platform HIP is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
-    *
-      - ROCM_BUILD_ID
-      - 
-      - Build ID to identify the release of a given package. End users should not set this.
-    *
-      - ROCM_PATH
-      - /opt/rocm
-      - The path of the installed ROCm software stack.
 
-ROCm
-==========================================
+    * - | ``ROCM_BUILD_ID``
+        | Build ID to identify the release of a given package. End users should not set this.
+      -
 
-Environment variables in ROCm library.
-
+    * - | ``ROCM_PATH``
+        | The path of the installed ROCm software stack.
+      - default: ``/opt/rocm``
 
 clr
 ==========================================
@@ -58,76 +51,72 @@ clr
 Environment variables affecting all backends of project clr.
 
 .. list-table:: Environment variables affecting all backends of project clr
+    :widths: 85,15
     :header-rows: 1
     :name: clr-env-variables-all-table
 
-    *
-      - Environment variable
+    * - Environment variable
       - Values
-      - Description
-    *
-      - HIP_PLATFORM
+
+    * - | ``HIP_PLATFORM``
+        | The platform HIP is targeting. If ``HIP_PLATFORM`` is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
       - ``amd``, ``nvidia``
-      - The platform HIP is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
-    *
-      - HSA_DISABLE_CACHE
+
+    * - | ``HSA_DISABLE_CACHE``
+        | Used to disable L2 cache.
       - ON, OFF
-      - Used to disable L2 cache.
-    *
-      - ROCM_HEADER_WRAPPER_WERROR
+
+    * - | ``ROCM_HEADER_WRAPPER_WERROR``
+        | Causes errors to be emitted instead of warnings.
       - ON, OFF
-      - Causes errors to be emitted instead of warnings.
 
 Environment variables affecting the opencl backend of project clr.
 
 .. list-table:: Environment variables affecting the opencl backend of project clr
+    :widths: 85,15
     :header-rows: 1
     :name: clr-env-variables-opencl-table
 
-    *
-      - Environment variable
+    * - Environment variable
       - Values
-      - Description
-    *
-      - CPACK_DEBIAN_PACKAGE_RELEASE
-      - 1, 2, 3...
-      - This is the numbering of the Debian package itself, i.e. the version of the packaging and not the version of the content.
-    *
-      - CPACK_RPM_PACKAGE_RELEASE
-      - 1, 2, 3...
-      - This is the numbering of the RPM package itself, i.e. the version of the packaging and not the version of the content.
 
+    * - | ``CPACK_DEBIAN_PACKAGE_RELEASE``
+        | This is the numbering of the Debian package itself, i.e. the version of the packaging and not the version of the content.
+      - 1, 2, 3...
+
+    * - | ``CPACK_RPM_PACKAGE_RELEASE``
+        | This is the numbering of the RPM package itself, i.e. the version of the packaging and not the version of the content.
+      - 1, 2, 3...
 
 Environment variables affecting the hipamd backend of project clr.
 
 .. list-table:: Environment variables affecting the hipamd backend of project clr
+    :widths: 85,15
     :header-rows: 1
     :name: clr-env-variables-hipamd-table
 
-    *
-      - Environment variable
+    * - Environment variable
       - Values
-      - Description
-    *
-      - HIP_FORCE_QUEUE_PROFILING
+
+    * - | ``HIP_FORCE_QUEUE_PROFILING``
+        | Used to run the app as if it were run in rocprof. Forces command queue profiling on by default.
       - ON, OFF
-      - Used to run the app as if it were run in rocprof. Forces command queue profiling on by default.
-    *
-      - HSA_OVERRIDE_GFX_VERSION
+
+    * - | ``HSA_OVERRIDE_GFX_VERSION``
+        | Override the target version. Used to enable HIP usage on unsupported hardware.
       - 11.0.0, 10.3.0
-      - Override the target version. Used to enable HIP usage on unsupported hardware.
-    *
-      - HSAKMT_DEBUG_LEVEL
+
+    * - | ``HSAKMT_DEBUG_LEVEL``
+        | When set to the highest level, the system will print memory allocation info.
       - 1, 2, ... 7
-      - When set to the highest level, the system will print memory allocation info.
-    *
-      - ROCM_LIBPATCH_VERSION
+
+    * - | ``ROCM_LIBPATCH_VERSION``
+        | The ROCm version in the format of an integer. The format is ``MAJOR * 10000 + MINOR * 100 + PATCH``
       - 50000, 60020...
-      - The ROCm version in the format of an integer. The format is MAJOR * 10000 + MINOR * 100 + PATCH
-    *
-      - ROCM_RPATH
+
+    * - | ``ROCM_RPATH``
+        | The rpath for ROCm libraries.
       - 
-      - The rpath for ROCm libraries.
 
 rocclr environment variables
 ----------------------------------
@@ -135,553 +124,551 @@ rocclr environment variables
 AMD rocclr environment variables at release build:
 
 .. list-table:: AMD rocclr environment variables
+    :widths: 70,15,15
     :header-rows: 1
     :name: rocclr-env-variables-release-table
 
-    *
-      - Environment variable
+    * - Environment variable
       - Variable type
       - Default value
-      - Description
-    *
-      - AMD_CPU_AFFINITY
-      - bool
+
+    * - | ``AMD_CPU_AFFINITY``
+        | Reset CPU affinity of any runtime threads
+      - ``bool``
       - FALSE
-      - Reset CPU affinity of any runtime threads
-    *
-      - AMD_DIRECT_DISPATCH
-      - bool
+
+    * - | ``AMD_DIRECT_DISPATCH``
+        | Enable direct kernel dispatch.
+      - ``bool``
       - FALSE
-      - Enable direct kernel dispatch.
-    *
-      - AMD_GPU_FORCE_SINGLE_FP_DENORM
-      - int
+
+    * - | ``AMD_GPU_FORCE_SINGLE_FP_DENORM``
+        | Force denorm for single precision: -1 - don't force, 0 - disable, 1 - enable
+      - ``int``
       - -1
-      - Force denorm for single precision: -1 - don't force, 0 - disable, 1 - enable
-    *
-      - AMD_LOG_LEVEL
-      - int
+
+    * - | ``AMD_LOG_LEVEL``
+        | The default log level
+      - ``int``
       - 0
-      - The default log level
-    *
-      - AMD_LOG_LEVEL_FILE
-      - cstring
+
+    * - | ``AMD_LOG_LEVEL_FILE``
+        | Set output file for AMD_LOG_LEVEL. Default is stderr
+      - ``cstring``
       - 
-      - Set output file for AMD_LOG_LEVEL. Default is stderr
-    *
-      - AMD_LOG_MASK
-      - uint
+
+    * - | ``AMD_LOG_MASK``
+        | The mask to enable specific kinds of logs
+      - ``uint``
       - 0X7FFFFFFF
-      - The mask to enable specific kinds of logs
-    *
-      - AMD_OCL_BUILD_OPTIONS
-      - cstring
+
+    * - | ``AMD_OCL_BUILD_OPTIONS``
+        | Set the options for clBuildProgram and clCompileProgram, override
+      - ``cstring``
       - 0
-      - Set the options for clBuildProgram and clCompileProgram, override
-    *
-      - AMD_OCL_BUILD_OPTIONS_APPEND
-      - cstring
+
+    * - | ``AMD_OCL_BUILD_OPTIONS_APPEND``
+        | Append the options for clBuildProgram and clCompileProgram
+      - ``cstring``
       - 0
-      - Append the options for clBuildProgram and clCompileProgram
-    *
-      - AMD_OCL_LINK_OPTIONS
-      - cstring
+
+    * - | ``AMD_OCL_LINK_OPTIONS``
+        | Set the options for clLinkProgram, override
+      - ``cstring``
       - 0
-      - Set the options for clLinkProgram, override
-    *
-      - AMD_OCL_LINK_OPTIONS_APPEND
-      - cstring
+
+    * - | ``AMD_OCL_LINK_OPTIONS_APPEND``
+        | Append the options for clLinkProgram
+      - ``cstring``
       - 0
-      - Append the options for clLinkProgram
-    *
-      - AMD_OCL_WAIT_COMMAND
-      - bool
+
+    * - | ``AMD_OCL_WAIT_COMMAND``
+        | 1 = Enable a wait for every submitted command
+      - ``bool``
       - FALSE
-      - 1 = Enable a wait for every submitted command
-    *
-      - AMD_OPT_FLUSH
-      - uint
-      - 1
-      - Kernel flush option, 0x0 = Use system-scope fence operations. 0x1 = Use device-scope fence operations when possible.
-    *
-      - AMD_SERIALIZE_COPY
-      - uint
-      - 0
-      - Serialize copies, 0x1 = Wait for completion before enqueue, 0x2 = Wait for completion after enqueue 0x3 = both
-    *
-      - AMD_SERIALIZE_KERNEL
-      - uint
-      - 0
-      - Serialize kernel enqueue, 0x1 = Wait for completion before enqueue, 0x2 = Wait for completion after enqueue 0x3 = both
-    *
-      - AMD_THREAD_TRACE_ENABLE
-      - bool
-      - TRUE
-      - Enable thread trace extension
-    *
-      - CL_KHR_FP64
-      - bool
-      - TRUE
-      - Enable/Disable support for double precision
-    *
-      - CQ_THREAD_STACK_SIZE
-      - size_t
-      - 256*Ki
-      - The default command queue thread stack size
-    *
-      - CUDA_VISIBLE_DEVICES
-      - cstring
-      - 
-      - Only devices whose index is present in the sequence are visible to CUDA
-    *
-      - DEBUG_CLR_GRAPH_PACKET_CAPTURE
-      - bool
-      - FALSE
-      - Enable/Disable graph packet capturing
-    *
-      - DEBUG_CLR_LIMIT_BLIT_WG
-      - uint
-      - 16
-      - Limit the number of workgroups in blit operations
-    *
-      - DISABLE_DEFERRED_ALLOC
-      - bool
-      - FALSE
-      - Disables deferred memory allocation on device
-    *
-      - GPU_ADD_HBCC_SIZE
-      - bool
-      - FALSE
-      - Add HBCC size to the reported device memory
-    *
-      - GPU_ANALYZE_HANG
-      - bool
-      - FALSE
-      - 1 = Enables GPU hang analysis
-    *
-      - GPU_BLIT_ENGINE_TYPE
-      - uint
-      - 0x0
-      - Blit engine type: 0 - Default, 1 - Host, 2 - CAL, 3 - Kernel
-    *
-      - GPU_CP_DMA_COPY_SIZE
-      - uint
-      - 1
-      - Set maximum size of CP DMA copy in KiB
-    *
-      - GPU_DEBUG_ENABLE
-      - bool
-      - FALSE
-      - Enables collection of extra info for debugger at some performance cost
-    *
-      - GPU_DEVICE_ORDINAL
-      - cstring
-      - 
-      - Select the device ordinal, a comma separated list of available devices
-    *
-      - GPU_DUMP_BLIT_KERNELS
-      - bool
-      - FALSE
-      - Dump the kernels for blit manager
-    *
-      - GPU_DUMP_CODE_OBJECT
-      - bool
-      - FALSE
-      - Enable dump code object
-    *
-      - GPU_ENABLE_COOP_GROUPS
-      - bool
-      - TRUE
-      - Enables cooperative group launch
-    *
-      - GPU_ENABLE_HW_P2P
-      - bool
-      - FALSE
-      - Enables HW P2P path
-    *
-      - GPU_ENABLE_LC
-      - bool
-      - TRUE
-      - Enables LC path
-    *
-      - GPU_ENABLE_PAL
-      - uint
-      - 2
-      - Enables PAL backend. 0 - ROC, 1 - PAL, 2 - ROC or PAL
-    *
-      - GPU_ENABLE_WAVE32_MODE
-      - bool
-      - TRUE
-      - Enables Wave32 compilation in HW if available
-    *
-      - GPU_ENABLE_WGP_MODE
-      - bool
-      - TRUE
-      - Enables WGP Mode in HW if available
-    *
-      - GPU_FORCE_BLIT_COPY_SIZE
-      - size_t
-      - 0
-      - Size in KB of the threshold below which to force blit instead for sdma
-    *
-      - GPU_FORCE_QUEUE_PROFILING
-      - bool
-      - FALSE
-      - Force command queue profiling by default
-    *
-      - GPU_FLUSH_ON_EXECUTION
-      - bool
-      - FALSE
-      - Submit commands to HW on every operation. 0 - Disable, 1 - Enable
-    *
-      - GPU_IMAGE_BUFFER_WAR
-      - bool
-      - TRUE
-      - Enables image buffer workaround
-    *
-      - GPU_IMAGE_DMA
-      - bool
-      - TRUE
-      - Enable DRM DMA for image transfers
-    *
-      - GPU_MAX_COMMAND_BUFFERS
-      - uint
-      - 8
-      - The maximum number of command buffers allocated per queue
-    *
-      - GPU_MAX_HEAP_SIZE
-      - uint
-      - 100
-      - Set maximum size of the GPU heap to % of board memory
-    *
-      - GPU_MAX_HW_QUEUES
-      - uint
-      - 4
-      - The maximum number of HW queues allocated per device"
-    *
-      - GPU_MAX_REMOTE_MEM_SIZE
-      - uint
-      - 2
-      - Maximum size , in Ki that allows device memory substitution with system
-    *
-      - GPU_MAX_SUBALLOC_SIZE
-      - size_t
-      - 4096
-      - The maximum size accepted for suballocaitons in KB
-    *
-      - GPU_MAX_USWC_ALLOC_SIZE
-      - uint
-      - 2048
-      - Set a limit in Mb on the maximum USWC allocation size, -1 = No limit
-    *
-      - GPU_MAX_WORKGROUP_SIZE
-      - int
-      - 0
-      - Maximum number of workitems in a workgroup for GPU, 0 -use default
-    *
-      - GPU_MIPMAP
-      - bool
-      - TRUE
-      - Enables GPU mipmap extension
-    *
-      - GPU_NUM_COMPUTE_RINGS
-      - uint
-      - 2
-      - GPU number of compute rings. 0 - disabled, 1, 2, ... - the number of compute rings
-    *
-      - GPU_NUM_MEM_DEPENDENCY
-      - size_t
-      - 256
-      - Number of memory objects for dependency tracking
-    *
-      - GPU_PINNED_MIN_XFER_SIZE
-      - size_t
-      - 128
-      - The minimal buffer size for pinned read/write transfers in MiB
-    *
-      - GPU_PINNED_XFER_SIZE
-      - size_t
-      - 32
-      - The buffer size for pinning in read/write transfers in MiB
-    *
-      - GPU_PRINT_CHILD_KERNEL
-      - uint
-      - 0
-      - Prints the specified number of the child kernels
-    *
-      - GPU_RESOURCE_CACHE_SIZE
-      - size_t
-      - 64
-      - The resource cache size in MB
-    *
-      - GPU_SINGLE_ALLOC_PERCENT
-      - uint
-      - 85
-      - Maximum size of a single allocation as percentage of total
-    *
-      - GPU_STAGING_BUFFER_SIZE
-      - uint
-      - 4
-      - Size of the GPU staging buffer in MiB
-    *
-      - GPU_STREAMOPS_CP_WAIT
-      - bool
-      - FALSE
-      - Force the stream wait memory operation to wait on CP.
-    *
-      - GPU_USE_DEVICE_QUEUE
-      - bool
-      - FALSE
-      - Use a dedicated device queue for the actual submissions
-    *
-      - GPU_WAVES_PER_SIMD
-      - uint
-      - 0
-      - Force the number of waves per SIMD , 1-10
-    *
-      - GPU_XFER_BUFFER_SIZE
-      - size_t
-      - 0
-      - Transfer buffer size for image copy optimization in KB
-    *
-      - HIP_FORCE_DEV_KERNARG
-      - bool
-      - 0
-      - Force device mem for kernel args.
-    *
-      - HIP_HIDDEN_FREE_MEM
-      - uint
-      - 0
-      - Reserve free mem reporting in Mb, 0 = Disable
-    *
-      - HIP_HOST_COHERENT
-      - uint
-      - 0
-      - Coherent memory in hipHostMalloc
-    *
-      - HIP_INITIAL_DM_SIZE
-      - size_t
-      - 8388608
-      - Set initial heap size for device malloc. The default value corresponds to 8 MiB
-    *
-      - HIP_LAUNCH_BLOCKING
-      - uint
-      - 0
-      - Serialize kernel enqueue 0x1 = Wait for completion after enqueue, same as AMD_SERIALIZE_KERNEL=2
-    *
-      - HIP_MEM_POOL_SUPPORT
-      - bool
-      - FALSE
-      - Enables memory pool support in HIP
-    *
-      - HIP_MEM_POOL_USE_VM
-      - bool
-      - IS_WINDOWS
-      - Enables memory pool support in HIP
-    *
-      - HIP_USE_RUNTIME_UNBUNDLER
-      - bool
-      - FALSE
-      - Force this to use Runtime code object unbundler.
-    *
-      - HIP_VISIBLE_DEVICES
-      - cstring
-      - 
-      - Only devices whose index is present in the sequence are visible to HIP
-    *
-      - HIP_VMEM_MANAGE_SUPPORT
-      - bool
-      - TRUE
-      - Virtual Memory Management Support
-    *
-      - HIPCC_VERBOSE
-      - uint
-      - 0
-      - How much extra info to show during build. E.g: compiler flags, paths.
-    *
-      - HIPRTC_COMPILE_OPTIONS_APPEND
-      - cstring
-      - 
-      - Set compile options needed for hiprtc compilation
-    *
-      - HIPRTC_LINK_OPTIONS_APPEND
-      - cstring
-      - 
-      - Set link options needed for hiprtc compilation
-    *
-      - HIPRTC_USE_RUNTIME_UNBUNDLER
-      - bool
-      - FALSE
-      - Set this to true to force runtime unbundler in hiprtc.
-    *
-      - HSA_KERNARG_POOL_SIZE
-      - uint
-      - 1024 * 1024
-      - Kernarg pool size
-    *
-      - HSA_LOCAL_MEMORY_ENABLE
-      - bool
-      - TRUE
-      - Enable HSA device local memory usage
-    *
-      - OCL_SET_SVM_SIZE
-      - uint
+
+    * - | ``OCL_SET_SVM_SIZE``
+        | set SVM space size for discrete GPU
+      - ``uint``
       - 4*16384
-      - set SVM space size for discrete GPU
-    *
-      - OCL_STUB_PROGRAMS
-      - bool
+
+    * - | ``OCL_STUB_PROGRAMS``
+        | 1 = Enables OCL programs stubing
+      - ``bool``
       - FALSE
-      - 1 = Enables OCL programs stubing
-    *
-      - OPENCL_VERSION
-      - uint
+
+    * - | ``OPENCL_VERSION``
+        | Force GPU opencl version
+      - ``uint``
       - 200
-      - Force GPU opencl version
-    *
-      - PAL_DISABLE_SDMA
-      - bool
-      - FALSE
-      - 1 = Disable SDMA for PAL
-    *
-      - PAL_MALL_POLICY
-      - uint
+
+    * - | ``AMD_OPT_FLUSH``
+        | Kernel flush option, 0x0 = Use system-scope fence operations. 0x1 = Use device-scope fence operations when possible.
+      - ``uint``
+      - 1
+
+    * - | ``AMD_SERIALIZE_COPY``
+        | Serialize copies, 0x1 = Wait for completion before enqueue, 0x2 = Wait for completion after enqueue 0x3 = both
+      - ``uint``
       - 0
-      - Controls the behaviour of allocations with respect to the MALL, 0 = MALL policy is decided by KMD, 1 = Allocations are never put through the MALL, 2 = Allocations will always be put through the MALL
-    *
-      - PAL_ALWAYS_RESIDENT
-      - bool
-      - FALSE
-      - Force memory resources to become resident at allocation time
-    *
-      - PAL_EMBED_KERNEL_MD
-      - bool
-      - FALSE
-      - Enables writing kernel metadata into command buffers.
-    *
-      - PAL_FORCE_ASIC_REVISION
-      - uint
+
+    * - | ``AMD_SERIALIZE_KERNEL``
+        | Serialize kernel enqueue, 0x1 = Wait for completion before enqueue, 0x2 = Wait for completion after enqueue 0x3 = both
+      - ``uint``
       - 0
-      - Force a specific ASIC revision for all devices
-    *
-      - PAL_HIP_IPC_FLAG
-      - bool
-      - FALSE
-      - Enable interprocess flag for device allocation in PAL HIP
-    *
-      - PAL_PREPINNED_MEMORY_SIZE
-      - size_t
-      - 64
-      - Size in KBytes of prepinned memory
-    *
-      - PAL_RGP_DISP_COUNT
-      - uint
-      - 10000
-      - The number of dispatches for RGP capture with SQTT
-    *
-      - REMOTE_ALLOC
-      - bool
-      - FALSE
-      - Use remote memory for the global heap allocation
-    *
-      - ROC_ACTIVE_WAIT_TIMEOUT
-      - uint
-      - 0
-      - Forces active wait of GPU interrupt for the timeout, us unit
-    *
-      - ROC_AQL_QUEUE_SIZE
-      - uint
-      - 16384
-      - AQL queue size in AQL packets
-    *
-      - ROC_CPU_WAIT_FOR_SIGNAL
-      - bool
+
+    * - | ``AMD_THREAD_TRACE_ENABLE``
+        | Enable thread trace extension
+      - ``bool``
       - TRUE
-      - Enable CPU wait for dependent HSA signals.
-    *
-      - ROC_ENABLE_LARGE_BAR
-      - bool
+
+    * - | ``CL_KHR_FP64``
+        | Enable/Disable support for double precision
+      - ``bool``
       - TRUE
-      - Enable Large Bar if supported by the device
-    *
-      - ROC_GLOBAL_CU_MASK
-      - cstring
+
+    * - | ``CQ_THREAD_STACK_SIZE``
+        | The default command queue thread stack size
+      - ``size_t``
+      - 256*Ki
+
+    * - | ``CUDA_VISIBLE_DEVICES``
+        | Only devices whose index is present in the sequence are visible to CUDA
+      - ``cstring``
       - 
-      - Sets a global CU mask, entered as hex value for all queues, Each active bit represents using one CU, e.g. 0xf enables only 4 CUs
-    *
-      - ROC_HMM_FLAGS
-      - uint
+
+    * - | ``DEBUG_CLR_GRAPH_PACKET_CAPTURE``
+        | Enable/Disable graph packet capturing
+      - ``bool``
+      - FALSE
+
+    * - | ``DEBUG_CLR_LIMIT_BLIT_WG``
+        | Limit the number of workgroups in blit operations
+      - ``uint``
+      - 16
+
+    * - | ``DISABLE_DEFERRED_ALLOC``
+        | Disables deferred memory allocation on device
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_ADD_HBCC_SIZE``
+        | Add HBCC size to the reported device memory
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_ANALYZE_HANG``
+        | 1 = Enables GPU hang analysis
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_BLIT_ENGINE_TYPE``
+        | Blit engine type: 0 - Default, 1 - Host, 2 - CAL, 3 - Kernel
+      - ``uint``
+      - 0x0
+
+    * - | ``GPU_CP_DMA_COPY_SIZE``
+        | Set maximum size of CP DMA copy in KiB
+      - ``uint``
+      - 1
+
+    * - | ``GPU_DEBUG_ENABLE``
+        | Enables collection of extra info for debugger at some performance cost
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_DEVICE_ORDINAL``
+        | Select the device ordinal, a comma separated list of available devices
+      - ``cstring``
+      - 
+
+    * - | ``GPU_DUMP_BLIT_KERNELS``
+        | Dump the kernels for blit manager
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_DUMP_CODE_OBJECT``
+        | Enable dump code object
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_ENABLE_COOP_GROUPS``
+        | Enables cooperative group launch
+      - ``bool``
+      - TRUE
+
+    * - | ``GPU_ENABLE_HW_P2P``
+        | Enables HW P2P path
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_ENABLE_LC``
+        | Enables LC path
+      - ``bool``
+      - TRUE
+
+    * - | ``GPU_ENABLE_PAL``
+        | Enables PAL backend. 0 - ROC, 1 - PAL, 2 - ROC or PAL
+      - ``uint``
+      - 2
+
+    * - | ``GPU_ENABLE_WAVE32_MODE``
+        | Enables Wave32 compilation in HW if available
+      - ``bool``
+      - TRUE
+
+    * - | ``GPU_ENABLE_WGP_MODE``
+        | Enables WGP Mode in HW if available
+      - ``bool``
+      - TRUE
+
+    * - | ``GPU_FORCE_BLIT_COPY_SIZE``
+        | Size in KB of the threshold below which to force blit instead for sdma
+      - ``size_t``
       - 0
-      - ROCm HMM configuration flags
-    *
-      - ROC_P2P_SDMA_SIZE
-      - uint
-      - 1024
-      - The minimum size in KB for P2P transfer with SDMA
-    *
-      - ROC_SIGNAL_POOL_SIZE
-      - uint
+
+    * - | ``GPU_FORCE_QUEUE_PROFILING``
+        | Force command queue profiling by default
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_FLUSH_ON_EXECUTION``
+        | Submit commands to HW on every operation. 0 - Disable, 1 - Enable
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_IMAGE_BUFFER_WAR``
+        | Enables image buffer workaround
+      - ``bool``
+      - TRUE
+
+    * - | ``GPU_IMAGE_DMA``
+        | Enable DRM DMA for image transfers
+      - ``bool``
+      - TRUE
+
+    * - | ``GPU_MAX_COMMAND_BUFFERS``
+        | The maximum number of command buffers allocated per queue
+      - ``uint``
+      - 8
+
+    * - | ``GPU_MAX_HEAP_SIZE``
+        | Set maximum size of the GPU heap to % of board memory
+      - ``uint``
+      - 100
+
+    * - | ``GPU_MAX_HW_QUEUES``
+        | The maximum number of HW queues allocated per device
+      - ``uint``
+      - 4
+
+    * - | ``GPU_MAX_REMOTE_MEM_SIZE``
+        | Maximum size , in Ki that allows device memory substitution with system
+      - ``uint``
+      - 2
+
+    * - | ``GPU_MAX_SUBALLOC_SIZE``
+        | The maximum size accepted for suballocaitons in KB
+      - ``size_t``
+      - 4096
+
+    * - | ``GPU_MAX_USWC_ALLOC_SIZE``
+        | Set a limit in Mb on the maximum USWC allocation size, -1 = No limit
+      - ``uint``
+      - 2048
+
+    * - | ``GPU_MAX_WORKGROUP_SIZE``
+        | Maximum number of workitems in a workgroup for GPU, 0 -use default
+      - ``int``
+      - 0
+
+    * - | ``GPU_MIPMAP``
+        | Enables GPU mipmap extension
+      - ``bool``
+      - TRUE
+
+    * - | ``GPU_NUM_COMPUTE_RINGS``
+        | GPU number of compute rings. 0 - disabled, 1, 2, ... - the number of compute rings
+      - ``uint``
+      - 2
+
+    * - | ``GPU_NUM_MEM_DEPENDENCY``
+        | Number of memory objects for dependency tracking
+      - ``size_t``
+      - 256
+
+    * - | ``GPU_PINNED_MIN_XFER_SIZE``
+        | The minimal buffer size for pinned read/write transfers in MiB
+      - ``size_t``
+      - 128
+
+    * - | ``GPU_PINNED_XFER_SIZE``
+        | The buffer size for pinning in read/write transfers in MiB
+      - ``size_t``
       - 32
-      - Initial size of HSA signal pool
-    *
-      - ROC_SKIP_KERNEL_ARG_COPY
-      - bool
+
+    * - | ``GPU_PRINT_CHILD_KERNEL``
+        | Prints the specified number of the child kernels
+      - ``uint``
+      - 0
+
+    * - | ``GPU_RESOURCE_CACHE_SIZE``
+        | The resource cache size in MB
+      - ``size_t``
+      - 64
+
+    * - | ``GPU_SINGLE_ALLOC_PERCENT``
+        | Maximum size of a single allocation as percentage of total  
+      - ``uint``
+      - 85
+
+    * - | ``GPU_STAGING_BUFFER_SIZE``
+        | Size of the GPU staging buffer in MiB
+      - ``uint``
+      - 4
+
+    * - | ``GPU_STREAMOPS_CP_WAIT``
+        | Force the stream wait memory operation to wait on CP.
+      - ``bool``
       - FALSE
-      - If true, then runtime can skip kernel arg copy
-    *
-      - ROC_SYSTEM_SCOPE_SIGNAL
-      - bool
-      - TRUE
-      - Enable system scope for signals, uses interrupts.
-    *
-      - ROC_USE_FGS_KERNARG
-      - bool
-      - TRUE
-      - Use fine grain kernel args segment for supported ASICs
-    *
-      - ROCPROFILER_REGISTER_ROOT
-      - cstring
+
+    * - | ``GPU_USE_DEVICE_QUEUE``
+        | Use a dedicated device queue for the actual submissions
+      - ``bool``
+      - FALSE
+
+    * - | ``GPU_WAVES_PER_SIMD``
+        | Force the number of waves per SIMD , 1-10
+      - ``uint``
+      - 0
+
+    * - | ``GPU_XFER_BUFFER_SIZE``
+        | Transfer buffer size for image copy optimization in KB
+      - ``size_t``
+      - 0
+
+    * - | ``HIP_FORCE_DEV_KERNARG``
+        | Force device mem for kernel args.
+      - ``bool``
+      - 0
+
+    * - | ``HIP_HIDDEN_FREE_MEM``
+        | Reserve free mem reporting in Mb, 0 = Disable
+      - ``uint``
+      - 0
+
+    * - | ``HIP_HOST_COHERENT``
+        | Coherent memory in ``hipHostMalloc``
+      - ``uint``
+      - 0
+
+    * - | ``HIP_INITIAL_DM_SIZE``
+        | Set initial heap size for device malloc. The default value corresponds to 8 MiB
+      - ``size_t``
+      - 8388608
+
+    * - | ``HIP_LAUNCH_BLOCKING``
+        | Serialize kernel enqueue 0x1 = Wait for completion after enqueue, same as ``AMD_SERIALIZE_KERNEL=2``
+      - ``uint``
+      - 0
+
+    * - | ``HIP_MEM_POOL_SUPPORT``
+        | Enables memory pool support in HIP
+      - ``bool``
+      - FALSE
+
+    * - | ``HIP_MEM_POOL_USE_VM``
+        | Enables memory pool support in HIP
+      - ``bool``
+      - IS_WINDOWS
+
+    * - | ``HIP_USE_RUNTIME_UNBUNDLER``
+        | Force this to use Runtime code object unbundler.
+      - ``bool``
+      - FALSE
+
+    * - | ``HIP_VISIBLE_DEVICES``
+        | Only devices whose index is present in the sequence are visible to HIP
+      - ``cstring``
       - 
-      - The path to the rocProfiler.
+
+    * - | ``HIP_VMEM_MANAGE_SUPPORT``
+        | Virtual Memory Management Support
+      - ``bool``
+      - TRUE
+
+    * - | ``HIPCC_VERBOSE``
+        | How much extra info to show during build. E.g: compiler flags, paths.
+      - ``uint``
+      - 0
+
+    * - | ``HIPRTC_COMPILE_OPTIONS_APPEND``
+        | Set compile options needed for hiprtc compilation
+      - ``cstring``
+      - 
+
+    * - | ``HIPRTC_LINK_OPTIONS_APPEND``
+        | Set link options needed for hiprtc compilation
+      - ``cstring``
+      - 
+
+    * - | ``HIPRTC_USE_RUNTIME_UNBUNDLER``
+        | Set this to true to force runtime unbundler in hiprtc.
+      - ``bool``
+      - FALSE
+
+    * - | ``HSA_KERNARG_POOL_SIZE``
+        | Kernarg pool size
+      - ``uint``
+      - 1024 * 1024
+
+    * - | ``HSA_LOCAL_MEMORY_ENABLE``
+        | Enable HSA device local memory usage
+      - ``bool``
+      - TRUE
+
+    * - | ``PAL_DISABLE_SDMA``
+        | 1 = Disable SDMA for PAL
+      - ``bool``
+      - FALSE
+
+    * - | ``PAL_MALL_POLICY``
+        | Controls the behaviour of allocations with respect to the MALL, 0 = MALL policy is decided by KMD, 1 = Allocations are never put through the MALL, 2 = Allocations will always be put through the MALL
+      - ``uint``
+      - 0
+
+    * - | ``PAL_ALWAYS_RESIDENT``
+        | Force memory resources to become resident at allocation time
+      - ``bool``
+      - FALSE
+
+    * - | ``PAL_EMBED_KERNEL_MD``
+        | Enables writing kernel metadata into command buffers.
+      - ``bool``
+      - FALSE
+
+    * - | ``PAL_FORCE_ASIC_REVISION``
+        | Force a specific ASIC revision for all devices
+      - ``uint``
+      - 0
+
+    * - | ``PAL_HIP_IPC_FLAG``
+        | Enable interprocess flag for device allocation in PAL HIP
+      - ``bool``
+      - FALSE
+
+    * - | ``PAL_PREPINNED_MEMORY_SIZE``
+        | Size in KBytes of prepinned memory
+      - ``size_t``
+      - 64
+
+    * - | ``PAL_RGP_DISP_COUNT``
+        | The number of dispatches for RGP capture with SQTT
+      - ``uint``
+      - 10000
+
+    * - | ``REMOTE_ALLOC``
+        | Use remote memory for the global heap allocation
+      - ``bool``
+      - FALSE
+
+    * - | ``ROC_ACTIVE_WAIT_TIMEOUT``
+        | Forces active wait of GPU interrupt for the timeout, us unit
+      - ``uint``
+      - 0
+
+    * - | ``ROC_AQL_QUEUE_SIZE``
+        | AQL queue size in AQL packets
+      - ``uint``
+      - 16384
+
+    * - | ``ROC_CPU_WAIT_FOR_SIGNAL``
+        | Enable CPU wait for dependent HSA signals.
+      - ``bool``
+      - TRUE
+
+    * - | ``ROC_ENABLE_LARGE_BAR``
+        | Enable Large Bar if supported by the device
+      - ``bool``
+      - TRUE
+
+    * - | ``ROC_GLOBAL_CU_MASK``
+        | Sets a global CU mask, entered as hex value for all queues, Each active bit represents using one CU, e.g. 0xf enables only 4 CUs
+      - ``cstring``
+      - 
+
+    * - | ``ROC_HMM_FLAGS``
+        | ROCm HMM configuration flags
+      - ``uint``
+      - 0
+
+    * - | ``ROC_P2P_SDMA_SIZE``
+        | The minimum size in KB for P2P transfer with SDMA
+      - ``uint``
+      - 1024
+
+    * - | ``ROC_SIGNAL_POOL_SIZE``
+        | Initial size of HSA signal pool
+      - ``uint``
+      - 32
+
+    * - | ``ROC_SKIP_KERNEL_ARG_COPY``
+        | If true, then runtime can skip kernel arg copy
+      - ``bool``
+      - FALSE
+
+    * - | ``ROC_SYSTEM_SCOPE_SIGNAL``
+        | Enable system scope for signals, uses interrupts.
+      - ``bool``
+      - TRUE
+
+    * - | ``ROC_USE_FGS_KERNARG``
+        | Use fine grain kernel args segment for supported ASICs
+      - ``bool``
+      - TRUE
+
+    * - | ``ROCPROFILER_REGISTER_ROOT``
+        | The path to the rocProfiler.
+      - ``cstring``
+      - 
 
 AMD rocclr environment variables at debug build:
 
 .. list-table:: AMD rocclr environment variables
+    :widths: 65,15,20
     :header-rows: 1
     :name: rocclr-env-variables-debug-table
 
-    *
-      - Environment variable
+    * - Environment variable
       - Variable type
       - Default value
-      - Description
-    *
-      - AMD_OCL_SUBST_OBJFILE
-      - cstring
+
+    * - | ``AMD_OCL_SUBST_OBJFILE``
+        | Specify binary substitution config file for OpenCL
+      - ``cstring``
       - 0
-      - Specify binary substitution config file for OpenCL
-    *
-      - CPU_MEMORY_ALIGNMENT_SIZE
-      - size_t
+
+    * - | ``CPU_MEMORY_ALIGNMENT_SIZE``
+        | Size in bytes for the default alignment for guarded memory on CPU
+      - ``size_t``
       - 256
-      - Size in bytes for the default alignment for guarded memory on CPU
-    *
-      - CPU_MEMORY_GUARD_PAGE_SIZE
-      - size_t
+
+    * - | ``CPU_MEMORY_GUARD_PAGE_SIZE``
+        | Size in KB of CPU memory guard page
+      - ``size_t``
       - 64
-      - Size in KB of CPU memory guard page
-    *
-      - CPU_MEMORY_GUARD_PAGES
-      - bool
+
+    * - | ``CPU_MEMORY_GUARD_PAGES``
+        | Use guard pages for CPU memory
+      - ``bool``
       - FALSE
-      - Use guard pages for CPU memory
-    *
-      - MEMOBJ_BASE_ADDR_ALIGN
-      - size_t
+
+    * - | ``MEMOBJ_BASE_ADDR_ALIGN``
+        | Alignment of the base address of any allocate memory object. The default value corresponds to 4 KiB.
+      - ``size_t``
       - 4096
-      - Alignment of the base address of any allocate memory object. The default value corresponds to 4 KiB.
-    *
-      - PARAMETERS_MIN_ALIGNMENT
-      - size_t
+
+    * - | ``PARAMETERS_MIN_ALIGNMENT``
+        | Minimum alignment required for the abstract parameters stack
+      - ``size_t``
       - NATIVE_ALIGNMENT_SIZE
-      - Minimum alignment required for the abstract parameters stack
