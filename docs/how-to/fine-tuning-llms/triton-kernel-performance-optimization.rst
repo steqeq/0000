@@ -9,11 +9,13 @@ Optimizing Triton kernels
 This section introduces the general steps for `Triton <https://openai.com/index/triton/>`_ kernel optimization. Broadly,
 Triton kernel optimization is similar to HIP and CUDA kernel optimization.
 
+.. _fine-tuning-llms-triton-hardware-resource-utilization:
+
 Hardware resource utilization
 =============================
 
-Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do computation in parallel. So, how many CUs can
-a compute kernel can allocate its task to? For AMD MI300X, the grid should have at least 1024 thread blocks or
+Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do computation in parallel. So, how many CUs
+can a compute kernel can allocate its task to? For AMD MI300X, the grid should have at least 1024 thread blocks or
 workgroups (WGs).
 
 To increase hardware utilization and maximize parallelism, it is necessary to design algorithms that can exploit more
@@ -36,11 +38,13 @@ operations, which can further distribute the computation across more CUs, thereb
    On an MI300X device, there are 304 CUs, 4 SIMD per CU, and the wavefront size (warp size) is 64. See :doc:`Hardware
    specifications <rocm:reference/gpu-arch-specs>` for a full list of AMD accelerators and GPUs.
 
+.. _fine-tuning-llms-triton-kernel-configs-env-vars:
+
 Autotunable kernel configurations and environment variables
 ===========================================================
 
 This section relates to the amount of memory access and computation assigned to each CU. It is related to the usage of
-LDS, register and the scheduling of different tasks on a CU.
+LDS, registers and the scheduling of different tasks on a CU.
 
 The following kernel arguments can be tuned.
 
@@ -104,20 +108,26 @@ The following kernel arguments can be tuned.
    the result in the MFMA layout. This reduces the efficiency of global
    stores but has an insignificant influence on kernel execution time.
 
-   Note that this variable is not turned on by default because it only
-   works with ``tt.store`` but not ``tt.atomic_add``, which is used in split-k and
-   stream-k GEMM kernels. In the future, it might be enabled with
-   ``tt.atomic_add`` and turned on by default.
+   .. note::
+
+      This variable is not turned on by default because it only
+      works with ``tt.store`` but not ``tt.atomic_add``, which is used in split-k and
+      stream-k GEMM kernels. In the future, it might be enabled with
+      ``tt.atomic_add`` and turned on by default.
+
+.. _fine-tuning-llms-triton-memory-access-efficiency:
 
 Memory access efficiency
 ========================
 
-The GPU contains global memory, local data share (LDS), and register. Global memory has high access latency, but is
+The GPU contains global memory, local data share (LDS), and registers. Global memory has high access latency, but is
 large. LDS access has much lower latency, but is smaller. Register access is the fastest yet smallest among the three.
 
 So, the data in global memory should be loaded and stored as few times as possible. If different threads in a block
 need to access the same data, these data should be first transferred from global memory to LDS, then accessed by
 different threads in a workgroup.
+
+.. _fine-tuning-llms-triton-ir-analysis:
 
 IR analysis
 ===========
@@ -125,9 +135,8 @@ IR analysis
 In Triton, there are several layouts including blocked, shared, sliced, and MFMA.
 
 From the Triton GPU IR (intermediate representation), you can know in which memory each computation is
-performed. The following is a snippet of IR from the Flash Attention
-(FA) decode int4 KV program. It is to dequantize the int4 KV from int4
-data type to fp16.
+performed. The following is a snippet of IR from the Flash Attention decode ``int4`` KV program. It is to de-quantize
+the ``int4`` KV from the ``int4`` data type to ``fp16``.
 
 .. code-block::
 
@@ -172,52 +181,50 @@ data type to fp16.
 From the IR, you can see ``i32`` data is loaded from global memory to
 registers. With a few element-wise operations in registers, then it is
 stored in shared memory for the transpose operation, which needs data
-movement across different threads. With transpose done, it is loaded
+movement across different threads. With the transpose done, it is loaded
 from LDS to register again, and with a few more element-wise operations,
-they are stored in LDS again. Last step is loaded from LDS to registers
-and converted to the dot operand layout.
+they are stored in LDS again. The last step is to load from LDS to registers
+and convert to the dot-operand layout.
 
-From the IR, you can see that it uses the LDS twice; one is for the
-transpose, and the other is to convert the blocked layout to a dot
-operand layout.
+From the IR, you can see that it uses the LDS twice: one for the
+transpose, and the other to convert the blocked layout to a dot-operand layout.
 
 Assembly analysis
 =================
 
 In the ISA, ensure ``global_load_dwordx4`` is used, especially when the
-load happens in the loop.
+load happens in a loop.
 
 In most cases, the LDS load and store should use ``_b128`` as well to
-minimize the number of LDS access instructions. Note that upstream
-(Phantom dubs this as backend) might not have ``_b128`` LDS read/write, so
-it uses ``_b64``. For most cases, no matter if you use fork or upstream,
+minimize the number of LDS access instructions. Note that upstream (or backend) might not have ``_b128`` LDS read/write,
+so it uses ``_b64``. For most cases, no matter if you use fork or upstream,
 the LDS access should have ``_b64`` vector width.
 
-The AMD ISA has ``s_waitcnt`` instruction to synchronize the dependency
-of memory access and computations. The ``s_waitcnt`` instructions can
-have two signals, typically in the Triton context
+The AMD ISA has the ``s_waitcnt`` instruction to synchronize the dependency
+of memory access and computations. The ``s_waitcnt`` instruction can
+have two signals, typically in the context of Triton:
 
--  ``lgkmcnt(n):`` lgkm stands for LDS, GDS, Constant and Message. For
-   our context, it is often related to LDS access. The number n here
-   means the number of such accesses can be left out to continue. For
-   example, 0 means all lgkm access must finish before continuing, and 1
-   means only 1 lgkm access can be still running asynchronously before
-   proceeding.
+* ``lgkmcnt(n):`` lgkm stands for LDS, GDS, Constant and Message.
 
--  ``vmcnt(n):`` vm means vector memory. This happens when vector memory
-   is accessed, for example, when global load moves from global memory
-   to vector memory. The variable n means the same thing as the above.
+  In this context, it is often related to LDS access. The number ``n`` here means the number of such accesses that can
+  be left out to continue. For example, 0 means all ``lgkm`` access must finish before continuing, and 1 means only 1
+  ``lgkm`` access can be still running asynchronously before proceeding.
 
-The general guidelines are:
+* ``vmcnt(n):`` vm means vector memory.
 
--  Vectorize memory access as much as possible.
+  This happens when vector memory is accessed, for example, when global load moves from global memory to vector memory.
+  Again, the number ``n`` here means the number of accesses that can be left out to continue.
 
--  Ensure synchronization is done efficiently.
+Generally recommended guidelines are as follows.
 
--  Overlap of instructions to hide latency, but it requires thoughtful
+*  Vectorize memory access as much as possible.
+
+*  Ensure synchronization is done efficiently.
+
+*  Overlap of instructions to hide latency, but it requires thoughtful
    analysis of the algorithms.
 
--  If you find inefficiencies, you can trace it back to LLVM IR, TTGIR
+*  If you find inefficiencies, you can trace it back to LLVM IR, TTGIR
    and even TTIR to see where the problem comes from. If you find it
    during compiler optimization, activate the MLIR dump and check which
    optimization pass caused the problem.
@@ -323,18 +330,18 @@ tunings are found can be added to the autotune list.
 Miscellaneous
 =============
 
-Performance-critical HIP provides an environment variable, “export
-HIP_FORCE_DEV_KERNARG=1,” that can put HIP kernel arguments directly to
+Performance-critical HIP provides an environment variable, ``export
+HIP_FORCE_DEV_KERNARG=1``, that can put HIP kernel arguments directly to
 device memory to reduce the latency of accessing kernel arguments. It
-can reduce 2 to 3 us for some kernels. Setting this variable for the FA
+can reduce 2 to 3 μs for some kernels. Setting this variable for the FA
 decode containing splitK and reduced kernels can reduce the total time
-by ~6us in the benchmark test.
+by around 6 μs in the benchmark test.
 
-Set the clock for deterministic. Use the command \`rocm-smi
---setperfdeterminism 1900\` to set the max clock speed to 1900MHz
+Set the clock to deterministic. Use the command ``rocm-smi
+--setperfdeterminism 1900`` to set the max clock speed to 1900MHz
 instead of the default 2100MHz. This can reduce the chance of clock
-speed decrease due to chip high temperature by setting a lower cap. This
-setting can be restored to default with \`rocm-smi -r`.
+speed decrease due to chip high temperature by setting a lower cap. You can restore this
+setting to its default value with ``rocm-smi -r``.
 
 Set numa autobalance. Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the current settings. An output
 of ``0`` indicates this setting is available. If output is ``1``, run the command
