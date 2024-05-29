@@ -6,7 +6,7 @@
 Profiling and debugging
 ***********************
 
-This section discusses profiling and debugging tools and their common usage patterns with ROCm applications.
+This section discusses profiling and debugging tools and some of their common usage patterns with ROCm applications.
 
 PyTorch Profiler
 ================
@@ -38,8 +38,9 @@ You can then visualize and view these metrics using an open-source profile visua
 
    .. figure:: ../../data/how-to/fine-tuning-llms/profiling-perfetto-ui.png
 
-      The above transactions denote the CPU activities that launches GPU kernels.
-      The bottom transaction is the actual GPU activities where GPU processes the resnet18 inferences layer by layer. 
+      The upper section shows transactions denoting the CPU activities that launch GPU kernels.
+      The lower section shows the actual GPU activities where the GPU processes the ``resnet18`` inferences layer by
+      layer. 
 
 ROCm profiling tools
 ====================
@@ -71,10 +72,12 @@ their execution.
 This ``rocprof`` utility also depends on the :doc:`ROCTracer and ROC-TX libraries <roctracer:index>`, giving it the
 ability to collect timeline traces of the accelerator software stack as well as user-annotated code regions.
 
-Note that ``rocprof`` is a CLI-only utility so input and output takes the format of ``.txt`` and CSV files. These
-formats provide a raw view of the data and puts the onus on the user to parse and analyze. Therefore, ``rocprof`` gives
-the user full access and control of raw performance profiling data, but requires extra effort to analyze the collected
-data.
+.. note::
+
+   ``rocprof`` is a CLI-only utility so input and output takes the format of ``.txt`` and CSV files. These
+   formats provide a raw view of the data and puts the onus on the user to parse and analyze. Therefore, ``rocprof``
+   gives the user full access and control of raw performance profiling data, but requires extra effort to analyze the
+   collected data.
 
 .. _fine-tuning-llms-profiling-omniperf:
 
@@ -101,7 +104,7 @@ analyze bottlenecks and stressors for their computational workloads on AMD Insti
 
    Omniperf memory chat analysis panel.
 
-In a nutshell, Omniperf provides details about hardware activity for a particular GPU kernel. It also supports both
+Basically, Omniperf provides details about hardware activity for a particular GPU kernel. It also supports both
 a web-based GUI or command-line analyzer, depending on the your preference.
 
 .. _fine-tuning-llms-profiling-omnitrace:
@@ -131,8 +134,9 @@ hardware counters are also included.
 
    Omnitrace timeline trace example.
 
-For details usage and examples of using these tools, refer to the `Introduction to profiling tools for AMD hardware
-<https://rocm.blogs.amd.com/software-tools-optimization/profilers/README.html>`_ developer blog.
+For details usage and examples of using these tools, refer to the
+`Introduction to profiling tools for AMD hardware <https://rocm.blogs.amd.com/software-tools-optimization/profilers/README.html>`_
+developer blog.
 
 Debugging with ROCm Debug Agent
 ===============================
@@ -150,11 +154,10 @@ supported by the ROCm Debugger API (:doc:`ROCdbgapi <rocdbgapi:index>`).
 Debugging memory access faults
 ------------------------------
 
-Identifying a faulting kernel is often enough to triage a memory
-access fault. To that end, the `ROCm Debug Agent <https://github.com/ROCm/rocr_debug_agent/>`_ can trap a memory access
-fault and provide a dump of all active wavefronts that caused the error
-as well as the name of the kernel. The `AMD ROCm Debug Agent Library
-README <https://github.com/ROCm/rocr_debug_agent/blob/master/README.md>`_ provides full
+Identifying a faulting kernel is often enough to triage a memory access fault. To that end, the
+`ROCm Debug Agent <https://github.com/ROCm/rocr_debug_agent/>`_ can trap a memory access fault and provide a dump of all
+active wavefronts that caused the error as well as the name of the kernel. The
+`AMD ROCm Debug Agent Library README <https://github.com/ROCm/rocr_debug_agent/blob/master/README.md>`_ provides full
 instructions, but in brief:
 
 *  Compiling with ``-ggdb -O0`` is recommended but not required.
@@ -192,7 +195,7 @@ with special characters replaced by ‘_’.
 
    ROCM_DEBUG_AGENT_OPTIONS="--all --save-code-objects"
 
-Use ``llvm-objdump`` to disassemble the indicated in-memory
+Use the ``llvm-objdump`` command to disassemble the indicated in-memory
 code object that has now been saved to disk. The name of the kernel is
 often found inside the disassembled code object.
 
@@ -201,7 +204,7 @@ often found inside the disassembled code object.
    llvm-objdump --disassemble-all path/to/code-object.co
 
 Consider turning off memory caching strategies both within the ROCm
-stack and PyTorch, where possible. This will give the debug agent the
+stack and PyTorch where possible. This will give the debug agent the
 best chance at finding the memory fault where it originates. Otherwise,
 it could be masked by writing past the end of a cached block within a
 larger allocation.

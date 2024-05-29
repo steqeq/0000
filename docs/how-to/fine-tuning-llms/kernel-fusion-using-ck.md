@@ -8,7 +8,7 @@
 
 The AMD ROCm&trade; Composable Kernel (CK) library provides a programming model for writing performance-critical kernels for machine learning workloads. It generates a general-purpose kernel during the compilation phase through a C++ template, enabling developers to achieve operation fusions on different data precisions.
 
-This article gives a high-level overview of CK General Matrix Multiplication (GEMM) kernel based on CK’s design example of `03_gemm_bias_relu`. It also outlines the steps to construct the kernel and run it. Moreover, the article provides a detailed implementation of running SmoothQuant quantized INT8 models on AMD Instinct MI300X accelerators using CK.
+This article gives a high-level overview of CK General Matrix Multiplication (GEMM) kernel based on the design example of `03_gemm_bias_relu`. It also outlines the steps to construct the kernel and run it. Moreover, the article provides a detailed implementation of running SmoothQuant quantized INT8 models on AMD Instinct MI300X accelerators using CK.
 
 ## High-level overview: a CK GEMM instance
 
@@ -169,9 +169,9 @@ Figure 4: Use the ‘DeviceBatchedGemmMultiD_Xdl’ instance as a root.
 
 The `DeviceBatchedGemmMultiD_Xdl` instance realizes the batched GEMM `BMM_ABE_I8` and `BMM_AB_I8_E_F32` kernels directly by using the proper input and output data precision types.
 
-Based on the two batched GEMM kernels, GEMM kernel `Linear_ABDE_I8` and `Linear_AB_I8_DE_F32` can be implemented by un-squeezing their input 2-D tensors to 3-D tensors. Then, the 3-D output tensors produced by the root instance are squeezed back to 2-D output tensors before returning back.
+Based on the two batched GEMM kernels, GEMM kernel `Linear_ABDE_I8` and `Linear_AB_I8_DE_F32` can be implemented by expanding their input 2-D tensors to 3-D tensors. Then, the 3-D output tensors produced by the root instance are squeezed back to 2-D output tensors before returning back.
 
-For example, un-squeeze A (M, K) to A (1, M, K) before assigning it into the root instance and squeeze E (1, M, N) to (M, N) after the calculations of the root instance return back. `Linear_ReLU_ABDE_I8` is implemented by adding a ReLU operation on the result output of `Linear_ABDE_I8`.
+For example, unsqueeze A (M, K) to A (1, M, K) before assigning it into the root instance and squeeze E (1, M, N) to (M, N) after the calculations of the root instance return back. `Linear_ReLU_ABDE_I8` is implemented by adding a ReLU operation on the result output of `Linear_ABDE_I8`.
 
 ### Develop the complete function
 

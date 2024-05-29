@@ -36,9 +36,9 @@ This section was tested using the following hardware and software environment.
 Setting up the base implementation environment
 ----------------------------------------------
 
-#. Install PyTorch for ROCm. Refer to the :doc:`PyTorch installation guide
-   <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`. For consistent installation, it’s recommended to use
-   official ROCm prebuilt Docker images with the framework pre-installed.
+#. Install PyTorch for ROCm. Refer to the
+   :doc:`PyTorch installation guide <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`. For consistent
+   installation, it’s recommended to use official ROCm prebuilt Docker images with the framework pre-installed.
 
 #. In the Docker container, check the availability of ROCM-capable accelerators using the following command.
 

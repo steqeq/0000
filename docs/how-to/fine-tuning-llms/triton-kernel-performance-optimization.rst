@@ -16,7 +16,7 @@ Hardware resource utilization
 
 Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do computation in parallel. So, how many CUs
 can a compute kernel can allocate its task to? For AMD MI300X, the grid should have at least 1024 thread blocks or
-workgroups (WGs).
+workgroups.
 
 To increase hardware utilization and maximize parallelism, it is necessary to design algorithms that can exploit more
 parallelism. One approach to achieving this is by using larger split-K techniques for General Matrix Multiply (GEMM)
@@ -40,7 +40,7 @@ operations, which can further distribute the computation across more CUs, thereb
 
 .. _fine-tuning-llms-triton-kernel-configs-env-vars:
 
-Autotunable kernel configurations and environment variables
+Auto-tunable kernel configurations and environment variables
 ===========================================================
 
 This section relates to the amount of memory access and computation assigned to each CU. It is related to the usage of
@@ -53,11 +53,11 @@ The following kernel arguments can be tuned.
 
    -  For kernels with single GEMM, set to 0.
 
-   -  For kernels with two GEMMs fused (FlashAttention, or any other kernel
+   -  For kernels with two GEMMs fused (Flash Attention, or any other kernel
       that fuses 2 GEMMs), set to 1.
 
    -  For kernels that fuse a single GEMM with another non GEMM operator
-      (for example reLU activation), set to 0.
+      (for example ReLU activation), set to 0.
 
    -  For kernels that have no GEMMs, set to 1.
 
@@ -82,7 +82,7 @@ The following kernel arguments can be tuned.
 ``BLOCK_M``, ``BLOCK_N``, ``BLOCK_K``
    Tile sizes need to be tuned. You want tile sizes large enough to
    maximize the efficiency of memory-to-computation ratio, but small enough
-   to parallelize the greatest number of WGs at the grid level.
+   to parallelize the greatest number of workgroups at the grid level.
 
 ``matrix_instr_nonkdim``
    This is an experimental feature for FA-like kernels. It can choose the
@@ -90,15 +90,15 @@ The following kernel arguments can be tuned.
    ``mfma_16x16`` performs better than ``mfma_32x32``, even for large tile/GEMM
    sizes.
 
-   -  Matrix_instr_nonkdim = 16: mfma_16x16 is used
+   -  ``Matrix_instr_nonkdim = 16``: ``mfma_16x16`` is used
 
-   -  Matrix_instr_nonkdim = 32: mfma_32x32 is used
+   -  ``Matrix_instr_nonkdim = 32``: ``mfma_32x32`` is used
 
 ``OPTIMIZE_EPILOGUE``
    This is an environment variable that should be turned on (set to 1) in
    most cases. It removes the ``convert_layout`` in the epilogue. By default,
    the results of MFMA instruction are converted to blocked layout, which
-   leads to global_store with maximum vector length, that is
+   leads to ``global_store`` with maximum vector length, that is
    ``global_store_dwordx4``.
 
    This is done implicitly with LDS as the intermediate buffer to achieve
@@ -135,8 +135,8 @@ IR analysis
 In Triton, there are several layouts including blocked, shared, sliced, and MFMA.
 
 From the Triton GPU IR (intermediate representation), you can know in which memory each computation is
-performed. The following is a snippet of IR from the Flash Attention decode ``int4`` KV program. It is to de-quantize
-the ``int4`` KV from the ``int4`` data type to ``fp16``.
+performed. The following is a snippet of IR from the Flash Attention decode ``int4`` key-value program. It is to de-quantize
+the ``int4`` key-value from the ``int4`` data type to ``fp16``.
 
 .. code-block::
 
@@ -204,13 +204,13 @@ The AMD ISA has the ``s_waitcnt`` instruction to synchronize the dependency
 of memory access and computations. The ``s_waitcnt`` instruction can
 have two signals, typically in the context of Triton:
 
-* ``lgkmcnt(n):`` lgkm stands for LDS, GDS, Constant and Message.
+* ``lgkmcnt(n):`` `lgkm` stands for LDS, GDS, Constant and Message.
 
   In this context, it is often related to LDS access. The number ``n`` here means the number of such accesses that can
   be left out to continue. For example, 0 means all ``lgkm`` access must finish before continuing, and 1 means only 1
   ``lgkm`` access can be still running asynchronously before proceeding.
 
-* ``vmcnt(n):`` vm means vector memory.
+* ``vmcnt(n):`` `vm` means vector memory.
 
   This happens when vector memory is accessed, for example, when global load moves from global memory to vector memory.
   Again, the number ``n`` here means the number of accesses that can be left out to continue.
@@ -247,7 +247,7 @@ Understand and compute the occupancy of the kernel
   d. You should see something like ``triton_gpu.shared = 65536``, indicating 65536 bytes of LDS are allocated for the
      kernel.
 
-3. Get number of waves per workgroup using the following steps (say you got nW)
+3. Get number of waves per workgroup using the following steps (say you got ``nW``)
 
   a. ``export MLIR_ENABLE_DUMP=1``
 
@@ -260,11 +260,11 @@ Understand and compute the occupancy of the kernel
 4. Compute occupancy limited by VGPR based on N according to table 1 in this link. For example, waves per EU as
    ``occ_vgpr``.
 
-5. Compute occupancy limited by LDS based on L by: occ_lds = floor(65536 / L).
+5. Compute occupancy limited by LDS based on L by: ``occ_lds = floor(65536 / L)``.
 
 6. Then the occupancy is ``occ = min(floor(occ_vgpr * 4 / nW), occ_lds) * nW / 4``
 
-  a. ``occ_vgpr \* 4`` gives the total number of waves on all 4 EUs (SIMDs)
+  a. ``occ_vgpr \* 4`` gives the total number of waves on all 4 execution units (SIMDs)
   per CU
 
   b. ``floor(occ_vgpr * 4 / nW)`` gives the occupancy of workgroups per CU
@@ -272,12 +272,12 @@ Understand and compute the occupancy of the kernel
 
   c. The true ``occ`` is the minimum of the two.
 
-PyTorch inductor Triton tuning knobs
-====================================
+PyTorch ``inductor`` Triton tuning knobs
+========================================
 
-To enable ``gemm/conv`` lowerings to Triton, it requires use of ``inductor``’s ``max_autotune`` mode. This benchmarks a
-static list of Triton configurations (conv configs for max autotune + matmul configs for max autotune) and uses the
-fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen <miopen:index>` or :doc:`rocBlas
+To enable a ``gemm/conv`` lowering to Triton, it requires use of ``inductor``’s ``max_autotune`` mode. This benchmarks a
+static list of Triton configurations (``conv`` configurations for max auto-tune + ``matmul`` configurations for max auto-tune) and uses the
+fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen <miopen:index>` or :doc:`rocBLAS
 <rocblas:index>` is faster for a specific operation.
 
 ``torch._inductor.config.max_autotune = True`` or
@@ -285,17 +285,15 @@ fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen
 
 Or, for more fine-grained control:
 
-``torch._inductor.config.max_autotune.pointwise = True`` - to enable
-tuning for pointwise/reduction ops
+``torch._inductor.config.max_autotune.pointwise = True`` - to enable tuning for ``pointwise``/``reduction`` ops
 
-``torch._inductor.config.max_autotune_gemm = True`` - to enable
-tuning/lowering of mm/convs
+``torch._inductor.config.max_autotune_gemm = True`` - to enable tuning or lowering of ``mm``/``conv``s
 
 ``torch._inductor.max_autotune_gemm_backends/TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
-- to select the candidate backends for mm autotuning Defaults to
+- to select the candidate backends for mm auto-tuning Defaults to
 ``TRITON,ATEN``, NV also includes CUTLASS tuning option. Limiting this to
 “TRITON” might improve performance by enabling more fused mm kernels
-instead of going to rocBlas
+instead of going to rocBLAS
 
 For ``mm tuning coordinate_descent`` tuning might improve performance,
 which attempts
@@ -304,46 +302,44 @@ which attempts
 
 Inference can see large improvements on AMD GPUs by utilizing
 \`torch._inductor.config.freezing=True`/TORCHINDUCTOR_FREEZING=1, which
-inlines weights as constants and enables constant folding optimizations.
+in-lines weights as constants and enables constant folding optimizations.
 
-Enabling inductor’s cpp_wrapper might improve overhead. This generates
+Enabling ``inductor``’s cpp_wrapper might improve overhead. This generates
 C++ code which launches Triton binaries directly with
-hipModuleLaunchKernel and relies on hipification.
+``hipModuleLaunchKernel`` and relies on `hipification`.
 
 For NHWC convolutions workloads
 ``torch._inductor.config.layout_optimization=True`` or ``TORCHINDUCTOR_LAYOUT_OPTIMIZATION=``
 can help be enforcing channels_last format throughout the graph avoiding
-any additional transposes added by inductor. Note that
+any additional transposes added by ``inductor``. Note that
 ``PYTORCH_MIOPEN_SUGGEST_NHWC=1`` is recommended if using this.
 
 Extracting the Triton kernel ``TORCH_COMPILE_DEBUG`` creates a
 ``torch_compile_debug/`` directory at current path, in the ``output_code.py``
-the code-strings for the triton kernels that are defined. Manual work is
+the code-strings for the Triton kernels that are defined. Manual work is
 then required to strip out the kernel and create kernel
 compilation and launch via Triton.
 
-For advanced matmul/conv config tuning, the inductor-gemm-tuner can
-help. This implements the triton conv/mm implementations used upstream
-and allows specification of inputs and config tuning search space if new
-tunings are found can be added to the autotune list.
+For advanced ``matmul`` or ``conv`` configuration tuning, the ``inductor-gemm-tuner`` can
+help. This implements the Triton ``conv``/``mm`` implementations used upstream
+and allows specification of inputs and configuration tuning search space if new
+tunings are found that can be added to the auto-tune list.
 
 Miscellaneous
 =============
 
-Performance-critical HIP provides an environment variable, ``export
-HIP_FORCE_DEV_KERNARG=1``, that can put HIP kernel arguments directly to
+Performance-critical HIP provides an environment variable, ``export HIP_FORCE_DEV_KERNARG=1``,
+that can put HIP kernel arguments directly to
 device memory to reduce the latency of accessing kernel arguments. It
 can reduce 2 to 3 μs for some kernels. Setting this variable for the FA
-decode containing splitK and reduced kernels can reduce the total time
+decode containing ``splitK`` and reduced kernels can reduce the total time
 by around 6 μs in the benchmark test.
 
-Set the clock to deterministic. Use the command ``rocm-smi
---setperfdeterminism 1900`` to set the max clock speed to 1900MHz
-instead of the default 2100MHz. This can reduce the chance of clock
-speed decrease due to chip high temperature by setting a lower cap. You can restore this
-setting to its default value with ``rocm-smi -r``.
+Set the clock to deterministic. Use the command ``rocm-smi --setperfdeterminism 1900`` to set the max clock speed to
+1900MHz instead of the default 2100MHz. This can reduce the chance of clock speed decrease due to chip high temperature
+by setting a lower cap. You can restore this setting to its default value with ``rocm-smi -r``.
 
-Set numa autobalance. Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the current settings. An output
+Set `numa` auto-balance. Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the current settings. An output
 of ``0`` indicates this setting is available. If output is ``1``, run the command
 ``sudo sh -c \\'echo 0 > /proc/sys/kernel/numa_balancing`` to set this.
 

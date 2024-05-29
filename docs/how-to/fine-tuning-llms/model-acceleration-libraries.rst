@@ -156,7 +156,7 @@ of the PyTorch compilation.
 
 .. code-block:: python
 
-   # Sample script to run LLM with the static kv cache and pytorch compilation
+   # Sample script to run LLM with the static key-value cache and pytorch compilation
    from transformers import AutoModelForCausalLM, AutoTokenizer, StaticCache
    import torch
    from typing import Optional
@@ -180,7 +180,7 @@ of the PyTorch compilation.
        return new_token
    
    batch_size, seq_length = inputs["input_ids"].shape
-   # static kv cache
+   # static key-value cache
    max_cache_length = 1024
    max_new_tokens = 10
    model._setup_cache(StaticCache, batch_size, max_cache_len=max_cache_length)
@@ -211,7 +211,7 @@ GEMM kernel libraries through PyTorch's built-in TunableOp options.
 This enables users to automatically pick up the best-performing GEMM
 kernels from :doc:`rocBLAS <rocblas:index>` and :doc:`hipBLASLt <hipblaslt:index>` libraries during runtime.
 
-During warmup runs or offline profiling steps, users can create a GEMM Table
+During warm-up runs or offline profiling steps, users can create a GEMM Table
 that enumerates the kernel information. During the model's run, the best-performing kernel substitutes
 ``torch.nn.functional.linear(input, weight, bias=None)`` with the kernel specified in the GEMM table. The
 `Tunable GitHub <https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/cuda/tunable/README.md>`_

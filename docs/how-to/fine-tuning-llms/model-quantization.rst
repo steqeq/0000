@@ -20,7 +20,7 @@ version of the weights that minimizes error. These weights are quantized to ``in
 fly during inference. This can save your memory usage by a factor of four. A speedup in inference is expected because
 inference of GPTQ models uses a lower bit width, which takes less time to communicate.
 
-Before setting up the GPTQConfig in transformers, ensure the `AutoGPTQ <https://github.com/AutoGPTQ/AutoGPTQ>`_ library
+Before setting up the GPTQ configuration in Transformers, ensure the `AutoGPTQ <https://github.com/AutoGPTQ/AutoGPTQ>`_ library
 is installed.
 
 Installing AutoGPTQ
@@ -89,13 +89,13 @@ Using GPTQ with AutoGPTQ
           desc_act=False,  
       )
 
-#. Load the un-quantized model using the AutoGPTQ class and run the quantization.
+#. Load the non-quantized model using the AutoGPTQ class and run the quantization.
 
    .. code-block:: python
 
       # import auto_gptq class
       from auto_gptq import AutoGPTQForCausalLM
-      # load un-quantized model
+      # load non-quantized model
       base_model = AutoGPTQForCausalLM.from_pretrained(base_model_name, quantize_config, device_map = "auto")
       base_model.quantize(examples)
       # save quantized model
@@ -146,7 +146,7 @@ ExLlama-v2 support
 ExLlama is a Python/C++/CUDA implementation of the Llama model that is
 designed for faster inference with 4-bit GPTQ weights. The ExLlama
 kernel is activated by default when users create a ``GPTQConfig`` object. To
-boost inference speed even further on Instinct accelerators, use the ExLlamaV2
+boost inference speed even further on Instinct accelerators, use the ExLlama-v2
 kernels by configuring the ``exllama_config`` parameter as the following.
 
 .. code-block:: python
@@ -211,7 +211,7 @@ Using AWQ with AutoAWQ
               "w_bit": 4
       }
 
-#. Load the un-quantized model using ``awq`` class and run the quantization:
+#. Load the non-quantized model using ``awq`` class and run the quantization:
 
    .. code-block:: python
 
