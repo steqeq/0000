@@ -27,3 +27,5 @@ variables:
   value: rocm/dev-ubuntu-22.04
 - name: LATEST_DOCKER_VERSION
   value: 6.1
+- name: KEYRING_VERSION
+  value: 6.1
