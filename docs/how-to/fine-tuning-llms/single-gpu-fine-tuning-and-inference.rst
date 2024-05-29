@@ -327,6 +327,8 @@ Compare the number of trainable parameters and training time under the two diffe
             {'train_runtime': 419.5154, 'train_samples_per_second': 2.384, 'train_steps_per_second': 0.298, 'train_loss': 1.6171623611450194, 'epoch': 1.0}
             100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 125/125 [06:59<00:00,  3.36s/it]
 
+.. _fine-tuning-llms-single-gpu-saving:
+
 Saving adapters or fully fine-tuned models
 ------------------------------------------
 
@@ -408,100 +410,98 @@ Let's look at achieving model inference using these types of models.
 
 .. _fine-tuning-llms-pre-trained-fully-fine-tuned-inference:
 
-Inference using pre-trained or fully fine-tuned models
-------------------------------------------------------
+.. tab-set::
 
-If you have a fully fine-tuned model not using PEFT, you can load it like any other pre-trained language model in
-`Hugging Face Hub <https://huggingface.co/docs/hub/en/index>`_ using the `Transformers
-<https://huggingface.co/docs/transformers/en/index>`_ library.
+   .. tab-item:: Inference using PEFT adapters
 
-.. code-block:: python
+      To use PEFT adapters like a normal transformer model, you can run the generation by loading a base model along with PEFT 
+      adapters as follows.
 
-   # Import relevant class for loading model and tokenizer
-   from transformers import AutoTokenizer, AutoModelForCausalLM
-   
-   # Set the pre-trained model name on Hugging face hub
-   model_name = "meta-llama/Llama-2-7b-chat-hf"
-   
-   # Set device type 
-   device = "cuda:0"
-   
-   # Load model and tokenizer 
-   model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
-   tokenizer = AutoTokenizer.from_pretrained(model_name)
-   
-   # Input prompt encoding 
-   query = "What is a large language model?"
-   inputs = tokenizer.encode(query, return_tensors="pt").to(device)
-   
-   # Token generation  
-   outputs = model.generate(inputs) 
-   
-   # Outputs decoding 
-   print(tokenizer.decode(outputs[0]))
+      .. code-block:: python
 
-In addition, pipelines from Transformers offer simple APIs to use pre-trained models for different tasks, including
-sentiment analysis, feature extraction, question answering and so on. You can use the pipeline abstraction to achieve
-model inference easily.
+         from peft import PeftModel
+         from transformers import AutoModelForCausalLM
+         
+         # Set the path of the model or the name on Hugging face hub
+         base_model_name = "meta-llama/Llama-2-7b-chat-hf"
+         
+         # Set the path of the adapter
+         adapter_name = "Llama-2-7b-enhanced-adpater"
+         
+         # Load base model 
+         base_model = AutoModelForCausalLM.from_pretrained(base_model_name)
+         
+         # Adapt the base model with the adapter 
+         new_model = PeftModel.from_pretrained(base_model, adapter_name)
+         
+         # Then, run generation as the same with a normal model outlined in 2.1
 
-.. code-block:: python
+      The PEFT library provides a ``merge_and_unload`` method, which merges the adapter layers into the base model. This is
+      needed if someone wants to save the adapted model into local storage and use it as a normal standalone model.
 
-   # Import relevant class for loading model and tokenizer
-   from transformers import pipeline
-   
-   # Set the path of your model or the name on Hugging face hub
-   model_name_or_path = "meta-llama/Llama-2-7b-chat-hf"
-   
-   # Set pipeline 
-   # A positive device value will run the model on associated CUDA device id
-   pipe = pipeline("text-generation", model=model_name_or_path, device=0)
-   
-   # Token generation
-   print(pipe("What is a large language model?")[0]["generated_text"])
+      .. code-block:: python
 
-.. _fine-tuning-llms-peft-adapter-inference:
+         # Load base model 
+         base_model = AutoModelForCausalLM.from_pretrained(base_model_name)
+         
+         # Adapt the base model with the adapter 
+         new_model = PeftModel.from_pretrained(base_model, adapter_name)
+         
+         # Merge adapter 
+         model = model.merge_and_unload()
 
-Inference using PEFT adapters
------------------------------
+         # Save the merged model into local
+         model.save_pretrained("merged_adpaters")
 
-To use PEFT adapters like a normal transformer model, you can run the generation by loading a base model along with PEFT 
-adapters as follows.
+   .. tab-item:: Inference using pre-trained or fully fine-tuned models
 
-.. code-block:: python
+      If you have a fully fine-tuned model not using PEFT, you can load it like any other pre-trained language model in
+      `Hugging Face Hub <https://huggingface.co/docs/hub/en/index>`_ using the `Transformers
+      <https://huggingface.co/docs/transformers/en/index>`_ library.
 
-   from peft import PeftModel
-   from transformers import AutoModelForCausalLM
-   
-   # Set the path of the model or the name on Hugging face hub
-   base_model_name = "meta-llama/Llama-2-7b-chat-hf"
-   
-   # Set the path of the adapter
-   adapter_name = "Llama-2-7b-enhanced-adpater"
-   
-   # Load base model 
-   base_model = AutoModelForCausalLM.from_pretrained(base_model_name)
-   
-   # Adapt the base model with the adapter 
-   new_model = PeftModel.from_pretrained(base_model, adapter_name)
-   
-   # Then, run generation as the same with a normal model outlined in 2.1
+      .. code-block:: python
 
-The PEFT library provides a ``merge_and_unload`` method, which merges the adapter layers into the base model. This is
-needed if someone wants to save the adapted model into local storage and use it as a normal standalone model.
+         # Import relevant class for loading model and tokenizer
+         from transformers import AutoTokenizer, AutoModelForCausalLM
+         
+         # Set the pre-trained model name on Hugging face hub
+         model_name = "meta-llama/Llama-2-7b-chat-hf"
+         
+         # Set device type 
+         device = "cuda:0"
+         
+         # Load model and tokenizer 
+         model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
+         tokenizer = AutoTokenizer.from_pretrained(model_name)
+         
+         # Input prompt encoding 
+         query = "What is a large language model?"
+         inputs = tokenizer.encode(query, return_tensors="pt").to(device)
+         
+         # Token generation  
+         outputs = model.generate(inputs) 
+         
+         # Outputs decoding 
+         print(tokenizer.decode(outputs[0]))
 
-.. code-block:: python
+      In addition, pipelines from Transformers offer simple APIs to use pre-trained models for different tasks, including
+      sentiment analysis, feature extraction, question answering and so on. You can use the pipeline abstraction to achieve
+      model inference easily.
 
-   # Load base model 
-   base_model = AutoModelForCausalLM.from_pretrained(base_model_name)
-   
-   # Adapt the base model with the adapter 
-   new_model = PeftModel.from_pretrained(base_model, adapter_name)
-   
-   # Merge adapter 
-   model = model.merge_and_unload()
+      .. code-block:: python
 
-   # Save the merged model into local
-   model.save_pretrained("merged_adpaters")
+         # Import relevant class for loading model and tokenizer
+         from transformers import pipeline
+         
+         # Set the path of your model or the name on Hugging face hub
+         model_name_or_path = "meta-llama/Llama-2-7b-chat-hf"
+         
+         # Set pipeline 
+         # A positive device value will run the model on associated CUDA device id
+         pipe = pipeline("text-generation", model=model_name_or_path, device=0)
+         
+         # Token generation
+         print(pipe("What is a large language model?")[0]["generated_text"])
 
 If using multiple accelerators, see
 :ref:`Multi-accelerator fine-tuning and inference <fine-tuning-llms-multi-gpu-hugging-face-accelerate>` to explore
