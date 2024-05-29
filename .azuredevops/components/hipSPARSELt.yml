@@ -74,15 +74,12 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DAMDGPU_TARGETS=all
         -DTensile_LOGIC=
         -DTensile_CPU_THREADS=
         -DTensile_CODE_OBJECT_VERSION=default
         -DTensile_LIBRARY_FORMAT=msgpack
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
-        -DTENSILE_ROCM_ASSEMBLER_PATH=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
