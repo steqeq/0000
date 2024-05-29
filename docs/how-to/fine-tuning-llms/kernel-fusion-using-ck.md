@@ -100,7 +100,7 @@ These parameters include Block Size, M/N/K Per Block, M/N per XDL, AK1, BK1, etc
 - Block Size determines the number of threads in the thread block.
 - M/N/K Per Block determines the size of tile that each thread block is responsible for calculating.
 - M/N Per XDL refers to M/N size for Instinct accelerator Matrix Fused Multiply Add (MFMA) instructions operating on a per-wavefront basis.
-- A/B K1 is related to the data type. It can be any value ranging from 1 to KPerBlock. To achieve the optimal load/store performance, 128bit per load is suggested. In addition, the A/B loading parameters must be changed accordingly to match the A/B K1 value; otherwise, it will result in compilation errors.
+- A/B K1 is related to the data type. It can be any value ranging from 1 to K Per Block. To achieve the optimal load/store performance, 128bit per load is suggested. In addition, the A/B loading parameters must be changed accordingly to match the A/B K1 value; otherwise, it will result in compilation errors.
 
 Conditions for achieving computational load balancing on different hardware platforms can vary. Use [ckProfiler](https://github.com/ROCm/composable_kernel/tree/develop/profiler) to obtain the optimal solution of tunable parameters.
 
@@ -130,11 +130,11 @@ Figure 2: Templated kernel launching consists of kernel instantiation, making ar
 
 |       Functionality descriptions     |        Corresponding wrappers           |
 |:-------------------------------------|-----------------------------------------|
-| {math}`E = α \times (A \times B) + β \times (D)`, where A, B, D, E are INT8 2-D tensors; | E = Linear_ABDE_I8(A, B, D, alpha, beta) |
-| {math}`E = RELU (α \times (A \times B) + β \times (D))`, where A, B, D, E are INT8 2-D tensors; | E = Linear_ReLU_ABDE_I8(A, B, D, alpha, beta) |
-| {math}`E = α \times (A \times B) + β \times (D)`, where A, B are INT8 2-D tensors, D and E are FP32 2-D tensors; | E = Linear_AB_I8_DE_F32(A, B, D, alpha, beta) |
-| {math}`E = α \times (A \times B)`, where A, B, E are INT8 3-D tensors; | E = BMM_ABE_I8(A, B, alpha) |
-| {math}`E = α \times (A \times B)`, where A, B are INT8 3-D tensors, E is FP32 3-D tensor; | E = BMM_AB_I8_E_F32(A, B, alpha) |
+| {math}`E = α \times (A \times B) + β \times (D)`, where A, B, D, E are INT8 2-D tensors; | E = Linear_ABDE_I8(A, B, D, {math}`\alpha`, {math}`\beta`) |
+| {math}`E = RELU (α \times (A \times B) + β \times (D))`, where A, B, D, E are INT8 2-D tensors; | E = Linear_ReLU_ABDE_I8(A, B, D, {math}`\alpha`, {math}`\beta`) |
+| {math}`E = α \times (A \times B) + β \times (D)`, where A, B are INT8 2-D tensors, D and E are FP32 2-D tensors; | E = Linear_AB_I8_DE_F32(A, B, D, {math}`\alpha`, {math}`\beta`) |
+| {math}`E = α \times (A \times B)`, where A, B, E are INT8 3-D tensors; | E = BMM_ABE_I8(A, B, {math}`\alpha`) |
+| {math}`E = α \times (A \times B)`, where A, B are INT8 3-D tensors, E is FP32 3-D tensor; | E = BMM_AB_I8_E_F32(A, B, {math}`\alpha`) |
 :::
 
 ### Operation flow analysis
@@ -367,7 +367,7 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m){
 }
 ```
 
-Build the C++ extension by writing a setup.py script that uses setuptools to compile the C++ code. A reference implementation of the setup.py script is as follows.
+Build the C++ extension by writing a `setup.py` script that uses `setuptools` to compile the C++ code. A reference implementation of the `setup.py` script is as follows.
 
 ```c++
 import os
@@ -459,7 +459,7 @@ For accuracy comparisons between the original FP16 and INT8 models, the evaluati
 
 :::{table} Table 2. The inference accuracy comparisons of SmoothQuant quantized models on Instinct MI300X.
 
-|       Models     |    Huggingface FP16 model accuracy     |   SmoothQuant quantized INT8 model accuracy |
+|       Models     |    Hugging Face FP16 model accuracy     |   SmoothQuant quantized INT8 model accuracy |
 |:-----------------|----------------------------------------|---------------------------------------------|
 | opt-1.3B | 0.72 | 0.70 |
 | opt-2.7B | 0.76 | 0.75 |
