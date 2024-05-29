@@ -14,7 +14,7 @@ For more information, see `What is ROCm? <https://rocm.docs.amd.com/en/latest/wh
 
 Throughout the following topics, this guide discusses the goals and :ref:`challenges of fine-tuning a large language
 model <fine-tuning-llms-concept-challenge>` like Llama 2. Then, it introduces :ref:`common methods of optimizing your
-fine-tuning <fine-tuning-llms-concept-optimizations>` using techniques like LoRA and libraries like PEFT. In the
+fine-tuning <fine-tuning-llms-concept-optimizations>` using techniques like LoRA with libraries like PEFT. In the
 sections that follow, you'll find practical guides on libraries and tools to accelerate your fine-tuning.
 
 - :doc:`Conceptual overview of fine-tuning LLMs <overview>`

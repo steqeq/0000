@@ -41,8 +41,6 @@ The weight update is as follows: :math:`W_{updated} = W + ΔW`.
 If the weight matrix :math:`W` contains 7B parameters, then the weight update matrix :math:`ΔW` should also
 contain 7B parameters. Therefore, the :math:`ΔW` calculation is computationally and memory intensive.
 
-.. _fine-tuning-llms-weight-update-diagram:
-
 .. figure:: ../../data/how-to/fine-tuning-llms/weight-update.png
    :alt: Weight update diagram
 
@@ -62,7 +60,7 @@ overcome this issue of high memory consumption.
 LoRA accelerates the adjustment process and reduces related memory costs. To be precise, LoRA decomposes the portion of
 weight changes :math:`ΔW` into high-precision low-rank representations, which do not require the calculations of all
 :math:`ΔW`. On the contrary, LoRA learns the decomposition representation of :math:`ΔW` during training, as shown in
-:ref:`the weight update diagram (Figure 1) <fine-tuning-llms-weight-update-diagram>`. This is how LoRA saves on
+:ref:`the weight update diagram (Figure 1) <fine-tuning-llms-concept-challenge>`. This is how LoRA saves on
 computing resources.
 
 LoRA is integrated into the `Hugging Face Parameter-Efficient Fine-Tuning (PEFT)
@@ -76,8 +74,8 @@ train, and use large models for inference.
 
 To simplify running a fine-tuning implementation, the `Transformer Reinforcement Learning (TRL)
 <https://huggingface.co/docs/trl/en/index>`_ library provides a set of tools to train transformer language models with
-reinforcement learning, from the Supervised Fine-tuning step (SFT), Reward Modeling step (RM), to the Proximal Policy
-Optimization (PPO) step. The ``SFTTrainer`` API in TRL encapsulates these PEFT optimizations so users can easily import
+reinforcement learning, from the Supervised Fine-Tuning step (SFT), Reward Modeling step (RM), to the Proximal Policy
+Optimization (PPO) step. The ``SFTTrainer`` API in TRL encapsulates these PEFT optimizations so you can easily import
 their custom training configuration and run the training process.
 
 .. _fine-tuning-llms-walkthrough-desc:
