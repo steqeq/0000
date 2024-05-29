@@ -41,6 +41,7 @@ parameters:
     - libtiff-dev
     - libdc1394-dev
     - libgmp-dev
+    - libopencv-dev
 - name: pipModules
   type: object
   default:
