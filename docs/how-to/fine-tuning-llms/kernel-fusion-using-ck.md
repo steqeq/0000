@@ -224,7 +224,7 @@ As shown in the following code block, we obtain M, N, and K values using input t
 
   // Allocate memory for E
   auto E = torch::empty({batch_count, M, N}, 
-  torch::dtype(torch::kInt8).device(A.device()));
+       torch::dtype(torch::kInt8).device(A.device()));
 ```
 
 In the following code block, `ADataType`, `BDataType` and `D0DataType` are used to denote the data precision of the input tensors A, B and D, respectively. `EDataType` is used to denote the data precision of output tensor E. These parameters are specified to `I8` data format (8-bit integer data format) to meet the kernel's design requirements.
@@ -334,12 +334,12 @@ The fundamental instance is then initialized and run with actual arguments:
  auto device_op    = DeviceOpInstance{};
  auto invoker = device_op.MakeInvoker();
  auto argument = device_op.MakeArgument(
-     A_ref, B_ref, {D0_ref}, E_ref,
-     M, N, K,
-     batch_count,
-     stride_A, stride_B, {stride_D0}, stride_E,
-     batch_stride_A, batch_stride_B, {batch_stride_D0}, batch_stride_E,
-     AElementOp{}, BElementOp{}, CDEElementOp{alpha, beta});
+    A_ref, B_ref, {D0_ref}, E_ref,
+    M, N, K,
+    batch_count,
+    stride_A, stride_B, {stride_D0}, stride_E,
+    batch_stride_A, batch_stride_B, {batch_stride_D0}, batch_stride_E,
+    AElementOp{}, BElementOp{}, CDEElementOp{alpha, beta});
 
 invoker.Run(argument, StreamConfig{nullptr, 0});
 ```
@@ -353,7 +353,7 @@ return E.squeeze(0);
 
 ### Bind to Python
 
-Since these functions are written in C++ and `torch::Tensor`, you can use `pybing11` to bind the functions and import them as Python modules. For the example, the necessary binding code for exposing the functions in the table spans but a few lines.  
+Since these functions are written in C++ and `torch::Tensor`, you can use `pybind11` to bind the functions and import them as Python modules. For the example, the necessary binding code for exposing the functions in the table spans but a few lines.  
 
 ```c++
 #include <torch/extension.h>
