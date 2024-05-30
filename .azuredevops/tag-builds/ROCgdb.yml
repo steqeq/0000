@@ -23,7 +23,7 @@ trigger: none
 pr: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/rocgdb.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/ROCgdb.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}

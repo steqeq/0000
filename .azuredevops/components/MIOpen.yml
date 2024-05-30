@@ -9,12 +9,9 @@ parameters:
   type: object
   default:
     - software-properties-common
+    - python3-pip
     - cmake
     - ninja-build
-    - composablekernel-dev
-    - half
-    - rocrand
-    - rocblas
     - libsqlite3-dev
     - libbz2-dev
     - nlohmann-json3-dev
@@ -23,6 +20,15 @@ parameters:
   type: object
   default:
     - rocMLIR
+    - rocRAND
+    - rocBLAS
+    - half
+    - composable_kernel
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
 
 jobs:
 - job: MIOpen
@@ -30,8 +36,6 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -70,9 +74,8 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DMIOPEN_BACKEND=HIP
-        -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/amdclang
-        -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
         -DCMAKE_BUILD_TYPE=Release
