@@ -49,7 +49,16 @@ subtrees:
 
 - caption: How to
   entries:
-  - file: how-to/fine-tuning-llms/index.rst
+  - file: how-to/rocm-for-ai/index.rst
+    title: Using ROCm for AI
+    subtrees:
+    - entries:
+      - file: how-to/rocm-for-ai/install.rst
+        title: Installation
+      - file: how-to/rocm-for-ai/train-a-model.rst
+      - file: how-to/rocm-for-ai/hugging-face-models.rst
+      - file: how-to/rocm-for-ai/deploy-your-model.rst
+ - file: how-to/fine-tuning-llms/index.rst
     title: Fine-tuning LLMs with ROCm
     subtrees:
     - entries:
@@ -162,4 +171,3 @@ subtrees:
     title: Provide feedback
   - file: about/license.md
     title: ROCm license
-
