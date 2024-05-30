@@ -41,11 +41,11 @@ jobs:
   - name: TENSILE_ROCM_ASSEMBLER_PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
   - name: CMAKE_CXX_COMPILER
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
+    value: $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
   - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
   - name: HIP_PATH
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
+    value: $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
   - name: PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
