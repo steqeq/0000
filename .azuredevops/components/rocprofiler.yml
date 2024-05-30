@@ -93,7 +93,7 @@ jobs:
       targetType: inline
       script: mkdir -p $(Agent.BuildDirectory)/rocm && cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
       workingDirectory: '$(Pipeline.Workspace)'
-- task: Bash@3
+  - task: Bash@3
     displayName: 'Create symlink from $(Agent.BuildDirectory)/rocm to /opt/rocm'
     inputs:
       targetType: inline
