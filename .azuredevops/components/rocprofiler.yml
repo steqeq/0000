@@ -30,6 +30,7 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
+    - amdsmi
     - clr
     - llvm-project
     - ROCdbgapi
