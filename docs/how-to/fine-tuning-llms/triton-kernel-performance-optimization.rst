@@ -15,8 +15,8 @@ Hardware resource utilization
 =============================
 
 Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do computation in parallel. So, how many CUs
-can a compute kernel can allocate its task to? For AMD MI300X, the grid should have at least 1024 thread blocks or
-workgroups.
+can a compute kernel can allocate its task to? For the :doc:`AMD MI300X accelerator <reference/gpu-arch-specs>`, the
+grid should have at least 1024 thread blocks or workgroups.
 
 To increase hardware utilization and maximize parallelism, it is necessary to design algorithms that can exploit more
 parallelism. One approach to achieving this is by using larger split-K techniques for General Matrix Multiply (GEMM)
@@ -24,8 +24,8 @@ operations, which can further distribute the computation across more CUs, thereb
 
 .. tip::
 
-   Hardware resources can be queried with the command ``rocminfo`` (in the ``/opt/rocm/bin`` directory). For instance,
-   query the number of CUs, # of SIMD, and wavefront size using the following commands.
+   You can query hardware resources with the command ``rocminfo`` (in the ``/opt/rocm/bin`` directory). For instance,
+   query the number of CUs, number of SIMD, and wavefront size using the following commands.
 
    .. code-block:: shell
 
@@ -37,83 +37,6 @@ operations, which can further distribute the computation across more CUs, thereb
 
    On an MI300X device, there are 304 CUs, 4 SIMD per CU, and the wavefront size (warp size) is 64. See :doc:`Hardware
    specifications <rocm:reference/gpu-arch-specs>` for a full list of AMD accelerators and GPUs.
-
-.. _fine-tuning-llms-triton-kernel-configs-env-vars:
-
-Auto-tunable kernel configurations and environment variables
-===========================================================
-
-This section relates to the amount of memory access and computation assigned to each CU. It is related to the usage of
-LDS, registers and the scheduling of different tasks on a CU.
-
-The following kernel arguments can be tuned.
-
-``num_stages=n``
-   On AMD accelerators, set ``num_stages`` according to the following rules:
-
-   -  For kernels with single GEMM, set to 0.
-
-   -  For kernels with two GEMMs fused (Flash Attention, or any other kernel
-      that fuses 2 GEMMs), set to 1.
-
-   -  For kernels that fuse a single GEMM with another non GEMM operator
-      (for example ReLU activation), set to 0.
-
-   -  For kernels that have no GEMMs, set to 1.
-
-``waves_per_eu=n``
-   See :ref:`Understand/Compute the occupancy of the
-   kernel <fine-tuning-llms-occupancy-of-kernel>` for more
-   information about how to compute occupancy. It hints to the compiler to
-   reduce VGPR so that occupancy = n could be achieved. This only helps if
-   both of the following are satisfied:
-
-   -  The occupancy of the kernel is limited by VGPR usage.
-
-   -  The current VGPR usage is only a few above a boundary in table 1.
-
-   For example, according to the table, the available VGPR is 512 per
-   Execution Unit (EU), and VGPU is allocated at the unit of 16. If the
-   current VGPR usage is 170, the actual requested VGPR will be 176, so the
-   occupancy is only 2 waves/CU since 176 x 3 > 512. Then if you set
-   ``waves_per_eu`` to 3, the LLVM backend tries to bring VGPR usage down so
-   that it might fit 3 waves/EU.
-
-``BLOCK_M``, ``BLOCK_N``, ``BLOCK_K``
-   Tile sizes need to be tuned. You want tile sizes large enough to
-   maximize the efficiency of memory-to-computation ratio, but small enough
-   to parallelize the greatest number of workgroups at the grid level.
-
-``matrix_instr_nonkdim``
-   This is an experimental feature for FA-like kernels. It can choose the
-   size of MFMA instruction used. For GEMM kernels on AMD MI300X,
-   ``mfma_16x16`` performs better than ``mfma_32x32``, even for large tile/GEMM
-   sizes.
-
-   -  ``Matrix_instr_nonkdim = 16``: ``mfma_16x16`` is used
-
-   -  ``Matrix_instr_nonkdim = 32``: ``mfma_32x32`` is used
-
-``OPTIMIZE_EPILOGUE``
-   This is an environment variable that should be turned on (set to 1) in
-   most cases. It removes the ``convert_layout`` in the epilogue. By default,
-   the results of MFMA instruction are converted to blocked layout, which
-   leads to ``global_store`` with maximum vector length, that is
-   ``global_store_dwordx4``.
-
-   This is done implicitly with LDS as the intermediate buffer to achieve
-   data exchange between threads. Padding is used in LDS to avoid bank
-   conflicts. This usually leads to extra LDS usage, which might reduce
-   occupancy. Setting ``OPTIMIZE_EPILOGUE=1`` will have the effect of storing
-   the result in the MFMA layout. This reduces the efficiency of global
-   stores but has an insignificant influence on kernel execution time.
-
-   .. note::
-
-      This variable is not turned on by default because it only
-      works with ``tt.store`` but not ``tt.atomic_add``, which is used in split-k and
-      stream-k GEMM kernels. In the future, it might be enabled with
-      ``tt.atomic_add`` and turned on by default.
 
 .. _fine-tuning-llms-triton-memory-access-efficiency:
 
@@ -132,11 +55,11 @@ different threads in a workgroup.
 IR analysis
 ===========
 
-In Triton, there are several layouts including blocked, shared, sliced, and MFMA.
+In Triton, there are several layouts including *blocked*, *shared*, *sliced*, and *MFMA*.
 
 From the Triton GPU IR (intermediate representation), you can know in which memory each computation is
-performed. The following is a snippet of IR from the Flash Attention decode ``int4`` key-value program. It is to de-quantize
-the ``int4`` key-value from the ``int4`` data type to ``fp16``.
+performed. The following is a snippet of IR from the Flash Attention decode ``int4`` key-value program. It is to
+de-quantize the ``int4`` key-value from the ``int4`` data type to ``fp16``.
 
 .. code-block::
 
@@ -178,16 +101,13 @@ the ``int4`` key-value from the ``int4`` data type to ``fp16``.
    tensor<32x64xf16, #triton_gpu.dot_op<{opIdx = 1, parent = #mfma, kWidth
    = 4}>> loc(#loc197)
 
-From the IR, you can see ``i32`` data is loaded from global memory to
-registers. With a few element-wise operations in registers, then it is
-stored in shared memory for the transpose operation, which needs data
-movement across different threads. With the transpose done, it is loaded
-from LDS to register again, and with a few more element-wise operations,
-they are stored in LDS again. The last step is to load from LDS to registers
-and convert to the dot-operand layout.
+From the IR, you can see ``i32`` data is loaded from global memory to registers. With a few element-wise operations in
+registers, then it is stored in shared memory for the transpose operation, which needs data movement across different
+threads. With the transpose done, it is loaded from LDS to register again, and with a few more element-wise operations,
+they are stored in LDS again. The last step is to load from LDS to registers and convert to the dot-operand layout.
 
-From the IR, you can see that it uses the LDS twice: one for the
-transpose, and the other to convert the blocked layout to a dot-operand layout.
+From the IR, you can see that it uses the LDS twice: one for the transpose, and the other to convert the blocked layout
+to a dot-operand layout.
 
 Assembly analysis
 =================
@@ -229,10 +149,10 @@ Generally recommended guidelines are as follows.
    during compiler optimization, activate the MLIR dump and check which
    optimization pass caused the problem.
 
-.. _fine-tuning-llms-occupancy-of-kernel:
+.. _fine-tuning-llms-triton-kernel-occupancy:
 
-Understand and compute the occupancy of the kernel
-==================================================
+Kernel occupancy
+================
 
 1. Get the VGPR count, search for ``.vgpr_count`` in the ISA. For example, N.
 
@@ -247,7 +167,7 @@ Understand and compute the occupancy of the kernel
   d. You should see something like ``triton_gpu.shared = 65536``, indicating 65536 bytes of LDS are allocated for the
      kernel.
 
-3. Get number of waves per workgroup using the following steps (say you got ``nW``)
+3. Get number of waves per workgroup using the following steps (say you got ``nW``).
 
   a. ``export MLIR_ENABLE_DUMP=1``
 
@@ -272,13 +192,97 @@ Understand and compute the occupancy of the kernel
 
   c. The true ``occ`` is the minimum of the two.
 
+.. _fine-tuning-llms-triton-kernel-configs-env-vars:
+
+Auto-tunable kernel configurations and environment variables
+===========================================================
+
+This section relates to the amount of :ref:`memory access <fine-tuning-llms-triton-memory-access-efficiency>` and
+computation assigned to each CU. It is related to the usage of LDS, registers and the scheduling of different tasks on
+a CU.
+
+The following is a list of kernel arguments used for tuning.
+
+``num_stages=n``
+   Adjusts the number of pipeline stages for different types of kernels. On AMD accelerators, set ``num_stages``
+   according to the following rules:
+
+   -  For kernels with a single GEMM, set to ``0``.
+
+   -  For kernels with two GEMMs fused (Flash Attention, or any other kernel
+      that fuses 2 GEMMs), set to ``1``.
+
+   -  For kernels that fuse a single GEMM with another non-GEMM operator
+      (for example ReLU activation), set to ``0``.
+
+   -  For kernels that have no GEMMs, set to ``1``.
+
+``waves_per_eu=n``
+   Helps to manage Vector General Purpose Registers (VGPR) usage to achieve desired occupancy levels. This argument
+   hints to the compiler to reduce VGPR to achieve ``n`` occupancy. See
+   :ref:`Kernel occupancy <fine-tuning-llms-triton-kernel-occupancy>` for more information about how to compute
+   occupancy. 
+
+   This argument is useful if:
+
+   -  The occupancy of the kernel is limited by VGPR usage.
+
+   -  The current VGPR usage is only a few above a boundary in table 1.
+
+   For example, according to the table, the available VGPR is 512 per Execution Unit (EU), and VGPU is allocated at the
+   unit of 16. If the current VGPR usage is 170, the actual requested VGPR will be 176, so the
+   occupancy is only 2 waves per CU since :math:`176 \times 3 > 512`. So, if you set
+   ``waves_per_eu`` to 3, the LLVM backend tries to bring VGPR usage down so
+   that it might fit 3 waves per EU.
+
+``BLOCK_M``, ``BLOCK_N``, ``BLOCK_K``
+   Tile sizes to be tuned to balance the memory-to-computation ratio. You want tile sizes large enough to
+   maximize the efficiency of memory-to-computation ratio, but small enough to parallelize the greatest number of
+   workgroups at the grid level.
+
+``matrix_instr_nonkdim``
+   Experimental feature for Flash Attention-like kernels that determines the size of the Matrix Fused Multiply-Add
+   (MFMA) instruction used.
+
+   -  ``Matrix_instr_nonkdim = 16``: ``mfma_16x16`` is used.
+
+   -  ``Matrix_instr_nonkdim = 32``: ``mfma_32x32`` is used.
+
+   For GEMM kernels on an AMD MI300X accelerator, ``mfma_16x16`` typically outperforms ``mfma_32x32``, even for large
+   tile/GEMM sizes.
+
+The following is an environment variable used for tuning.
+
+``OPTIMIZE_EPILOGUE``
+   Setting this variable to ``1`` can improve performance by removing the ``convert_layout`` operation in the epilogue.
+   It should be turned on (set to ``1``) in most cases. Setting ``OPTIMIZE_EPILOGUE=1`` stores the MFMA instruction
+   results in the MFMA layout directly; this comes at the cost of reduced global store efficiency, but the impact on
+   kernel execution time is usually minimal.
+
+   By default (``0``), the results of MFMA instruction are converted to blocked layout, which leads to ``global_store``
+   with maximum vector length, that is ``global_store_dwordx4``.
+
+   This is done implicitly with LDS as the intermediate buffer to achieve
+   data exchange between threads. Padding is used in LDS to avoid bank
+   conflicts. This usually leads to extra LDS usage, which might reduce
+   occupancy.
+
+   .. note::
+
+      This variable is not turned on by default because it only
+      works with ``tt.store`` but not ``tt.atomic_add``, which is used in split-k and
+      stream-k GEMM kernels. In the future, it might be enabled with
+      ``tt.atomic_add`` and turned on by default.
+
+   See :ref:`IR analysis <fine-tuning-llms-triton-ir-analysis>`.
+
 PyTorch ``inductor`` Triton tuning knobs
 ========================================
 
 To enable a ``gemm/conv`` lowering to Triton, it requires use of ``inductor``’s ``max_autotune`` mode. This benchmarks a
-static list of Triton configurations (``conv`` configurations for max auto-tune + ``matmul`` configurations for max auto-tune) and uses the
-fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen <miopen:index>` or :doc:`rocBLAS
-<rocblas:index>` is faster for a specific operation.
+static list of Triton configurations (``conv`` configurations for max auto-tune + ``matmul`` configurations for max
+auto-tune) and uses the fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen <miopen:index>`
+or :doc:`rocBLAS <rocblas:index>` is faster for a specific operation.
 
 ``torch._inductor.config.max_autotune = True`` or
 ``TORCHINDUCTOR_MAX_AUTOTUNE=1``

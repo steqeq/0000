@@ -46,23 +46,23 @@ ROCm profiling tools
 ====================
 
 Heterogenous systems, where programs run on both CPUs and GPUs, introduce additional complexities. Understanding the
-critical path and kernel execution is all the more important. Thus, performance tuning is a necessary component in the
+critical path and kernel execution is all the more important; so, performance tuning is a necessary component in the
 benchmarking process.
 
 With AMD's profiling tools, developers are able to gain important insight into how efficiently their application is
 using hardware resources and effectively diagnose potential bottlenecks contributing to poor performance. Developers
 working with AMD Instinct accelerators have multiple tools depending on their specific profiling needs; these are:
 
-1. :ref:`rocprofiler <fine-tuning-llms-profiling-rocprof>`
-2. :ref:`Omniperf <fine-tuning-llms-profiling-omniperf>`
-3. :ref:`Omnitrace <fine-tuning-llms-profiling-omnitrace>`
+* :ref:`ROCProfiler <fine-tuning-llms-profiling-rocprof>`
+* :ref:`Omniperf <fine-tuning-llms-profiling-omniperf>`
+* :ref:`Omnitrace <fine-tuning-llms-profiling-omnitrace>`
 
 .. _fine-tuning-llms-profiling-rocprof:
 
-rocprofiler
+ROCProfiler
 -----------
-:doc:`rocprofiler <rocprofiler:index>` is primarily a low-level API for accessing and extracting GPU hardware performance
-metrics, commonly called performance counters. These counters quantify the performance of the underlying architecture
+:doc:`ROCProfiler <rocprofiler:index>` is primarily a low-level API for accessing and extracting GPU hardware performance
+metrics, commonly called *performance counters*. These counters quantify the performance of the underlying architecture
 showcasing which pieces of the computational pipeline and memory hierarchy are being utilized.
 
 Your ROCm installation contains a script or executable command called ``rocprof`` which provides the ability to list all
@@ -85,7 +85,7 @@ Omniperf
 --------
 `Omniperf <https://rocm.github.io/omniperf>`_ is a system performance profiler for high-performance computing (HPC) and
 machine learning (ML) workloads using Instinct accelerators. Under the hood, Omniperf uses
-:ref:`rocprofiler <fine-tuning-llms-rocprof>` to collect hardware performance counters. The Omniperf tool performs
+:ref:`ROCProfiler <fine-tuning-llms-rocprof>` to collect hardware performance counters. The Omniperf tool performs
 system profiling based on all approved hardware counters for Instinct
 accelerator architectures. It provides high level performance analysis features including System Speed-of-Light, IP
 block Speed-of-Light, Memory Chart Analysis, Roofline Analysis, Baseline Comparisons, and more.
@@ -189,7 +189,7 @@ In this case, it is an in-memory kernel that was generated at runtime.
 
 Using the following environment variable, the debug agent will save all code objects to the current directory (use
 ``--save-code-objects=[DIR]`` to place them in another location). The code objects will be renamed from the URI format
-with special characters replaced by ‘_’. 
+with special characters replaced by ``_``. 
 
 .. code-block:: shell
 
