@@ -526,3 +526,21 @@ of the above environments. The script is located at ``env_check.sh``.
    print_usage
 
    fi
+
+.. _fine-tuning-llms-triton-tunableop:
+
+TunableOp
+---------
+`TunableOp <https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/cuda/tunable/README.md>`_
+is a feature used to define and optimize kernels that can have tunable parameters. This is useful in
+optimizing the performance of custom kernels by exploring different parameter configurations to find the most efficient
+setup. See more about PyTorch TunableOp :ref:`Model acceleration libraries <fine-tuning-llms-pytorch-tunableop>`.
+
+The behavior of TunableOp is easily manipulated through environment variables, though you could use the C++ interface
+``at::cuda::tunable::getTuningContext()``. A Python interface to the ``TuningContext`` does not yet exist.
+
+The default value is ``0``, which means only 1 iteration is attempted. Remember: there’s an overhead to tuning. To try
+and minimize the overhead, only a limited number of iterations of a given operation are attempted. If you set this to
+``10``, each solution for a given operation can run as many iterations as possible within 10ms. There is a hard-coded
+upper limit of 100 iterations attempted per solution. This is a tuning parameter; if you want the tunings to be chosen
+based on an average over multiple iterations, increase the allowed tuning duration.

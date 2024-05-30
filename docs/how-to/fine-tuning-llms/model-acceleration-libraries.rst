@@ -203,6 +203,8 @@ of the PyTorch compilation.
                generated_ids[:, cache_position] = next_token.int()
            cache_position += 1
 
+.. _fine-tuning-llms-pytorch-tunableop:
+
 PyTorch TunableOp
 ------------------
 
@@ -242,3 +244,6 @@ page describes the options.
 .. image:: ../../data/how-to/fine-tuning-llms/tunableop.png
    :alt: GEMM and TunableOp
    :align: center
+
+Learn more about tuning with TunableOp in
+:ref:`Triton kernel performance optimization <fine-tuning-llms-triton-tunableop>`.
