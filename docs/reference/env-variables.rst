@@ -2,6 +2,9 @@
     :description: Environment variables reference
     :keywords: AMD, ROCm, environment variables, environment, reference
 
+.. role:: cpp(code)
+   :language: cpp
+
 .. _env-variables-reference:
 
 *************************************************************
@@ -11,7 +14,7 @@ Environment variables reference
 General overview
 ==========================================
 
-Environment variables that impact libraries in ROCm software stack
+Environment variables that impact libraries over the ROCm software stack. 
 
 .. list-table:: Environment variables that impact libraries in ROCm software stack
     :widths: 80,20
@@ -111,7 +114,8 @@ Environment variables affecting the hipamd backend of project clr.
       - 1, 2, ... 7
 
     * - | ``ROCM_LIBPATCH_VERSION``
-        | The ROCm version in the format of an integer. The format is ``MAJOR * 10000 + MINOR * 100 + PATCH``
+        | The ROCm version in the format of an integer. The format is
+        | :cpp:`MAJOR * 10000 + MINOR * 100 + PATCH`
       - 50000, 60020...
 
     * - | ``ROCM_RPATH``
@@ -135,12 +139,12 @@ AMD rocclr environment variables at release build:
     * - | ``AMD_CPU_AFFINITY``
         | Reset CPU affinity of any runtime threads
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``AMD_DIRECT_DISPATCH``
         | Enable direct kernel dispatch.
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``AMD_GPU_FORCE_SINGLE_FP_DENORM``
         | Force denorm for single precision: -1 - don't force, 0 - disable, 1 - enable
@@ -160,7 +164,7 @@ AMD rocclr environment variables at release build:
     * - | ``AMD_LOG_MASK``
         | The mask to enable specific kinds of logs
       - ``uint``
-      - 0X7FFFFFFF
+      - ``0X7fffffff``
 
     * - | ``AMD_OCL_BUILD_OPTIONS``
         | Set the options for clBuildProgram and clCompileProgram, override
@@ -185,7 +189,7 @@ AMD rocclr environment variables at release build:
     * - | ``AMD_OCL_WAIT_COMMAND``
         | 1 = Enable a wait for every submitted command
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``OCL_SET_SVM_SIZE``
         | set SVM space size for discrete GPU
@@ -195,7 +199,7 @@ AMD rocclr environment variables at release build:
     * - | ``OCL_STUB_PROGRAMS``
         | 1 = Enables OCL programs stubing
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``OPENCL_VERSION``
         | Force GPU opencl version
@@ -203,29 +207,29 @@ AMD rocclr environment variables at release build:
       - 200
 
     * - | ``AMD_OPT_FLUSH``
-        | Kernel flush option, 0x0 = Use system-scope fence operations. 0x1 = Use device-scope fence operations when possible.
+        | Kernel flush option, ``0x0`` = Use system-scope fence operations. ``0x1`` = Use device-scope fence operations when possible.
       - ``uint``
       - 1
 
     * - | ``AMD_SERIALIZE_COPY``
-        | Serialize copies, 0x1 = Wait for completion before enqueue, 0x2 = Wait for completion after enqueue 0x3 = both
+        | Serialize copies, ``0x1`` = Wait for completion before enqueue, ``0x2`` = Wait for completion after enqueue ``0x3`` = both
       - ``uint``
       - 0
 
     * - | ``AMD_SERIALIZE_KERNEL``
-        | Serialize kernel enqueue, 0x1 = Wait for completion before enqueue, 0x2 = Wait for completion after enqueue 0x3 = both
+        | Serialize kernel enqueue, ``0x1`` = Wait for completion before enqueue, ``0x2`` = Wait for completion after enqueue ``0x3`` = both
       - ``uint``
       - 0
 
     * - | ``AMD_THREAD_TRACE_ENABLE``
         | Enable thread trace extension
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``CL_KHR_FP64``
         | Enable/Disable support for double precision
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``CQ_THREAD_STACK_SIZE``
         | The default command queue thread stack size
@@ -240,7 +244,7 @@ AMD rocclr environment variables at release build:
     * - | ``DEBUG_CLR_GRAPH_PACKET_CAPTURE``
         | Enable/Disable graph packet capturing
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``DEBUG_CLR_LIMIT_BLIT_WG``
         | Limit the number of workgroups in blit operations
@@ -250,22 +254,22 @@ AMD rocclr environment variables at release build:
     * - | ``DISABLE_DEFERRED_ALLOC``
         | Disables deferred memory allocation on device
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_ADD_HBCC_SIZE``
         | Add HBCC size to the reported device memory
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_ANALYZE_HANG``
         | 1 = Enables GPU hang analysis
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_BLIT_ENGINE_TYPE``
         | Blit engine type: 0 - Default, 1 - Host, 2 - CAL, 3 - Kernel
       - ``uint``
-      - 0x0
+      - ``0x0``
 
     * - | ``GPU_CP_DMA_COPY_SIZE``
         | Set maximum size of CP DMA copy in KiB
@@ -275,7 +279,7 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_DEBUG_ENABLE``
         | Enables collection of extra info for debugger at some performance cost
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_DEVICE_ORDINAL``
         | Select the device ordinal, a comma separated list of available devices
@@ -285,27 +289,27 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_DUMP_BLIT_KERNELS``
         | Dump the kernels for blit manager
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_DUMP_CODE_OBJECT``
         | Enable dump code object
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_ENABLE_COOP_GROUPS``
         | Enables cooperative group launch
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``GPU_ENABLE_HW_P2P``
         | Enables HW P2P path
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_ENABLE_LC``
         | Enables LC path
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``GPU_ENABLE_PAL``
         | Enables PAL backend. 0 - ROC, 1 - PAL, 2 - ROC or PAL
@@ -315,12 +319,12 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_ENABLE_WAVE32_MODE``
         | Enables Wave32 compilation in HW if available
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``GPU_ENABLE_WGP_MODE``
         | Enables WGP Mode in HW if available
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``GPU_FORCE_BLIT_COPY_SIZE``
         | Size in KB of the threshold below which to force blit instead for sdma
@@ -330,22 +334,22 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_FORCE_QUEUE_PROFILING``
         | Force command queue profiling by default
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_FLUSH_ON_EXECUTION``
         | Submit commands to HW on every operation. 0 - Disable, 1 - Enable
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_IMAGE_BUFFER_WAR``
         | Enables image buffer workaround
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``GPU_IMAGE_DMA``
         | Enable DRM DMA for image transfers
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``GPU_MAX_COMMAND_BUFFERS``
         | The maximum number of command buffers allocated per queue
@@ -385,7 +389,7 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_MIPMAP``
         | Enables GPU mipmap extension
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``GPU_NUM_COMPUTE_RINGS``
         | GPU number of compute rings. 0 - disabled, 1, 2, ... - the number of compute rings
@@ -430,12 +434,12 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_STREAMOPS_CP_WAIT``
         | Force the stream wait memory operation to wait on CP.
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_USE_DEVICE_QUEUE``
         | Use a dedicated device queue for the actual submissions
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``GPU_WAVES_PER_SIMD``
         | Force the number of waves per SIMD , 1-10
@@ -468,24 +472,24 @@ AMD rocclr environment variables at release build:
       - 8388608
 
     * - | ``HIP_LAUNCH_BLOCKING``
-        | Serialize kernel enqueue 0x1 = Wait for completion after enqueue, same as ``AMD_SERIALIZE_KERNEL=2``
+        | Serialize kernel enqueue ``0x1`` = Wait for completion after enqueue, same as ``AMD_SERIALIZE_KERNEL=2``
       - ``uint``
       - 0
 
     * - | ``HIP_MEM_POOL_SUPPORT``
         | Enables memory pool support in HIP
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``HIP_MEM_POOL_USE_VM``
         | Enables memory pool support in HIP
       - ``bool``
-      - IS_WINDOWS
+      - ``true`` on Windows, ``false`` on other OS
 
     * - | ``HIP_USE_RUNTIME_UNBUNDLER``
         | Force this to use Runtime code object unbundler.
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``HIP_VISIBLE_DEVICES``
         | Only devices whose index is present in the sequence are visible to HIP
@@ -495,7 +499,7 @@ AMD rocclr environment variables at release build:
     * - | ``HIP_VMEM_MANAGE_SUPPORT``
         | Virtual Memory Management Support
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``HIPCC_VERBOSE``
         | How much extra info to show during build. E.g: compiler flags, paths.
@@ -513,9 +517,9 @@ AMD rocclr environment variables at release build:
       - 
 
     * - | ``HIPRTC_USE_RUNTIME_UNBUNDLER``
-        | Set this to true to force runtime unbundler in hiprtc.
+        | Set this to ``true`` to force runtime unbundler in hiprtc.
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``HSA_KERNARG_POOL_SIZE``
         | Kernarg pool size
@@ -525,12 +529,12 @@ AMD rocclr environment variables at release build:
     * - | ``HSA_LOCAL_MEMORY_ENABLE``
         | Enable HSA device local memory usage
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``PAL_DISABLE_SDMA``
         | 1 = Disable SDMA for PAL
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``PAL_MALL_POLICY``
         | Controls the behaviour of allocations with respect to the MALL, 0 = MALL policy is decided by KMD, 1 = Allocations are never put through the MALL, 2 = Allocations will always be put through the MALL
@@ -540,12 +544,12 @@ AMD rocclr environment variables at release build:
     * - | ``PAL_ALWAYS_RESIDENT``
         | Force memory resources to become resident at allocation time
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``PAL_EMBED_KERNEL_MD``
         | Enables writing kernel metadata into command buffers.
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``PAL_FORCE_ASIC_REVISION``
         | Force a specific ASIC revision for all devices
@@ -555,7 +559,7 @@ AMD rocclr environment variables at release build:
     * - | ``PAL_HIP_IPC_FLAG``
         | Enable interprocess flag for device allocation in PAL HIP
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``PAL_PREPINNED_MEMORY_SIZE``
         | Size in KBytes of prepinned memory
@@ -570,7 +574,7 @@ AMD rocclr environment variables at release build:
     * - | ``REMOTE_ALLOC``
         | Use remote memory for the global heap allocation
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``ROC_ACTIVE_WAIT_TIMEOUT``
         | Forces active wait of GPU interrupt for the timeout, us unit
@@ -585,15 +589,15 @@ AMD rocclr environment variables at release build:
     * - | ``ROC_CPU_WAIT_FOR_SIGNAL``
         | Enable CPU wait for dependent HSA signals.
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``ROC_ENABLE_LARGE_BAR``
         | Enable Large Bar if supported by the device
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``ROC_GLOBAL_CU_MASK``
-        | Sets a global CU mask, entered as hex value for all queues, Each active bit represents using one CU, e.g. 0xf enables only 4 CUs
+        | Sets a global CU mask, entered as hex value for all queues, Each active bit represents using one CU, e.g. ``0xf`` enables only 4 CUs
       - ``cstring``
       - 
 
@@ -613,19 +617,19 @@ AMD rocclr environment variables at release build:
       - 32
 
     * - | ``ROC_SKIP_KERNEL_ARG_COPY``
-        | If true, then runtime can skip kernel arg copy
+        | If ``true``, then runtime can skip kernel arg copy
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``ROC_SYSTEM_SCOPE_SIGNAL``
         | Enable system scope for signals, uses interrupts.
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``ROC_USE_FGS_KERNARG``
         | Use fine grain kernel args segment for supported ASICs
       - ``bool``
-      - TRUE
+      - ``true``
 
     * - | ``ROCPROFILER_REGISTER_ROOT``
         | The path to the rocProfiler.
@@ -661,7 +665,7 @@ AMD rocclr environment variables at debug build:
     * - | ``CPU_MEMORY_GUARD_PAGES``
         | Use guard pages for CPU memory
       - ``bool``
-      - FALSE
+      - ``false``
 
     * - | ``MEMOBJ_BASE_ADDR_ALIGN``
         | Alignment of the base address of any allocate memory object. The default value corresponds to 4 KiB.
@@ -671,4 +675,4 @@ AMD rocclr environment variables at debug build:
     * - | ``PARAMETERS_MIN_ALIGNMENT``
         | Minimum alignment required for the abstract parameters stack
       - ``size_t``
-      - NATIVE_ALIGNMENT_SIZE
+      - 64 at ``__AVX512F__``, 32 at ``__AVX__`` and 16 at other cases
