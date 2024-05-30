@@ -158,39 +158,45 @@ Kernel occupancy
 
 2. Get the allocated LDS following the steps. For example, L for the kernel.
 
-  a. ``export MLIR_ENABLE_DUMP=1``
+   a. ``export MLIR_ENABLE_DUMP=1``
 
-  b. ``rm -rf ~/.triton/cache``
+   b. ``rm -rf ~/.triton/cache``
 
-  c. ``python kernel.py | | grep "triton_gpu.shared = " | tail -n 1``
+   c. ``python kernel.py | | grep "triton_gpu.shared = " | tail -n 1``
 
-  d. You should see something like ``triton_gpu.shared = 65536``, indicating 65536 bytes of LDS are allocated for the
+   d. You should see something like ``triton_gpu.shared = 65536``, indicating 65536 bytes of LDS are allocated for the
      kernel.
 
 3. Get number of waves per workgroup using the following steps (say you got ``nW``).
 
-  a. ``export MLIR_ENABLE_DUMP=1``
+   a. ``export MLIR_ENABLE_DUMP=1``
 
-  b. ``rm -rf ~/.triton/cache``
+   b. ``rm -rf ~/.triton/cache``
 
-  c. ``python kernel.py | | grep "triton_gpu.num-warps " | tail -n 1``
+   c. ``python kernel.py | | grep "triton_gpu.num-warps " | tail -n 1``
 
-  d. You should see something like ``“triton_gpu.num-warps" = 8``, indicating 8 waves per workgroup.
+   d. You should see something like ``“triton_gpu.num-warps" = 8``, indicating 8 waves per workgroup.
 
-4. Compute occupancy limited by VGPR based on N according to table 1 in this link. For example, waves per EU as
+4. Compute occupancy limited by VGPR based on N according to the following table. For example, waves per EU as
    ``occ_vgpr``.
+
+.. _fine-tuning-llms-occupancy-vgpr-table:
+
+.. figure:: ../../data/how-to/fine-tuning-llms/occupancy-vgpr.png
+   :alt: Occupancy related to VGPR usage in an Instinct MI300X accelerator.
+   :align: center
 
 5. Compute occupancy limited by LDS based on L by: ``occ_lds = floor(65536 / L)``.
 
 6. Then the occupancy is ``occ = min(floor(occ_vgpr * 4 / nW), occ_lds) * nW / 4``
 
-  a. ``occ_vgpr \* 4`` gives the total number of waves on all 4 execution units (SIMDs)
-  per CU
+   a. ``occ_vgpr \* 4`` gives the total number of waves on all 4 execution units (SIMDs)
+   per CU.
 
-  b. ``floor(occ_vgpr * 4 / nW)`` gives the occupancy of workgroups per CU
-  regrading VGPR usage
+   b. ``floor(occ_vgpr * 4 / nW)`` gives the occupancy of workgroups per CU
+   regrading VGPR usage.
 
-  c. The true ``occ`` is the minimum of the two.
+   c. The true ``occ`` is the minimum of the two.
 
 .. _fine-tuning-llms-triton-kernel-configs-env-vars:
 
@@ -207,15 +213,15 @@ The following is a list of kernel arguments used for tuning.
    Adjusts the number of pipeline stages for different types of kernels. On AMD accelerators, set ``num_stages``
    according to the following rules:
 
-   -  For kernels with a single GEMM, set to ``0``.
+   * For kernels with a single GEMM, set to ``0``.
 
-   -  For kernels with two GEMMs fused (Flash Attention, or any other kernel
-      that fuses 2 GEMMs), set to ``1``.
+   * For kernels with two GEMMs fused (Flash Attention, or any other kernel
+     that fuses 2 GEMMs), set to ``1``.
 
-   -  For kernels that fuse a single GEMM with another non-GEMM operator
-      (for example ReLU activation), set to ``0``.
+   * For kernels that fuse a single GEMM with another non-GEMM operator
+     (for example ReLU activation), set to ``0``.
 
-   -  For kernels that have no GEMMs, set to ``1``.
+   * For kernels that have no GEMMs, set to ``1``.
 
 ``waves_per_eu=n``
    Helps to manage Vector General Purpose Registers (VGPR) usage to achieve desired occupancy levels. This argument
@@ -225,9 +231,10 @@ The following is a list of kernel arguments used for tuning.
 
    This argument is useful if:
 
-   -  The occupancy of the kernel is limited by VGPR usage.
+   * The occupancy of the kernel is limited by VGPR usage.
 
-   -  The current VGPR usage is only a few above a boundary in table 1.
+   * The current VGPR usage is only a few above a boundary in
+     :ref:`Occupancy related to VGPR usage in an Instinct MI300X accelerator <fine-tuning-llms-occupancy-vgpr-table>`.
 
    For example, according to the table, the available VGPR is 512 per Execution Unit (EU), and VGPU is allocated at the
    unit of 16. If the current VGPR usage is 170, the actual requested VGPR will be 176, so the
@@ -329,8 +336,8 @@ help. This implements the Triton ``conv``/``mm`` implementations used upstream
 and allows specification of inputs and configuration tuning search space if new
 tunings are found that can be added to the auto-tune list.
 
-Miscellaneous
-=============
+Other guidelines
+================
 
 Performance-critical HIP provides an environment variable, ``export HIP_FORCE_DEV_KERNARG=1``,
 that can put HIP kernel arguments directly to
@@ -343,8 +350,8 @@ Set the clock to deterministic. Use the command ``rocm-smi --setperfdeterminism 
 1900MHz instead of the default 2100MHz. This can reduce the chance of clock speed decrease due to chip high temperature
 by setting a lower cap. You can restore this setting to its default value with ``rocm-smi -r``.
 
-Set `numa` auto-balance. Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the current settings. An output
-of ``0`` indicates this setting is available. If output is ``1``, run the command
+Set Non-Uniform Memory Access (NUMA) auto-balance. Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the
+current setting. An output of ``0`` indicates this setting is available. If output is ``1``, run the command
 ``sudo sh -c \\'echo 0 > /proc/sys/kernel/numa_balancing`` to set this.
 
 For these settings, we created a script to do ‘set’, ‘reset’, ‘checking’
@@ -519,19 +526,3 @@ of the above environments. The script is located at ``env_check.sh``.
    print_usage
 
    fi
-
-TunableOp has been merged into PyTorch. The behavior of TunableOp is
-easily manipulated through environment variables, though you could use
-the C++ interface of ``at::cuda::tunable::getTuningContext()``. A Python
-interface to the ``TuningContext`` does not yet exist.
-
-The default is 0, which means only 1 iteration is attempted.
-
-There’s an overhead to tuning. To try and minimize the overhead, only a
-limited number of iterations of a given operation are attempted. If you
-set this to 10, each solution for a given operation can run as many
-iterations as possible within 10ms. There is a hard-coded upper limit of
-100 iterations attempted per solution. This is a tuning parameter; if
-you want the tunings to be chosen based on an average over multiple
-iterations, increase the allowed tuning duration.
-
