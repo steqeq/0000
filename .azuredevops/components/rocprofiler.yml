@@ -44,11 +44,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  - name: HIP_ROCCLR_HOME
-    value: $(Agent.BuildDirectory)/rocm
-  - name: ROCM_PATH
-    value: $(Agent.BuildDirectory)/rocm
-  pool: ${{ variables.LOW_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -77,7 +73,7 @@ jobs:
     displayName: 'Move rocm-core'
     inputs:
       targetType: inline
-      script: mkdir -p $(Agent.BuildDirectory)/rocm && cp -R rocm-core/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
+      script: mkdir -p /opt/rocm && cp -R rocm-core/opt/rocm-6.1.0/* /opt/rocm
       workingDirectory: '$(Pipeline.Workspace)'
   - task: Bash@3
     displayName: 'Download aqlprofile'
@@ -95,7 +91,7 @@ jobs:
     displayName: 'Move aqlprofile'
     inputs:
       targetType: inline
-      script: mkdir -p $(Agent.BuildDirectory)/rocm && cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
+      script: mkdir -p /opt/rocm && cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* /opt/rocm
       workingDirectory: '$(Pipeline.Workspace)'
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
@@ -112,15 +108,10 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules;$(Agent.BuildDirectory)/rocm/lib/cmake;$(Agent.BuildDirectory)/rocm/lib/cmake/hip;${{ variables.ROCM_PATH }}/hip/cmake;${{ variables.ROCM_PATH }}/lib/cmake
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/llvm
+        -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules;/opt/rocm/lib/cmake
+        -DCMAKE_PREFIX_PATH=/opt/rocm
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
         -DENABLE_LDCONFIG=OFF
         -DUSE_PROF_API=1
         -DGPU_TARGETS=gfx1030;gfx1100
-        -DCMAKE_SKIP_BUILD_RPATH=TRUE
-        -DCMAKE_SKIP_INSTALL_RPATH=TRUE
-        -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN:$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-        -DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-        -DCMAKE_MODULE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN:$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
