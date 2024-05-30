@@ -73,6 +73,8 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds 
+  - script: ln -s $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++ /opt/rocm/llvm/bin/clang++
+  - script: ln -s $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang /opt/rocm/llvm/bin/clang
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -85,6 +87,5 @@ jobs:
         -DTensile_CODE_OBJECT_VERSION=default
         -DTensile_LIBRARY_FORMAT=msgpack
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
-        -Dtoolchain=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
