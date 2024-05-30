@@ -44,7 +44,7 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
   - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
-  - name: HIP_PATH
+  - name: ROCM_PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
   - name: PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
@@ -81,7 +81,6 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
-        -Drocm-path=$(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
         -DAMDGPU_TARGETS=gfx90a
         -DTensile_LOGIC=
         -DTensile_CPU_THREADS=
