@@ -14,6 +14,7 @@ parameters:
     - libmsgpack-dev
     - git
     - python3-pip
+    - libdrm-dev
 
 - name: pipModules
   type: object
