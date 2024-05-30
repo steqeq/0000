@@ -47,7 +47,7 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: HIP_ROCCLR_HOME 
     value: $(Agent.BuildDirectory)/rocm
-  pool: ${{ variables.HIGH_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -112,7 +112,7 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules;$(Agent.BuildDirectory)/rocm/lib/cmake
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/lib/cmake
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
         -DENABLE_LDCONFIG=OFF
         -DUSE_PROF_API=1
