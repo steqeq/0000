@@ -12,6 +12,7 @@ parameters:
     - ninja-build
     - libgtest-dev
     - git
+    - python3-pip
 - name: rocmDependencies
   type: object
   default:

@@ -33,6 +33,10 @@ parameters:
     - clr
     - rocminfo
     - rocprofiler-register
+    - rocm-smi-lib
+    - rocm-core
+    - aomp
+    - aomp-extras
 
 jobs:
 - job: rocBLAS
