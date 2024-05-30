@@ -5,6 +5,9 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
+- name: offloadEnabled
+  type: boolean
+  default: false
 - name: aptPackages
   type: object
   default:
@@ -94,9 +97,8 @@ jobs:
       cmakeBuildDir: $(Build.SourcesDirectory)/llvm-project/openmp/build
       installDir: $(Build.BinariesDirectory)/llvm
 # offload does not exist for recent releases, so use CI conditional
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.offloadEnabled, true) }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-      enabled: false
       parameters:
         componentName: llvm-offload
         extraBuildFlags: >-
