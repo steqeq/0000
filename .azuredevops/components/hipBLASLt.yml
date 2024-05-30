@@ -80,6 +80,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DROCM-PATH=$(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
         -DAMDGPU_TARGETS=gfx90a
         -DTensile_LOGIC=
         -DTensile_CPU_THREADS=
