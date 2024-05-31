@@ -16,8 +16,8 @@ GEMM is a fundamental block in linear algebra, machine learning, and deep neural
 {math}`E = α \times (A \times B) + β \times (D)`, with A and B as matrix inputs, α and β as scalar inputs, and D as a pre-existing matrix.
 Take the commonly used linear transformation in a fully connected layer as an example. These terms correspond to input activation (A), weight (B), bias (D), and output (E), respectively. The example employs a `DeviceGemmMultipleD_Xdl_CShuffle` struct from CK library as the fundamental instance to explore the compute capability of AMD Instinct accelerators for the computation of GEMM. The implementation of the instance contains two phases:
 
-- Template parameter definition;
-- Templated kernel instantiation and running.
+- [Template parameter definition](#template-parameter-definition)
+- [Instantiating and running the templated kernel](#instantiating-and-running-the-templated-kernel)
 
 ### Template parameter definition
 
@@ -104,7 +104,7 @@ These parameters include Block Size, M/N/K Per Block, M/N per XDL, AK1, BK1, etc
 
 Conditions for achieving computational load balancing on different hardware platforms can vary.
 
-### Instantiate and run the templated kernel
+### Instantiating and running the templated kernel
 
 After determining the template parameters, we instantiate the kernel with actual arguments. Do one of the following:
 
@@ -122,7 +122,7 @@ The row and column, and stride information of input matrices are also passed to 
 Figure 2: Templated kernel launching consists of kernel instantiation, making arguments by passing in actual application parameters, creating an invoker, and running the instance through the invoker.
 ```
 
-## Develop fused INT8 kernels for SmoothQuant models
+## Developing fused INT8 kernels for SmoothQuant models
 
 [SmoothQuant](https://github.com/mit-han-lab/smoothquant) (SQ) is a quantization algorithm that enables an INT8 quantization of both weights and activations for all the matrix multiplications in LLM. The required GPU kernel functionalities used to accelerate the inference of SQ models on Instinct accelerators are shown in the following table.
 
@@ -173,7 +173,7 @@ Based on the two batched GEMM kernels, GEMM kernel `Linear_ABDE_I8` and `Linear_
 
 For example, unsqueeze A (M, K) to A (1, M, K) before assigning it into the root instance and squeeze E (1, M, N) to (M, N) after the calculations of the root instance return back. `Linear_ReLU_ABDE_I8` is implemented by adding a ReLU operation on the result output of `Linear_ABDE_I8`.
 
-### Develop the complete function
+### Developing the complete function
 
 The inference of SQ quantized models relies on using PyTorch and Transformer libraries, and a tensor type is used to represent matrices and vectors in `torch`, the C++ data types in CK need to be replaced with the `torch::tensor` type. The data types of the input and output matrices should be a `tensor` type.
 
@@ -351,7 +351,7 @@ The output of the fundamental instance is a calculated batched matrix E (batch, 
 return E.squeeze(0);
 ```
 
-### Bind to Python
+### Binding to Python
 
 Since these functions are written in C++ and `torch::Tensor`, you can use `pybind11` to bind the functions and import them as Python modules. For the example, the necessary binding code for exposing the functions in the table spans but a few lines.  
 
