@@ -8,8 +8,17 @@ parameters:
 - name: aptPackages
   type: object
   default:
+    - python3-pip
     - cmake
     - ninja-build
+- name: rocmDependencies
+  type: object
+  default:
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
 
 jobs:
 - job: half
@@ -18,8 +27,6 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -30,9 +37,22 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  # CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+  # manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DBUILD_FILE_REORG_BACKWARD_COMPATIBILITY=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

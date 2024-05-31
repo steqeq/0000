@@ -12,6 +12,7 @@ parameters:
 - name: defaultBranchList
   type: object
   default:
+    amdsmi: develop
     aomp: aomp-dev
     aomp-extras: aomp-dev
     AMDMIGraphX: develop
@@ -25,8 +26,11 @@ parameters:
     llvm-project: amd-staging
     MIOpen: develop
     rocBLAS: develop
+    ROCdbgapi : amd-master
+    rocDecode: develop
     rocFFT: develop
     rocm-cmake: develop
+    rocm_smi_lib: develop
     rocminfo: master
     rocMLIR: develop
     rocPRIM: develop
@@ -36,6 +40,7 @@ parameters:
     rocSOLVER: develop
     rocSPARSE: develop
     ROCT-Thunk-Interface: master
+    roctracer: amd-master
     rpp: master
 - name: componentsFailureOkay
   type: object

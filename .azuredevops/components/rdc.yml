@@ -8,6 +8,7 @@ parameters:
 - name: aptPackages
   type: object
   default:
+    - python3-pip
     - cmake
     - ninja-build
     - git
@@ -17,6 +18,16 @@ parameters:
     - autoconf
     - libtool
     - pkg-config
+- name: rocmDependencies
+  type: object
+  default:
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
+    - rocm-smi-lib
+    - amdsmi
 
 jobs:
 - job: rdc
@@ -24,8 +35,6 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
-  container:
-    image: ${{ variables.DOCKER_IMAGE_NAME }}:${{ variables.LATEST_DOCKER_VERSION }}
   workspace:
     clean: all
   steps:
@@ -36,6 +45,18 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  # CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+  # manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
 # Build grpc
   - task: Bash@3
     displayName: 'git clone grpc'
@@ -57,6 +78,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DGRPC_ROOT="$(Build.SourcesDirectory)/bin"
         -DBUILD_TESTS=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
