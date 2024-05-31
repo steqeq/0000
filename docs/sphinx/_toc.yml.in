@@ -74,9 +74,9 @@ subtrees:
       - file: how-to/fine-tuning-llms/model-quantization.rst
       - file: how-to/fine-tuning-llms/model-acceleration-libraries.rst
       - file: how-to/fine-tuning-llms/llm-inference-frameworks.rst
-      - file: how-to/fine-tuning-llms/kernel-fusion-using-ck.md
+      - file: how-to/fine-tuning-llms/optimizing-with-composable-kernel.md
         title: Optimizing with Composable Kernel
-      - file: how-to/fine-tuning-llms/triton-kernel-performance-optimization.rst
+      - file: how-to/fine-tuning-llms/optimizing-triton-kernel.rst
         title: Optimizing Triton kernels
       - file: how-to/fine-tuning-llms/profiling-and-debugging.rst
   - file: how-to/tuning-guides.md

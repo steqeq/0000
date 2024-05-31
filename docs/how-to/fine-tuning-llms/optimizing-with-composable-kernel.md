@@ -23,10 +23,10 @@ Take the commonly used linear transformation in a fully connected layer as an ex
 
 The template parameters of the instance are grouped into four parameter types:
 
-- [Parameters for determining matrix data precision](#matrix-data-precision)
-- [Parameters for determining matrix data layout](#matrix-data-layout)
-- [Parameters for determining extra operations on matrix elements](#matrix-element-operation)
-- [Performance-oriented tunable parameters](#tunable-parameters)
+- [Parameters for determining matrix data precision](matrix-data-precision)
+- [Parameters for determining matrix data layout](matrix-data-layout)
+- [Parameters for determining extra operations on matrix elements](matrix-element-operation)
+- [Performance-oriented tunable parameters](tunable-parameters)
 
 <!-- 
 ================
@@ -36,6 +36,7 @@ The template parameters of the instance are grouped into four parameter types:
 Figure 1: The template parameters of the selected GEMM kernel are classified into four groups. These template parameter groups should be defined properly before running the instance.
 ```
 
+(matrix-data-precision)=
 #### Matrix data precision
 
 A, B, D, and E are defined as half-precision floating-point datatypes. The multiply-add results of matrix A and B are added with a pre-existing matrix D (half-precision), and the final GEMM results are also half-precision floating-points.
@@ -55,6 +56,7 @@ using EDataType        = F16;
 
 `DDataType` denotes the data precision of the pre-existing D matrix stored in GPU global memory, while `EDatatype` denotes the data precision of the final output. The CK kernel supports a fusion strategy so that `CShuffle` can be added with a single pre-existing matrix in the same GPU kernel for better performance.
 
+(matrix-data-layout)=
 #### Matrix data layout
 
 ```c++
@@ -66,6 +68,7 @@ using ELayout = Row;
 
 Following the convention of various linear algebra libraries, CK assumes that the input matrix A is an M x K matrix, meaning the matrix has M rows and K columns. Similarly, matrix B is assumed to be K x N, meaning it has K rows and N columns. In computing, row-major order and column-major order are commonly used ways to store matrices in linear storage. After understanding the matrix storage pattern, the underlying optimized memory access manner can be applied to achieve better performance depending on the storage ordering of these matrices.
 
+(matrix-element-operation)=
 #### Matrix element operation
 
 ```c++
@@ -91,6 +94,7 @@ struct AddRelu
 };
 ```
 
+(tunable-parameters)=
 #### Tunable parameters  
 
 The CK instance includes a series of tunable template parameters to control the parallel granularity of the workload to achieve load balancing on different hardware platforms.

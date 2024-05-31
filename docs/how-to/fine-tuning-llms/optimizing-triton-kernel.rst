@@ -15,7 +15,7 @@ Hardware resource utilization
 =============================
 
 Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do computation in parallel. So, how many CUs
-can a compute kernel can allocate its task to? For the :doc:`AMD MI300X accelerator <reference/gpu-arch-specs>`, the
+can a compute kernel can allocate its task to? For the :doc:`AMD MI300X accelerator <../../reference/gpu-arch-specs>`, the
 grid should have at least 1024 thread blocks or workgroups.
 
 To increase hardware utilization and maximize parallelism, it is necessary to design algorithms that can exploit more
@@ -36,7 +36,7 @@ operations, which can further distribute the computation across more CUs, thereb
       rocminfo | grep "Wavefront Size"
 
    On an MI300X device, there are 304 CUs, 4 SIMD per CU, and the wavefront size (warp size) is 64. See :doc:`Hardware
-   specifications <rocm:reference/gpu-arch-specs>` for a full list of AMD accelerators and GPUs.
+   specifications <../../reference/gpu-arch-specs>` for a full list of AMD accelerators and GPUs.
 
 .. _fine-tuning-llms-triton-memory-access-efficiency:
 
@@ -286,25 +286,30 @@ The following is an environment variable used for tuning.
 PyTorch ``inductor`` Triton tuning knobs
 ========================================
 
+The following are suggestions for optimizing matrix multiplication (GEMM) and convolution (conv) operations in PyTorch
+using ``inductor``, a part of the PyTorch compilation framework. The goal is to leverage Triton to achieve better
+performance.
+
 To enable a ``gemm/conv`` lowering to Triton, it requires use of ``inductor``’s ``max_autotune`` mode. This benchmarks a
 static list of Triton configurations (``conv`` configurations for max auto-tune + ``matmul`` configurations for max
 auto-tune) and uses the fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen <miopen:index>`
 or :doc:`rocBLAS <rocblas:index>` is faster for a specific operation.
 
-``torch._inductor.config.max_autotune = True`` or
-``TORCHINDUCTOR_MAX_AUTOTUNE=1``
+* Set ``torch._inductor.config.max_autotune = True`` or ``TORCHINDUCTOR_MAX_AUTOTUNE=1``.
 
-Or, for more fine-grained control:
+* Or, for more fine-grained control:
 
-``torch._inductor.config.max_autotune.pointwise = True`` - to enable tuning for ``pointwise``/``reduction`` ops
+   ``torch._inductor.config.max_autotune.pointwise = True``
+      To enable tuning for ``pointwise``/``reduction`` ops.
 
-``torch._inductor.config.max_autotune_gemm = True`` - to enable tuning or lowering of ``mm``/``conv``s
+   ``torch._inductor.config.max_autotune_gemm = True``
+      To enable tuning or lowering of ``mm``/``conv``s.
 
-``torch._inductor.max_autotune_gemm_backends/TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
-- to select the candidate backends for mm auto-tuning Defaults to
-``TRITON,ATEN``, NV also includes CUTLASS tuning option. Limiting this to
-“TRITON” might improve performance by enabling more fused mm kernels
-instead of going to rocBLAS
+   ``torch._inductor.max_autotune_gemm_backends/TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
+      To select the candidate backends for ``mm`` auto-tuning. Defaults to
+      ``TRITON,ATEN,NV``. This also includes the ``CUTLASS`` tuning option. Limiting this to
+      ``TRITON`` might improve performance by enabling more fused ``mm`` kernels
+      instead of going to rocBLAS.
 
 For ``mm tuning coordinate_descent`` tuning might improve performance,
 which attempts
@@ -312,7 +317,7 @@ which attempts
 ``torch._inductor.config.coordinate_descent_tuning = True`` or ``TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1``
 
 Inference can see large improvements on AMD GPUs by utilizing
-\`torch._inductor.config.freezing=True`/TORCHINDUCTOR_FREEZING=1, which
+``torch._inductor.config.freezing=True`` or the ``TORCHINDUCTOR_FREEZING=1`` variable, which
 in-lines weights as constants and enables constant folding optimizations.
 
 Enabling ``inductor``’s cpp_wrapper might improve overhead. This generates

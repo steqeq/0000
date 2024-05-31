@@ -400,15 +400,13 @@ Basic model inference
 
 A trained model can be classified into one of three types:
 
-*  :ref:`A pre-trained language model in Hugging Face <fine-tuning-llms-pre-trained-fully-fine-tuned-inference>`
+*  A PEFT adapter
 
-*  :ref:`A fully fine-tuned model not using PEFT <fine-tuning-llms-pre-trained-fully-fine-tuned-inference>`
+*  A pre-trained language model in Hugging Face
 
-*  :ref:`A PEFT adapter <fine-tuning-llms-peft-adapter-inference>`
+*  A fully fine-tuned model not using PEFT
 
 Let's look at achieving model inference using these types of models.
-
-.. _fine-tuning-llms-pre-trained-fully-fine-tuned-inference:
 
 .. tab-set::
 

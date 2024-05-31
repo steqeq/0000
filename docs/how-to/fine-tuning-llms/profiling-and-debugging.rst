@@ -85,7 +85,7 @@ Omniperf
 --------
 `Omniperf <https://rocm.github.io/omniperf>`_ is a system performance profiler for high-performance computing (HPC) and
 machine learning (ML) workloads using Instinct accelerators. Under the hood, Omniperf uses
-:ref:`ROCProfiler <fine-tuning-llms-rocprof>` to collect hardware performance counters. The Omniperf tool performs
+:ref:`ROCProfiler <fine-tuning-llms-profiling-rocprof>` to collect hardware performance counters. The Omniperf tool performs
 system profiling based on all approved hardware counters for Instinct
 accelerator architectures. It provides high level performance analysis features including System Speed-of-Light, IP
 block Speed-of-Light, Memory Chart Analysis, Roofline Analysis, Baseline Comparisons, and more.
@@ -125,7 +125,7 @@ hardware counters are also included.
 
 .. tip::
 
-   When analyzing the performance of an application, it is always best to NOT assume you know where the performance
+   When analyzing the performance of an application, it is best not to assume you know where the performance
    bottlenecks are and why they are happening. Omnitrace is the ideal tool for characterizing where optimization would
    have the greatest impact on the end-to-end execution of the application and to discover what else is happening on the
    system during a performance bottleneck.

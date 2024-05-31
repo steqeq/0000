@@ -29,9 +29,9 @@ sections that follow, you'll find practical guides on libraries and tools to acc
 
 - :doc:`LLM inference frameworks <llm-inference-frameworks>`
 
-- :doc:`Optimizing with Composable Kernel <kernel-fusion-using-ck>`
+- :doc:`Optimizing with Composable Kernel <optimizing-with-composable-kernel>`
 
-- :doc:`Optimizing Triton kernels <triton-kernel-performance-optimization>`
+- :doc:`Optimizing Triton kernels <optimizing-triton-kernel>`
 
 - :doc:`Profiling and debugging <profiling-and-debugging>`
 
