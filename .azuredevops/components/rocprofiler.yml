@@ -33,6 +33,7 @@ parameters:
     - clr
     - llvm-project
     - ROCdbgapi
+    - rocm-cmake
     - rocm-smi-lib
     - rocminfo
     - ROCR-Runtime
