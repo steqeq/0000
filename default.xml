@@ -7,7 +7,6 @@
      sync-c="true"
      sync-j="4" />
 <!--list of projects for ROCm-->
-    <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" />
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCR-Runtime" />
     <project name="ROCT-Thunk-Interface" />
