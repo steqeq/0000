@@ -51,7 +51,7 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm
   - name: ROCM_PATH
     value: $(Agent.BuildDirectory)/rocm
-  pool: ${{ variables.LOW_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -63,7 +63,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# Manually download rocm-core and aqlprofile, hard-coded 6.1.0 versions
+# Manually download aqlprofile, hard-coded 6.1.0 version
   - task: Bash@3
     displayName: 'Download aqlprofile'
     inputs:
@@ -87,13 +87,13 @@ jobs:
         cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
       workingDirectory: '$(Pipeline.Workspace)'
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, 'amd-master') }}:
+  - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, 'amd-master') }}:
+  - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
