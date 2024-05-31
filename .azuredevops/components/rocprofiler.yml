@@ -73,13 +73,17 @@ jobs:
     displayName: 'Extract rocm-core'
     inputs:
       targetType: inline
-      script: mkdir rocm-core && dpkg-deb -R rocm-core_6.1.0.60100-82~22.04_amd64.deb rocm-core
+      script: |
+        mkdir rocm-core
+        dpkg-deb -R rocm-core_6.1.0.60100-82~22.04_amd64.deb rocm-core
       workingDirectory: '$(Pipeline.Workspace)'
   - task: Bash@3
     displayName: 'Move rocm-core'
     inputs:
       targetType: inline
-      script: mkdir -p $(Agent.BuildDirectory)/rocm && cp -R rocm-core/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
+      script: |
+        mkdir -p $(Agent.BuildDirectory)/rocm
+        cp -R rocm-core/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
       workingDirectory: '$(Pipeline.Workspace)'
   - task: Bash@3
     displayName: 'Download aqlprofile'
@@ -91,13 +95,17 @@ jobs:
     displayName: 'Extract aqlprofile'
     inputs:
       targetType: inline
-      script: mkdir hsa-amd-aqlprofile && dpkg-deb -R hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb hsa-amd-aqlprofile
+      script: |
+        mkdir hsa-amd-aqlprofile
+        dpkg-deb -R hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb hsa-amd-aqlprofile
       workingDirectory: '$(Pipeline.Workspace)'
   - task: Bash@3
     displayName: 'Move aqlprofile'
     inputs:
       targetType: inline
-      script: mkdir -p $(Agent.BuildDirectory)/rocm && cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
+      script: |
+        mkdir -p $(Agent.BuildDirectory)/rocm
+        cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
       workingDirectory: '$(Pipeline.Workspace)'
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, 'amd-master') }}:
