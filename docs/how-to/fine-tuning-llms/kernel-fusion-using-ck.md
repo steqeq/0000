@@ -102,7 +102,7 @@ These parameters include Block Size, M/N/K Per Block, M/N per XDL, AK1, BK1, etc
 - M/N Per XDL refers to M/N size for Instinct accelerator Matrix Fused Multiply Add (MFMA) instructions operating on a per-wavefront basis.
 - A/B K1 is related to the data type. It can be any value ranging from 1 to K Per Block. To achieve the optimal load/store performance, 128bit per load is suggested. In addition, the A/B loading parameters must be changed accordingly to match the A/B K1 value; otherwise, it will result in compilation errors.
 
-Conditions for achieving computational load balancing on different hardware platforms can vary. Use [ckProfiler](https://github.com/ROCm/composable_kernel/tree/develop/profiler) to obtain the optimal solution of tunable parameters.
+Conditions for achieving computational load balancing on different hardware platforms can vary.
 
 ### Instantiate and run the templated kernel
 
@@ -419,7 +419,7 @@ Figure 5: Compilation and installation of the INT8 kernels.
 
 ### INT8 model inference and performance
 
-The implementation architecture of running SmoothQuant models on MI300X GPUs is illustrated in figure 6, where (a) shows the decoder layer composition components of the target model, (b) shows the major implementation class for the decoder layer components, and (c) denotes the underlying GPU kernels implemented by CK instance.
+The implementation architecture of running SmoothQuant models on MI300X GPUs is illustrated in Figure 6, where (a) shows the decoder layer composition components of the target model, (b) shows the major implementation class for the decoder layer components, and \(c\) denotes the underlying GPU kernels implemented by CK instance.
 
 <!-- 
 ================
@@ -435,7 +435,7 @@ For the target [SQ quantized model](https://huggingface.co/mit-han-lab/opt-13b-s
 - `W8A8B8O8LinearReLU`
 - `W8A8BF32OF32Linear`
 
-Note that for the example, the `LayerNormQ` module is implemented by the torch native module. These classes' underlying implementation logits will harness the functions in previous table.
+ These classes' underlying implementation logits will harness the functions in previous table. Note that for the example, the `LayerNormQ` module is implemented by the torch native module.
 
 Testing environment:
 The hardware platform used for testing equips with 256 AMD EPYC 9534 64-Core Processor, 8 AMD Instinct MI300X accelerators and 1.5T memory. The testing was done in a publicly available Docker image from Docker Hub:
@@ -443,9 +443,9 @@ The hardware platform used for testing equips with 256 AMD EPYC 9534 64-Core Pro
 
 The tested models are OPT-1.3B, 2.7B, 6.7B and 13B FP16 models and the corresponding SmoothQuant INT8 OPT models were obtained from Hugging Face.
 
-Note that since the default values were used for the tunable parameters of the fundamental instance, the performance of the INT8 kernel is suboptimal. Use [ckProfiler](https://github.com/ROCm/composable_kernel/tree/develop/profiler) to obtain the optimal parameter combination and improve performance.
+Note that since the default values were used for the tunable parameters of the fundamental instance, the performance of the INT8 kernel is suboptimal.
 
-Figure 7 shows the performance comparisons between the original FP16 and the SmoothQuant-quantized INT8 models on a single MI300X accelerator. The GPU memory footprints of SmoothQuant-quantized models are significantly reduced. It also indicates the per-sample inference latency is significantly reduced for all SmoothQuant-quantized OPT model (illustrated in (b)). Notably, the performance of the CK instance-based INT8 kernel steadily improves with an increase in model size.
+Figure 7 shows the performance comparisons between the original FP16 and the SmoothQuant-quantized INT8 models on a single MI300X accelerator. The GPU memory footprints of SmoothQuant-quantized models are significantly reduced. It also indicates the per-sample inference latency is significantly reduced for all SmoothQuant-quantized OPT models (illustrated in (b)). Notably, the performance of the CK instance-based INT8 kernel steadily improves with an increase in model size.
 
 <!-- 
 ================
@@ -469,7 +469,7 @@ For accuracy comparisons between the original FP16 and INT8 models, the evaluati
 
 ## Conclusion
 
-CK provides a rich set of template parameters for generating flexible accelerated computing kernels while also providing ckProfiler to optimize performance-related template parameters to improve the kernel's computational performance.
+CK provides a rich set of template parameters for generating flexible accelerated computing kernels for difference application scenarios.
 
 CK supports multiple instruction sets of AMD Instinct GPUs, operator fusion and different data precisions. Its composability helps users quickly construct operator performance verification.
 
