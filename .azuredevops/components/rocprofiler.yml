@@ -48,6 +48,8 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: HIP_ROCCLR_HOME 
     value: $(Agent.BuildDirectory)/rocm
+  - name: ROCM_PATH
+    value: $(Agent.BuildDirectory)/rocm
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
