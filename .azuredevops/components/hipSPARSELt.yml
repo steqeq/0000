@@ -8,7 +8,6 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - cmake
     - ninja-build
     - python3-venv
     - libmsgpack-dev
@@ -53,6 +52,7 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -68,8 +68,7 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
-        dependencySource: tag-builds 
-  - script: pwd
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
