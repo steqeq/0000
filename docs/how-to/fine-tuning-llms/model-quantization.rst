@@ -7,8 +7,8 @@ Model quantization techniques
 *****************************
 
 Quantization reduces the model size compared to its native full-precision version, making it easier to fit large models
-onto accelerators or GPUs with limited memory usage. This section explains how to perform LLM quantization using GPTQ,
-AWQ, and bitsandbytes on AMD Instinct hardware.
+onto accelerators or GPUs with limited memory usage. This section explains how to perform LLM quantization using GPTQ
+and bitsandbytes on AMD Instinct hardware.
 
 .. _fine-tune-llms-gptq:
 
@@ -158,101 +158,6 @@ kernels by configuring the ``exllama_config`` parameter as the following.
                            base_model_name, 
                            device_map="auto", 
                            quantization_config=gptq_config)
-
-AWQ
-===
-
-Activation-aware Weight Quantization (AWQ) doesn’t quantize all the
-weights in a model. Instead, it preserves a small percentage of weights
-important for LLM performance. This significantly reduces quantization
-loss so you can run models with 4-bit precision without experiencing
-performance degradation.
-
-Installing AutoAWQ
-------------------
-
-AutoAWQ is a library for quantizing models using the AWQ algorithm. Use the ready-to-install wheels from
-`<https://github.com/casper-hansen/AutoAWQ/releases>`__.
-
-#. To install AutoAWQ from source, use the following in your command line.
-
-   .. code-block:: shell
-
-      # Clone the source code
-      git clone https://github.com/casper-hansen/AutoAWQ
-      cd AutoAWQ
-      
-      # The latest supported version of ROCm is 5.7
-      python setup.py install
-
-#. Run ``pip show autoawq`` to show information about the installed AutoAWQ package. The output should look like the
-   following.
-
-   .. code-block:: shell
-
-      Name: autoawq
-      Version: 0.2.4+rocm571
-      ...
-
-Using AWQ with AutoAWQ
------------------------
-
-#. To get started with AutoAWQ, use the following code.
-
-   .. code-block:: python
-
-      from awq import AutoAWQForCausalLM
-      from transformers import AutoTokenizer
-      base_model_name = "NousResearch/Llama-2-7b-hf"
-      quantized_model_name = "llama-2-7b-hf-awq"
-      quant_config = { 
-              "zero_point": True, 
-              "q_group_size": 128, 
-              "w_bit": 4
-      }
-
-#. Load the non-quantized model using ``awq`` class and run the quantization:
-
-   .. code-block:: python
-
-      # Load model
-      base_model = AutoAWQForCausalLM.from_pretrained(
-          base_model_name, **{"low_cpu_mem_usage": True, "use_cache": False}
-      )
-      tokenizer = AutoTokenizer.from_pretrained(base_model_name, trust_remote_code=True)
-
-      # Quantize
-      base_model.quantize(tokenizer, quant_config=quant_config)
-
-      # Save quantized model
-      base_model.save_quantized(quantized_model_name)
-      tokenizer.save_pretrained(quantized_model_name)
-
-Using AWQ with Hugging Face Transformers
-----------------------------------------
-
-Transformers supports loading AWQ quantized models and performing generation.
-
-.. code-block:: python
-
-   from transformers import AutoModelForCausalLM, AutoTokenizer
-   quantized_model_name = "llama-2-7b-hf-awq"
-   model = AutoModelForCausalLM.from_pretrained(quantized_model_name, device_map="auto")
-
-ExLlama-v2 support
-------------------
-
-Recent versions of AutoAWQ support ExLlama-v2 kernels for faster pre-fill and decoding.
-
-.. code-block:: python
-
-   from transformers import AutoModelForCausalLM, AutoTokenizer, AwqConfig
-   quantized_model_name = "llama-2-7b-hf-awq"
-   quantization_config = AwqConfig(bits=4, exllama_config={"version":2})
-   quantized_model = AutoModelForCausalLM.from_pretrained(
-       quantized_model_name,
-       quantization_config=quantization_config,
-       device_map="auto"
 
 bitsandbytes
 ============
