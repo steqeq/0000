@@ -31,6 +31,10 @@ Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do comp
 can a compute kernel can allocate its task to? For the :doc:`AMD MI300X accelerator <../../reference/gpu-arch-specs>`, the
 grid should have at least 1024 thread blocks or workgroups.
 
+.. figure:: ../../data/how-to/fine-tuning-llms/compute-unit.png
+
+   Schematic representation of a CU in the CDNA2 or CDNA3 architecture.
+
 To increase hardware utilization and maximize parallelism, it is necessary to design algorithms that can exploit more
 parallelism. One approach to achieving this is by using larger split-K techniques for General Matrix Multiply (GEMM)
 operations, which can further distribute the computation across more CUs, thereby enhancing performance.
