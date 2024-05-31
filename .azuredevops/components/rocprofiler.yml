@@ -34,7 +34,7 @@ parameters:
     - llvm-project
     - ROCdbgapi
     - rocm-cmake
-    - rocm-smi-lib
+    - rocm_smi_lib
     - rocminfo
     - ROCR-Runtime
     - rocprofiler-register

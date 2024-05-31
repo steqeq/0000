@@ -33,7 +33,7 @@ parameters:
     - clr
     - rocminfo
     - rocprofiler-register
-    - rocm-smi-lib
+    - rocm_smi_lib
     - rocm-core
     - aomp
     - aomp-extras
