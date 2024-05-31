@@ -9,6 +9,19 @@ Optimizing Triton kernels
 This section introduces the general steps for `Triton <https://openai.com/index/triton/>`_ kernel optimization. Broadly,
 Triton kernel optimization is similar to HIP and CUDA kernel optimization.
 
+.. _fine-tuning-llms-triton-memory-access-efficiency:
+
+Memory access efficiency
+========================
+
+The accelerator or GPU contains global memory, local data share (LDS), and registers. Global memory has high access
+latency, but is large. LDS access has much lower latency, but is smaller. Register access is the fastest yet smallest
+among the three.
+
+So, the data in global memory should be loaded and stored as few times as possible. If different threads in a block
+need to access the same data, these data should be first transferred from global memory to LDS, then accessed by
+different threads in a workgroup.
+
 .. _fine-tuning-llms-triton-hardware-resource-utilization:
 
 Hardware resource utilization
@@ -37,18 +50,6 @@ operations, which can further distribute the computation across more CUs, thereb
 
    On an MI300X device, there are 304 CUs, 4 SIMD per CU, and the wavefront size (warp size) is 64. See :doc:`Hardware
    specifications <../../reference/gpu-arch-specs>` for a full list of AMD accelerators and GPUs.
-
-.. _fine-tuning-llms-triton-memory-access-efficiency:
-
-Memory access efficiency
-========================
-
-The GPU contains global memory, local data share (LDS), and registers. Global memory has high access latency, but is
-large. LDS access has much lower latency, but is smaller. Register access is the fastest yet smallest among the three.
-
-So, the data in global memory should be loaded and stored as few times as possible. If different threads in a block
-need to access the same data, these data should be first transferred from global memory to LDS, then accessed by
-different threads in a workgroup.
 
 .. _fine-tuning-llms-triton-ir-analysis:
 
@@ -165,7 +166,7 @@ Kernel occupancy
    c. ``python kernel.py | | grep "triton_gpu.shared = " | tail -n 1``
 
    d. You should see something like ``triton_gpu.shared = 65536``, indicating 65536 bytes of LDS are allocated for the
-     kernel.
+      kernel.
 
 3. Get number of waves per workgroup using the following steps (say you got ``nW``).
 
@@ -191,10 +192,10 @@ Kernel occupancy
 6. Then the occupancy is ``occ = min(floor(occ_vgpr * 4 / nW), occ_lds) * nW / 4``
 
    a. ``occ_vgpr \* 4`` gives the total number of waves on all 4 execution units (SIMDs)
-   per CU.
+      per CU.
 
    b. ``floor(occ_vgpr * 4 / nW)`` gives the occupancy of workgroups per CU
-   regrading VGPR usage.
+      regrading VGPR usage.
 
    c. The true ``occ`` is the minimum of the two.
 
@@ -286,11 +287,11 @@ The following is an environment variable used for tuning.
 PyTorch ``inductor`` Triton tuning knobs
 ========================================
 
-The following are suggestions for optimizing matrix multiplication (GEMM) and convolution (conv) operations in PyTorch
+The following are suggestions for optimizing matrix multiplication (GEMM) and convolution (``conv``) operations in PyTorch
 using ``inductor``, a part of the PyTorch compilation framework. The goal is to leverage Triton to achieve better
 performance.
 
-To enable a ``gemm/conv`` lowering to Triton, it requires use of ``inductor``’s ``max_autotune`` mode. This benchmarks a
+To enable a ``gemm``/``conv`` lowering to Triton, it requires use of ``inductor``’s ``max_autotune`` mode. This benchmarks a
 static list of Triton configurations (``conv`` configurations for max auto-tune + ``matmul`` configurations for max
 auto-tune) and uses the fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen <miopen:index>`
 or :doc:`rocBLAS <rocblas:index>` is faster for a specific operation.
@@ -299,65 +300,64 @@ or :doc:`rocBLAS <rocblas:index>` is faster for a specific operation.
 
 * Or, for more fine-grained control:
 
-   ``torch._inductor.config.max_autotune.pointwise = True``
-      To enable tuning for ``pointwise``/``reduction`` ops.
+  ``torch._inductor.config.max_autotune.pointwise = True``
+     To enable tuning for ``pointwise``/``reduction`` ops.
 
-   ``torch._inductor.config.max_autotune_gemm = True``
-      To enable tuning or lowering of ``mm``/``conv``s.
+  ``torch._inductor.config.max_autotune_gemm = True``
+     To enable tuning or lowering of ``mm``/``conv``\s.
 
-   ``torch._inductor.max_autotune_gemm_backends/TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
-      To select the candidate backends for ``mm`` auto-tuning. Defaults to
-      ``TRITON,ATEN,NV``. This also includes the ``CUTLASS`` tuning option. Limiting this to
-      ``TRITON`` might improve performance by enabling more fused ``mm`` kernels
-      instead of going to rocBLAS.
+  ``torch._inductor.max_autotune_gemm_backends/TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
+     To select the candidate backends for ``mm`` auto-tuning. Defaults to
+     ``TRITON,ATEN,NV``. This also includes the ``CUTLASS`` tuning option. Limiting this to
+     ``TRITON`` might improve performance by enabling more fused ``mm`` kernels
+     instead of going to rocBLAS.
 
-For ``mm tuning coordinate_descent`` tuning might improve performance,
-which attempts
+* For ``mm`` tuning, tuning ``coordinate_descent`` might improve performance.
 
-``torch._inductor.config.coordinate_descent_tuning = True`` or ``TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1``
+  ``torch._inductor.config.coordinate_descent_tuning = True`` or ``TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1``
 
-Inference can see large improvements on AMD GPUs by utilizing
-``torch._inductor.config.freezing=True`` or the ``TORCHINDUCTOR_FREEZING=1`` variable, which
-in-lines weights as constants and enables constant folding optimizations.
+* Inference can see large improvements on AMD GPUs by utilizing
+  ``torch._inductor.config.freezing=True`` or the ``TORCHINDUCTOR_FREEZING=1`` variable, which
+  in-lines weights as constants and enables constant folding optimizations.
 
-Enabling ``inductor``’s cpp_wrapper might improve overhead. This generates
-C++ code which launches Triton binaries directly with
-``hipModuleLaunchKernel`` and relies on `hipification`.
+* Enabling ``inductor``’s cpp_wrapper might improve overhead. This generates
+  C++ code which launches Triton binaries directly with
+  ``hipModuleLaunchKernel`` and relies on `hipification`.
 
-For NHWC convolutions workloads
-``torch._inductor.config.layout_optimization=True`` or ``TORCHINDUCTOR_LAYOUT_OPTIMIZATION=``
-can help be enforcing channels_last format throughout the graph avoiding
-any additional transposes added by ``inductor``. Note that
-``PYTORCH_MIOPEN_SUGGEST_NHWC=1`` is recommended if using this.
+* For NHWC convolutions workloads
+  ``torch._inductor.config.layout_optimization=True`` or ``TORCHINDUCTOR_LAYOUT_OPTIMIZATION=``
+  can help be enforcing channels_last format throughout the graph avoiding
+  any additional transposes added by ``inductor``. Note that
+  ``PYTORCH_MIOPEN_SUGGEST_NHWC=1`` is recommended if using this.
 
-Extracting the Triton kernel ``TORCH_COMPILE_DEBUG`` creates a
-``torch_compile_debug/`` directory at current path, in the ``output_code.py``
-the code-strings for the Triton kernels that are defined. Manual work is
-then required to strip out the kernel and create kernel
-compilation and launch via Triton.
+* Extracting the Triton kernel ``TORCH_COMPILE_DEBUG`` creates a
+  ``torch_compile_debug/`` directory at current path, in the ``output_code.py``
+  the code-strings for the Triton kernels that are defined. Manual work is
+  then required to strip out the kernel and create kernel
+  compilation and launch via Triton.
 
-For advanced ``matmul`` or ``conv`` configuration tuning, the ``inductor-gemm-tuner`` can
-help. This implements the Triton ``conv``/``mm`` implementations used upstream
-and allows specification of inputs and configuration tuning search space if new
-tunings are found that can be added to the auto-tune list.
+* For advanced ``matmul`` or ``conv`` configuration tuning, the ``inductor-gemm-tuner`` can
+  help. This implements the Triton ``conv``/``mm`` implementations used upstream
+  and allows specification of inputs and configuration tuning search space if new
+  tunings are found that can be added to the auto-tune list.
 
 Other guidelines
 ================
 
-Performance-critical HIP provides an environment variable, ``export HIP_FORCE_DEV_KERNARG=1``,
-that can put HIP kernel arguments directly to
-device memory to reduce the latency of accessing kernel arguments. It
-can reduce 2 to 3 μs for some kernels. Setting this variable for the FA
-decode containing ``splitK`` and reduced kernels can reduce the total time
-by around 6 μs in the benchmark test.
+* Performance-critical HIP provides an environment variable, ``export HIP_FORCE_DEV_KERNARG=1``,
+  that can put HIP kernel arguments directly to
+  device memory to reduce the latency of accessing kernel arguments. It
+  can reduce 2 to 3 μs for some kernels. Setting this variable for the FA
+  decode containing ``splitK`` and reduced kernels can reduce the total time
+  by around 6 μs in the benchmark test.
 
-Set the clock to deterministic. Use the command ``rocm-smi --setperfdeterminism 1900`` to set the max clock speed to
-1900MHz instead of the default 2100MHz. This can reduce the chance of clock speed decrease due to chip high temperature
-by setting a lower cap. You can restore this setting to its default value with ``rocm-smi -r``.
+* Set the clock to deterministic. Use the command ``rocm-smi --setperfdeterminism 1900`` to set the max clock speed to
+  1900MHz instead of the default 2100MHz. This can reduce the chance of clock speed decrease due to chip high temperature
+  by setting a lower cap. You can restore this setting to its default value with ``rocm-smi -r``.
 
-Set Non-Uniform Memory Access (NUMA) auto-balance. Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the
-current setting. An output of ``0`` indicates this setting is available. If output is ``1``, run the command
-``sudo sh -c \\'echo 0 > /proc/sys/kernel/numa_balancing`` to set this.
+* Set Non-Uniform Memory Access (NUMA) auto-balance. Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the
+  current setting. An output of ``0`` indicates this setting is available. If output is ``1``, run the command
+  ``sudo sh -c \\'echo 0 > /proc/sys/kernel/numa_balancing`` to set this.
 
 For these settings, the ``env_check.sh`` script automates the setting, resetting, and checking of the such
 environments. Find the script at `<https://github.com/ROCm/triton/blob/rocm_env/scripts/amd/env_check.sh>`__.
@@ -371,7 +371,7 @@ is a feature used to define and optimize kernels that can have tunable parameter
 optimizing the performance of custom kernels by exploring different parameter configurations to find the most efficient
 setup. See more about PyTorch TunableOp :ref:`Model acceleration libraries <fine-tuning-llms-pytorch-tunableop>`.
 
-The behavior of TunableOp is easily manipulated through environment variables, though you could use the C++ interface
+You can easily manipulate the behavior TunableOp through environment variables, though you could use the C++ interface
 ``at::cuda::tunable::getTuningContext()``. A Python interface to the ``TuningContext`` does not yet exist.
 
 The default value is ``0``, which means only 1 iteration is attempted. Remember: there’s an overhead to tuning. To try
