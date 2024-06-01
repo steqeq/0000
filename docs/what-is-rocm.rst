@@ -99,7 +99,7 @@ Tools
 
   ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
   ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
-  ":doc:`RocBandwidthTest <rocm_bandwidth_test:index>`", "Captures the performance characteristics of buffer copying and kernel read/write operations"
+  "`RocBandwidthTest <https://rocm.docs.amd.com/projects/rocm_bandwidth_test/en/latest/>`_", "Captures the performance characteristics of buffer copying and kernel read/write operations"
   ":doc:`ROCmCC <./reference/rocmcc>`", "Clang/LLVM-based compiler"
   ":doc:`ROCm CMake <rocmcmakebuildtools:index>`", "Collection of CMake modules for common build and development tasks"
   ":doc:`ROCm Data Center Tool <rdc:index>`", "Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments"
