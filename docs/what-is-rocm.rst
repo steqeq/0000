@@ -106,7 +106,7 @@ Tools
   "`ROCm Debug Agent (ROCdebug-agent) <https://github.com/ROCm/rocr_debug_agent/>`_ ", "Prints the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running"
   ":doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`", "Source-level debugger for Linux, based on the GNU Debugger (GDB)"
   ":doc:`ROCdbgapi <rocdbgapi:index>`", "ROCm debugger API library"
-  ":doc:`rocminfo <rocminfo:index>`", "Reports system information"
+  "`rocminfo <https://rocm.docs.amd.com/projects/rocminfo/en/latest/>`_", "Reports system information"
   ":doc:`ROCm SMI <rocm_smi_lib:index>`", "C library for Linux that provides a user space interface for applications to monitor and control GPU applications"
   ":doc:`ROCm Validation Suite <rocmvalidationsuite:index>`", "Detects and troubleshoots common problems affecting AMD GPUs running in a high-performance computing environment"
   ":doc:`ROCProfiler <rocprofiler:profiler_home_page>`", "Profiling tool for HIP applications"
