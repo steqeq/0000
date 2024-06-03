@@ -245,5 +245,5 @@ page describes the options.
    :alt: GEMM and TunableOp
    :align: center
 
-Learn more about tuning with TunableOp in
-:ref:`Triton kernel performance optimization <fine-tuning-llms-triton-tunableop>`.
+Learn more about optimizing kernels with TunableOp in
+:ref:`Optimizing Triton kernels <fine-tuning-llms-triton-tunableop>`.
