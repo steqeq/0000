@@ -104,8 +104,8 @@ analyze bottlenecks and stressors for their computational workloads on AMD Insti
 
    Omniperf memory chat analysis panel.
 
-Basically, Omniperf provides details about hardware activity for a particular GPU kernel. It also supports both
-a web-based GUI or command-line analyzer, depending on the your preference.
+In brief, Omniperf provides details about hardware activity for a particular GPU kernel. It also supports both
+a web-based GUI or command-line analyzer, depending on your preference.
 
 .. _fine-tuning-llms-profiling-omnitrace:
 

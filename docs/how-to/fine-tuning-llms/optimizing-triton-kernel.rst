@@ -159,9 +159,9 @@ Generally recommended guidelines are as follows.
 Kernel occupancy
 ================
 
-1. Get the VGPR count, search for ``.vgpr_count`` in the ISA. For example, N.
+1. Get the VGPR count, search for ``.vgpr_count`` in the ISA (for example, ``N``).
 
-2. Get the allocated LDS following the steps. For example, L for the kernel.
+2. Get the allocated LDS following the steps (for example, L for the kernel).
 
    a. ``export MLIR_ENABLE_DUMP=1``
 
@@ -172,7 +172,7 @@ Kernel occupancy
    d. You should see something like ``triton_gpu.shared = 65536``, indicating 65536 bytes of LDS are allocated for the
       kernel.
 
-3. Get number of waves per workgroup using the following steps (say you got ``nW``).
+3. Get number of waves per workgroup using the following steps (for example, ``nW``).
 
    a. ``export MLIR_ENABLE_DUMP=1``
 
@@ -288,8 +288,8 @@ The following is an environment variable used for tuning.
 
    See :ref:`IR analysis <fine-tuning-llms-triton-ir-analysis>`.
 
-PyTorch ``inductor`` Triton tuning knobs
-========================================
+PyTorch Inductor with Triton tuning knobs
+=========================================
 
 The following are suggestions for optimizing matrix multiplication (GEMM) and convolution (``conv``) operations in PyTorch
 using ``inductor``, a part of the PyTorch compilation framework. The goal is to leverage Triton to achieve better
