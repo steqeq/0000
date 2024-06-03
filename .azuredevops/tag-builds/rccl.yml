@@ -5,7 +5,7 @@ variables:
 parameters:
 - name: checkoutRef
   type: string
-  default: refs/develop
+  default: refs/tags/$(LATEST_RELEASE_TAG)
 
 resources:
   repositories:
