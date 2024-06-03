@@ -4,7 +4,7 @@ parameters:
   default: 'self'
 - name: checkoutRef
   type: string
-  default: ''
+  default: 'develop'
 - name: aptPackages
   type: object
   default:
