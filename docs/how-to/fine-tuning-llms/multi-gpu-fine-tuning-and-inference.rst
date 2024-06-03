@@ -186,7 +186,7 @@ GPU model fine-tuning and inference with LLMs.
 
    .. code-block:: yaml
 
-      # Model Arguments
+      # Model arguments
       model:
         _component_: torchtune.models.llama2.lora_llama2_7b
         lora_attn_modules: ['q_proj', 'v_proj']
@@ -199,7 +199,7 @@ GPU model fine-tuning and inference with LLMs.
         _component_: torchtune.models.llama2.llama2_tokenizer
         path: /tmp/Llama-2-7b-hf/tokenizer.model
       
-      # Dataset and Sampler
+      # Dataset and sampler
       dataset:
         _component_: torchtune.datasets.alpaca_cleaned_dataset
         train_on_input: True
