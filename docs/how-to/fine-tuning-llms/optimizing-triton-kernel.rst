@@ -295,6 +295,9 @@ The following are suggestions for optimizing matrix multiplication (GEMM) and co
 using ``inductor``, a part of the PyTorch compilation framework. The goal is to leverage Triton to achieve better
 performance.
 
+Learn more about TorchInductor environment variables and usage in
+`PyTorch documentation <https://pytorch.org/docs/2.3/torch.compiler_inductor_profiling.html>`_.
+
 To enable a ``gemm``/``conv`` lowering to Triton, it requires use of ``inductor``’s ``max_autotune`` mode. This benchmarks a
 static list of Triton configurations (``conv`` configurations for max auto-tune + ``matmul`` configurations for max
 auto-tune) and uses the fastest for each shape. Note that the Triton is not used if regular :doc:`MIOpen <miopen:index>`
