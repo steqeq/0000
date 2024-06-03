@@ -34,13 +34,13 @@ You can then visualize and view these metrics using an open-source profile visua
       prof.export_chrome_trace("resnet18_profile.json")
 
 #. Profile results in ``resnet18_profile.json`` can be viewed by the Perfetto visualization tool. Go to
-   `<https://ui.perfetto.dev>`__ and import the file.
+   `<https://ui.perfetto.dev>`__ and import the file. In your Perfetto visualization, you'll see that the upper section
+   shows transactions denoting the CPU activities that launch GPU kernels while the lower section shows the actual GPU
+   activities where it processes the ``resnet18`` inferences layer by layer. 
 
-   .. figure:: ../../data/how-to/fine-tuning-llms/profiling-perfetto-ui.png
-
-      The upper section shows transactions denoting the CPU activities that launch GPU kernels.
-      The lower section shows the actual GPU activities where the GPU processes the ``resnet18`` inferences layer by
-      layer. 
+   .. figure:: ../../data/how-to/fine-tuning-llms/perfetto-trace.svg
+      
+      Perfetto trace visualization example.
 
 ROCm profiling tools
 ====================
