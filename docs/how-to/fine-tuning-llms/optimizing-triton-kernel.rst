@@ -289,7 +289,7 @@ The following is an environment variable used for tuning.
    See :ref:`IR analysis <fine-tuning-llms-triton-ir-analysis>`.
 
 PyTorch Inductor with Triton tuning knobs
-=========================================
+===========================================
 
 The following are suggestions for optimizing matrix multiplication (GEMM) and convolution (``conv``) operations in PyTorch
 using ``inductor``, a part of the PyTorch compilation framework. The goal is to leverage Triton to achieve better
