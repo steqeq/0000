@@ -92,6 +92,7 @@ Our documentation is organized into the following categories:
 :padding: 2
 
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
+* [Fine-tuning LLMs with ROCm](./how-to/fine-tuning-llms/index.rst)
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
   * [MI200](./how-to/tuning-guides/mi200.md)
