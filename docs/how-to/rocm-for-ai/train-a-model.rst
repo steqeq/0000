@@ -107,7 +107,10 @@ for more information about running AMP on an AMD accelerator.
 Fine-tuning your model
 ======================
 
-ROCm supports multiple fine-tuning techniques, for example, LoRA, QLoRA, PEFT, and FSDP.
+ROCm supports multiple techniques for :ref:`optimizing fine-tuning <fine-tuning-llms-concept-optimizations>`, for
+example, LoRA, QLoRA, PEFT, and FSDP.
+
+Learn more about challenges and solutions for model fine-tuning in :doc:`../fine-tuning-llms/index`.
 
 The following developer blogs showcase examples of how to fine-tune a model on an AMD accelerator or GPU.
 
