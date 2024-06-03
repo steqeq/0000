@@ -2,9 +2,9 @@
    :description: How to fine-tune LLMs with ROCm
    :keywords: ROCm, LLM, fine-tuning, usage, tutorial
 
-**************************
-Fine-tuning LLMs with ROCm
-**************************
+*******************************************
+Fine-tuning LLMs and inference optimization
+*******************************************
 
 ROCm empowers the fine-tuning and optimization of large language models, making them accessible and efficient for
 specialized tasks. ROCm supports the broader AI ecosystem to ensure seamless integration with open frameworks,
