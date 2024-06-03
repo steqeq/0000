@@ -30,10 +30,10 @@ The template parameters of the instance are grouped into four parameter types:
 
 <!-- 
 ================
- ### Figure 1
+ ### Figure 2
 ================ -->
 ```{figure} ../../data/how-to/fine-tuning-llms/ck-template_parameters.jpg
-Figure 1: The template parameters of the selected GEMM kernel are classified into four groups. These template parameter groups should be defined properly before running the instance.
+The template parameters of the selected GEMM kernel are classified into four groups. These template parameter groups should be defined properly before running the instance.
 ```
 
 (matrix-data-precision)=
@@ -120,21 +120,21 @@ After determining the template parameters, we instantiate the kernel with actual
 - Allocate device buffer via `hipMalloc`. Ensure the device buffer size can fit the matrix size.
 - Pass matrix elements through the `data_ptr` method in the `Tensor` object if the matrix to be calculated is of `Tensor` type.
 
-The row and column, and stride information of input matrices are also passed to the instance. For batched GEMM, you must pass in additional batch count and batch stride values. The extra operations for pre and post-processing are also passed with an actual argument; for example, α and β for GEMM scaling operations. Afterward, the instantiated kernel is launched by the invoker, as illustrated in figure 2.
+The row and column, and stride information of input matrices are also passed to the instance. For batched GEMM, you must pass in additional batch count and batch stride values. The extra operations for pre and post-processing are also passed with an actual argument; for example, α and β for GEMM scaling operations. Afterward, the instantiated kernel is launched by the invoker, as illustrated in Figure 3.
 
 <!-- 
 ================
- ### Figure 2
+ ### Figure 3
 ================ -->
 ```{figure} ../../data/how-to/fine-tuning-llms/ck-kernel_launch.jpg
-Figure 2: Templated kernel launching consists of kernel instantiation, making arguments by passing in actual application parameters, creating an invoker, and running the instance through the invoker.
+Templated kernel launching consists of kernel instantiation, making arguments by passing in actual application parameters, creating an invoker, and running the instance through the invoker.
 ```
 
 ## Developing fused INT8 kernels for SmoothQuant models
 
 [SmoothQuant](https://github.com/mit-han-lab/smoothquant) (SQ) is a quantization algorithm that enables an INT8 quantization of both weights and activations for all the matrix multiplications in LLM. The required GPU kernel functionalities used to accelerate the inference of SQ models on Instinct accelerators are shown in the following table.
 
-:::{table} Table 1. Functionalities used to implement SmoothQuant model inference.
+:::{table} Functionalities used to implement SmoothQuant model inference.
 
 |       Functionality descriptions     |        Corresponding wrappers           |
 |:-------------------------------------|-----------------------------------------|
@@ -147,16 +147,16 @@ Figure 2: Templated kernel launching consists of kernel instantiation, making ar
 
 ### Operation flow analysis
 
-The following section discusses the analysis of the operation flow of `Linear_ReLU_ABDE_I8`. The rest of the wrappers in table 1 can be analyzed similarly.
+The following section discusses the analysis of the operation flow of `Linear_ReLU_ABDE_I8`. The rest of the wrappers in Table 1 can be analyzed similarly.
 
 The first operation in the process is to perform the multiplication of input matrices A and B. The resulting matrix C is then scaled with α to obtain T1. At the same time, the process performs a scaling operation on D elements to obtain T2. Afterward, the process performs matrix addition between T1 and T2, element activation calculation using ReLU, and element rounding sequentially. The operations to generate E1, E2, and E are encapsulated and completed by a user-defined template function in CK (given in the next sub-section). This template function is integrated into the fundamental instance directly during the compilation phase so that all these steps can be fused in a single GPU kernel.
 
 <!-- 
 ================
- ### Figure 3
+ ### Figure 4
 ================ -->
 ```{figure} ../../data/how-to/fine-tuning-llms/ck-operation_flow.jpg
-Figure 3: Operation flow.
+Operation flow.
 ```
 
 The CK library contains many fundamental instances that implement different functions. Familiarize yourself with the names of various CK instances and determine whether they meet the target functional requirements.
@@ -169,10 +169,10 @@ Here, we use [DeviceBatchedGemmMultiD_Xdl](https://github.com/ROCm/composable_ke
 
 <!-- 
 ================
- ### Figure 4
+ ### Figure 5
 ================ -->
 ```{figure} ../../data/how-to/fine-tuning-llms/ck-root_instance.jpg
-Figure 4: Use the ‘DeviceBatchedGemmMultiD_Xdl’ instance as a root.
+Use the ‘DeviceBatchedGemmMultiD_Xdl’ instance as a root.
 ```
 
 The `DeviceBatchedGemmMultiD_Xdl` instance realizes the batched GEMM `BMM_ABE_I8` and `BMM_AB_I8_E_F32` kernels directly by using the proper input and output data precision types.
@@ -415,26 +415,26 @@ setup(
 )
 ```
 
-Run `python setup.py install` to build and install the extension. It should look something like figure 5:
-
-<!-- 
-================
- ### Figure 5
-================ -->
-```{figure} ../../data/how-to/fine-tuning-llms/ck-compilation.jpg
-Figure 5: Compilation and installation of the INT8 kernels.
-```
-
-### INT8 model inference and performance
-
-The implementation architecture of running SmoothQuant models on MI300X GPUs is illustrated in Figure 6, where (a) shows the decoder layer composition components of the target model, (b) shows the major implementation class for the decoder layer components, and \(c\) denotes the underlying GPU kernels implemented by CK instance.
+Run `python setup.py install` to build and install the extension. It should look something like Figure 6:
 
 <!-- 
 ================
  ### Figure 6
 ================ -->
+```{figure} ../../data/how-to/fine-tuning-llms/ck-compilation.jpg
+Compilation and installation of the INT8 kernels.
+```
+
+### INT8 model inference and performance
+
+The implementation architecture of running SmoothQuant models on MI300X GPUs is illustrated in Figure 7, where (a) shows the decoder layer composition components of the target model, (b) shows the major implementation class for the decoder layer components, and \(c\) denotes the underlying GPU kernels implemented by CK instance.
+
+<!-- 
+================
+ ### Figure 7
+================ -->
 ```{figure} ../../data/how-to/fine-tuning-llms/ck-inference_flow.jpg
-Figure 6: The implementation architecture of running SmoothQuant models on AMD MI300X accelerators.
+The implementation architecture of running SmoothQuant models on AMD MI300X accelerators.
 ```
 
 For the target [SQ quantized model](https://huggingface.co/mit-han-lab/opt-13b-smoothquant), each decoder layer contains three major components: attention calculation, layer normalization, and linear transformation in fully connected layers.  The corresponding implementation classes for these components are:
@@ -453,19 +453,19 @@ The tested models are OPT-1.3B, 2.7B, 6.7B and 13B FP16 models and the correspon
 
 Note that since the default values were used for the tunable parameters of the fundamental instance, the performance of the INT8 kernel is suboptimal.
 
-Figure 7 shows the performance comparisons between the original FP16 and the SmoothQuant-quantized INT8 models on a single MI300X accelerator. The GPU memory footprints of SmoothQuant-quantized models are significantly reduced. It also indicates the per-sample inference latency is significantly reduced for all SmoothQuant-quantized OPT models (illustrated in (b)). Notably, the performance of the CK instance-based INT8 kernel steadily improves with an increase in model size.
+Figure 8 shows the performance comparisons between the original FP16 and the SmoothQuant-quantized INT8 models on a single MI300X accelerator. The GPU memory footprints of SmoothQuant-quantized models are significantly reduced. It also indicates the per-sample inference latency is significantly reduced for all SmoothQuant-quantized OPT models (illustrated in (b)). Notably, the performance of the CK instance-based INT8 kernel steadily improves with an increase in model size.
 
 <!-- 
 ================
- ### Figure 7
+ ### Figure 8
 ================ -->
 ```{figure} ../../data/how-to/fine-tuning-llms/ck-comparisons.jpg
-Figure 7: Performance comparisons between the original FP16 and the SmoothQuant-quantized INT8 models on a single MI300X accelerator.
+Performance comparisons between the original FP16 and the SmoothQuant-quantized INT8 models on a single MI300X accelerator.
 ```
 
 For accuracy comparisons between the original FP16 and INT8 models, the evaluation is done by using the first 1,000 samples from the LAMBADA dataset's validation set. We employ the same Last Token Prediction Accuracy method introduced in [SmoothQuant Real-INT8 Inference for PyTorch](https://github.com/mit-han-lab/smoothquant/blob/main/examples/smoothquant_opt_real_int8_demo.ipynb) as our evaluation metric. The comparison results are shown in Table 2.
 
-:::{table} Table 2. The inference accuracy comparisons of SmoothQuant quantized models on Instinct MI300X.
+:::{table} The inference accuracy comparisons of SmoothQuant quantized models on Instinct MI300X.
 
 |       Models     |    Hugging Face FP16 model accuracy     |   SmoothQuant quantized INT8 model accuracy |
 |:-----------------|----------------------------------------|---------------------------------------------|
