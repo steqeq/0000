@@ -17,7 +17,7 @@ This page contains the changelog for AMD ROCm™ Software.
 
 ## ROCm 6.1.2
 
-ROCm 6.1.2 includes improvements to AMD SMI commands and output metrics, and extends support within the rocDecode library.
+ROCm 6.1.2 includes enhancements to SMI tools and improvements to some libraries.
 
 ### AMD SMI
 
@@ -25,8 +25,6 @@ AMD SMI for ROCm 6.1.2
 
 #### Additions
 
-* Added macros that were in amdsmi.h to the amdsmi Python library (amdsmi_interface.py).
-* Added the ring hang event to the `amdsmi_evt_notification_type_t` enum.
 * Added process isolation and clean shader APIs and CLI commands.
   * `amdsmi_get_gpu_process_isolation()`
   * `amdsmi_set_gpu_process_isolation()`
@@ -36,19 +34,16 @@ AMD SMI for ROCm 6.1.2
 #### Optimizations
 
 * Updated the `amd-smi monitor --pcie` output to prevent delays with the `monitor` command.
-* Updated the CLI voltage curve command output to split the frequency and voltage output by curve point, if applicable.
-* Updated `amdsmi_get_gpu_board_info()` to have larger structure sizes for `amdsmi_board_info_t`.
-* Updated Python library return types for `amdsmi_get_gpu_memory_reserved_pages` and `amdsmi_get_gpu_bad_page_info`.
-* Updated `amismi_get_power_cap_info` to return values in uW instead of W.
 
 #### Changes
 
+* Updated `amismi_get_power_cap_info` to return values in uW instead of W.
+* Updated Python library return types for `amdsmi_get_gpu_memory_reserved_pages` and `amdsmi_get_gpu_bad_page_info`.
 * Updated the output of `amd-smi metric --ecc-blocks` to show counters available from blocks.
 
 #### Fixes
 
 * `amdsmi_get_gpu_board_info()` no longer returns junk character strings.
-* Fixed the parsing of `pp_od_clk_voltage` within `amdsmi_get_gpu_od_volt_info`.
 * `amd-smi metric --power` now correctly details power output for RDNA3, RDNA2, and MI1x devices.
 * Fixed the `amdsmitstReadWrite.TestPowerCapReadWrite` test for RDNA3, RDNA2, and MI100 devices.
 * Fixed an issue with the `amdsmi_get_gpu_memory_reserved_pages` and `amdsmi_get_gpu_bad_page_info` Python interface calls.
@@ -60,6 +55,35 @@ AMD SMI for ROCm 6.1.2
 ```{note}
 See the AMD SMI [detailed changelog](https://github.com/ROCm/amdsmi/blob/rocm-6.1.x/CHANGELOG.md) with code samples for more information.
 ```
+
+### HIPCC
+
+HIPCC for ROCm 6.1.2
+
+#### Changes
+
+* **Upcoming:** a future release will enable use of compiled binaries `hipcc.bin` and `hipconfig.bin` by default. No action is needed by users; you may continue calling high-level Perl scripts `hipcc` and `hipconfig`. `hipcc.bin` and `hipconfig.bin` will be invoked by the high-level Perl scripts. To revert to the previous behavior and invoke `hipcc.pl` and `hipconfig.pl`, set the `HIP_USE_PERL_SCRIPTS` environment variable to `1`.
+* **Upcoming:** a subsequent release will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
+* **Upcoming:** a subsequent release will remove `hipcc.pl` and `hipconfig.pl`.
+
+### ROCm SMI
+
+ROCm SMI for ROCm 6.1.2
+
+#### Additions
+
+* Added the ring hang event to the `amdsmi_evt_notification_type_t` enum.
+
+#### Fixes
+
+* Fixed an issue causing ROCm SMI to incorrectly report GPU utilization for RDNA3 GPUs.
+* Fixed the parsing of `pp_od_clk_voltage` in `get_od_clk_volt_info` to work better with MI-series hardware.
+
+### Known issue with error detection on MI300X
+
+During poison consumption testing, the injection of uncorrectable errors will not generate an interrupt to the driver,
+resulting in undetected errors. This can result in reliability and recovery issues on MI300X accelerator-based
+setups.
 
 ### Library changes in ROCm 6.1.2
 
@@ -80,7 +104,7 @@ See the AMD SMI [detailed changelog](https://github.com/ROCm/amdsmi/blob/rocm-6.
 | MIVisionX | [2.5.0](https://github.com/ROCm/MIVisionX/releases/tag/rocm-6.1.2) |
 | rccl | [2.18.6](https://github.com/ROCm/rccl/releases/tag/rocm-6.1.2) |
 | rocALUTION | [3.1.1](https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.1.2) |
-| rocBLAS | [4.1.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.1.2) |
+| rocBLAS | 4.1.0 ⇒ [4.1.2](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.1.2) |
 | rocDecode | 0.5.0 ⇒ [0.6.0](https://github.com/ROCm/rocDecode/releases/tag/rocm-6.1.2) |
 | rocFFT | [1.0.27](https://github.com/ROCm/rocFFT/releases/tag/rocm-6.1.2) |
 | rocm-cmake | [0.12.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.1.2) |
@@ -93,6 +117,26 @@ See the AMD SMI [detailed changelog](https://github.com/ROCm/amdsmi/blob/rocm-6.
 | rpp | [1.5.0](https://github.com/ROCm/rpp/releases/tag/rocm-6.1.2) |
 | Tensile | [4.40.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.1.2) |
 
+#### RCCL
+
+RCCL 2.18.6 for ROCm 6.1.2
+
+##### Changes
+
+* Reduced `NCCL_TOPO_MAX_NODES` to limit stack usage and avoid stack overflow.
+
+#### rocBLAS
+
+rocBLAS 4.1.2 for ROCm 6.1.2
+
+##### Optimizations
+
+* Tuned BBS TN and TT operations on the CDNA3 architecture.
+
+##### Fixes
+
+* Fixed an issue related to obtaining solutions for BF16 TT operations.
+
 #### rocDecode
 
 rocDecode 0.6.0 for ROCm 6.1.2
@@ -103,7 +147,7 @@ rocDecode 0.6.0 for ROCm 6.1.2
 
 ##### Optimizations
 
-* Updated error checking in the rocDecode-setup.py script.
+* Updated error checking in the `rocDecode-setup.py` script.
 
 ##### Changes
 
@@ -178,7 +222,6 @@ HIPCC for ROCm 6.1.1
 
 * **Upcoming:** a future release will enable use of compiled binaries `hipcc.bin` and `hipconfig.bin` by default. No action is needed by users; you may continue calling high-level Perl scripts `hipcc` and `hipconfig`. `hipcc.bin` and `hipconfig.bin` will be invoked by the high-level Perl scripts. To revert to the previous behavior and invoke `hipcc.pl` and `hipconfig.pl`, set the `HIP_USE_PERL_SCRIPTS` environment variable to `1`.
 * **Upcoming:** a subsequent release will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
-
 * **Upcoming:** a subsequent release will remove `hipcc.pl` and `hipconfig.pl`.
 
 ### ROCm SMI
