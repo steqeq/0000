@@ -35,7 +35,7 @@ parameters:
     - ROCdbgapi
     - rocm-cmake
     - rocm-core
-    - rocm-smi-lib
+    - rocm_smi_lib
     - rocminfo
     - ROCR-Runtime
     - rocprofiler-register

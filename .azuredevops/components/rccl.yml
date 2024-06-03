@@ -24,7 +24,7 @@ parameters:
     - ROCR-Runtime
     - clr
     - rocminfo
-    - rocm-smi-lib
+    - rocm_smi_lib
     - rocprofiler-register
     - rocm-core
     - HIPIFY
