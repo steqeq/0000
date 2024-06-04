@@ -141,14 +141,15 @@ jobs:
   steps:
   - task: DownloadPipelineArtifact@2
     inputs:
-      project: 'ROCm-CI'
-      buildType: 'specific'
-      buildVersionToDownload: 'specific'
+      targetPath: $(System.ArtifactsDirectory)
+      project: ROCm-CI
+      buildType: specific
+      buildVersionToDownload: specific
       definition: 116
       pipelineId: 1398
   - task: ExtractFiles@1
     inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/*.tar.xz'
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.xz'
       destinationFolder: '$(Agent.BuildDirectory)/rocm'
       cleanDestinationFolder: false
       overwriteExistingFiles: true
