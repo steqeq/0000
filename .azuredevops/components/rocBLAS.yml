@@ -47,91 +47,91 @@ parameters:
     - ROCR-Runtime
 
 jobs:
-- job: rocBLAS
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  - name: HIP_ROCCLR_HOME
-    value: $(Build.BinariesDirectory)/rocm
-  - name: TENSILE_ROCM_ASSEMBLER_PATH
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang
-  - name: CMAKE_CXX_COMPILER
-    value: $(Agent.BuildDirectory)/rocm/bin/hipcc
-  - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
-  pool: ${{ variables.LOW_BUILD_POOL }}
-  workspace:
-    clean: all
-  steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
-# CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
-    - task: Bash@3
-      displayName: 'Download AOCL'
-      inputs:
-        targetType: inline
-        script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - task: Bash@3
-      displayName: 'Install AOCL'
-      inputs:
-        targetType: inline
-        script: sudo apt install --yes ./aocl-linux-gcc-4.2.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
-        dependencySource: staging
-# manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
-    - task: Bash@3
-      displayName: 'Download AOCL'
-      inputs:
-        targetType: inline
-        script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-1/aocl-linux-aocc-4.1.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - task: Bash@3
-      displayName: 'Install AOCL'
-      inputs:
-        targetType: inline
-        script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
-        dependencySource: tag-builds
-  - script: echo $PATH
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm;$(Pipeline.Workspace)/deps-install
-        -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
-        -DAMDGPU_TARGETS=gfx1030;gfx1100
-        -DTensile_CODE_OBJECT_VERSION=default
-        -DTensile_LOGIC=asm_full
-        -DTensile_SEPARATE_ARCHITECTURES=ON
-        -DTensile_LAZY_LIBRARY_LOADING=ON
-        -DTensile_LIBRARY_FORMAT=msgpack
-        -DBUILD_CLIENTS_TESTS=ON
-        -DBUILD_CLIENTS_BENCHMARKS=OFF
-        -DBUILD_CLIENTS_SAMPLES=OFF
-        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-        -GNinja
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+# - job: rocBLAS
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   - name: HIP_ROCCLR_HOME
+#     value: $(Build.BinariesDirectory)/rocm
+#   - name: TENSILE_ROCM_ASSEMBLER_PATH
+#     value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang
+#   - name: CMAKE_CXX_COMPILER
+#     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
+#   - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
+#     value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
+#   pool: ${{ variables.LOW_BUILD_POOL }}
+#   workspace:
+#     clean: all
+#   steps:
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+#     parameters:
+#       aptPackages: ${{ parameters.aptPackages }}
+#       pipModules: ${{ parameters.pipModules }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+#     parameters:
+#       checkoutRepo: ${{ parameters.checkoutRepo }}
+# # CI case: download latest default branch build
+#   - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+#     - task: Bash@3
+#       displayName: 'Download AOCL'
+#       inputs:
+#         targetType: inline
+#         script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb
+#         workingDirectory: '$(Pipeline.Workspace)'
+#     - task: Bash@3
+#       displayName: 'Install AOCL'
+#       inputs:
+#         targetType: inline
+#         script: sudo apt install --yes ./aocl-linux-gcc-4.2.0_1_amd64.deb
+#         workingDirectory: '$(Pipeline.Workspace)'
+#     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#       parameters:
+#         dependencyList: ${{ parameters.rocmDependencies }}
+#         dependencySource: staging
+# # manual build case: triggered by ROCm/ROCm repo
+#   - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+#     - task: Bash@3
+#       displayName: 'Download AOCL'
+#       inputs:
+#         targetType: inline
+#         script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-1/aocl-linux-aocc-4.1.0_1_amd64.deb
+#         workingDirectory: '$(Pipeline.Workspace)'
+#     - task: Bash@3
+#       displayName: 'Install AOCL'
+#       inputs:
+#         targetType: inline
+#         script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
+#         workingDirectory: '$(Pipeline.Workspace)'
+#     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#       parameters:
+#         dependencyList: ${{ parameters.rocmDependencies }}
+#         dependencySource: tag-builds
+#   - script: echo $PATH
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#     parameters:
+#       extraBuildFlags: >-
+#         -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
+#         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm;$(Pipeline.Workspace)/deps-install
+#         -DCMAKE_BUILD_TYPE=Release
+#         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
+#         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
+#         -DAMDGPU_TARGETS=gfx1030;gfx1100
+#         -DTensile_CODE_OBJECT_VERSION=default
+#         -DTensile_LOGIC=asm_full
+#         -DTensile_SEPARATE_ARCHITECTURES=ON
+#         -DTensile_LAZY_LIBRARY_LOADING=ON
+#         -DTensile_LIBRARY_FORMAT=msgpack
+#         -DBUILD_CLIENTS_TESTS=ON
+#         -DBUILD_CLIENTS_BENCHMARKS=OFF
+#         -DBUILD_CLIENTS_SAMPLES=OFF
+#         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+#         -GNinja
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
 
 - job: rocBLAS_testing
-  dependsOn: rocBLAS
-  condition: succeeded()
+  # dependsOn: rocBLAS
+  # condition: succeeded()
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -139,8 +139,13 @@ jobs:
   workspace:
     clean: all
   steps:
-  - task: DownloadBuildArtifacts@1
-    displayName: Download rocRAND build
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      project: 'ROCm-CI'
+      buildType: 'specific'
+      buildVersionToDownload: 'specific'
+      definition: 116
+      pipelineId: 1398
   - task: ExtractFiles@1
     inputs:
       archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.xz'
@@ -190,5 +195,5 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
-      testExecutable: 'rocblas-test'
+      testExecutable: './rocblas-test'
       testParameters: '--yaml rocblas_smoke.yaml'
