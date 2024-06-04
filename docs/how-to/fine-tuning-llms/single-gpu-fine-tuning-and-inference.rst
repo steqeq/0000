@@ -87,7 +87,8 @@ Setting up the base implementation environment
 
    .. code-block:: shell
 
-      # Install `bitsandbytes` for ROCm 6.0+, use -DBNB_ROCM_ARCH to target specific GPU arch
+      # Install `bitsandbytes` for ROCm 6.0+.
+      # Use -DBNB_ROCM_ARCH to target a specific GPU architecture.
       git clone --recurse https://github.com/ROCm/bitsandbytes.git
       cd bitsandbytes
       git checkout rocm_enabled
@@ -95,13 +96,13 @@ Setting up the base implementation environment
       cmake -DBNB_ROCM_ARCH="gfx942" -DCOMPUTE_BACKEND=hip -S .
       python setup.py install
       
-      # To leverage the SFTTrainer in TRL for model fine-tuning
+      # To leverage the SFTTrainer in TRL for model fine-tuning.
       pip install trl
       
-      # To leverage PEFT for efficiently adapting pre-trained language models 
+      # To leverage PEFT for efficiently adapting pre-trained language models .
       pip install peft
       
-      # Install the other dependencies:
+      # Install the other dependencies.
       pip install transformers, datasets, huggingface-hub, scipy
 
 #. Check that the required packages can be imported.
@@ -139,14 +140,14 @@ Download the base model and fine-tuning dataset
 
    .. code-block:: python
 
-      # Base model and tokenizer names
+      # Base model and tokenizer names.
       base_model_name = "meta-llama/Llama-2-7b-chat-hf"
       
-      # Load base model to GPU memory
+      # Load base model to GPU memory.
       device = "cuda:0"
       base_model = AutoModelForCausalLM.from_pretrained(base_model_name, trust_remote_code = True).to(device)
       
-      # Load tokenizer
+      # Load tokenizer.
       tokenizer = AutoTokenizer.from_pretrained(
               base_model_name, 
               trust_remote_code = True)
@@ -159,14 +160,14 @@ Download the base model and fine-tuning dataset
 
    .. code-block::
 
-      # Dataset for fine-tuning
+      # Dataset for fine-tuning.
       training_dataset_name = "mlabonne/guanaco-llama2-1k"
       training_dataset = load_dataset(training_dataset_name, split = "train")
       
-      # Check the data 
+      # Check the data.
       print(training_dataset)
       
-      # #11 is a QA sample in English
+      # Dataset 11 is a QA sample in English.
       print(training_dataset[11])
 
 #. With the base model and the dataset, let's start fine-tuning!
@@ -180,7 +181,7 @@ To set up ``SFTTrainer`` parameters, you can use the following code as reference
 
 .. code-block:: python
 
-   # Training Params for SFTTrainer
+   # Training parameters for SFTTrainer.
    training_arguments = TrainingArguments(
        output_dir = "./results",
             num_train_epochs = 1,
@@ -228,7 +229,7 @@ Compare the number of trainable parameters and training time under the two diffe
                     bias = "none",
                     task_type = "CAUSAL_LM"
             )
-            # View the number of Trainable Params
+            # View the number of trainable parameters.
             from peft import get_peft_model
             peft_model = get_peft_model(base_model, peft_config)
             peft_model.print_trainable_parameters()
@@ -244,7 +245,7 @@ Compare the number of trainable parameters and training time under the two diffe
 
          .. code-block:: python
 
-            # Initialize a sft trainer
+            # Initialize an SFT trainer.
             sft_trainer = SFTTrainer(
                     model = base_model,
                     train_dataset = training_dataset,
@@ -254,7 +255,7 @@ Compare the number of trainable parameters and training time under the two diffe
                     args = training_arguments
             ) 
             
-            # Run the trainer
+            # Run the trainer.
             sft_trainer.train()
 
          The output should look like this:
@@ -302,7 +303,7 @@ Compare the number of trainable parameters and training time under the two diffe
 
          .. code-block:: python
 
-            # Trainer without LoRA config
+            # Trainer without LoRA config.
             trainer_full = SFTTrainer(
                     model = base_model,
                     train_dataset = training_dataset,
@@ -311,7 +312,7 @@ Compare the number of trainable parameters and training time under the two diffe
                     args = training_arguments
             ) 
             
-            # Training 
+            # Training.
             trainer_full.train()
 
          The output should look like this:
@@ -347,20 +348,20 @@ store, and load.
 
       .. code-block:: python
 
-         # PEFT adapter name
+         # PEFT adapter name.
          adapter_name = "llama-2-7b-enhanced-adapter"
          
-         # Save PEFT adapter
+         # Save PEFT adapter.
          sft_trainer.model.save_pretrained(adapter_name)
 
       The saved PEFT adapter should look like this on your system:
 
       .. code-block:: shell
 
-         # Access adapter directory
+         # Access adapter directory.
          cd llama-2-7b-enhanced-adapter
          
-         # List all adapter files
+         # List all adapter files.
          README.md  adapter_config.json  adapter_model.safetensors
 
    .. tab-item:: Saving a fully fine-tuned model
@@ -371,20 +372,20 @@ store, and load.
 
       .. code-block:: python
 
-         # fully fine-tuned model name
+         # Fully fine-tuned model name.
          new_model_name = "llama-2-7b-enhanced"
          
-         # Save the fully fine-tuned model
+         # Save the fully fine-tuned model.
          full_trainer.model.save_pretrained(new_model_name)
 
       The saved new full model should look like this on your system:
 
       .. code-block:: shell
 
-         # Access new model directory
+         # Access new model directory.
          cd llama-2-7b-enhanced
          
-         # List all model files
+         # List all model files.
          config.json                       model-00002-of-00006.safetensors  model-00005-of-00006.safetensors
          generation_config.json            model-00003-of-00006.safetensors  model-00006-of-00006.safetensors
          model-00001-of-00006.safetensors  model-00004-of-00006.safetensors  model.safetensors.index.json
