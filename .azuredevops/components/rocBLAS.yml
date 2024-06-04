@@ -203,4 +203,4 @@ jobs:
     parameters:
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocblas-test'
-      testParameters: '--yaml rocblas_smoke.yaml'
+      testParameters: '--yaml rocblas_smoke.yaml --gtest_output=xml --gtest_color=yes'
