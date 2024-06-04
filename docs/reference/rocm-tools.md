@@ -34,7 +34,7 @@
 :img-alt: Performance tools
 :padding: 2
 
-* [RocBandwidthTest](https://github.com/ROCm/rocm_bandwidth_test)
+* {doc}`ROCm Bandwidth Test <rocm_bandwidth_test:index>`
 * {doc}`ROCProfiler <rocprofiler:profiler_home_page>`
 * [rocprofiler-register](https://github.com/ROCm/rocprofiler-register)
 * {doc}`ROCTracer <roctracer:index>`
@@ -49,8 +49,8 @@
 :padding: 2
 
 * {doc}`AMD SMI <amdsmi:index>`
+* {doc}`rocminfo <rocminfo:index>`
 * {doc}`ROCm Data Center Tool <rdc:index>`
-* [ROCm Info](https://github.com/ROCm/rocminfo)
 * {doc}`ROCm SMI <rocm_smi_lib:index>`
 * {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 * {doc}`TransferBench <transferbench:index>`
