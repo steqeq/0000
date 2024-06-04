@@ -121,7 +121,7 @@ jobs:
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
 
-- job: rocBLAS-testing
+- job: rocBLAS_testing
   dependsOn: rocBLAS
   condition: succeeded()
   variables:
