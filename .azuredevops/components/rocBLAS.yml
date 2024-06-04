@@ -45,6 +45,7 @@ parameters:
     - llvm-project
     - rocminfo
     - rocprofiler-register
+    - rocm_smi_lib
     - ROCR-Runtime
 
 jobs:
