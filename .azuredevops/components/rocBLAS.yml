@@ -15,7 +15,6 @@ parameters:
     - libdrm-dev
     - libgtest-dev
     - libmsgpack-dev
-    - libomp-dev
     - libopenblas-dev
     - ninja-build
     - python3-pip
@@ -41,6 +40,7 @@ parameters:
 - name: testDependencies
   type: object
   default:
+    - aomp
     - clr
     - llvm-project
     - rocminfo
