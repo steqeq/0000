@@ -32,7 +32,7 @@ Installing vLLM
 
    .. code-block:: shell
 
-      # Install from the source
+      # Install from source
       git clone https://github.com/ROCm/vllm.git    
       cd vllm
       PYTORCH_ROCM_ARCH=gfx942 python setup.py install #MI300 series
