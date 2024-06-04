@@ -51,7 +51,7 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -64,7 +64,7 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - task: Bash@3
       displayName: 'Download AOCL'
       inputs:
@@ -82,7 +82,7 @@ jobs:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - task: Bash@3
       displayName: 'Download AOCL'
       inputs:
@@ -120,3 +120,34 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocBLAS-testing
+  dependsOn: rocBLAS
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.BASE_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - task: DownloadBuildArtifacts@1
+    displayName: Download test files
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.xz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.xz'
+      RemoveDotFiles: true
+  - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
+    displayName: 'Artifact listing'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: 'rocblas-test'
+      testParameters: '--yaml rocblas_smoke.yaml'
