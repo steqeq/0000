@@ -50,16 +50,6 @@ AMD SMI for ROCm 6.1.2
 See the AMD SMI [detailed changelog](https://github.com/ROCm/amdsmi/blob/rocm-6.1.x/CHANGELOG.md) with code samples for more information.
 ```
 
-### HIPCC
-
-HIPCC for ROCm 6.1.2
-
-#### Changes
-
-* **Upcoming:** a future release will enable use of compiled binaries `hipcc.bin` and `hipconfig.bin` by default. No action is needed by users; you may continue calling high-level Perl scripts `hipcc` and `hipconfig`. `hipcc.bin` and `hipconfig.bin` will be invoked by the high-level Perl scripts. To revert to the previous behavior and invoke `hipcc.pl` and `hipconfig.pl`, set the `HIP_USE_PERL_SCRIPTS` environment variable to `1`.
-* **Upcoming:** a subsequent release will remove high-level Perl scripts `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
-* **Upcoming:** a subsequent release will remove `hipcc.pl` and `hipconfig.pl`.
-
 ### ROCm SMI
 
 ROCm SMI for ROCm 6.1.2
@@ -70,14 +60,8 @@ ROCm SMI for ROCm 6.1.2
 
 #### Fixes
 
-* Fixed an issue causing ROCm SMI to incorrectly report GPU utilization for RDNA3 GPUs.
+* Fixed an issue causing ROCm SMI to incorrectly report GPU utilization for RDNA3 GPUs. See the issue on [GitHub](https://github.com/ROCm/ROCm/issues/3112).
 * Fixed the parsing of `pp_od_clk_voltage` in `get_od_clk_volt_info` to work better with MI-series hardware.
-
-### Known issue with error detection on MI300X
-
-During poison consumption testing, the injection of uncorrectable errors will not generate an interrupt to the driver,
-resulting in undetected errors. This can result in reliability and recovery issues on MI300X accelerator-based
-setups.
 
 ## Library changes in ROCm 6.1.2
 
@@ -152,20 +136,9 @@ rocDecode 0.6.0 for ROCm 6.1.2
 
 * Fixed some package dependencies.
 
-#### Tested configurations
+## Upcoming changes
 
-* Linux
-  * Ubuntu 20.04 and 22.04
-  * RHEL 8 and 9
- 
-* ROCm
-  * rocm-core 6.1.0.60100-64
-  * amdgpu-core 1:6.1.60100-1741643
+* A future release will enable the use of HIPCC compiled binaries `hipcc.bin` and `hipconfig.bin` by default. No action is needed by users; you may continue calling high-level Perl scripts `hipcc` and `hipconfig`. `hipcc.bin` and `hipconfig.bin` will be invoked by the high-level Perl scripts. To revert to the previous behavior and invoke `hipcc.pl` and `hipconfig.pl`, set the `HIP_USE_PERL_SCRIPTS` environment variable to `1`.
+* A subsequent release will remove high-level HIPCC Perl scripts from `hipcc` and `hipconfig`. This release will remove the `HIP_USE_PERL_SCRIPTS` environment variable. It will rename `hipcc.bin` and `hipconfig.bin` to `hipcc` and `hipconfig` respectively. No action is needed by the users. To revert to the previous behavior, invoke `hipcc.pl` and `hipconfig.pl` explicitly.
+* A subsequent release will remove `hipcc.pl` and `hipconfig.pl` for HIPCC.
 
-* libya-dev 2.7.0-2 and 2.14.0-1
- 
-* mesa-amdgpu-va-drivers 1:24.1.0
- 
-* FFmpeg 4.2.7 and 4.4.2-0
- 
-* rocDecode setup script v1.8.0
