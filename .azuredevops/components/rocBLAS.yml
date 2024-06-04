@@ -9,17 +9,17 @@ parameters:
   type: object
   default:
     - cmake
-    - ninja-build
-    - python3-venv
-    - git
-    - libmsgpack-dev
     - gfortran
-    - libopenblas-dev
+    - git
     - googletest
-    - libgtest-dev
-    - wget
-    - python3-pip
     - libdrm-dev
+    - libgtest-dev
+    - libmsgpack-dev
+    - libopenblas-dev
+    - ninja-build
+    - python3-pip
+    - python3-venv
+    - wget
 - name: pipModules
   type: object
   default:
@@ -139,6 +139,11 @@ jobs:
   workspace:
     clean: all
   steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - task: DownloadPipelineArtifact@2
     inputs:
       targetPath: $(System.ArtifactsDirectory)
@@ -147,10 +152,6 @@ jobs:
       buildVersionToDownload: specific
       definition: 116
       pipelineId: 1398
-  - task: Bash@3
-    inputs:
-      targetType: inline
-      script: ls -1R $(System.ArtifactsDirectory)
   - task: ExtractFiles@1
     inputs:
       archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
