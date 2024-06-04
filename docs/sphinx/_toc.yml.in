@@ -59,7 +59,7 @@ subtrees:
       - file: how-to/rocm-for-ai/hugging-face-models.rst
       - file: how-to/rocm-for-ai/deploy-your-model.rst
   - file: how-to/fine-tuning-llms/index.rst
-    title: Fine-tuning LLMs with ROCm
+    title: Fine-tuning LLMs and inference optimization
     subtrees:
     - entries:
       - file: how-to/fine-tuning-llms/overview.rst

@@ -32,7 +32,7 @@ The AutoGPTQ library implements the GPTQ algorithm.
 
    .. code-block:: shell
 
-      # This will install pre-built wheel for a specific ROCm version  
+      # This will install pre-built wheel for a specific ROCm version.
       
       pip install auto-gptq --no-build-isolation --extra-index-url https://huggingface.github.io/autogptq-index/whl/rocm573/
 
@@ -40,11 +40,11 @@ The AutoGPTQ library implements the GPTQ algorithm.
 
    .. code-block:: shell
 
-      # Clone the source code
+      # Clone the source code.
       git clone https://github.com/AutoGPTQ/AutoGPTQ.git
       cd AutoGPTQ
       
-      # Speed up the compilation by specifying PYTORCH_ROCM_ARCH to target device 
+      # Speed up the compilation by specifying PYTORCH_ROCM_ARCH to target device.
       PYTORCH_ROCM_ARCH=gfx942 ROCM_VERSION=6.1 pip install .
       
       # Show the package after the installation 
@@ -93,12 +93,14 @@ Using GPTQ with AutoGPTQ
 
    .. code-block:: python
 
-      # import auto_gptq class
+      # Import auto_gptq class.
       from auto_gptq import AutoGPTQForCausalLM
-      # load non-quantized model
+
+      # Load non-quantized model.
       base_model = AutoGPTQForCausalLM.from_pretrained(base_model_name, quantize_config, device_map = "auto")
       base_model.quantize(examples)
-      # save quantized model
+
+      # Save quantized model.
       base_model.save_quantized(quantized_model_name)
 
 Using GPTQ with Hugging Face Transformers
@@ -201,7 +203,7 @@ Installing bitsandbytes
 Using bitsandbytes primitives
 -----------------------------
 
-To get started with bitsandbytes primitives, use the following code a reference.
+To get started with bitsandbytes primitives, use the following code as reference.
 
 .. code-block:: python
 
@@ -230,7 +232,7 @@ To load a Transformers model in 4-bit, set ``load_int_4bt=true`` in ``BitsAndByt
            device_map="auto", 
            quantization_config=quantization_config)
    
-   # check the memory footprint with get_memory_footprint method
+   # Check the memory footprint with get_memory_footprint method
    print(bnb_model_4bit.get_memory_footprint())
 
 To load a model in 8-bit for inference, use the ``load_in_8bit`` option.
