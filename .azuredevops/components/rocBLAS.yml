@@ -40,6 +40,7 @@ parameters:
 - name: testDependencies
   type: object
   default:
+    - aomp
     - clr
     - llvm-project
     - rocminfo
