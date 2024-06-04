@@ -7,7 +7,7 @@ Conceptual overview of fine-tuning LLMs
 ***************************************
 
 Large language models (LLMs) are trained on massive amounts of text data to generate coherent and fluent text. The
-underlying *transformer* architecture is the fundamental building block of all LLMs. Transformers serve as the
+underlying *transformer* architecture is the fundamental building block of all LLMs. Transformers 
 enable LLMs to understand and generate text by capturing contextual relationships and long-range dependencies. To better
 understand the philosophy of the transformer architecture, review the foundational
 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ paper.
@@ -60,7 +60,7 @@ overcome this issue of high memory consumption.
 LoRA accelerates the adjustment process and reduces related memory costs. To be precise, LoRA decomposes the portion of
 weight changes :math:`ΔW` into high-precision low-rank representations, which do not require the calculations of all
 :math:`ΔW`. It learns the decomposition representation of :math:`ΔW` during training, as shown in
-:ref:`the weight update diagram <fine-tuning-llms-concept-challenge>`. This is how LoRA saves on
+the :ref:`weight update diagram <fine-tuning-llms-concept-challenge>`. This is how LoRA saves on
 computing resources.
 
 LoRA is integrated into the `Hugging Face Parameter-Efficient Fine-Tuning (PEFT)

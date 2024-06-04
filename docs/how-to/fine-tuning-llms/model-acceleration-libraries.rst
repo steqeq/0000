@@ -40,7 +40,7 @@ ROCm provides two different implementations of Flash Attention 2 modules. They c
 
       .. code-block:: shell
 
-         # Install from the source
+         # Install from source
          git clone https://github.com/ROCm/flash-attention.git
          cd flash-attention/
          GPU_ARCHS=gfx942 python setup.py install #MI300 series
@@ -156,7 +156,7 @@ of the PyTorch compilation.
 
 .. code-block:: python
 
-   # Sample script to run LLM with the static key-value cache and pytorch compilation
+   # Sample script to run LLM with the static key-value cache and PyTorch compilation
    from transformers import AutoModelForCausalLM, AutoTokenizer, StaticCache
    import torch
    from typing import Optional
@@ -180,7 +180,8 @@ of the PyTorch compilation.
        return new_token
    
    batch_size, seq_length = inputs["input_ids"].shape
-   # static key-value cache
+
+   # Static key-value cache
    max_cache_length = 1024
    max_new_tokens = 10
    model._setup_cache(StaticCache, batch_size, max_cache_len=max_cache_length)
@@ -190,6 +191,7 @@ of the PyTorch compilation.
    
    logits = model(**inputs, cache_position=cache_position, return_dict=False, use_cache=True)[0]
    next_token = torch.argmax(logits[:, -1], dim=-1)[:, None]
+
    # torch compilation
    decode_one_tokens = torch.compile(decode_one_tokens, mode="max-autotune-no-cudagraphs",fullgraph=True)
    
@@ -221,10 +223,10 @@ page describes the options.
 
 .. code-block:: python
 
-   # To turn on TunableOps, simply set this environmental variable
+   # To turn on TunableOp, simply set this environment variable
    export PYTORCH_TUNABLEOP_ENABLED=1
    
-   # python
+   # Python
    import torch
    import torch.nn as nn
    import torch.nn.functional as F
