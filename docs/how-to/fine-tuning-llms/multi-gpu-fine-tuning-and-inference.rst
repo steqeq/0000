@@ -130,8 +130,8 @@ After loading the model in this way, the model is fully ready to use the resourc
 torchtune for fine-tuning and inference
 =============================================
 
-torchtune is a PyTorch-native library for easy single and multi-accelerator or GPU model fine-tuning and inference with
-LLMs.
+`torchtune <https://pytorch.org/torchtune/main/>`_ is a PyTorch-native library for easy single and multi-accelerator or
+GPU model fine-tuning and inference with LLMs.
 
 #. Install torchtune using pip.
 
@@ -157,80 +157,80 @@ LLMs.
       subcommands:
         {download,ls,cp,run,validate}
 
-torchtune recipes are designed around easily composable components and workable training loops, with minimal abstraction
-getting in the way of fine-tuning. Run ``tune ls`` to show built-in torchtune configuration recipes.
+#. torchtune recipes are designed around easily composable components and workable training loops, with minimal abstraction
+   getting in the way of fine-tuning. Run ``tune ls`` to show built-in torchtune configuration recipes.
 
-.. code-block:: shell
+   .. code-block:: shell
 
-   RECIPE                                   CONFIG
-   full_finetune_single_device              llama2/7B_full_low_memory
-                                            llama3/8B_full_single_device
-                                            mistral/7B_full_low_memory
-   full_finetune_distributed                llama2/7B_full
-                                            llama2/13B_full
-                                            llama3/8B_full
-                                            mistral/7B_full
-                                            gemma/2B_full
-   lora_finetune_single_device              llama2/7B_lora_single_device
-                                            llama2/7B_qlora_single_device
-                                            llama3/8B_lora_single_device
-                                            llama3/8B_qlora_single_device
-                                            llama2/13B_qlora_single_device
-                                            mistral/7B_lora_single_device
+      RECIPE                                   CONFIG
+      full_finetune_single_device              llama2/7B_full_low_memory
+                                               llama3/8B_full_single_device
+                                               mistral/7B_full_low_memory
+      full_finetune_distributed                llama2/7B_full
+                                               llama2/13B_full
+                                               llama3/8B_full
+                                               mistral/7B_full
+                                               gemma/2B_full
+      lora_finetune_single_device              llama2/7B_lora_single_device
+                                               llama2/7B_qlora_single_device
+                                               llama3/8B_lora_single_device
+                                               llama3/8B_qlora_single_device
+                                               llama2/13B_qlora_single_device
+                                               mistral/7B_lora_single_device
 
-The ``RECIPE`` column shows the easy-to-use and workable fine-tuning and inference recipes for popular fine-tuning
-techniques (such as LoRA). The ``CONFIG`` column lists the YAML configurations for easily configuring training,
-evaluation, quantization, or inference recipes.
+   The ``RECIPE`` column shows the easy-to-use and workable fine-tuning and inference recipes for popular fine-tuning
+   techniques (such as LoRA). The ``CONFIG`` column lists the YAML configurations for easily configuring training,
+   evaluation, quantization, or inference recipes.
 
-The snippet shows the architecture of a model's YAML configuration file:
+   The snippet shows the architecture of a model's YAML configuration file:
 
-.. code-block:: yaml
+   .. code-block:: yaml
 
-   # Model Arguments
-   model:
-     _component_: torchtune.models.llama2.lora_llama2_7b
-     lora_attn_modules: ['q_proj', 'v_proj']
-     apply_lora_to_mlp: False
-     apply_lora_to_output: False
-     lora_rank: 8
-     lora_alpha: 16
-   
-   tokenizer:
-     _component_: torchtune.models.llama2.llama2_tokenizer
-     path: /tmp/Llama-2-7b-hf/tokenizer.model
-   
-   # Dataset and Sampler
-   dataset:
-     _component_: torchtune.datasets.alpaca_cleaned_dataset
-     train_on_input: True
+      # Model arguments
+      model:
+        _component_: torchtune.models.llama2.lora_llama2_7b
+        lora_attn_modules: ['q_proj', 'v_proj']
+        apply_lora_to_mlp: False
+        apply_lora_to_output: False
+        lora_rank: 8
+        lora_alpha: 16
+      
+      tokenizer:
+        _component_: torchtune.models.llama2.llama2_tokenizer
+        path: /tmp/Llama-2-7b-hf/tokenizer.model
+      
+      # Dataset and sampler
+      dataset:
+        _component_: torchtune.datasets.alpaca_cleaned_dataset
+        train_on_input: True
 
-This configuration file defines the fine-tuning base model path, data set, hyper-parameters for optimizer and scheduler,
-and training data type. To download the base model for fine-tuning, run the following command:
+#. This configuration file defines the fine-tuning base model path, data set, hyper-parameters for optimizer and scheduler,
+   and training data type. To download the base model for fine-tuning, run the following command:
 
-.. code-block:: shell
+   .. code-block:: shell
 
-   tune download meta-llama/Llama-2-7b-hf --output-dir /tmp/Llama-2-7b-hf --hf-token
+      tune download meta-llama/Llama-2-7b-hf --output-dir /tmp/Llama-2-7b-hf --hf-token
 
-The output directory argument for ``--output-dir`` should map the model path specified in YAML config file.
+   The output directory argument for ``--output-dir`` should map the model path specified in YAML config file.
 
-To launch ``lora_finetune_distributed`` on four devices, run the following
-command:
+#. To launch ``lora_finetune_distributed`` on four devices, run the following
+   command:
 
-.. code-block:: shell
+   .. code-block:: shell
 
-   tune run --nnodes 1 --nproc_per_node 4 lora_finetune_distributed --config llama2/7B_lora
+      tune run --nnodes 1 --nproc_per_node 4 lora_finetune_distributed --config llama2/7B_lora
 
-If successful, you should something like the following output:
+   If successful, you should something like the following output:
 
-.. code-block:: shell
+   .. code-block:: shell
 
-   INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...
-   INFO:torchtune.utils.logging:Model instantiation took 7.32 secs
-   INFO:torchtune.utils.logging:Memory Stats after model init:
-   {'peak_memory_active': 9.478172672, 'peak_memory_alloc': 8.953868288, 'peak_memory_reserved': 11.112808448}
-   INFO:torchtune.utils.logging:Optimizer and loss are initialized.
-   INFO:torchtune.utils.logging:Dataset and Sampler are initialized.
-   INFO:torchtune.utils.logging:Learning rate scheduler is initialized.
-   1|111|Loss: 1.5790324211120605:   7%|█                                          | 114/1618
+      INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...
+      INFO:torchtune.utils.logging:Model instantiation took 7.32 secs
+      INFO:torchtune.utils.logging:Memory Stats after model init:
+      {'peak_memory_active': 9.478172672, 'peak_memory_alloc': 8.953868288, 'peak_memory_reserved': 11.112808448}
+      INFO:torchtune.utils.logging:Optimizer and loss are initialized.
+      INFO:torchtune.utils.logging:Dataset and Sampler are initialized.
+      INFO:torchtune.utils.logging:Learning rate scheduler is initialized.
+      1|111|Loss: 1.5790324211120605:   7%|█                                          | 114/1618
 
 Read more about inference frameworks in :doc:`LLM inference frameworks <llm-inference-frameworks>`.
