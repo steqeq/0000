@@ -153,13 +153,7 @@ jobs:
       script: ls -1R $(System.ArtifactsDirectory)
   - task: ExtractFiles@1
     inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.zip'
-      destinationFolder: '$(System.ArtifactsDirectory)'
-      cleanDestinationFolder: false
-      overwriteExistingFiles: true
-  - task: ExtractFiles@1
-    inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.xz'
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
       destinationFolder: '$(Agent.BuildDirectory)/rocm'
       cleanDestinationFolder: false
       overwriteExistingFiles: true
