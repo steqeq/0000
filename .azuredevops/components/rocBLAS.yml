@@ -154,7 +154,7 @@ jobs:
   - task: ExtractFiles@1
     inputs:
       archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.zip'
-      destinationFolder: '$$(System.ArtifactsDirectory)'
+      destinationFolder: '$(System.ArtifactsDirectory)'
       cleanDestinationFolder: false
       overwriteExistingFiles: true
   - task: ExtractFiles@1
