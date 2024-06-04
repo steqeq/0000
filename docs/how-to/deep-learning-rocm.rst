@@ -60,6 +60,9 @@ Find information on version compatibility and framework release notes in :doc:`T
 
    For guidance on installing ROCm itself, refer to :doc:`ROCm installation for Linux <rocm-install-on-linux:index>`.
 
-Learn how to use your ROCm deep learning environment for training, fine-tuning, and inference through the following guides.
+Learn how to use your ROCm deep learning environment for training, fine-tuning, inference, and performance optimization
+through the following guides.
 
 * :doc:`rocm-for-ai/index`
+
+* :doc:`fine-tuning-llms/index`
