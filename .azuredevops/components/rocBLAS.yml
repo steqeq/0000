@@ -148,7 +148,7 @@ jobs:
       pipelineId: 1398
   - task: ExtractFiles@1
     inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.xz'
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/*.tar.xz'
       destinationFolder: '$(Agent.BuildDirectory)/rocm'
       cleanDestinationFolder: false
       overwriteExistingFiles: true
