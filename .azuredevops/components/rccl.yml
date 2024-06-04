@@ -61,6 +61,7 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds
+  - script: chmod +x $(Agent.BuildDirectory)/rocm/bin/hipify-perl
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
