@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remote name="rocm-org" fetch="https://github.com/ROCm/" />
-    <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-6.1.1"
+    <default revision="refs/tags/rocm-6.1.2"
      remote="rocm-org"
      sync-c="true"
      sync-j="4" />
 <!--list of projects for ROCm-->
-    <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" />
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCR-Runtime" />
     <project name="ROCT-Thunk-Interface" />
