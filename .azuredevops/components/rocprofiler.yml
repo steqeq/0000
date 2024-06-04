@@ -34,7 +34,8 @@ parameters:
     - llvm-project
     - ROCdbgapi
     - rocm-cmake
-    - rocm-smi-lib
+    - rocm-core
+    - rocm_smi_lib
     - rocminfo
     - ROCR-Runtime
     - rocprofiler-register
@@ -62,29 +63,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# Manually download rocm-core and aqlprofile, hard-coded 6.1.0 versions
-  - task: Bash@3
-    displayName: 'Download rocm-core'
-    inputs:
-      targetType: inline
-      script: wget -nv https://repo.radeon.com/rocm/apt/6.1/pool/main/r/rocm-core/rocm-core_6.1.0.60100-82~22.04_amd64.deb
-      workingDirectory: '$(Pipeline.Workspace)'
-  - task: Bash@3
-    displayName: 'Extract rocm-core'
-    inputs:
-      targetType: inline
-      script: |
-        mkdir rocm-core
-        dpkg-deb -R rocm-core_6.1.0.60100-82~22.04_amd64.deb rocm-core
-      workingDirectory: '$(Pipeline.Workspace)'
-  - task: Bash@3
-    displayName: 'Move rocm-core'
-    inputs:
-      targetType: inline
-      script: |
-        mkdir -p $(Agent.BuildDirectory)/rocm
-        cp -R rocm-core/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
-      workingDirectory: '$(Pipeline.Workspace)'
+# Manually download aqlprofile, hard-coded 6.1.0 version
   - task: Bash@3
     displayName: 'Download aqlprofile'
     inputs:
