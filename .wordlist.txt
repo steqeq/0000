@@ -79,6 +79,7 @@ DataParallel
 DeepSpeed
 Dependabot
 DevCap
+Dereferencing
 Dockerfile
 Doxygen
 ELMo
@@ -422,8 +423,11 @@ composable
 concretization
 config
 conformant
+consteval
+constexpr
 convolutional
 convolves
+coroutines
 cpp
 csn
 cuBLAS
