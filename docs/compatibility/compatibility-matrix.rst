@@ -12,9 +12,9 @@ Use this matrix to view the ROCm compatibility across successive major and minor
 .. container:: format-big-table
 
   .. csv-table:: 
+      :header: "ROCm Version", "6.1.0", "6.0.0"
       :stub-columns: 1
 
-      "ROCm Version", "6.1.0", "6.0.0"
       :doc:`Operating Systems <rocm-install-on-linux:reference/system-requirements>`, "Ubuntu 22.04.4, 22.04.3","Ubuntu 22.04.4, 22.04.3"
       ,"Ubuntu 20.04.6, 20.04.5","Ubuntu 20.04.6, 20.04.5"
       ,"RHEL 9.3, 9.2","RHEL 9.3, 9.2"
@@ -122,3 +122,5 @@ Use this matrix to view the ROCm compatibility across successive major and minor
 .. rubric:: Footnotes
 .. [#] **For ROCm 6.1** - MI300A (gfx942) is supported on Ubuntu 22.04.4, RHEL 9.3 & 8.9 and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.4.
 .. [#] **For ROCm 6.0** - MI300A (gfx942) is supported on Ubuntu 22.04.3, RHEL 8.9 and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.3.
+
+
