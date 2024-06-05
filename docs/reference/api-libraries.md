@@ -22,7 +22,7 @@
 * {doc}`Composable Kernel <composable_kernel:index>`
 * {doc}`MIGraphX <amdmigraphx:index>`
 * {doc}`MIOpen <miopen:index>`
-* {doc}`MIVisionX <mivisionx:doxygen/html/index>`
+* {doc}`MIVisionX <mivisionx:index>`
 * {doc}`rocAL <rocal:index>`
 * {doc}`rocDecode <rocdecode:index>`
 * {doc}`ROCm Performance Primitives (RPP) <rpp:index>`
