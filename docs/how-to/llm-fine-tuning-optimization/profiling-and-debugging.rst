@@ -38,7 +38,7 @@ You can then visualize and view these metrics using an open-source profile visua
    shows transactions denoting the CPU activities that launch GPU kernels while the lower section shows the actual GPU
    activities where it processes the ``resnet18`` inferences layer by layer. 
 
-   .. figure:: ../../data/how-to/fine-tuning-llms/perfetto-trace.svg
+   .. figure:: ../../data/how-to/llm-fine-tuning-optimization/perfetto-trace.svg
       
       Perfetto trace visualization example.
 
@@ -100,7 +100,7 @@ analyze bottlenecks and stressors for their computational workloads on AMD Insti
    Omniperf collects hardware counters in multiple passes, and will therefore re-run the application during each pass
    to collect different sets of metrics.
 
-.. figure:: ../../data/how-to/fine-tuning-llms/omniperf-analysis.png
+.. figure:: ../../data/how-to/llm-fine-tuning-optimization/omniperf-analysis.png
 
    Omniperf memory chat analysis panel.
 
@@ -130,7 +130,7 @@ hardware counters are also included.
    have the greatest impact on the end-to-end execution of the application and to discover what else is happening on the
    system during a performance bottleneck.
 
-.. figure:: ../../data/how-to/fine-tuning-llms/omnitrace-timeline.png
+.. figure:: ../../data/how-to/llm-fine-tuning-optimization/omnitrace-timeline.png
 
    Omnitrace timeline trace example.
 
