@@ -31,7 +31,7 @@ Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do comp
 can a compute kernel can allocate its task to? For the :doc:`AMD MI300X accelerator <../../reference/gpu-arch-specs>`, the
 grid should have at least 1024 thread blocks or workgroups.
 
-.. figure:: ../../data/how-to/fine-tuning-llms/compute-unit.png
+.. figure:: ../../data/how-to/llm-fine-tuning-optimization/compute-unit.png
 
    Schematic representation of a CU in the CDNA2 or CDNA3 architecture.
 
@@ -187,7 +187,7 @@ Kernel occupancy
 
 .. _fine-tuning-llms-occupancy-vgpr-table:
 
-.. figure:: ../../data/how-to/fine-tuning-llms/occupancy-vgpr.png
+.. figure:: ../../data/how-to/llm-fine-tuning-optimization/occupancy-vgpr.png
    :alt: Occupancy related to VGPR usage in an Instinct MI300X accelerator.
    :align: center
 
