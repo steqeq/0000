@@ -22,9 +22,15 @@ This is mostly because the SIMD nature of the HIP device makes most of the stand
 library implementations not performant or useful. The important operations are
 implemented in HIP specific libraries like rocPRIM, rocThrust and hipCUB.
 
-.. _language_c++11_support:
-C++11 support
+.. _language_modern_c++_support:
+Modern C++ support
 ===============================================================================
+
+The C++11 and later standards had huge additions to C++ making it a truly modern
+language. In this section we'll describe which of these features HIP supports.
+
+C++11 support
+-------------------------------------------------------------------------------
 The C++11 standard introduced a miriad of new features to the language. These features
 are supported in HIP device code, with some notable omissions. The biggest of which is
 the lack of concurrency support on the device. This is because the HIP device concurrency
@@ -37,19 +43,16 @@ functiton or a kernel. Also some new features were like functions using ``initia
 lists``, ``std::move`` and ``std::forward`` or functions with ``constexpr`` qualifier are
 implicitly considered to have ``__host__`` and ``__device__`` execution space specifier.
 
-.. _language_c++14_support:
 C++14 support
-===============================================================================
+-------------------------------------------------------------------------------
 The C++14 language features are supported, except for the updates to the memory model.
 
-.. _language_c++17_support:
 C++17 support
-===============================================================================
+-------------------------------------------------------------------------------
 All C++17 language features are supported.
 
-.. _language_c++20_support:
 C++20 support
-===============================================================================
+-------------------------------------------------------------------------------
 All C++20 language features are supported, but extentions and restrictions apply. For
 example coroutines are not supported in device code and consteval functions can be called
 from host and device, even if it is specified for host use only.
@@ -61,6 +64,8 @@ Extentions and Restrictions
 Besides the above mentioned deviations from the standard, there are more general
 extentions and restrictions to consider. 
 
+Device Space Memory Specifiers
+-------------------------------------------------------------------------------
 To specify whether a variable is allocated in host or device memory HIP has qualifiers
 called device space memory specifiers. These are ``__device__``, ``__shared__``,
 ``__managed__`` and ``__constant__``. These are meant to specify what memory is allocated
@@ -79,13 +84,20 @@ and variables allocated in the device memory will not be available from host cod
 can be an issue mostly with pointers in host memory, which are pointing to device memory.
 Dereferencing these will cause a segmentation fault.
 
-Another important difference between the host and device code is exception handling. In
-device code it is not available, error handling needs to be done with return codes.
+Exception handling
+-------------------------------------------------------------------------------
+An important difference between the host and device code is exception handling. In device
+code it is not available, error handling needs to be done with return codes. This is
+because of the hardware architecture does not allow for this kind o control flow.
 
-There are also some restrictions on kernel function parameters. They cannot be passed by
+Kernel parameters
+-------------------------------------------------------------------------------
+There are some restrictions on kernel function parameters. They cannot be passed by
 reference, as these functions run on the device, but are called from the host. Also
 variable number of arguments is not allowed.
 
+Classes
+-------------------------------------------------------------------------------
 Classes work on both host and device side, but there are some constraints. ``Static``
 data members need to be ``const`` qualified and ``static`` member functions can't be
 ``__global__``. ``Virtual`` member functions work, but it's undefined behaviour to call a
