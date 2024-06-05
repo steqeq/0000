@@ -34,16 +34,16 @@ Our documentation is organized into the following categories:
   * {doc}`Quick start guide<rocm-install-on-linux:tutorial/quick-start>`
   * {doc}`Linux install guide<rocm-install-on-linux:how-to/native-install/index>`
   * {doc}`Package manager integration<rocm-install-on-linux:how-to/native-install/package-manager-integration>`
+  * {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
+  * {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
 * Windows
   * {doc}`Windows install guide<rocm-install-on-windows:how-to/install>`
   * {doc}`Application deployment guidelines<rocm-install-on-windows:conceptual/deployment-guidelines>`
 * [Deep learning frameworks](./how-to/deep-learning-rocm.rst)
-  * {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
   * {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
   * {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
   * {doc}`JAX for ROCm<rocm-install-on-linux:how-to/3rd-party/jax-install>`
   * {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
-  * {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
 :::
 
 :::{grid-item-card}
