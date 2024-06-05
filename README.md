@@ -62,7 +62,6 @@ Each ROCm component repository contains directions for building that component, 
 
 Each release of the ROCm software supports specific hardware and software configurations. Refer to [System requirements (Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html) for the current supported hardware and OS.
 
-
 ## Build ROCm from source
 
 The Build will use as many processors as it can find to build in parallel. Some of the compiles can consume as much as 10GB of RAM, so make sure you have plenty of Swap Space !
@@ -151,6 +150,7 @@ out/ubuntu-22.04/22.04/logs/rocblas.inprogress  # Example
 # All logs pertaining to passed components, use the component names.
 out/ubuntu-22.04/22.04/logs/rocblas             # Example
 ```
+
 Note: [Overview for ROCm.mk](rocm-build/README.md)
 
 ## ROCm documentation
