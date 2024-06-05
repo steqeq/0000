@@ -77,7 +77,7 @@ Installing vLLM
 
          The following log message is displayed in your command line indicates that the server is listening for requests.
 
-         .. image:: ../../data/how-to/fine-tuning-llms/vllm-single-gpu-log.png
+         .. image:: ../../data/how-to/llm-fine-tuning-optimization/vllm-single-gpu-log.png
             :alt: vLLM API server log message
             :align: center
 
