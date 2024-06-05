@@ -46,6 +46,8 @@ subtrees:
       title: Tools
     - file: reference/gpu-arch-specs.rst
       title: Hardware specifications
+    - file: reference/c++_support.rst
+      title: C++ language support
 
 - caption: How to
   entries:

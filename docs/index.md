@@ -82,6 +82,7 @@ Our documentation is organized into the following categories:
   * [Performance analysis](#performance-analysis)
   * [System](#system-tools)
 * [Hardware specifications](./reference/gpu-arch-specs.rst)
+* [C++ language support](./reference/c++_support.rst)
 :::
 <!-- markdownlint-enable MD051 -->
 
