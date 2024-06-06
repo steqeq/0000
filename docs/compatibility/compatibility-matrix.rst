@@ -21,33 +21,27 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       ,"RHEL 8.9, 8.8","RHEL 8.9, 8.8"
       ,"SLES 15 SP5, SP4","SLES 15 SP5, SP4"
       ,CentOS 7.9,CentOS 7.9
-      ,,
       :doc:`GFX Architecture <rocm-install-on-linux:reference/system-requirements>`,CDNA3,CDNA3
       ,CDNA2,CDNA2
       ,CDNA,CDNA
       ,RDNA3,RDNA3
       ,RDNA2,RDNA2
-      ,,
       :doc:`GFX Card <rocm-install-on-linux:reference/system-requirements>`,gfx1100,gfx1100
       ,gfx1030,gfx1030
       ,gfx942 [#]_, gfx942 [#]_
       ,gfx90a,gfx90a
       ,gfx908,gfx908
-      ,,
       ECOSYSTEM SUPPORT:,,
       :doc:`PyTorch <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`,"2.1, 2.0, 1.13","2.1, 2.0, 1.13"
       :doc:`TensorFlow <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`,"2.15, 2.14, 2.13","2.14, 2.13, 2.12"
       :doc:`JAX <rocm-install-on-linux:how-to/3rd-party/jax-install>`,0.4.26,0.4.26
       `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.14.1
-      ,,
       3RD PARTY COMMUNICATION LIBS:,,
       `UCC <https://github.com/ROCm/ucc>`_,>=1.2.0,>=1.2.0
       `UCX <https://github.com/ROCm/ucx>`_,>=1.14.1,>=1.14.1
-      ,,
       3RD PARTY ALGORITHM LIBS:,,
       Thrust,2.1.0,2.0.1
       CUB,2.1.0,2.0.1
-      ,,
       ML & COMPUTER VISION LIBS:,,
       :doc:`Composable Kernel <composable_kernel:index>`,1.1.0,1.1.0
       :doc:`MIGraphX <amdmigraphx:index>`,2.9.0,2.8.0
@@ -55,10 +49,8 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`MIVisionX <mivisionx:index>`,2.5.0,2.5.0
       :doc:`rocDecode <rocdecode:index>`,0.5.0,N/A
       :doc:`ROCm Performance Primitives (RPP) <rpp:index>`,1.5.0,1.4.0
-      ,,
       COMMUNICATION:,,
       :doc:`RCCL <rccl:index>`,2.18.6,2.18.3
-      ,,
       MATH LIBS:,,
       `half <https://github.com/ROCm/half>`_ ,1.12.0,1.12.0
       :doc:`hipBLAS <hipblas:index>`,2.1.0,2.0.0
@@ -77,24 +69,21 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`rocSPARSE <rocsparse:index>`,3.1.2,3.0.2
       :doc:`rocWMMA <rocwmma:index>`,1.4.0,1.3.0
       `Tensile <https://github.com/ROCm/Tensile>`_,4.40.0,4.39.0
-      ,,
       PRIMITIVES:,,
       :doc:`hipCUB <hipcub:index>`,3.1.0,3.0.0
       :doc:`hipTensor <hiptensor:index>`,1.2.0,1.1.0
       :doc:`rocPRIM <rocprim:index>`,3.1.0,3.0.0
       :doc:`rocThrust <rocthrust:index>`,3.0.1,3.0.0
-      ,,
       SUPPORT LIBS:,,
       `hipother <https://github.com/ROCm/hipother>`_,6.1.40091,6.0.32830
       :doc:`ROCm CMake <rocmcmakebuildtools:index>`,0.12.0,0.11.0
       `rocm-core <https://github.com/ROCm/rocm-core>`_,6.1.0,6.0.0
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,20240125.3.30,20231016.2.245
-      ,,
       TOOLS:,,
       :doc:`AMD SMI <amdsmi:index>`,24.4.1,23.4.2
       :doc:`HIPIFY <hipify:index>`,17.0.0,17.0.0
       :doc:`ROCdbgapi <rocdbgapi:index>`,0.71.0,0.71.0
-      `ROCdebug-Agent <https://github.com/ROCm/rocr_debug_agent>`_,2.0.3,2.0.3
+      `ROCm Debug Agent (ROCdebug-agent) <https://github.com/ROCm/rocr_debug_agent>`_,2.0.3,2.0.3
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0
       :doc:`ROCProfiler <rocprofiler:index>`,2.0.60100,2.0.0
       `rocprofiler-register <https://github.com/ROCm/rocprofiler-register>`_,0.3.0,N/A
@@ -105,14 +94,12 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.0.0,6.0.0
       :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,rocm-6.1.0,rocm-6.0.0
       :doc:`TransferBench <transferbench:index>`,1.48,1.46
-      ,,
       COMPILERS:,,
       `AOMP <https://github.com/ROCm/aomp>`_,17.60.0,17.60.0
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,0.5.0,0.5.0
       `Flang <https://github.com/ROCm/flang>`_,17.0.0.24103,17.0.0.23483
       `llvm-project <https://github.com/ROCm/llvm-project>`_,17.0.0.24103,17.0.0.23483
       `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,17.0.0.24103,17.0.0.23483
-      ,,
       RUNTIMES:,,
       :doc:`HIP <hip:index>`,6.1.40091,6.0.32830
       `OpenCL Runtime <https://github.com/ROCm/clr/tree/develop/opencl>`_,2.0.0,2.0.0
