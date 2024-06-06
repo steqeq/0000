@@ -104,8 +104,8 @@ This option directs the ASan runtime to enable the [Leak Sanitizer](https://clan
 
 * `quarantine_size_mb=N default 256`
 
-This option defines the number of megabytes (MB) `N` of memory that the ASAN runtime will hold after it is `free`d to detect use-after-free situations.
-This memory is unavailable for other purposes. The default of 256 MB may be too small to detect some use-after-free situations, especially given that the large size of many GPU memory allocations may push `free`d allocations out of quarantine before the attempted use.
+This option defines the number of megabytes (MB) `N` of memory that the ASAN runtime will hold after it is `freed` to detect use-after-free situations.
+This memory is unavailable for other purposes. The default of 256 MB may be too small to detect some use-after-free situations, especially given that the large size of many GPU memory allocations may push `freed` allocations out of quarantine before the attempted use.
 
 **Note:** Setting the value of `quarantine_size_mb` larger may enable more problematic uses to be detected, but at the cost of reducing memory available for other purposes.
 
