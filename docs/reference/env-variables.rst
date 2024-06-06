@@ -11,15 +11,14 @@
 Environment variables reference
 *************************************************************
 
-General overview
-==========================================
+Common environment variables in ROCm
+====================================
 
 Environment variables that impact libraries over the ROCm software stack. 
 
-.. list-table:: Environment variables that impact libraries in ROCm software stack
+.. list-table::
     :widths: 80,20
     :header-rows: 1
-    :name: clr-env-variables-general-table
 
     * - Environment variable
       - Values
@@ -28,14 +27,14 @@ Environment variables that impact libraries over the ROCm software stack.
         | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
       -
 
+    * - | ``HIP_PATH``
+        | The path of the HIP SDK.
+      -
+
     * - | ``HIP_OFFICIAL_BUILD``
         | Enable/Disable for mainline/staging builds. End users should not set this.
       -
 
-    * - | ``HIP_PATH``
-        | The path of the HIP SDK.
-      -
- 
     * - | ``HIP_PLATFORM``
         | The platform HIP is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
       - ``amd``, ``nvidia``
@@ -48,15 +47,14 @@ Environment variables that impact libraries over the ROCm software stack.
         | The path of the installed ROCm software stack.
       - default: ``/opt/rocm``
 
-clr
-==========================================
+Environment variables of clr
+============================
 
 Environment variables affecting all backends of project clr.
 
-.. list-table:: Environment variables affecting all backends of project clr
+.. list-table::
     :widths: 85,15
     :header-rows: 1
-    :name: clr-env-variables-all-table
 
     * - Environment variable
       - Values
@@ -75,10 +73,9 @@ Environment variables affecting all backends of project clr.
 
 Environment variables affecting the opencl backend of project clr.
 
-.. list-table:: Environment variables affecting the opencl backend of project clr
+.. list-table::
     :widths: 85,15
     :header-rows: 1
-    :name: clr-env-variables-opencl-table
 
     * - Environment variable
       - Values
@@ -93,10 +90,9 @@ Environment variables affecting the opencl backend of project clr.
 
 Environment variables affecting the hipamd backend of project clr.
 
-.. list-table:: Environment variables affecting the hipamd backend of project clr
+.. list-table::
     :widths: 85,15
     :header-rows: 1
-    :name: clr-env-variables-hipamd-table
 
     * - Environment variable
       - Values
@@ -127,10 +123,9 @@ rocclr environment variables
 
 AMD rocclr environment variables at release build:
 
-.. list-table:: AMD rocclr environment variables
+.. list-table::
     :widths: 70,15,15
     :header-rows: 1
-    :name: rocclr-env-variables-release-table
 
     * - Environment variable
       - Variable type
@@ -472,7 +467,7 @@ AMD rocclr environment variables at release build:
       - 8388608
 
     * - | ``HIP_LAUNCH_BLOCKING``
-        | Serialize kernel enqueue ``0x1`` = Wait for completion after enqueue, same as ``AMD_SERIALIZE_KERNEL=2``
+        | Serialize kernel enqueue :cpp:`0x1` = Wait for completion after enqueue, same as :cpp:`AMD_SERIALIZE_KERNEL=2`
       - ``uint``
       - 0
 
@@ -676,3 +671,49 @@ AMD rocclr environment variables at debug build:
         | Minimum alignment required for the abstract parameters stack
       - ``size_t``
       - 64 at ``__AVX512F__``, 32 at ``__AVX__`` and 16 at other cases
+
+Environment variables of rocPRIM
+==========================================
+
+Environment variables of rocPRIM library.
+
+.. list-table:: AMD rocPRIM environment variables
+    :widths: 65,15,20
+    :header-rows: 1
+    :name: rocprim-env-variables
+
+    * - | ``HIP_DIR``
+        | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
+      -
+
+    * - | ``HIP_PATH``
+        | The path of the HIP SDK.
+      - default: ``/opt/rocm`` on Linux, ``C:/hip`` on windows
+
+    * - | ``ROCM_PATH``
+        | The path of the installed ROCm software stack on linux
+      - default: ``/opt/rocm``
+
+    * - | ``ROCM_CMAKE_PATH``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+    * - | ``HIPCC_COMPILE_FLAGS_APPEND``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+    * - | ``ROCPRIM_USE_HMM``
+        | The tests unified memory allocation usage
+      - default: ``C:/hipSDK``
+
+    * - | ``CTEST_RESOURCE_GROUP_0``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+Environment variables of hipCUB
+==========================================
+
+Environment variables of hipCUB library.
+
+Environment variables of rocThrust
+==========================================
