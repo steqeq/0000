@@ -96,18 +96,19 @@ There are three `ASAN_OPTION` flags of note.
 
 * `halt_on_error=0/1 default 1`.
 
-This tells the ASan runtime to halt the application immediately after detecting and reporting an addressing error. The default makes sense because the application has entered the realm of undefined behavior. If the developer wishes to have the application continue anyway, this option can be set to zero. However, the application and libraries should then be compiled with the additional option `-fsanitize-recover=address`. Note that the ROCm optional ASan instrumented libraries are not compiled with this option and if an error is detected within one of them, but halt_on_error is set to 0, more undefined behavior will occur.
+  This tells the ASan runtime to halt the application immediately after detecting and reporting an addressing error. The default makes sense because the application has entered the realm of undefined behavior. If the developer wishes to have the application continue anyway, this option can be set to zero. However, the application and libraries should then be compiled with the additional option `-fsanitize-recover=address`. Note that the ROCm optional ASan instrumented libraries are not compiled with this option and if an error is detected within one of them, but halt_on_error is set to 0, more undefined behavior will occur.
 
 * `detect_leaks=0/1 default 1`.
 
-This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSan). For heterogeneous applications, this default results in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSan suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
+  This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSan). For heterogeneous applications, this default results in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSan suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
 * `quarantine_size_mb=N default 256`
 
-This option defines the number of megabytes (MB) `N` of memory that the ASan runtime will hold after it is `freed` to detect use-after-free situations.
-This memory is unavailable for other purposes. The default of 256 MB may be too small to detect some use-after-free situations, especially given that the large size of many GPU memory allocations may push `freed` allocations out of quarantine before the attempted use.
+  This option defines the number of megabytes (MB) `N` of memory that the ASan runtime will hold after it is `freed` to detect use-after-free situations. 
+  This memory is unavailable for other purposes. The default of 256 MB may be too small to detect some use-after-free situations, especially given that the 
+  large size of many GPU memory allocations may push `freed` allocations out of quarantine before the attempted use.
 
-**Note:** Setting the value of `quarantine_size_mb` larger may enable more problematic uses to be detected, but at the cost of reducing memory available for other purposes.
+  **Note:** Setting the value of `quarantine_size_mb` larger may enable more problematic uses to be detected, but at the cost of reducing memory available for other purposes.
 
 ## Runtime overhead
 
