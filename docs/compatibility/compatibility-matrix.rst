@@ -36,9 +36,9 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       ,,
       ECOSYSTEM SUPPORT:,,
       :doc:`PyTorch <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`,"2.1, 2.0, 1.13","2.1, 2.0, 1.13"
-      :doc:`Tensorflow <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`,"2.15, 2.14, 2.13","2.14, 2.13, 2.12"
+      :doc:`TensorFlow <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`,"2.15, 2.14, 2.13","2.14, 2.13, 2.12"
       :doc:`JAX <rocm-install-on-linux:how-to/3rd-party/jax-install>`,0.4.26,0.4.26
-      `ONNX-RT <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.14.1
+      `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.14.1
       ,,
       3RD PARTY COMMUNICATION LIBS:,,
       `UCC <https://github.com/ROCm/ucc>`_,>=1.2.0,>=1.2.0
