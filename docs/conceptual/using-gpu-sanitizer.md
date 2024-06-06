@@ -92,7 +92,7 @@ If it does not appear, when executed the application will quickly output an ASan
 
 There is an environment variable, `ASAN_OPTIONS`, that can be used to adjust the runtime behavior of the ASan runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASan runtime. The device runtime only currently supports the default settings for the few relevant options.
 
-There are three `ASAN_OPTION` flags of particular note.
+There are three `ASAN_OPTION` flags of note.
 
 * `halt_on_error=0/1 default 1`.
 
@@ -100,7 +100,7 @@ This tells the ASan runtime to halt the application immediately after detecting 
 
 * `detect_leaks=0/1 default 1`.
 
-This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSan). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSan suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
+This option directs the ASan runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSan). For heterogeneous applications, this default results in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSan suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
 * `quarantine_size_mb=N default 256`
 
