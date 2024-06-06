@@ -36,9 +36,9 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       ,,
       ECOSYSTEM SUPPORT:,,
       :doc:`PyTorch <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`,"2.1, 2.0, 1.13","2.1, 2.0, 1.13"
-      :doc:`Tensorflow <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`,"2.15, 2.14, 2.13","2.14, 2.13, 2.12"
+      :doc:`TensorFlow <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`,"2.15, 2.14, 2.13","2.14, 2.13, 2.12"
       :doc:`JAX <rocm-install-on-linux:how-to/3rd-party/jax-install>`,0.4.26,0.4.26
-      `ONNX-RT <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.14.1
+      `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.14.1
       ,,
       3RD PARTY COMMUNICATION LIBS:,,
       `UCC <https://github.com/ROCm/ucc>`_,>=1.2.0,>=1.2.0
@@ -52,12 +52,12 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`Composable Kernel <composable_kernel:index>`,1.1.0,1.1.0
       :doc:`MIGraphX <amdmigraphx:index>`,2.9.0,2.8.0
       :doc:`MIOpen <miopen:index>`,3.1.0,3.0.0
-      :doc:`MIVisionX <mivisionx:doxygen/html/index>`,2.5.0,2.5.0
+      :doc:`MIVisionX <mivisionx:index>`,2.5.0,2.5.0
       :doc:`rocDecode <rocdecode:index>`,0.5.0,N/A
-      :doc:`RPP <rpp:index>`,1.5.0,1.4.0
+      :doc:`ROCm Performance Primitives (RPP) <rpp:index>`,1.5.0,1.4.0
       ,,
       COMMUNICATION:,,
-      :doc:`rccl <rccl:index>`,2.18.6,2.18.3
+      :doc:`RCCL <rccl:index>`,2.18.6,2.18.3
       ,,
       MATH LIBS:,,
       `half <https://github.com/ROCm/half>`_ ,1.12.0,1.12.0
@@ -86,7 +86,7 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       ,,
       SUPPORT LIBS:,,
       `hipother <https://github.com/ROCm/hipother>`_,6.1.40091,6.0.32830
-      `rocm-cmake <https://github.com/ROCm/rocm-cmake>`_,0.12.0,0.11.0
+      :doc:`ROCm CMake <rocmcmakebuildtools:index>`,0.12.0,0.11.0
       `rocm-core <https://github.com/ROCm/rocm-core>`_,6.1.0,6.0.0
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,20240125.3.30,20231016.2.245
       ,,
@@ -94,15 +94,15 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`AMD SMI <amdsmi:index>`,24.4.1,23.4.2
       :doc:`HIPIFY <hipify:index>`,17.0.0,17.0.0
       :doc:`ROCdbgapi <rocdbgapi:index>`,0.71.0,0.71.0
-      `ROCdebug-Agent <https://github.com/ROCm/rocr_debug_agent>`_,2.0.3,2.0.3
-      :doc:`rocGDB <rocgdb:index>`,14.1.0,13.2.0
-      :doc:`rocProfiler <rocprofiler:profiler_home_page>`,2.0.60100,2.0.0
+      `ROCm Debug Agent (ROCdebug-agent) <https://github.com/ROCm/rocr_debug_agent>`_,2.0.3,2.0.3
+      :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0
+      :doc:`ROCProfiler <rocprofiler:index>`,2.0.60100,2.0.0
       `rocprofiler-register <https://github.com/ROCm/rocprofiler-register>`_,0.3.0,N/A
-      :doc:`rocTracer <roctracer:index>`,4.1.60100,4.1.0
-      `rocm_bandwidth_test <https://github.com/ROCm/rocm_bandwidth_test>`_,1.4.0,1.4.0
+      :doc:`ROCTracer <roctracer:index>`,4.1.60100,4.1.0
+      :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,1.4.0,1.4.0
       :doc:`ROCm Data Center Tool <rdc:index>`,0.3.0,0.3.0
-      `rocminfo <https://github.com/ROCm/rocminfo>`_,1.0.0,1.0.0
-      :doc:`ROCm SMI Lib <rocm_smi_lib:index>`,7.0.0,6.0.0
+      :doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`,14.1.0,13.2.0
+      :doc:`ROCm SMI <rocm_smi_lib:index>`,7.0.0,6.0.0
       :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,rocm-6.1.0,rocm-6.0.0
       :doc:`TransferBench <transferbench:index>`,1.48,1.46
       ,,
@@ -116,7 +116,7 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       RUNTIMES:,,
       :doc:`HIP <hip:index>`,6.1.40091,6.0.32830
       `OpenCL Runtime <https://github.com/ROCm/clr/tree/develop/opencl>`_,2.0.0,2.0.0
-      `ROCR Runtime <https://github.com/ROCm/ROCR-Runtime>`_,1.13.0,1.12.0
+      :doc:`ROCR-Runtime <rocr-runtime:index>`,1.13.0,1.12.0
 
 
 .. rubric:: Footnotes
