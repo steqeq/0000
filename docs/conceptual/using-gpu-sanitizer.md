@@ -92,7 +92,7 @@ If it does not appear, when executed the application will quickly output an ASan
 
 There is an environment variable, `ASAN_OPTIONS`, that can be used to adjust the runtime behavior of the ASan runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASan runtime. The device runtime only currently supports the default settings for the few relevant options.
 
-There are three `ASAN_OPTION` flags of particular note.
+There are three `ASAN_OPTION` flags of note.
 
 * `halt_on_error=0/1 default 1`.
 
