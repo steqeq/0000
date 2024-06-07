@@ -13,7 +13,9 @@ This document provides documentation on using ROCm ASan.
 
 For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-**Note:** The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
+:::{note}
+The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
+:::
 
 ## Compiling for ASan
 
@@ -34,9 +36,13 @@ Recommendations for doing this are:
 
 Other architectures are allowed, but their device code will not be instrumented and a warning will be emitted.
 
-**Note:** It is not an error to compile some files without ASan instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the ASan runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
+:::{tip}
+It is not an error to compile some files without ASan instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the ASan runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
+:::
 
-**Note:** When compiling OpenMP programs with ASan instrumentation, it is currently necessary to set the environment variable `LIBRARY_PATH` to `/opt/rocm-<version>/lib/llvm/lib/asan:/opt/rocm-<version>/lib/asan`. At runtime, it may be necessary to add `/opt/rocm-<version>/lib/llvm/lib/asan` to `LD_LIBRARY_PATH`.
+:::{note}
+When compiling OpenMP programs with ASan instrumentation, it is currently necessary to set the environment variable `LIBRARY_PATH` to `/opt/rocm-<version>/lib/llvm/lib/asan:/opt/rocm-<version>/lib/asan`. At runtime, it may be necessary to add `/opt/rocm-<version>/lib/llvm/lib/asan` to `LD_LIBRARY_PATH`.
+:::
 
 ### About compilation time
 
@@ -104,11 +110,11 @@ There are three `ASAN_OPTION` flags of note.
 
 * `quarantine_size_mb=N default 256`
 
-  This option defines the number of megabytes (MB) `N` of memory that the ASan runtime will hold after it is `freed` to detect use-after-free situations. 
-  This memory is unavailable for other purposes. The default of 256 MB may be too small to detect some use-after-free situations, especially given that the 
-  large size of many GPU memory allocations may push `freed` allocations out of quarantine before the attempted use.
+  This option defines the number of megabytes (MB) `N` of memory that the ASan runtime will hold after it is `freed` to detect use-after-free situations. This memory is unavailable for other purposes. The default of 256 MB may be too small to detect some use-after-free situations, especially given that the large size of many GPU memory allocations may push `freed` allocations out of quarantine before the attempted use.
 
-  **Note:** Setting the value of `quarantine_size_mb` larger may enable more problematic uses to be detected, but at the cost of reducing memory available for other purposes.
+  :::{note}
+  Setting the value of `quarantine_size_mb` larger may enable more problematic uses to be detected, but at the cost of reducing memory available for other purposes.
+  :::
 
 ## Runtime overhead
 
@@ -194,7 +200,7 @@ or
 
 currently may include one or two surprising CPU side tracebacks mentioning :`hostcall`". This is due to how `malloc` and `free` are implemented for GPU code and these call stacks can be ignored.
 
-### Running with `rocgdb`
+## Running ASan with `rocgdb`
 
 `rocgdb` can be used to further investigate ASan detected errors, with some preparation.
 
@@ -246,7 +252,7 @@ $ rocgdb <path to application>
 (gdb) c
 ```
 
-### Using ASan with a short HIP application
+## Using ASan with a short HIP application
 
 Consider the following simple and short demo of using the Address Sanitizer with a HIP application:
 
@@ -410,7 +416,7 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 ==2817==ABORTING
 ```
 
-### Known issues with using GPU sanitizer
+## Known issues with using GPU sanitizer
 
 * Red zones must have limited size. It is possible for an invalid access to completely miss a red zone and not be detected.
 
