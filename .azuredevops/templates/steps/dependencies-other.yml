@@ -17,7 +17,7 @@ steps:
   displayName: 'sudo apt-get upgrade'
   inputs:
     targetType: inline
-    script: sudo apt-get update
+    script: sudo apt-get upgrade
 - task: Bash@3
   displayName: 'sudo apt-get fix'
   inputs:
