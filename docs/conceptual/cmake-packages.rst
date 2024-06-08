@@ -1,6 +1,6 @@
 .. meta::
    :description: Using CMake
-   :keywords: CMake, dependencies, HIP, C++
+   :keywords: CMake, dependencies, HIP, C++, AMD, ROCm
 
 *********************************
 Using CMake
@@ -25,12 +25,13 @@ Finding dependencies
 
 In short, CMake supports finding dependencies in two ways:
 
-*  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to
-  find the component in typical install locations and layouts. CMake ships a
-  few dozen such scripts, but users and projects may ship them as well.
-*  In Config mode, it locates a file named ``<packagename>-config.cmake`` or
-  ``<PackageName>Config.cmake`` which describes the installed component in all
-  regards needed to consume it.
+* In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to find the component
+  in typical install locations and layouts. CMake ships a few dozen such scripts, but users and projects
+  may ship them as well.
+
+* In Config mode, it locates a file named ``<packagename>-config.cmake`` or
+  ``<PackageName>Config.cmake`` which describes the installed component in all regards needed to
+  consume it.
 
 ROCm predominantly relies on Config mode, one notable exception being the Module
 driving the compilation of HIP programs on NVIDIA runtimes. As such, when
@@ -45,9 +46,9 @@ it to your CMake configuration command on the command line via
 ``-D CMAKE_PREFIX_PATH=....`` . AMD packaged ROCm installs can typically be
 added to the config file search paths such as:
 
--  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
+*  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
 
--  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
+*  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
 
 ROCm provides the respective *config-file* packages, and this enables
 ``find_package`` to be used directly. ROCm does not require any Find module as
@@ -55,8 +56,10 @@ the *config-file* packages are shipped with the upstream projects, such as
 rocPRIM and other ROCm libraries.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
-to the installation guides for `Linux <../install/linux/install.html>`_ and
-`Windows <../install/windows/install.html>`_.
+to the installation guides for
+`Linux <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/tutorial/quick-start.html>`_
+and
+`Windows <https://rocm.docs.amd.com/projects/install-on-windows/en/latest/index.html>`_.
 
 Using HIP in CMake
 ==================
@@ -195,14 +198,13 @@ all the flags necessary for device compilation.
 
   Compiling for the GPU device requires at least C++11.
 
-This project can then be configured with the following CMake commands.
+This project can then be configured with the following CMake commands:
 
--  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
-
--  Linux: ``cmake -D CMAKE_CXX_COMPILER:PATH=/opt/rocm/bin/amdclang++``
+*  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
+*  Linux: ``cmake -D CMAKE_CXX_COMPILER:PATH=/opt/rocm/bin/amdclang++``
 
 Which use the device compiler provided from the binary packages of
-`ROCm HIP SDK <https://www.amd.com/en/developer/rocm-hub.html>`_ and
+`ROCm HIP SDK <https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html>`_ and
 `repo.radeon.com <https://repo.radeon.com>`_ respectively.
 
 When using the ``CXX`` language support to compile HIP device code, selecting the

@@ -1,0 +1,43 @@
+parameters:
+- name: componentName
+  type: string
+  default: ''
+- name: extraBuildFlags
+  type: string
+  default: ''
+- name: cmakeBuildDir
+  type: string
+  default: 'build'
+- name: cmakeTarget
+  type: string
+  default: 'install'
+- name: cmakeTargetDir
+  type: string
+  default: '.'
+- name: installDir
+  type: string
+  default: '$(Build.BinariesDirectory)'
+
+steps:
+# create workingDirectory if it does not exist and change into it
+# call cmake from within that directory using $cmakeArgs as its parameters
+- task: CMake@1
+  displayName: '${{parameters.componentName }} CMake Flags'
+  inputs:
+    workingDirectory: ${{ parameters.cmakeBuildDir }}
+    cmakeArgs: -DCMAKE_INSTALL_PREFIX=${{ parameters.installDir }} ${{ parameters.extraBuildFlags }} ..
+# equivalent to running make $cmakeTargetDir from $cmakeBuildDir
+# i.e., cd $cmakeBuildDir; make $cmakeTargetDir
+- task: CMake@1
+  displayName: '${{parameters.componentName }} Build'
+  inputs:
+    workingDirectory: ${{ parameters.cmakeBuildDir }}
+    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }}'
+    retryCountOnTaskFailure: 10
+# equivalent to running make $cmakeTarget from $cmakeBuildDir
+# e.g., make install
+- task: CMake@1
+  displayName: '${{parameters.componentName }} ${{ parameters.cmakeTarget }}'
+  inputs:
+    workingDirectory: ${{ parameters.cmakeBuildDir }}
+    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} --target ${{ parameters.cmakeTarget }}'

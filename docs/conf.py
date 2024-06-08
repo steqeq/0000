@@ -21,10 +21,9 @@ for template in templates:
     with open(os.path.splitext(template)[0], 'w') as file:
         file.write(rendered)
 
-shutil.copy2('../CONTRIBUTING.md','./contribute/index.md')
 shutil.copy2('../RELEASE.md','./about/release-notes.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
-shutil.copy2('../CHANGELOG.md','./about/CHANGELOG.md')
+shutil.copy2('../CHANGELOG.md','./about/changelog.md')
 
 latex_engine = "xelatex"
 latex_elements = {
@@ -38,9 +37,9 @@ latex_elements = {
 # configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
-copyright = "Copyright (c) 2023-2024 Advanced Micro Devices, Inc. All rights reserved."
-version = "6.0.0"
-release = "6.0.0"
+copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved."
+version = "6.1.2"
+release = "6.1.2"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
@@ -48,9 +47,14 @@ all_article_info_author = ""
 # pages with specific settings
 article_pages = [
     {
-        "file":"release",
+        "file":"about/release-notes",
         "os":["linux", "windows"],
-        "date":"2023-07-27"
+        "date":"2024-06-04"
+    },
+    {
+        "file":"about/changelog",
+        "os":["linux", "windows"],
+        "date":"2024-06-04"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
@@ -70,9 +74,6 @@ article_pages = [
     {"file":"install/windows/cli/index", "os":["windows"]},
     {"file":"install/windows/gui/index", "os":["windows"]},
 
-    {"file":"about/compatibility/linux-support", "os":["linux"]},
-    {"file":"about/compatibility/windows-support", "os":["windows"]},
-
     {"file":"about/compatibility/docker-image-support-matrix", "os":["linux"]},
     {"file":"about/compatibility/user-kernel-space-compat-matrix", "os":["linux"]},
 
@@ -84,22 +85,28 @@ article_pages = [
     {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
 
     {"file":"rocm-a-z", "os":["linux", "windows"]},
-
 ]
 
 exclude_patterns = ['temp']
 
 external_toc_path = "./sphinx/_toc.yml"
 
-extensions = ["rocm_docs"]
+extensions = ["rocm_docs", "sphinx_reredirects"]
 
 external_projects_current_project = "rocm"
 
 html_theme = "rocm_docs_theme"
 html_theme_options = {"flavor": "rocm-docs-home"}
 
+html_static_path = ["sphinx/static/css"]
+html_css_files = ["rocm_custom.css"]
+
 html_title = "ROCm Documentation"
 
 html_theme_options = {
     "link_main_doc": False
+}
+
+redirects = {
+     "reference/openmp/openmp": "../../about/compatibility/openmp.html"
 }

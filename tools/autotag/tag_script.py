@@ -84,11 +84,9 @@ class TaggingArgs(argparse.Namespace):
             "MIOpenGEMM",
             "MIOpenKernels",
             "MIOpenTensile",
-            "ROCmValidationSuite",
-            "half",
-            "hipFORT",
-            "rccl-rdma-sharp-plugins",
             "MLSEQA_TestRepo",
+            "half",
+            "rccl-rdma-sharp-plugins",
         ]
         return defaults + (self._exclude if self._exclude is not None else [])
 
@@ -227,19 +225,25 @@ def run_tagging():
 
     # Creates a collection of ROCm libraries grouped by release.
     release_bundle_factory = ReleaseBundleFactory(
-        "RadeonOpenCompute/ROCm",
+        "ROCm/ROCm",
         Github(**gh_args), Github(**pr_args),
-        "RadeonOpenCompute",
+        "ROCm",
         remote_map,
         args.branch
     )
 
     # Find all the math libraries and their remotes.
     included_names = [
-        "rocm-cmake",
-        "MIOpen",
         "AMDMIGraphX",
-        "rocprofiler"
+        "HIPIFY", #
+        "MIOpen",
+        "MIVisionX",
+        "ROCmValidationSuite", #
+        "composable_kernel",
+        "hipfort",
+        "rocDecode",
+        "rocm-cmake",
+        "rpp",
     ]
     included_groups = [
         "mathlibs"

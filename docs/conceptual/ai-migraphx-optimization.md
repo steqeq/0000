@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Inference optimization with MIGraphX">
   <meta name="keywords" content="Inference optimization, MIGraphX, deep-learning, MIGraphX
-  installation">
+  installation, AMD, ROCm">
 </head>
 
 # Inference optimization with MIGraphX
@@ -55,15 +55,15 @@ The header files and libraries are installed under `/opt/rocm-\<version\>`, wher
 
 There are two ways to build the MIGraphX sources.
 
-* [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses `[rbuild](https://github.com/RadeonOpenCompute/rbuild)` to install the prerequisites and build the libraries with just one command.
+* [Use the ROCm build tool](https://github.com/ROCm/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses `[rbuild](https://github.com/ROCm/rbuild)` to install the prerequisites and build the libraries with just one command.
 
   or
 
-* [Use CMake](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
+* [Use CMake](https://github.com/ROCm/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
 
 For detailed steps on building from source and installing dependencies, refer to the following `README` file:
 
-[https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source)
+[https://github.com/ROCm/AMDMIGraphX#building-from-source](https://github.com/ROCm/AMDMIGraphX#building-from-source)
 
 ### Option 3: use docker
 
@@ -72,7 +72,7 @@ To use Docker, follow these steps:
 1. The easiest way to set up the development environment is to use Docker. To build Docker from scratch, first clone the MIGraphX repository by running:
 
     ```bash
-    git clone --recursive https://github.com/ROCmSoftwarePlatform/AMDMIGraphX
+    git clone --recursive https://github.com/ROCm/AMDMIGraphX
     ```
 
 2. The repository contains a Dockerfile from which you can build a Docker image as:
@@ -216,23 +216,23 @@ Follow these steps:
     ./inception_inference
     ```
 
-```{note}
+:::{note}
     Set `LD_LIBRARY_PATH` to `/opt/rocm/lib` if required during the build. Additional examples can be found in the MIGraphX repository under the `/examples/` directory.
-```
+:::
 
 ## Tuning MIGraphX
 
 MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGraphX, tune MIOpen to pick the best possible kernel implementation. The MIOpen tuning results in a significant performance boost. Tuning can be done by setting the environment variable `MIOPEN_FIND_ENFORCE=3`.
 
-```{note}
+:::{note}
     The tuning process can take a long time to finish.
-```
+:::
 
 **Example:** The average inference time of the inception model example shown previously over 100 iterations using untuned kernels is 0.01383ms. After tuning, it reduces to 0.00459ms, which is a 3x improvement. This result is from ROCm v4.5 on a MI100 GPU.
 
-```{note}
+:::{note}
     The results may vary depending on the system configurations.
-```
+:::
 
 For reference, the following code snippet shows inference runs for only the first 10 iterations for both tuned and untuned kernels:
 

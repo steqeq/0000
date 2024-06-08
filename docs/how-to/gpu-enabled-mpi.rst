@@ -1,3 +1,7 @@
+.. meta::
+   :description: GPU-enabled Message Passing Interface
+   :keywords: Message Passing Interface, MPI, AMD, ROCm
+
 ***************************************************************************************************
 GPU-enabled Message Passing Interface
 ***************************************************************************************************
@@ -44,7 +48,7 @@ home directory in our example, but you can specify a different location if you w
         mkdir -p $BUILD_DIR
 
 2. Install UCX. To view UCX and ROCm version compatibility, refer to the
-`communication libraries tables <https://rocm.docs.amd.com/en/latest/release/3rd_party_support_matrix.html>`_.
+`communication libraries tables <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/3rd-party-support-matrix.html>`_
 
     .. code-block:: shell
 
@@ -153,7 +157,7 @@ library with ROCm support.
 .. note::
 
     You can verify UCC and ROCm version compatibility using the
-    `communication libraries <https://rocm.docs.amd.com/en/latest/release/3rd_party_support_matrix.html>`_.
+    `communication libraries tables <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/3rd-party-support-matrix.html>`_
 
 .. code-block:: shell
 
@@ -256,5 +260,5 @@ To run an OSU benchmark using multiple nodes, use the following code:
 .. code-block:: shell
 
     export LD_LIBRARY_PATH=$OMPI_DIR/lib:$OFI_DIR/lib64:/opt/rocm/lib
-    $OMPI_DIR/bin/mpirun -np 2 \
+    $OMPI_DIR/bin/mpirun --mca pml ob1 --mca btl_ofi_mode 2 -np 2 \
     ./c/mpi/pt2pt/standard/osu_bw D D

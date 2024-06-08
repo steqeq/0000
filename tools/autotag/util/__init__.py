@@ -1,2 +1,2 @@
 from .defaults import TEMPLATES, PROCESSORS
-from . import mivisionx
+from .custom_templates import hipfort, mivisionx, rpp

@@ -1,0 +1,37 @@
+# download and install non-rocm dependencies through apt and pip
+parameters:
+- name: aptPackages
+  type: object
+  default: []
+- name: pipModules
+  type: object
+  default: []
+
+steps:
+- task: Bash@3
+  displayName: 'sudo apt-get update'
+  inputs:
+    targetType: inline
+    script: sudo apt-get update
+- task: Bash@3
+  displayName: 'sudo apt-get upgrade'
+  inputs:
+    targetType: inline
+    script: sudo apt-get upgrade
+- task: Bash@3
+  displayName: 'sudo apt-get fix'
+  inputs:
+    targetType: inline
+    script: sudo apt --yes --fix-broken install
+- ${{ if gt(length(parameters.aptPackages), 0) }}:
+  - task: Bash@3
+    displayName: 'sudo apt-get install ...'
+    inputs:
+      targetType: inline
+      script: sudo apt-get --yes install ${{ join(' ', parameters.aptPackages) }}
+- ${{ if gt(length(parameters.pipModules), 0) }}:
+  - task: Bash@3
+    displayName: 'pip install  ...'
+    inputs:
+      targetType: inline
+      script: pip install ${{ join(' ', parameters.pipModules) }}

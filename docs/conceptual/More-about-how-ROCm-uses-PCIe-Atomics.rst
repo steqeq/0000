@@ -1,6 +1,6 @@
 .. meta::
    :description: How ROCm uses PCIe atomics
-   :keywords: PCIe, PCIe atomics, atomics, BAR memory
+   :keywords: PCIe, PCIe atomics, atomics, BAR memory, AMD, ROCm
 
 *****************************************************************************
 How ROCm uses PCIe atomics
@@ -63,15 +63,14 @@ There are also a number of papers which talk about these new capabilities:
 
   * `Atomic Read Modify Write Primitives by Intel <https://www.intel.es/content/dam/doc/white-paper/atomic-read-modify-write-primitives-i-o-devices-paper.pdf>`_
   * `PCI express 3 Accelerator White paper by Intel <https://www.intel.sg/content/dam/doc/white-paper/pci-express3-accelerator-white-paper.pdf>`_
-  * `Intel PCIe Generation 3 Hotchips Paper <https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.131.Ajanovic-Intel-PCIeGen3.pdf>`_
   * `PCIe Generation 4 Base Specification includes atomic operations <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
-
-Other I/O devices with PCIe atomics support
-
-  * `Mellanox ConnectX-5 InfiniBand Card <http://www.mellanox.com/related-docs/prod_adapter_cards/PB_ConnectX-5_VPI_Card.pdf>`_
-  * `Cray Aries Interconnect <http://www.hoti.org/hoti20/slides/Bob_Alverson.pdf>`_
   * `Xilinx PCIe Ultrascale White paper <https://docs.xilinx.com/v/u/8OZSA2V1b1LLU2rRCDVGQw>`_
-  * `Xilinx 7 Series Devices <https://docs.xilinx.com/v/u/1nfXeFNnGpA0ywyykvWHWQ>`_
+
+Other I/O devices with PCIe atomics support:
+
+  * Mellanox ConnectX-5 InfiniBand Card
+  * Cray Aries Interconnect
+  * Xilinx 7 Series Devices
 
 Future bus technology with richer I/O atomics operation Support
 
@@ -80,8 +79,8 @@ Future bus technology with richer I/O atomics operation Support
 New PCIe Endpoints with support beyond AMD Ryzen and EPYC CPU; Intel Haswell or newer CPUs
 with PCIe Generation 3.0 support.
 
-  * `Mellanox Bluefield SOC <https://docs.nvidia.com/networking/display/BlueFieldSWv25111213/BlueField+Software+Overview>`_
-  * `Cavium Thunder X2 <https://en.wikichip.org/wiki/cavium/thunderx2>`_
+  * Mellanox Bluefield SOC
+  * Cavium Thunder X2
 
 In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU
 originates two writes to two different targets:

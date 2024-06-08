@@ -2,6 +2,7 @@
 
 ## Pre-requisites
 
+* Python 3.10
 * Create a GitHub Personal Access Token.
   * Tested with all the read-only permissions, but public_repo, read:project read:user, and repo:status should be enough.
   * Copy the token somewhere safe.
@@ -12,21 +13,23 @@
 
 ## Updating the changelog
 
+> IMPORTANT: It is key to update the template Markdown files in `tools/autotag/templates/rocm_changes` (eg: `5.6.0.md`) and not the `CHANGELOG.md` itself to ensure that updates are not overwritten by the autotag script. The template should only have content from changelogs that are not included by the script to avoid duplicating data.
+
 * Add or update the release specific notes in `tools/autotag/templates/rocm_changes`
-* Ensure the all the repositories have their release specific branch with the updated changelogs.
+* Ensure the all the repositories have their release specific branch with the updated changelogs
 * Run this for 5.6.0 (change for whatever version you require)
 * `GITHUB_ACCESS_TOKEN=my_token_here`
 
-To generate the changelog from 5.0.0 up to and including 5.7.1:
+To generate the changelog from 5.0.0 up to and including 6.1.1:
 
 ```sh
-python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --do-previous --compile_file ../../CHANGELOG.md --branch release/rocm-rel-5.7 5.7.1
+python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --do-previous --compile_file ../../CHANGELOG.md --branch release/rocm-rel-6.1 6.1.1
 ```
 
-To generate the changelog only for 5.7.1:
+To generate the changelog only for 6.1.1:
 
 ```sh
-python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --compile_file ../../CHANGELOG.md --branch release/rocm-rel-5.7 5.7.1
+python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --compile_file ../../CHANGELOG.md --branch release/rocm-rel-6.1 6.1.1
 ```
 
 ### Notes

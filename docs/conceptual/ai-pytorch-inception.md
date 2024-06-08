@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Inception V3 with PyTorch">
   <meta name="keywords" content="PyTorch, Inception V3, deep-learning, training data, optimization
-  algorithm">
+  algorithm, AMD, ROCm">
 </head>
 
 # Deep learning: Inception V3 with PyTorch
@@ -22,6 +22,7 @@ Training occurs in multiple phases for every batch of training data. the followi
 :::{table} Types of Training Phases
 :name: training-phases
 :widths: auto
+
 | Types of Phases   |     |
 | ----------------- | --- |
 | Forward Pass      | The input features are fed into the model, whose parameters may be randomly initialized initially. Activations (outputs) of each layer are retained during this pass to help in the loss gradient computation during the backward pass. |
@@ -35,6 +36,7 @@ Training is different from inference, particularly from the hardware perspective
 :::{table} Training vs. Inference
 :name: training-inference
 :widths: auto
+
 | Training | Inference |
 | ----------- | ----------- |
 | Training is measured in hours/days. | The inference is measured in minutes. |
@@ -43,7 +45,7 @@ Training is different from inference, particularly from the hardware perspective
 | Data for training is available on the disk before the training process and is generally significant. The training performance is measured by how fast the data batches can be processed. | Inference data usually arrive stochastically, which may be batched to improve performance. Inference performance is generally measured in throughput speed to process the batch of data and the delay in responding to the input (latency). |
 :::
 
-Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other datatypes, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
+Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other data types, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
 
 ## Case studies
 
@@ -63,7 +65,7 @@ This example is adapted from the PyTorch research hub page on [Inception V3](htt
 
 Follow these steps:
 
-1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](../install/pytorch-install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm-based Docker image or refer to the section {doc}`Installing PyTorch <rocm-install-on-linux:how-to/3rd-party/pytorch-install>` for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
@@ -153,7 +155,7 @@ The previous section focused on downloading and using the Inception V3 model for
 
 Follow these steps:
 
-1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](../install/pytorch-install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm Docker image or refer to the section {doc}`Installing PyTorch <rocm-install-on-linux:how-to/3rd-party/pytorch-install>` for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker pull rocm/pytorch:latest
@@ -215,9 +217,9 @@ Follow these steps:
 
 7. Set parameters to guide the training process.
 
-    ```{note}
+    :::{note}
     The device is set to `"cuda"`. In PyTorch, `"cuda"` is a generic keyword to denote a GPU.
-    ```
+    :::
 
     ```py
     device = "cuda"
@@ -277,9 +279,9 @@ Follow these steps:
     lr_gamma = 0.1
     ```
 
-    ```{note}
+    :::{note}
     One training epoch is when the neural network passes an entire dataset forward and backward.
-    ```
+    :::
 
     ```py
     epochs = 90
@@ -340,9 +342,9 @@ Follow these steps:
     )
     ```
 
-    ```{note}
+    :::{note}
     Use torchvision to obtain the Inception V3 model. Use the pre-trained model weights to speed up training.
-    ```
+    :::
 
     ```py
     print("Creating model")
@@ -679,7 +681,7 @@ The dataset has 60,000 images you will use to train the network and 10,000 to ev
 
 Access the source code from the following repository:
 
-[https://github.com/ROCmSoftwarePlatform/tensorflow_fashionmnist/blob/main/fashion_mnist.py](https://github.com/ROCmSoftwarePlatform/tensorflow_fashionmnist/blob/main/fashion_mnist.py)
+[https://github.com/ROCm/tensorflow_fashionmnist/blob/main/fashion_mnist.py](https://github.com/ROCm/tensorflow_fashionmnist/blob/main/fashion_mnist.py)
 
 To understand the code step by step, follow these steps:
 
@@ -876,7 +878,7 @@ To understand the code step by step, follow these steps:
         thisplot[true_label].set_color('blue')
         ```
 
-    9. With the model trained, you can use it to make predictions about some images. Review the 0-th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
+    9. With the model trained, you can use it to make predictions about some images. Review the 0<sup>th</sup> image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
 
         ```py
         i = 0
@@ -1162,9 +1164,10 @@ To prepare the data for training, follow these steps:
     print("Accuracy: ", accuracy)
     ```
 
-    ```{note}
-    model.fit() returns a History object that contains a dictionary with everything that happened during training.
-    ```
+    :::{note}
+    `model.fit()` returns a History object that contains a dictionary with everything that happened during
+    training.
+    :::
 
     ```py
     history_dict = history.history

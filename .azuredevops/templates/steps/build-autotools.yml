@@ -1,0 +1,33 @@
+parameters:
+- name: componentName
+  type: string
+  default: ''
+- name: configureFlags
+  type: string
+  default: ''
+- name: buildDir
+  type: string
+  default: '$(Build.SourcesDirectory)'
+- name: installDir
+  type: string
+  default: '$(Build.BinariesDirectory)'
+
+steps:
+- task: Bash@3
+  displayName: '${{ parameters.componentName }} configure flags'
+  inputs:
+    targetType: inline
+    script: ./configure --prefix=${{ parameters.installDir }} ${{ parameters.configureFlags }}
+    workingDirectory: ${{ parameters.buildDir }}
+- task: Bash@3
+  displayName: '${{ parameters.componentName }} make'
+  inputs:
+    targetType: inline
+    script: make -j$(nproc)
+    workingDirectory: ${{ parameters.buildDir }}
+- task: Bash@3
+  displayName: '${{ parameters.componentName }} make install'
+  inputs:
+    targetType: inline
+    script: make install
+    workingDirectory: ${{ parameters.buildDir }}

@@ -16,7 +16,7 @@
 
 <!-- spellcheck-disable -->
 
-This page contains the release notes for AMD ROCm Software.
+This page contains the release notes for AMD ROCm™ Software.
 
 {%- for version, release in releases %}
 
@@ -27,12 +27,12 @@ This page contains the release notes for AMD ROCm Software.
 {%- set rocm_changes = "./rocm_changes/" ~ version ~ ".md" %}
 {% include rocm_changes ignore missing %}
 
-### Library changes in ROCM {{version}}
+### Library changes in ROCm {{version}}
 
 | Library | Version |
 |---------|---------|
 {%- for lib_name, lib in release.libraries | dictsort %}
-{%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version and lib.lib_version %}
+{%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version and (prev_lib_ver[lib_name][lib.lib_version] | default([]) | length > 0) and lib.lib_version %}
 | {{ lib_name }} | {{prev_lib_ver[lib_name][lib.lib_version]}} ⇒ [{{ lib.lib_version }}]({{ lib.release_url }}) |
 {%- elif lib.lib_version %}
 | {{ lib_name }} | [{{ lib.lib_version }}]({{ lib.release_url }}) |
@@ -42,7 +42,7 @@ This page contains the release notes for AMD ROCm Software.
 {%- for lib_name, lib in release.libraries | dictsort %}
 {%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version and lib.lib_version%}
 
-#### {{lib_name}} {{lib.lib_version}}
+#### {{lib_name}}
 
 {{lib.message}}
 

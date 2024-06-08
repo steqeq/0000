@@ -1,0 +1,6 @@
+
+/* Adds container for big tables, used for Compatibility Matrix */
+
+.format-big-table {
+    white-space: nowrap;
+  }

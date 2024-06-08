@@ -1,0 +1,33 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+
+# hip and clr are tightly-coupled
+# run this same template for both repos
+# any changes for clr should just trigger HIP pipeline
+jobs:
+- job: hip_clr_combined
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool:
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+# checkout nothing, just copy artifacts from triggering HIP job
+# and then publish for this clr job or for this hipother job to maintain latest
+  - checkout: none
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
+    parameters:
+      useDefaultBranch: false
+      componentName: HIP
+      branchName: develop
+  - template:  ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Agent.BuildDirectory)/rocm
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

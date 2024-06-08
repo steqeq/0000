@@ -1,7 +1,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="Building ROCm documentation">
-  <meta name="keywords" content="documentation, Visual Studio Code, GitHub, command line">
+  <meta name="keywords" content="documentation, Visual Studio Code, GitHub, command line,
+  AMD, ROCm">
 </head>
 
 # Building documentation
@@ -22,19 +23,17 @@ If you don't see this line, click `Show all checks` to get an itemized view.
 
 ## Command line
 
-You can build our documentation via the command line using Python. We use Python 3.8; other
-versions may not support the build.
+You can build our documentation via the command line using Python.
+
+See the `build.tools.python` setting in the [Read the Docs configuration file](https://github.com/ROCm/ROCm/blob/develop/.readthedocs.yaml) for the Python version used by Read the Docs to build documentation.
+
+See the [Python requirements file](https://github.com/ROCm/ROCm/blob/develop/docs/sphinx/requirements.txt) for Python packages needed to build the documentation.
 
 Use the Python Virtual Environment (`venv`) and run the following commands from the project root:
 
 ```sh
 python3 -mvenv .venv
 
-# Windows
-.venv/Scripts/python -m pip install -r docs/sphinx/requirements.txt
-.venv/Scripts/python -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
-
-# Linux
 .venv/bin/python     -m pip install -r docs/sphinx/requirements.txt
 .venv/bin/python     -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
 ```
@@ -128,12 +127,12 @@ documentation locally using Visual Studio (VS) Code. Follow these steps to confi
       }
     ```
 
-    > (Implementation detail: two problem matchers were needed to be defined,
+    > Implementation detail: two problem matchers were needed to be defined,
     > because VS Code doesn't tolerate some problem information being potentially
     > absent. While a single regex could match all types of errors, if a capture
     > group remains empty (the line number doesn't show up in all warning/error
     > messages) but the `pattern` references said empty capture group, VS Code
-    > discards the message completely.)
+    > discards the message completely.
 
 4. Configure the Python virtual environment (`venv`).
 
