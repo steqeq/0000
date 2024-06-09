@@ -27,6 +27,8 @@ steps:
   inputs:
     targetType: inline
     script: sudo apt --yes --fix-broken install
+  env:
+    DEBIAN_FRONTEND: noninteractive
 - ${{ if gt(length(parameters.aptPackages), 0) }}:
   - task: Bash@3
     displayName: 'sudo apt-get install ...'
