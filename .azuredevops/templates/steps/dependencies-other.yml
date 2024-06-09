@@ -12,12 +12,16 @@ steps:
   displayName: 'sudo apt-get update'
   inputs:
     targetType: inline
-    script: sudo apt-get update
+    script: sudo apt-get --yes update
+  env:
+    DEBIAN_FRONTEND: noninteractive
 - task: Bash@3
   displayName: 'sudo apt-get upgrade'
   inputs:
     targetType: inline
-    script: sudo apt-get upgrade
+    script: sudo apt-get --yes upgrade
+  env:
+    DEBIAN_FRONTEND: noninteractive
 - task: Bash@3
   displayName: 'sudo apt-get fix'
   inputs:
