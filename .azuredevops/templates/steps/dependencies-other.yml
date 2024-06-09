@@ -33,6 +33,8 @@ steps:
     inputs:
       targetType: inline
       script: sudo apt-get --yes install ${{ join(' ', parameters.aptPackages) }}
+    env:
+      DEBIAN_FRONTEND: noninteractive
 - ${{ if gt(length(parameters.pipModules), 0) }}:
   - task: Bash@3
     displayName: 'pip install  ...'
