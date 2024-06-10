@@ -32,7 +32,7 @@ steps:
   displayName: '${{parameters.componentName }} Build'
   inputs:
     workingDirectory: ${{ parameters.cmakeBuildDir }}
-    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }}'
+    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} ${{ parameters.multithreadFlag }}'
     retryCountOnTaskFailure: 10
 # equivalent to running make $cmakeTarget from $cmakeBuildDir
 # e.g., make install
