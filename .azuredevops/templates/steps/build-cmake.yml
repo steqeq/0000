@@ -5,6 +5,9 @@ parameters:
 - name: extraBuildFlags
   type: string
   default: ''
+- name: multithreadFlag
+  type: string
+  default: ''
 - name: cmakeBuildDir
   type: string
   default: 'build'
