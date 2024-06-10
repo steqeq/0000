@@ -28,7 +28,7 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool: 
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+    vmImage: ${{ variables.HIGH_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -60,5 +60,5 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DHIPTENSOR_BUILD_TESTS=ON
         -DAMDGPU_TARGETS=gfx90a
-      multithreadFlag: -j16
+      multithreadFlag: -j64
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
