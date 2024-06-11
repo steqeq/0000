@@ -102,6 +102,7 @@ Our documentation is organized into the following categories:
   * [Using AddressSanitizer](./conceptual/using-gpu-sanitizer.md)
   * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
   * [OpenMP support in ROCm](./about/compatibility/openmp.md)
+* [Setting the number of CUs](./how-to/setting-cus)  
 * [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 :::
@@ -117,7 +118,6 @@ Our documentation is organized into the following categories:
   * [MI250](./conceptual/gpu-arch/mi250.md)
   * [MI300](./conceptual/gpu-arch/mi300.md)
 * [GPU memory](./conceptual/gpu-memory.md)
-* [Setting the number of CUs](./conceptual/setting-cus)
 * [File structure (Linux FHS)](./conceptual/file-reorg.md)
 * [GPU isolation techniques](./conceptual/gpu-isolation.md)
 * [Using CMake](./conceptual/cmake-packages.rst)
