@@ -17,7 +17,6 @@ parameters:
     - nlohmann-json3-dev
     - libgtest-dev
     - libdrm-dev
-    - zstd
 - name: rocmDependencies
   type: object
   default:
