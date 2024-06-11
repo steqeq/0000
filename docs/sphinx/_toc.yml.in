@@ -101,6 +101,8 @@ subtrees:
         title: Compiler disambiguation
       - file: about/compatibility/openmp.md
         title: OpenMP support
+  - file: how-to/setting-cus
+    title: Setting the number of CUs  
   - file: how-to/system-debugging.md
     title: Debugging
   - url: https://github.com/amd/rocm-examples
@@ -140,8 +142,6 @@ subtrees:
             title: White paper
   - file: conceptual/gpu-memory.md
     title: GPU memory
-  - file: conceptual/setting-cus
-    title: Setting the number of CUs
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md
