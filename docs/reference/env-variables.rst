@@ -11,20 +11,20 @@
 Environment variables reference
 *************************************************************
 
-Common environment variables in ROCm
-====================================
+ROCm common environment variables
+=================================
 
 Environment variables that impact libraries over the ROCm software stack. 
 
 .. list-table::
-    :widths: 80,20
     :header-rows: 1
 
     * - Environment variable
       - Values
 
     * - | ``HIP_DIR``
-        | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
+        | The path of the HIP package. Specifically the location of hipConfig.cmake
+        | or hip-config.cmake.
       -
 
     * - | ``HIP_PATH``
@@ -36,19 +36,21 @@ Environment variables that impact libraries over the ROCm software stack.
       -
 
     * - | ``HIP_PLATFORM``
-        | The platform HIP is targeting. If HIP_PLATFORM is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
+        | The platform HIP is targeting. If ``HIP_PLATFORM`` is not set, then hipcc
+        | will attempt to auto-detect based on if nvcc is found.
       - ``amd``, ``nvidia``
 
     * - | ``ROCM_BUILD_ID``
-        | Build ID to identify the release of a given package. End users should not set this.
+        | Build ID to identify the release of a given package. End users should
+        | not set this.
       -
 
     * - | ``ROCM_PATH``
         | The path of the installed ROCm software stack.
       - default: ``/opt/rocm``
 
-Environment variables of clr
-============================
+clr environment variables
+=========================
 
 Environment variables affecting all backends of project clr.
 
@@ -119,7 +121,7 @@ Environment variables affecting the hipamd backend of project clr.
       - 
 
 rocclr environment variables
-----------------------------------
+----------------------------
 
 AMD rocclr environment variables at release build:
 
@@ -479,7 +481,8 @@ AMD rocclr environment variables at release build:
     * - | ``HIP_MEM_POOL_USE_VM``
         | Enables memory pool support in HIP
       - ``bool``
-      - ``true`` on Windows, ``false`` on other OS
+      - | ``true`` on Windows, 
+        | ``false`` on other OS
 
     * - | ``HIP_USE_RUNTIME_UNBUNDLER``
         | Force this to use Runtime code object unbundler.
@@ -633,10 +636,9 @@ AMD rocclr environment variables at release build:
 
 AMD rocclr environment variables at debug build:
 
-.. list-table:: AMD rocclr environment variables
+.. list-table::
     :widths: 65,15,20
     :header-rows: 1
-    :name: rocclr-env-variables-debug-table
 
     * - Environment variable
       - Variable type
@@ -672,15 +674,204 @@ AMD rocclr environment variables at debug build:
       - ``size_t``
       - 64 at ``__AVX512F__``, 32 at ``__AVX__`` and 16 at other cases
 
-Environment variables of rocPRIM
-==========================================
+ROCR-Runtime environment variables
+==================================
+
+.. https://github.com/ROCm/ROCR-Runtime/blob/master/src/core/util/flag.h
+
+AMD ROCR-Runtime environment variables:
+
+.. list-table::
+    :widths: 65,15,20
+    :header-rows: 1
+
+    * - Environment variable
+      - Variable type
+      - Default value
+
+    * - ``HSA_CHECK_FLAT_SCRATCH``
+      - 0, 1
+      -
+
+    * - ``HSA_ENABLE_VM_FAULT_MESSAGE``
+      - 0, 1
+      -
+
+    * - ``HSA_ENABLE_QUEUE_FAULT_MESSAGE``
+      - 0, 1
+      -
+
+    * - ``HSA_ENABLE_INTERRUPT``
+      -
+      -
+
+    * - ``HSA_ENABLE_SDMA``
+      -
+      -
+
+    * - ``HSA_ENABLE_PEER_SDMA``
+      -
+      -
+
+    * - ``HSA_ENABLE_SDMA_GANG``
+      -
+      -
+
+    * - ``HSA_ENABLE_SDMA_COPY_SIZE_OVERRIDE``
+      -
+      -
+
+    * - ``ROCR_VISIBLE_DEVICES``
+      -
+      -
+
+    * - ``HSA_RUNNING_UNDER_VALGRIND``
+      -
+      -
+
+    * - ``HSA_SDMA_WAIT_IDLE``
+      -
+      -
+
+    * - ``HSA_MAX_QUEUES``
+      -
+      -
+
+    * - ``HSA_SCRATCH_MEM``
+      -
+      -
+
+    * - ``HSA_SCRATCH_SINGLE_LIMIT``
+      -
+      -
+
+    * - ``HSA_SCRATCH_SINGLE_LIMIT_ASYNC``
+      -
+      -
+
+    * - ``HSA_ENABLE_SCRATCH_ASYNC_RECLAIM``
+      -
+      -
+
+    * - ``HSA_ENABLE_SCRATCH_ALT``
+      -
+      -
+
+    * - ``HSA_TOOLS_LIB``
+      -
+      -
+
+    * - ``HSA_TOOLS_REPORT_LOAD_FAILURE``
+      -
+      -
+
+    * - ``HSA_TOOLS_DISABLE_REGISTER``
+      -
+      -
+
+    * - ``HSA_TOOLS_REPORT_REGISTER_FAILURE``
+      -
+      -
+
+    * - ``HSA_DISABLE_FRAGMENT_ALLOCATOR``
+      -
+      -
+
+    * - ``HSA_ENABLE_SDMA_HDP_FLUSH``
+      -
+      -
+
+    * - ``HSA_REV_COPY_DIR``
+      -
+      -
+
+    * - ``HSA_FORCE_FINE_GRAIN_PCIE``
+      -
+      -
+
+    * - ``HSA_NO_SCRATCH_RECLAIM``
+      -
+      -
+
+    * - ``HSA_NO_SCRATCH_THREAD_LIMITER``
+      -
+      -
+
+    * - ``HSA_DISABLE_IMAGE``
+      -
+      -
+
+    * - ``HSA_LOADER_ENABLE_MMAP_URI``
+      -
+      -
+
+    * - ``HSA_FORCE_SDMA_SIZE``
+      -
+      -
+
+    * - ``HSA_IGNORE_SRAMECC_MISREPORT``
+      -
+      -
+
+    * - ``HSA_XNACK``
+      -
+      -
+
+    * - ``HSA_ENABLE_DEBUG``
+      -
+      -
+
+    * - ``HSA_CU_MASK_SKIP_INIT``
+      -
+      -
+
+    * - ``HSA_COOP_CU_COUNT``
+      -
+      -
+
+    * - ``HSA_DISCOVER_COPY_AGENTS``
+      -
+      -
+
+    * - ``HSA_SVM_PROFILE``
+      -
+      -
+
+    * - ``HSA_ENABLE_SRAMECC``
+      -
+      -
+
+    * - ``HSA_IMAGE_PRINT_SRD``
+      -
+      -
+
+    * - ``HSA_ENABLE_MWAITX``
+      -
+      -
+
+    * - ``HSA_ENABLE_IPC_MODE_LEGACY``
+      -
+      -
+
+    * - ``HSA_OVERRIDE_CPU_AFFINITY_DEBUG``
+      -
+      -
+
+    * - ``HSA_CU_MASK``
+      -
+      -
+
+rocPRIM environment variables
+=============================
 
 Environment variables of rocPRIM library.
 
-.. list-table:: AMD rocPRIM environment variables
-    :widths: 65,15,20
+.. list-table::
+    :widths: 65,35
     :header-rows: 1
-    :name: rocprim-env-variables
+
+    * - Environment variable
+      - Values
 
     * - | ``HIP_DIR``
         | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
@@ -688,7 +879,8 @@ Environment variables of rocPRIM library.
 
     * - | ``HIP_PATH``
         | The path of the HIP SDK.
-      - default: ``/opt/rocm`` on Linux, ``C:/hip`` on windows
+      - | default: ``/opt/rocm`` on Linux, 
+        | ``C:/hip`` on windows
 
     * - | ``ROCM_PATH``
         | The path of the installed ROCm software stack on linux
@@ -710,10 +902,84 @@ Environment variables of rocPRIM library.
         | The path of the installed ROCm cmake file on windows
       - default: ``C:/hipSDK``
 
-Environment variables of hipCUB
-==========================================
+hipCUB environment variables
+============================
 
 Environment variables of hipCUB library.
 
-Environment variables of rocThrust
-==========================================
+.. list-table::
+    :widths: 65,35
+    :header-rows: 1
+
+    * - Environment variable
+      - Values
+
+    * - | ``HIP_DIR``
+        | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
+      -
+
+    * - | ``HIP_PATH``
+        | The path of the HIP SDK.
+      - | default: ``/opt/rocm`` on Linux, 
+        | ``C:/hip`` on windows
+
+    * - | ``ROCM_PATH``
+        | The path of the installed ROCm software stack on linux
+      - default: ``/opt/rocm``
+
+    * - | ``ROCM_CMAKE_PATH``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+    * - | ``HIPCC_COMPILE_FLAGS_APPEND``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+    * - | ``ROCPRIM_USE_HMM``
+        | The tests unified memory allocation usage
+      - default: ``C:/hipSDK``
+
+    * - | ``CTEST_RESOURCE_GROUP_0``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+rocThrust environment variables
+===============================
+
+Environment variables of rocThrust library.
+
+.. list-table::
+    :widths: 65,35
+    :header-rows: 1
+
+    * - Environment variable
+      - Values
+
+    * - | ``HIP_DIR``
+        | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
+      -
+
+    * - | ``HIP_PATH``
+        | The path of the HIP SDK.
+      - | default: ``/opt/rocm`` on Linux, 
+        | ``C:/hip`` on windows
+
+    * - | ``ROCM_PATH``
+        | The path of the installed ROCm software stack on linux
+      - default: ``/opt/rocm``
+
+    * - | ``ROCM_CMAKE_PATH``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+    * - | ``HIPCC_COMPILE_FLAGS_APPEND``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
+
+    * - | ``ROCPRIM_USE_HMM``
+        | The tests unified memory allocation usage
+      - default: ``C:/hipSDK``
+
+    * - | ``CTEST_RESOURCE_GROUP_0``
+        | The path of the installed ROCm cmake file on windows
+      - default: ``C:/hipSDK``
