@@ -17,7 +17,7 @@ parameters:
     - nlohmann-json3-dev
     - libgtest-dev
     - libdrm-dev
-    - libzstd-dev
+    - zstd
 - name: rocmDependencies
   type: object
   default:
@@ -32,6 +32,7 @@ parameters:
     - rocprofiler-register
     - clr
     - rocminfo
+    - roctracer
 
 jobs:
 - job: MIOpen
