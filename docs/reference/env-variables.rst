@@ -1,4 +1,4 @@
-By default, it's empty... meta::
+.. meta::
     :description: Environment variables reference
     :keywords: AMD, ROCm, environment variables, environment, reference
 
