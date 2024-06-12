@@ -25,6 +25,7 @@ parameters:
     hipSPARSE: develop
     llvm-project: amd-staging
     MIOpen: develop
+    MIVisionX: develop
     rocBLAS: develop
     ROCdbgapi : amd-master
     rocDecode: develop
