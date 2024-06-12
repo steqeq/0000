@@ -107,7 +107,6 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`TransferBench <transferbench:index>`,1.48,1.46
       ,,
       COMPILERS:,,
-      `AOMP <https://github.com/ROCm/aomp>`_,17.60.0,17.60.0
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,0.5.0,0.5.0
       `Flang <https://github.com/ROCm/flang>`_,17.0.0.24103,17.0.0.23483
       `llvm-project <https://github.com/ROCm/llvm-project>`_,17.0.0.24103,17.0.0.23483
