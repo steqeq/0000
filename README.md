@@ -77,7 +77,7 @@ The Build time will reduce significantly if we limit the GPU Architecture/s agai
 mkdir -p ~/WORKSPACE/      # Or any folder name other than WORKSPACE
 cd ~/WORKSPACE/
 export ROCM_VERSION=6.1.0   # or 6.1.1 6.1.2
-~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.1.x -m rocm-build/rocm-${ROCM_VERSION}.xml
+~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.1.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
 ~/bin/repo sync
 
 # --------------------------------------
@@ -86,10 +86,10 @@ export ROCM_VERSION=6.1.0   # or 6.1.1 6.1.2
 
 # Option 1: Start a docker container
 # Pulling required base docker images:
-# Ubuntu20.04 built from ROCm/rocm-build/docker/ubuntu20/Dockerfile
-docker pull rocm/rocm-build-ubuntu-20.04:6.1
-# Ubuntu22.04 built from ROCm/rocm-build/docker/ubuntu22/Dockerfile
-docker pull rocm/rocm-build-ubuntu-22.04:6.1
+# Ubuntu20.04 built from ROCm/tools/rocm-build/docker/ubuntu20/Dockerfile
+docker pull rocm/tools/rocm-build-ubuntu-20.04:6.1
+# Ubuntu22.04 built from ROCm/tools/rocm-build/docker/ubuntu22/Dockerfile
+docker pull rocm/tools/rocm-build-ubuntu-22.04:6.1
 
 # Start docker container and mount the source code folder:
 docker run -ti \
@@ -107,10 +107,10 @@ docker run -ti \
 
 # Option 2: Install required packages into the host machine
 # For ubuntu20.04 system
-cd ROCm/rocm-build/docker/ubuntu20
+cd ROCm/tools/rocm-build/docker/ubuntu20
 bash install-prerequisites.sh
 # For ubuntu22.04 system
-cd ROCm/rocm-build/docker/ubuntu22
+cd ROCm/tools/rocm-build/docker/ubuntu22
 bash install-prerequisities.sh
 
 # --------------------------------------
@@ -126,13 +126,13 @@ export GPU_ARCHS="gfx940;gfx941;gfx942" # Example
 
 # Pick and run build commands in the docker container:
 # Build rocm-dev packages
-make -f ROCm/rocm-build/ROCm.mk -j ${NPROC:-$(nproc)} rocm-dev
+make -f ROCm/tools/rocm-build/ROCm.mk -j ${NPROC:-$(nproc)} rocm-dev
 # Build all ROCm packages
-make -f ROCm/rocm-build/ROCm.mk -j ${NPROC:-$(nproc)} all
+make -f ROCm/tools/rocm-build/ROCm.mk -j ${NPROC:-$(nproc)} all
 # list all ROCm components to find required components
-make -f ROCm/rocm-build/ROCm.mk list_components
+make -f ROCm/tools/rocm-build/ROCm.mk list_components
 # Build a single ROCm packages
-make -f ROCm/rocm-build/ROCm.mk T_rocblas
+make -f ROCm/tools/rocm-build/ROCm.mk T_rocblas
 
 # Find built packages in ubuntu20.04:
 out/ubuntu-20.04/20.04/deb/
@@ -151,7 +151,7 @@ out/ubuntu-22.04/22.04/logs/rocblas.inprogress  # Example
 out/ubuntu-22.04/22.04/logs/rocblas             # Example
 ```
 
-Note: [Overview for ROCm.mk](rocm-build/README.md)
+Note: [Overview for ROCm.mk](tools/rocm-build/README.md)
 
 ## ROCm documentation
 
