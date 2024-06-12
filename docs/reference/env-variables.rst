@@ -1,4 +1,4 @@
-.. meta::
+By default, it's empty... meta::
     :description: Environment variables reference
     :keywords: AMD, ROCm, environment variables, environment, reference
 
@@ -14,7 +14,7 @@ Environment variables reference
 ROCm common and important environment variables
 ===============================================
 
-The following table containes the environment variables that are most commonly use in the ROCm software stack. These variables are necessary or usefull for the simple tasks, like build a ROCm library or run applications on AMD cards.
+The following table contains the environment variables that are most commonly use in the ROCm software stack. These variables are necessary or useful for the simple tasks, like build a ROCm library or run applications on AMD cards.
 
 .. list-table::
     :header-rows: 1
@@ -45,7 +45,7 @@ The following table containes the environment variables that are most commonly u
 clr environment variables
 =========================
 
-AMD Common Language Runtime (clr) contains source codes for AMD's compute languages runtimes: `HIP` and `OpenCL™`. The environment varialbes which effecting this library can effect `HIP`and `OpenCL™` libraries or applications.
+AMD Common Language Runtime (clr) contains source codes for AMD's compute languages runtimes: `HIP` and `OpenCL™`. The environment variables, which are effecting this library can effect `HIP`and `OpenCL™` libraries or applications too.
 
 The following table contains the environment variables effecting all backends of project clr.
 
@@ -68,7 +68,7 @@ The following table contains the environment variables effecting all backends of
         | Causes errors to be emitted instead of warnings.
       - ON, OFF
 
-The following table contains the environment variables effecting the opencl backend of project clr.
+The following table contains the environment variables effecting the opencl and hipamd backend of project clr.
 
 .. list-table::
     :widths: 85,15
@@ -76,6 +76,11 @@ The following table contains the environment variables effecting the opencl back
 
     * - Environment variable
       - Values
+
+    * - | ``ROCM_LIBPATCH_VERSION``
+        | The ROCm version in the format of an integer. The format is
+        | :cpp:`MAJOR * 10000 + MINOR * 100 + PATCH`
+      - 50000, 60020...
 
     * - | ``CPACK_DEBIAN_PACKAGE_RELEASE``
         | This is the numbering of the Debian package itself, i.e. the version of the packaging and not the version of the content.
@@ -105,15 +110,6 @@ The following table contains the environment variables effecting the hipamd back
     * - | ``HSAKMT_DEBUG_LEVEL``
         | When set to the highest level, the system will print memory allocation info.
       - 1, 2, ... 7
-
-    * - | ``ROCM_LIBPATCH_VERSION``
-        | The ROCm version in the format of an integer. The format is
-        | :cpp:`MAJOR * 10000 + MINOR * 100 + PATCH`
-      - 50000, 60020...
-
-    * - | ``ROCM_RPATH``
-        | The rpath for ROCm libraries.
-      - 
 
 rocclr environment variables
 ----------------------------
@@ -718,9 +714,10 @@ AMD ROCR-Runtime environment variables:
       -
       -
 
-    * - ``ROCR_VISIBLE_DEVICES``
-      -
-      -
+    * - | ``ROCR_VISIBLE_DEVICES``
+        | A list of device indices or UUIDs that will be exposed to applications.
+      - By default, it's empty.
+      - ``0,GPU-DEADBEEFDEADBEEF``
 
     * - ``HSA_RUNNING_UNDER_VALGRIND``
       -
@@ -859,7 +856,7 @@ AMD ROCR-Runtime environment variables:
     * - | ``HSA_CU_MASK``
         | Sets the mask on a lower level of queue creation in the driver, 
         | this mask will also be set for queues being profiled.
-      - Not set by default
+      - By default, it's empty.
       - ``1:0-8``
 
 rocPRIM environment variables
@@ -875,7 +872,7 @@ Environment variables of rocPRIM library.
       - Values
 
     * - | ``HIP_DIR``
-        | The path of the HIP SDK on Microsoft Windows.
+        | The path of the HIP SDK on Microsoft Windows, if ``HIP_PATH``
       - ``C:/hip``
 
     * - | ``HIP_PATH``
@@ -974,17 +971,24 @@ Environment variables of rocThrust library.
       - Values
 
     * - | ``HIP_DIR``
-        | The path of the HIP package. Specifically the location of hipConfig.cmake or hip-config.cmake.
-      -
+        | The path of the HIP SDK on Microsoft Windows.
+      - ``C:/hip``
 
     * - | ``HIP_PATH``
-        | The path of the HIP SDK.
-      - | default: ``/opt/rocm`` on Linux, 
-        | ``C:/hip`` on windows
+        | The path of the HIP SDK on Microsoft Windows. On linux the ``ROCM_PATH``
+        | environment variable used to set different ROCm root path.
+      - ``C:/hip``
+
+    * - | ``VCPKG_PATH``
+        | The path of the vcpkg package manager on Microsoft Windows. On linux 
+        | this environment variable has no effect.
+      - ``C:/github/vcpkg``
 
     * - | ``ROCM_PATH``
-        | The path of the installed ROCm software stack on linux
-      - default: ``/opt/rocm``
+        | The path of the installed ROCm software stack on linux. On Microsoft 
+        | Windows the ``HIP_DIR`` environment variable used to set 
+        | different HIP SDK path.
+      - ``/opt/rocm``
 
     * - | ``ROCTHRUST_USE_HMM``
         | The tests unified memory allocation usage
