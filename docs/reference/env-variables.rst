@@ -671,6 +671,7 @@ ROCR-Runtime environment variables
 ==================================
 
 .. https://github.com/ROCm/ROCR-Runtime/blob/master/src/core/util/flag.h
+.. We need to extend the following list.
 
 AMD ROCR-Runtime environment variables:
 
@@ -682,176 +683,20 @@ AMD ROCR-Runtime environment variables:
       - Default value
       - Example value
 
-    * - ``HSA_CHECK_FLAT_SCRATCH``
-      - 0, 1
-      -
-
-    * - ``HSA_ENABLE_VM_FAULT_MESSAGE``
-      - 0, 1
-      -
-
-    * - ``HSA_ENABLE_QUEUE_FAULT_MESSAGE``
-      - 0, 1
-      -
-
-    * - ``HSA_ENABLE_INTERRUPT``
-      -
-      -
-
-    * - ``HSA_ENABLE_SDMA``
-      -
-      -
-
-    * - ``HSA_ENABLE_PEER_SDMA``
-      -
-      -
-
-    * - ``HSA_ENABLE_SDMA_GANG``
-      -
-      -
-
-    * - ``HSA_ENABLE_SDMA_COPY_SIZE_OVERRIDE``
-      -
-      -
-
     * - | ``ROCR_VISIBLE_DEVICES``
         | A list of device indices or UUIDs that will be exposed to applications.
       - By default, it's empty.
       - ``0,GPU-DEADBEEFDEADBEEF``
-
-    * - ``HSA_RUNNING_UNDER_VALGRIND``
-      -
-      -
-
-    * - ``HSA_SDMA_WAIT_IDLE``
-      -
-      -
-
-    * - ``HSA_MAX_QUEUES``
-      -
-      -
 
     * - | ``HSA_SCRATCH_MEM``
         | Maximum amount of scratch mem that can be used per process per gpu.
       -
       -
 
-    * - ``HSA_SCRATCH_SINGLE_LIMIT``
-      -
-      -
-
-    * - ``HSA_SCRATCH_SINGLE_LIMIT_ASYNC``
-      -
-      -
-
-    * - ``HSA_ENABLE_SCRATCH_ASYNC_RECLAIM``
-      -
-      -
-
-    * - ``HSA_ENABLE_SCRATCH_ALT``
-      -
-      -
-
-    * - ``HSA_TOOLS_LIB``
-      -
-      -
-
-    * - ``HSA_TOOLS_REPORT_LOAD_FAILURE``
-      -
-      -
-
-    * - ``HSA_TOOLS_DISABLE_REGISTER``
-      -
-      -
-
-    * - ``HSA_TOOLS_REPORT_REGISTER_FAILURE``
-      -
-      -
-
-    * - ``HSA_DISABLE_FRAGMENT_ALLOCATOR``
-      -
-      -
-
-    * - ``HSA_ENABLE_SDMA_HDP_FLUSH``
-      -
-      -
-
-    * - ``HSA_REV_COPY_DIR``
-      -
-      -
-
-    * - ``HSA_FORCE_FINE_GRAIN_PCIE``
-      -
-      -
-
-    * - ``HSA_NO_SCRATCH_RECLAIM``
-      -
-      -
-
-    * - ``HSA_NO_SCRATCH_THREAD_LIMITER``
-      -
-      -
-
-    * - ``HSA_DISABLE_IMAGE``
-      -
-      -
-
-    * - ``HSA_LOADER_ENABLE_MMAP_URI``
-      -
-      -
-
-    * - ``HSA_FORCE_SDMA_SIZE``
-      -
-      -
-
-    * - ``HSA_IGNORE_SRAMECC_MISREPORT``
-      -
-      -
-
     * - | ``HSA_XNACK``
-        | Turning on XNACK by setting the environment variable HSA_XNACK=1 and gives the expected result, xnack+
-      - 
-      -
-
-    * - ``HSA_ENABLE_DEBUG``
-      -
-      -
-
-    * - ``HSA_CU_MASK_SKIP_INIT``
-      -
-      -
-
-    * - ``HSA_COOP_CU_COUNT``
-      -
-      -
-
-    * - ``HSA_DISCOVER_COPY_AGENTS``
-      -
-      -
-
-    * - ``HSA_SVM_PROFILE``
-      -
-      -
-
-    * - ``HSA_ENABLE_SRAMECC``
-      -
-      -
-
-    * - ``HSA_IMAGE_PRINT_SRD``
-      -
-      -
-
-    * - ``HSA_ENABLE_MWAITX``
-      -
-      -
-
-    * - ``HSA_ENABLE_IPC_MODE_LEGACY``
-      -
-      -
-
-    * - ``HSA_OVERRIDE_CPU_AFFINITY_DEBUG``
-      -
-      -
+        | Turning on XNACK by setting the environment variable HSA_XNACK=1
+      - By default, it's empty.
+      - ``1``
 
     * - | ``HSA_CU_MASK``
         | Sets the mask on a lower level of queue creation in the driver, 
