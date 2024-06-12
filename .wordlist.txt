@@ -169,6 +169,7 @@ LLM
 LLMs
 LLVM
 LM
+LSan
 LSAN
 LSan
 LTS

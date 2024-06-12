@@ -101,8 +101,6 @@ subtrees:
         title: Compiler disambiguation
       - file: about/compatibility/openmp.md
         title: OpenMP support
-  - file: how-to/setting-cus
-    title: Setting the number of CUs  
   - file: how-to/system-debugging.md
     title: Debugging
   - url: https://github.com/amd/rocm-examples

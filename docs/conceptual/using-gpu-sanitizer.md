@@ -8,6 +8,7 @@
 # Using the AddressSanitizer on a GPU (beta release)
 
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
+
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications exactly like pure CPU applications. However, this simplicity has not been achieved yet.
 This document provides documentation on using ROCm ASan.
 
@@ -34,7 +35,7 @@ Recommendations for doing this are:
 
 * Explicitly use `xnack+` in the offload architecture option. For example, `--offload-arch=gfx90a:xnack+`
 
-Other architectures are allowed, but their device code will not be instrumented and a warning will be emitted.
+Other architectures are allowed, but their device code will not be instrumented, and a warning will be issued.
 
 :::{tip}
 It is not an error to compile some files without ASan instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the ASan runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
@@ -68,7 +69,7 @@ For a complete ROCm GPU Sanitizer installation, including packages, instrumented
 ROCm releases have optional packages that contain additional ASan instrumented builds of the ROCm libraries (usually found in `/opt/rocm-<version>/lib`). The instrumented libraries have identical names to the regular uninstrumented libraries, and are located in `/opt/rocm-<version>/lib/asan`.
 These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with `g++`. The preexisting build options are used but, as described above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
-These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
+These instrumented libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
 
 When adjusting an application build to add instrumentation, linking against these instrumented libraries is unnecessary. For example, any `-L` `/opt/rocm-<version>/lib` compiler options need not be changed. However, the instrumented libraries should be used when the application is run. It is particularly important that the instrumented language runtimes, like `libamdhip64.so` and `librocm-core.so`, are used; otherwise, device invalid access detections may not be reported.
 
@@ -129,11 +130,12 @@ before the address is actually accessed by a load, store, or atomic
 instruction.
 This checking involves an additional load to "shadow" memory which
 records whether the address is "poisoned" or not, and additional logic
-that decides whether to produce an detection report or not.
+that decides whether to produce a detection report or not.
 
 This extra runtime work can cause the application to slow down by
 a factor of three or more, depending on how many memory accesses are
 executed.
+
 For heterogeneous applications, the shadow memory must be accessible by all devices
 and this can mean that shadow accesses from some devices may be more costly
 than non-shadow accesses.

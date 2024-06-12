@@ -38,8 +38,8 @@ latex_elements = {
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved."
-version = "6.1.1"
-release = "6.1.1"
+version = "6.1.0"
+release = "6.1.0"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
@@ -49,12 +49,12 @@ article_pages = [
     {
         "file":"about/release-notes",
         "os":["linux", "windows"],
-        "date":"2024-01-31"
+        "date":"2024-04-16"
     },
     {
         "file":"about/CHANGELOG",
         "os":["linux", "windows"],
-        "date":"2024-01-31"
+        "date":"2024-04-16"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
