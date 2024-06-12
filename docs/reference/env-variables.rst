@@ -11,7 +11,7 @@ By default, it's empty... meta::
 Environment variables reference
 *************************************************************
 
-ROCm common and important environment variables
+ROCm common and important Environment Variables
 ===============================================
 
 The following table contains the environment variables that are most commonly use in the ROCm software stack. These variables are necessary or useful for the simple tasks, like build a ROCm library or run applications on AMD cards.
@@ -42,10 +42,10 @@ The following table contains the environment variables that are most commonly us
         | will attempt to auto-detect based on if nvcc is found.
       - ``amd``, ``nvidia``
 
-clr environment variables
+CLR Environment Variables
 =========================
 
-AMD Common Language Runtime (clr) contains source codes for AMD's compute languages runtimes: `HIP` and `OpenCL™`. The environment variables, which are effecting this library can effect `HIP`and `OpenCL™` libraries or applications too.
+AMD Common Language Runtime (clr) contains source codes for AMD's compute languages runtimes: **HIP** and **OpenCL™**. The environment variables, which are effecting this library can effect **HIP** and **OpenCL™** libraries or applications too.
 
 The following table contains the environment variables effecting all backends of project clr.
 
@@ -111,7 +111,7 @@ The following table contains the environment variables effecting the hipamd back
         | When set to the highest level, the system will print memory allocation info.
       - 1, 2, ... 7
 
-rocclr environment variables
+rocclr Environment Variables
 ----------------------------
 
 AMD rocclr environment variables at release build:
@@ -667,7 +667,7 @@ AMD rocclr environment variables at debug build:
       - ``size_t``
       - 64 at ``__AVX512F__``, 32 at ``__AVX__`` and 16 at other cases
 
-ROCR-Runtime environment variables
+ROCR-Runtime Environment Variables
 ==================================
 
 .. https://github.com/ROCm/ROCR-Runtime/blob/master/src/core/util/flag.h
@@ -704,7 +704,7 @@ AMD ROCR-Runtime environment variables:
       - By default, it's empty.
       - ``1:0-8``
 
-rocPRIM environment variables
+rocPRIM Environment Variables
 =============================
 
 Environment variables of rocPRIM library.
@@ -755,7 +755,7 @@ Environment variables of rocPRIM library.
         | users should ignore this.
       - By default it's empty.
 
-hipCUB environment variables
+hipCUB Environment Variables
 ============================
 
 Environment variables of hipCUB library.
@@ -803,7 +803,7 @@ Environment variables of hipCUB library.
         | users should ignore this.
       - By default, it's empty.
 
-rocThrust environment variables
+rocThrust Environment Variables
 ===============================
 
 Environment variables of rocThrust library.
