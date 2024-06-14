@@ -11,7 +11,7 @@ subtrees:
     title: Release notes
     subtrees:
     - entries:
-      - file: about/CHANGELOG.md
+      - file: about/changelog.md
         title: Changelog
   - url: https://github.com/ROCm/ROCm/labels/Verified%20Issue
     title: Known issues
@@ -58,27 +58,27 @@ subtrees:
       - file: how-to/rocm-for-ai/train-a-model.rst
       - file: how-to/rocm-for-ai/hugging-face-models.rst
       - file: how-to/rocm-for-ai/deploy-your-model.rst
-  - file: how-to/fine-tuning-llms/index.rst
+  - file: how-to/llm-fine-tuning-optimization/index.rst
     title: Fine-tuning LLMs and inference optimization
     subtrees:
     - entries:
-      - file: how-to/fine-tuning-llms/overview.rst
+      - file: how-to/llm-fine-tuning-optimization/overview.rst
         title: Conceptual overview
-      - file: how-to/fine-tuning-llms/fine-tuning-and-inference.rst
+      - file: how-to/llm-fine-tuning-optimization/fine-tuning-and-inference.rst
         subtrees:
         - entries:
-          - file: how-to/fine-tuning-llms/single-gpu-fine-tuning-and-inference.rst
+          - file: how-to/llm-fine-tuning-optimization/single-gpu-fine-tuning-and-inference.rst
             title: Using a single accelerator
-          - file: how-to/fine-tuning-llms/multi-gpu-fine-tuning-and-inference.rst
+          - file: how-to/llm-fine-tuning-optimization/multi-gpu-fine-tuning-and-inference.rst
             title: Using multiple accelerators
-      - file: how-to/fine-tuning-llms/model-quantization.rst
-      - file: how-to/fine-tuning-llms/model-acceleration-libraries.rst
-      - file: how-to/fine-tuning-llms/llm-inference-frameworks.rst
-      - file: how-to/fine-tuning-llms/optimizing-with-composable-kernel.md
+      - file: how-to/llm-fine-tuning-optimization/model-quantization.rst
+      - file: how-to/llm-fine-tuning-optimization/model-acceleration-libraries.rst
+      - file: how-to/llm-fine-tuning-optimization/llm-inference-frameworks.rst
+      - file: how-to/llm-fine-tuning-optimization/optimizing-with-composable-kernel.md
         title: Optimizing with Composable Kernel
-      - file: how-to/fine-tuning-llms/optimizing-triton-kernel.rst
+      - file: how-to/llm-fine-tuning-optimization/optimizing-triton-kernel.rst
         title: Optimizing Triton kernels
-      - file: how-to/fine-tuning-llms/profiling-and-debugging.rst
+      - file: how-to/llm-fine-tuning-optimization/profiling-and-debugging.rst
   - file: how-to/tuning-guides.md
     title: System optimization
     subtrees:

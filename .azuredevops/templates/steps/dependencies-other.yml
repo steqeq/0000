@@ -12,23 +12,31 @@ steps:
   displayName: 'sudo apt-get update'
   inputs:
     targetType: inline
-    script: sudo apt-get update
+    script: sudo apt-get --yes update
+  env:
+    DEBIAN_FRONTEND: noninteractive
 - task: Bash@3
   displayName: 'sudo apt-get upgrade'
   inputs:
     targetType: inline
-    script: sudo apt-get update
+    script: sudo apt-get --yes upgrade
+  env:
+    DEBIAN_FRONTEND: noninteractive
 - task: Bash@3
   displayName: 'sudo apt-get fix'
   inputs:
     targetType: inline
     script: sudo apt --yes --fix-broken install
+  env:
+    DEBIAN_FRONTEND: noninteractive
 - ${{ if gt(length(parameters.aptPackages), 0) }}:
   - task: Bash@3
     displayName: 'sudo apt-get install ...'
     inputs:
       targetType: inline
       script: sudo apt-get --yes install ${{ join(' ', parameters.aptPackages) }}
+    env:
+      DEBIAN_FRONTEND: noninteractive
 - ${{ if gt(length(parameters.pipModules), 0) }}:
   - task: Bash@3
     displayName: 'pip install  ...'

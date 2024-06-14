@@ -56,11 +56,102 @@ cd ~/ROCm/
 
 **Note:** Using this sample code will cause the repo tool to download the open source code associated with the specified ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download as explained at [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
-### Building the ROCm source code
+## Building the ROCm source code
 
 Each ROCm component repository contains directions for building that component, such as the rocSPARSE documentation [Installation and Building for Linux](https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/install/Linux_Install_Guide.html). Refer to the specific component documentation for instructions on building the repository.
 
 Each release of the ROCm software supports specific hardware and software configurations. Refer to [System requirements (Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html) for the current supported hardware and OS.
+
+## Build ROCm from source
+
+The Build will use as many processors as it can find to build in parallel. Some of the compiles can consume as much as 10GB of RAM, so make sure you have plenty of Swap Space !
+
+By default the ROCm build will compile for all supported GPU architectures and will take approximately 500 CPU hours.
+The Build time will reduce significantly if we limit the GPU Architecture/s against which we need to build by using the environment variable GPU_ARCHS as mentioned below.
+
+```bash
+# --------------------------------------
+# Step1: clone source code
+# --------------------------------------
+
+mkdir -p ~/WORKSPACE/      # Or any folder name other than WORKSPACE
+cd ~/WORKSPACE/
+export ROCM_VERSION=6.1.0   # or 6.1.1 6.1.2
+~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.1.x -m rocm-build/rocm-${ROCM_VERSION}.xml
+~/bin/repo sync
+
+# --------------------------------------
+# Step 2: Prepare build environment
+# --------------------------------------
+
+# Option 1: Start a docker container
+# Pulling required base docker images:
+# Ubuntu20.04 built from ROCm/rocm-build/docker/ubuntu20/Dockerfile
+docker pull rocm/rocm-build-ubuntu-20.04:6.1
+# Ubuntu22.04 built from ROCm/rocm-build/docker/ubuntu22/Dockerfile
+docker pull rocm/rocm-build-ubuntu-22.04:6.1
+
+# Start docker container and mount the source code folder:
+docker run -ti \
+    -e ROCM_VERSION=${ROCM_VERSION} \
+    -e CCACHE_DIR=$HOME/.ccache \
+    -e CCACHE_ENABLED=true \
+    -e DOCK_WORK_FOLD=/src \
+    -w /src \
+    -v $PWD:/src \
+    -v /etc/passwd:/etc/passwd \
+    -v /etc/shadow:/etc/shadow \
+    -v ${HOME}/.ccache:${HOME}/.ccache \
+    -u $(id -u):$(id -g) \
+    <replace_with_required_ubuntu_base_docker_image> bash
+
+# Option 2: Install required packages into the host machine
+# For ubuntu20.04 system
+cd ROCm/rocm-build/docker/ubuntu20
+bash install-prerequisites.sh
+# For ubuntu22.04 system
+cd ROCm/rocm-build/docker/ubuntu22
+bash install-prerequisities.sh
+
+# --------------------------------------
+# Step 3: Run build command line
+# --------------------------------------
+
+# Select GPU targets before building:
+# When GPU_ARCHS is not set, default GPU targets supported by ROCm6.1 will be used.
+# To build against a subset of GFX architectures you can use the below env variable.
+# Support MI300 (gfx940, gfx941, gfx942).
+export GPU_ARCHS="gfx942"               # Example
+export GPU_ARCHS="gfx940;gfx941;gfx942" # Example
+
+# Pick and run build commands in the docker container:
+# Build rocm-dev packages
+make -f ROCm/rocm-build/ROCm.mk -j ${NPROC:-$(nproc)} rocm-dev
+# Build all ROCm packages
+make -f ROCm/rocm-build/ROCm.mk -j ${NPROC:-$(nproc)} all
+# list all ROCm components to find required components
+make -f ROCm/rocm-build/ROCm.mk list_components
+# Build a single ROCm packages
+make -f ROCm/rocm-build/ROCm.mk T_rocblas
+
+# Find built packages in ubuntu20.04:
+out/ubuntu-20.04/20.04/deb/
+# Find built packages in ubuntu22.04:
+out/ubuntu-22.04/22.04/deb/
+
+# Find built logs in ubuntu20.04:
+out/ubuntu-20.04/20.04/logs/
+# Find built logs in ubuntu22.04:
+out/ubuntu-22.04/22.04/logs/
+# All logs pertaining to failed components, end with .errrors extension.
+out/ubuntu-22.04/22.04/logs/rocblas.errors          # Example
+# All logs pertaining to building components, end with .inprogress extension.
+out/ubuntu-22.04/22.04/logs/rocblas.inprogress  # Example
+# All logs pertaining to passed components, use the component names.
+out/ubuntu-22.04/22.04/logs/rocblas             # Example
+```
+
+Note: [Overview for ROCm.mk](rocm-build/README.md)
 
 ## ROCm documentation
 
