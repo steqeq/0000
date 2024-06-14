@@ -79,6 +79,8 @@ subtrees:
       - file: how-to/llm-fine-tuning-optimization/optimizing-triton-kernel.rst
         title: Optimizing Triton kernels
       - file: how-to/llm-fine-tuning-optimization/profiling-and-debugging.rst
+  - file: how-to/rocm-for-hpc/index.rst
+    title: Using ROCm for HPC
   - file: how-to/tuning-guides.md
     title: System optimization
     subtrees:
