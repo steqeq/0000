@@ -75,3 +75,13 @@ jobs:
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip;$(Agent.BuildDirectory)/rocm/hip/cmake
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rocSPARSE
+      publish: false
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Build.SourcesDirectory)/build/clients
+      contentsString: matrices/**
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: testMatrices
