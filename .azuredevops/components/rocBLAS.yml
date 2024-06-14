@@ -27,17 +27,17 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
-    - llvm-project
-    - ROCR-Runtime
-    - clr
-    - rocminfo
-    - rocprofiler-register
-    - rocm_smi_lib
-    - rocm-core
     - aomp
     - aomp-extras
-- name: testDependencies
+    - clr
+    - llvm-project
+    - rocm-cmake
+    - rocm-core
+    - rocm_smi_lib
+    - rocminfo
+    - rocprofiler-register
+    - ROCR-Runtime
+- name: rocmTestDependencies
   type: object
   default:
     - aomp
@@ -149,6 +149,9 @@ jobs:
   - task: DownloadPipelineArtifact@2
     inputs:
       targetPath: $(System.ArtifactsDirectory)
+      #   change this later
+      #   you can comment out the first build job and use the below lines to download a specific past build
+      #   this speeds up testing since you don't need to wait for the build job
       # project: ROCm-CI
       # buildType: specific
       # buildVersionToDownload: specific
@@ -192,13 +195,13 @@ jobs:
   - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        dependencyList: ${{ parameters.testDependencies }}
+        dependencyList: ${{ parameters.rocmTestDependencies }}
         dependencySource: staging
   # manual build case: triggered by ROCm/ROCm repo
   - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
-        dependencyList: ${{ parameters.testDependencies }}
+        dependencyList: ${{ parameters.rocmTestDependencies }}
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
