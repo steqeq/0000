@@ -14,8 +14,7 @@ Environment variables reference
 ROCm common and important Environment Variables
 ===============================================
 
-The following table contains the environment variables that are most commonly use in the ROCm software stack. These variables are necessary or useful for the simple tasks, like build a ROCm library or run applications on AMD cards.
-
+The following table contains the environment variables that are most commonly used in the ROCm software stack. These variables can be useful for simple tasks, like building a ROCm library or running applications on AMD cards.
 .. list-table::
     :header-rows: 1
 
