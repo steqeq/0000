@@ -213,7 +213,7 @@ AMD rocclr environment variables at release build:
     * - | ``OCL_SET_SVM_SIZE``
         | Set Shared Virtual Memory (SVM) space size for discrete GPU.
       - ``65536``
-      - 
+      - Unit: Byte
 
     * - | ``OCL_STUB_PROGRAMS``
         | Enables OCL programs stubing.
@@ -261,9 +261,10 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``CQ_THREAD_STACK_SIZE``
-        | The default command queue thread stack size
-      - ``size_t``
-      - 256*Ki
+        | The default command queue thread stack size.
+      - ``262144``
+      - | Unit: Byte 
+        | The default value corresponds to  256  kilobyte (kB). 
 
     * - | ``CUDA_VISIBLE_DEVICES``
         | Only devices whose index is present in the sequence are visible to HIP
@@ -278,8 +279,8 @@ AMD rocclr environment variables at release build:
 
     * - | ``DEBUG_CLR_LIMIT_BLIT_WG``
         | Limit the number of workgroups in blit operations.
-      - ``uint``
       - 16
+      -
 
     * - | ``DISABLE_DEFERRED_ALLOC``
         | Disables deferred memory allocation on device.
@@ -373,9 +374,9 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_FORCE_BLIT_COPY_SIZE``
-        | Size in KB of the threshold below which to force blit instead for sdma
-      - ``size_t``
+        | Size in KB of the threshold below which to force blit instead for sdma.
       - 0
+      - Unit: kilobyte (kB)
 
     * - | ``GPU_FORCE_QUEUE_PROFILING``
         | Force command queue profiling by default.
@@ -402,9 +403,9 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_MAX_COMMAND_BUFFERS``
-        | The maximum number of command buffers allocated per queue
-      - ``uint``
-      - 8
+        | The maximum number of command buffers allocated per queue.
+      - ``8``
+      -
 
     * - | ``GPU_MAX_HEAP_SIZE``
         | Set maximum size of the GPU heap to % of board memory.
@@ -423,17 +424,18 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_MAX_REMOTE_MEM_SIZE``
         | Maximum size that allows device memory substitution with system.
       - ``2``
-      - | Unit: kilobyte (kB)
+      - Unit: kilobyte (kB)
 
     * - | ``GPU_MAX_SUBALLOC_SIZE``
-        | The maximum size accepted for suballocaitons in KB
-      - ``size_t``
-      - 4096
+        | The maximum size accepted for suballocaitons in KB.
+      - ``4096``
+      - Unit: kilobyte (kB)
 
     * - | ``GPU_MAX_USWC_ALLOC_SIZE``
-        | Set a limit in Mb on the maximum USWC allocation size, -1 = No limit
-      - ``uint``
-      - 2048
+        | Set a limit in Mb on the maximum USWC allocation size.
+      - ``2048``
+      - | Unit: megabyte (MB)
+        | -1: No limit
 
     * - | ``GPU_MAX_WORKGROUP_SIZE``
         | Maximum number of workitems in a workgroup for GPU, 0 -use default
@@ -447,9 +449,10 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_NUM_COMPUTE_RINGS``
-        | GPU number of compute rings. 0 - disabled, 1, 2, ... - the number of compute rings
-      - ``uint``
-      - 2
+        | GPU number of compute rings.
+      - ``2``
+      - | 0: Disable
+        | 1, 2, ...: The number of compute rings.
 
     * - | ``GPU_NUM_MEM_DEPENDENCY``
         | Number of memory objects for dependency tracking.
@@ -457,34 +460,34 @@ AMD rocclr environment variables at release build:
       -
 
     * - | ``GPU_PINNED_MIN_XFER_SIZE``
-        | The minimal buffer size for pinned read/write transfers in MiB
-      - ``size_t``
-      - 128
+        | The minimal buffer size for pinned read/write transfers in MB.
+      - ``128``
+      - Unit: megabyte (MB)
 
     * - | ``GPU_PINNED_XFER_SIZE``
-        | The buffer size for pinning in read/write transfers in MiB
-      - ``size_t``
-      - 32
+        | The buffer size for pinning in read/write transfers in MB.
+      - ``32``
+      - Unit: megabyte (MB)
 
     * - | ``GPU_PRINT_CHILD_KERNEL``
-        | Prints the specified number of the child kernels
-      - ``uint``
-      - 0
+        | Prints the specified number of the child kernels.
+      - ``0``
+      -
 
     * - | ``GPU_RESOURCE_CACHE_SIZE``
-        | The resource cache size in MB
-      - ``size_t``
-      - 64
+        | The resource cache size in MB.
+      - ``64``
+      - Unit: megabyte (MB)
 
     * - | ``GPU_SINGLE_ALLOC_PERCENT``
-        | Maximum size of a single allocation as percentage of total  
-      - ``uint``
-      - 85
+        | Maximum size of a single allocation as percentage of total.
+      - ``85``
+      - 
 
     * - | ``GPU_STAGING_BUFFER_SIZE``
-        | Size of the GPU staging buffer in MiB
-      - ``uint``
-      - 4
+        | Size of the GPU staging buffer in megabyte (MB).
+      - ``4``
+      - Unit: megabyte (MB)
 
     * - | ``GPU_STREAMOPS_CP_WAIT``
         | Force the stream memory operation to wait on CP.
@@ -499,17 +502,17 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_WAVES_PER_SIMD``
-        | Force the number of waves per SIMD , 1-10
-      - ``uint``
-      - 0
+        | Force the number of waves per SIMD. 1-10
+      - ``0``
+      - 
 
     * - | ``GPU_XFER_BUFFER_SIZE``
-        | Transfer buffer size for image copy optimization in KB
-      - ``size_t``
-      - 0
-
+        | Transfer buffer size for image copy optimization in KB.
+      - ``0``
+      - Unit: kilobyte (kB)
+        
     * - | ``HIP_FORCE_DEV_KERNARG``
-        | Force device mem for kernel args.
+        | Force device memory for kernel args.
       - ``0``
       - | 0: Disable
         | 1: Enable
@@ -575,17 +578,17 @@ AMD rocclr environment variables at release build:
 
     * - | ``HIPCC_VERBOSE``
         | How much extra info to show during build. E.g: compiler flags, paths.
-      - ``uint``
-      - 0
+      - ``0``
+      - 
 
     * - | ``HIPRTC_COMPILE_OPTIONS_APPEND``
-        | Set compile options needed for hiprtc compilation
-      - ``cstring``
+        | Set compile options needed for hiprtc compilation.
+      - Unset by default.
       - 
 
     * - | ``HIPRTC_LINK_OPTIONS_APPEND``
-        | Set link options needed for hiprtc compilation
-      - ``cstring``
+        | Set link options needed for hiprtc compilation.
+      - Unset by default.
       - 
 
     * - | ``HIPRTC_USE_RUNTIME_UNBUNDLER``
@@ -595,9 +598,10 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``HSA_KERNARG_POOL_SIZE``
-        | Kernarg pool size
-      - ``uint``
-      - 1024 * 1024
+        | Kernel arguments pool size.
+      - ``1048576``
+      - | Unit: Byte
+        | The default value corresponds to 1 megabyte (MB).
 
     * - | ``HSA_LOCAL_MEMORY_ENABLE``
         | Enable HSA device local memory usage.
@@ -631,9 +635,9 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``PAL_FORCE_ASIC_REVISION``
-        | Force a specific ASIC revision for all devices
-      - ``uint``
-      - 0
+        | Force a specific ASIC revision for all devices.
+      - ``0``
+      -
 
     * - | ``PAL_HIP_IPC_FLAG``
         | Enable interprocess flag for device allocation in PAL HIP
@@ -647,9 +651,9 @@ AMD rocclr environment variables at release build:
       - | Unit: kilobyte (kB)
 
     * - | ``PAL_RGP_DISP_COUNT``
-        | The number of dispatches for RGP capture with SQTT
-      - ``uint``
-      - 10000
+        | The number of dispatches for RGP capture with SQTT.
+      - ``10000``
+      -
 
     * - | ``REMOTE_ALLOC``
         | Use remote memory for the global heap allocation.
@@ -658,14 +662,15 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``ROC_ACTIVE_WAIT_TIMEOUT``
-        | Forces active wait of GPU interrupt for the timeout, us unit
-      - ``uint``
-      - 0
+        | Forces active wait of GPU interrupt for the timeout.
+      - ``0``
+      - Unit: microseconds (us)
 
     * - | ``ROC_AQL_QUEUE_SIZE``
-        | AQL queue size in AQL packets
-      - ``uint``
-      - 16384
+        | AQL queue size in AQL packets.
+      - ``16384``
+      - | Unit: Byte 
+        | The default value corresponds to 16 kilobyte (kB). 
 
     * - | ``ROC_CPU_WAIT_FOR_SIGNAL``
         | Enable CPU wait for dependent HSA signals.
@@ -681,18 +686,19 @@ AMD rocclr environment variables at release build:
 
     * - | ``ROC_GLOBAL_CU_MASK``
         | Sets a global CU mask, entered as hex value for all queues, Each active bit represents using one CU, e.g. ``0xf`` enables only 4 CUs
-      - ``cstring``
+      - Unset by default.
       - 
 
     * - | ``ROC_HMM_FLAGS``
-        | ROCm HMM configuration flags
-      - ``uint``
-      - 0
+        | ROCm HMM configuration flags.
+      - ``0``
+      - 
 
     * - | ``ROC_P2P_SDMA_SIZE``
-        | The minimum size in KB for P2P transfer with SDMA
-      - ``uint``
-      - 1024
+        | The minimum size in KB for P2P transfer with SDMA.
+      - ``1024``
+      - | Unit: kilobyte (kB) 
+        | The default value corresponds to 1 megabyte (MB).
 
     * - | ``ROC_SIGNAL_POOL_SIZE``
         | Initial size of HSA signal pool
@@ -719,7 +725,7 @@ AMD rocclr environment variables at release build:
 
     * - | ``ROCPROFILER_REGISTER_ROOT``
         | The path to the rocProfiler.
-      - ``cstring``
+      - Unset by default.
       - 
 
 AMD rocclr environment variables at debug build:
@@ -733,19 +739,20 @@ AMD rocclr environment variables at debug build:
       - **Usage**
 
     * - | ``AMD_OCL_SUBST_OBJFILE``
-        | Specify binary substitution config file for OpenCL
-      - ``cstring``
-      - 0
+        | Specify binary substitution config file for OpenCL.
+      - Unset by default.
+      - 
 
     * - | ``CPU_MEMORY_ALIGNMENT_SIZE``
-        | Size in bytes for the default alignment for guarded memory on CPU
-      - ``size_t``
+        | Size in bytes for the default alignment for guarded memory on CPU.
       - 256
+      - Unit: Byte 
 
     * - | ``CPU_MEMORY_GUARD_PAGE_SIZE``
-        | Size in KB of CPU memory guard page
-      - ``size_t``
-      - 64
+        | Size in KB of CPU memory guard page.
+      - ``64``
+      - | Unit: kilobyte (kB)
+        | The default value corresponds to 64 kilobyte (kB). 
 
     * - | ``CPU_MEMORY_GUARD_PAGES``
         | Use guard pages for CPU memory
@@ -754,14 +761,15 @@ AMD rocclr environment variables at debug build:
         | 1: Enable
 
     * - | ``MEMOBJ_BASE_ADDR_ALIGN``
-        | Alignment of the base address of any allocate memory object. The default value corresponds to 4 KiB.
-      - ``size_t``
-      - 4096
+        | Alignment of the base address of any allocate memory object.
+      - ``4096``
+      - | Unit: Byte 
+        | The default value corresponds to 4 kilobyte (kB). 
 
     * - | ``PARAMETERS_MIN_ALIGNMENT``
-        | Minimum alignment required for the abstract parameters stack
-      - ``size_t``
+        | Minimum alignment required for the abstract parameters stack.
       - 64 at ``__AVX512F__``, 32 at ``__AVX__`` and 16 at other cases
+      -
 
 ROCR-Runtime Environment Variables
 ==================================
@@ -785,7 +793,7 @@ AMD ROCR-Runtime environment variables:
       - ``0,GPU-DEADBEEFDEADBEEF``
 
     * - | ``HSA_SCRATCH_MEM``
-        | Maximum amount of scratch mem that can be used per process per gpu.
+        | Maximum amount of scratch memory that can be used per process per gpu.
       -
       -
 
