@@ -8,7 +8,7 @@
 Installing ROCm and machine learning frameworks
 ***********************************************
 
-Before getting started, install ROCm and supported machine learning frameworks.
+Before getting started, install ROCm™ and supported machine learning frameworks.
 
 .. grid:: 1
 
@@ -21,7 +21,7 @@ Before getting started, install ROCm and supported machine learning frameworks.
 If you’re new to ROCm, refer to the :doc:`ROCm quick start install guide for Linux
 <rocm-install-on-linux:tutorial/quick-start>`.
 
-If you’re using a Radeon GPU for graphics-accelerated applications, refer to the
+If you’re using a Radeon™ GPU for graphics-accelerated applications, refer to the
 :doc:`Radeon installation instructions <radeon:docs/install/install-radeon>`.
 
 ROCm supports two methods for installation. There is no difference in the final ROCm installation between these two

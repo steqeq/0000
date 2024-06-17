@@ -6,11 +6,11 @@
 Fine-tuning LLMs and inference optimization
 *******************************************
 
-ROCm empowers the fine-tuning and optimization of large language models, making them accessible and efficient for
+ROCm™ empowers the fine-tuning and optimization of large language models, making them accessible and efficient for
 specialized tasks. ROCm supports the broader AI ecosystem to ensure seamless integration with open frameworks,
 models, and tools.
 
-For more information, see `What is ROCm? <https://rocm.docs.amd.com/en/latest/what-is-rocm.html>`_
+For more information, see :doc:`What is ROCm? <../../what-is-rocm>`.
 
 Throughout the following topics, this guide discusses the goals and :ref:`challenges of fine-tuning a large language
 model <fine-tuning-llms-concept-challenge>` like Llama 2. Then, it introduces :ref:`common methods of optimizing your
