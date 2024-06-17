@@ -138,10 +138,10 @@ For details usage and examples of using these tools, refer to the
 `Introduction to profiling tools for AMD hardware <https://rocm.blogs.amd.com/software-tools-optimization/profilers/README.html>`_
 developer blog.
 
-Debugging with ROCm Debug Agent
+Debugging with ROCr Debug Agent
 ===============================
 
-ROCm Debug Agent (:doc:`ROCdebug-agent <rocr_debug_agent:index>`) is a library that can be loaded by the ROCm platform
+:doc:`ROCr Debug Agent <rocr_debug_agent:index>`) is a library that can be loaded by the ROCm platform
 runtime (:doc:`ROCr <rocr-runtime:index>`) to provide the following functionalities for all AMD accelerators and GPUs
 supported by the ROCm Debugger API (:doc:`ROCdbgapi <rocdbgapi:index>`).
 
@@ -155,9 +155,9 @@ Debugging memory access faults
 ------------------------------
 
 Identifying a faulting kernel is often enough to triage a memory access fault. To that end, the
-`ROCm Debug Agent <https://github.com/ROCm/rocr_debug_agent/>`_ can trap a memory access fault and provide a dump of all
+`ROCr Debug Agent <https://github.com/ROCm/rocr_debug_agent/>`_ can trap a memory access fault and provide a dump of all
 active wavefronts that caused the error as well as the name of the kernel. The
-`AMD ROCm Debug Agent Library README <https://github.com/ROCm/rocr_debug_agent/blob/master/README.md>`_ provides full
+`ROCr Debug Agent Library README <https://github.com/ROCm/rocr_debug_agent/blob/master/README.md>`_ provides full
 instructions, but in brief:
 
 *  Compiling with ``-ggdb -O0`` is recommended but not required.
