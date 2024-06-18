@@ -1455,7 +1455,7 @@ Note: These complex operations are equivalent to corresponding types/functions o
       * `HIP_ROCclr`
     * NVIDIA platform
       * `HIP_PLATFORM_NVCC`
-* The [hcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hip/hcc_detail) and [nvcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hips/nvcc_detail) directories in the clr repository are removed.
+* The `hcc_detail` and `nvcc_detail` directories in the clr repository are removed.
 * Deprecated gcnArch is removed from hip device struct `hipDeviceProp_t`.
 * Deprecated `enum hipMemoryType memoryType;` is removed from HIP struct `hipPointerAttribute_t` union.
 
