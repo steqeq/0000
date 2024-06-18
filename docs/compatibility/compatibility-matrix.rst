@@ -94,7 +94,6 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`AMD SMI <amdsmi:index>`,24.4.1,23.4.2
       :doc:`HIPIFY <hipify:index>`,17.0.0,17.0.0
       :doc:`ROCdbgapi <rocdbgapi:index>`,0.71.0,0.71.0
-      `ROCm Debug Agent (ROCdebug-agent) <https://github.com/ROCm/rocr_debug_agent>`_,2.0.3,2.0.3
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0
       :doc:`ROCProfiler <rocprofiler:index>`,2.0.60100,2.0.0
       `rocprofiler-register <https://github.com/ROCm/rocprofiler-register>`_,0.3.0,N/A
@@ -104,10 +103,10 @@ Use this matrix to view the ROCm compatibility across successive major and minor
       :doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`,14.1.0,13.2.0
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.0.0,6.0.0
       :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,rocm-6.1.0,rocm-6.0.0
+      :doc:`ROCr Debug Agent <rocr_debug_agent:index>`,2.0.3,2.0.3
       :doc:`TransferBench <transferbench:index>`,1.48,1.46
       ,,
       COMPILERS:,,
-      `AOMP <https://github.com/ROCm/aomp>`_,17.60.0,17.60.0
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,0.5.0,0.5.0
       `Flang <https://github.com/ROCm/flang>`_,17.0.0.24103,17.0.0.23483
       `llvm-project <https://github.com/ROCm/llvm-project>`_,17.0.0.24103,17.0.0.23483
