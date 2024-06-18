@@ -299,7 +299,11 @@ HIP only supports LUID on Windows OS.
       * `HIP_ROCclr`
     * NVIDIA platform
       * `HIP_PLATFORM_NVCC`
+<<<<<<< HEAD
 * File directories in the clr repository are removed, for more details see https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/hcc_detail and https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/nvcc_detail
+=======
+* The `hcc_detail` and `nvcc_detail` directories in the clr repository are removed.
+>>>>>>> ebfec1b7 (remove nvcc (#3313))
 * Deprecated gcnArch is removed from hip device struct `hipDeviceProp_t`.
 * Deprecated `enum hipMemoryType memoryType;` is removed from HIP struct `hipPointerAttribute_t` union.
 
