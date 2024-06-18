@@ -49,12 +49,12 @@ article_pages = [
     {
         "file":"about/release-notes",
         "os":["linux", "windows"],
-        "date":"2024-01-31"
+        "date":"2024-05-08"
     },
     {
         "file":"about/CHANGELOG",
         "os":["linux", "windows"],
-        "date":"2024-01-31"
+        "date":"2024-05-08"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
