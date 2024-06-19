@@ -15,7 +15,7 @@ ifeq (${ENABLE_ADDRESS_SANITIZER},true)
 	SANITIZER_FLAG=-a
 endif
 
-export INFRA_REPO:=ROCm/rocm-build
+export INFRA_REPO:=ROCm/tools/rocm-build
 
 OUT_DIR:=$(shell . ${INFRA_REPO}/envsetup.sh >/dev/null 2>&1 ; echo $${OUT_DIR})
 ROCM_INSTALL_PATH:=$(shell . ${INFRA_REPO}/envsetup.sh >/dev/null 2>&1 ; echo $${ROCM_INSTALL_PATH})
@@ -105,7 +105,7 @@ $(call adddep,hipblas,hip_on_rocclr rocblas rocsolver lightning hipcc)
 $(call adddep,hipblaslt,hip_on_rocclr openmp_extras hipblas lightning hipcc)
 $(call adddep,hipcub,hip_on_rocclr rocprim lightning hipcc)
 $(call adddep,hipfft,hip_on_rocclr openmp_extras rocfft rocrand hiprand lightning hipcc)
-$(call adddep,hipfort,hipblas hipsparse hipfft hipsolver lightning hipcc)
+$(call adddep,hipfort,rocblas hipblas rocsparse hipsparse rocfft hipfft rocrand hiprand rocsolver hipsolver lightning hipcc)
 $(call adddep,hiprand,hip_on_rocclr rocrand lightning hipcc)
 $(call adddep,hipsolver,hip_on_rocclr rocblas rocsolver rocsparse lightning hipcc hipsparse)
 $(call adddep,hipsparse,hip_on_rocclr rocsparse lightning hipcc)

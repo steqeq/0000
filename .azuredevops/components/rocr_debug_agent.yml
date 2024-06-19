@@ -15,11 +15,13 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
+    - rocm-cmake
     - clr
     - llvm-project
     - ROCdbgapi
     - rocminfo
     - ROCR-Runtime
+    - rocprofiler-register
 
 jobs:
 - job: rocr_debug_agent
@@ -56,5 +58,6 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake;$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
