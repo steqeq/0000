@@ -5,6 +5,30 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
+- name: aptPackages
+  type: object
+  default:
+    - libglfw3-dev
+- name: rocmDependencies
+  type: object
+  default:
+    - AMDMIGraphX
+    - clr
+    - hipBLAS
+    - hipCUB
+    - HIPIFY
+    - hipRAND
+    - hipSOLVER
+    - hipSPARSE
+    - llvm-project
+    - rocBLAS
+    - rocPRIM
+    - rocprofiler-register
+    - ROCR-Runtime
+    - rocRAND
+    - rocSOLVER
+    - rocSPARSE
+    - rocThrust
 
 jobs:
 - job: rocm_examples
@@ -20,5 +44,30 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  # CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: staging
+  # manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      # https://github.com/ROCm/HIP/issues/2203
+      extraBuildFlags: >-
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DROCM_ROOT=$(Agent.BuildDirectory)/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DCMAKE_HIP_ARCHITECTURES=gfx1030;gfx1100
+        -DCMAKE_EXE_LINKER_FLAGS=-fgpu-rdc
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
