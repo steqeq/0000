@@ -17,7 +17,7 @@ Use this matrix to view the ROCm compatibility across successive major and minor
 
       :doc:`Operating Systems <rocm-install-on-linux:reference/system-requirements>`, "Ubuntu 22.04.4, 22.04.3","Ubuntu 22.04.4, 22.04.3"
       ,"Ubuntu 20.04.6, 20.04.5","Ubuntu 20.04.6, 20.04.5"
-      ,"RHEL 9.3, 9.2","RHEL 9.3, 9.2"
+      ,"RHEL 9.4 [#red-hat94]_, 9.3, 9.2","RHEL 9.3, 9.2"
       ,"RHEL 8.9, 8.8","RHEL 8.9, 8.8"
       ,"SLES 15 SP5, SP4","SLES 15 SP5, SP4"
       ,CentOS 7.9,CentOS 7.9
@@ -121,7 +121,8 @@ Use this matrix to view the ROCm compatibility across successive major and minor
 
 .. rubric:: Footnotes
 
+.. [#red-hat94] **For ROCm 6.1** - RHEL 9.4 is supported only on AMD Instinct MI300A.
 .. [#oracle89] **For ROCm 6.1.1** - Oracle Linux is supported only on AMD Instinct MI300X.
-.. [#] **For ROCm 6.1** - MI300A (gfx942) is supported on Ubuntu 22.04.4, RHEL 9.3 & 8.9 and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.4.
+.. [#] **For ROCm 6.1** - MI300A (gfx942) is supported on Ubuntu 22.04.4, RHEL 9.4, RHEL 9.3, RHEL 8.9, and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.4.
 .. [#] **For ROCm 6.0** - MI300A (gfx942) is supported on Ubuntu 22.04.3, RHEL 8.9 and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.3.
 
