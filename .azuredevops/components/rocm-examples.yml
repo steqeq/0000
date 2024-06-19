@@ -66,8 +66,6 @@ jobs:
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DROCM_ROOT=$(Agent.BuildDirectory)/rocm
-        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-        -DAMDGPU_TARGETS=gfx1030;gfx1100
         -DCMAKE_HIP_ARCHITECTURES=gfx1030;gfx1100
         -DCMAKE_EXE_LINKER_FLAGS=-fgpu-rdc
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
