@@ -6,7 +6,7 @@
 Using ROCm for HPC
 ******************
 
-The ROCm™ open-source software stack is optimized to extract the best high
+The ROCm open-source software stack is optimized to extract the best high
 performance computing (HPC) workload performance from AMD Instinct™ accelerators
 while maintaining compatibility with industry software frameworks.
 
@@ -17,7 +17,7 @@ community, making it a powerful and accessible solution for leveraging the full
 potential of AMD accelerators' capabilities in diverse computational
 applications.
 
-For more information, see :doc:`What is ROCm? <../../what-is-rocm>`.
+* For more information, see :doc:`What is ROCm? <../../what-is-rocm>`.
 
 * For guidance on installing ROCm, see :doc:`rocm-install-on-linux:index`. See
   the :doc:`../../compatibility/compatibility-matrix` for details on hardware
@@ -81,7 +81,10 @@ and deployment using AMD Instinct accelerators.
 
       * -
         - `MILC <https://github.com/amd/InfinityHub-CI/tree/main/milc/>`_
-        - Description
+        - Set of research codes developed by the MIMD Lattice Computation (MILC)
+          collaboration for doing simulations of four-dimensional SU(3) lattice
+          gauge theory on MIMD parallel machines scaling from single-processor
+          workstations to HPC systems.
 
       * -
         - `PIConGPU <https://github.com/amd/InfinityHub-CI/tree/main/picongpu>`_
@@ -110,9 +113,9 @@ and deployment using AMD Instinct accelerators.
         - `GROMACS with HIP (AMD implementation) <https://github.com/amd/InfinityHub-CI/tree/main/gromacs>`_
         - Recipe based on an
           `AMD fork of the GROMACS project <https://github.com/ROCm/gromacs>`_
-          optimized for AMD accelerators. GROMACS is a versatile package to perform
-          molecular dynamics simulations of systems with hundreds to millions of 
-          particles.
+          optimized for AMD accelerators. GROMACS is a versatile package to
+          perform molecular dynamics simulations of systems with hundreds to
+          millions of particles.
 
       * -
         - `LAMMPS <https://github.com/amd/InfinityHub-CI/tree/main/lammps>`_
