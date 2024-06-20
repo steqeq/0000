@@ -6,11 +6,11 @@
 Using ROCm for AI
 *****************
 
-ROCm™ offers a suite of optimizations for AI workloads from large language models (LLMs) to image and video detection and
+ROCm offers a suite of optimizations for AI workloads from large language models (LLMs) to image and video detection and
 recognition, life sciences and drug discovery, autonomous driving, robotics, and more. ROCm proudly supports the broader
 AI software ecosystem, including open frameworks, models, and tools.
 
-For more information, see :doc:`What is ROCm? <../../what-is-rocm>`.
+For more information, see `What is ROCm? <https://rocm.docs.amd.com/en/latest/what-is-rocm.html>`_
 
 In this guide, you'll learn about:
 

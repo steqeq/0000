@@ -161,7 +161,6 @@ kernels by configuring the ``exllama_config`` parameter as the following.
                            base_model_name,
                            device_map="auto",
                            quantization_config=gptq_config)
-
 bitsandbytes
 ============
 

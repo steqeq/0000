@@ -6,7 +6,7 @@
 Fine-tuning and inference
 *************************
 
-Fine-tuning using ROCm™ involves leveraging AMD's GPU-accelerated :doc:`libraries <rocm:reference/api-libraries>` and
+Fine-tuning using ROCm involves leveraging AMD's GPU-accelerated :doc:`libraries <rocm:reference/api-libraries>` and
 :doc:`tools <rocm:reference/rocm-tools>` to optimize and train deep learning models. ROCm provides a comprehensive
 ecosystem for deep learning development, including open-source libraries for optimized deep learning operations and
 ROCm-aware versions of :doc:`deep learning frameworks <../deep-learning-rocm>` such as PyTorch, TensorFlow, and JAX.
