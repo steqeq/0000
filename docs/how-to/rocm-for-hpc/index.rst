@@ -27,7 +27,9 @@ Some of the most popular HPC frameworks are part of the ROCm platform, including
 those to help parallelize operations across multiple accelerators and servers,
 handle memory hierarchies, and solve linear systems.
 
-.. image:: ../../data/how-to/rocm-for-hpc/hpc-stack-6_17_2024.jpeg
+.. image:: ../../data/how-to/rocm-for-hpc/hpc-stack-2024_6_20.png
+   :align: center
+   :alt: Software and hardware ecosystem surrounding ROCm and AMD Instinct for HPC
 
 The following catalog of GPU-accelerated solutions includes a vast set of
 platform-compatible HPC applications, including those for astrophysics, climate 
@@ -63,7 +65,7 @@ and deployment using AMD Instinct accelerators.
 
       * - Physics
         - `Chroma <https://github.com/amd/InfinityHub-CI/tree/main/chroma/>`_
-        - Data-parallel programming constructs for lattice field theory, lattice
+        - Data-parallel programming constructs for lattice field theory -- lattice
           quantum chromodynamics (QCD) in particular. It's used to simulate the
           behavior of quarks and gluons. Chroma uses SciDAC QDP++ data-parallel
           programming (in C++) that presents a single high-level code image to
@@ -104,10 +106,10 @@ and deployment using AMD Instinct accelerators.
         - `SPECFEM3D Cartesian <https://github.com/amd/InfinityHub-CI/tree/main/specfem3d>`_
         - Simulates acoustic (fluid), elastic (solid), coupled acoustic/elastic,
           poroelastic or seismic wave propagation in any type of conforming mesh
-          of hexahedra (structured or not.) It can, for instance, model seismic
-          waves propagating in sedimentary basins or any other regional
-          geological model following earthquakes. It can also be used for
-          non-destructive testing or for ocean acoustics
+          of hexahedra (structured or otherwise). It can, for instance, model
+          seismic waves propagating in sedimentary basins or any other regional
+          geological model following earthquakes. It is also used for
+          non-destructive testing and for ocean acoustics.
 
       * - Molecular dynamics
         - `GROMACS with HIP (AMD implementation) <https://github.com/amd/InfinityHub-CI/tree/main/gromacs>`_
@@ -130,7 +132,7 @@ and deployment using AMD Instinct accelerators.
         - Portable framework written in modern Fortran for high-order spectral
           element flow simulations. Using an object-oriented design, Neko allows
           for multi-tier abstraction for solver stacks and allows Neko to be
-          built against various typos of hardware backends.
+          built against various types of hardware backends.
 
       * -
         - `nekRS <https://github.com/amd/InfinityHub-CI/tree/main/nekrs>`_
@@ -234,3 +236,4 @@ and deployment using AMD Instinct accelerators.
           :doc:`HIP <hip:index>`, OpenMP, CUDA, and others, all of which are
           abstracted away by Kokkos.
 
+To learn about ROCm for AI applications, see :doc:`../rocm-for-ai/index`.
