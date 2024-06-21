@@ -17,7 +17,7 @@ following section.
 
 ## ROCm component licenses
 
-ROCm is released by Advanced Micro Devices, Inc. and is licensed per component separately.
+ROCm is released by Advanced Micro Devices, Inc. (AMD) and is licensed per component separately.
 The following table is a list of ROCm components with links to their respective license
 terms. These components may include third party components subject to
 additional licenses. Please review individual repositories for more information.
@@ -97,7 +97,7 @@ repositories to distinguish from open sourced packages.
 The following additional terms and conditions apply to your use of ROCm technical documentation.
 ```
 
-©2023 Advanced Micro Devices, Inc. All rights reserved.
+©2023 - 2024 Advanced Micro Devices, Inc. All rights reserved.
 
 The information presented in this document is for informational purposes only
 and may contain technical inaccuracies, omissions, and typographical errors. The
@@ -130,8 +130,8 @@ companies.
 
 :::{attention}
 AQL Profiler and AOCC CPU optimization are both provided in binary form, each
-subject to the license agreement enclosed in the directory for the binary and is
-available here: `/opt/rocm/share/doc/rocm-llvm-alt/EULA`. By using, installing,
+subject to the license agreement enclosed in the directory for the binary available
+in `/opt/rocm/share/doc/hsa-amd-aqlprofile/EULA`. By using, installing,
 copying or distributing AQL Profiler and/or AOCC CPU Optimizations, you agree to
 the terms and conditions of this license agreement. If you do not agree to the
 terms of this agreement, do not install, copy or use the AQL Profiler and/or the
@@ -139,9 +139,8 @@ AOCC CPU Optimizations.
 :::
 
 For the rest of the ROCm packages, you can find the licensing information at the
-following location: `/opt/rocm/share/doc/<component-name>/`
+following location: `/opt/rocm/share/doc/<component-name>/` or in the locations
+specified in the preceding table.
 
-For example, you can fetch the licensing information of the `_amd_comgr_`
-component (Code Object Manager) from the `amd_comgr` folder. A file named
-`LICENSE.txt` contains the license details at:
-`/opt/rocm-5.4.3/share/doc/amd_comgr/LICENSE.txt`
+For example, you can fetch the licensing information of the `amd_comgr`
+component (Code Object Manager) from the `/opt/rocm/share/doc/amd_comgr/LICENSE.txt` file.
