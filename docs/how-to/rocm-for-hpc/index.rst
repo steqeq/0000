@@ -37,10 +37,10 @@ and weather, computational chemistry, computational fluid dynamics, earth
 science, genomics, geophysics, molecular dynamics, and physics computing.
 
 Refer to the resources in the following table for instructions on building,
-running, and deployment on ROCm-capable systems with AMD Instinct accelerators.
-Each build container provides parameters to specify different source code
-branches, release versions of ROCm, OpenMPI, UCX, and different versions Ubuntu
-to be built on.
+running, and deploying these applications on ROCm-capable systems with AMD
+Instinct accelerators. Each build container provides parameters to specify
+different source code branches, release versions of ROCm, OpenMPI, UCX, and
+Ubuntu versions.
 
 .. _hpc-apps:
 

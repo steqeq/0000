@@ -237,6 +237,7 @@ OpenCV
 OpenFabrics
 OpenGL
 OpenMP
+OpenMPI
 OpenSSL
 OpenVX
 PCI
