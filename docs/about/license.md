@@ -84,7 +84,6 @@ additional licenses. Please review individual repositories for more information.
 | [ROCmValidationSuite](https://github.com/ROCm/ROCmValidationSuite/) | [MIT](https://github.com/ROCm/ROCmValidationSuite/blob/master/LICENSE) |
 | hsa-amd-aqlprofile | [AMD Software EULA](https://www.amd.com/en/legal/eula/amd-software-eula.html)
 
-
 Open sourced ROCm components are released via public GitHub
 repositories, packages on `https://github.com/ROCm` and other distribution channels.
 Proprietary products are only available with special permission from AMD. Currently, only
@@ -129,7 +128,7 @@ companies.
 
 :::{attention}
 AQL Profiler and AOCC CPU optimization are both provided in binary form, each
-subject to the license agreement enclosed in the directory for the binary available 
+subject to the license agreement enclosed in the directory for the binary available
 in `/opt/rocm/share/doc/hsa-amd-aqlprofile/EULA`. By using, installing,
 copying or distributing AQL Profiler and/or AOCC CPU Optimizations, you agree to
 the terms and conditions of this license agreement. If you do not agree to the
@@ -138,9 +137,8 @@ AOCC CPU Optimizations.
 :::
 
 For the rest of the ROCm packages, you can find the licensing information at the
-following location: `/opt/rocm/share/doc/<component-name>/` or in the locations 
+following location: `/opt/rocm/share/doc/<component-name>/` or in the locations
 specified in the preceding table.
 
 For example, you can fetch the licensing information of the `amd_comgr`
 component (Code Object Manager) from the `/opt/rocm/share/doc/amd_comgr/LICENSE.txt` file.
-
