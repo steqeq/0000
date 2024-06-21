@@ -87,8 +87,8 @@ additional licenses. Please review individual repositories for more information.
 | hsa-amd-aqlprofile | [AMD Software EULA](https://www.amd.com/en/legal/eula/amd-software-eula.html)
 
 Open sourced ROCm components are released via public GitHub
-repositories, packages on `https://repo.radeon.com` and other distribution channels.
-Proprietary products are only available on `https://repo.radeon.com`. Currently, only
+repositories, packages on [https://repo.radeon.com](https://repo.radeon.com) and other distribution channels.
+Proprietary products are only available on [https://repo.radeon.com](https://repo.radeon.com). Currently, only
 one component of ROCm, `rocm-llvm-alt` is governed by a proprietary license.
 Proprietary components are organized in a proprietary subdirectory in the package
 repositories to distinguish from open sourced packages.
