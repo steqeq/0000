@@ -32,6 +32,7 @@ additional licenses. Please review individual repositories for more information.
 | [MIOpen](https://github.com/ROCm/MIOpen/) | [MIT](https://github.com/ROCm/MIOpen/blob/develop/LICENSE.txt) |
 | [MIVisionX](https://github.com/ROCm/MIVisionX/) | [MIT](https://github.com/ROCm/MIVisionX/blob/develop/LICENSE.txt) |
 | [AMD Common Language Runtime (CLR)](https://github.com/ROCm/clr) | [MIT](https://github.com/ROCm/clr/blob/develop/LICENCE) |
+| [ROCm-Core](https://github.com/ROCm/rocm-core) | [MIT](https://github.com/ROCm/rocm-core/blob/master/copyright) |
 | [hipamd](https://github.com/ROCm/clr/tree/develop/hipamd) | [MIT](https://github.com/ROCm/clr/blob/develop/hipamd/LICENSE.txt) |
 | [ROCm-OpenCL-Runtime](https://github.com/ROCm/clr/tree/develop/opencl) | [MIT](https://github.com/ROCm/clr/blob/develop/opencl/LICENSE.txt) |
 | [Tensile](https://github.com/ROCm/Tensile/) | [MIT](https://github.com/ROCm/Tensile/blob/develop/LICENSE.md) |
@@ -75,7 +76,8 @@ additional licenses. Please review individual repositories for more information.
 | [ROCm CMake](https://github.com/ROCm/rocm-cmake/) | [MIT](https://github.com/ROCm/rocm-cmake/blob/develop/LICENSE) |
 | [ROCdbgapi](https://github.com/ROCm/ROCdbgapi/) | [MIT](https://github.com/ROCm/ROCdbgapi/blob/amd-staging/LICENSE.txt) |
 | [ROCgdb](https://github.com/ROCm/ROCgdb/) | [GNU General Public License v2.0](https://github.com/ROCm/ROCgdb/blob/amd-master/COPYING) |
-| [ROCm SMI Lib](https://github.com/ROCm/rocm_smi_lib/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocm_smi_lib/blob/develop/License.txt) |
+| [ROCm SMI Lib](https://github.com/ROCm/rocm_smi_lib/) | [MIT](https://github.com/ROCm/rocm_smi_lib/blob/develop/License.txt) |
+| [AMD SMI](https://github.com/ROCm/amdsmi) | [MIT](https://github.com/ROCm/amdsmi/blob/develop/LICENSE) |
 | [rocminfo](https://github.com/ROCm/rocminfo/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocminfo/blob/amd-staging/License.txt) |
 | [ROCProfiler](https://github.com/ROCm/rocprofiler/) | [MIT](https://github.com/ROCm/rocprofiler/blob/amd-master/LICENSE) |
 | [ROCTracer](https://github.com/ROCm/roctracer/) | [MIT](https://github.com/ROCm/roctracer/blob/amd-master/LICENSE) |
@@ -85,8 +87,8 @@ additional licenses. Please review individual repositories for more information.
 | hsa-amd-aqlprofile | [AMD Software EULA](https://www.amd.com/en/legal/eula/amd-software-eula.html)
 
 Open sourced ROCm components are released via public GitHub
-repositories, packages on `https://github.com/ROCm` and other distribution channels.
-Proprietary products are only available with special permission from AMD. Currently, only
+repositories, packages on `https://repo.radeon.com` and other distribution channels.
+Proprietary products are only available on `https://repo.radeon.com`. Currently, only
 one component of ROCm, `rocm-llvm-alt` is governed by a proprietary license.
 Proprietary components are organized in a proprietary subdirectory in the package
 repositories to distinguish from open sourced packages.
