@@ -1,13 +1,13 @@
 .. meta::
    :description: How to use ROCm for HPC
-   :keywords: ROCm, AI, high performance computing, HPC, usage, tutorial
+   :keywords: ROCm, AI, high performance computing, HPC
 
 ******************
 Using ROCm for HPC
 ******************
 
-The ROCm open-source software stack is optimized to extract the best high
-performance computing (HPC) workload performance from AMD Instinct™ accelerators
+The ROCm open-source software stack is optimized to extract high-performance
+computing (HPC) workload performance from AMD Instinct™ accelerators
 while maintaining compatibility with industry software frameworks.
 
 ROCm enhances support and access for developers by providing streamlined and
@@ -34,9 +34,13 @@ handle memory hierarchies, and solve linear systems.
 The following catalog of GPU-accelerated solutions includes a vast set of
 platform-compatible HPC applications, including those for astrophysics, climate 
 and weather, computational chemistry, computational fluid dynamics, earth
-science, genomics, geophysics, molecular dynamics, and physics computing. Refer
-to the resources in the following table for instructions on building, running,
-and deployment using AMD Instinct accelerators.
+science, genomics, geophysics, molecular dynamics, and physics computing.
+
+Refer to the resources in the following table for instructions on building,
+running, and deployment on ROCm-capable systems with AMD Instinct accelerators.
+Each build container provides parameters to specify different source code
+branches, release versions of ROCm, OpenMPI, UCX, and different versions Ubuntu
+to be built on.
 
 .. _hpc-apps:
 
@@ -65,12 +69,12 @@ and deployment using AMD Instinct accelerators.
 
       * - Physics
         - `Chroma <https://github.com/amd/InfinityHub-CI/tree/main/chroma/>`_
-        - Data-parallel programming constructs for lattice field theory -- lattice
-          quantum chromodynamics (QCD) in particular. It's used to simulate the
+        - Data-parallel programming constructs for lattice field theory -- in particular, lattice
+          quantum chromodynamics (QCD). It simulates the
           behavior of quarks and gluons. Chroma uses SciDAC QDP++ data-parallel
           programming (in C++) that presents a single high-level code image to
-          the user, but can generate highly optimized code for many
-          architectural systems including single node workstations, multi and
+          the user but can generate highly optimized code for many
+          architectural systems, including single node workstations, multi and
           many-core nodes, clusters of nodes via QMP, and classic vector
           computers.
 
@@ -78,7 +82,7 @@ and deployment using AMD Instinct accelerators.
         - `Grid <https://github.com/amd/InfinityHub-CI/tree/main/grid/>`_
         - Library for lattice QCD calculations that uses a high-level data
           parallel approach and techniques to target multiple types of
-          parallelism. Grid currently supports MPI, OpenMP and short vector
+          parallelism. Grid currently supports MPI, OpenMP, and short-vector
           parallelism. The code requires at least one AMD accelerator to run.
 
       * -
@@ -100,13 +104,13 @@ and deployment using AMD Instinct accelerators.
         - Static-mesh, GPU-native hydrodynamics simulation code that efficiently
           runs high-resolution simulations on massively-parallel computers.
           Cholla is written in a combination of C++, :doc:`HIP <hip:index>`, and
-          CUDA C, and requires at least one AMD accelerator to run.
+          NVIDIA CUDA C, and requires at least one AMD accelerator to run.
 
       * - Geophysics
         - `SPECFEM3D Cartesian <https://github.com/amd/InfinityHub-CI/tree/main/specfem3d>`_
         - Simulates acoustic (fluid), elastic (solid), coupled acoustic/elastic,
-          poroelastic or seismic wave propagation in any type of conforming mesh
-          of hexahedra (structured or otherwise). It can, for instance, model
+          poroelastic, or seismic wave propagation in any conforming mesh of
+          hexahedra (structured or otherwise). It can, for instance, model
           seismic waves propagating in sedimentary basins or any other regional
           geological model following earthquakes. It is also used for
           non-destructive testing and for ocean acoustics.
@@ -122,7 +126,7 @@ and deployment using AMD Instinct accelerators.
       * -
         - `LAMMPS <https://github.com/amd/InfinityHub-CI/tree/main/lammps>`_
         - Large-scale Atomic/Molecular Massively Parallel Simulators: a
-          classical molecular dynamics library with a focus on materials
+          classical molecular dynamics library focusing on materials
           modeling. It is capable of modeling 2D and 3D systems composed of a
           few up to billions of particles using AMD Instinct accelerators via
           the Kokkos backend.
@@ -132,13 +136,13 @@ and deployment using AMD Instinct accelerators.
         - Portable framework written in modern Fortran for high-order spectral
           element flow simulations. Using an object-oriented design, Neko allows
           for multi-tier abstraction for solver stacks and allows Neko to be
-          built against various types of hardware backends.
+          built against various hardware backends.
 
       * -
         - `nekRS <https://github.com/amd/InfinityHub-CI/tree/main/nekrs>`_
         - Open-source Navier-Stokes solver based on the spectral element method
           targeting CPUs and accelerators that support :doc:`HIP <hip:index>`,
-          CUDA, or OpenCL. 
+          NVIDIA CUDA, or OpenCL. 
 
       * - Computational chemistry
         - `QUDA <https://github.com/amd/InfinityHub-CI/tree/main/quda>`_
@@ -151,16 +155,16 @@ and deployment using AMD Instinct accelerators.
         - `CP2K <https://github.com/amd/InfinityHub-CI/tree/main/cp2k>`_
         - Versatile code for atomistic simulations across various systems:
           solid state, liquid, molecular, periodic, material, crystal, and
-          biological. It supports multiple theory levels including DFTB, LDA,
+          biological. It supports multiple theory levels, including DFTB, LDA,
           GGA, MP2, RPA, semi-empirical methods, and classical force fields.
           CP2K enables simulations such as molecular dynamics, metadynamics,
-          Monte Carlo, Ehrenfest dynamics, vibrational analysis, core level
+          Monte Carlo, Ehrenfest dynamics, vibrational analysis, core-level
           spectroscopy, energy minimization, and transition state optimization
           using NEB or dimer methods.
 
       * - Quantum Monte Carlo Simulation
         - `QMCPACK <https://github.com/amd/InfinityHub-CI/tree/main/qmcpack>`_
-        - Quantum Monte Carlo code designed for computing the electronic
+        - Code for Quantum Monte Carlo designed for computing the electronic
           structure of atoms, molecules, 2D nanomaterials, and solids. It
           supports a wide range of materials, including metallic systems and
           insulators. QMCPACK is optimized to perform effectively across various
@@ -170,12 +174,24 @@ and deployment using AMD Instinct accelerators.
 
       * - Climate and weather
         - `MPAS <https://github.com/amd/InfinityHub-CI/tree/main/mpas>`_
-        - Collaborative project between COSIM at Los Alamos and the National
+        - Collaborative project between The Climate, Ocean and Sea Ice Modeling (COSIM) at Los Alamos and the National
           Center for Atmospheric Research for developing atmosphere, ocean, and
           other Earth-system simulation components for use in climate, regional
           climate, and weather studies.
 
       * - Benchmark
+        - `rocHPL-MxP <https://github.com/amd/InfinityHub-CI/tree/main/hpl-mxp>`_
+        - Benchmark that highlights the convergence of HPC and AI workloads by
+          solving a system of linear equations using novel, mixed-precision
+          algorithms.
+
+      * -
+        - `rocHPL <https://github.com/amd/InfinityHub-CI/tree/main/rochpl>`_
+        - Implementation of the High Performance LINPACK (HPL) benchmark on the
+          ROCm platform. This benchmark solves a uniformly random system of
+          linear equations and reports floating-point execution rate.
+
+      * -
         - `HPCG <https://github.com/amd/InfinityHub-CI/tree/main/hpcg>`_
         - High Performance Conjugate Gradient Benchmark: a complement to the
           High Performance LINPACK (HPL) benchmark. The computational and data
@@ -184,24 +200,12 @@ and deployment using AMD Instinct accelerators.
           computer system designers to invest in capabilities that benefit the
           collective performance of these applications.
 
-      * -
-        - `rocHPL <https://github.com/amd/InfinityHub-CI/tree/main/rochpl>`_
-        - Implementation of the High Performance LINPACK (HPL) benchmark on the
-          ROCm platform: a benchmark which solves a uniformly random system of
-          linear equations and reports floating-point execution rate.
-
-      * -
-        - `rocHPL-MxP <https://github.com/amd/InfinityHub-CI/tree/main/hpl-mxp>`_
-        - Benchmark that highlights the convergence of HPC and AI workloads by
-          solving a system of linear equations using novel, mixed-precision
-          algorithms.
-
       * - Tools and libraries
         - `ROCm with GPU-aware MPI container <https://github.com/amd/InfinityHub-CI/tree/main/base-gpu-mpi-rocm-docker>`_
         - Base container for GPU-aware MPI with ROCm for HPC applications. This
-          project provides boilerplate for building and running a Docker
+          project provides a boilerplate for building and running a Docker
           container with ROCm supporting GPU-aware MPI implementations using
-          either OpenMPI or UCX.
+          OpenMPI or UCX.
 
       * -
         - `Kokkos <https://github.com/amd/InfinityHub-CI/tree/main/kokkos>`_
@@ -215,9 +219,9 @@ and deployment using AMD Instinct accelerators.
         - `PyFR <https://github.com/amd/InfinityHub-CI/tree/main/pyfr>`_
         - Open-source Python framework for solving advection-diffusion type
           problems on streaming architectures using the flux reconstruction
-          approach (Huynh). PyFR solves a range of governing systems on mixed
+          approach (Huynh). PyFR solves various governing systems on mixed
           unstructured grids containing various element types. It's designed to
-          target a range of hardware platforms via an in-built domain-specific
+          target various hardware platforms via an in-built domain-specific
           language derived from the Mako templating engine.
 
       * -
@@ -230,10 +234,10 @@ and deployment using AMD Instinct accelerators.
         - `Trilinos <https://github.com/amd/InfinityHub-CI/tree/main/trilinos>`_
         - Portable toolkit for scientific computing. Trilinos is built on top of
           the Kokkos portability layer. So, it has support for all manner of
-          architectures using a MPI+X methodology where MPI handles
+          architectures using an MPI+X methodology where MPI handles
           communication between distributed memory spaces, and local compute can
           be handled using a variety of CPU and GPU parallelization APIs such as
-          :doc:`HIP <hip:index>`, OpenMP, CUDA, and others, all of which are
-          abstracted away by Kokkos.
+          :doc:`HIP <hip:index>`, OpenMP, NVIDIA CUDA, and others, all of which
+          are abstracted away by Kokkos.
 
 To learn about ROCm for AI applications, see :doc:`../rocm-for-ai/index`.
