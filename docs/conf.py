@@ -57,34 +57,10 @@ article_pages = [
         "date":"2024-06-04"
     },
 
-    {"file":"install/windows/install-quick", "os":["windows"]},
-    {"file":"install/linux/install-quick", "os":["linux"]},
-
-    {"file":"install/linux/install", "os":["linux"]},
-    {"file":"install/linux/install-options", "os":["linux"]},
-    {"file":"install/linux/prerequisites", "os":["linux"]},
-
-    {"file":"install/docker", "os":["linux"]},
-    {"file":"install/magma-install", "os":["linux"]},
-    {"file":"install/pytorch-install", "os":["linux"]},
-    {"file":"install/tensorflow-install", "os":["linux"]},
-
-    {"file":"install/windows/install", "os":["windows"]},
-    {"file":"install/windows/prerequisites", "os":["windows"]},
-    {"file":"install/windows/cli/index", "os":["windows"]},
-    {"file":"install/windows/gui/index", "os":["windows"]},
-
-    {"file":"about/compatibility/docker-image-support-matrix", "os":["linux"]},
-    {"file":"about/compatibility/user-kernel-space-compat-matrix", "os":["linux"]},
-
-    {"file":"reference/library-index", "os":["linux"]},
-
     {"file":"how-to/deep-learning-rocm", "os":["linux"]},
     {"file":"how-to/gpu-enabled-mpi", "os":["linux"]},
     {"file":"how-to/system-debugging", "os":["linux"]},
     {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
-
-    {"file":"rocm-a-z", "os":["linux", "windows"]},
 ]
 
 exclude_patterns = ['temp']
@@ -108,5 +84,5 @@ html_theme_options = {
 }
 
 redirects = {
-     "reference/openmp/openmp": "../../about/compatibility/openmp.html"
+    "reference/openmp/openmp": "../../about/compatibility/openmp.html"
 }
