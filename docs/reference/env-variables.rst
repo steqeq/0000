@@ -18,7 +18,7 @@ The following table lists the most commonly used environment variables in the RO
     :widths: 70,30
 
     * - **Environment variable**
-      - **Usage**
+      - **Value**
 
     * - | ``HIP_PATH``
         | The path of the HIP SDK on Microsoft Windows.
@@ -47,7 +47,7 @@ These environment variables are listed in the following table:
     :widths: 70,30
 
     * - **Environment variable**
-      - **Usage**
+      - **Value**
 
     * - | ``HIP_PLATFORM``
         | The platform targeted by HIP. If ``HIP_PLATFORM`` is not set, then HIPCC attempts to auto-detect the platform if it can find NVCC.
@@ -70,7 +70,7 @@ The following table lists the environment variables that affect the OpenCL and H
     :widths: 70,30
 
     * - **Environment variable**
-      - **Usage**
+      - **Value**
 
     * - | ``ROCM_LIBPATCH_VERSION``
         | The ROCm version in the integer format. The format is
@@ -92,7 +92,7 @@ The following table lists the environment variables that affect only the HIP imp
     :widths: 70,30
 
     * - **Environment variable**
-      - **Usage**
+      - **Value**
 
     * - | ``HIP_FORCE_QUEUE_PROFILING``
         | Simulates the application to run in rocprof by forcing command queue profiling to ``on`` by default.
@@ -117,7 +117,7 @@ The following table lists the environment variables affecting common runtime use
 
     * - **Environment variable**
       - **Default value**
-      - **Usage**
+      - **Value**
 
     * - | ``AMD_CPU_AFFINITY``
         | Resets CPU affinity of any runtime threads
@@ -719,7 +719,7 @@ The following table lists debug environment variables affecting common runtime u
 
     * - **Environment variable**
       - **Default value**
-      - **Usage**
+      - **Value**
 
     * - | ``AMD_OCL_SUBST_OBJFILE``
         | Specifies binary substitution config file for OpenCL.
@@ -766,7 +766,7 @@ AMD ROCR-Runtime environment variables:
 
     * - **Environment variable**
       - **Default value**
-      - **Usage**
+      - **Value**
 
     * - | ``ROCR_VISIBLE_DEVICES``
         | A list of device indices or UUIDs that will be exposed to applications.
@@ -828,7 +828,7 @@ The following table lists the environment variables used in the rocPRIM library.
       - ``C:/hip``
 
     * - | ``HIP_DIR``
-        | The path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
+        | Specifies the path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
       - ``C:/hip``
 
     * - | ``VCPKG_PATH``
@@ -867,24 +867,23 @@ Environment variables of hipCUB library.
     :widths: 70,30
 
     * - **Environment variable**
-      - **Usage**
+      - **Default value**
 
     * - | ``HIP_PATH``
-        | The path of the HIP SDK on Microsoft Windows.
-      - Default: ``C:/hip``
+        | Specifies the path of the HIP SDK on Microsoft Windows.
+      - ``C:/hip``
 
     * - | ``HIP_DIR``
-        | The path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
-      - Default: ``C:/hip``
+        | Specifies the path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
+      - ``C:/hip``
 
     * - | ``VCPKG_PATH``
-        | The path of the vcpkg package manager on Microsoft Windows. On Linux 
-        | this environment variable has no effect.
+        | Specifies the path of the ``vcpkg`` package manager on Microsoft Windows. This environment variable has no effect on Linux.
       - ``C:/github/vcpkg``
 
     * - | ``ROCM_PATH``
-        | The path of the installed ROCm software stack on Linux.
-      - Default: ``/opt/rocm``
+        | Specifies the path of the installed ROCm software stack on Linux.
+      - ``/opt/rocm``
 
     * - | ``HIPCC_COMPILE_FLAGS_APPEND``
         | Extra amdclang or amdclang++ compiler flags on Linux. 
@@ -912,24 +911,23 @@ The following table lists the environment variables used in the rocThrust librar
     :widths: 70,30
 
     * - **Environment variable**
-      - **Usage**
+      - **Default value**
 
     * - | ``HIP_PATH``
-        | The path of the HIP SDK on Microsoft Windows.
-      - Default: ``C:/hip``
+        | Specifies the path of the HIP SDK on Microsoft Windows.
+      - ``C:/hip``
 
     * - | ``HIP_DIR``
-        | The path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
-      - Default: ``C:/hip``
+        | Specifies the path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
+      - ``C:/hip``
 
     * - | ``VCPKG_PATH``
-        | The path of the vcpkg package manager on Microsoft Windows. On Linux 
-        | this environment variable has no effect.
+        | Specifies the path of the ``vcpkg`` package manager on Microsoft Windows. This environment variable has no effect on Linux.
       - ``C:/github/vcpkg``
 
     * - | ``ROCM_PATH``
-        | The path of the installed ROCm software stack on Linux.
-      - Default: ``/opt/rocm``
+        | Specifies the path of the installed ROCm software stack on Linux.
+      - ``/opt/rocm``
 
     * - | ``ROCTHRUST_USE_HMM``
         | Sets the tests to use the unified memory allocation during tests run.
