@@ -8,13 +8,10 @@
 .. _env-variables-reference:
 
 *************************************************************
-Environment variables reference
+ROCm environment variables
 *************************************************************
 
-ROCm common and important Environment Variables
-===============================================
-
-The following table contains the environment variables that are most commonly used in the ROCm software stack. These variables can be useful for simple tasks, like building a ROCm library or running applications on AMD cards.
+The following table lists the most commonly used environment variables in the ROCm software stack. These variables help to perform simple tasks such as building a ROCm library or running applications on AMDGPUs.
 
 .. list-table::
     :header-rows: 1
@@ -23,32 +20,27 @@ The following table contains the environment variables that are most commonly us
     * - **Environment variable**
       - **Usage**
 
-    * - | ``HIP_DIR``
+    * - | ``HIP_PATH``
         | The path of the HIP SDK on Microsoft Windows.
       - Default: ``C:/hip``
 
-    * - | ``HIP_PATH``
-        | The path of the HIP SDK on Microsoft Windows. On linux the ``ROCM_PATH``
-        | environment variable used to set different ROCm root path.
+    * - | ``HIP_DIR``
+        | The path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
       - Default: ``C:/hip``
 
     * - | ``ROCM_PATH``
-        | The path of the installed ROCm software stack on linux. On Microsoft 
-        | Windows the ``HIP_DIR`` environment variable used to set 
-        | different HIP SDK path.
+        | The path of the installed ROCm software stack on Linux.
       - Default: ``/opt/rocm``
 
     * - | ``HIP_PLATFORM``
-        | The platform HIP is targeting. If ``HIP_PLATFORM`` is not set, then hipcc
-        | will attempt to auto-detect based on if nvcc is found.
+        | The platform targeted by HIP. If ``HIP_PLATFORM`` is not set, then HIPCC attempts to auto-detect the platform, if it can find NVCC.
       - ``amd``, ``nvidia``
 
-CLR Environment Variables
+CLR environment variables
 =========================
 
-AMD Common Language Runtime (clr) contains source codes for AMD's compute languages runtimes: **HIP** and **OpenCL™**. The environment variables, which are effecting this library can effect **HIP** and **OpenCL™** libraries or applications too.
-
-The following table contains the environment variables effecting all backends of project clr.
+AMD Common Language Runtime (CLR) library contains source codes for AMD's compute languages runtimes: HIP and OpenCL™. The environment variables affecting this library can also effect HIP and OpenCL™ libraries or applications. 
+These environment variables are listed in the following table:
 
 .. list-table::
     :header-rows: 1
@@ -58,11 +50,11 @@ The following table contains the environment variables effecting all backends of
       - **Usage**
 
     * - | ``HIP_PLATFORM``
-        | The platform HIP is targeting. If ``HIP_PLATFORM`` is not set, then hipcc will attempt to auto-detect based on if nvcc is found.
+        | The platform targeted by HIP. If ``HIP_PLATFORM`` is not set, then HIPCC attempts to auto-detect the platform if it can find NVCC.
       - ``amd``, ``nvidia``
 
     * - | ``HSA_DISABLE_CACHE``
-        | Used to disable L2 cache.
+        | Disables the L2 cache.
       - | 0: Disable
         | 1: Enable
 
@@ -71,7 +63,7 @@ The following table contains the environment variables effecting all backends of
       - | 0: Disable
         | 1: Enable
 
-The following table contains the environment variables effecting the opencl and hipamd backend of project clr.
+The following table lists the environment variables that affect the OpenCL and HIP implementation of CLR project.
 
 .. list-table::
     :header-rows: 1
@@ -81,19 +73,19 @@ The following table contains the environment variables effecting the opencl and 
       - **Usage**
 
     * - | ``ROCM_LIBPATCH_VERSION``
-        | The ROCm version in the format of an integer. The format is
+        | The ROCm version in the integer format. The format is
         | :cpp:`MAJOR * 10000 + MINOR * 100 + PATCH`
       - 50000, 60020...
 
     * - | ``CPACK_DEBIAN_PACKAGE_RELEASE``
-        | This is the numbering of the Debian package itself, i.e. the version of the packaging and not the version of the content.
+        | This is the numbering of the Debian package itself, i.e., the version of the packaging and not the version of the content.
       - 1, 2, 3...
 
     * - | ``CPACK_RPM_PACKAGE_RELEASE``
-        | This is the numbering of the RPM package itself, i.e. the version of the packaging and not the version of the content.
+        | This is the numbering of the RPM package itself, i.e., the version of the packaging and not the version of the content.
       - 1, 2, 3...
 
-The following table contains the environment variables effecting the hipamd backend of project clr.
+The following table lists the environment variables that affect only the HIP implementation of the CLR project.
 
 .. list-table::
     :header-rows: 1
@@ -103,22 +95,19 @@ The following table contains the environment variables effecting the hipamd back
       - **Usage**
 
     * - | ``HIP_FORCE_QUEUE_PROFILING``
-        | Used to run the app as if it were run in rocprof. Forces command queue profiling on by default.
+        | Simulates the application to run in rocprof by forcing command queue profiling to ``on`` by default.
       - | 0: Disable
         | 1: Enable
 
     * - | ``HSA_OVERRIDE_GFX_VERSION``
-        | Override the target version. Used to enable HIP usage on unsupported hardware.
+        | Overrides the target version; used to enable HIP usage on unsupported hardware.
       - 11.0.0, 10.3.0
 
     * - | ``HSAKMT_DEBUG_LEVEL``
-        | When set to the highest level, the system will print memory allocation info.
+        | When set to the highest level, the system prints memory allocation information.
       - 1, 2, ... 7
 
-rocclr Environment Variables
-----------------------------
-
-AMD rocclr environment variables at release build:
+The following table lists the environment variables affecting common runtime used in HIP and OpenCL (ROCclr) of clr project.
 
 .. https://github.com/ROCm/clr/blob/develop/rocclr/utils/flags.hpp
 
@@ -131,35 +120,35 @@ AMD rocclr environment variables at release build:
       - **Usage**
 
     * - | ``AMD_CPU_AFFINITY``
-        | Reset CPU affinity of any runtime threads
+        | Resets CPU affinity of any runtime threads
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``AMD_DIRECT_DISPATCH``
-        | Enable direct kernel dispatch (Currently for Linux; under development for Windows).
+        | Enables direct kernel dispatch. Currently available on Linux; under development for Windows.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``AMD_GPU_FORCE_SINGLE_FP_DENORM``
-        | Force denorm for single precision: -1 - don't force, 0 - disable, 1 - enable
+        | Force denorm for single precision.
       - ``-1``
       - | -1: Don't force 
         | 0: Disable
         | 1: Enable
 
     * - | ``AMD_LOG_LEVEL``
-        | Enable HIP log on different Level.
+        | Enables HIP log on various level.
       - ``0``
       - | 0: Disable log. 
-        | 1: Enable log on error level.
+        | 1: Enables log on error level.
         | 2: Enable log on warning and below levels.
-        | 0x3: Enable log on information and below levels.
-        | 0x4: Decode and display AQL packets.
+        | 3: Enable log on information and below levels.
+        | 4: Decodes and displays the AQL packets.
 
     * - | ``AMD_LOG_LEVEL_FILE``
-        | Set output file for AMD_LOG_LEVEL.
+        | Sets output file for ``AMD_LOG_LEVEL``.
       - stderr output
       - 
 
@@ -186,22 +175,22 @@ AMD rocclr environment variables at release build:
 
     * - | ``AMD_OCL_BUILD_OPTIONS``
         | Set the options for clBuildProgram and clCompileProgram, override.
-      - Unset by default.
+      - Unset
       - 
 
     * - | ``AMD_OCL_BUILD_OPTIONS_APPEND``
-        | Append the options for clBuildProgram and clCompileProgram.
-      - Unset by default.
+        | Appends the options for ``clBuildProgram`` and ``clCompileProgram``.
+      - Unset
       - 
 
     * - | ``AMD_OCL_LINK_OPTIONS``
-        | Set the options for clLinkProgram, override.
-      - Unset by default.
+        | Sets the options for ``clLinkProgram``.
+      - Unset
       - 
 
     * - | ``AMD_OCL_LINK_OPTIONS_APPEND``
-        | Append the options for clLinkProgram.
-      - Unset by default.
+        | Appends the options for ``clLinkProgram``.
+      - Unset
       - 
 
     * - | ``AMD_OCL_WAIT_COMMAND``
@@ -211,9 +200,9 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``OCL_SET_SVM_SIZE``
-        | Set Shared Virtual Memory (SVM) space size for discrete GPU.
+        | Sets Shared Virtual Memory (SVM) space size (in Byte) for discrete GPUs.
       - ``65536``
-      - Unit: Byte
+      -
 
     * - | ``OCL_STUB_PROGRAMS``
         | Enables OCL programs stubing.
@@ -222,18 +211,18 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``OPENCL_VERSION``
-        | Force GPU opencl version.
+        | Force GPU OpenCL version.
       - ``200``
       - 
 
     * - | ``AMD_OPT_FLUSH``
-        | Kernel flush option.
+        | Sets kernel flush option.
       - ``0x1``
-      - | ``0x0`` = Use system-scope fence operations.
-        | ``0x1`` = Use device-scope fence operations when possible.
+      - | ``0x0`` = Uses system-scope fence operations.
+        | ``0x1`` = Uses device-scope fence operations when possible.
 
     * - | ``AMD_SERIALIZE_COPY``
-        | Serialize copies
+        | Controls serialization of copies
       - ``0``
       - | 0: Disable
         | 1: Wait for completion before enqueue.
@@ -249,59 +238,58 @@ AMD rocclr environment variables at release build:
         | 3: Both
 
     * - | ``AMD_THREAD_TRACE_ENABLE``
-        | Enable thread trace extension.
+        | Enables thread trace extension.
       - ``1``
       - | 0: Disable
         | 1: Enable
 
     * - | ``CL_KHR_FP64``
-        | Enable/Disable support for double precision.
+        | Controls support for double precision.
       - ``1``
       - | 0: Disable
         | 1: Enable
 
     * - | ``CQ_THREAD_STACK_SIZE``
-        | The default command queue thread stack size.
+        | The default command queue thread stack size in Bytes.
       - ``262144``
-      - | Unit: Byte 
-        | The default value corresponds to  256  kilobyte (kB). 
+      - The default value corresponds to 256 KB. 
 
     * - | ``CUDA_VISIBLE_DEVICES``
-        | Only devices whose index is present in the sequence are visible to HIP
-      - Unset by default.
-      - ``0,1,2``: Depending on the number of devices on the system.
+        | The visible devices to HIP (whose indices are present in the sequence)
+      - Unset
+      - ``0,1,2``: List of the device indices. Depending on the number of devices in the system.
 
     * - | ``DEBUG_CLR_GRAPH_PACKET_CAPTURE``
-        | Enable/Disable graph packet capturing.
+        | Controls capturing of graph packets.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``DEBUG_CLR_LIMIT_BLIT_WG``
-        | Limit the number of workgroups in blit operations.
-      - 16
+        | Sets the limit for the number of workgroups in blit operations.
+      - ``16``
       -
 
     * - | ``DISABLE_DEFERRED_ALLOC``
-        | Disables deferred memory allocation on device.
+        | Controls deferred memory allocation on device.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``GPU_ADD_HBCC_SIZE``
-        | Add HBCC size to the reported device memory.
+        | Adds HBCC size to the reported device memory.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``GPU_ANALYZE_HANG``
-        | 1 = Enables GPU hang analysis
+        | Allows you to analyze GPU hang issue.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``GPU_BLIT_ENGINE_TYPE``
-        | Blit engine type.
+        | Specifies blit engine type.
       - ``0``
       - | 0: Default
         | 1: Host
@@ -311,27 +299,27 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_CP_DMA_COPY_SIZE``
         | Set maximum size of CP DMA copy in kB.
       - ``1``
-      - Unit: kilobyte (kB)
+      -
 
     * - | ``GPU_DEBUG_ENABLE``
-        | Enables collection of extra info for debugger at some performance cost.
+        | Enables collection of extra information for debugger at the cost of performance.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``GPU_DEVICE_ORDINAL``
-        | Select the device ordinal, a comma separated list of available devices.
-      - Unset by default.
-      - ``0,2``: Expose the 1. and 3. device in the system.
+        | Selects the device ordinal, which is a comma separated list of available devices.
+      - Unset
+      - A value of ``0,2`` exposes devices 1 and 3 in the system.
 
     * - | ``GPU_DUMP_BLIT_KERNELS``
-        | Dump the kernels for blit manager.
+        | Controls dumping of the kernels for blit manager.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``GPU_DUMP_CODE_OBJECT``
-        | Dump code object.
+        | Controls dumping of code object.
       - ``0``
       - | 0: Disable
         | 1: Enable
@@ -343,7 +331,7 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_ENABLE_HW_P2P``
-        | Enables HW P2P path.
+        | Enables hardware peer to peer (P2P) path.
       - ``0``
       - | 0: Disable
         | 1: Enable
@@ -355,37 +343,38 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_ENABLE_PAL``
-        | Enables PAL backend.
+        | Specifies PAL backend.
       - ``2``
       - | 0: ROC
         | 1: PAL
         | 2: ROC or PAL
 
     * - | ``GPU_ENABLE_WAVE32_MODE``
-        | Enables Wave32 compilation in HW if available.
+        | Enables Wave32 compilation in hardware, if available.
       - ``1``
       - | 0: Disable
         | 1: Enable
 
     * - | ``GPU_ENABLE_WGP_MODE``
-        | Enables WGP Mode in HW if available.
+        | Enables WGP Mode in hardware, if available. Workgroups of waves are
+        | dispatched in one of two modes: CU or WGP.
       - ``1``
-      - | 0: Disable
-        | 1: Enable
+      - | 0: CU mode. The waves of a workgroup are distributed across just two SIMD32’s.
+        | 1: WGP mode. The waves of a workgroup are distributed across all 4 SIMD32’s within a workgroup.
 
     * - | ``GPU_FORCE_BLIT_COPY_SIZE``
-        | Size in KB of the threshold below which to force blit instead for sdma.
+        | Specifies the threshold size in KB, under which blit is forced instead of SDMA.
       - 0
-      - Unit: kilobyte (kB)
+      -
 
     * - | ``GPU_FORCE_QUEUE_PROFILING``
-        | Force command queue profiling by default.
+        | Forces command queue profiling.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``GPU_FLUSH_ON_EXECUTION``
-        | Submit commands to HW on every operation.
+        | Submits commands to hardware on every operation.
       - ``0``
       - | 0: Disable
         | 1: Enable
@@ -403,17 +392,17 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_MAX_COMMAND_BUFFERS``
-        | The maximum number of command buffers allocated per queue.
+        | Sets the maximum number of command buffers allocated per queue.
       - ``8``
       -
 
     * - | ``GPU_MAX_HEAP_SIZE``
-        | Set maximum size of the GPU heap to % of board memory.
+        | Sets the maximum size of the GPU heap (in percentage) on the board memory.
       - ``100``
-      - | Unit: Percentage 
+      -
 
     * - | ``GPU_MAX_HW_QUEUES``
-        | The maximum number of hardware queues allocated per device.
+        | Sets the maximum number of hardware queues to be allocated per device.
       - ``4``
       - The variable controls how many independent hardware queues HIP runtime can create per process,
         per device. If an application allocates more HIP streams than this number, then HIP runtime reuses
@@ -424,23 +413,22 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_MAX_REMOTE_MEM_SIZE``
         | Maximum size that allows device memory substitution with system.
       - ``2``
-      - Unit: kilobyte (kB)
+      -
 
     * - | ``GPU_MAX_SUBALLOC_SIZE``
-        | The maximum size accepted for suballocaitons in KB.
+        | Sets the maximum size for sub-allocations in KB.
       - ``4096``
-      - Unit: kilobyte (kB)
+      -
 
     * - | ``GPU_MAX_USWC_ALLOC_SIZE``
-        | Set a limit in Mb on the maximum USWC allocation size.
+        | Sets  the maximum USWC allocation size in MB.
       - ``2048``
-      - | Unit: megabyte (MB)
-        | -1: No limit
+      - -1: No limit
 
     * - | ``GPU_MAX_WORKGROUP_SIZE``
-        | Maximum number of workitems in a workgroup for GPU, 0 -use default
-      - ``int``
-      - 0
+        | Sets the maximum number of workitems in a workgroup for GPU.
+      - ``0``
+      - 0: Ignore the environment variable and use the default workgroup size, which is 256.
 
     * - | ``GPU_MIPMAP``
         | Enables GPU mipmap extension.
@@ -449,45 +437,45 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_NUM_COMPUTE_RINGS``
-        | GPU number of compute rings.
+        | Sets the number of GPU compute rings.
       - ``2``
       - | 0: Disable
-        | 1, 2, ...: The number of compute rings.
+        | 1,2, etc. ...: Number of compute rings
 
     * - | ``GPU_NUM_MEM_DEPENDENCY``
-        | Number of memory objects for dependency tracking.
+        | Sets the number of memory objects for dependency tracking.
       - ``256``
       -
 
     * - | ``GPU_PINNED_MIN_XFER_SIZE``
-        | The minimal buffer size for pinned read/write transfers in MB.
+        | Sets the minimum buffer size (in MB) for pinned read and write transfers.
       - ``128``
-      - Unit: megabyte (MB)
+      -
 
     * - | ``GPU_PINNED_XFER_SIZE``
-        | The buffer size for pinning in read/write transfers in MB.
+        | Sets the buffer size (in MB) for pinned read and write transfers.
       - ``32``
-      - Unit: megabyte (MB)
+      -
 
     * - | ``GPU_PRINT_CHILD_KERNEL``
-        | Prints the specified number of the child kernels.
+        | Specifies the number of child kernels to be printed.
       - ``0``
       -
 
     * - | ``GPU_RESOURCE_CACHE_SIZE``
-        | The resource cache size in MB.
+        | Sets the resource cache size in MB.
       - ``64``
-      - Unit: megabyte (MB)
+      -
 
     * - | ``GPU_SINGLE_ALLOC_PERCENT``
-        | Maximum size of a single allocation as percentage of total.
+        | Sets the maximum size of a single allocation as a percentage of  the total.
       - ``85``
       - 
 
     * - | ``GPU_STAGING_BUFFER_SIZE``
-        | Size of the GPU staging buffer in megabyte (MB).
+        | Sets the GPU staging buffer size in MB.
       - ``4``
-      - Unit: megabyte (MB)
+      -
 
     * - | ``GPU_STREAMOPS_CP_WAIT``
         | Force the stream memory operation to wait on CP.
@@ -496,7 +484,7 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``GPU_USE_DEVICE_QUEUE``
-        | Use a dedicated device queue for the actual submissions.
+        | Controls use of dedicated device queue for the actual submissions.
       - ``0``
       - | 0: Disable
         | 1: Enable
@@ -509,7 +497,7 @@ AMD rocclr environment variables at release build:
     * - | ``GPU_XFER_BUFFER_SIZE``
         | Transfer buffer size for image copy optimization in KB.
       - ``0``
-      - Unit: kilobyte (kB)
+      -
         
     * - | ``HIP_FORCE_DEV_KERNARG``
         | Force device memory for kernel args.
@@ -520,8 +508,7 @@ AMD rocclr environment variables at release build:
     * - | ``HIP_HIDDEN_FREE_MEM``
         | Amount of memory to hide from the free memory reported by hipMemGetInfo.
       - ``0``
-      - | 0: Disable
-        | Unit: megabyte (MB)
+      - 0: Disable
 
     * - | ``HIP_HOST_COHERENT``
         | Coherent memory in ``hipHostMalloc``.
@@ -535,13 +522,12 @@ AMD rocclr environment variables at release build:
         | - ``hipHostMallocMapped=0``
 
     * - | ``HIP_INITIAL_DM_SIZE``
-        | Set initial heap size for device malloc.
+        | Sets the initial heap size for device malloc.
       - ``8388608``
-      - | Unit: Byte 
-        | The default value corresponds to 8 megabyte (MB). 
+      - The default value corresponds to 8 MB. 
 
     * - | ``HIP_LAUNCH_BLOCKING``
-        | Used for serialization on kernel execution.
+        | Controls serialization of kernel execution.
       - ``0``
       - | 0: Disable. Kernel executes normally.
         | 1: Enable. Serializes kernel enqueue, behaves the same as ``AMD_SERIALIZE_KERNEL``.
@@ -560,35 +546,35 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``HIP_USE_RUNTIME_UNBUNDLER``
-        | Force this to use Runtime code object unbundler.
+        | Controls use of runtime code object unbundler.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``HIP_VISIBLE_DEVICES``
-        | Only devices whose index is present in the sequence are visible to HIP
-      - Unset by default.
+        | Specifies the indices of the devices allowed to be visible to HIP.
+      - None
       - 0,1,2: Depending on the number of devices on the system.
 
     * - | ``HIP_VMEM_MANAGE_SUPPORT``
-        | Virtual Memory Management Support.
+        | Enables virtual memory management support.
       - ``1``
       - | 0: Disable
         | 1: Enable
 
     * - | ``HIPCC_VERBOSE``
-        | How much extra info to show during build. E.g: compiler flags, paths.
+        | Controls the extra information to be displayed during the build such as compiler flags, paths etc.
       - ``0``
       - 
 
     * - | ``HIPRTC_COMPILE_OPTIONS_APPEND``
-        | Set compile options needed for hiprtc compilation.
-      - Unset by default.
+        | Sets compile options needed for ``hiprtc`` compilation.
+      - None
       - 
 
     * - | ``HIPRTC_LINK_OPTIONS_APPEND``
-        | Set link options needed for hiprtc compilation.
-      - Unset by default.
+        | Sets link options needed for ``hiprtc`` compilation.
+      - None
       - 
 
     * - | ``HIPRTC_USE_RUNTIME_UNBUNDLER``
@@ -598,13 +584,12 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``HSA_KERNARG_POOL_SIZE``
-        | Kernel arguments pool size.
+        | Sets the pool size for kernel arguments.
       - ``1048576``
-      - | Unit: Byte
-        | The default value corresponds to 1 megabyte (MB).
+      - The default value corresponds to 1 megabyte (MB).
 
     * - | ``HSA_LOCAL_MEMORY_ENABLE``
-        | Enable HSA device local memory usage.
+        | Enables use of local memory on HSA device.
       - ``1``
       - | 0: Disable
         | 1: Enable
@@ -623,7 +608,7 @@ AMD rocclr environment variables at release build:
         | 2: Allocations will always be put through the MALL.
 
     * - | ``PAL_ALWAYS_RESIDENT``
-        | Force memory resources to become resident at allocation time.
+        | Forces memory resources to become resident during allocation.
       - ``0``
       - | 0: Disable
         | 1: Enable
@@ -635,42 +620,41 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``PAL_FORCE_ASIC_REVISION``
-        | Force a specific ASIC revision for all devices.
+        | Forces a specific ASIC revision on all devices.
       - ``0``
       -
 
     * - | ``PAL_HIP_IPC_FLAG``
-        | Enable interprocess flag for device allocation in PAL HIP
+        | Enables inter-process flag for device allocation in PAL HIP.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``PAL_PREPINNED_MEMORY_SIZE``
-        | Size of prepinned memory.
+        | Sets the size of pre-pinned memory.
       - ``64``
-      - | Unit: kilobyte (kB)
+      -
 
     * - | ``PAL_RGP_DISP_COUNT``
-        | The number of dispatches for RGP capture with SQTT.
+        | Sets the number of dispatches for RGP capture with SQTT.
       - ``10000``
       -
 
     * - | ``REMOTE_ALLOC``
-        | Use remote memory for the global heap allocation.
+        | Enables use of remote memory for the global heap allocation.
       - ``0``
       - | 0: Disable
         | 1: Enable
 
     * - | ``ROC_ACTIVE_WAIT_TIMEOUT``
-        | Forces active wait of GPU interrupt for the timeout.
+        | Forces active wait of GPU interrupt for the timeout in us.
       - ``0``
-      - Unit: microseconds (us)
+      -
 
     * - | ``ROC_AQL_QUEUE_SIZE``
-        | AQL queue size in AQL packets.
+        | AQL queue size in the AQL packets in Bytes.
       - ``16384``
-      - | Unit: Byte 
-        | The default value corresponds to 16 kilobyte (kB). 
+      - The default value corresponds to 16 KB.
 
     * - | ``ROC_CPU_WAIT_FOR_SIGNAL``
         | Enable CPU wait for dependent HSA signals.
@@ -685,25 +669,24 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``ROC_GLOBAL_CU_MASK``
-        | Sets a global CU mask, entered as hex value for all queues, Each active bit represents using one CU, e.g. ``0xf`` enables only 4 CUs
-      - Unset by default.
+        | Sets a global CU mask, entered as hex value for all queues. Each active bit represents one CU, e.g., ``0xf`` enables 4 CUs.
+      - None
       - 
 
     * - | ``ROC_HMM_FLAGS``
-        | ROCm HMM configuration flags.
+        | Sets ROCm HMM configuration flags.
       - ``0``
       - 
 
     * - | ``ROC_P2P_SDMA_SIZE``
-        | The minimum size in KB for P2P transfer with SDMA.
+        | The minimum size in KB for peer to peer (P2P) transfer with SDMA.
       - ``1024``
-      - | Unit: kilobyte (kB) 
-        | The default value corresponds to 1 megabyte (MB).
+      - The default value corresponds to 1 megabyte (MB).
 
     * - | ``ROC_SIGNAL_POOL_SIZE``
-        | Initial size of HSA signal pool
-      - ``uint``
-      - 32
+        | Sets the initial size for HSA signal pool.
+      - ``32``
+      - 
 
     * - | ``ROC_SKIP_KERNEL_ARG_COPY``
         | If ``true``, then runtime can skip kernel arg copy.
@@ -718,17 +701,17 @@ AMD rocclr environment variables at release build:
         | 1: Enable
 
     * - | ``ROC_USE_FGS_KERNARG``
-        | Use fine grain kernel args segment for supported ASICs.
+        | Use fine grain kernel arguments segment for supported ASICs.
       - ``1``
       - | 0: Disable
         | 1: Enable
 
     * - | ``ROCPROFILER_REGISTER_ROOT``
-        | The path to the rocProfiler.
-      - Unset by default.
+        | Sets the path to ``rocProfiler``.
+      - None
       - 
 
-AMD rocclr environment variables at debug build:
+The following table lists debug environment variables affecting common runtime used in HIP and OpenCL (ROCclr) of clr project. These variables only settable during DEBUG build.
 
 .. list-table::
     :header-rows: 1
@@ -739,23 +722,22 @@ AMD rocclr environment variables at debug build:
       - **Usage**
 
     * - | ``AMD_OCL_SUBST_OBJFILE``
-        | Specify binary substitution config file for OpenCL.
-      - Unset by default.
+        | Specifies binary substitution config file for OpenCL.
+      - None
       - 
 
     * - | ``CPU_MEMORY_ALIGNMENT_SIZE``
         | Size in bytes for the default alignment for guarded memory on CPU.
       - 256
-      - Unit: Byte 
+      -
 
     * - | ``CPU_MEMORY_GUARD_PAGE_SIZE``
-        | Size in KB of CPU memory guard page.
+        | Size of the CPU memory guard page in KB.
       - ``64``
-      - | Unit: kilobyte (kB)
-        | The default value corresponds to 64 kilobyte (kB). 
+      - The default value corresponds to 64 KB. 
 
     * - | ``CPU_MEMORY_GUARD_PAGES``
-        | Use guard pages for CPU memory
+        | Enables using guard pages for CPU memory.
       - ``0``
       - | 0: Disable
         | 1: Enable
@@ -763,11 +745,10 @@ AMD rocclr environment variables at debug build:
     * - | ``MEMOBJ_BASE_ADDR_ALIGN``
         | Alignment of the base address of any allocate memory object.
       - ``4096``
-      - | Unit: Byte 
-        | The default value corresponds to 4 kilobyte (kB). 
+      - The default value corresponds to 4 KB. 
 
     * - | ``PARAMETERS_MIN_ALIGNMENT``
-        | Minimum alignment required for the abstract parameters stack.
+        | Specifies the minimum alignment required for the abstract parameters stack.
       - 64 at ``__AVX512F__``, 32 at ``__AVX__`` and 16 at other cases
       -
 
@@ -789,77 +770,94 @@ AMD ROCR-Runtime environment variables:
 
     * - | ``ROCR_VISIBLE_DEVICES``
         | A list of device indices or UUIDs that will be exposed to applications.
-      - Unset by default.
+      - None
       - ``0,GPU-DEADBEEFDEADBEEF``
 
     * - | ``HSA_SCRATCH_MEM``
-        | Maximum amount of scratch memory that can be used per process per gpu.
+        | Specifies the maximum amount of scratch memory that can be used per process per GPU.
       -
       -
 
     * - | ``HSA_XNACK``
-        | Turning on XNACK by setting the environment variable HSA_XNACK=1
-      - Unset by default.
+        | Turning on XNACK by setting the environment variable.
+      - None
       - ``1``
 
     * - | ``HSA_CU_MASK``
-        | Sets the mask on a lower level of queue creation in the driver, 
-        | this mask will also be set for queues being profiled.
-      - Unset by default.
+        | Sets the mask on a lower level of queue creation in the driver. 
+        | This mask is also applied to the queues being profiled.
+      - None
       - ``1:0-8``
 
-rocPRIM Environment Variables
+    * - | ``HSA_ENABLE_SDMA``
+        | Enables the use of DMA engines in all copy directions (Host-to-Device, Device-to-Host, Device-to-Device), when using any of the following APIs:
+        | ``hsa_memory_copy``, 
+        | ``hsa_amd_memory_fill``, 
+        | ``hsa_amd_memory_async_copy``, 
+        | ``hsa_amd_memory_async_copy_on_engine``.
+      - ``1``
+      - | 0: Disable
+        | 1: Enable
+
+    * - | ``HSA_ENABLE_PEER_SDMA``
+        | Enables the use of DMA engines for Device-to-Device copies, when using any of the following APIs:
+        | ``hsa_memory_copy``,
+        | ``hsa_amd_memory_async_copy``,
+        | ``hsa_amd_memory_async_copy_on_engine``.
+      - ``1``
+      - | 0: Disable
+        | 1: Enable
+        |
+        | The value of ``HSA_ENABLE_PEER_SDMA`` is ignored,
+        | if ``HSA_ENABLE_SDMA`` set to ``0``.
+
+rocPRIM environment variables
 =============================
 
-Environment variables of rocPRIM library.
+The following table lists the environment variables used in the rocPRIM library.
 
 .. list-table::
     :header-rows: 1
     :widths: 70,30
 
     * - **Environment variable**
-      - **Usage**
-
-    * - | ``HIP_DIR``
-        | The path of the HIP SDK on Microsoft Windows, if ``HIP_PATH``
-      - ``C:/hip``
+      - **Default value**
 
     * - | ``HIP_PATH``
-        | The path of the HIP SDK on Microsoft Windows. On linux the ``ROCM_PATH``
-        | environment variable used to set different ROCm root path.
+        | Specifies the path of the HIP SDK on Microsoft Windows.
+      - ``C:/hip``
+
+    * - | ``HIP_DIR``
+        | The path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
       - ``C:/hip``
 
     * - | ``VCPKG_PATH``
-        | The path of the vcpkg package manager on Microsoft Windows. On linux 
-        | this environment variable has no effect.
+        | Specifies the path of the ``vcpkg`` package manager on Microsoft Windows. This environment variable has no effect on Linux.
       - ``C:/github/vcpkg``
 
     * - | ``ROCM_PATH``
-        | The path of the installed ROCm software stack on linux. On Microsoft 
-        | Windows the ``HIP_DIR`` environment variable used to set 
-        | different HIP SDK path.
+        | Specifies the path of the installed ROCm software stack on Linux.
       - ``/opt/rocm``
 
     * - | ``ROCM_CMAKE_PATH``
-        | The path of the installed ROCm cmake file on Microsoft Windows.
+        | Specifies the path of the installed ROCm ``cmake`` file on Microsoft Windows.
       - ``C:/hipSDK``
 
     * - | ``HIPCC_COMPILE_FLAGS_APPEND``
-        | Extra amdclang++ compiler flags on linux. Ignored, if CXX environment
-        | variable is set.
-      - By default it's empty.
+        | Enables extra ``amdclang++`` compiler flags on Linux. This environment variable is ignored if ``CXX`` environment variable is set.
+      - None
 
     * - | ``ROCPRIM_USE_HMM``
         | The tests suite uses unified memory, if it's set to 1 during the tests
         | run.
-      - By default it's empty.
+      - Unset
 
     * - | ``CTEST_RESOURCE_GROUP_0``
         | Used by CI, and helps to group the tests for different CI steps. Most
         | users should ignore this.
-      - By default it's empty.
+      - Unset
 
-hipCUB Environment Variables
+hipCUB environment variables
 ============================
 
 Environment variables of hipCUB library.
@@ -871,46 +869,43 @@ Environment variables of hipCUB library.
     * - **Environment variable**
       - **Usage**
 
-    * - | ``HIP_DIR``
-        | The path of the HIP SDK on Microsoft Windows.
-      - ``C:/hip``
-
     * - | ``HIP_PATH``
-        | The path of the HIP SDK on Microsoft Windows. On linux the ``ROCM_PATH``
-        | environment variable used to set different ROCm root path.
-      - ``C:/hip``
+        | The path of the HIP SDK on Microsoft Windows.
+      - Default: ``C:/hip``
+
+    * - | ``HIP_DIR``
+        | The path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
+      - Default: ``C:/hip``
 
     * - | ``VCPKG_PATH``
-        | The path of the vcpkg package manager on Microsoft Windows. On linux 
+        | The path of the vcpkg package manager on Microsoft Windows. On Linux 
         | this environment variable has no effect.
       - ``C:/github/vcpkg``
 
     * - | ``ROCM_PATH``
-        | The path of the installed ROCm software stack on linux. On Microsoft 
-        | Windows the ``HIP_DIR`` environment variable used to set 
-        | different HIP SDK path.
-      - ``/opt/rocm``
+        | The path of the installed ROCm software stack on Linux.
+      - Default: ``/opt/rocm``
 
     * - | ``HIPCC_COMPILE_FLAGS_APPEND``
-        | Extra amdclang or amdclang++ compiler flags on linux. 
+        | Extra amdclang or amdclang++ compiler flags on Linux. 
         | amdclang++ ignores this, if CXX environment variable is set.
         | amdclang ignores this, if CC environment variable is set.
-      - Unset by default.
+      - Unset
 
     * - | ``HIPCUB_USE_HMM``
         | The tests suite uses unified memory, if it's set to 1 during the tests
         | run.
-      - Unset by default.
+      - Unset
 
     * - | ``CTEST_RESOURCE_GROUP_0``
         | Used by CI, and helps to group the tests for different CI steps. Most
         | users should ignore this.
-      - Unset by default.
+      - Unset
 
-rocThrust Environment Variables
+rocThrust environment variables
 ===============================
 
-Environment variables of rocThrust library.
+The following table lists the environment variables used in the rocThrust library.
 
 .. list-table::
     :header-rows: 1
@@ -919,30 +914,28 @@ Environment variables of rocThrust library.
     * - **Environment variable**
       - **Usage**
 
-    * - | ``HIP_DIR``
-        | The path of the HIP SDK on Microsoft Windows.
-      - ``C:/hip``
-
     * - | ``HIP_PATH``
-        | The path of the HIP SDK on Microsoft Windows. On linux the ``ROCM_PATH``
-        | environment variable used to set different ROCm root path.
-      - ``C:/hip``
+        | The path of the HIP SDK on Microsoft Windows.
+      - Default: ``C:/hip``
+
+    * - | ``HIP_DIR``
+        | The path of the HIP SDK on Microsoft Windows. This variable is ignored, if ``HIP_PATH`` is set.
+      - Default: ``C:/hip``
 
     * - | ``VCPKG_PATH``
-        | The path of the vcpkg package manager on Microsoft Windows. On linux 
+        | The path of the vcpkg package manager on Microsoft Windows. On Linux 
         | this environment variable has no effect.
       - ``C:/github/vcpkg``
 
     * - | ``ROCM_PATH``
-        | The path of the installed ROCm software stack on linux. On Microsoft 
-        | Windows the ``HIP_DIR`` environment variable used to set 
-        | different HIP SDK path.
-      - ``/opt/rocm``
+        | The path of the installed ROCm software stack on Linux.
+      - Default: ``/opt/rocm``
 
     * - | ``ROCTHRUST_USE_HMM``
-        | The tests unified memory allocation usage
-      - default: ``C:/hipSDK``
+        | Sets the tests to use the unified memory allocation during tests run.
+      - Unset
 
     * - | ``CTEST_RESOURCE_GROUP_0``
-        | The path of the installed ROCm cmake file on windows
-      - default: ``C:/hipSDK``
+        | Used by CI, and helps to group the tests for different CI steps. Most
+        | users should ignore this.
+      - Unset
