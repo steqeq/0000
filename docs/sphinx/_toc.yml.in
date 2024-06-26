@@ -25,7 +25,7 @@ subtrees:
   - file: how-to/deep-learning-rocm.md
     title: Deep learning frameworks
 
-- caption: Conceptual
+- caption: Concepts
   entries:
   - file: conceptual/gpu-arch.md
     title: GPU architecture overview
