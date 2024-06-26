@@ -5,13 +5,11 @@
   reference, ROCm, AMD">
 </head>
 
-# AMD ROCm™ documentation
+# AMD ROCm documentation
 
 ROCm is an open-source software platform optimized to extract HPC and AI workload 
 performance from AMD Instinct accelerators and AMD Radeon GPUs while maintaining 
 compatibility with industry software frameworks. For more information, see [What is ROCm?](./what-is-rocm.rst)
-
-For descriptions of hands-on application development, refer to the [ROCm blogs](https://rocm.blogs.amd.com/) site. 
 
 You can install ROCm on Radeon™, Radeon™ PRO, and Instinct™ GPUs.  If 
 you're using Radeon GPUs, consider reviewing {doc}`Radeon-specific ROCm documentation<radeon:index>`.
