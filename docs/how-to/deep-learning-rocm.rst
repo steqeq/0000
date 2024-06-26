@@ -8,44 +8,14 @@ Installing deep learning frameworks for ROCm
 
 ROCm provides a comprehensive ecosystem for deep learning development, including
 :ref:`libraries <artificial-intelligence-apis>` for optimized deep learning operations and ROCm-aware versions of popular
-deep learning frameworks and libraries such as PyTorch, TensorFlow, JAX, and MAGMA. ROCm works closely with these
+deep learning frameworks and libraries such as PyTorch, TensorFlow, and JAX. ROCm works closely with these
 frameworks to ensure that framework-specific optimizations take advantage of AMD accelerator and GPU architectures.
 
 The following guides cover installation processes for ROCm-aware deep learning frameworks.
 
-.. grid::
-
-   .. grid-item::
-      :columns: 3
-
-      :doc:`PyTorch for ROCm <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
-
-   .. grid-item::
-      :columns: 3
-
-      :doc:`TensorFlow for ROCm <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
-
-   .. grid-item::
-      :columns: 3
-
-   .. grid-item::
-      :columns: 3
-
-   .. grid-item::
-      :columns: 3
-
-      :doc:`JAX for ROCm <rocm-install-on-linux:how-to/3rd-party/jax-install>`
-
-   .. grid-item::
-      :columns: 3
-
-      :doc:`MAGMA for ROCm <rocm-install-on-linux:how-to/3rd-party/magma-install>`
-
-   .. grid-item::
-      :columns: 3
-
-   .. grid-item::
-      :columns: 3
+* :doc:`PyTorch for ROCm <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
+* :doc:`TensorFlow for ROCm <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
+* :doc:`JAX for ROCm <rocm-install-on-linux:how-to/3rd-party/jax-install>`
 
 The following chart steps through typical installation workflows for installing deep learning frameworks for ROCm.
 
