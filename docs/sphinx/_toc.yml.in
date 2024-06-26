@@ -25,27 +25,52 @@ subtrees:
   - file: how-to/deep-learning-rocm.md
     title: Deep learning frameworks
 
-- caption: Compatibility
+- caption: Conceptual
   entries:
-  - file: compatibility/compatibility-matrix.rst
-    title: Compatibility matrix
-  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
-    title: Linux
-  - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
-    title: Windows
-  - file: compatibility/precision-support.rst
-    title: Precision support
-  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/3rd-party-support-matrix.html
-    title: Third-party
-
-- caption: Reference
-  entries:
-    - file: reference/api-libraries.md
-      title: API libraries
-    - file: reference/rocm-tools.md
-      title: Tools
-    - file: reference/gpu-arch-specs.rst
-      title: Hardware specifications
+  - file: conceptual/gpu-arch.md
+    title: GPU architecture overview
+    subtrees:
+    - entries:
+      - file: conceptual/gpu-arch/mi300.md
+        title: MI300 microarchitecture
+        subtrees:
+        - entries:
+          - url: https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf
+            title: AMD Instinct MI300/CDNA3 ISA
+          - url: https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf
+            title: White paper
+          - file: conceptual/gpu-arch/mi300-mi200-performance-counters.rst
+            title: MI300 and MI200 Performance counter
+      - file: conceptual/gpu-arch/mi250.md
+        title: MI250 microarchitecture
+        subtrees:
+        - entries:
+          - url: https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf
+            title: AMD Instinct MI200/CDNA2 ISA
+          - url: https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf
+            title: White paper
+      - file: conceptual/gpu-arch/mi100.md
+        title: MI100 microarchitecture
+        subtrees:
+        - entries:
+          - url: https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf
+            title: AMD Instinct MI100/CDNA1 ISA
+          - url: https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf
+            title: White paper
+  - file: conceptual/gpu-memory.md
+    title: GPU memory
+  - file: conceptual/file-reorg.md
+    title: File structure (Linux FHS)
+  - file: conceptual/gpu-isolation.md
+    title: GPU isolation techniques
+  - file: conceptual/cmake-packages.rst
+    title: Using CMake
+  - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
+    title: ROCm & PCIe atomics
+  - file: conceptual/ai-pytorch-inception.md
+    title: Inception v3 with PyTorch
+  - file: conceptual/ai-migraphx-optimization.md
+    title: Inference optimization with MIGraphX
 
 - caption: How to
   entries:
@@ -110,52 +135,27 @@ subtrees:
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
 
-- caption: Conceptual
+- caption: Reference
   entries:
-  - file: conceptual/gpu-arch.md
-    title: GPU architecture overview
-    subtrees:
-    - entries:
-      - file: conceptual/gpu-arch/mi300.md
-        title: MI300 microarchitecture
-        subtrees:
-        - entries:
-          - url: https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf
-            title: AMD Instinct MI300/CDNA3 ISA
-          - url: https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf
-            title: White paper
-          - file: conceptual/gpu-arch/mi300-mi200-performance-counters.rst
-            title: MI300 and MI200 Performance counter
-      - file: conceptual/gpu-arch/mi250.md
-        title: MI250 microarchitecture
-        subtrees:
-        - entries:
-          - url: https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf
-            title: AMD Instinct MI200/CDNA2 ISA
-          - url: https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf
-            title: White paper
-      - file: conceptual/gpu-arch/mi100.md
-        title: MI100 microarchitecture
-        subtrees:
-        - entries:
-          - url: https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf
-            title: AMD Instinct MI100/CDNA1 ISA
-          - url: https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf
-            title: White paper
-  - file: conceptual/gpu-memory.md
-    title: GPU memory
-  - file: conceptual/file-reorg.md
-    title: File structure (Linux FHS)
-  - file: conceptual/gpu-isolation.md
-    title: GPU isolation techniques
-  - file: conceptual/cmake-packages.rst
-    title: Using CMake
-  - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
-    title: ROCm & PCIe atomics
-  - file: conceptual/ai-pytorch-inception.md
-    title: Inception v3 with PyTorch
-  - file: conceptual/ai-migraphx-optimization.md
-    title: Inference optimization with MIGraphX
+    - file: reference/api-libraries.md
+      title: API libraries
+    - file: reference/rocm-tools.md
+      title: Tools
+    - file: reference/gpu-arch-specs.rst
+      title: Hardware specifications
+
+- caption: Compatibility
+  entries:
+  - file: compatibility/compatibility-matrix.rst
+    title: Compatibility matrix
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
+    title: Linux
+  - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
+    title: Windows
+  - file: compatibility/precision-support.rst
+    title: Precision support
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/3rd-party-support-matrix.html
+    title: Third-party
 
 - caption: Contribute
   entries:
