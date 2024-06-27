@@ -154,27 +154,29 @@ speculation.
 Install TGI
 -----------
 
-1. To install the TGI Docker image, run the following commands.
+1. Launch the TGI Docker container in the host machine.
 
    .. code-block:: shell
 
-      # Install from Dockerfile
-      git clone https://github.com/huggingface/text-generation-inference.git -b mi300-compat    
-      cd text-generation-inference
-      docker build . -f Dockerfile.rocm
+      docker run --name tgi --rm -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined
+      --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 256g
+      --net host -v $PWD:/data
+      --entrypoint "/bin/bash"
+      --env HUGGINGFACE_HUB_CACHE=/data
+      ghcr.io/huggingface/text-generation-inference:latest-rocm
 
 .. tab-set::
 
    .. tab-item:: TGI on a single-accelerator system
       :sync: single
 
-      2. Launch a model using TGI server on a single accelerator.
+      2. Inside the container, launch a model using TGI server on a single accelerator.
 
          .. code-block:: shell
 
             export ROCM_USE_FLASH_ATTN_V2_TRITON=True
             text-generation-launcher --model-id NousResearch/Meta-Llama-3-70B --dtype float16 --port 8000 &
-      
+
       3. To test, send it a curl request containing a prompt.
 
          .. code-block:: shell
@@ -182,26 +184,26 @@ Install TGI
             curl http://localhost:8000/generate_stream -X POST -d '{"inputs":"What is AMD Instinct?","parameters":{"max_new_tokens":20}}' -H 'Content-Type: application/json'
 
          You should receive a response like the following.
-      
+
          .. code-block:: shell
 
             data:{"index":20,"token":{"id":304,"text":" in","logprob":-1.2822266,"special":false},"generated_text":" AMD Instinct is a new family of data center GPUs designed to accelerate the most demanding workloads in","details":null}
 
    .. tab-item:: TGI on a multi-accelerator system
 
-      2. Launch a model using TGI server on multiple accelerators (4 in this case).
+      2. Inside the container, launch a model using TGI server on multiple accelerators (4 in this case).
 
          .. code-block:: shell
 
             export ROCM_USE_FLASH_ATTN_V2_TRITON=True
             text-generation-launcher --model-id NousResearch/Meta-Llama-3-8B --dtype float16 --port 8000 --num-shard 4 &
-      
+
       3. To test, send it a curl request containing a prompt.
 
          .. code-block:: shell
 
             curl http://localhost:8000/generate_stream -X POST -d '{"inputs":"What is AMD Instinct?","parameters":{"max_new_tokens":20}}' -H 'Content-Type: application/json'
-      
+
          You should receive a response like the following.
 
          .. code-block:: shell
