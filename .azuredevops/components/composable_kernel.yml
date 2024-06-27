@@ -12,6 +12,7 @@ parameters:
     - ninja-build
     - git
     - python3-pip
+    - libdrm-dev
 - name: rocmDependencies
   type: object
   default:
