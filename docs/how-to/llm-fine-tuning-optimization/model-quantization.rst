@@ -154,13 +154,13 @@ kernels by configuring the ``exllama_config`` parameter as the following.
 .. code-block:: python
 
    from transformers import AutoModelForCausalLM, GPTQConfig
-   pretrained_model_dir = "meta-llama/Llama-2-7b"
-   gptq_config = GPTQConfig(bits=4, exllama_config={"version":2})
+   #pretrained_model_dir = "meta-llama/Llama-2-7b"
+   base_model_name = "NousResearch/Llama-2-7b-hf"
+   gptq_config = GPTQConfig(bits=4, dataset="c4", exllama_config={"version":2})
    quantized_model = AutoModelForCausalLM.from_pretrained(
-                           base_model_name, 
-                           device_map="auto", 
+                           base_model_name,
+                           device_map="auto",
                            quantization_config=gptq_config)
-
 bitsandbytes
 ============
 

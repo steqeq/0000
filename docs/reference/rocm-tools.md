@@ -22,8 +22,8 @@
 * {doc}`HIPIFY <hipify:index>`
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
-* [ROCm Debug Agent](https://github.com/ROCm/rocr_debug_agent)
-* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCm Debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCr Debug Agent <rocr_debug_agent:index>`
 :::
 
 (performance-tools)=

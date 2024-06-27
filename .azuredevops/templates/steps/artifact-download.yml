@@ -21,11 +21,14 @@ parameters:
     half: master
     HIP: develop
     hipBLAS: develop
+    hipCUB: develop
     hipRAND: develop
+    hipSOLVER: develop
     hipSPARSE: develop
     llvm-project: amd-staging
     MIOpen: develop
     MIVisionX: develop
+    rdc: develop
     rocBLAS: develop
     ROCdbgapi : amd-master
     rocDecode: develop
@@ -41,6 +44,7 @@ parameters:
     rocSOLVER: develop
     rocSPARSE: develop
     ROCT-Thunk-Interface: master
+    rocThrust: develop
     roctracer: amd-master
     rpp: master
 - name: componentsFailureOkay
