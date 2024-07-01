@@ -711,7 +711,7 @@ The following table lists the environment variables that affect ``rocclr``:
       - None
       - 
 
-The following table lists the debug environment variables that affect the common runtime used in HIP and OpenCL (ROCclr) of the CLR project. These environment variables can only be set during DEBUG build.
+The following table lists the debug environment variables that affect ``rocclr`` of the CLR project. These environment variables can only be set during DEBUG build.
 
 .. list-table::
     :header-rows: 1
