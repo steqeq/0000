@@ -39,7 +39,11 @@ The following table lists the most commonly used environment variables in the RO
 CLR environment variables
 =========================
 
-AMD Common Language Runtime (CLR) library contains source codes for AMD's compute languages runtimes: HIP and OpenCL™. The environment variables affecting this library can also effect HIP and OpenCL™ libraries or applications. 
+AMD Common Language Runtime (CLR) library contains source codes for AMD's compute languages runtimes: 
+``hipamd``: Contains implementation of HIP language
+``opencl``: Contains implementation of OpenCL™
+``rocclr``:  Contains common runtime used in HIP and OpenCL
+The environment variables affecting the CLR library might affect HIP and OpenCL libraries or applications. 
 These environment variables are listed in the following table:
 
 .. list-table::
