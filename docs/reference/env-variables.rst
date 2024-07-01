@@ -45,28 +45,7 @@ AMD Common Language Runtime (:doc:`CLR <hip:understand/amd_clr>`) library contai
 * ``opencl``: Contains implementation of `OpenCL™ <https://www.khronos.org/opencl/>`_ on AMD platform. It is hosted at `clr/opencl <https://github.com/ROCm/clr/tree/develop/opencl>`_.
 * ``rocclr``: Contains common runtime used in HIP and OpenCL. This is hosted at `clr/rocclr <https://github.com/ROCm/clr/tree/develop/rocclr>`_.
 
-The environment variables affecting the CLR library might affect HIP and OpenCL libraries or applications. These environment variables are listed in the following table:
-
-.. list-table::
-    :header-rows: 1
-    :widths: 70,30
-
-    * - **Environment variable**
-      - **Value**
-
-    * - | ``HIP_PLATFORM``
-        | The platform targeted by HIP. If ``HIP_PLATFORM`` is not set, then HIPCC attempts to auto-detect the platform if it can find NVCC.
-      - ``amd``, ``nvidia``
-
-    * - | ``HSA_DISABLE_CACHE``
-        | Disables the L2 cache.
-      - | 0: Disable
-        | 1: Enable
-
-    * - | ``ROCM_HEADER_WRAPPER_WERROR``
-        | Causes errors to be emitted instead of warnings.
-      - | 0: Disable
-        | 1: Enable
+The environment variables affecting the CLR library might affect HIP and OpenCL libraries or applications.
 
 The following table lists the environment variables that affect ``opencl`` and ``hipamd``:
 
@@ -107,6 +86,11 @@ The following table lists the environment variables that affect ``hipamd``:
     * - | ``HSA_OVERRIDE_GFX_VERSION``
         | Overrides the target version; used to enable HIP usage on unsupported hardware.
       - 11.0.0, 10.3.0
+
+    * - | ``HSA_DISABLE_CACHE``
+        | Disables the L2 cache.
+      - | 0: Disable
+        | 1: Enable
 
     * - | ``HSAKMT_DEBUG_LEVEL``
         | When set to the highest level, the system prints memory allocation information.
