@@ -107,7 +107,7 @@ The following table lists the environment variables that affect ``hipamd``:
         | When set to the highest level, the system prints memory allocation information.
       - 1, 2, ... 7
 
-The following table lists the environment variables that affect the common runtime used in HIP and OpenCL (ROCclr) of the CLR project.
+The following table lists the environment variables that affect ``rocclr``:
 
 .. https://github.com/ROCm/clr/blob/develop/rocclr/utils/flags.hpp
 
