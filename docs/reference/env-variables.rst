@@ -40,11 +40,12 @@ CLR environment variables
 =========================
 
 AMD Common Language Runtime (:doc:`CLR <hip:understand/amd_clr>`) library contains source codes for AMD's compute languages runtimes: 
-``hipamd``: Contains implementation of HIP language on the AMD platform.
-``opencl``: Contains implementation of `OpenCL™ <https://www.khronos.org/opencl/>`_ on AMD platform. It is hosted at `clr/opencl <https://github.com/ROCm/clr/tree/develop/opencl>`_.
-``rocclr``: Contains common runtime used in HIP and OpenCL. This is hosted at `clr/rocclr <https://github.com/ROCm/clr/tree/develop/rocclr>`_.
-The environment variables affecting the CLR library might affect HIP and OpenCL libraries or applications. 
-These environment variables are listed in the following table:
+
+*  ``hipamd``: Contains implementation of HIP language on the AMD platform.
+* ``opencl``: Contains implementation of `OpenCL™ <https://www.khronos.org/opencl/>`_ on AMD platform. It is hosted at `clr/opencl <https://github.com/ROCm/clr/tree/develop/opencl>`_.
+* ``rocclr``: Contains common runtime used in HIP and OpenCL. This is hosted at `clr/rocclr <https://github.com/ROCm/clr/tree/develop/rocclr>`_.
+
+The environment variables affecting the CLR library might affect HIP and OpenCL libraries or applications. These environment variables are listed in the following table:
 
 .. list-table::
     :header-rows: 1
