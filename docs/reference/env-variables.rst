@@ -153,7 +153,7 @@ The following table lists the environment variables that affect the common runti
       - 
 
     * - | ``AMD_LOG_MASK``
-        | Filter the HIP log by different events. The `actual full list <https://github.com/ROCm/clr/blob/develop/rocclr/utils/debug.hpp#L40>`_.
+        | Specifies HIP log filters. Here is the ` complete list of log masks <https://github.com/ROCm/clr/blob/develop/rocclr/utils/debug.hpp#L40>`_.
       - ``0x7FFFFFFF``
       - | 0x1: Log API calls.
         | 0x2: Kernel and copy commands and barriers.
