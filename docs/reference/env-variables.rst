@@ -178,7 +178,7 @@ The following table lists the environment variables that affect the common runti
         | 0xFFFFFFFF: Log always even mask flag is zero.
 
     * - | ``AMD_OCL_BUILD_OPTIONS``
-        | Sets the options for ``clBuildProgram`` and ``clCompileProgram``. This variable override the previously set options.
+        | Sets the options for ``clBuildProgram`` and ``clCompileProgram``. This variable overrides the previously set options.
       - None
       - 
 
