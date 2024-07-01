@@ -63,7 +63,7 @@ These environment variables are listed in the following table:
       - | 0: Disable
         | 1: Enable
 
-The following table lists the environment variables that affect the OpenCL and HIP implementation of CLR project.
+The following table lists the environment variables that affect ``opencl`` and ``hipamd``:
 
 .. list-table::
     :header-rows: 1
