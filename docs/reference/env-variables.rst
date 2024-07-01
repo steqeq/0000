@@ -85,7 +85,7 @@ The following table lists the environment variables that affect ``opencl`` and `
         | This is the numbering of the RPM package itself, i.e., the version of the packaging and not the version of the content.
       - 1, 2, 3...
 
-The following table lists the environment variables that affect only the HIP implementation of the CLR project.
+The following table lists the environment variables that affect ``hipamd``:
 
 .. list-table::
     :header-rows: 1
