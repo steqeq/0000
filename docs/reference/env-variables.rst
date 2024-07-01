@@ -361,7 +361,7 @@ The following table lists the environment variables that affect the common runti
 
     * - | ``GPU_ENABLE_WGP_MODE``
         | Enables WGP Mode in hardware, if available. Workgroups of waves are
-        | dispatched in one of two modes: CU or WGP.
+        | dispatched in one of the two modes: CU or WGP.
       - ``1``
       - | 0: CU mode. The waves of a workgroup are distributed across just two SIMD32’s.
         | 1: WGP mode. The waves of a workgroup are distributed across all 4 SIMD32’s within a workgroup.
