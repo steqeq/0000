@@ -25,7 +25,6 @@ Our documentation is organized into the following categories:
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-installation.jpg
 :img-alt: Install documentation
 :padding: 2
@@ -47,7 +46,6 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-compatibility.jpg
 :img-alt: Compatibility information
 :padding: 2
@@ -65,7 +63,6 @@ Our documentation is organized into the following categories:
 
 <!-- markdownlint-disable MD051 -->
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-reference.jpg
 :img-alt: Reference documentation
 :padding: 2
@@ -86,7 +83,6 @@ Our documentation is organized into the following categories:
 <!-- markdownlint-enable MD051 -->
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-howto.jpg
 :img-alt: How-to documentation
 :padding: 2
@@ -108,7 +104,6 @@ Our documentation is organized into the following categories:
 :::
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-conceptual.jpg
 :img-alt: Conceptual documentation
 :padding: 2
