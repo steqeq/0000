@@ -23,6 +23,7 @@ parameters:
     - rocMLIR
     - rocRAND
     - rocBLAS
+    - hipBLASLt
     - half
     - composable_kernel
     - rocm-cmake
