@@ -66,6 +66,5 @@ jobs:
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCPACK_PACKAGING_INSTALL_PREFIX=$(Build.BinariesDirectory)
-        -DYAML_CPP_BUILD_TESTS=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
