@@ -23,6 +23,7 @@ parameters:
     - rocMLIR
     - rocRAND
     - rocBLAS
+    - hipBLAS
     - hipBLASLt
     - half
     - composable_kernel
