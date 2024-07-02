@@ -67,4 +67,5 @@ jobs:
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCPACK_PACKAGING_INSTALL_PREFIX=$(Build.BinariesDirectory)
         -GNinja
+        -Wno-error
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
