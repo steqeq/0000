@@ -37,6 +37,8 @@ jobs:
     value: $(Build.BinariesDirectory)/rocm
   - name: ROCM_PATH
     value: $(Agent.BuildDirectory)/rocm
+  - name: HIP_INC_DIR
+    value: $(Agent.BuildDirectory)/rocm
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
