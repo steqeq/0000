@@ -13,7 +13,7 @@ parameters:
     - libyaml-cpp-dev
     - libpci-dev
     - libpci3
-    - googletest
+    - libgtest-dev
     - git
 - name: rocmDependencies
   type: object
