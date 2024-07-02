@@ -12,7 +12,7 @@ jobs:
   - group: common
   - template: /.azuredevops/variables-global.yml
   pool:
-    vmImage: ${{ variables.LOW_END_BUILD_POOL }}
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -21,4 +21,17 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: rocprofiler-register
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: rocprofiler-register-tests
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Build.BinariesDirectory)
+      cmakeBuildDir: 'tests/build'
+      installEnabled: false
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocprofiler-register
+      testDir: 'tests/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

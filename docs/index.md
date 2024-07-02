@@ -25,7 +25,6 @@ Our documentation is organized into the following categories:
 :class-container: rocm-doc-grid
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-installation.jpg
 :img-alt: Install documentation
 :padding: 2
@@ -34,19 +33,18 @@ Our documentation is organized into the following categories:
   * {doc}`Quick start guide<rocm-install-on-linux:tutorial/quick-start>`
   * {doc}`Linux install guide<rocm-install-on-linux:how-to/native-install/index>`
   * {doc}`Package manager integration<rocm-install-on-linux:how-to/native-install/package-manager-integration>`
+  * {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
+  * {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
 * Windows
   * {doc}`Windows install guide<rocm-install-on-windows:how-to/install>`
   * {doc}`Application deployment guidelines<rocm-install-on-windows:conceptual/deployment-guidelines>`
-* {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
-* {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
-* {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
-* {doc}`JAX for ROCm<rocm-install-on-linux:how-to/3rd-party/jax-install>`
-* {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
-* {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
+* [Deep learning frameworks](./how-to/deep-learning-rocm.rst)
+  * {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
+  * {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
+  * {doc}`JAX for ROCm<rocm-install-on-linux:how-to/3rd-party/jax-install>`
 :::
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-compatibility.jpg
 :img-alt: Compatibility information
 :padding: 2
@@ -64,7 +62,6 @@ Our documentation is organized into the following categories:
 
 <!-- markdownlint-disable MD051 -->
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-reference.jpg
 :img-alt: Reference documentation
 :padding: 2
@@ -85,27 +82,28 @@ Our documentation is organized into the following categories:
 <!-- markdownlint-enable MD051 -->
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-howto.jpg
 :img-alt: How-to documentation
 :padding: 2
 
+* [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
+* [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
+* [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
   * [MI200](./how-to/tuning-guides/mi200.md)
   * [RDNA2](./how-to/tuning-guides/w6000-v620.md)
-* [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
 * [Using compiler features](./conceptual/compiler-topics.md)
   * [Using AddressSanitizer](./conceptual/using-gpu-sanitizer.md)
   * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
   * [OpenMP support in ROCm](./about/compatibility/openmp.md)
+* [Setting the number of CUs](./how-to/setting-cus)  
 * [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 :::
 
 :::{grid-item-card}
-:class-card: sd-text-black
 :img-top: ./data/banner-conceptual.jpg
 :img-alt: Conceptual documentation
 :padding: 2

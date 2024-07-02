@@ -22,6 +22,8 @@ subtrees:
     title: ROCm on Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/
     title: HIP SDK on Windows
+  - file: how-to/deep-learning-rocm.md
+    title: Deep learning frameworks
 
 - caption: Compatibility
   entries:
@@ -47,8 +49,40 @@ subtrees:
 
 - caption: How to
   entries:
+  - file: how-to/rocm-for-ai/index.rst
+    title: Using ROCm for AI
+    subtrees:
+    - entries:
+      - file: how-to/rocm-for-ai/install.rst
+        title: Installation
+      - file: how-to/rocm-for-ai/train-a-model.rst
+      - file: how-to/rocm-for-ai/hugging-face-models.rst
+      - file: how-to/rocm-for-ai/deploy-your-model.rst
+  - file: how-to/rocm-for-hpc/index.rst
+    title: Using ROCm for HPC
+  - file: how-to/llm-fine-tuning-optimization/index.rst
+    title: Fine-tuning LLMs and inference optimization
+    subtrees:
+    - entries:
+      - file: how-to/llm-fine-tuning-optimization/overview.rst
+        title: Conceptual overview
+      - file: how-to/llm-fine-tuning-optimization/fine-tuning-and-inference.rst
+        subtrees:
+        - entries:
+          - file: how-to/llm-fine-tuning-optimization/single-gpu-fine-tuning-and-inference.rst
+            title: Using a single accelerator
+          - file: how-to/llm-fine-tuning-optimization/multi-gpu-fine-tuning-and-inference.rst
+            title: Using multiple accelerators
+      - file: how-to/llm-fine-tuning-optimization/model-quantization.rst
+      - file: how-to/llm-fine-tuning-optimization/model-acceleration-libraries.rst
+      - file: how-to/llm-fine-tuning-optimization/llm-inference-frameworks.rst
+      - file: how-to/llm-fine-tuning-optimization/optimizing-with-composable-kernel.md
+        title: Optimizing with Composable Kernel
+      - file: how-to/llm-fine-tuning-optimization/optimizing-triton-kernel.rst
+        title: Optimizing Triton kernels
+      - file: how-to/llm-fine-tuning-optimization/profiling-and-debugging.rst
   - file: how-to/tuning-guides.md
-    title: Tuning guides
+    title: System optimization
     subtrees:
     - entries:
       - file: how-to/tuning-guides/mi100.md
@@ -57,8 +91,6 @@ subtrees:
         title: MI200
       - file: how-to/tuning-guides/w6000-v620.md
         title: RDNA2
-  - file: how-to/deep-learning-rocm.md
-    title: Deep learning
   - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
   - file: conceptual/compiler-topics.md
@@ -71,6 +103,8 @@ subtrees:
         title: Compiler disambiguation
       - file: about/compatibility/openmp.md
         title: OpenMP support
+  - file: how-to/setting-cus
+    title: Setting the number of CUs  
   - file: how-to/system-debugging.md
     title: Debugging
   - url: https://github.com/amd/rocm-examples
@@ -139,4 +173,3 @@ subtrees:
     title: Provide feedback
   - file: about/license.md
     title: ROCm license
-

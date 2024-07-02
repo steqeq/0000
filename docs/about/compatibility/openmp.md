@@ -77,8 +77,7 @@ Obtain the value of `gpu-arch` by running the following command:
 
 [//]: # (dated link below, needs updating)
 
-See the complete list of compiler command-line references
-[here](https://github.com/ROCm/llvm-project/blob/amd-stg-open/clang/docs/CommandGuide/clang.rst).
+See the complete list of [compiler command-line references](https://github.com/ROCm/llvm-project/blob/amd-staging/openmp/docs/CommandLineArgumentReference.rst).
 
 ### Using `rocprof` with OpenMP
 

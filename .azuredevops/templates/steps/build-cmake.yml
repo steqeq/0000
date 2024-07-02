@@ -5,6 +5,9 @@ parameters:
 - name: extraBuildFlags
   type: string
   default: ''
+- name: multithreadFlag
+  type: string
+  default: ''
 - name: cmakeBuildDir
   type: string
   default: 'build'
@@ -17,6 +20,12 @@ parameters:
 - name: installDir
   type: string
   default: '$(Build.BinariesDirectory)'
+- name: customInstallPath
+  type: boolean
+  default: true
+- name: installEnabled
+  type: boolean
+  default: true
 
 steps:
 # create workingDirectory if it does not exist and change into it
@@ -25,19 +34,23 @@ steps:
   displayName: '${{parameters.componentName }} CMake Flags'
   inputs:
     workingDirectory: ${{ parameters.cmakeBuildDir }}
-    cmakeArgs: -DCMAKE_INSTALL_PREFIX=${{ parameters.installDir }} ${{ parameters.extraBuildFlags }} ..
+    ${{ if eq(parameters.customInstallPath, true) }}:
+      cmakeArgs: -DCMAKE_INSTALL_PREFIX=${{ parameters.installDir }} ${{ parameters.extraBuildFlags }} ..
+    ${{ else }}:
+      cmakeArgs: ${{ parameters.extraBuildFlags }} ..
 # equivalent to running make $cmakeTargetDir from $cmakeBuildDir
 # i.e., cd $cmakeBuildDir; make $cmakeTargetDir
 - task: CMake@1
   displayName: '${{parameters.componentName }} Build'
   inputs:
     workingDirectory: ${{ parameters.cmakeBuildDir }}
-    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }}'
+    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} ${{ parameters.multithreadFlag }}'
     retryCountOnTaskFailure: 10
 # equivalent to running make $cmakeTarget from $cmakeBuildDir
 # e.g., make install
-- task: CMake@1
-  displayName: '${{parameters.componentName }} Install'
-  inputs:
-    workingDirectory: ${{ parameters.cmakeBuildDir }}
-    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} --target ${{ parameters.cmakeTarget }}'
+- ${{ if eq(parameters.installEnabled, true) }}:
+  - task: CMake@1
+    displayName: '${{parameters.componentName }} ${{ parameters.cmakeTarget }}'
+    inputs:
+      workingDirectory: ${{ parameters.cmakeBuildDir }}
+      cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} --target ${{ parameters.cmakeTarget }}'

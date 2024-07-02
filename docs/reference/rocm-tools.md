@@ -22,8 +22,8 @@
 * {doc}`HIPIFY <hipify:index>`
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
-* [ROCm Debug Agent](https://github.com/ROCm/rocr_debug_agent)
-* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCm Debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCr Debug Agent <rocr_debug_agent:index>`
 :::
 
 (performance-tools)=
@@ -34,7 +34,7 @@
 :img-alt: Performance tools
 :padding: 2
 
-* [RocBandwidthTest](https://github.com/ROCm/rocm_bandwidth_test)
+* {doc}`ROCm Bandwidth Test <rocm_bandwidth_test:index>`
 * {doc}`ROCProfiler <rocprofiler:profiler_home_page>`
 * [rocprofiler-register](https://github.com/ROCm/rocprofiler-register)
 * {doc}`ROCTracer <roctracer:index>`
@@ -49,8 +49,8 @@
 :padding: 2
 
 * {doc}`AMD SMI <amdsmi:index>`
+* {doc}`rocminfo <rocminfo:index>`
 * {doc}`ROCm Data Center Tool <rdc:index>`
-* [ROCm Info](https://github.com/ROCm/rocminfo)
 * {doc}`ROCm SMI <rocm_smi_lib:index>`
 * {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 * {doc}`TransferBench <transferbench:index>`

@@ -6,12 +6,75 @@ parameters:
 - name: pipelineId
   type: string
   default: ''
+- name: useDefaultBranch
+  type: boolean
+  default: true
+- name: extractToMnt
+  type: boolean
+  default: false
+- name: defaultBranchList
+  type: object
+  default:
+    AMDMIGraphX: develop
+    amdsmi: develop
+    aomp-extras: aomp-dev
+    aomp: aomp-dev
+    clr: develop
+    composable_kernel: develop
+    half: master
+    HIP: develop
+    hipBLAS: develop
+    hipBLASLt: develop
+    hipCUB: develop
+    hipFFT: develop
+    hipfort: develop
+    HIPIFY: amd-staging
+    hipRAND: develop
+    hipSOLVER: develop
+    hipSPARSE: develop
+    hipSPARSELt: develop
+    hipTensor: develop
+    llvm-project: amd-staging
+    MIOpen: develop
+    MIVisionX: develop
+    rccl: develop
+    rdc: develop
+    rocAL: develop
+    rocALUTION: develop
+    rocBLAS: develop
+    ROCdbgapi : amd-master
+    rocDecode: develop
+    rocFFT: develop
+    rocgdb: amd-staging
+    rocm-cmake: develop
+    rocm-core: master
+    rocm-examples: develop
+    rocminfo: amd-staging
+    rocMLIR: develop
+    ROCmValidationSuite: master
+    rocm_bandwidth_test: master
+    rocm_smi_lib: develop
+    rocPRIM: develop
+    rocprofiler-register: amd-mainline
+    rocprofiler: amd-master
+    ROCR-Runtime: master
+    rocRAND: develop
+    rocr_debug_agent: amd-staging
+    rocSOLVER: develop
+    rocSPARSE: develop
+    ROCT-Thunk-Interface: master
+    rocThrust: develop
+    roctracer: amd-master
+    rocWMMA: develop
+    rpp: master
+- name: componentsFailureOkay
+  type: object
+  default:
+    - rocm-cmake
+# BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
   default: '$(Build.SourceBranchName)' # for tagged builds
-- name: testFailuresOkay
-  type: boolean
-  default: false
 
 steps:
 - task: DownloadPipelineArtifact@2
@@ -19,21 +82,28 @@ steps:
   inputs:
     buildType: 'specific'
     project: ROCm-CI
-    pipeline: ${{ parameters.pipelineId }}
+    definition: ${{ parameters.pipelineId }}
     specificBuildWithTriggering: true
-    allowPartiallySucceededBuilds: ${{ parameters.testFailuresOkay }}
-    branchName: ${{ parameters.branchName }}
-    targetPath: '$(System.ArtifactsDirectory)'
+    ${{ if eq(parameters.useDefaultBranch, true) }}:
+      branchName: ${{ parameters.defaultBranchList[parameters.componentName] }}
+    ${{ else }}:
+      branchName: ${{ parameters.branchName }}
+    ${{ if in(parameters.componentName, parameters.componentsFailureOkay) }}:
+      allowPartiallySucceededBuilds: true
+    targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
   displayName: Extract ${{ parameters.componentName }}
   inputs:
-    archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
-    destinationFolder: '$(Agent.BuildDirectory)/rocm'
+    archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
+    ${{ if parameters.extractToMnt }}:
+      destinationFolder: '/mnt/rocm'
+    ${{ else }}:
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
     cleanDestinationFolder: false
     overwriteExistingFiles: true
 - task: DeleteFiles@1
   displayName: Cleanup Compressed ${{ parameters.componentName }}
   inputs:
-    SourceFolder: '$(System.ArtifactsDirectory)'
-    Contents: '/**/*.tar.gz'
+    SourceFolder: '$(Pipeline.Workspace)/d'
+    Contents: '**/*.tar.gz'
     RemoveDotFiles: true
