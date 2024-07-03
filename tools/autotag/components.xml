@@ -10,7 +10,7 @@
     <project category="libs" group="ml" name="AMDMIGraphX" />
     <project category="libs" group="ml" name="MIOpen" />
     <project category="libs" group="ml" name="MIVisionX" />
-    <!-- rocAL? -->
+    <!-- rocAL -->
     <project category="libs" group="ml" name="rocDecode" />
     <project category="libs" group="ml" name="rpp" />
     <project category="libs" group="communication" name="rccl" />
@@ -49,7 +49,7 @@
     <project category="tools" group="system" name="rdc" />
     <project category="tools" group="system" name="rocm_smi_lib" />
     <project category="tools" group="system" name="ROCmValidationSuite" />
-    <!-- transferbench? -->
+    <!-- transferbench -->
     <project category="compilers" name="llvm-project" />
     <project category="compilers" name="flang" path="openmp-extras/flang" />
     <project category="runtimes" name="clr" />

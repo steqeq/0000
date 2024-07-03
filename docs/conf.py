@@ -22,8 +22,6 @@ for template in templates:
         file.write(rendered)
 
 shutil.copy2('../RELEASE.md','./about/release-notes.md')
-# Keep capitalization due to similar linking on GitHub's markdown preview.
-shutil.copy2('../CHANGELOG.md','./about/changelog.md')
 
 latex_engine = "xelatex"
 latex_elements = {
