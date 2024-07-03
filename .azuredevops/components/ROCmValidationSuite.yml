@@ -65,7 +65,7 @@ jobs:
         dependencySource: tag-builds
 # Set link to redirect llvm folder
   - task: Bash@3
-    displayName: update cmake
+    displayName: create symlink
     inputs:
       targetType: inline
       script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
