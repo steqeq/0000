@@ -65,10 +65,10 @@ jobs:
         dependencySource: tag-builds
 # Set link to redirect llvm folder
   - task: Bash@3
-  displayName: update cmake
-  inputs:
-    targetType: inline
-    script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+    displayName: update cmake
+    inputs:
+      targetType: inline
+      script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
