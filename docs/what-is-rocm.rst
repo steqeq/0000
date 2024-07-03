@@ -44,8 +44,8 @@ Machine Learning & Computer Vision
   ":doc:`MIGraphX <amdmigraphx:index>`", "Graph inference engine that accelerates machine learning model inference"
   ":doc:`MIOpen <miopen:index>`", "An open source deep-learning library"
   ":doc:`MIVisionX <mivisionx:index>`", "Set of comprehensive computer vision and machine learning libraries, utilities, and applications"
-  ":doc:`rocAL <rocal:index>`", "An augmentation library designed to decode and process images and videos"
-  ":doc:`rocDecode <rocdecode:index>`", "High-performance SDK for access to video decoding features on AMD GPUs"
+  ":doc:`rocAL <rocAL:index>`", "An augmentation library designed to decode and process images and videos"
+  ":doc:`rocDecode <rocDecode:index>`", "High-performance SDK for access to video decoding features on AMD GPUs"
   ":doc:`ROCm Performance Primitives (RPP) <rpp:index>`", "Comprehensive high-performance computer vision library for AMD processors with HIP/OpenCL/CPU back-ends"
 
 Communication
@@ -100,7 +100,7 @@ Tools
   ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
   ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
   ":doc:`ROCdbgapi <rocdbgapi:index>`", "ROCm debugger API library"
-  ":doc:`ROCmCC <./reference/rocmcc>`", "Clang/LLVM-based compiler"
+  "`ROCm Compilers <https://rocm.docs.amd.com/projects/llvm-project/en/latest/reference/rocmcc.html>`_", "Clang/LLVM-based compilers"
   ":doc:`rocminfo <rocminfo:index>`", "Reports system information"
   ":doc:`ROCProfiler <rocprofiler:index>`", "Profiling tool for HIP applications"
   ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
@@ -120,7 +120,7 @@ Compilers
   :header: "Component", "Description"
 
   "`FLANG <https://github.com/ROCm/flang/>`_", "An out-of-tree Fortran compiler targeting LLVM"
-  ":doc:`hipCC <hipcc:index>`", "Compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure"
+  "`HIPCC <https://rocm.docs.amd.com/projects/HIPCC/en/latest/>`_", "Compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure"
   "`LLVM (amdclang) <https://github.com/ROCm/llvm-project>`_ ", "Toolkit for the construction of highly optimized compilers, optimizers, and runtime environments"
 
 Runtimes
@@ -129,6 +129,6 @@ Runtimes
 .. csv-table::
   :header: "Component", "Description"
 
-  "`AMD Common Language Runtime (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's common language runtimes: :doc:`HIP <hip:index>` and OpenCL"
+  "`AMD Common Language Runtime (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's `common language runtimes (CLR) <https://rocm.docs.amd.com/projects/HIP/en/latest/understand/amd_clr.html>`_ HIP and OpenCL"
   ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
   ":doc:`ROCR-Runtime <rocr-runtime:index>`", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"

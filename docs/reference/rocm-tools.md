@@ -19,10 +19,10 @@
 :img-alt: Development tools
 :padding: 2
 
+* [ROCm Compilers](https://rocm.docs.amd.com/projects/llvm-project/en/latest/reference/rocmcc.html)
 * {doc}`HIPIFY <hipify:index>`
-* {doc}`ROCdbgapi <rocdbgapi:index>`
-* [ROCmCC](./rocmcc.md)
 * {doc}`ROCm Debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCdbgapi <rocdbgapi:index>`
 * {doc}`ROCr Debug Agent <rocr_debug_agent:index>`
 :::
 

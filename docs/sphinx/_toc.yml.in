@@ -93,11 +93,11 @@ subtrees:
     title: Using compiler features
     subtrees:
     - entries:
-      - file: conceptual/using-gpu-sanitizer.md
+      - url: https://rocm.docs.amd.com/projects/llvm-project/en/latest/index.html
+        title: ROCm compiler infrastructure
+      - url: https://rocm.docs.amd.com/projects/llvm-project/en/latest/conceptual/using-gpu-sanitizer.html
         title: Using AddressSanitizer
-      - file: conceptual/compiler-disambiguation.md
-        title: Compiler disambiguation
-      - file: about/compatibility/openmp.md
+      - url: https://rocm.docs.amd.com/projects/llvm-project/en/latest/conceptual/openmp.html
         title: OpenMP support
   - file: how-to/setting-cus
     title: Setting the number of CUs  
