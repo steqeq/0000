@@ -30,7 +30,7 @@ System BIOS settings
 -----------------------------------
 
 Because the MI300A uses a MI-Instinct SOC design, the system BIOS settings have been preset 
-for best performance. Therfore, unlike previous MI-250 GPU guides, this guide doesn't contain a 
+for best performance. Therefore, unlike previous MI-250 GPU guides, this guide doesn't contain a 
 table of System BIOS settings. 
 
 .. _operating-system-settings-label:
@@ -44,7 +44,7 @@ The minimum versions for the supported Linux distributions are as follows:
 * SLES (SUSE Linux Enterprise Server) 15 SP5
 * Ubuntu 22.04.
  
-If you are using a distibution other than RHEL or SLES, the latest Linux kernel is recommended.
+If you are using a distribution other than RHEL or SLES, the latest Linux kernel is recommended.
 Performance considerations for the Zen4, which is the core architecture in the MI300A, 
 require a Linux kernel running version 5.18 or higher. 
 
@@ -91,7 +91,7 @@ The following settings are recommended for performance reasons:
   For instance, if the OS requires 8GB on a 128GB system, then setting these 
   variables to ``100`` allows a single 
   workload to allocate up to 120GB of memory. Unless the system has swap space configured 
-  any over-allocation attempts are handled by the OOM policies.      
+  any over-allocation attempts are handled by the OMM policies.      
 
 * **Disable NUMA (Non-uniform memory access) balancing**
   
@@ -171,7 +171,7 @@ In the MI300A hardware settings, the UMC RAS is handled by the system BIOS, not 
 supplied GPU driver. This results in a value of ``DISABLED`` for the ``UMC RAS`` setting. 
 
 .. image:: ../../data/how-to/tuning-guides/mi300a-rocm-smi-showhw-output.png
-   :alt: Output from the rocm-smi showhw command
+   :alt: Output from the ``rocm-smi showhw`` command
 
 To see the system structure, the localization of the GPUs in the system, and the 
 fabric connections between the system components, use the ``rocm-smi --showtopo`` command.
@@ -192,7 +192,7 @@ fabric connections between the system components, use the ``rocm-smi --showtopo`
   of the shared memory of the AMD EPYC processors.
 
 .. image:: ../../data/how-to/tuning-guides/mi300a-rocm-smi-showtopo-output.png
-   :alt: Output from the rocm-smi showtopo command
+   :alt: Output from the ``rocm-smi showtopo`` command
 
 Testing inter-device bandwidth
 -----------------------------------
@@ -235,10 +235,10 @@ The output lists the available compute devices (CPUs and GPUs), including
 their device ID and PCIe ID:
 
 .. image:: ../../data/how-to/tuning-guides/mi300a-rocm-bandwidth-test-output.png
-   :alt: Output from the rocm-bandwidh-test utility
+   :alt: Output from the rocm-bandwidth-test utility
 
 It also displays the measured bandwidth for unidirectional and
 bidirectional transfers between the devices on the CPU and GPU:
 
 .. image:: ../../data/how-to/tuning-guides/mi300a-rocm-peak-bandwidth-output.png
-   :alt: Bandwidth information from the rocm-bandwidh-test utility
+   :alt: Bandwidth information from the rocm-bandwidth-test utility
