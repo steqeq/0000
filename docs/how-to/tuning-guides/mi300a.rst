@@ -1,0 +1,244 @@
+.. meta::
+   :description: MI300A high-performance computing and tuning guide
+   :keywords: MI300A, high-performance computing, HPC, tuning, BIOS settings, NBIO, AMD, ROCm
+
+***************************************************
+MI300A high-performance computing and tuning guide
+***************************************************
+
+This guide discusses the operating system settings and system management commands for 
+the AMD MI300A accelerator.
+
+System settings
+========================================
+
+This section reviews the system settings required to configure a MI300A SOC system and
+optimize its performance.
+
+The MI300A SOC design requires you to review and potentially adjust your OS configuration as explained in 
+the :ref:`operating-system-settings-label` section. These settings are critical for 
+performance because the OS is now 
+responsible for memory management across the CPU and GPU accelerators.
+
+In addition, there are settings that limit GPU memory allocation. 
+This limit is important because legacy software often determines the 
+amount of allowable memory at start-up time
+by probing discrete memory until it is exhausted. If left unchecked, this practice 
+can starve the OS of resources. 
+
+System BIOS settings
+-----------------------------------
+
+Because the MI300A uses a MI-Instinct SOC design, the system BIOS settings have been preset 
+for best performance. Therfore, unlike previous MI-250 GPU guides, this guide doesn't contain a 
+table of System BIOS settings. 
+
+.. _operating-system-settings-label:
+
+Operating system settings 
+-----------------------------------
+
+The minimum versions for the supported Linux distributions are as follows: 
+
+* RHEL (Red Hat Enterprise Linux) 9.4
+* SLES (SUSE Linux Enterprise Server) 15 SP5
+* Ubuntu 22.04.
+ 
+If you are using a distibution other than RHEL or SLES, the latest Linux kernel is recommended.
+Performance considerations for the Zen4, which is the core architecture in the MI300A, 
+require a Linux kernel running version 5.18 or higher. 
+
+The following settings are recommended for performance reasons: 
+
+* **Enable transparent huge pages** 
+
+  To set this parameter, use one of the following methods:
+
+  * From the command line, run the following command:
+  
+    .. code-block:: shell
+
+       echo always > /sys/kernel/mm/transparent_hugepage/enabled  
+
+  * Set the Linux kernel parameter ``transparent_hugepage`` as follows in the 
+    relevant ``.cfg`` file for your system.
+
+    .. code-block:: cfg
+
+       transparent_hugepage=always
+
+* **Limit the maximum and single memory allocations on the GPU**
+  
+  Many AI-related applications were originally developed on discrete GPUs. Some of these applications 
+  have fixed problem sizes associated with the targeted GPU size, and some attempt to determine the 
+  system memory limits by allocating chunks until failure. These techniques can cause issues in an 
+  APU with a shared space.
+  
+  To allow these applications to run on the APU without further changes, 
+  ROCM supports a default memory policy that restricts the percentage of the GPU that can be allocated. This feature 
+  is controlled by the following environment variables: 
+
+  * ``GPU_MAX_ALLOC_PERCENT``
+  * ``GPU_SINGLE_ALLOC_PERCENT``
+
+  These limits might require adjustment, especially when performing GPU benchmarks. A setting of ``100`` 
+  allows the GPU to allocate any amount of free memory. However, the risk of encountering 
+  an operating system out-of-memory (OMM) condition increases when almost 
+  all the available memory is used.
+  
+  Before setting either of these items to 100 percent, 
+  carefully consider the expected CPU workload allocation and the anticipated OS usage. 
+  For instance, if the OS requires 8GB on a 128GB system, then setting these 
+  variables to ``100`` allows a single 
+  workload to allocate up to 120GB of memory. Unless the system has swap space configured 
+  any over-allocation attempts are handled by the OOM policies.      
+
+* **Disable NUMA (Non-uniform memory access) balancing**
+  
+  ROCM uses information from the compiled application to ensure that an affinity exists
+  between the GPU agent processes and their CPU hosts or co-processing agents. 
+  Because the APU has OS threads, 
+  including threads with memory management, the default kernel NUMA policies can
+  adversely impact workload performance without additional tuning.
+
+  .. note::
+
+     At the kernel level, ``pci_relloc`` can also be set to ``off`` as an additional tuning measure. 
+
+  To disable NUMA balancing, use one of the following methods:
+
+  * From the command line, run the following command:
+  
+    .. code-block:: shell
+
+       echo 0 > /proc/sys/kernel/numa_balancing   
+
+  * Set the following Linux kernel parameters in the 
+    relevant ``.cfg`` file for your system.
+
+    .. code-block:: cfg
+
+       pci=realloc=off numa_balancing=disable  
+
+* **Enable compaction**
+
+  Compaction is necessary for proper MI300A operation because the APU shares memory 
+  between the CPU and GPU dynamically. Compaction can be done proactively, which reduces 
+  allocation costs, or performed during allocation, in which case it is part of the background activities. 
+  Without compaction, the MI300A application performance eventually degrades as fragmentation increases. 
+  In RHEL distributions, compaction is disabled by default, but in Ubuntu, it is enabled by default. 
+
+  To enable compaction, enter the following commands using the command line:
+  
+  .. code-block:: shell
+
+     echo 20 > /proc/sys/vm/compaction_proactiveness 
+     echo 1 > /proc/sys/vm/compact_unevictable_allowed  
+
+System management
+========================================
+
+For a complete guide on how to install, manage, and uninstall ROCm on Linux, refer to
+:doc:`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`. To verify that the
+installation was successful, refer to the
+:doc:`post-install instructions<rocm-install-on-linux:how-to/native-install/post-install>` and 
+:doc:`system tools <../../reference/rocm-tools>` guides. If verification
+fails, consult the :doc:`system debugging guide <../system-debugging>`.
+
+.. _hw-verification-rocm-label:
+
+Hardware verification with ROCm 
+-----------------------------------
+
+The AMD ROCm platform ships with tools to query the system structure. To query
+the GPU hardware, use the ``rocm-smi`` command.
+
+``rocm-smi`` reports statistics per socket, so the power results combine CPU and GPU utilization. 
+In an idle state on a multi-socket system, some power imbalances are to be expected because 
+the distribution of OS threads can keep some APU devices at higher power states.
+
+.. note::
+
+   The VRAM settings show as ``N/A`` on the MI300A. 
+
+.. image:: ../../data/how-to/tuning-guides/mi300a-rocm-smi-output.png
+   :alt: Output from the rocm-smi command
+
+The ``rocm-smi --showhw`` command shows the available system
+GPUs along with their device ID and firmware details.
+
+In the MI300A hardware settings, the UMC RAS is handled by the system BIOS, not the ROCm 
+supplied GPU driver. This results in a value of ``DISABLED`` for the ``UMC RAS`` setting. 
+
+.. image:: ../../data/how-to/tuning-guides/mi300a-rocm-smi-showhw-output.png
+   :alt: Output from the rocm-smi showhw command
+
+To see the system structure, the localization of the GPUs in the system, and the 
+fabric connections between the system components, use the ``rocm-smi --showtopo`` command.
+
+* The first block of the output shows the distance between the GPUs similar to the output of the
+  ``numactl`` command for the NUMA domains of a system. The weight is a qualitative 
+  measure for the “distance” data must travel to reach one GPU from another one. 
+  While the values do not have a precise physical meaning, the higher the value the 
+  more hops are required to reach the destination from the source GPU.
+* The second block contains a matrix named “Hops between two GPUs”, where ``1`` means 
+  the two GPUs are directly connected with XGMI, ``2`` means both GPUs are linked to the 
+  same CPU socket and GPU communications go through the CPU, and ``3`` means 
+  both GPUs are linked to different CPU sockets so communications go 
+  through both CPU sockets.
+* The third block indicates the link types between the GPUs. This can either be 
+  ``XGMI`` for AMD Infinity Fabric links or ``PCIE`` for PCIe Gen4 links.
+* The fourth block reveals the localization of a GPU with respect to the NUMA organization 
+  of the shared memory of the AMD EPYC processors.
+
+.. image:: ../../data/how-to/tuning-guides/mi300a-rocm-smi-showtopo-output.png
+   :alt: Output from the rocm-smi showtopo command
+
+Testing inter-device bandwidth
+-----------------------------------
+
+The ``rocm-smi --showtopo`` command from the :ref:`hw-verification-rocm-label` section 
+displays the system structure and shows how the GPUs are located and connected within this
+structure. For more details, use the ``rocm-bandwidth-test`` utility, which can run benchmarks to
+show the effective link bandwidth between the system components.
+
+The ROCm Bandwidth Test program can be installed with the following
+package-manager commands:
+
+.. tab-set::
+
+   .. tab-item:: Ubuntu
+      :sync: ubuntu
+
+      .. code-block:: bash
+
+         sudo apt install rocm-bandwidth-test
+
+   .. tab-item:: Red Hat Enterprise Linux
+      :sync: RHEL
+
+      .. code-block:: bash
+
+         sudo yum install rocm-bandwidth-test
+
+   .. tab-item:: SUSE Linux Enterprise Server
+      :sync: SLES
+
+      .. code-block:: bash
+
+         sudo zypper install rocm-bandwidth-test
+
+Alternatively, download and build the application from the
+`source code <https://github.com/ROCm/rocm_bandwidth_test>`_.
+
+The output lists the available compute devices (CPUs and GPUs), including
+their device ID and PCIe ID:
+
+.. image:: ../../data/how-to/tuning-guides/mi300a-rocm-bandwidth-test-output.png
+   :alt: Output from the rocm-bandwidh-test utility
+
+It also displays the measured bandwidth for unidirectional and
+bidirectional transfers between the devices on the CPU and GPU:
+
+.. image:: ../../data/how-to/tuning-guides/mi300a-rocm-peak-bandwidth-output.png
+   :alt: Bandwidth information from the rocm-bandwidh-test utility

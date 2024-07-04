@@ -76,6 +76,17 @@ accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs
 
 :::
 
+:::{grid-item-card}
+**[AMD Instinct™ MI300A](./tuning-guides/mi300a)**
+
+This chapter briefly reviews hardware aspects of the AMD Instinct™ MI300A
+accelerators and its CDNA™ 3 architecture.
+
+* [ISA](https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf)
+* [White paper](https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf)
+
+:::
+
 :::::
 
 ## Workstation

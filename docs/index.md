@@ -92,6 +92,7 @@ Our documentation is organized into the following categories:
 * [System tuning for various architectures](./how-to/tuning-guides.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
   * [MI200](./how-to/tuning-guides/mi200.md)
+  * [MI300A](./how-to/tuning-guides/mi300a.rst)
   * [RDNA2](./how-to/tuning-guides/w6000-v620.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
 * [Using compiler features](./conceptual/compiler-topics.md)
