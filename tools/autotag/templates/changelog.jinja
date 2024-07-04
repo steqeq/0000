@@ -23,9 +23,12 @@ This page contains the release notes for AMD ROCm™ Software.
 -------------------
 
 ## ROCm {{version}}
-
-{%- set rocm_changes = "./rocm_changes/" ~ version ~ ".md" %}
-{% include rocm_changes ignore missing %}
+{{- "\n\n" -}}
+{%- set highlights = "./highlights/" ~ version ~ ".md" %}
+{%- include highlights ignore missing -%}
+{{- "\n\n" -}}
+{%- set support = "./support/" ~ version ~ ".md" %}
+{%- include support ignore missing -%}
 
 ### Library changes in ROCm {{version}}
 
@@ -54,7 +57,17 @@ This page contains the release notes for AMD ROCm™ Software.
 {{change|trim|e}}
 
 {%- endfor %}{# change in lib.data.changes #}
-{%- endif  %}
+{%- endif -%}
 {%- endfor %}{# lib in release.libraries #}
+{{- "\n\n" -}}
+{%- set extra_components = "./extra_components/" ~ version ~ ".md" %}
+{%- include extra_components ignore missing -%}
+{{- "\n\n" -}}
+{%- set known_issues = "./known_issues/" ~ version ~ ".md" %}
+{%- include known_issues ignore missing -%}
+{{- "\n\n" -}}
+{%- set upcoming_changes = "./upcoming_changes/" ~ version ~ ".md" %}
+{%- include upcoming_changes ignore missing -%}
+
 {%- endfor %}{# release in releases #}
 {# EOF #}
