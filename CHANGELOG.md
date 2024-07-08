@@ -19,6 +19,26 @@ This page contains the changelog for AMD ROCm™ Software.
 
 ROCm 6.1.2 includes enhancements to SMI tools and improvements to some libraries.
 
+### HIP SDK on Windows
+
+The [HIP SDK on Windows](https://rocm.docs.amd.com/projects/install-on-windows/en/docs-6.1.2/)
+for ROCm 6.1.2 now includes new versions of the ``amdhip64`` and ``amd_comgr`` binaries
+in place of the old binaries:
+
+* **``amdhip64_6.dll``** replaces ``amdhip64.dll``
+* **``amd_comgr_2.dll``** replaces ``amd_comgr.dll``
+
+The latest version of HIPRT -- named ``hiprt0200364.dll`` (version 2.3.12a8a07) -- is included
+with this release.
+
+To use the latest capabilities of the HIP SDK, reference these new versions of
+the DLL files.
+
+```{note}
+The HIP SDK on Windows for ROCm 6.x is not backwards compatible with previous major
+versions such as 5.x.
+```
+
 ### OS support
 
 ROCm 6.1.2 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel: 5.15 [GA], 6.8 [HWE]).
