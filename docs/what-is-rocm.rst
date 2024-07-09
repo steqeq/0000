@@ -100,7 +100,7 @@ Tools
   ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
   ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
   ":doc:`ROCdbgapi <rocdbgapi:index>`", "ROCm debugger API library"
-  "`ROCm Compilers <https://rocm.docs.amd.com/projects/llvm-project/en/latest/reference/rocmcc.html>`_", "Clang/LLVM-based compilers"
+  ":doc:`ROCm compilers <./reference/rocmcc>`", "Clang/LLVM-based compiler"
   ":doc:`rocminfo <rocminfo:index>`", "Reports system information"
   ":doc:`ROCProfiler <rocprofiler:index>`", "Profiling tool for HIP applications"
   ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
@@ -129,6 +129,6 @@ Runtimes
 .. csv-table::
   :header: "Component", "Description"
 
-  "`AMD Common Language Runtime (CLR) <https://github.com/ROCm/clr>`_", "Contains source code for AMD's `common language runtimes (CLR) <https://rocm.docs.amd.com/projects/HIP/en/latest/understand/amd_clr.html>`_ HIP and OpenCL"
+  ":doc:`AMD Common Language Runtime (CLR) <hip:understand/amd_clr>`", "Contains source code for AMD's common language runtimes: HIP and OpenCL"
   ":doc:`HIP <hip:index>`", "AMD's GPU programming language extension and the GPU runtime"
   ":doc:`ROCR-Runtime <rocr-runtime:index>`", "User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents"
