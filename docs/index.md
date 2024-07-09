@@ -16,7 +16,8 @@ If you're using Radeon GPUs, consider reviewing {doc}`Radeon-specific ROCm docum
 Installation instructions are available from:
 
 * {doc}`ROCm installation for Linux<rocm-install-on-linux:index>`
-* {doc}`ROCM installation for Windows<rocm-install-on-windows:index>`
+* {doc}`Heterogeneous-computing Interface for Portability (HIP) SDK installation for Windows<rocm-install-on-windows:index>`
+* {doc}`HIP SDK installation for Windows<rocm-install-on-windows:index>`
 * [Deep learning frameworks installation](./how-to/deep-learning-rocm.rst)
 
 ROCm documentation is organized into the following categories:
@@ -26,18 +27,19 @@ ROCm documentation is organized into the following categories:
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ./data/banner-concepts.jpg
-:img-alt: Concepts documentation
+:img-top: ./data/banner-compatibility.jpg
+:img-alt: Compatibility information
 :padding: 2
 
-* [GPU architecture](./conceptual/gpu-arch.md)
-* [GPU memory](./conceptual/gpu-memory.md)
-* [File structure (Linux FHS)](./conceptual/file-reorg.md)
-* [GPU isolation techniques](./conceptual/gpu-isolation.md)
-* [Using CMake](./conceptual/cmake-packages.rst)
-* [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
-* [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
-* [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
+* [Compatibility matrix](./compatibility/compatibility-matrix.rst)
+* {doc}`Linux system requirements<rocm-install-on-linux:reference/system-requirements>`
+* {doc}`Windows system requirements<rocm-install-on-windows:reference/system-requirements>`
+* {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`
+* {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
+* {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
+* [OpenMP](./about/compatibility/openmp.md)
+* [Precision support](./compatibility/precision-support.rst)
+* {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
 :::{grid-item-card}
@@ -55,6 +57,22 @@ ROCm documentation is organized into the following categories:
 * [Setting the number of CUs](./how-to/setting-cus)  
 * [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
+:::
+
+:::{grid-item-card}
+:class-card: sd-text-black
+:img-top: ./data/banner-conceptual.jpg
+:img-alt: Conceptual documentation
+:padding: 2
+
+* [GPU architecture](./conceptual/gpu-arch.md)
+* [GPU memory](./conceptual/gpu-memory.md)
+* [File structure (Linux FHS)](./conceptual/file-reorg.md)
+* [GPU isolation techniques](./conceptual/gpu-isolation.md)
+* [Using CMake](./conceptual/cmake-packages.rst)
+* [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
+* [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
+* [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
 :::
 
 <!-- markdownlint-disable MD051 -->
@@ -75,22 +93,5 @@ ROCm documentation is organized into the following categories:
 * [GPU hardware specifications](./reference/gpu-arch-specs.rst)
 :::
 <!-- markdownlint-enable MD051 -->
-
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-compatibility.jpg
-:img-alt: Compatibility information
-:padding: 2
-
-* [Compatibility matrix](./compatibility/compatibility-matrix.rst)
-* {doc}`Linux system requirements<rocm-install-on-linux:reference/system-requirements>`
-* {doc}`Windows system requirements<rocm-install-on-windows:reference/system-requirements>`
-* {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`
-* {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
-* {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
-* [OpenMP](./about/compatibility/openmp.md)
-* [Precision support](./compatibility/precision-support.rst)
-* {doc}`ROCm on Radeon GPUs<radeon:index>`
-:::
 
 ::::
