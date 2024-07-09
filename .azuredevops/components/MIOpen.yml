@@ -25,6 +25,7 @@ parameters:
     - rocBLAS
     - hipBLAS
     - hipBLASLt
+    - hipBLAS-common
     - half
     - composable_kernel
     - rocm-cmake
