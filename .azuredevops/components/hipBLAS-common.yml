@@ -23,7 +23,7 @@ parameters:
     - rocminfo
 
 jobs:
-- job: hipBLAS-common
+- job: hipBLAS_common
   variables:
   - group: common
   - name: ROCM_PATH
