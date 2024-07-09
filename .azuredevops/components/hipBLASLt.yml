@@ -73,21 +73,6 @@ jobs:
         dependencySource: tag-builds
   - script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
     displayName: ROCm symbolic link
-# Build and install gtest, lapack, hipBLAS-common
-# $(Pipeline.Workspace)/deps is a temporary folder for the build process
-# $(Pipeline.Workspace)/s/deps is part of the hipBLASLt repo
-  - script: mkdir $(Pipeline.Workspace)/deps
-# hipBLASLt already has a CMake script for external deps, so we can just run that
-# https://github.com/ROCm/hipBLASLt/blob/develop/deps/CMakeLists.txt
-  - script: cmake $(Pipeline.Workspace)/s/deps
-    displayName: Configure hipBLASLt external dependencies
-    workingDirectory: $(Pipeline.Workspace)/deps
-  - script: make
-    displayName: Build hipBLASLt external dependencies
-    workingDirectory: $(Pipeline.Workspace)/deps
-  - script: sudo make install
-    displayName: Install hipBLASLt external dependencies
-    workingDirectory: $(Pipeline.Workspace)/deps
 # Set link to redirect llvm folder
   - task: Bash@3
     displayName: Symlink to rocm/lib/llvm
