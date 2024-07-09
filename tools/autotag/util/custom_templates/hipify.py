@@ -5,10 +5,10 @@ from util.defaults import TEMPLATES, PROCESSORS
 
 TEMPLATES['HIPIFY'] = (
     (
-        r"## HIPIFY (?P<lib_version>\d+\.\d+(?:\.\d+))?"
-        r"(?P<for_rocm> for ROCm )?"
-        r"(?P<rocm_version>(?(for_rocm)\d+\.\d+(?:\.\d+)?|.*))?"
-        r"( \(Unreleased\))?"
+        r"## HIPIFY"
+        r"(?: (?P<lib_version>\d+\.\d+(?:\.\d+))?)?"
+        r"(?: for ROCm (?P<rocm_version>\d+\.\d+(?:\.\d+)?))?"
+        r"(?: ?\(Unreleased\))?"
         r"\n"
         r"(?P<body>(?:(?!## ).*(?:(?!\n## )\n|(?=\n## )))*)"
     )
@@ -21,13 +21,13 @@ def hipify_processor(data: ReleaseLib, template: str, _, __) -> bool:
     changelog = changelog.decoded_content.decode()
     pattern = re.compile(template)
     match = pattern.search(changelog)
-    lib_version  = match["lib_version"]
+    lib_version  = match["rocm_version"]
+
     data.message = (
         f"HIPIFY for ROCm"
         f" {data.full_version}"
         f"""{match["body"]}"""
     )
-
     data.notes = f"""{match["body"]}"""
     data.lib_version = lib_version
     
