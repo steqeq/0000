@@ -26,7 +26,6 @@ def hipify_processor(data: ReleaseLib, template: str, _, __) -> bool:
     data.message = (
         f"HIPIFY for ROCm"
         f" {data.full_version}"
-        f"""{match["body"]}"""
     )
     data.notes = f"""{match["body"]}"""
     data.lib_version = lib_version
