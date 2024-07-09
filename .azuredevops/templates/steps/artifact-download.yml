@@ -25,6 +25,7 @@ parameters:
     HIP: develop
     hipBLAS: develop
     hipBLASLt: develop
+    hipBLAS-common: develop
     hipCUB: develop
     hipFFT: develop
     hipfort: develop
