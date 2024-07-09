@@ -20,16 +20,17 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
-    - llvm-project
-    - ROCR-Runtime
+    - aomp
     - clr
+    - hipBLAS-common
+    - llvm-project
+    - rocm-cmake
+    - ROCR-Runtime
     - rocminfo
     - rocprofiler-register
     - rocBLAS
     - rocSPARSE
     - rocSOLVER
-    - aomp
 
 jobs:
 - job: hipBLAS
