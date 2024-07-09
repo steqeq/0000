@@ -8,12 +8,13 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - ninja-build
-    - python3-venv
-    - libmsgpack-dev
+    - gfortran
     - git
-    - python3-pip
     - libdrm-dev
+    - libmsgpack-dev
+    - ninja-build
+    - python3-pip
+    - python3-venv
 - name: pipModules
   type: object
   default:
@@ -21,12 +22,12 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - llvm-project
-    - ROCR-Runtime
     - clr
+    - hipBLAS
+    - llvm-project
     - rocminfo
     - rocprofiler-register
-    - hipBLAS
+    - ROCR-Runtime
 
 jobs:
 - job: hipBLASLt
@@ -58,7 +59,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  # CI case: download latest default branch build
+# CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
@@ -72,6 +73,27 @@ jobs:
         dependencySource: tag-builds
   - script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
     displayName: ROCm symbolic link
+# Build and install gtest, lapack, hipBLAS-common
+# $(Pipeline.Workspace)/deps is a temporary folder for the build process
+# $(Pipeline.Workspace)/s/deps is part of the hipBLASLt repo
+  - script: mkdir $(Pipeline.Workspace)/deps
+# hipBLASLt already has a CMake script for external deps, so we can just run that
+# https://github.com/ROCm/hipBLASLt/blob/develop/deps/CMakeLists.txt
+  - script: cmake $(Pipeline.Workspace)/s/deps
+    displayName: Configure hipBLASLt external dependencies
+    workingDirectory: $(Pipeline.Workspace)/deps
+  - script: make
+    displayName: Build hipBLASLt external dependencies
+    workingDirectory: $(Pipeline.Workspace)/deps
+  - script: sudo make install
+    displayName: Install hipBLASLt external dependencies
+    workingDirectory: $(Pipeline.Workspace)/deps
+# Set link to redirect llvm folder
+  - task: Bash@3
+    displayName: Symlink to rocm/lib/llvm
+    inputs:
+      targetType: inline
+      script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
