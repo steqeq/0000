@@ -23,6 +23,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: rocprofiler-register
+      packageDebian: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: rocprofiler-register-tests
@@ -35,3 +36,6 @@ jobs:
       componentName: rocprofiler-register
       testDir: 'tests/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rocprofiler-register
+      publishDebian: true

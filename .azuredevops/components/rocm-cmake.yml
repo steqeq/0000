@@ -37,6 +37,9 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: rocm-cmake
+      packageDebian: true
 # extra steps for ctest suite
   - script: |
       python -m pip install -r $(Build.SourcesDirectory)/docs/requirements.txt
@@ -46,3 +49,6 @@ jobs:
     displayName: "ctest setup"
 #  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rocm-cmake
+      publishDebian: true

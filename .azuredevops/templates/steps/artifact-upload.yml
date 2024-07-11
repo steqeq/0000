@@ -9,6 +9,9 @@ parameters:
 - name: publish
   type: boolean
   default: true
+- name: publishDebian
+  type: boolean
+  default: false
 
 steps:
 - task: ArchiveFiles@2
@@ -31,3 +34,11 @@ steps:
     retryCountOnTaskFailure: 3
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)'
+      artifactName: '${{ parameters.artifactName }}'
+- ${{ if parameters.publishDebian }}:
+  - task: PublishPipelineArtifact@1
+    displayName: ${{ parameters.artifactName }} Publish
+    retryCountOnTaskFailure: 3
+    inputs:
+      targetPath: $(Pipeline.Workspace)/deb/publish
+      artifactName: '${{ parameters.artifactName }}-ubuntu2204'

@@ -22,6 +22,8 @@ jobs:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: rocm-core
+      packageDebian: true
       extraBuildFlags: >-
         -DCMAKE_CURRENT_BINARY_DIR=$PWD
         -DCMAKE_CURRENT_SOURCE_DIR=$PWD/../
@@ -31,3 +33,6 @@ jobs:
         -DCPACK_RPM_PACKAGE_RELEASE="local.9999"
         -DROCM_VERSION="$(last-release)"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rocm-core
+      publishDebian: true
