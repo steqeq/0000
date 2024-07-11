@@ -16,7 +16,6 @@ If you're using Radeon GPUs, consider reviewing {doc}`Radeon-specific ROCm docum
 Installation instructions are available from:
 
 * {doc}`ROCm installation for Linux<rocm-install-on-linux:index>`
-* {doc}`Heterogeneous-computing Interface for Portability (HIP) SDK installation for Windows<rocm-install-on-windows:index>`
 * {doc}`HIP SDK installation for Windows<rocm-install-on-windows:index>`
 * [Deep learning frameworks installation](./how-to/deep-learning-rocm.rst)
 
