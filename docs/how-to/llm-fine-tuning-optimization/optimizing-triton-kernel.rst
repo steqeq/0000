@@ -31,7 +31,7 @@ Each accelerator or GPU has multiple Compute Units (CUs) and various CUs do comp
 can a compute kernel can allocate its task to? For the :doc:`AMD MI300X accelerator <../../reference/gpu-arch-specs>`, the
 grid should have at least 1024 thread blocks or workgroups.
 
-.. figure:: ../../data/how-to/llm-fine-tuning-optimization/compute-unit.png
+.. figure:: ../../data/shared/compute-unit.png
 
    Schematic representation of a CU in the CDNA2 or CDNA3 architecture.
 
@@ -187,7 +187,7 @@ Kernel occupancy
 
 .. _fine-tuning-llms-occupancy-vgpr-table:
 
-.. figure:: ../../data/how-to/llm-fine-tuning-optimization/occupancy-vgpr.png
+.. figure:: ../../data/shared/occupancy-vgpr.png
    :alt: Occupancy related to VGPR usage in an Instinct MI300X accelerator.
    :align: center
 
@@ -236,14 +236,14 @@ The following is a list of kernel arguments used for tuning.
 
    This argument is useful if:
 
-   * The occupancy of the kernel is limited by VGPR usage.
+   * The occupancy of the kernel is limited by VGPR usage, and
 
    * The current VGPR usage is only a few above a boundary in
      :ref:`Occupancy related to VGPR usage in an Instinct MI300X accelerator <fine-tuning-llms-occupancy-vgpr-table>`.
 
    For example, according to the table, the available VGPR is 512 per Execution Unit (EU), and VGPU is allocated at the
    unit of 16. If the current VGPR usage is 170, the actual requested VGPR will be 176, so the
-   occupancy is only 2 waves per CU since :math:`176 \times 3 > 512`. So, if you set
+   occupancy is only 2 waves per EU since :math:`176 \times 3 > 512`. So, if you set
    ``waves_per_eu`` to 3, the LLVM backend tries to bring VGPR usage down so
    that it might fit 3 waves per EU.
 
@@ -256,9 +256,9 @@ The following is a list of kernel arguments used for tuning.
    Experimental feature for Flash Attention-like kernels that determines the size of the Matrix Fused Multiply-Add
    (MFMA) instruction used.
 
-   -  ``Matrix_instr_nonkdim = 16``: ``mfma_16x16`` is used.
+   -  ``matrix_instr_nonkdim = 16``: ``mfma_16x16`` is used.
 
-   -  ``Matrix_instr_nonkdim = 32``: ``mfma_32x32`` is used.
+   -  ``matrix_instr_nonkdim = 32``: ``mfma_32x32`` is used.
 
    For GEMM kernels on an AMD MI300X accelerator, ``mfma_16x16`` typically outperforms ``mfma_32x32``, even for large
    tile/GEMM sizes.
@@ -314,10 +314,10 @@ or :doc:`rocBLAS <rocblas:index>` is faster for a specific operation.
      To enable tuning or lowering of ``mm``/``conv``\s.
 
   ``torch._inductor.max_autotune_gemm_backends/TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
-     To select the candidate backends for ``mm`` auto-tuning. Defaults to
-     ``TRITON,ATEN,NV``. This also includes the ``CUTLASS`` tuning option. Limiting this to
-     ``TRITON`` might improve performance by enabling more fused ``mm`` kernels
-     instead of going to rocBLAS.
+     Selects the candidate backends for ``mm`` auto-tuning. Defaults to
+     ``TRITON,ATEN``. Limiting
+     this to ``TRITON`` might improve performance by enabling more fused ``mm``
+     kernels instead of going to rocBLAS.
 
 * For ``mm`` tuning, tuning ``coordinate_descent`` might improve performance.
 
@@ -331,8 +331,8 @@ or :doc:`rocBLAS <rocblas:index>` is faster for a specific operation.
   C++ code which launches Triton binaries directly with
   ``hipModuleLaunchKernel`` and relies on `hipification`.
 
-* For NHWC convolutions workloads
-  ``torch._inductor.config.layout_optimization=True`` or ``TORCHINDUCTOR_LAYOUT_OPTIMIZATION=``
+* Convolution workloads may see a performance benefit by specifying
+  ``torch._inductor.config.layout_optimization=True`` or ``TORCHINDUCTOR_LAYOUT_OPTIMIZATION=1``
   can help be enforcing channels_last format throughout the graph avoiding
   any additional transposes added by ``inductor``. Note that
   ``PYTORCH_MIOPEN_SUGGEST_NHWC=1`` is recommended if using this.

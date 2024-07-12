@@ -2,6 +2,7 @@ AAC
 ABI
 ACE
 ACEs
+ACS
 AccVGPR
 AccVGPRs
 ALU
@@ -43,6 +44,7 @@ CPF
 CPP
 CPU
 CPUs
+Cron
 CSC
 CSE
 CSV
@@ -91,7 +93,9 @@ FFmpeg
 FHS
 FMA
 FP
+FX
 Filesystem
+FindDb
 Flang
 Fortran
 Fuyu
@@ -124,6 +128,7 @@ GitHub
 Gitpod
 HBM
 HCA
+HGX
 HIPCC
 HIPExtension
 HIPIFY
@@ -133,12 +138,14 @@ HPE
 HPL
 HSA
 HWE
+HWS
 Haswell
 Higgs
 Hyperparameters
 ICV
 IDE
 IDEs
+IFWI
 IMDb
 IOMMU
 IOP
@@ -148,6 +155,7 @@ IRQ
 ISA
 ISV
 ISVs
+ITL
 ImageNet
 InfiniBand
 Inlines
@@ -159,6 +167,7 @@ JSON
 Jupyter
 KFD
 KiB
+KV
 KVM
 Keras
 Khronos
@@ -208,6 +217,7 @@ NIC
 NICs
 NLI
 NLP
+NPKit
 NPS
 NSP
 NUMA
@@ -240,6 +250,7 @@ OpenMP
 OpenMPI
 OpenSSL
 OpenVX
+PCC
 PCI
 PCIe
 PEFT
@@ -250,6 +261,7 @@ PRs
 PaLM
 Pageable
 PeerDirect
+PerfDb
 Perfetto
 PipelineParallel
 PnP
@@ -288,6 +300,7 @@ SBIOS
 SCA
 SDK
 SDMA
+SDPA
 SDRAM
 SENDMSG
 SGPR
@@ -309,10 +322,12 @@ SRAMECC
 SVD
 SWE
 SerDes
+ShareGPT
 Shlens
 Skylake
 Softmax
 Spack
+SplitK
 Supermicro
 Szegedy
 TCA
@@ -325,6 +340,8 @@ TF
 TFLOPS
 TPU
 TPUs
+Tagram
+TensileLite
 TensorBoard
 TensorFlow
 TensorParallel
@@ -345,6 +362,7 @@ USM
 UTCL
 UTIL
 Uncached
+Unittests
 Unhandled
 VALU
 VBIOS
@@ -467,6 +485,7 @@ executables
 ffmpeg
 filesystem
 fortran
+fp
 galb
 gcc
 gdb
@@ -480,6 +499,7 @@ gzip
 heterogenous
 hipBLAS
 hipBLASLt
+hipBLASLt's
 hipCUB
 hipFFT
 hipLIB
@@ -504,6 +524,7 @@ hyperparameter
 ib_core
 inband
 incrementing
+inductor
 inferencing
 inflight
 init
@@ -561,6 +582,8 @@ prebuilt
 precompiled
 prefetch
 prefetchable
+prefill
+prefills
 preprocess
 preprocessed
 preprocessing

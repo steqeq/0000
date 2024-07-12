@@ -86,3 +86,5 @@ html_theme_options = {
 redirects = {
     "reference/openmp/openmp": "../../about/compatibility/openmp.html"
 }
+
+numfig = False
