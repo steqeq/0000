@@ -13,6 +13,8 @@ This topic is a tuning guide for Instinct MI300X accelerators, which
 built on the `AMD CDNA 3 architecture <https://rocm.docs.amd.com/en/latest/conceptual/gpu-arch/mi300.html>`_.
 This topic can help you optimize performance.
 
+.. include:: ./includes/mi300x-hw.rst
+
 .. _mi300x-system-settings:
 
 MI300X system settings
