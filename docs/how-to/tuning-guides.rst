@@ -3,9 +3,9 @@
    :keywords: high-performance computing, HPC, Instinct accelerators, Radeon,
               tuning, tuning guide, AMD, ROCm
 
-********************************************
-Hardware tuning and performance optimization
-********************************************
+******************************************
+System tuning and performance optimization
+******************************************
 
 This guide outlines system setup and tuning suggestions for AMD hardware to
 optimize performance for specific types of workloads or use-cases.

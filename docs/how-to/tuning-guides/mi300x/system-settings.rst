@@ -1,27 +1,36 @@
-System settings
-===============
+.. meta::
+   :description: AMD Instinct MI300X system settings
+   :keywords: AMD, Instinct, MI300X, HPC, tuning, BIOS settings, NBIO, ROCm,
+              environment variable, performance, accelerator, GPU, EPYC, GRUB,
+              operating system
 
-This guide reviews system settings that are required to configure the system for
-AMD Instinct MI300X accelerators. It is important to ensure a system is
-functioning correctly before trying to improve the overall performance. In this
-guide, settings discussed mostly ensure proper functionality of the Instinct
-based system. Some settings discussed are known to improve performance for most
-applications running in a MI300X system. The guide does not describe how to
-improve performance for specific applications or workloads. 
+***************
+System settings
+***************
+
+This guide reviews system settings that are required to configure your system
+for AMD Instinct MI300X accelerators. It is important to ensure a system is
+functioning correctly before trying to improve its overall performance. In this
+guide, the settings discussed mostly ensure proper functionality of your
+Instinct-based system. Some settings discussed are known to improve performance
+for most applications running on a MI300X system. This guide does not describe
+how to improve performance for specific applications or workloads. 
 
 The main topics of discussion in this document are:
 
-* System BIOS settings
+* :ref:`System BIOS settings <mi300x-bios-settings>`
 
-* Operating system settings
+* :ref:`GRUB <mi300x-grub-settings>`
 
-* GRUB
+* :ref:`Operating system settings <mi300x-os-settings>`
+
+.. _mi300x-bios-settings:
 
 System BIOS settings
---------------------
+====================
 
 AMD EPYC 9004-based systems
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 For maximum MI300X GPU performance on systems with AMD EPYC™ 9004-series
 processors (codename “Genoa”) and AMI System BIOS, the following configuration
 of system BIOS settings has been validated. These settings must be used for the
@@ -241,17 +250,19 @@ BIOS setup menus may be different, or the option may not be present.
 
      - Memory encryption
 
+.. _mi300x-grub-settings:
+
 GRUB settings
--------------
+=============
 
 In any modern Linux distribution, the ``/etc/default/grub`` file is used to
 configure GRUB. In this file, the string assigned to ``GRUB_CMDLINE_LINUX`` is
 the command line parameters that Linux uses during boot.
 
 Appending strings via Linux command line
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------
 
-It is recommended to append the following strings in ``GRUB_CMDLINE_LINUX``:
+It is recommended to append the following strings in ``GRUB_CMDLINE_LINUX``.
 
 One important parameter is ``pci=realloc=off``. With this setting Linux is able
 to unambiguously detect all GPUs of the MI300X based system because this setting
@@ -282,7 +293,7 @@ Otherwise, if the system has Intel host CPUs add this instead to
    intel_iommu=on iommu=pt
 
 Update GRUB
-^^^^^^^^^^^
+-----------
 
 Update GRUB to use the modified configuration:
 
@@ -298,11 +309,13 @@ that the version of that is version 2 with the use of the following command:
 
    grub-mkconfig -version
 
+.. _mi300x-os-settings:
+
 Operating system settings
--------------------------
+=========================
 
 CPU core states (C-states)
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 There are several core states (C-states) that an AMD EPYC CPU can idle within:
 
@@ -348,10 +361,12 @@ systems, run the following command.
    cpupower idle-set -d 2
 
 /proc and /sys file system settings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------
+
+.. _mi300x-disable-numa:
 
 Disable NUMA auto-balancing
-'''''''''''''''''''''''''''
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The NUMA balancing feature allows the OS to scan memory and attempt to migrate
 to a DIMM that is logically closer to the cores accessing it. This causes an
@@ -362,8 +377,70 @@ doing so is detrimental to performance. Therefore, this setting should be tested
 by toggling the ``numa_balancing`` value and running the application, e.g.
 in one run setting this to ``0`` and in another run setting this to ``1``.
 
+Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the current
+NUMA (Non-Uniform Memory Access) settings. Output ``0`` indicates this
+setting is disabled. If no output or output is ``1``, run the command
+``sudo sh -c \\'echo 0 > /proc/sys/kernel/numa_balancing`` to disable it.
+
+For these settings, the ``env_check.sh`` script automates setting, resetting,
+and checking your environments. Find the script at
+`<https://github.com/ROCm/triton/blob/rocm_env/scripts/amd/env_check.sh>`__.
+
+Run the script as follows to set or reset the settings:
+
+``./env_check.sh [set/reset/check]``
+
+.. tip::
+
+   Use ``./env_check.sh -h`` for help info.
+
+Automate disabling NUMA auto-balance using Cron
+'''''''''''''''''''''''''''''''''''''''''''''''
+
+The :ref:`mi300x-disable-numa` section describes the command to disable NUMA
+auto-balance. To automate the command with Cron, edit the ``crontab``
+configuration file for the root user:
+
+.. code-block:: shell
+
+   sudo crontab -e
+
+#. Add the following Cron entry to run the script at a specific interval:
+
+   .. code-block:: shell
+
+      @reboot sh -c 'echo 0 > /proc/sys/kernel/numa_balancing'
+
+#. Save the file and exit the text editor.
+
+#. Optionally, restart the system to apply changes by issuing ``sudo reboot``.
+
+#. Verify your new configuration.
+
+   .. code-block::
+
+      cat /proc/sys/kernel/numa_balancing
+
+   The ``/proc/sys/kernel/numa_balancing`` file controls NUMA balancing in the
+   Linux kernel. If the value in this file is set to ``0``, the NUMA balancing
+   is disabled. If the value is set to ``1``, NUMA balancing is enabled.
+
+.. note::
+
+   Disabling NUMA balancing should be done cautiously and for
+   specific reasons, such as performance optimization or addressing
+   particular issues. Always test the impact of disabling NUMA balancing in
+   a controlled environment before applying changes to a production system.
+
+.. _mi300x-env-vars:
+
 Environment variables
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
+
+HIP provides an environment variable export ``HIP_FORCE_DEV_KERNARG=1`` that
+can put arguments of HIP kernels directly to device memory to reduce the
+latency of accessing those kernel arguments. It can improve performance by 2 to
+3 µs for some kernels.
 
 It is recommended to set the following environment variable:
 
@@ -371,12 +448,12 @@ It is recommended to set the following environment variable:
 
    export HIP_FORCE_DEV_KERNARG=1
 
-HIP provides an environment variable ``HIP_FORCE_DEV_KERNARG`` to enable putting
-HIP kernel arguments directly into device memory which will reduce (around 2 or
-3&micro;s) the latency of accessing these arguments. 
+.. note::
+
+   This is the default option as of ROCm 6.2.
 
 IOMMU configuration -- systems with 256 CPU threads
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------------
 
 For systems that have 256 logical CPU cores or more, setting the input-output memory management unit (IOMMU) configuration to “disabled” can limit the number of available logical cores to 255. The reason is that the Linux® kernel disables X2APIC in this case and falls back to Advanced Programmable Interrupt Controller (APIC), which can only enumerate a maximum of 255 (logical) cores.
 
@@ -401,7 +478,7 @@ If SMT is enabled by setting “CCD/Core/Thread Enablement > SMT Control” to �
 Once the system is properly configured, ROCm software can be installed.
 
 System management
------------------
+=================
 
 In order to optimize the system performance, first the existing system
 configuration parameters and settings need to be understood. ROCm has some CLI
@@ -412,15 +489,17 @@ For a complete guide on how to install/manage/uninstall ROCm on Linux, refer to
 :doc:`rocm-install-on-linux:tutorial/quick-start`. For verifying that the
 installation was successful, refer to the
 :doc:`rocm-install-on-linux:how-to/native-install/post-install`.
-Should verification fail, consult :doc:`system-debugging`.
+Should verification fail, consult :ref:`system-debugging`.
 
 Hardware verification with ROCm
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
 
 The ROCm platform provides tools to query the system structure.
 
+.. _mi300x-rocm-smi:
+
 ROCm SMI
-''''''''
+^^^^^^^^
 
 To query your GPU hardware, use the ``rocm-smi`` command. ROCm SMI lists
 GPUs available to your system -- with their device ID and their respective
@@ -430,7 +509,7 @@ The following screenshot shows that all 8 GPUs of MI300X are recognized by ROCm.
 Performance of an application could be otherwise suboptimal if, for example, out
 of the 8 GPUs only 5 of them are recognized.
 
-.. image:: ../../data/how-to/tuning-guides/rocm-smi-showhw.png
+.. image:: ../../../data/how-to/tuning-guides/rocm-smi-showhw.png
    :align: center
    :alt: rocm-smi --showhw output
 
@@ -438,7 +517,7 @@ To see the system structure, the localization of the GPUs in the system, and the
 fabric connections between the system components, use the command
 ``rocm-smi --showtopo``.
 
-.. image:: ../../data/how-to/tuning-guides/rocm-smi-showtopo.png
+.. image:: ../../../data/how-to/tuning-guides/rocm-smi-showtopo.png
    :align: center
    :alt: rocm-smi --showtopo output
 
@@ -474,7 +553,7 @@ number of compute units, width of the SIMD pipelines, memory information, and
 Instruction Set Architecture (ISA). Below is the truncated output of the
 command:
 
-.. image:: ../../data/how-to/tuning-guides/rocminfo.png
+.. image:: ../../../data/how-to/tuning-guides/rocminfo.png
    :align: center
    :alt: rocminfo.txt example
 
@@ -482,8 +561,19 @@ For a complete list of architecture (i.e CDNA3) and LLVM target names
 (i.e. gfx942 for MI300X), refer to the Supported GPU section of the System
 Requirements for Linux.
 
-ROCm Bandwidth Test
+
+Deterministic clock
 '''''''''''''''''''
+
+Use the command ``rocm-smi --setperfdeterminism 1900`` to set the max clock
+speed up to 1900 MHz instead of the default 2100 MHz. This can reduce
+the chance of a PCC event lowering the attainable GPU clocks. This
+setting will not be required for new IFWI releases with the production
+PRC feature. Restore this setting to its default value with the
+``rocm-smi -r`` command.
+
+ROCm Bandwidth Test
+^^^^^^^^^^^^^^^^^^^
 
 The section Hardware verification with ROCm showed howthe command rocm-smi --showtopo can be used to view the system structure and how the GPUs are connected. For more details on the link bandwidth, rocm-bandwidth-test can run benchmarks to show the effective link bandwidth between the components of the system.
 
@@ -516,7 +606,7 @@ The output will list the available compute devices (CPUs and GPUs), including
 their device ID and PCIe ID. Following screenshot (beginning part of the output
 of running rocm-bandwidth-test) shows the devices present in the system.
 
-.. image:: ../../data/how-to/tuning-guides/rocm-bandwidth-test.png
+.. image:: ../../../data/how-to/tuning-guides/rocm-bandwidth-test.png
    :align: center
    :alt: rocm-bandwidth-test sample output
 
@@ -552,7 +642,7 @@ Bidirectional bandwidth
    :alt: rocm-bandwidth-test bidirectional bandwidth
 
 Acronyms
---------
+========
 
 AMI
   American Megatrends International
