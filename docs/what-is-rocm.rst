@@ -111,7 +111,6 @@ Tools
   ":doc:`ROCm SMI <rocm_smi_lib:index>`", "C library for Linux that provides a user space interface for applications to monitor and control GPU applications"
   ":doc:`ROCm Validation Suite <rocmvalidationsuite:index>`", "Detects and troubleshoots common problems affecting AMD GPUs running in a high-performance computing environment"
   ":doc:`ROCr Debug Agent <rocr_debug_agent:index>`", "Prints the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running"
-  ":doc:`TransferBench <transferbench:index>`", "Utility to benchmark simultaneous transfers between user-specified devices (CPUs/GPUs)"
 
 Compilers
 -----------------------------------------------
