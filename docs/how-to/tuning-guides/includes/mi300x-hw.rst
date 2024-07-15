@@ -304,12 +304,118 @@ that the version of that is version 2 with the use of the following command:
 Operating system settings
 -------------------------
 
+CPU core states (C-states)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There are several core states (C-states) that an AMD EPYC CPU can idle within:
+
+* C0: active. This is the active state while running an application.
+
+* C1: idle.
+
+* C2: idle and power-gated. This is a deeper sleep state and will have greater
+  latency when moving back to the C0 state, compared to when the CPU is coming
+  out of C1.
+
+Disabling C2 is important for running with a high performance, low-latency
+network. To disable the C2 state, install the ``cpupower`` tool using your Linux
+distribution's package manager. ``cpupower`` is not a base package in most Linux
+distributions. The specific package to be installed varies per Linux
+distribution.
+
+.. tab-set::
+
+   .. tab-item:: Ubuntu
+
+      .. code-block:: shell
+
+         sudo apt install linux-tools-common
+
+   .. tab-item:: RHEL
+
+      .. code-block:: shell
+
+         sudo yum install cpupowerutils
+
+   .. tab-item:: SLES
+
+      .. code-block:: shell
+
+         sudo zypper install cpupower
+
+Now, to disable power-gating on all cores run the following on Linux
+systems, run the following command.
+
+.. code-block:: shell
+
+   cpupower idle-set -d 2
+
+/proc and /sys file system settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Disable NUMA auto-balancing
+'''''''''''''''''''''''''''
+
+The NUMA balancing feature allows the OS to scan memory and attempt to migrate
+to a DIMM that is logically closer to the cores accessing it. This causes an
+overhead because the OS is second-guessing your NUMA allocations but may be
+useful if the NUMA locality access is very poor. Applications can therefore in
+general benefit from disabling NUMA balancing but there are workloads where
+doing so is detrimental to performance. Therefore, this setting should be tested
+by toggling the ``numa_balancing`` value and running the application, e.g.
+in one run setting this to ``0`` and in another run setting this to ``1``.
+
+Environment variables
+^^^^^^^^^^^^^^^^^^^^^
+
+It is recommended to set the following environment variable:
+
+.. code-block:: shell
+
+   export HIP_FORCE_DEV_KERNARG=1
+
+HIP provides an environment variable ``HIP_FORCE_DEV_KERNARG`` to enable putting
+HIP kernel arguments directly into device memory which will reduce (around 2 or
+3&micro;s) the latency of accessing these arguments. 
+
+IOMMU configuration -- systems with 256 CPU threads
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For systems that have 256 logical CPU cores or more, setting the input-output memory management unit (IOMMU) configuration to “disabled” can limit the number of available logical cores to 255. The reason is that the Linux® kernel disables X2APIC in this case and falls back to Advanced Programmable Interrupt Controller (APIC), which can only enumerate a maximum of 255 (logical) cores.
+
+If SMT is enabled by setting “CCD/Core/Thread Enablement > SMT Control” to “enable”, the following steps can be applied to the system to enable all (logical) cores of the system:
+
+* In the server BIOS, set IOMMU to “Enabled”.
+
+* When configuring the GRUB boot loader, add the following arguments for the Linux kernel: amd_iommu=on iommu=pt
+
+* Update GRUB
+
+* Reboot the system
+
+* Verify IOMMU passthrough mode by inspecting the kernel log via dmesg:
+
+.. code-block:: shell
+
+   [...]
+   [   0.000000] Kernel command line: [...] amd_iommu=on iommu=pt
+   [...]
+
+Once the system is properly configured, ROCm software can be installed.
+
 System management
 -----------------
 
-In order to optimize the system performance, first the existing system configuration parameters and settings need to be understood. ROCm has some CLI tools that can provide system level information which give hints towards optimizing an user application.
+In order to optimize the system performance, first the existing system
+configuration parameters and settings need to be understood. ROCm has some CLI
+tools that can provide system level information which give hints towards
+optimizing an user application.
 
-For a complete guide on how to install/manage/uninstall ROCm on Linux, refer to Quick-start (Linux). For verifying that the installation was successful, refer to the post-install instructions and system tools. Should verification fail, consult the System Debugging Guide.
+For a complete guide on how to install/manage/uninstall ROCm on Linux, refer to
+:doc:`rocm-install-on-linux:tutorial/quick-start`. For verifying that the
+installation was successful, refer to the
+:doc:`rocm-install-on-linux:how-to/native-install/post-install`.
+Should verification fail, consult :doc:`system-debugging`.
 
 Hardware verification with ROCm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -323,9 +429,130 @@ To query your GPU hardware, use the ``rocm-smi`` command. ROCm SMI lists
 GPUs available to your system -- with their device ID and their respective
 firmware (or VBIOS) versions.
 
+The following screenshot shows that all 8 GPUs of MI300X are recognized by ROCm.
+Performance of an application could be otherwise suboptimal if, for example, out
+of the 8 GPUs only 5 of them are recognized.
+
+.. image:: ../../data/how-to/tuning-guides/rocm-smi-showhw.png
+   :align: center
+   :alt: rocm-smi --showhw output
+
+To see the system structure, the localization of the GPUs in the system, and the
+fabric connections between the system components, use the command
+``rocm-smi --showtopo``.
+
+.. image:: ../../data/how-to/tuning-guides/rocm-smi-showtopo.png
+   :align: center
+   :alt: rocm-smi --showtopo output
+
+The first block of the output shows the distance between the GPUs similar to
+what the ``numactl`` command outputs for the NUMA domains of a system. The
+weight is a qualitative measure for the “distance” data must travel to reach one
+GPU from another one. While the values do not carry a special (physical)
+meaning, the higher the value the more hops are needed to reach the destination
+from the source GPU. This information has performance implication for a
+GPU-based application that moves data among GPUs. User can choose a minimum
+distance among GPUs to be used to make the application performant.
+
+The second block has a matrix named “Hops between two GPUs”, where:
+
+* 1 means the two GPUs are directly connected with XGMI,
+
+* 2 means both GPUs are linked to the same CPU socket and GPU communications
+  will go through the CPU, and
+
+* 3 means both GPUs are linked to different CPU sockets so communications will
+  go through both CPU sockets. This number is one for all GPUs in this case
+  since they are all connected to each other through the Infinity Fabric links.
+
+The third block outputs the link types between the GPUs. This can either be
+“XGMI” for AMD Infinity Fabric links or “PCIE” for PCIe Gen5 links.
+
+The fourth block reveals the localization of a GPU with respect to the NUMA
+organization of the shared memory of the AMD EPYC processors.
+
+To query the compute capabilities of the GPU devices, use rocminfo command. It
+lists specific details about the GPU devices, including but not limited to the
+number of compute units, width of the SIMD pipelines, memory information, and
+Instruction Set Architecture (ISA). Below is the truncated output of the
+command:
+
+.. image:: ../../data/how-to/tuning-guides/rocminfo.png
+   :align: center
+   :alt: rocminfo.txt example
+
+For a complete list of architecture (i.e CDNA3) and LLVM target names
+(i.e. gfx942 for MI300X), refer to the Supported GPU section of the System
+Requirements for Linux.
+
 ROCm Bandwidth Test
 '''''''''''''''''''
 
+The section Hardware verification with ROCm showed howthe command rocm-smi --showtopo can be used to view the system structure and how the GPUs are connected. For more details on the link bandwidth, rocm-bandwidth-test can run benchmarks to show the effective link bandwidth between the components of the system.
+
+The ROCm Bandwidth Test program, which can test inter-device bandwidth, can be installed with the following package-manager commands:
+
+.. tab-set::
+
+   .. tab-item:: Ubuntu
+
+      .. code-block:: shell
+
+         sudo apt install rocm-bandwidth-test
+
+   .. tab-item:: RHEL
+
+      .. code-block:: shell
+
+         sudo yum install rocm-bandwidth-test
+
+   .. tab-item:: SLES
+
+      .. code-block:: shell
+
+         sudo zypper install rocm-bandwidth-test
+
+Alternatively, you can download the source code from
+`<https://github.com/ROCm/rocm_bandwidth_test>`__ and build from source.
+
+The output will list the available compute devices (CPUs and GPUs), including
+their device ID and PCIe ID. Following screenshot (beginning part of the output
+of running rocm-bandwidth-test) shows the devices present in the system.
+
+.. image:: ../../data/how-to/tuning-guides/rocm-bandwidth-test.png
+   :align: center
+   :alt: rocm-bandwidth-test sample output
+
+The output will also show a matrix that contains a ``1`` if a device can
+communicate to another device (CPU and GPU) of the system and it will show the
+NUMA distance (similar to rocm-smi):
+
+Inter-device distance:
+
+.. image:: ../../../data/how-to/tuning-guides/rbt-inter-device-access.png
+   :align: center
+   :alt: rocm-bandwidth-test inter-device distance
+
+Inter-device NUMA distance:
+
+.. image:: ../../../data/how-to/tuning-guides/rbt-inter-device-numa-distance.png
+   :align: center
+   :alt: rocm-bandwidth-test inter-device NUMA distance
+
+The output also contains the measured bandwidth for unidirectional and
+bidirectional transfers between the devices (CPU and GPU):
+
+Unidirectional bandwidth:
+
+.. image:: ../../../data/how-to/tuning-guides/rbt-unidirectional-bandwidth.png
+   :align: center
+   :alt: rocm-bandwidth-test unidirectional bandwidth
+
+Bidirectional bandwidth
+
+.. image:: ../../../data/how-to/tuning-guides/rbt-bidirectional-bandwidth.png
+   :align: center
+   :alt: rocm-bandwidth-test bidirectional bandwidth
 
 Acronyms
 --------
