@@ -264,9 +264,6 @@ The ``iommu=pt`` setting enables IOMMU pass-through mode. When in pass-through
 mode, the adapter does not need to use DMA translation to the memory, which can
 improve performance.
 
-The ``pcie=noats`` setting disables PCIe address translation services globally
-and affects any ATS-capable IOMMU driver.
-
 IOMMU is a system specific IO mapping mechanism and can be used for DMA mapping
 and isolation. This can be beneficial for virtualization and device assignment
 to virtual machines. It is recommended to enable IOMMU support.
