@@ -336,18 +336,21 @@ distribution.
 .. tab-set::
 
    .. tab-item:: Ubuntu
+      :sync: ubuntu
 
       .. code-block:: shell
 
          sudo apt install linux-tools-common
 
    .. tab-item:: RHEL
+      :sync: rhel
 
       .. code-block:: shell
 
          sudo yum install cpupowerutils
 
    .. tab-item:: SLES
+      :sync: sles
 
       .. code-block:: shell
 
@@ -455,13 +458,19 @@ It is recommended to set the following environment variable:
 IOMMU configuration -- systems with 256 CPU threads
 ---------------------------------------------------
 
-For systems that have 256 logical CPU cores or more, setting the input-output memory management unit (IOMMU) configuration to “disabled” can limit the number of available logical cores to 255. The reason is that the Linux® kernel disables X2APIC in this case and falls back to Advanced Programmable Interrupt Controller (APIC), which can only enumerate a maximum of 255 (logical) cores.
+For systems that have 256 logical CPU cores or more, setting the input-output
+memory management unit (IOMMU) configuration to ``disabled`` can limit the
+number of available logical cores to 255. The reason is that the Linux kernel
+disables X2APIC in this case and falls back to Advanced Programmable Interrupt
+Controller (APIC), which can only enumerate a maximum of 255 (logical) cores.
 
-If SMT is enabled by setting “CCD/Core/Thread Enablement > SMT Control” to “enable”, the following steps can be applied to the system to enable all (logical) cores of the system:
+If SMT is enabled by setting ``CCD/Core/Thread Enablement > SMT Control`` to
+``enable``, the following steps can be applied to the system to enable all
+(logical) cores of the system:
 
-* In the server BIOS, set IOMMU to “Enabled”.
+* In the server BIOS, set IOMMU to ``Enabled``.
 
-* When configuring the GRUB boot loader, add the following arguments for the Linux kernel: amd_iommu=on iommu=pt
+* When configuring the GRUB boot loader, add the following arguments for the Linux kernel: ``amd_iommu=on iommu=pt``
 
 * Update GRUB
 
@@ -485,7 +494,7 @@ configuration parameters and settings need to be understood. ROCm has some CLI
 tools that can provide system level information which give hints towards
 optimizing an user application.
 
-For a complete guide on how to install/manage/uninstall ROCm on Linux, refer to
+For a complete guide on how to install, manage, or uninstall ROCm on Linux, refer to
 :doc:`rocm-install-on-linux:tutorial/quick-start`. For verifying that the
 installation was successful, refer to the
 :doc:`rocm-install-on-linux:how-to/native-install/post-install`.
@@ -530,7 +539,7 @@ from the source GPU. This information has performance implication for a
 GPU-based application that moves data among GPUs. User can choose a minimum
 distance among GPUs to be used to make the application performant.
 
-The second block has a matrix named “Hops between two GPUs”, where:
+The second block has a matrix named *Hops between two GPUs*, where:
 
 * 1 means the two GPUs are directly connected with XGMI,
 
@@ -575,25 +584,33 @@ PRC feature. Restore this setting to its default value with the
 ROCm Bandwidth Test
 ^^^^^^^^^^^^^^^^^^^
 
-The section Hardware verification with ROCm showed howthe command rocm-smi --showtopo can be used to view the system structure and how the GPUs are connected. For more details on the link bandwidth, rocm-bandwidth-test can run benchmarks to show the effective link bandwidth between the components of the system.
+The section Hardware verification with ROCm showed howthe command
+``rocm-smi --showtopo`` can be used to view the system structure and how the
+GPUs are connected. For more details on the link bandwidth,
+``rocm-bandwidth-test`` can run benchmarks to show the effective link bandwidth
+between the components of the system.
 
-The ROCm Bandwidth Test program, which can test inter-device bandwidth, can be installed with the following package-manager commands:
+The ROCm Bandwidth Test program, which can test inter-device bandwidth, can be
+installed with the following package manager commands:
 
 .. tab-set::
 
    .. tab-item:: Ubuntu
+      :sync: ubuntu
 
       .. code-block:: shell
 
          sudo apt install rocm-bandwidth-test
 
    .. tab-item:: RHEL
+      :sync: rhel
 
       .. code-block:: shell
 
          sudo yum install rocm-bandwidth-test
 
    .. tab-item:: SLES
+      :sync: sles
 
       .. code-block:: shell
 
@@ -603,8 +620,9 @@ Alternatively, you can download the source code from
 `<https://github.com/ROCm/rocm_bandwidth_test>`__ and build from source.
 
 The output will list the available compute devices (CPUs and GPUs), including
-their device ID and PCIe ID. Following screenshot (beginning part of the output
-of running rocm-bandwidth-test) shows the devices present in the system.
+their device ID and PCIe ID. The following screenshot is an example of the
+beginning part of the output of running ``rocm-bandwidth-test``. It shows the
+devices present in the system.
 
 .. image:: ../../../data/how-to/tuning-guides/rocm-bandwidth-test.png
    :align: center
@@ -612,7 +630,7 @@ of running rocm-bandwidth-test) shows the devices present in the system.
 
 The output will also show a matrix that contains a ``1`` if a device can
 communicate to another device (CPU and GPU) of the system and it will show the
-NUMA distance (similar to rocm-smi):
+NUMA distance -- similar to ``rocm-smi``.
 
 Inter-device distance:
 
