@@ -29,6 +29,9 @@ parameters:
 - name: packageDebian
   type: boolean
   default: false
+- name: cmakePackageTarget
+  type: string
+  default: 'package'
 
 steps:
 # create workingDirectory if it does not exist and change into it
@@ -57,10 +60,21 @@ steps:
     inputs:
       workingDirectory: ${{ parameters.cmakeBuildDir }}
       cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} --target ${{ parameters.cmakeTarget }}'
+# - ${{ if eq(parameters.packageDebian, true) }}:
+#   - script: |
+#       mkdir -p $(Pipeline.Workspace)/deb/publish
+#       cpack -G DEB -B $(Pipeline.Workspace)/deb
+#       mv $(Pipeline.Workspace)/deb/*.deb $(Pipeline.Workspace)/deb/publish
+#     displayName: ${{parameters.componentName }} Package Debian
+#     workingDirectory: ${{ parameters.cmakeBuildDir }}
 - ${{ if eq(parameters.packageDebian, true) }}:
+  - task: CMake@1
+    displayName: '${{parameters.componentName }} Package Debian'
+    inputs:
+      workingDirectory: ${{ parameters.cmakeBuildDir }}
+      cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} --target ${{ parameters.cmakePackageTarget }}'
   - script: |
       mkdir -p $(Pipeline.Workspace)/deb/publish
-      cpack -G DEB -B $(Pipeline.Workspace)/deb
-      mv $(Pipeline.Workspace)/deb/*.deb $(Pipeline.Workspace)/deb/publish
+      mv *.deb $(Pipeline.Workspace)/deb/publish
     displayName: ${{parameters.componentName }} Package Debian
     workingDirectory: ${{ parameters.cmakeBuildDir }}

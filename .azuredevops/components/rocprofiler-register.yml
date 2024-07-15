@@ -24,6 +24,9 @@ jobs:
     parameters:
       componentName: rocprofiler-register
       packageDebian: true
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Build.BinariesDirectory)
+        -DCPACK_GENERATOR=DEB
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: rocprofiler-register-tests
