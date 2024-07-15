@@ -22,7 +22,12 @@ jobs:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: rocm_smi_lib
+      packageDebian: true
       extraBuildFlags: >-
         -DBUILD_TESTS=ON
         -DROCM_DEP_ROCMCORE=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rocm_smi_lib
+      publishDebian: true
