@@ -83,7 +83,7 @@ subtrees:
       - file: how-to/llm-fine-tuning-optimization/profiling-and-debugging.rst
 
   - file: how-to/tuning-guides.md
-    title: System tuning and performance optimization
+    title: System optimization
     subtrees:
     - entries:
       - file: how-to/tuning-guides/mi300x.md

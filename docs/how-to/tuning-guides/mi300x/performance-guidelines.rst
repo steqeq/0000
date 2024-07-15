@@ -8,6 +8,10 @@
 Performance guidelines
 **********************
 
+This section discusses best practices to optimize the performance of MI300X
+accelerators for GPU kernel programming, HPC and deep learning operations, and
+specific workloads such as model inference.
+
 .. _mi300x-hip-perf-optimization:
 
 HIP performance optimization

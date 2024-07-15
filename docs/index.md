@@ -89,7 +89,7 @@ Our documentation is organized into the following categories:
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
-* [Hardware tuning and performance optimization](./how-to/tuning-guides.rst)
+* [System optimization](./how-to/tuning-guides.rst)
   * [MI300X](./how-to/tuning-guides/mi300x.rst)
   * [MI200](./how-to/tuning-guides/mi200.md)
   * [MI100](./how-to/tuning-guides/mi100.md)
