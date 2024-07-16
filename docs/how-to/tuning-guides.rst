@@ -1,7 +1,7 @@
 .. meta::
    :description: AMD hardware optimization for specific workloads
    :keywords: high-performance computing, HPC, Instinct accelerators, Radeon,
-              tuning, tuning guide, AMD, ROCm, system, EPYC, CPU, GPU, BIOS, OS
+              AMD, ROCm, system, EPYC, CPU, GPU, BIOS, OS
 
 *******************
 System optimization
