@@ -64,7 +64,7 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - task: Bash@3
       displayName: 'Download AOCL'
       inputs:
@@ -82,7 +82,7 @@ jobs:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - task: Bash@3
       displayName: 'Download AOCL'
       inputs:
@@ -102,6 +102,8 @@ jobs:
   - script: echo $PATH
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: rocBLAS
+      packageDebian: true
       extraBuildFlags: >-
         -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm;$(Pipeline.Workspace)/deps-install
@@ -120,3 +122,6 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rocBLAS
+      publishDebian: true

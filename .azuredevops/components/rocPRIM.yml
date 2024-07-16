@@ -42,19 +42,21 @@ jobs:
 # so this next step is skipped completely until
 # we define explicit aptPackages needed to install
   # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
   # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: rocPRIM
+      packageDebian: true
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DBUILD_BENCHMARK=ON
@@ -63,3 +65,6 @@ jobs:
         -DBUILD_TEST=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rocPRIM
+      publishDebian: true
