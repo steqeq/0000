@@ -81,7 +81,7 @@ subtrees:
       - file: how-to/llm-fine-tuning-optimization/optimizing-triton-kernel.rst
         title: Optimizing Triton kernels
       - file: how-to/llm-fine-tuning-optimization/profiling-and-debugging.rst
-  - file: how-to/tuning-guides.md
+  - file: how-to/tuning-guides.rst
     title: System optimization
     subtrees:
     - entries:

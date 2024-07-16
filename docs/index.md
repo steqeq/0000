@@ -89,7 +89,7 @@ Our documentation is organized into the following categories:
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
-* [System optimization](./how-to/tuning-guides.md)
+* [System optimization](./how-to/tuning-guides.rst)
   * [AMD Instinct MI200](./how-to/tuning-guides/mi200.md)
   * [AMD Instinct MI100](./how-to/tuning-guides/mi100.md)
   * [AMD Instinct RDNA2](./how-to/tuning-guides/w6000-v620.md)
