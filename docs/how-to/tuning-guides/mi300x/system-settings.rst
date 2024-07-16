@@ -20,7 +20,7 @@ The main topics of discussion in this document are:
 
 * :ref:`System BIOS settings <mi300x-bios-settings>`
 
-* :ref:`GRUB setting <mi300x-grub-settings>`
+* :ref:`GRUB settings <mi300x-grub-settings>`
 
 * :ref:`Operating system settings <mi300x-os-settings>`
 
@@ -572,7 +572,7 @@ command:
 
 For a complete list of architecture (such as CDNA3) and LLVM target names
 (such gfx942 for MI300X), refer to the
-:doc:`Supported GPUs section of the System requirements for Linux page <rocm-install-on-linux/reference/system-requirements>`.
+:doc:`Supported GPUs section of the System requirements for Linux page <rocm-install-on-linux:reference/system-requirements>`.
 
 
 Deterministic clock
