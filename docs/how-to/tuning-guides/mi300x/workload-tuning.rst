@@ -4,9 +4,9 @@
               environment variable, performance, HIP, Triton, PyTorch TunableOp, vLLM, RCCL,
               MIOpen, accelerator, GPU, resource utilization
 
-**********************
-Performance guidelines
-**********************
+***************
+Workload tuning
+***************
 
 This section discusses best practices to optimize the performance of MI300X
 accelerators for GPU kernel programming, HPC and deep learning operations, and

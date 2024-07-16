@@ -20,9 +20,11 @@ The main topics of discussion in this document are:
 
 * :ref:`System BIOS settings <mi300x-bios-settings>`
 
-* :ref:`GRUB <mi300x-grub-settings>`
+* :ref:`GRUB setting <mi300x-grub-settings>`
 
 * :ref:`Operating system settings <mi300x-os-settings>`
+
+* :ref:`System management <mi300x-system-management>`
 
 .. _mi300x-bios-settings:
 
@@ -32,7 +34,7 @@ System BIOS settings
 AMD EPYC 9004-based systems
 ---------------------------
 For maximum MI300X GPU performance on systems with AMD EPYC™ 9004-series
-processors (codename “Genoa”) and AMI System BIOS, the following configuration
+processors and AMI System BIOS, the following configuration
 of system BIOS settings has been validated. These settings must be used for the
 qualification process and should be set as default values in the system BIOS.
 Analogous settings for other non-AMI System BIOS providers could be set
@@ -114,7 +116,7 @@ BIOS setup menus may be different, or the option may not be present.
 
      - 4-link xGMI max speed
 
-     - 32 GBps
+     - 32 Gbps
 
      - Auto results in the speed being set to the lower of the max speed the
        motherboard is designed to support and the max speed of the CPU in use.
@@ -486,6 +488,8 @@ If SMT is enabled by setting ``CCD/Core/Thread Enablement > SMT Control`` to
 
 Once the system is properly configured, ROCm software can be installed.
 
+.. _mi300x-system-management:
+
 System management
 =================
 
@@ -566,9 +570,9 @@ command:
    :align: center
    :alt: rocminfo.txt example
 
-For a complete list of architecture (i.e CDNA3) and LLVM target names
-(i.e. gfx942 for MI300X), refer to the Supported GPU section of the System
-Requirements for Linux.
+For a complete list of architecture (such as CDNA3) and LLVM target names
+(such gfx942 for MI300X), refer to the
+:doc:`Supported GPUs section of the System requirements for Linux page <rocm-install-on-linux/reference/system-requirements>`.
 
 
 Deterministic clock
@@ -634,30 +638,38 @@ NUMA distance -- similar to ``rocm-smi``.
 
 Inter-device distance:
 
-.. image:: ../../../data/how-to/tuning-guides/rbt-inter-device-access.png
+.. figure:: ../../../data/how-to/tuning-guides/rbt-inter-device-access.png
    :align: center
    :alt: rocm-bandwidth-test inter-device distance
 
+   Inter-device distance
+
 Inter-device NUMA distance:
 
-.. image:: ../../../data/how-to/tuning-guides/rbt-inter-device-numa-distance.png
+.. figure:: ../../../data/how-to/tuning-guides/rbt-inter-device-numa-distance.png
    :align: center
    :alt: rocm-bandwidth-test inter-device NUMA distance
+
+   Inter-device NUMA distance
 
 The output also contains the measured bandwidth for unidirectional and
 bidirectional transfers between the devices (CPU and GPU):
 
 Unidirectional bandwidth:
 
-.. image:: ../../../data/how-to/tuning-guides/rbt-unidirectional-bandwidth.png
+.. figure:: ../../../data/how-to/tuning-guides/rbt-unidirectional-bandwidth.png
    :align: center
    :alt: rocm-bandwidth-test unidirectional bandwidth
 
+   Unidirectional bandwidth
+
 Bidirectional bandwidth
 
-.. image:: ../../../data/how-to/tuning-guides/rbt-bidirectional-bandwidth.png
+.. figure:: ../../../data/how-to/tuning-guides/rbt-bidirectional-bandwidth.png
    :align: center
    :alt: rocm-bandwidth-test bidirectional bandwidth
+
+   Bidirectional bandwidth
 
 Acronyms
 ========
@@ -727,6 +739,9 @@ NBIO
 
 NUMA
   Non-Uniform Memory Access
+
+PCC
+  Power Consumption Control
 
 PCI
   Peripheral Component Interconnect

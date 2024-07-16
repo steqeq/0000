@@ -91,7 +91,7 @@ subtrees:
         subtrees:
         - entries:
           - file: how-to/tuning-guides/mi300x/system-settings.rst
-          - file: how-to/tuning-guides/mi300x/performance-guidelines.rst
+          - file: how-to/tuning-guides/mi300x/workload-tuning.rst
       - file: how-to/tuning-guides/mi200.md
         title: MI200
       - file: how-to/tuning-guides/mi100.md

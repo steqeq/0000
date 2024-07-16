@@ -13,10 +13,10 @@ This section includes system tuning recommendations to optimize the performance
 of Instinct MI300X accelerators, which are built on the
 `AMD CDNA 3 architecture <https://rocm.docs.amd.com/en/latest/conceptual/gpu-arch/mi300.html>`_.
 
-* :doc:`System settings <mi300x/system-settings>` discusses BIOS, GRUB, and
-  operating system settings to optimize your AMD accelerated system.
+* :doc:`mi300x/system-settings` discusses BIOS, GRUB, and operating system
+  settings and system management tools to optimize your AMD accelerated system
+  for your high-performance needs.
 
-* :doc:`Performance guidelines <mi300x/performance-guidelines>` discusses best
-  practices to improve the performance of kernels running HPC operations on
-  MI300X devices.
+* :doc:`mi300x/workload-tuning` discusses best practices to improve the
+  performance of HPC and deep learning operations on MI300X devices.
 
