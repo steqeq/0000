@@ -8,8 +8,8 @@
 System settings
 ***************
 
-This guide reviews system settings that are required to configure your system
-for AMD Instinct MI300X accelerators. It is important to ensure a system is
+This guide discusses system settings that are required to configure your system
+for AMD Instinct&trade; MI300X accelerators. It is important to ensure a system is
 functioning correctly before trying to improve its overall performance. In this
 guide, the settings discussed mostly ensure proper functionality of your
 Instinct-based system. Some settings discussed are known to improve performance
@@ -266,16 +266,17 @@ Appending strings via Linux command line
 
 It is recommended to append the following strings in ``GRUB_CMDLINE_LINUX``.
 
-One important parameter is ``pci=realloc=off``. With this setting Linux is able
-to unambiguously detect all GPUs of the MI300X based system because this setting
-disables the automatic reallocation of PCI resources. It's used when Single Root
-I/O Virtualization (SR-IOV) Base Address Registers (BARs) have not been
-allocated by the BIOS. This can help avoid potential issues with certain
-hardware configurations.
+``pci=realloc=off``
+  With this setting Linux is able to unambiguously detect all GPUs of the
+  MI300X-based system because this setting disables the automatic reallocation
+  of PCI resources. It's used when Single Root I/O Virtualization (SR-IOV) Base
+  Address Registers (BARs) have not been allocated by the BIOS. This can help
+  avoid potential issues with certain hardware configurations.
 
-The ``iommu=pt`` setting enables IOMMU pass-through mode. When in pass-through
-mode, the adapter does not need to use DMA translation to the memory, which can
-improve performance.
+``iommu=pt``
+  The ``iommu=pt`` setting enables IOMMU pass-through mode. When in pass-through
+  mode, the adapter does not need to use DMA translation to the memory, which can
+  improve performance.
 
 IOMMU is a system specific IO mapping mechanism and can be used for DMA mapping
 and isolation. This can be beneficial for virtualization and device assignment
@@ -323,11 +324,12 @@ There are several core states (C-states) that an AMD EPYC CPU can idle within:
 
 * C0: active. This is the active state while running an application.
 
-* C1: idle.
+* C1: idle. This state consumes less power compared to C0, but can quickly
+  return to the active state (C0) with minimal latency.
 
 * C2: idle and power-gated. This is a deeper sleep state and will have greater
-  latency when moving back to the C0 state, compared to when the CPU is coming
-  out of C1.
+  latency when moving back to the active (C0) state as compared to when the CPU
+  is coming out of C1.
 
 Disabling C2 is important for running with a high performance, low-latency
 network. To disable the C2 state, install the ``cpupower`` tool using your Linux
@@ -376,11 +378,12 @@ Disable NUMA auto-balancing
 The NUMA balancing feature allows the OS to scan memory and attempt to migrate
 to a DIMM that is logically closer to the cores accessing it. This causes an
 overhead because the OS is second-guessing your NUMA allocations but may be
-useful if the NUMA locality access is very poor. Applications can therefore in
-general benefit from disabling NUMA balancing but there are workloads where
-doing so is detrimental to performance. Therefore, this setting should be tested
-by toggling the ``numa_balancing`` value and running the application, e.g.
-in one run setting this to ``0`` and in another run setting this to ``1``.
+useful if the NUMA locality access is very poor. Applications can therefore, in
+general, benefit from disabling NUMA balancing; however, there are workloads where
+doing so is detrimental to performance. This setting should be tested
+by toggling the ``numa_balancing`` value and running the application; compare
+the performance of one run with this set to ``0`` and another run with this to
+``1``.
 
 Run the command ``cat /proc/sys/kernel/numa_balancing`` to check the current
 NUMA (Non-Uniform Memory Access) settings. Output ``0`` indicates this
@@ -467,18 +470,22 @@ disables X2APIC in this case and falls back to Advanced Programmable Interrupt
 Controller (APIC), which can only enumerate a maximum of 255 (logical) cores.
 
 If SMT is enabled by setting ``CCD/Core/Thread Enablement > SMT Control`` to
-``enable``, the following steps can be applied to the system to enable all
+``enable``, you can apply the following steps to the system to enable all
 (logical) cores of the system:
 
-* In the server BIOS, set IOMMU to ``Enabled``.
+#. In the server BIOS, set IOMMU to ``Enabled``.
 
-* When configuring the GRUB boot loader, add the following arguments for the Linux kernel: ``amd_iommu=on iommu=pt``
+#. When configuring the GRUB boot loader, add the following arguments for the Linux kernel: ``amd_iommu=on iommu=pt``.
 
-* Update GRUB
+#. Update GRUB.
 
-* Reboot the system
+#. Reboot the system.
 
-* Verify IOMMU passthrough mode by inspecting the kernel log via dmesg:
+#. Verify IOMMU passthrough mode by inspecting the kernel log via ``dmesg``:
+
+   .. code-block::
+
+      dmesg | grep iommu
 
 .. code-block:: shell
 
@@ -486,17 +493,18 @@ If SMT is enabled by setting ``CCD/Core/Thread Enablement > SMT Control`` to
    [   0.000000] Kernel command line: [...] amd_iommu=on iommu=pt
    [...]
 
-Once the system is properly configured, ROCm software can be installed.
+Once the system is properly configured, ROCm software can be
+:doc:`installed <rocm-install-on-linux:index>`.
 
 .. _mi300x-system-management:
 
 System management
 =================
 
-In order to optimize the system performance, first the existing system
-configuration parameters and settings need to be understood. ROCm has some CLI
-tools that can provide system level information which give hints towards
-optimizing an user application.
+To optimize system performance, it's essential to first understand the existing
+system configuration parameters and settings. ROCm offers several CLI tools that
+can provide system-level information, offering valuable insights for
+optimizing user applications.
 
 For a complete guide on how to install, manage, or uninstall ROCm on Linux, refer to
 :doc:`rocm-install-on-linux:tutorial/quick-start`. For verifying that the
@@ -507,7 +515,9 @@ Should verification fail, consult :ref:`system-debugging`.
 Hardware verification with ROCm
 -------------------------------
 
-The ROCm platform provides tools to query the system structure.
+The ROCm platform provides tools to query the system structure. These include
+:ref:`ROCm SMI <mi300x-rocm-smi>` and
+:ref:`ROCm Bandwidth Test <mi300x-rocm-bandwidth-test>`.
 
 .. _mi300x-rocm-smi:
 
@@ -585,10 +595,12 @@ setting will not be required for new IFWI releases with the production
 PRC feature. Restore this setting to its default value with the
 ``rocm-smi -r`` command.
 
+.. _mi300x-rocm-bandwidth-test:
+
 ROCm Bandwidth Test
 ^^^^^^^^^^^^^^^^^^^
 
-The section Hardware verification with ROCm showed howthe command
+The section Hardware verification with ROCm showed how the command
 ``rocm-smi --showtopo`` can be used to view the system structure and how the
 GPUs are connected. For more details on the link bandwidth,
 ``rocm-bandwidth-test`` can run benchmarks to show the effective link bandwidth
@@ -693,7 +705,7 @@ CBS
   Common BIOS Settings
 
 CLI
-  Command Line Interace
+  Command Line Interface
 
 CPU
   Central Processing Unit
