@@ -7,9 +7,7 @@
 System optimization
 *******************
 
-This materials in this section outline system setup and tuning suggestions
-for AMD hardware to optimize performance and functionality for a range of
-workloads or use cases.
+System administrators can optimize the performance of their AMD hardware based on workloads and use cases. This section discusses the available system optimization options for AMD accelerators and GPUs. 
 
 High-performance computing workloads
 ====================================
