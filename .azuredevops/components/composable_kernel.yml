@@ -41,19 +41,21 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: composable_kernel
+      packageDebian: true
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
@@ -62,3 +64,6 @@ jobs:
         -DGPU_TARGETS=gfx1100;gfx1030;gfx942
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: composable_kernel
+      publishDebian: true

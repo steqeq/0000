@@ -36,21 +36,27 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'amd-staging') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: ROCdbgapi
+      packageDebian: true
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
+        -DCPACK_GENERATOR=DEB
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: ROCdbgapi
+      publishDebian: true

@@ -50,13 +50,13 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
   # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
@@ -64,6 +64,8 @@ jobs:
   - script: chmod +x $(Agent.BuildDirectory)/rocm/bin/hipify-perl
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: rccl
+      packageDebian: true
       extraBuildFlags: >-
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
@@ -75,3 +77,6 @@ jobs:
         -DAMDGPU_TARGETS=gfx1030;gfx1100
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: rccl
+      publishDebian: true
