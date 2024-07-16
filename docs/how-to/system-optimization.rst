@@ -53,25 +53,25 @@ their own performance testing for additional tuning.
    :header-rows: 1
    :stub-columns: 1
 
-   * - Tuning guide
+   * - System optimization guide
 
      - Architecture reference
 
      - White papers
 
-   * - :doc:`AMD Instinct MI300X <tuning-guides/mi300x>`
+   * - :doc:`AMD Instinct MI300X <system-optimization/mi300x>`
 
      - `AMD Instinct MI300 instruction set architecture <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf>`_
 
      - `CDNA 3 architecture <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf>`_
 
-   * - :doc:`AMD Instinct MI200 <tuning-guides/mi200>`
+   * - :doc:`AMD Instinct MI200 <system-optimization/mi200>`
 
      - `AMD Instinct MI200 instruction set architecture <https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf>`_
 
      - `CDNA 2 architecture <https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf>`_
 
-   * - :doc:`AMD Instinct MI100 <tuning-guides/mi100>`
+   * - :doc:`AMD Instinct MI100 <system-optimization/mi100>`
 
      - `AMD Instinct MI100 instruction set architecture <https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf>`_
 
@@ -95,13 +95,13 @@ their full potential.
    :header-rows: 1
    :stub-columns: 1
 
-   * - Tuning guide
+   * - System optimization guide
 
      - Architecture reference
 
      - White papers
 
-   * - :doc:`AMD Radeon PRO W6000 and V620 <tuning-guides/w6000-v620>`
+   * - :doc:`AMD Radeon PRO W6000 and V620 <system-optimization/w6000-v620>`
 
      - `AMD RDNA 2 instruction set architecture <https://www.amd.com/system/files/TechDocs/rdna2-shader-instruction-set-architecture.pdf>`_
 

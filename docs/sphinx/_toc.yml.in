@@ -82,21 +82,21 @@ subtrees:
         title: Optimizing Triton kernels
       - file: how-to/llm-fine-tuning-optimization/profiling-and-debugging.rst
 
-  - file: how-to/tuning-guides.md
+  - file: how-to/system-optimization.rst
     title: System optimization
     subtrees:
     - entries:
-      - file: how-to/tuning-guides/mi300x.md
+      - file: how-to/system-optimization/mi300x.rst
         title: MI300X
         subtrees:
         - entries:
-          - file: how-to/tuning-guides/mi300x/system-settings.rst
-          - file: how-to/tuning-guides/mi300x/workload-tuning.rst
-      - file: how-to/tuning-guides/mi200.md
+          - file: how-to/system-optimization/mi300x/system-settings.rst
+          - file: how-to/system-optimization/mi300x/workload-tuning.rst
+      - file: how-to/system-optimization/mi200.md
         title: MI200
-      - file: how-to/tuning-guides/mi100.md
+      - file: how-to/system-optimization/mi100.md
         title: MI100
-      - file: how-to/tuning-guides/w6000-v620.md
+      - file: how-to/system-optimization/w6000-v620.md
         title: RDNA2
 
   - file: how-to/gpu-enabled-mpi.rst

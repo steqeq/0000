@@ -595,7 +595,7 @@ setting will not be required for new IFWI releases with the production
 PRC feature. Restore this setting to its default value with the
 ``rocm-smi -r`` command.
 
-.. _mi300x-rocm-bandwidth-test:
+.. _mi300x-bandwidth-test:
 
 ROCm Bandwidth Test
 ^^^^^^^^^^^^^^^^^^^
