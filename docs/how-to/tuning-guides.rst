@@ -7,17 +7,21 @@
 System optimization
 *******************
 
-System administrators can optimize the performance of their AMD hardware based on workloads and use cases. This section discusses the available system optimization options for AMD accelerators and GPUs. 
+System administrators can optimize the performance of their AMD hardware
+generally and based on specific workloads and use cases. This section outlines
+recommended system optimization options for AMD accelerators and GPUs, enabling
+administrators to maximize efficiency and performance.
 
 High-performance computing workloads
 ====================================
 
-High-performance computing (HPC) workloads have unique requirements. The default
-hardware and BIOS configurations for OEM platforms may not provide optimal
-performance for HPC workloads. To enable optimal HPC settings on a per-platform
-and per-workload level, the
-:ref:`AMD Instinct™ accelerator optimization guides <mi-optimization-guides>`
-that follow describe:
+High-performance computing (HPC) workloads have unique requirements that may not
+be fully met by the default hardware and BIOS configurations of OEM platforms.
+To achieve optimal performance for HPC workloads, it is crucial to adjust
+settings at both the platform and workload levels. 
+
+The :ref:`AMD Instinct™ accelerator optimization guides <mi-optimization-guides>`
+in this section describe:
 
 * BIOS settings that can impact performance
 * Hardware configuration best practices
