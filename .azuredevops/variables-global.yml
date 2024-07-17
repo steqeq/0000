@@ -10,7 +10,7 @@ variables:
 - name: CI_DEPENDENCIES_PATH
   value: ${{ variables.CI_ROOT_PATH }}/dependencies
 - name: BASE_BUILD_POOL
-  value: ubuntu-22.04
+  value: ubuntu-24.04
 - name: LOW_BUILD_POOL
   value: rocm-ci_low_build_pool
 - name: MEDIUM_BUILD_POOL
