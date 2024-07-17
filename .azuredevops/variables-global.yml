@@ -14,7 +14,7 @@ variables:
 - name: LOW_BUILD_POOL
   value: rocm-ci_low_build_pool
 - name: MEDIUM_BUILD_POOL
-  value: rocm-ci_medium_build_pool
+  value: rocm-ci_medium_build_pool_2404
 - name: HIGH_BUILD_POOL
   value: rocm-ci_high_build_pool
 - name: ULTRA_BUILD_POOL
