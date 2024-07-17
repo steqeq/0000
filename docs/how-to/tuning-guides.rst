@@ -1,22 +1,27 @@
 .. meta::
    :description: AMD hardware optimization for specific workloads
    :keywords: high-performance computing, HPC, Instinct accelerators, Radeon,
-              tuning, tuning guide, AMD, ROCm
+              AMD, ROCm, system, EPYC, CPU, GPU, BIOS, OS
 
-********************************************
-Hardware tuning and performance optimization
-********************************************
+*******************
+System optimization
+*******************
 
-This guide outlines system setup and tuning suggestions for AMD hardware to
-optimize performance for specific types of workloads or use-cases.
+System administrators can optimize the performance of their AMD hardware
+generally and based on specific workloads and use cases. This section outlines
+recommended system optimization options for AMD accelerators and GPUs, enabling
+administrators to maximize efficiency and performance.
 
 High-performance computing workloads
 ====================================
 
-High-performance computing (HPC) workloads have unique requirements. The default
-hardware and BIOS configurations for OEM platforms may not provide optimal
-performance for HPC workloads. To enable optimal HPC settings on a per-platform
-and per-workload level, this chapter describes:
+High-performance computing (HPC) workloads have unique requirements that may not
+be fully met by the default hardware and BIOS configurations of OEM platforms.
+To achieve optimal performance for HPC workloads, it is crucial to adjust
+settings at both the platform and workload levels. 
+
+The :ref:`AMD Instinct™ accelerator optimization guides <mi-optimization-guides>`
+in this section describe:
 
 * BIOS settings that can impact performance
 * Hardware configuration best practices
@@ -24,13 +29,14 @@ and per-workload level, this chapter describes:
 * Workload-specific recommendations for optimal BIOS and operating system
   settings
 
-There is also a discussion on the AMD Instinct™ software development
+The guides might also discuss the AMD Instinct software development
 environment, including information on how to install and run the DGEMM, STREAM,
-HPCG, and HPL benchmarks. This guide provides a good starting point but is
+HPCG, and HPL benchmarks. The guides provide a good starting point but is
 not tested exhaustively across all compilers.
 
-Knowledge prerequisites to better understand this document and to perform tuning
-for HPC applications include:
+Knowledge prerequisites to better understand the following
+:ref:`Instinct system optimization guides <mi-optimization-guides>` and to
+perform tuning for HPC applications include:
 
 * Experience in configuring servers
 * Administrative access to the server's Management Interface (BMC)
@@ -39,21 +45,17 @@ for HPC applications include:
 * Familiarity with the OS specific tools for configuration, monitoring, and
   troubleshooting (strongly recommended)
 
-This document provides guidance on tuning systems with various AMD Instinct
-accelerators for HPC workloads. The following sections don't comprise an
-all-inclusive guide, and some items referred to may have similar, but different,
-names in various OEM systems (for example, OEM-specific BIOS settings). This
-following sections also provide suggestions on items that should be the initial
-focus of additional, application-specific tuning.
+While the following guides are a good starting point, developers are encouraged
+to perform their own performance testing for additional tuning per device and
+per workload.
 
-While this guide is a good starting point, developers are encouraged to perform
-their own performance testing for additional tuning.
+.. _mi-optimization-guides:
 
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
 
-   * - Tuning guide
+   * - Optimization guide
 
      - Architecture reference
 
@@ -91,11 +93,13 @@ tasks.
 The main purpose of this document is to help users utilize the RDNA™ 2 GPUs to
 their full potential.
 
+.. _rdna-optimization-guides:
+
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
 
-   * - Tuning guide
+   * - Optimization guide
 
      - Architecture reference
 
