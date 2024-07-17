@@ -89,13 +89,14 @@ subtrees:
     subtrees:
     - entries:
       - file: how-to/system-optimization/mi300x.rst
-        title: MI300X
+        title: AMD Instinct MI300X
       - file: how-to/system-optimization/mi200.md
-        title: MI200
+        title: AMD Instinct MI200
       - file: how-to/system-optimization/mi100.md
-        title: MI100
+        title: AMD Instinct MI100
       - file: how-to/system-optimization/w6000-v620.md
-        title: RDNA2
+        title: AMD RDNA 2
+  - file: how-to/system-debugging.md
 
   - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
@@ -111,8 +112,6 @@ subtrees:
         title: OpenMP support
   - file: how-to/setting-cus
     title: Setting the number of CUs  
-  - file: how-to/system-debugging.md
-    title: System debugging
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
 

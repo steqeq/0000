@@ -60,6 +60,7 @@ article_pages = [
     {"file":"how-to/deep-learning-rocm", "os":["linux"]},
     {"file":"how-to/gpu-enabled-mpi", "os":["linux"]},
     {"file":"how-to/system-debugging", "os":["linux"]},
+    {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
 
     {"file":"how-to/rocm-for-ai/index", "os":["linux"]},
     {"file":"how-to/rocm-for-ai/install", "os":["linux"]},
@@ -81,9 +82,9 @@ article_pages = [
     {"file":"how-to/llm-fine-tuning-optimization/optimizing-triton-kernel", "os":["linux"]},
     {"file":"how-to/llm-fine-tuning-optimization/profiling-and-debugging", "os":["linux"]},
 
-    {"file":"how-to/tuning-guides", "os":["linux"]},
-    {"file":"how-to/tuning-guides/mi300x", "os":["linux"]},
-    {"file":"how-to/tuning-guides/mi300x/system-settings", "os":["linux"]},
+    {"file":"how-to/system-optimization", "os":["linux"]},
+    {"file":"how-to/system-optimization/mi300x", "os":["linux"]},
+    {"file":"how-to/x/system-settings", "os":["linux"]},
     {"file":"how-to/tuning-guides/mi300x/workload-tuning", "os":["linux"]},
 ]
 

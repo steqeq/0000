@@ -494,49 +494,49 @@ llama2-70b and llama3-70b models on one GPU.
 
 To maximize the accumulated throughput, you can also run eight instances
 vLLM simultaneously on one MI300X node (with eight GPUs). To do so, use
-the GPU isolation environment variable ``ROCR_VISIBLE_DEVICES``.
+the GPU isolation environment variable ``CUDA_VISIBLE_DEVICES``.
 
 For example, this script runs eight instances of vLLM for throughput
 benchmarking at the same time:
 
 .. code-block:: shell
 
-   ROCR_VISIBLE_DEVICES="0" python3
+   CUDA_VISIBLE_DEVICES="0" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES="1" python3
+   CUDA_VISIBLE_DEVICES="1" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES="2" python3
+   CUDA_VISIBLE_DEVICES="2" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES="3" python3
+   CUDA_VISIBLE_DEVICES="3" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES="4" python3
+   CUDA_VISIBLE_DEVICES="4" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES="5" python3
+   CUDA_VISIBLE_DEVICES="5" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES="6" python3
+   CUDA_VISIBLE_DEVICES="6" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES="7" python3
+   CUDA_VISIBLE_DEVICES="7" python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
@@ -547,22 +547,20 @@ by specifying ``--gpu-memory-utilization`` to 0.4 (40%), as below (on GPU
 
 .. code-block:: shell
 
-   ROCR_VISIBLE_DEVICES=0 python3
+   CUDA_VISIBLE_DEVICES=0 python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --gpu-memory-utilization
    0.4 --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-   ROCR_VISIBLE_DEVICES=0 python3
+   CUDA_VISIBLE_DEVICES=0 python3
    /vllm-workspace/benchmarks/benchmark_throughput.py --gpu-memory-utilization
    0.4 --dataset
    "/path/to/dataset/ShareGPT_V3_unfiltered_cleaned_split.json" --model
    /path/to/model &
 
-Similarly, use the ``ROCR_VISIBLE_DEVICES`` environment variable to specify
-which GPU (0-7) will run those instances. For example, the setting
-``ROCR_VISIBLE_DEVICES="4,5,6,7"`` exposes GPUs 4, 5, 6, and 7 to the program.
-Inside vLLM, the GPUs are mapped to ``CUDA_VISIBLE_DEVICES`` as 0, 1, 2, and 3.
+Similarly, use the ``CUDA_VISIBLE_DEVICES`` environment variable to specify
+which GPU (0-7) will run those instances.
 
 Run vLLM on multiple GPUs
 -------------------------
@@ -576,7 +574,7 @@ The two main reasons to use multiple GPUs:
 
 To run one vLLM instance on multiple GPUs, use the ``-tp`` or
 ``--tensor-parallel-size`` option to specify multiple GPUs. Optionally, use the
-``ROCR_VISIBLE_DEVICES`` environment variable to specify the GPUs.
+``CUDA_VISIBLE_DEVICES`` environment variable to specify the GPUs.
 
 For example, we can use two GPUs to start an API server on port 8000 as
 below:
@@ -588,15 +586,15 @@ below:
 
 To achieve both latency and throughput performance for serving, you can
 run multiple API servers on different GPUs by specifying different ports
-for each server and use ``ROCR_VISIBLE_DEVICES`` to specify the GPUs for
+for each server and use ``CUDA_VISIBLE_DEVICES`` to specify the GPUs for
 each server, for example:
 
 .. code-block:: shell
 
-   ROCR_VISIBLE_DEVICES=0,1 python -m vllm.entrypoints.api_server --model
+   CUDA_VISIBLE_DEVICES=0,1 python -m vllm.entrypoints.api_server --model
    /path/to/model --dtype float16 -tp 2 --port 8000 &
 
-   ROCR_VISIBLE_DEVICES=2,3 python -m vllm.entrypoints.api_server --model
+   CUDA_VISIBLE_DEVICES=2,3 python -m vllm.entrypoints.api_server --model
    /path/to/model --dtype float16 -tp 2 --port 8001 &
 
 Choose different attention backends
