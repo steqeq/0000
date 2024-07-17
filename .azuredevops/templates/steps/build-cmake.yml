@@ -46,7 +46,6 @@ steps:
 # equivalent to running make $cmakeTargetDir from $cmakeBuildDir
 # i.e., cd $cmakeBuildDir; make $cmakeTargetDir
 - task: CMake@1
-  continueOnError: true
   displayName: '${{parameters.componentName }} Build'
   inputs:
     workingDirectory: ${{ parameters.cmakeBuildDir }}
