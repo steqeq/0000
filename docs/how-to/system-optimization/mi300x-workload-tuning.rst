@@ -1,12 +1,12 @@
 .. meta::
-   :description: AMD Instinct MI300X performance guidelines
+   :description: AMD Instinct MI300X workload tuning
    :keywords: AMD, Instinct, MI300X, HPC, tuning, BIOS settings, NBIO, ROCm,
               environment variable, performance, HIP, Triton, PyTorch TunableOp, vLLM, RCCL,
               MIOpen, accelerator, GPU, resource utilization
 
-***************
-Workload tuning
-***************
+***********************************
+AMD Instinct MI300X workload tuning
+***********************************
 
 This section discusses best practices to optimize the performance of MI300X
 accelerators for GPU kernel programming, HPC and deep learning operations, and
@@ -68,7 +68,7 @@ with 38 active. Each MI300X contains eight vertical XCDs, and a total of 304
 active compute units capable of parallel computation. The first consideration is
 the number of CUs a kernel can distribute its task across.
 
-.. figure:: ../../../data/shared/xcd-sys-arch.png
+.. figure:: ../../data/shared/xcd-sys-arch.png
 
    XCD-level system architecture showing 40 compute units,
    each with 32 KB L1 cache, a unified compute system with 4 ACE compute
@@ -110,7 +110,7 @@ Register access is the fastest yet smallest among the three.
 
 .. _mi300x-cu-fig:
 
-.. figure:: ../../../data/shared/compute-unit.png
+.. figure:: ../../data/shared/compute-unit.png
 
    Schematic representation of a CU in the CDNA2 or CDNA3 architecture.
 
@@ -148,7 +148,7 @@ The following is a list of kernel arguments used for tuning.
 
 .. _mi300x-occupancy-vgpr-table:
 
-.. figure:: ../../../data/shared/occupancy-vgpr.png
+.. figure:: ../../data/shared/occupancy-vgpr.png
    :alt: Occupancy related to VGPR usage in an Instinct MI300X accelerator.
    :align: center
 
@@ -811,13 +811,13 @@ named TensileLite.
    cd /hipBLASLt/tensilelite
    ./Tensile/bin/Tensile config.yaml output_path
 
-.. figure:: ../../../data/how-to/tuning-guides/tensilelite-config-yaml.png
+.. figure:: ../../data/how-to/tuning-guides/tensilelite-config-yaml.png
    :align: center
    :alt: TensileLite YAML configuration file
 
    TensileLite YAML configuration file ``config.yaml``
 
-.. figure:: ../../../data/how-to/tuning-guides/tensilelite-tuning-flow.png
+.. figure:: ../../data/how-to/tuning-guides/tensilelite-tuning-flow.png
    :align: center
    :alt: TensileLite tuning flow
 
@@ -1040,7 +1040,7 @@ low-latency AMD Infinity Fabric™ links (red lines) to form a fully connected
 
 .. _mi300x-node-level-arch-fig:
 
-.. figure:: ../../../data/shared/mi300-node-level-arch.png
+.. figure:: ../../data/shared/mi300-node-level-arch.png
 
    MI300 series node-level architecture showing 8 fully interconnected MI300X
    OAM modules connected to (optional) PCIe switches via re-timers and HGX
