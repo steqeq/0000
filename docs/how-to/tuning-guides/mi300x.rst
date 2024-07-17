@@ -664,7 +664,7 @@ The two main reasons to use multiple GPUs:
 
 To run one vLLM instance on multiple GPUs, use the ``-tp`` or
 ``--tensor-parallel-size`` option to specify multiple GPUs. Optionally, use the
-``ROCR_VISIBLE_DEVICES`` environment variable to specify the GPUs.
+``CUDA_VISIBLE_DEVICES`` environment variable to specify the GPUs.
 
 For example, we can use two GPUs to start an API server on port 8000 as
 below:
@@ -676,15 +676,15 @@ below:
 
 To achieve both latency and throughput performance for serving, you can
 run multiple API servers on different GPUs by specifying different ports
-for each server and use ``ROCR_VISIBLE_DEVICES`` to specify the GPUs for
+for each server and use ``CUDA_VISIBLE_DEVICES`` to specify the GPUs for
 each server, for example:
 
 .. code-block:: shell
 
-   ROCR_VISIBLE_DEVICES=0,1 python -m vllm.entrypoints.api_server --model
+   CUDA_VISIBLE_DEVICES=0,1 python -m vllm.entrypoints.api_server --model
    /path/to/model --dtype float16 -tp 2 --port 8000 &
 
-   ROCR_VISIBLE_DEVICES=2,3 python -m vllm.entrypoints.api_server --model
+   CUDA_VISIBLE_DEVICES=2,3 python -m vllm.entrypoints.api_server --model
    /path/to/model --dtype float16 -tp 2 --port 8001 &
 
 Choose different attention backends
