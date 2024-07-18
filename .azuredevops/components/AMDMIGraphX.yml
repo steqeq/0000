@@ -87,7 +87,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
         -DCMAKE_BUILD_TYPE=Release
-        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DAMDGPU_TARGETS=gfx942
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
