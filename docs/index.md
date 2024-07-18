@@ -50,11 +50,14 @@ ROCm documentation is organized into the following categories:
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
-* [System tuning for various architectures](./how-to/tuning-guides.md)
+* [System optimization](./how-to/tuning-guides.rst)
+  * [AMD Instinct MI200](./how-to/tuning-guides/mi200.md)
+  * [AMD Instinct MI100](./how-to/tuning-guides/mi100.md)
+  * [AMD Instinct RDNA2](./how-to/tuning-guides/w6000-v620.md)
+* [System level debugging](./how-to/system-debugging.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
 * [Using advanced compiler features](./conceptual/compiler-topics.md)
 * [Setting the number of CUs](./how-to/setting-cus)  
-* [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 :::
 

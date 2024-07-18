@@ -45,12 +45,41 @@ all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
-    {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-06-04"},
-    {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-06-04"},
-    {"file": "how-to/deep-learning-rocm", "os": ["linux"]},
-    {"file": "how-to/gpu-enabled-mpi", "os": ["linux"]},
-    {"file": "how-to/system-debugging", "os": ["linux"]},
-    {"file": "how-to/tuning-guides", "os": ["linux", "windows"]},
+    {
+        "file":"about/release-notes",
+        "os":["linux", "windows"],
+        "date":"2024-06-04"
+    },
+    {
+        "file":"about/changelog",
+        "os":["linux", "windows"],
+        "date":"2024-06-04"
+    },
+
+    {"file":"how-to/deep-learning-rocm", "os":["linux"]},
+    {"file":"how-to/gpu-enabled-mpi", "os":["linux"]},
+    {"file":"how-to/system-debugging", "os":["linux"]},
+    {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
+
+    {"file":"how-to/rocm-for-ai/index", "os":["linux"]},
+    {"file":"how-to/rocm-for-ai/install", "os":["linux"]},
+    {"file":"how-to/rocm-for-ai/train-a-model", "os":["linux"]},
+    {"file":"how-to/rocm-for-ai/deploy-your-model", "os":["linux"]},
+    {"file":"how-to/rocm-for-ai/hugging-face-models", "os":["linux"]},
+
+    {"file":"how-to/rocm-for-hpc/index", "os":["linux"]},
+
+    {"file":"how-to/llm-fine-tuning-optimization/index", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/overview", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/fine-tuning-and-inference", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/single-gpu-fine-tuning-and-inference", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/multi-gpu-fine-tuning-and-inference", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/llm-inference-frameworks", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/model-acceleration-libraries", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/model-quantization", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/optimizing-with-composable-kernel", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/optimizing-triton-kernel", "os":["linux"]},
+    {"file":"how-to/llm-fine-tuning-optimization/profiling-and-debugging", "os":["linux"]},
 ]
 
 exclude_patterns = ["temp"]
