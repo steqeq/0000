@@ -61,8 +61,7 @@ schedules:
   displayName: Nightly build
   branches:
     include:
-    # - develop
-    - amd/danielsu/rocm-nightly
+    - develop
   always: true
 
 jobs:
