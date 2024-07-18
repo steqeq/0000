@@ -66,7 +66,7 @@ jobs:
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
-        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DAMDGPU_TARGETS=gfx942
         -DUSE_HIP_CLANG=ON
         -DHIP_COMPILER=clang
         -DBUILD_CLIENTS_TESTS=ON

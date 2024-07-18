@@ -74,7 +74,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
-        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DAMDGPU_TARGETS=gfx942
         -DBUILD_CLIENTS_TESTS=ON
         -DUSE_CUDA=OFF
         -GNinja
