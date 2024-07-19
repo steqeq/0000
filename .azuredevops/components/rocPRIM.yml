@@ -42,13 +42,13 @@ jobs:
 # so this next step is skipped completely until
 # we define explicit aptPackages needed to install
   # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+  - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
   # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+  - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
