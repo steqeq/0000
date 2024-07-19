@@ -37,7 +37,7 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-# extra steps for ctest suite
+  # extra steps for ctest suite
   - script: |
       python -m pip install -r $(Build.SourcesDirectory)/docs/requirements.txt
       python -m pip install -r $(Build.SourcesDirectory)/test/docsphinx/docs/.sphinx/requirements.txt
@@ -45,4 +45,6 @@ jobs:
       git config --global user.name "Your Name"
     displayName: "ctest setup"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocm-cmake
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
