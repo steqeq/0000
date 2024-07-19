@@ -133,6 +133,61 @@ parameters:
     roctracer: $(roctracer-tagged-pipeline-id)
     rocWMMA: $(rocwmma-tagged-pipeline-id)
     rpp: $(rpp-tagged-pipeline-id)
+- name: gfx942TestPipelineIdentifiers
+  type: object
+  default:
+    AMDMIGraphX: $(amdmigraphx-gfx942-test-pipeline-id)
+    composable_kernel: $(composable-kernel-gfx942-test-pipeline-id)
+    hipBLAS: $(hipblas-gfx942-test-pipeline-id)
+    hipBLASLt: $(hipblaslt-gfx942-test-pipeline-id)
+    hipCUB: $(hipcub-gfx942-test-pipeline-id)
+    hipFFT: $(hipfft-gfx942-test-pipeline-id)
+    hipRAND: $(hiprand-gfx942-test-pipeline-id)
+    hipSOLVER: $(hipsolver-gfx942-test-pipeline-id)
+    hipSPARSE: $(hipsparse-gfx942-test-pipeline-id)
+    hipSPARSELt: $(hipsparselt-gfx942-test-pipeline-id)
+    hipTensor: $(hiptensor-gfx942-test-pipeline-id)
+    rccl: $(rccl-gfx942-test-pipeline-id)
+    rocALUTION: $(rocalution-gfx942-test-pipeline-id)
+    rocBLAS: $(rocblas-gfx942-test-pipeline-id)
+    rocFFT: $(rocfft-gfx942-test-pipeline-id)
+    rocm-examples: $(rocm-examples-gfx942-test-pipeline-id)
+    rocPRIM: $(rocprim-gfx942-test-pipeline-id)
+    rocprofiler: $(rocprofiler-gfx942-test-pipeline-id)
+    rocRAND: $(rocrand-gfx942-test-pipeline-id)
+    rocSOLVER: $(rocsolver-gfx942-test-pipeline-id)
+    rocSPARSE: $(rocsparse-gfx942-test-pipeline-id)
+    rocThrust: $(rocthrust-gfx942-test-pipeline-id)
+    roctracer: $(roctracer-gfx942-test-pipeline-id)
+    rocWMMA: $(rocwmma-gfx942-test-pipeline-id)
+    rpp: $(rpp-gfx942-test-pipeline-id)
+    amdsmi: $(amdsmi-pipeline-id)
+    aomp-extras: $(aomp-extras-pipeline-id)
+    aomp: $(aomp-pipeline-id)
+    clr: $(clr-pipeline-id)
+    half: $(half-pipeline-id)
+    HIP: $(hip-pipeline-id)
+    hipfort: $(hipfort-pipeline-id)
+    HIPIFY: $(hipify-pipeline-id)
+    llvm-project: $(llvm-project-pipeline-id)
+    MIOpen: $(miopen-pipeline-id)
+    MIVisionX: $(mivisionx-pipeline-id)
+    rdc: $(rdc-pipeline-id)
+    rocAL: $(rocal-pipeline-id)
+    ROCdbgapi : $(rocdbgapi-pipeline-id)
+    rocDecode: $(rocdecode-pipeline-id)
+    ROCgdb: $(rocgdb-pipeline-id)
+    rocm-cmake: $(rocm-cmake-pipeline-id)
+    rocm-core: $(rocm-core-pipeline-id)
+    rocminfo: $(rocminfo-pipeline-id)
+    rocMLIR: $(rocmlir-pipeline-id)
+    ROCmValidationSuite: $(rocmvalidationsuite-pipeline-id)
+    rocm_bandwidth_test: $(rocm-bandwidth-test-pipeline-id)
+    rocm_smi_lib: $(rocm-smi-lib-pipeline-id)
+    rocprofiler-register: $(rocprofiler-register-pipeline-id)
+    ROCR-Runtime: $(rocr-runtime-pipeline-id)
+    rocr_debug_agent: $(rocr-debug-agent-pipeline-id)
+    ROCT-Thunk-Interface: $(roct-thunk-interface-pipeline-id)
 # set to true if you're calling this template file multiple files in same pipeline
 # only leave last call false to optimize sequence
 - name: skipLibraryLinking
@@ -146,7 +201,7 @@ steps:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
-        pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+        pipelineId: ${{ parameters.gfx942TestPipelineIdentifiers[dependency] }}
         extractToMnt: ${{ parameters.extractToMnt }}
   - ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
     - template: artifact-download.yml
