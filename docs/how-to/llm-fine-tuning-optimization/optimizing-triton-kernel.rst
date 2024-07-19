@@ -343,11 +343,6 @@ or :doc:`rocBLAS <rocblas:index>` is faster for a specific operation.
   then required to strip out the kernel and create kernel
   compilation and launch via Triton.
 
-* For advanced ``matmul`` or ``conv`` configuration tuning, the ``inductor-gemm-tuner`` can
-  help. This implements the Triton ``conv``/``mm`` implementations used upstream
-  and allows specification of inputs and configuration tuning search space if new
-  tunings are found that can be added to the auto-tune list.
-
 Other guidelines
 ================
 

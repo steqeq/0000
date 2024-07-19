@@ -9,38 +9,63 @@ parameters:
 - name: useDefaultBranch
   type: boolean
   default: true
+- name: extractToMnt
+  type: boolean
+  default: false
 - name: defaultBranchList
   type: object
   default:
-    amdsmi: develop
-    aomp: aomp-dev
-    aomp-extras: aomp-dev
     AMDMIGraphX: develop
+    amdsmi: develop
+    aomp-extras: aomp-dev
+    aomp: aomp-dev
     clr: develop
     composable_kernel: develop
     half: master
     HIP: develop
     hipBLAS: develop
+    hipBLASLt: develop
+    hipCUB: develop
+    hipFFT: develop
+    hipfort: develop
+    HIPIFY: amd-staging
     hipRAND: develop
+    hipSOLVER: develop
     hipSPARSE: develop
+    hipSPARSELt: develop
+    hipTensor: develop
     llvm-project: amd-staging
     MIOpen: develop
+    MIVisionX: develop
+    rccl: develop
+    rdc: develop
+    rocAL: develop
+    rocALUTION: develop
     rocBLAS: develop
     ROCdbgapi : amd-master
     rocDecode: develop
     rocFFT: develop
+    rocgdb: amd-staging
     rocm-cmake: develop
-    rocm_smi_lib: develop
-    rocminfo: master
+    rocm-core: master
+    rocm-examples: develop
+    rocminfo: amd-staging
     rocMLIR: develop
+    ROCmValidationSuite: master
+    rocm_bandwidth_test: master
+    rocm_smi_lib: develop
     rocPRIM: develop
     rocprofiler-register: amd-mainline
+    rocprofiler: amd-master
     ROCR-Runtime: master
     rocRAND: develop
+    rocr_debug_agent: amd-staging
     rocSOLVER: develop
     rocSPARSE: develop
     ROCT-Thunk-Interface: master
+    rocThrust: develop
     roctracer: amd-master
+    rocWMMA: develop
     rpp: master
 - name: componentsFailureOkay
   type: object
@@ -70,7 +95,10 @@ steps:
   displayName: Extract ${{ parameters.componentName }}
   inputs:
     archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
-    destinationFolder: '$(Agent.BuildDirectory)/rocm'
+    ${{ if parameters.extractToMnt }}:
+      destinationFolder: '/mnt/rocm'
+    ${{ else }}:
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
     cleanDestinationFolder: false
     overwriteExistingFiles: true
 - task: DeleteFiles@1

@@ -237,6 +237,7 @@ OpenCV
 OpenFabrics
 OpenGL
 OpenMP
+OpenMPI
 OpenSSL
 OpenVX
 PCI
@@ -495,6 +496,7 @@ hipfort
 hipify
 hipsolver
 hipsparse
+hpc
 hpp
 hsa
 hsakmt
@@ -631,6 +633,7 @@ subexpression
 subfolder
 subfolders
 supercomputing
+td
 tensorfloat
 th
 tokenization

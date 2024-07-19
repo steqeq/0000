@@ -45,7 +45,7 @@ Setting up the base implementation environment
 
    .. code-block:: shell
 
-      rocm-smi -showproductname
+      rocm-smi --showproductname
 
    Your output should look like this:
 

@@ -22,8 +22,8 @@
 * {doc}`HIPIFY <hipify:index>`
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
-* [ROCm Debug Agent](https://github.com/ROCm/rocr_debug_agent)
-* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCm Debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCr Debug Agent <rocr_debug_agent:index>`
 :::
 
 (performance-tools)=
@@ -53,7 +53,6 @@
 * {doc}`ROCm Data Center Tool <rdc:index>`
 * {doc}`ROCm SMI <rocm_smi_lib:index>`
 * {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
-* {doc}`TransferBench <transferbench:index>`
 :::
 
 ::::

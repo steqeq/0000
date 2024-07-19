@@ -164,7 +164,9 @@ ROCm™ 6.1.1 introduces minor fixes and improvements to some tools and librarie
 
 ### OS support
 
-ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel: 5.15 [GA], 6.8 [HWE]).
+* ROCm 6.1.1 now supports Oracle Linux. It has been tested against version 8.9 (kernel 5.15.0-205) with AMD Instinct MI300X accelerators.
+
+* ROCm 6.1.1 has been tested against a pre-release version of Ubuntu 22.04.5 (kernel: 5.15 [GA], 6.8 [HWE]).
 
 ### AMD SMI
 
@@ -1455,7 +1457,7 @@ Note: These complex operations are equivalent to corresponding types/functions o
       * `HIP_ROCclr`
     * NVIDIA platform
       * `HIP_PLATFORM_NVCC`
-* The [hcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hip/hcc_detail) and [nvcc_detail](https://github.com/ROCm/clr/tree/1949b1621a802ffb1492616adbae6154bfbe64ef/hipamd/include/hips/nvcc_detail) directories in the clr repository are removed.
+* The `hcc_detail` and `nvcc_detail` directories in the clr repository are removed.
 * Deprecated gcnArch is removed from hip device struct `hipDeviceProp_t`.
 * Deprecated `enum hipMemoryType memoryType;` is removed from HIP struct `hipPointerAttribute_t` union.
 

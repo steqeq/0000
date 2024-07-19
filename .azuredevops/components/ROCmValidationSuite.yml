@@ -13,7 +13,7 @@ parameters:
     - libyaml-cpp-dev
     - libpci-dev
     - libpci3
-    - googletest
+    - libgtest-dev
     - git
 - name: rocmDependencies
   type: object
@@ -35,6 +35,10 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: HIP_ROCCLR_HOME
     value: $(Build.BinariesDirectory)/rocm
+  - name: ROCM_PATH
+    value: $(Agent.BuildDirectory)/rocm
+  - name: HIP_INC_DIR
+    value: $(Agent.BuildDirectory)/rocm
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
@@ -59,10 +63,17 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: tag-builds
+# Set link to redirect llvm folder
+  - task: Bash@3
+    displayName: create symlink
+    inputs:
+      targetType: inline
+      script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCPACK_PACKAGING_INSTALL_PREFIX=$(Build.BinariesDirectory)
         -GNinja
