@@ -8,58 +8,144 @@
 AMD Instinct MI300X workload optimization
 *****************************************
 
-This section discusses best practices to optimize the performance of MI300X
-accelerators for GPU kernel programming, HPC and deep learning operations, and
-specific workloads such as model inference.
+This document provides guidelines for optimizing the performance of AMD Instinct
+MI300X accelerators, with a particular focus on GPU kernel programming,
+high-performance computing (HPC), and deep learning operations using PyTorch. It
+delves into specific workloads such as model inference, offering strategies to
+enhance efficiency.
 
-.. _mi300x-hip-perf-optimization:
+The following topics highlight auto-tunable configurations that streamline
+optimization as well as advanced techniques like Triton kernel optimization for
+meticulous tuning.
 
-HIP performance optimization
-============================
+.. _mi300x-torchinductor-tuning:
 
-This section summarizes the best practices described in
-:doc:`hip:how-to/performance_guidelines` in the ROCm HIP documentation:
+PyTorch inductor Triton tuning knobs
+====================================
 
-*  :ref:`Parallel execution <mi300x-parallel-execution>`
+The following are suggestions for optimizing matrix multiplication (GEMM) and
+convolution (``conv``) operations in PyTorch using ``inductor``, a part of the
+PyTorch compilation framework. The goal is to leverage Triton to achieve better
+performance.
 
-*  :ref:`Memory usage optimization <mi300x-mem-usage-optimization>`
+Learn more about TorchInductor environment variables and usage in
+`PyTorch documentation <https://pytorch.org/docs/2.3/torch.compiler_inductor_profiling.html>`_.
 
-*  Optimization for maximum throughput
+To tune Triton kernels with ``gemm`` and convolution ops (``conv``), use the
+``torch.compile`` function with the ``max-autotune`` mode. This benchmarks a
+predefined list of Triton configurations and selects the fastest one for each
+shape. See the configurations in PyTorch source code:
 
-*  Minimizing memory thrashing
+* `conv configs for max-autotune <https://github.com/pytorch/pytorch/blob/a1d02b423c6b4ccacd25ebe86de43f650463bbc6/torch/_inductor/kernel/conv.py#L51>`_
 
-.. _mi300x-parallel-execution:
+* `matmul configs for max-autotune <https://github.com/pytorch/pytorch/blob/a1d02b423c6b4ccacd25ebe86de43f650463bbc6/torch/_inductor/kernel/mm_common.py#L118>`_
 
-Parallel execution and GPU hardware utilization
------------------------------------------------
+.. note::
+   Triton is not used if regular :doc:`MIOpen <miopen:index>` or
+   :doc:`rocBLAS <rocblas:index>` performs faster for a specific operation.
 
-The application should reveal and efficiently imply as much parallelism
-as possible for optimal use to keep all system components active.
+* Set ``torch._inductor.config.max_autotune = True`` or ``TORCHINDUCTOR_MAX_AUTOTUNE=1``.
 
-.. _mi300x-mem-usage-optimization:
+* Or, for more fine-grained control:
 
-Memory usage optimization
--------------------------
+  ``torch._inductor.config.max_autotune_gemm = True``
+     To enable tuning or lowering of ``mm``/``conv``\s.
 
-To optimize memory throughput, minimize low-bandwidth data transfers,
-particularly between the host and device. Maximize on-chip memory,
-including shared memory and caches, to reduce data transfers between
-global memory and the device.
+  ``torch._inductor.config.max_autotune.pointwise = True``
+     To enable tuning for ``pointwise``/``reduction`` ops.
 
-In a GPU, global memory has high latency but a large size, while local
-data share (LDS) has lower latency but a smaller size, and registers
-have the fastest but smallest access. Aim to limit load/store operations
-in global memory. If multiple threads in a block need the same data,
-transfer it from global memory to LDS for efficient access.
+  ``torch._inductor.max_autotune_gemm_backends`` or ``TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
+     Selects the candidate backends for ``mm`` auto-tuning. Defaults to
+     ``TRITON,ATEN``. 
+     Limiting this to ``TRITON`` might improve performance by
+     enabling more fused ``mm`` kernels instead of going to rocBLAS.
+
+* For further ``mm`` tuning, tuning ``coordinate_descent`` might improve
+  performance.
+
+  ``torch._inductor.config.coordinate_descent_tuning = True`` or ``TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1``
+
+* Inference can see large improvements on AMD GPUs by utilizing
+  ``torch._inductor.config.freezing=True`` or the ``TORCHINDUCTOR_FREEZING=1`` variable, which
+  in-lines weights as constants and enables constant folding optimizations.
+
+* Enabling ``inductor``’s cpp_wrapper might improve overhead. This generates
+  C++ code which launches Triton binaries directly with
+  ``hipModuleLaunchKernel`` and relies on `hipification`.
+
+  ``torch._inductor.config.cpp_wrapper=True`` or ``TORCHINDUCTOR_CPP_WRAPPER=1``
+
+* Convolution workloads may see a performance benefit by specifying  
+  ``torch._inductor.config.layout_optimization=True`` or ``TORCHINDUCTOR_LAYOUT_OPTIMIZATION=1``.
+  This can help performance by enforcing ``channel_last`` memory format on the
+  convolution in TorchInductor, avoiding any unnecessary transpose operations. 
+  Note that ``PYTORCH_MIOPEN_SUGGEST_NHWC=1`` is recommended if using this.
+
+* To extract the Triton kernels generated by ``inductor``, set the environment variable
+  ``TORCH_COMPILE_DEBUG=1``, which will create a ``torch_compile_debug/`` directory
+  in the current path. The wrapper codes generated by ``inductor`` are in one or more
+  ``output_code.py`` files corresponding to the FX graphs associated with the model.
+  The Triton kernels are defined in these generated codes.
+
+.. _mi300x-tunableop:
+
+PyTorch TunableOp
+-------------------
+
+`TunableOp <https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/cuda/tunable/README.md>`_
+is a feature used to define and optimize kernels that can have tunable parameters. This is useful in
+optimizing the performance of custom kernels by exploring different parameter configurations to find the most efficient
+setup. See more about PyTorch TunableOp in :ref:`Model acceleration libraries <fine-tuning-llms-pytorch-tunableop>`.
+
+You can easily manipulate the behavior TunableOp through environment variables, though you could use the C++ interface
+``at::cuda::tunable::getTuningContext()``. A Python interface to the ``TuningContext`` does not yet exist.
+
+The three most important environment variables are:
+
+``PYTORCH_TUNABLEOP_ENABLED``
+   Default is ``0``. Set to ``1`` to enable. This is the main on/off switch for
+   all TunableOp implementations.
+
+``PYTORCH_TUNABLEOP_TUNING``
+   Default is ``1``. Set to ``0`` to disable. When enabled, if a tuned entry
+   isn't found, run the tuning step and record the entry.
+
+``PYTORCH_TUNABLEOP_VERBOSE``
+   Default is ``0``. Set to ``1`` if you want to see TunableOp in action.
+
+Use these environment variables to enable TunableOp for any
+applications or libraries that use PyTorch (2.3 or later). For more
+information, see `<https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/cuda/tunable/README.md>`__
+on GitHub.
+
+You can check how TunableOp performs in two steps:
+
+1. Enable TunableOp and tuning. Optionally enable verbose mode:
+
+   .. code-block:: shell
+
+      PYTORCH_TUNABLEOP_ENABLED=1 PYTORCH_TUNABLEOP_VERBOSE=1 your_script.sh
+
+2. Enable TunableOp and disable tuning and measure.
+
+   .. code-block:: shell
+
+      PYTORCH_TUNABLEOP_ENABLED=1  PYTORCH_TUNABLEOP_TUNING=0 your_script.sh
 
 .. _mi300x-triton-kernel-performance-optimization:
 
 Triton kernel performance optimization
 ======================================
 
-Similar to the
-:ref:`HIP optimization best practices <mi300x-hip-perf-optimization>` noted
-earlier, Triton kernel optimization includes the following aspects:
+Triton kernel optimization encompasses a variety of strategies aimed at
+maximizing the efficiency and performance of GPU computations. These strategies
+include
+:ref:`optimizing overall GPU resource utilization <mi300x-triton-gpu-utilization>`,
+:ref:`tuning kernel configurations <mi300x-autotunable-kernel-config>`, and
+:ref:`leveraging specific hardware features <mi300x-assembly-analysis>` to
+achieve higher throughput and lower latency.
+
+.. _mi300x-triton-gpu-utilization:
 
 Overall GPU resource utilization
 --------------------------------
@@ -118,7 +204,9 @@ Register access is the fastest yet smallest among the three.
 
    Schematic representation of a CU in the CDNA2 or CDNA3 architecture.
 
-The following is a list of kernel arguments used for tuning.
+The following is a list of kernel arguments used for tuning performance and
+resource allocation on AMD accelerators, which helps in optimizing the
+efficiency and throughput of various computational kernels.
 
 ``num_stages=n``
    Adjusts the number of pipeline stages for different types of kernels. On AMD accelerators, set ``num_stages``
@@ -326,124 +414,12 @@ Generally recommended guidelines are as follows.
    (``export MLIR_ENABLE_DUMP=1``) and check which optimization pass caused the
    problem.
 
-.. _mi300x-torchinductor-tuning:
-
-PyTorch inductor Triton tuning knobs
-====================================
-
-The following are suggestions for optimizing matrix multiplication (GEMM) and
-convolution (``conv``) operations in PyTorch using ``inductor``, a part of the
-PyTorch compilation framework. The goal is to leverage Triton to achieve better
-performance.
-
-Learn more about TorchInductor environment variables and usage in
-`PyTorch documentation <https://pytorch.org/docs/2.3/torch.compiler_inductor_profiling.html>`_.
-
-To tune Triton kernels with ``gemm`` and convolution ops (``conv``), use the
-``torch.compile`` function with the ``max-autotune`` mode. This benchmarks a
-predefined list of Triton configurations and selects the fastest one for each
-shape. See the configurations in PyTorch source code:
-
-* `conv configs for max-autotune <https://github.com/pytorch/pytorch/blob/a1d02b423c6b4ccacd25ebe86de43f650463bbc6/torch/_inductor/kernel/conv.py#L51>`_
-
-* `matmul configs for max-autotune <https://github.com/pytorch/pytorch/blob/a1d02b423c6b4ccacd25ebe86de43f650463bbc6/torch/_inductor/kernel/mm_common.py#L118>`_
-
-.. note::
-   Triton is not used if regular :doc:`MIOpen <miopen:index>` or
-   :doc:`rocBLAS <rocblas:index>` performs faster for a specific operation.
-
-* Set ``torch._inductor.config.max_autotune = True`` or ``TORCHINDUCTOR_MAX_AUTOTUNE=1``.
-
-* Or, for more fine-grained control:
-
-  ``torch._inductor.config.max_autotune_gemm = True``
-     To enable tuning or lowering of ``mm``/``conv``\s.
-
-  ``torch._inductor.config.max_autotune.pointwise = True``
-     To enable tuning for ``pointwise``/``reduction`` ops.
-
-  ``torch._inductor.max_autotune_gemm_backends`` or ``TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS``
-     Selects the candidate backends for ``mm`` auto-tuning. Defaults to
-     ``TRITON,ATEN``. 
-     Limiting this to ``TRITON`` might improve performance by
-     enabling more fused ``mm`` kernels instead of going to rocBLAS.
-
-* For further ``mm`` tuning, tuning ``coordinate_descent`` might improve
-  performance.
-
-  ``torch._inductor.config.coordinate_descent_tuning = True`` or ``TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1``
-
-* Inference can see large improvements on AMD GPUs by utilizing
-  ``torch._inductor.config.freezing=True`` or the ``TORCHINDUCTOR_FREEZING=1`` variable, which
-  in-lines weights as constants and enables constant folding optimizations.
-
-* Enabling ``inductor``’s cpp_wrapper might improve overhead. This generates
-  C++ code which launches Triton binaries directly with
-  ``hipModuleLaunchKernel`` and relies on `hipification`.
-
-  ``torch._inductor.config.cpp_wrapper=True`` or ``TORCHINDUCTOR_CPP_WRAPPER=1``
-
-* Convolution workloads may see a performance benefit by specifying  
-  ``torch._inductor.config.layout_optimization=True`` or ``TORCHINDUCTOR_LAYOUT_OPTIMIZATION=1``.
-  This can help performance by enforcing ``channel_last`` memory format on the
-  convolution in TorchInductor, avoiding any unnecessary transpose operations. 
-  Note that ``PYTORCH_MIOPEN_SUGGEST_NHWC=1`` is recommended if using this.
-
-* To extract the Triton kernels generated by ``inductor``, set the environment variable
-  ``TORCH_COMPILE_DEBUG=1``, which will create a ``torch_compile_debug/`` directory
-  in the current path. The wrapper codes generated by ``inductor`` are in one or more
-  ``output_code.py`` files corresponding to the FX graphs associated with the model.
-  The Triton kernels are defined in these generated codes.
-
-.. _mi300x-tunableop:
-
-PyTorch TunableOp
--------------------
-
-`TunableOp <https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/cuda/tunable/README.md>`_
-is a feature used to define and optimize kernels that can have tunable parameters. This is useful in
-optimizing the performance of custom kernels by exploring different parameter configurations to find the most efficient
-setup. See more about PyTorch TunableOp in :ref:`Model acceleration libraries <fine-tuning-llms-pytorch-tunableop>`.
-
-You can easily manipulate the behavior TunableOp through environment variables, though you could use the C++ interface
-``at::cuda::tunable::getTuningContext()``. A Python interface to the ``TuningContext`` does not yet exist.
-
-The three most important environment variables are:
-
-``PYTORCH_TUNABLEOP_ENABLED``
-   Default is ``0``. Set to ``1`` to enable. This is the main on/off switch for
-   all TunableOp implementations.
-
-``PYTORCH_TUNABLEOP_TUNING``
-   Default is ``1``. Set to ``0`` to disable. When enabled, if a tuned entry
-   isn't found, run the tuning step and record the entry.
-
-``PYTORCH_TUNABLEOP_VERBOSE``
-   Default is ``0``. Set to ``1`` if you want to see TunableOp in action.
-
-Use these environment variables to enable TunableOp for any
-applications or libraries that use PyTorch (2.3 or later). For more
-information, see `<https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/cuda/tunable/README.md>`__
-on GitHub.
-
-You can check how TunableOp performs in two steps:
-
-1. Enable TunableOp and tuning. Optionally enable verbose mode:
-
-   .. code-block:: shell
-
-      PYTORCH_TUNABLEOP_ENABLED=1 PYTORCH_TUNABLEOP_VERBOSE=1 your_script.sh
-
-2. Enable TunableOp and disable tuning and measure.
-
-   .. code-block:: shell
-
-      PYTORCH_TUNABLEOP_ENABLED=1  PYTORCH_TUNABLEOP_TUNING=0 your_script.sh
-
 vLLM performance optimization
 =============================
 
 The following performance tips are not *specific* to vLLM but are still applicable.
+You can tune the following vLLM parameters to achieve optimal request
+latency and throughput performance.
 
 * As described in :ref:`mi300x-env-vars`, the environment
   variable ``HIP_FORCE_DEV_KERNARG`` can improve vLLM performance. Set it to
@@ -458,9 +434,6 @@ The following performance tips are not *specific* to vLLM but are still applicab
   the performance.
 
 The following subtopics describe vLLM-specific suggestions for performance.
-
-You can tune the following vLLM parameters to achieve optimal request
-latency or throughput performance.
 
 *  ``tensor_parallel_size``
 
@@ -483,7 +456,8 @@ latency or throughput performance.
 *  ``enable_chunked_prefill``
 
 Refer to `vLLM documentation <https://docs.vllm.ai/en/latest/models/performance.html>`_
-for additional performance tips.
+for additional performance tips. :ref:`fine-tuning-llms-vllm` describes vLLM
+usage with ROCm.
 
 Maximize throughput
 -------------------
@@ -607,23 +581,28 @@ each server, for example:
    CUDA_VISIBLE_DEVICES=2,3 python -m vllm.entrypoints.api_server --model
    /path/to/model --dtype float16 -tp 2 --port 8001 &
 
+See :ref:`mi300x-vllm-optimize-tp-gemm` for additional optimization suggestions.
+
 Choose different attention backends
 -----------------------------------
 
-vLLM on ROCm supports three different attention backends:
+vLLM on ROCm supports three different attention backends, each suitable for
+different use cases and performance requirements:
 
--  **Triton Flash Attention** - For benchmarking, run vLLM scripts at
-   least once as a warm-up step so Triton can perform auto-tuning before
-   collecting benchmarking numbers. This is the default setting.
+- **Triton Flash Attention** - For benchmarking, run vLLM scripts at
+  least once as a warm-up step so Triton can perform auto-tuning before
+  collecting benchmarking numbers. This is the vLLM's setting.
 
--  **Composable Kernel Flash Attention** - To use CK flash-attention, specify
-   the environment variable as ``export VLLM_USE_TRITON_FLASH_ATTN=0``.
+- **Composable Kernel (CK) Flash Attention** - To use CK Flash Attention, specify
+  the environment variable as ``export VLLM_USE_TRITON_FLASH_ATTN=0``.
 
--  **PyTorch naive attention** - To use naive attention (PyTorch SDPA math backend), either build
-   the Docker image without Flash Attention by passing ``--build-arg BUILD_FA="0"``
-   during Docker build, or ``pip uninstall flash-attn``
-   inside the container, and export ``VLLM_USE_TRITON_FLASH_ATTN=0`` when
-   running the vLLM instance.
+- **PyTorch naive attention** - To use naive attention (PyTorch SDPA math
+  backend), either build the Docker image without Flash Attention by passing
+  ``--build-arg BUILD_FA="0"`` during Docker build, or
+  ``pip uninstall flash-attn`` inside the container, and export ``VLLM_USE_TRITON_FLASH_ATTN=0`` when running the vLLM instance.
+
+Refer to :ref:`Model acceleration libraries <acceleration-flash-attention>`
+to learn more about Flash Attention with Triton or CK backends.
 
 Use fp8 KV-cache data type
 --------------------------
@@ -695,40 +674,53 @@ enabling chunked prefill increases the throughput. For some other
 configurations, the throughput may be worse and elicit a need to tune
 parameter ``max_num_batched_tokens`` (for example, increasing ``max_num_batched_tokens`` value to 4096 or larger).
 
-ROCm vLLM and GEMM tuning
--------------------------
+.. _mi300x-vllm-optimize-tp-gemm:
 
-The ROCm `vLLM <https://github.com/ROCm/vllm>`__ fork supports two modes
-to run tensor parallel: ``ray`` and ``torchrun`` which is the default in ROCm
-for performance reasons.
+Optimize tensor parallelism and GEMM performance
+------------------------------------------------
 
-To use `torchrun <https://pytorch.org/docs/stable/elastic/run.html>`__,
-use the following command where ``$WORLD_SIZE`` is the number of GPUs or number
-of workers to use per node. In the case of ``nnodes=1`` (that is, the number of
-nodes is 1), it's the same as the ``tensor-parallel-size`` or ``-tp``.
+You can use tensor parallelism to improve performance in model inference
+tasks by distributing tensor computations across multiple GPUs.
+The `ROCm vLLM <https://github.com/ROCm/vllm>`__ fork supports two modes
+to run tensor parallellism: ``ray`` and ``torchrun`` which (the default in ROCm
+for performance reasons).
 
-.. code-block:: shell
+* To use `torchrun <https://pytorch.org/docs/stable/elastic/run.html>`__,
+  use the following command where ``$WORLD_SIZE`` is the number of GPUs or number
+  of workers to use per node. In the case of ``nnodes=1`` (that is, the number of
+  nodes is 1), it's the same as the ``tensor-parallel-size`` or ``-tp``.
 
-   torchrun --standalone --nnodes=1 --nproc-per-node=$WORLD_SIZE YOUR_PYTHON_SCRIPT.py (--tensor-parallel-size $WORLD_SIZE .. other_script_args...)
+  .. code-block:: shell
+
+     torchrun --standalone --nnodes=1 --nproc-per-node=$WORLD_SIZE YOUR_PYTHON_SCRIPT.py (--tensor-parallel-size $WORLD_SIZE .. other_script_args...)
 
 
-To use ``ray``, specify the ``--worker-use-ray`` flag. The following script
-example uses ``torchrun`` to run latency benchmarking using ``ray``
-for ``input-len`` of 512, ``output-len`` of 512, and ``batch-size`` of 1:
+* To use ``ray``, specify the ``--worker-use-ray`` flag. The following script
+  example uses ``torchrun`` to run latency benchmarking using ``ray``
+  for ``input-len`` of 512, ``output-len`` of 512, and ``batch-size`` of 1:
 
-.. code-block:: shell
+  .. code-block:: shell
 
-   tp=$1
+     tp=$1
 
-   torchrun --standalone --nnodes=1 --nproc-per-node=$tp benchmarks/benchmark_latency.py --worker-use-ray --model $MODEL --batch-size 1 --input-len 512 --output-len 512 --tensor-parallel-size $tp --num-iters 10
+     torchrun --standalone --nnodes=1 --nproc-per-node=$tp benchmarks/benchmark_latency.py --worker-use-ray --model $MODEL --batch-size 1 --input-len 512 --output-len 512 --tensor-parallel-size $tp --num-iters 10
 
-The first parameter of the script ``tp`` specifies the ``tensor-parallel`` size
-(1 to 8).
+  The first parameter of the script ``tp`` specifies the ``tensor-parallel`` size
+  (1 to 8).
 
 GEMM tuning steps
 ^^^^^^^^^^^^^^^^^
 
-1. Set various environment variables:
+This section describes the process of optimizing the parameters and
+configurations of GEMM operations to improve their performance on specific
+hardware. This involves finding the optimal settings for memory usage,
+computation, and hardware resources to achieve faster and more efficient
+matrix multiplication.
+
+Follow these steps to perform GEMM tuning with ROCm vLLM:
+
+1. Set various environment variables to specify paths for tuning files and
+   enable debugging options:
 
    .. code-block:: shell
 
@@ -740,7 +732,7 @@ GEMM tuning steps
 
       export DEBUG_CLR_GRAPH_PACKET_CAPTURE=1
 
-2. Do a tuning run:
+2. Perform a tuning run:
 
    .. code-block:: shell
 
@@ -752,7 +744,7 @@ GEMM tuning steps
    where ``gradlib`` is, you can run ``pip show gradlib`` and then update the
    above path to something like ``/opt/conda/envs/py_3.9/lib/python3.9/site-packages/gradlib/gemm_tuner.py``
 
-3. Do a measurement run:
+3. Do a measurement run to verify performance improvements:
 
    .. code-block:: shell
 
@@ -761,8 +753,19 @@ GEMM tuning steps
 ROCm library tuning
 ===================
 
-GEMM (General Matrix Multiplications)
+ROCm library tuning involves optimizing the performance of routine computational
+operations (such as GEMM) provided by ROCm libraries like
+:ref:`hipBLASLt <mi300x-hipblaslt>`, :ref:`Composable Kernel <mi300x-ck>`,
+:ref:`MIOpen <mi300x-miopen>`, and :ref:`RCCL <mi300x-rccl>`. This tuning aims
+to maximize efficiency and throughput on Instinct MI300X accelerators to gain 
+improved application performance.
+
+.. _mi300x-library-gemm:
+
+GEMM (General Matrix Multiplication)
 -----------------------------------------
+
+.. _mi300x-hipblaslt:
 
 hipBLASLt benchmarking
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -888,10 +891,12 @@ GEMM stride issues
    a notable performance drop. To avoid this, use stride padding to ensure the
    stride is not a multiple of 512 bytes (e.g., for TN F16 GEMM, set ``lda = M + 128`` when ``M % 256 == 0``).
 
+.. _mi300x-ck:
+
 Optimizing Composable Kernel GEMM kernels
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The performance of the GEMM kernel is significantly influenced by the input
+The performance of a GEMM kernel is significantly influenced by the input
 values. The performance hierarchy based on input value types, from highest to
 lowest, is as follows:
 
@@ -907,6 +912,15 @@ Additionally, ``bf16`` matrix core execution is noticeably faster than ``f16``.
 
 Distributing workgroups with data sharing on the same XCD can enhance
 performance (reduce latency) and improve benchmarking stability.
+
+CK provides a rich set of template parameters for generating flexible accelerated 
+computing kernels for difference application scenarios.
+
+See :doc:`/how-to/llm-fine-tuning-optimization/optimizing-with-composable-kernel`
+for an overview of Composable Kernel GEMM kernels, information on tunable
+parameters, and examples.
+
+.. _mi300x-miopen:
 
 MIOpen
 ------
@@ -925,6 +939,8 @@ used to benchmark all applicable convolution kernels for the given
 convolution problem. These values reside in the FindDb. To manipulate
 how to find the best performing kernel for a given convolution
 problem, use the environment variable ``MIOPEN_FIND_MODE`` (1-5).
+
+.. _mi300x-miopen-tuning:
 
 Tuning in MIOpen
 ^^^^^^^^^^^^^^^^
@@ -1223,12 +1239,9 @@ improve the performance:
 Profiling tools
 ===============
 
-With AMD profiling tools, you gain important insight into how efficiently your
-application is utilizing hardware and effectively diagnose potential bottlenecks
-contributing to poor performance. Developers targeting AMD GPUs have multiple
-tools available depending on their specific profiling needs.
+AMD profiling tools provide valuable insights into how efficiently your application utilizes hardware and help diagnose potential bottlenecks that contribute to poor performance. Developers targeting AMD GPUs have multiple tools available depending on their specific profiling needs.
 
-* The ROCProfiler profiling tool collects kernel execution performance
+* ROCProfiler tool collects kernel execution performance
   metrics. For more information, see the
   `ROCProfiler <https://rocm.docs.amd.com/projects/rocprofiler/en/latest/rocprofv1.html>`_
   documentation.
@@ -1236,6 +1249,24 @@ tools available depending on their specific profiling needs.
 * Omniperf builds upon ROCProfiler but provides more guided analysis.
   For more information, see
   `Omniperf documentation <https://rocm.github.io/omniperf/>`_.
+
+Refer to :doc:`/how-to/llm-fine-tuning-optimization/profiling-and-debugging`
+to explore commonly used profiling tools and their usage patterns.
+
+Once performance bottlenecks are identified, you can implement an informed workload
+tuning strategy. If kernels are the bottleneck, consider:
+
+* :ref:`Triton's auto-tunable kernel configurations <mi300x-autotunable-kernel-config>`
+
+* :ref:`Auto-tuning in PyTorch with TunableOp <mi300x-tunableop>`
+
+* :ref:`Auto-tuning in MIOpen <mi300x-miopen-tuning>`
+
+If auto-tuning does not meet your requirements, consider
+:ref:`mi300x-triton-kernel-performance-optimization`.
+
+If the issue is multi-GPU scale-out, try
+:ref:`RCCL tuning and configuration<mi300x-rccl>`.
 
 Special considerations
 ======================
@@ -1274,8 +1305,8 @@ compute and two streams for RCCL. Otherwise, RCCL is often already tuned
 for the specific MI300 systems in production based on querying the node
 topology internally during startup.
 
-Appendix
-========
+Diagnostic and performance analysis steps
+=========================================
 
 Debug memory access faults
 --------------------------
