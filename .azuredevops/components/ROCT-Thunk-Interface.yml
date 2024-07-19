@@ -10,6 +10,13 @@ parameters:
   default:
     - libnuma-dev
     - libdrm-dev
+    - pkg-config
+    - zlib1g-dev
+- name: rocmTestDependencies
+  type: object
+  default:
+    - llvm-project
+    - ROCT-Thunk-Interface
 
 jobs:
 - job: ROCT_Thunk_Interface
@@ -29,4 +36,24 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, 'master') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, 'master') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      cmakeBuildDir: tests/kfdtest/build
+      installEnabled: false
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+  - script: ./run_kfdtest.sh -P core
+    workingDirectory: tests/kfdtest
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
