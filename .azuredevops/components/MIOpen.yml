@@ -23,6 +23,8 @@ parameters:
     - rocMLIR
     - rocRAND
     - rocBLAS
+    - hipBLAS
+    - hipBLASLt
     - half
     - composable_kernel
     - rocm-cmake
@@ -38,7 +40,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
   workspace:
     clean: all
   steps:

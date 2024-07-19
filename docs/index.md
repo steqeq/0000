@@ -104,7 +104,6 @@ Our documentation is organized into the following categories:
   * [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
   * [OpenMP support in ROCm](./about/compatibility/openmp.md)
 * [Setting the number of CUs](./how-to/setting-cus)  
-* [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 :::
 

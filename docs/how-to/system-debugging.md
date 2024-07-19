@@ -5,9 +5,7 @@
   ROCm">
 </head>
 
-(system-debugging)=
-
-# System debugging guide
+# System debugging
 
 ## ROCm language and system-level debug, flags, and environment variables
 
