@@ -135,6 +135,8 @@ Installing vLLM
 
             {"text":["What is AMD Instinct?\nAmd Instinct is a brand new line of high-performance computing (HPC) processors from Advanced Micro Devices (AMD). These processors are designed to deliver unparalleled performance for HPC workloads, including scientific simulations, data analytics, and machine learning.\nThe Instinct lineup includes a range of processors, from the entry-level Inst"]}
 
+Refer to :ref:`mi300x-vllm-optimization` for performance optimization tips.
+
 .. _fine-tuning-llms-tgi:
 
 Hugging Face TGI

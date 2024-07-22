@@ -19,7 +19,7 @@ The following guides cover installation processes for ROCm-aware deep learning f
 
 The following chart steps through typical installation workflows for installing deep learning frameworks for ROCm.
 
-.. image:: ../data/how-to/framework_install_2024_05_23.png
+.. image:: ../data/how-to/framework_install_2024_07_04.png
    :alt: Flowchart for installing ROCm-aware machine learning frameworks
    :align: center
 
