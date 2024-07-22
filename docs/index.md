@@ -75,7 +75,7 @@ Our documentation is organized into the following categories:
   * [HIP runtime](#hip-runtime)
 * [Tools](./reference/rocm-tools.md)
   * [Development](#development-tools)
-  * [Performance analysis](#performance-analysis)
+  * [Performance analysis](#performance-tools)
   * [System](#system-tools)
 * [Hardware specifications](./reference/gpu-arch-specs.rst)
 :::
