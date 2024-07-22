@@ -9,34 +9,35 @@ parameters:
   type: object
   default:
     - cmake
-    - gfortran
-    - git
-    - googletest
-    - libdrm-dev
-    - libgtest-dev
-    - libmsgpack-dev
-    - libopenblas-dev
     - ninja-build
-    - python3-pip
     - python3-venv
+    - git
+    - libmsgpack-dev
+    - gfortran
+    - libopenblas-dev
+    - googletest
+    - libgtest-dev
     - wget
+    - python3-pip
+    - libdrm-dev
 - name: pipModules
   type: object
   default:
     - joblib
+    - pyyaml
 - name: rocmDependencies
   type: object
   default:
-    - aomp
-    - aomp-extras
-    - clr
-    - llvm-project
     - rocm-cmake
-    - rocm-core
-    - rocm_smi_lib
+    - llvm-project
+    - ROCR-Runtime
+    - clr
     - rocminfo
     - rocprofiler-register
-    - ROCR-Runtime
+    - rocm_smi_lib
+    - rocm-core
+    - aomp
+    - aomp-extras
 - name: rocmTestDependencies
   type: object
   default:
