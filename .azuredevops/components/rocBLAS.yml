@@ -61,7 +61,7 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
-  pool: ${{ variables.LOW_BUILD_POOL }} # change this later
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -149,14 +149,6 @@ jobs:
   - task: DownloadPipelineArtifact@2
     inputs:
       targetPath: $(System.ArtifactsDirectory)
-      #   change this later
-      #   you can comment out the first build job and use the below lines to download a specific past build
-      #   this speeds up testing since you don't need to wait for the build job
-      # project: ROCm-CI
-      # buildType: specific
-      # buildVersionToDownload: specific
-      # definition: 116
-      # pipelineId: 1398
   - task: ExtractFiles@1
     inputs:
       archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
