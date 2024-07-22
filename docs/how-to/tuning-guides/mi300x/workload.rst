@@ -440,7 +440,7 @@ To run one vLLM instance on multiple GPUs, use the ``-tp`` or
 ``--tensor-parallel-size`` option to specify multiple GPUs. Optionally, use the
 ``CUDA_VISIBLE_DEVICES`` environment variable to specify the GPUs.
 
-For example, we can use two GPUs to start an API server on port 8000 as
+For example, you can use two GPUs to start an API server on port 8000 as
 below:
 
 .. code-block:: shell
@@ -950,8 +950,11 @@ values. The performance hierarchy based on input value types, from highest to
 lowest, is as follows:
 
 * Case 1: [all 0]
+
 * Case 2: [all identical integers]
+
 * Case 3: [random integers]
+
 * Case 4: [random floats]
 
 There can be more than a 20 percent performance drop between Case 1 and Case 4,
@@ -973,6 +976,11 @@ parameters, and examples.
 
 MIOpen
 ------
+
+MIOpen is AMD's open-source, deep learning primitives library for GPUs. It
+implements fusion to optimize for memory bandwidth and GPU launch overheads,
+providing an auto-tuning infrastructure to overcome the large design space of
+problem configurations.
 
 Convolution
 ^^^^^^^^^^^
@@ -1087,7 +1095,7 @@ strategies:
 
 * :ref:`RCCL-tests <mi300x-rccl-tests>`
 
-* :ref:`Use one-process-per-GPU configuration <mi300x-rccl-one-process-per-gpu>`
+* :ref:`Use one-process-per-GPU mode <mi300x-rccl-one-process-per-gpu>`
 
 * :ref:`RCCL in E2E workloads <mi300x-rccl-e2e>`
 
@@ -1101,7 +1109,7 @@ dedicated links between each pair of GPUs in a fully connected topology.
 Therefore, for collective operations, the best performance is achieved
 when all 8 GPUs and, hence, all the links between them are used. In the
 case of 2- or 4-GPU collective operations (generally less than 8 GPUs),
-we can only use a fraction of the potential bandwidth on the node.
+you can only use a fraction of the potential bandwidth on the node.
 
 The following figure shows an
 :doc:`MI300X node-level architecture </conceptual/gpu-arch/mi300>` of a
@@ -1125,7 +1133,7 @@ Disable NUMA auto-balancing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to reduce performance variability and also achieve better
-performance, we need to make sure that NUMA auto-balancing is disabled
+performance, you need to make sure that NUMA auto-balancing is disabled
 on the node.
 
 Check whether NUMA auto-balancing is disabled, by running the
@@ -1263,14 +1271,14 @@ latency, algorithm bandwidth, and bus bandwidth for each case.
 
 .. _mi300x-rccl-one-process-per-gpu:
 
-Use one-process-per-GPU configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Use one-process-per-GPU mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 RCCL delivers the best performance for collectives when it is configured
 in a one-process-per-GPU mode. This is due to the fact that for a
-one-process-per-multiple-GPUs configuration, we run into kernel launch
-latency issues due to the fact that ROCm serializes kernel launches on
-multiple GPUs from one process and hence hurts the performance.
+one-process-per-multiple-GPUs configuration, you can run into kernel launch
+latency issues. This is because ROCm serializes kernel launches on multiple GPUs
+from one process which hurts performance.
 
 .. _mi300x-rccl-e2e:
 
