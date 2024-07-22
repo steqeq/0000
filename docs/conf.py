@@ -34,9 +34,6 @@ article_pages = [
     {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-06-04"},
     {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-06-04"},
     {"file": "how-to/deep-learning-rocm", "os": ["linux"]},
-    {"file": "how-to/gpu-enabled-mpi", "os": ["linux"]},
-    {"file": "how-to/system-debugging", "os": ["linux"]},
-    {"file": "how-to/tuning-guides", "os": ["linux", "windows"]},
     {"file": "how-to/rocm-for-ai/index", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/install", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/train-a-model", "os": ["linux"]},
@@ -78,6 +75,16 @@ article_pages = [
         "file": "how-to/llm-fine-tuning-optimization/profiling-and-debugging",
         "os": ["linux"],
     },
+    {"file": "how-to/system-optimization/index", "os": ["linux"]},
+    {"file": "how-to/system-optimization/mi300x", "os": ["linux"]},
+    {"file": "how-to/system-optimization/mi200", "os": ["linux"]},
+    {"file": "how-to/system-optimization/mi100", "os": ["linux"]},
+    {"file": "how-to/system-optimization/w6000-v620", "os": ["linux"]},
+    {"file": "how-to/tuning-guides/mi300x/index", "os": ["linux"]},
+    {"file": "how-to/tuning-guides/mi300x/system", "os": ["linux"]},
+    {"file": "how-to/tuning-guides/mi300x/workload", "os": ["linux"]},
+    {"file": "how-to/system-debugging", "os": ["linux"]},
+    {"file": "how-to/gpu-enabled-mpi", "os": ["linux"]},
 ]
 
 external_toc_path = "./sphinx/_toc.yml"
@@ -97,3 +104,5 @@ html_title = "ROCm Documentation"
 html_theme_options = {"link_main_doc": False}
 
 redirects = {"reference/openmp/openmp": "../../about/compatibility/openmp.html"}
+
+numfig = False

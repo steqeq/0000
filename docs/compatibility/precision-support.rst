@@ -416,7 +416,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - hipRAND (:doc:`details <hiprand:data-type-support>`)
+        - hipRAND (:doc:`details <hiprand:api-reference/data-type-support>`)
         - -/✅
         - -/✅
         - -/✅
@@ -428,7 +428,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (:doc:`details <hipcub:data-type-support>`)
+        - hipCUB (:doc:`details <hipcub:api-reference/data-type-support>`)
         - ✅/✅
         - ✅/✅
         - ✅/✅
@@ -474,7 +474,7 @@ description, refer to the corresponding library data type support page.
         - -/✅
         - -/✅
       *
-        - hipRAND (:doc:`details <hiprand:data-type-support>`)
+        - hipRAND (:doc:`details <hiprand:api-reference/data-type-support>`)
         - -/❌
         - -/❌
         - -/✅
@@ -492,7 +492,7 @@ description, refer to the corresponding library data type support page.
         - ✅/✅
         - ✅/✅
       *
-        - hipCUB (:doc:`details <hipcub:data-type-support>`)
+        - hipCUB (:doc:`details <hipcub:api-reference/data-type-support>`)
         - ❌/❌
         - ❌/❌
         - ✅/✅
