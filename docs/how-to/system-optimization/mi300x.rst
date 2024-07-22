@@ -304,9 +304,9 @@ Update GRUB to use the modified configuration:
 
    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-Note that in some Debian systems, the ``grub2-mkconfig`` comamnd is not found.
-Check to see whether ``grub-mkconfig`` is available and in addition check to see
-that the version of that is version 2 with the use of the following command:
+On some Debian systems, the ``grub2-mkconfig`` command may not be available. Instead,
+check for the presence of ``grub-mkconfig``. Additionally, verify that you have the
+correct version by using the following command:
 
 .. code-block:: shell
 
@@ -380,7 +380,7 @@ to a DIMM that is logically closer to the cores accessing it. This causes an
 overhead because the OS is second-guessing your NUMA allocations but may be
 useful if the NUMA locality access is very poor. Applications can therefore, in
 general, benefit from disabling NUMA balancing; however, there are workloads where
-doing so is detrimental to performance. This setting should be tested
+doing so is detrimental to performance. Test this setting
 by toggling the ``numa_balancing`` value and running the application; compare
 the performance of one run with this set to ``0`` and another run with this to
 ``1``.
