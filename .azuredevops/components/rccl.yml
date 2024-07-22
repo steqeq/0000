@@ -72,6 +72,6 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DBUILD_TESTS=ON
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/share/rocm/cmake/
-        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DAMDGPU_TARGETS=gfx942
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
