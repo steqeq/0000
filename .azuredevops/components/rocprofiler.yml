@@ -105,5 +105,5 @@ jobs:
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DENABLE_LDCONFIG=OFF
         -DUSE_PROF_API=1
-        -DGPU_TARGETS=gfx1030;gfx1100
+        -DGPU_TARGETS=gfx942
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

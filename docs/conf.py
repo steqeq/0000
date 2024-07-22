@@ -5,8 +5,6 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import shutil
-import jinja2
-import os
 
 # Environment to process Jinja templates.
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
@@ -49,8 +47,6 @@ article_pages = [
     {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-06-04"},
     {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-06-04"},
     {"file": "how-to/deep-learning-rocm", "os": ["linux"]},
-    {"file": "how-to/gpu-enabled-mpi", "os": ["linux"]},
-    {"file": "how-to/system-debugging", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/index", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/install", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/train-a-model", "os": ["linux"]},
@@ -100,9 +96,9 @@ article_pages = [
     {"file": "how-to/tuning-guides/mi300x/index", "os": ["linux"]},
     {"file": "how-to/tuning-guides/mi300x/system", "os": ["linux"]},
     {"file": "how-to/tuning-guides/mi300x/workload", "os": ["linux"]},
+    {"file": "how-to/system-debugging", "os": ["linux"]},
+    {"file": "how-to/gpu-enabled-mpi", "os": ["linux"]},
 ]
-
-exclude_patterns = ["temp"]
 
 external_toc_path = "./sphinx/_toc.yml"
 
