@@ -6,21 +6,8 @@
 
 import shutil
 
-# Environment to process Jinja templates.
-jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
-
-# Jinja templates to render out.
-templates = []
-
-# Render templates and output files without the last extension.
-# For example: 'install.md.jinja' becomes 'install.md'.
-for template in templates:
-    rendered = jinja_env.get_template(template).render()
-    with open(os.path.splitext(template)[0], "w") as file:
-        file.write(rendered)
-
-shutil.copy2("../RELEASE.md", "./about/release-notes.md")
 # Keep capitalization due to similar linking on GitHub's markdown preview.
+shutil.copy2("../RELEASE.md", "./about/release-notes.md")
 shutil.copy2("../CHANGELOG.md", "./about/changelog.md")
 
 latex_engine = "xelatex"
