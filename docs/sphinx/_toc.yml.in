@@ -81,16 +81,27 @@ subtrees:
       - file: how-to/llm-fine-tuning-optimization/optimizing-triton-kernel.rst
         title: Optimizing Triton kernels
       - file: how-to/llm-fine-tuning-optimization/profiling-and-debugging.rst
-  - file: how-to/tuning-guides.md
+  - file: how-to/system-optimization/index.rst
     title: System optimization
     subtrees:
     - entries:
-      - file: how-to/tuning-guides/mi100.md
-        title: MI100
-      - file: how-to/tuning-guides/mi200.md
-        title: MI200
-      - file: how-to/tuning-guides/w6000-v620.md
-        title: RDNA2
+      - file: how-to/system-optimization/mi300x.rst
+        title: AMD Instinct MI300X
+      - file: how-to/system-optimization/mi200.md
+        title: AMD Instinct MI200
+      - file: how-to/system-optimization/mi100.md
+        title: AMD Instinct MI100
+      - file: how-to/system-optimization/w6000-v620.md
+        title: AMD RDNA 2
+  - file: how-to/tuning-guides/mi300x/index.rst
+    title: AMD MI300X tuning guides
+    subtrees:
+    - entries:
+      - file: how-to/tuning-guides/mi300x/system.rst
+        title: System tuning
+      - file: how-to/tuning-guides/mi300x/workload.rst
+        title: Workload tuning
+  - file: how-to/system-debugging.md
   - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
   - file: conceptual/compiler-topics.md
@@ -105,8 +116,6 @@ subtrees:
         title: OpenMP support
   - file: how-to/setting-cus
     title: Setting the number of CUs  
-  - file: how-to/system-debugging.md
-    title: Debugging
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
 

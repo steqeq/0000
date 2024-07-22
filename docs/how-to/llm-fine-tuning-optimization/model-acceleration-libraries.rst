@@ -8,6 +8,8 @@ Model acceleration libraries
 
 This section discusses model acceleration techniques and libraries to improve memory efficiency and performance.
 
+.. _acceleration-flash-attention:
+
 Flash Attention 2
 =================
 
