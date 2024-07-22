@@ -471,7 +471,7 @@ different use cases and performance requirements:
 
 - **Triton Flash Attention** - For benchmarking, run vLLM scripts at
   least once as a warm-up step so Triton can perform auto-tuning before
-  collecting benchmarking numbers. This is the vLLM's setting.
+  collecting benchmarking numbers. This is the default setting.
 
 - **Composable Kernel (CK) Flash Attention** - To use CK Flash Attention, specify
   the environment variable as ``export VLLM_USE_TRITON_FLASH_ATTN=0``.
@@ -562,7 +562,7 @@ Optimize tensor parallelism and GEMM performance
 You can use tensor parallelism to improve performance in model inference
 tasks by distributing tensor computations across multiple GPUs.
 The `ROCm vLLM <https://github.com/ROCm/vllm>`__ fork supports two modes
-to run tensor parallellism: ``ray`` and ``torchrun`` which (the default in ROCm
+to run tensor parallelism: ``ray`` and ``torchrun`` which (the default in ROCm
 for performance reasons).
 
 * To use `torchrun <https://pytorch.org/docs/stable/elastic/run.html>`__,
@@ -925,7 +925,7 @@ Clock differences among XCDs
    target efficiencies (such as, 95% for DGEMM HPL cases with K=512) may not be
    achievable.
 
-WorkGroupMapping
+`WorkGroupMapping`
    To maximize L2 cache efficiency, use multiples of the XCD number. For MI300X,
    this means using multiples of 8 (such as, 24, 32, 40).
 

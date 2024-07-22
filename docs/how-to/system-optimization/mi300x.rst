@@ -380,8 +380,8 @@ systems, run the following command.
 
    cpupower idle-set -d 2
 
-/proc and /sys file system settings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`/proc` and `/sys` file system settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _mi300x-disable-numa:
 
@@ -546,7 +546,7 @@ of the 8 GPUs only 5 of them are recognized.
 
 .. image:: ../../data/how-to/tuning-guides/rocm-smi-showhw.png
    :align: center
-   :alt: rocm-smi --showhw output
+   :alt: ``rocm-smi --showhw`` output
 
 To see the system structure, the localization of the GPUs in the system, and the
 fabric connections between the system components, use the command
@@ -554,7 +554,7 @@ fabric connections between the system components, use the command
 
 .. image:: ../../data/how-to/tuning-guides/rocm-smi-showtopo.png
    :align: center
-   :alt: rocm-smi --showtopo output
+   :alt: ``rocm-smi --showtopo`` output
 
 The first block of the output shows the distance between the GPUs similar to
 what the ``numactl`` command outputs for the NUMA domains of a system. The
@@ -567,7 +567,7 @@ distance among GPUs to be used to make the application more performant.
 
 The second block has a matrix named *Hops between two GPUs*, where:
 
-* ``1`` means the two GPUs are directly connected with XGMI,
+* ``1`` means the two GPUs are directly connected with xGMI,
 
 * ``2`` means both GPUs are linked to the same CPU socket and GPU communications
   will go through the CPU, and
@@ -780,7 +780,7 @@ SIMD
   Single Instruction, Multiple Data
 
 SMT
-  Simultaneous Multithreading
+  Simultaneous Multi-threading
 
 SMI
   System Management Interface
