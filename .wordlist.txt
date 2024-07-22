@@ -13,6 +13,7 @@ AMDMIGraphX
 AMI
 AOCC
 AOMP
+APBDIS
 APIC
 APIs
 APU
@@ -25,11 +26,13 @@ ATI
 AddressSanitizer
 AlexNet
 Arb
+BARs
 BLAS
 BMC
 BitCode
 Blit
 Bluefield
+Bootloader
 CCD
 CDNA
 CIFAR
@@ -64,7 +67,10 @@ CommonMark
 Concretized
 Conda
 ConnectX
+DDR
+DF
 DGEMM
+DIMM
 DKMS
 DL
 DMA
@@ -202,6 +208,7 @@ MVFFR
 Makefile
 Makefiles
 Matplotlib
+Megatrends
 Megatron
 Mellanox
 Mellanox's
@@ -256,6 +263,7 @@ PCIe
 PEFT
 PIL
 PILImage
+POR
 PRNG
 PRs
 PaLM
@@ -338,8 +346,10 @@ TCP
 TCR
 TF
 TFLOPS
+TP
 TPU
 TPUs
+TSME
 Tagram
 TensileLite
 TensorBoard
@@ -451,6 +461,7 @@ cuLIB
 cuRAND
 cuSOLVER
 cuSPARSE
+cTDP
 dataset
 datasets
 dataspace
@@ -516,6 +527,7 @@ hipfort
 hipify
 hipsolver
 hipsparse
+hotspotting
 hpc
 hpp
 hsa
@@ -708,6 +720,7 @@ writebacks
 wrreq
 wzo
 xargs
+xGMI
 xz
 yaml
 ysvmadyb
