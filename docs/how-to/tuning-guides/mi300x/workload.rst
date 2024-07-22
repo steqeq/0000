@@ -824,56 +824,53 @@ Tune hipBLASLt's backend assembly generator
    This file contains the parameters and settings for the tuning process. Here’s
    a breakdown of the important sections:
 
-   * ``GlobalParameters``
+   ``GlobalParameters``
+      The set of parameters which provides context for the entire tuning exercise.
 
-     The set of parameters which provides context for the entire tuning exercise.
+      Using ``0`` for ``NumElementsToValidate`` is suggested for performance tuning to avoid validation overhead.
 
-     * Using ``0`` for ``NumElementsToValidate`` is suggested for performance tuning to avoid validation overhead.
+      .. code-block:: python
 
-     .. code-block:: python
+         globalParameters["NumElementsToValidate"] = 0
 
-        globalParameters["NumElementsToValidate"] = 0
+   ``BenchmarkProblems``
+      Defines the set of kernel specifications as well as the size definitions
+      for the tuning exercise.
 
-     * ``BenchmarkProblems``
+      * ``ProblemType`` (``OperationType``, ``DataType``, ``TransposeA``, ``TransposeB``)
+      * ``BenchmarkCommonParameters`` (the same parameters for all solutions)
+      * ``ForkParameters``
+      * ``BenchmarkFinalParameters`` (``ProblemSizes``)
 
-       Defines the set of kernel specifications as well as the size definitions
-       for the tuning exercise.
+   ``LibraryLogic``
+      Specifies the target environment and platform.
 
-       * ``ProblemType`` (``OperationType``, ``DataType``, ``TransposeA``, ``TransposeB``)
-       * ``BenchmarkCommonParameters`` (the same parameters for all solutions)
-       * ``ForkParameters``
-       * ``BenchmarkFinalParameters`` (``ProblemSizes``)
+      * ``ScheduleName``
 
-     * ``LibraryLogic``
+        * ``aldebaran`` is MI200
 
-       Specifies the target environment and platform.
+        * ``aquavanjaram`` is MI300
 
-       * ``ScheduleName``
-
-         * ``aldebaran`` is MI200
-         * ``aquavanjaram`` is MI300
-
-         .. code-block:: shell
+      .. code-block:: shell
              
-            $ ls
-            aldebaran  aquavanjaram  navi31  navi32
+         $ ls
+         aldebaran  aquavanjaram  navi31  navi32
 
-         .. code-block:: yaml
+      .. code-block:: yaml
 
-            LibraryLogic:
-              ScheduleName: "aldebaran"
-              DeviceNames: [Device 0050, Device 0052, Device 0054, Device 0062, Device 7400]
-              ArchitectureName: "gfx90a"
+         LibraryLogic:
+           ScheduleName: "aldebaran"
+           DeviceNames: [Device 0050, Device 0052, Device 0054, Device 0062, Device 7400]
+           ArchitectureName: "gfx90a"
 
-     * ``LibraryClient``
+   ``LibraryClient``
+      If defined, this will enable step 4 of the tuning process, which means the final
+      library will be created.
 
-       If defined, this will enable step 4 of the tuning process, which means the final
-       library will be created.
-
-       .. code-block:: shell
+      .. code-block:: shell
           
-          $ ls
-          aldebaran_Cijk_Ailk_Bjlk_S.yaml
+         $ ls
+         aldebaran_Cijk_Ailk_Bjlk_S.yaml
 
 .. figure:: ../../../data/how-to/tuning-guides/tensilelite-tuning-flow.png
    :align: center
