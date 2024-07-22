@@ -809,20 +809,71 @@ hipBLASLt backend assembly generator tuning
 
 :doc:`hipBLASLt <hipblaslt:index>` has a backend assembly generator in
 `hipBLASLt's GitHub repository <https://github.com/ROCm/hipBLASLt/tree/develop/tensilelite>`_,
-named TensileLite.
+named TensileLite. TensileLite is used to tune the backend assembly generator to
+achieve optimal performance. Here’s how to tune hipBLASLt using TensileLite:
 
-**How to tune hipBLASLt's backend assembly generator**
+Tune hipBLASLt's backend assembly generator
+'''''''''''''''''''''''''''''''''''''''''''
 
 .. code-block:: shell
 
    cd /hipBLASLt/tensilelite
-   ./Tensile/bin/Tensile config.yaml output_path
+   ./Tensile/bin/Tensile config.yaml output_path
 
-.. figure:: ../../../data/how-to/tuning-guides/tensilelite-config-yaml.png
-   :align: center
-   :alt: TensileLite YAML configuration file
+``config.yaml``
+   This file contains the parameters and settings for the tuning process. Here’s
+   a breakdown of the important sections:
 
-   TensileLite YAML configuration file ``config.yaml``
+   * ``GlobalParameters``
+
+     The set of parameters which provides context for the entire tuning exercise.
+
+     * Using ``0`` for ``NumElementsToValidate`` is suggested for performance tuning to avoid validation overhead.
+
+     .. code-block:: python
+
+        globalParameters["NumElementsToValidate"] = 0
+
+     * ``BenchmarkProblems``
+
+       Defines the set of kernel specifications as well as the size definitions
+       for the tuning exercise.
+
+       * ``ProblemType`` (``OperationType``, ``DataType``, ``TransposeA``, ``TransposeB``)
+       * ``BenchmarkCommonParameters`` (the same parameters for all solutions)
+       * ``ForkParameters``
+       * ``BenchmarkFinalParameters`` (``ProblemSizes``)
+
+     * ``LibraryLogic``
+
+       Specifies the target environment and platform.
+
+       * ``ScheduleName``
+
+         * ``aldebaran`` is MI200
+         * ``aquavanjaram`` is MI300
+
+         .. code-block:: shell
+             
+            $ ls
+            aldebaran  aquavanjaram  navi31  navi32
+
+         .. code-block:: yaml
+
+            LibraryLogic:
+              ScheduleName: "aldebaran"
+              DeviceNames: [Device 0050, Device 0052, Device 0054, Device 0062, Device 7400]
+              ArchitectureName: "gfx90a"
+
+     * ``LibraryClient``
+
+       If defined, this will enable step 4 of the tuning process, which means the final
+       library will be created.
+
+       .. code-block:: shell
+          
+          $ ls
+          aldebaran_Cijk_Ailk_Bjlk_S.yaml
 
 .. figure:: ../../../data/how-to/tuning-guides/tensilelite-tuning-flow.png
    :align: center
@@ -830,7 +881,8 @@ named TensileLite.
 
    TensileLite tuning flow
 
-**How to update the logic YAML files**
+Update logic YAML files
+'''''''''''''''''''''''
 
 The logic YAML files in hipBLASLt are located in
 ``library/src/amd_detail/rocblaslt/src/Tensile/Logic/asm_full/``.
@@ -846,7 +898,7 @@ command:
 The following table describes the logic YAML files.
 
 +----------------+------------------------------------------------------+
-| **Logic YAML** | **Description**                                      |
+| Logic YAML     | Description                                          |
 +================+======================================================+
 | ``Equality``   | Update the equality file when your tuned YAML is     |
 |                | an exact tuning.                                     |
@@ -863,8 +915,8 @@ Tensile optimization and performance tuning
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 MI16x16 versus MI32x32
-   MI16x16 outperforms ``MI32x32 on A1 silicon + DPM due to its superior power
-   efficiency. The MI16x16 format refers to the ``v_mfma`` instruction (such as,
+   MI16x16 outperforms MI32x32 due to its superior power efficiency. The MI16x16
+   format refers to the ``v_mfma`` instruction (such as
    ``v_mfma_f32_16x16x16f16``). See
    `<https://llvm.org/docs/AMDGPU/AMDGPUAsmGFX940.html#vop3p>`__.
 
@@ -876,16 +928,17 @@ Clock differences among XCDs
    target efficiencies (such as, 95% for DGEMM HPL cases with K=512) may not be
    achievable.
 
-``WorkGroupMapping``
+WorkGroupMapping
    To maximize L2 cache efficiency, use multiples of the XCD number. For MI300X,
-   this means using multiples of 8 (e.g., 24, 32, 40).
+   this means using multiples of 8 (such as, 24, 32, 40).
 
 GEMM stride issues
-   On MI300, if the matrix stride in GEMM is a multiple of 512 bytes, it can
-   lead to significant Tagram channel hot spot issues, especially for TN
+   On MI300, if the matrix stride in GEMM is a multiple of 512 bytes, it can lead to
+   Tagram channel hotspotting issues, causing a significant performance drop, especially for TN
    transpose cases. This can increase the latency of VMEM instructions and cause
    a notable performance drop. To avoid this, use stride padding to ensure the
-   stride is not a multiple of 512 bytes (e.g., for TN F16 GEMM, set ``lda = M + 128`` when ``M % 256 == 0``).
+   stride is not a multiple of 512 bytes (for instance, for TN F16 GEMM, set
+   ``lda = ldb = K + 128`` when ``K % 256 == 0``).
 
 .. _mi300x-ck:
 
@@ -941,10 +994,10 @@ problem, use the environment variable ``MIOPEN_FIND_MODE`` (1-5).
 Tuning in MIOpen
 ^^^^^^^^^^^^^^^^
 
-``MIOPEN_FIND_ENFORCE=DB_UPDATE`` (2)
+``MIOPEN_FIND_ENFORCE=DB_UPDATE``, ``2``
    Performs auto-tuning and update to the PerfDb.
 
-``MIOPEN_FIND_ENFORCE=SEARCH`` (3)
+``MIOPEN_FIND_ENFORCE=SEARCH``, ``3``
    Only perform auto-tuning if PerfDb does not contain optimized value for a
    given convolution problem
 
