@@ -18,6 +18,67 @@ The following topics highlight auto-tunable configurations that streamline
 optimization as well as advanced techniques like Triton kernel optimization for
 meticulous tuning.
 
+Workload tuning philosophy
+==========================
+
+Measure the current workload
+----------------------------
+
+Begin by evaluating the performance of your workload in its current state. This
+involves running benchmarks and collecting performance data to establish a
+baseline. Understanding how your workload behaves under different conditions
+provides critical insights into where improvements are needed.
+
+Identify tuning requirements
+----------------------------
+
+Analyze the collected performance data to identify areas where tuning is
+required. This could involve detecting bottlenecks in CPU, GPU, memory, or data
+transfer. Understanding these requirements will help direct your optimization
+efforts more effectively.
+
+Start with profiling
+--------------------
+
+Profiling is a fundamental step in workload tuning. It allows you to gather
+detailed information about how your workload utilizes system resources, and
+where potential inefficiencies lie. Profiling tools can provide insights into
+both high-level and granular performance metrics.
+
+High-level profiling tools
+--------------------------
+
+For a broad overview, use tools like the PyTorch Profiler, which helps in
+understanding how PyTorch operations are executed and where time is spent. This
+is particularly useful for developers new to workload tuning, as it provides a
+comprehensive view without requiring in-depth knowledge of lower-level
+operations.
+
+Kernel-level profiling tools
+----------------------------
+
+When profiling indicates that GPUs are a performance bottleneck, delve deeper
+into kernel-level profiling. Tools such as the ROCr Debug Agent, ROCProfiler,
+and Omniperf offer detailed insights into GPU kernel execution. These tools can
+help isolate problematic GPU operations and provide data needed for targeted
+optimizations.
+
+Analyze and tune
+----------------
+
+Based on the insights gained from profiling, focus your tuning efforts on the
+identified bottlenecks. This might involve optimizing specific kernel
+operations, adjusting memory access patterns, or modifying computational
+algorithms.
+
+Iterate and validate
+--------------------
+
+Optimization is an iterative process. After applying tuning changes, re-profile
+the workload to validate improvements and ensure that the changes have had the
+desired effect. Continuous iteration helps refine the performance gains and
+address any new bottlenecks that may emerge.
+
 .. _mi300x-torchinductor-tuning:
 
 PyTorch inductor Triton tuning knobs
