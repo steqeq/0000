@@ -304,7 +304,7 @@ The host memory prefaulting behavior applies to all memory copies with a size la
 Here are the environment variables used to control the host memory prefaulting behavior:
 
 | Environment variable | Description | Default value | Usage |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | LIBOMPTARGET_APU_PREFAULT_MEMCOPY | Controls prefaulting. Setting it to false disables prefaulting for all memory copy sizes >= 1MB. | True | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY=false ./app_exec` |
 | LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE | Controls the minimum size at or after which prefaulting is performed, which enables prefaulting at sizes lower than the default size of 1MB. | 1MB | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE=1024 ./app_exe` |
 
