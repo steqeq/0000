@@ -151,10 +151,14 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmTestDependencies }}
         dependencySource: tag-builds
+  # anything outside of the agent directory for ON_PREM_BUILD_POOL is persistent
+  # so we need to remove the symlink if it already exists
   - script: |
+      sudo rm -f /opt/rocm
+      sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
       mkdir rocDecode-tests
       cd rocDecode-tests
-      cmake $(Agent.BuildDirectory)/rocm/share/rocdecode/test
+      cmake /opt/rocm/share/rocdecode/test
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocDecode

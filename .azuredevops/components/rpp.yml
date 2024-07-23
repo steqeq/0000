@@ -9,8 +9,11 @@ parameters:
   type: object
   default:
     - cmake
+    - libniftiio-dev
     - libomp-dev # needed to pass flag step
     - libopencv-dev
+    - libsndfile-dev
+    - libjpeg-turbo8-dev
     - ninja-build
     - clang
 - name: rocmDependencies
@@ -136,7 +139,10 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmTestDependencies }}
         dependencySource: tag-builds
+  # anything outside of the agent directory for ON_PREM_BUILD_POOL is persistent
+  # so we need to remove the symlink if it already exists
   - script: |
+      sudo rm -f /opt/rocm
       sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
       mkdir rpp-tests
       cd rpp-tests

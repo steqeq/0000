@@ -150,7 +150,10 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmTestDependencies }}
         dependencySource: tag-builds
+  # anything outside of the agent directory for ON_PREM_BUILD_POOL is persistent
+  # so we need to remove the symlink if it already exists
   - script: |
+      sudo rm -f /opt/rocm
       sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
       mkdir mivisionx-tests
       cd mivisionx-tests
