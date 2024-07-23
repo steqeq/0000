@@ -9,11 +9,9 @@ parameters:
   type: object
   default:
     - cmake
-    - libniftiio-dev
     - libomp-dev # needed to pass flag step
     - libopencv-dev
     - libsndfile-dev
-    - libjpeg-turbo8-dev
     - ninja-build
     - clang
 - name: rocmDependencies
