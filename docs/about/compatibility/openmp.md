@@ -290,12 +290,12 @@ OpenMP provides a relaxed shared memory model. Map clauses provided in the sourc
 
 The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
 
-| MI300A | `requires unified_shared_memory` <br>NOT specified</br> | `requires unified_shared_memory` specified|
+| MI300A | `requires unified_shared_memory` <br>NOT specified</br> | `requires unified_shared_memory`  specified|
 | --- | --- | --- |
 | XNACK enabled | implicit zero-copy |  zero-copy |
 | XNACK disabled | copy |  runtime warning* |
 
-###### **Host memory prefaulting in zero-copy modes**
+###### Host memory prefaulting in zero-copy modes
 
 When MI300A runs in any zero-copy mode, implicit or with unified shared memory pragma being specified, host memory Translation Lookaside Buffer (TLB) prefaulting occurs by default.
 
