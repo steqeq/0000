@@ -290,7 +290,7 @@ OpenMP provides a relaxed shared memory model. Map clauses provided in the sourc
 
 The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
 
-| MI300A | `requires unified_shared_memory` <br>NOT specified</br> | `requires unified_shared_memory`  specified|
+| MI300A | `requires unified_shared_memory` <br>NOT specified</br> | `requires unified_shared_memory` <br>specified</br> |
 | --- | --- | --- |
 | XNACK enabled | implicit zero-copy |  zero-copy |
 | XNACK disabled | copy |  runtime warning* |
