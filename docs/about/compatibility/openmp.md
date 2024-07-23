@@ -290,12 +290,12 @@ OpenMP provides a relaxed shared memory model. Map clauses provided in the sourc
 
 The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
 
-| MI300A | `requires unified_shared_memory` NOT specified | `requires unified_shared_memory` specified|
+| MI300A | `requires unified_shared_memory` <br>NOT specified</br> | `requires unified_shared_memory` specified|
 | --- | --- | --- |
 | XNACK enabled | implicit zero-copy |  zero-copy |
 | XNACK disabled | copy |  runtime warning* |
 
-###### Host memory prefaulting in zero-copy modes
+###### **Host memory prefaulting in zero-copy modes**
 
 When MI300A runs in any zero-copy mode, implicit or with unified shared memory pragma being specified, host memory Translation Lookaside Buffer (TLB) prefaulting occurs by default.
 
@@ -303,7 +303,7 @@ The host memory prefaulting behavior applies to all memory copies with a size la
 
 Here are the environment variables used to control the host memory prefaulting behavior:
 
-| Environment variable | Description | Default value | Usage |
+| Environment variable   | Description   | Default value | Usage   |
 | --- | --- | --- | --- |
 | LIBOMPTARGET_APU_PREFAULT_MEMCOPY | Controls prefaulting. Setting it to false disables prefaulting for all memory copy sizes >= 1MB. | True | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY=false ./app_exec` |
 | LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE | Controls the minimum size at or after which prefaulting is performed, which enables prefaulting at sizes lower than the default size of 1MB. | 1MB | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE=1024 ./app_exe` |
@@ -319,14 +319,14 @@ When OMPX_APU_MAPS is not set, then applications not using unified shared memory
 
 The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
 
-| Discrete GPUs | `unified_shared_memory` NOT specified | `unified_shared_memory` specified |
+| Discrete GPUs | `unified_shared_memory` <br>NOT specified</br> | `unified_shared_memory` specified |
 | --- | --- | --- |
 | XNACK enabled and OMPX_APU_MAPS=1 | implicit zero-copy | zero-copy |
 | XNACK enabled | copy | zero-copy |
 | XNACK disabled | copy | runtime warning* |
 
 :::{note}
-(*) You can convert the runtime warning generated when running an application using unified shared memory pragma in XNACK disabled mode, into a runtime error by setting environment variable OMPX_STRICT_SANITY_CHECKS to true:
+(*) To convert the runtime warning generated when running an application using unified shared memory pragma in XNACK disabled mode into a runtime error, set environment variable OMPX_STRICT_SANITY_CHECKS to true:
 
 ```bash
 OMPX_STRICT_SANITY_CHECKS=true ./app_exec
