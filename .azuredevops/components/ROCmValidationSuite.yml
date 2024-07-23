@@ -19,6 +19,7 @@ parameters:
   type: object
   default:
     - clr
+    - hipRAND
     - llvm-project
     - rocBLAS
     - rocm-cmake
