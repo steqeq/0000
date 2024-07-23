@@ -183,20 +183,20 @@ Implicit asynchronous execution of single target region enables parallel memory 
 
 Unified Shared Memory (USM) provides a pointer-based approach to memory
 management. To implement USM, fulfill the following system requirements along
-with Xnack capability.
+with XNACK capability.
 
 #### Prerequisites
 
 * Linux Kernel versions above 5.14
 * Latest KFD driver packaged in ROCm stack
-* Xnack, as USM support can only be tested with applications compiled with Xnack
+* XNACK, as USM support can only be tested with applications compiled with XNACK
   capability
 
-#### Xnack capability
+#### XNACK capability
 
-When enabled, Xnack capability allows GPU threads to access CPU (system) memory,
-allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. Xnack must be
-enabled both at compile- and run-time. To enable Xnack support at compile-time,
+When enabled, XNACK capability allows GPU threads to access CPU (system) memory,
+allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. XNACK must be
+enabled both at compile- and run-time. To enable XNACK support at compile-time,
 use:
 
 ```bash
@@ -209,14 +209,14 @@ Or use another functionally equivalent option Xnack-any:
 --offload-arch=gfx908
 ```
 
-To enable Xnack functionality at runtime on a per-application basis,
+To enable XNACK functionality at runtime on a per-application basis,
 use environment variable:
 
 ```bash
 HSA_XNACK=1
 ```
 
-When Xnack support is not needed:
+When XNACK support is not needed:
 
 * Build the applications to maximize resource utilization using:
 
@@ -279,6 +279,59 @@ that the pages pointed by “a” are in fine-grain memory, while the pages poin
 to by “b” are in coarse-grain memory during and after the execution of the
 target region. This is accomplished in the OpenMP runtime library with calls to
 the ROCr runtime to set the pages pointed by “b” as coarse grain.
+
+#### Zero-copy behavior on MI300A and discrete GPUs
+
+The runtime behavior on MI300A and other discrete GPUs depends on the status of XNACK and the existence of the pragma `requires unified_shared_memory` as discussed in the following sections.
+
+##### Implicit zero-copy behavior on MI300A
+
+OpenMP provides a relaxed shared memory model. Map clauses provided in the source code indicate how data is used and copied to and from the GPU device for each target region. On GPUs that provide USM like the MI300A, these clauses are optional but facilitate portability to discrete memory GPUs. The [unified shared memory pragma](#unified-shared-memory-pragma) `requires unified_shared_memory` informs the compiler and runtime that the code is NOT portable to discrete memory GPUs, and must be compiled and executed on GPUs providing USM, such as MI300A. The MI300A is one of the several AMDGPUs with [XNACK capability](#xnack-capability).
+
+The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
+
+| MI300A | `requires unified_shared_memory` NOT specified | `requires unified_shared_memory` specified|
+| --- | --- | --- |
+| XNACK enabled | implicit zero-copy |  zero-copy |
+| XNACK disabled | copy |  runtime warning* |
+
+###### Host memory prefaulting in zero-copy modes
+
+When MI300A runs in any zero-copy mode, implicit or with unified shared memory pragma being specified, host memory Translation Lookaside Buffer (TLB) prefaulting occurs by default.
+
+The host memory prefaulting behavior applies to all memory copies with a size larger than or equal to 1MB, where the OpenMP runtime makes the copied host memory visible to the target device agent before calling the copy function. All memory copies that are performed synchronously will have the host memory prefaulted first.
+
+Here are the environment variables used to control the host memory prefaulting behavior:
+
+| Environment variable | Description | Default value | Usage |
+| --- | --- | --- |
+| LIBOMPTARGET_APU_PREFAULT_MEMCOPY | Controls prefaulting. Setting it to false disables prefaulting for all memory copy sizes >= 1MB. | True | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY=false ./app_exec` |
+| LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE | Controls the minimum size at or after which prefaulting is performed, which enables prefaulting at sizes lower than the default size of 1MB. | 1MB | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE=1024 ./app_exe` |
+
+##### Implicit zero-copy on discrete GPUs
+
+To turn on implicit zero-copy behavior on discrete memory GPUs such as MI200 and MI300X for applications not using unified shared memory pragma, run applications in XNACK enabled environment and set the environment variable OMPX_APU_MAPS to true:
+
+```bash
+HSA_XNACK=1 OMPX_APU_MAPS=1 ./app_exec
+```
+When OMPX_APU_MAPS is not set, then applications not using unified shared memory pragma will run in copy mode irrespective of the XNACK configuration.
+
+The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
+
+| Discrete GPUs | `unified_shared_memory` NOT specified | `unified_shared_memory` specified |
+| --- | --- | --- |
+| XNACK enabled and OMPX_APU_MAPS=1 | implicit zero-copy | zero-copy |
+| XNACK enabled | copy | zero-copy |
+| XNACK disabled | copy | runtime warning* |
+
+:::{note}
+(*) You can convert the runtime warning generated when running an application using unified shared memory pragma in XNACK disabled mode, into a runtime error by setting environment variable OMPX_STRICT_SANITY_CHECKS to true:
+
+```bash
+OMPX_STRICT_SANITY_CHECKS=true ./app_exec
+```
+:::
 
 ### OMPT target support
 
@@ -388,9 +441,9 @@ GPUs with applications written in both HIP and OpenMP.
 * Heap buffer overflow
 * Global buffer overflow
 
-**Software (kernel/OS) requirements:** Unified Shared Memory support with Xnack
+**Software (kernel/OS) requirements:** Unified Shared Memory support with XNACK
 capability. See the section on [Unified Shared Memory](#unified-shared-memory)
-for prerequisites and details on Xnack.
+for prerequisites and details on XNACK.
 
 **Example:**
 
