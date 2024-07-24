@@ -28,6 +28,19 @@ parameters:
     - ROCR-Runtime
     - rocRAND
     - rocSPARSE
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - llvm-project
+    - rocBLAS
+    - rocminfo
+    - rocPRIM
+    - rocprofiler-register
+    - ROCR-Runtime
+    - rocRAND
+    - rocSPARSE
 
 jobs:
 - job: rocALUTION
@@ -49,13 +62,13 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
@@ -73,3 +86,50 @@ jobs:
         -DBUILD_CLIENTS_SAMPLES=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocALUTION_testing
+  dependsOn: rocALUTION
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.ON_PREM_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      targetPath: $(System.ArtifactsDirectory)
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.xz'
+      RemoveDotFiles: true
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocALUTION
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: './rocalution-test'
+      testParameters: ''
