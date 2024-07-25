@@ -11,19 +11,19 @@
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
-(development-tools)=
+(system-tools)=
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-development.jpg
-:img-alt: Development tools
+:img-top: ../data/reference/banner-system.jpg
+:img-alt: System tools
 :padding: 2
 
-* [ROCm Compilers](https://rocm.docs.amd.com/projects/llvm-project/en/latest/reference/rocmcc.html)
-* {doc}`HIPIFY <hipify:index>`
-* {doc}`ROCm Debugger (ROCgdb) <rocgdb:index>`
-* {doc}`ROCdbgapi <rocdbgapi:index>`
-* {doc}`ROCr Debug Agent <rocr_debug_agent:index>`
+* {doc}`AMD SMI <amdsmi:index>`
+* {doc}`rocminfo <rocminfo:index>`
+* {doc}`ROCm Data Center Tool <rdc:index>`
+* {doc}`ROCm SMI <rocm_smi_lib:index>`
+* {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 :::
 
 (performance-tools)=
@@ -40,19 +40,19 @@
 * {doc}`ROCTracer <roctracer:index>`
 :::
 
-(system-tools)=
+(development-tools)=
 
 :::{grid-item-card}
 :class-card: sd-text-black
-:img-top: ../data/reference/banner-system.jpg
-:img-alt: System tools
+:img-top: ../data/reference/banner-development.jpg
+:img-alt: Development tools
 :padding: 2
 
-* {doc}`AMD SMI <amdsmi:index>`
-* {doc}`rocminfo <rocminfo:index>`
-* {doc}`ROCm Data Center Tool <rdc:index>`
-* {doc}`ROCm SMI <rocm_smi_lib:index>`
-* {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
+* [ROCm Compilers](https://rocm.docs.amd.com/projects/llvm-project/en/latest/reference/rocmcc.html)
+* {doc}`HIPIFY <hipify:index>`
+* {doc}`ROCm Debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCdbgapi <rocdbgapi:index>`
+* {doc}`ROCr Debug Agent <rocr_debug_agent:index>`
 :::
 
 ::::

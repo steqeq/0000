@@ -18,6 +18,7 @@ Installation instructions are available from:
 * {doc}`ROCm installation for Linux<rocm-install-on-linux:index>`
 * {doc}`HIP SDK installation for Windows<rocm-install-on-windows:index>`
 * [Deep learning frameworks installation](./how-to/deep-learning-rocm.rst)
+* [Build ROCm from source](./how-to/build-rocm.rst)
 
 ROCm documentation is organized into the following categories:
 

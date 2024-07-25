@@ -24,6 +24,8 @@ subtrees:
     title: HIP SDK on Windows
   - file: how-to/deep-learning-rocm.md
     title: Deep learning frameworks
+  - file: how-to/build-rocm.rst
+    title: Build ROCm from source
 
 - caption: How to
   entries:
