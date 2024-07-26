@@ -4,6 +4,7 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os
 import shutil
 
 # Keep capitalization due to similar linking on GitHub's markdown preview.
@@ -18,6 +19,11 @@ latex_elements = {
 \renewcommand\ttdefault{txtt}
 """
 }
+
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "rocm.docs.amd.com")
+html_context = {}
+if os.environ.get("READTHEDOCS", "") == "True":
+    html_context["READTHEDOCS"] = True
 
 # configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
