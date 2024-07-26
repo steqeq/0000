@@ -177,15 +177,13 @@ steps:
 # OS ignores if the ROCm lib folder shows up more than once
       ${{ if eq(parameters.extractToMnt, true) }}:
         script: |
-          echo /mnt/rocm/lib | sudo tee -a /etc/ld.so.conf
-          echo /mnt/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf
-          sudo cat /etc/ld.so.conf
+          echo /mnt/rocm/lib | sudo tee /etc/ld.so.conf.d/rocm-ci.conf
+          echo /mnt/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
           sudo ldconfig -v
           ldconfig -p
       ${{ else }}:
         script: |
-          echo $(Agent.BuildDirectory)/rocm/lib | sudo tee -a /etc/ld.so.conf
-          echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf
-          sudo cat /etc/ld.so.conf
+          echo $(Agent.BuildDirectory)/rocm/lib | sudo tee /etc/ld.so.conf.d/rocm-ci.conf
+          echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
           sudo ldconfig -v
           ldconfig -p
