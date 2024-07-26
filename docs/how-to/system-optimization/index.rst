@@ -1,27 +1,22 @@
 .. meta::
    :description: AMD hardware optimization for specific workloads
    :keywords: high-performance computing, HPC, Instinct accelerators, Radeon,
-              AMD, ROCm, system, EPYC, CPU, GPU, BIOS, OS
+              tuning, tuning guide, AMD, ROCm
 
 *******************
 System optimization
 *******************
 
-System administrators can optimize the performance of their AMD hardware
-generally and based on specific workloads and use cases. This section outlines
-recommended system optimization options for AMD accelerators and GPUs, enabling
-administrators to maximize efficiency and performance.
+This guide outlines system setup and tuning suggestions for AMD hardware to
+optimize performance for specific types of workloads or use-cases.
 
 High-performance computing workloads
 ====================================
 
-High-performance computing (HPC) workloads have unique requirements that may not
-be fully met by the default hardware and BIOS configurations of OEM platforms.
-To achieve optimal performance for HPC workloads, it is crucial to adjust
-settings at both the platform and workload levels. 
-
-The :ref:`AMD Instinct™ accelerator optimization guides <mi-optimization-guides>`
-in this section describe:
+High-performance computing (HPC) workloads have unique requirements. The default
+hardware and BIOS configurations for OEM platforms may not provide optimal
+performance for HPC workloads. To enable optimal HPC settings on a per-platform
+and per-workload level, this chapter describes:
 
 * BIOS settings that can impact performance
 * Hardware configuration best practices
@@ -29,14 +24,13 @@ in this section describe:
 * Workload-specific recommendations for optimal BIOS and operating system
   settings
 
-The guides might also discuss the AMD Instinct software development
+There is also a discussion on the AMD Instinct™ software development
 environment, including information on how to install and run the DGEMM, STREAM,
-HPCG, and HPL benchmarks. The guides provide a good starting point but is
+HPCG, and HPL benchmarks. This guide provides a good starting point but is
 not tested exhaustively across all compilers.
 
-Knowledge prerequisites to better understand the following
-:ref:`Instinct system optimization guides <mi-optimization-guides>` and to
-perform tuning for HPC applications include:
+Knowledge prerequisites to better understand this document and to perform tuning
+for HPC applications include:
 
 * Experience in configuring servers
 * Administrative access to the server's Management Interface (BMC)
@@ -45,29 +39,39 @@ perform tuning for HPC applications include:
 * Familiarity with the OS specific tools for configuration, monitoring, and
   troubleshooting (strongly recommended)
 
-While the following guides are a good starting point, developers are encouraged
-to perform their own performance testing for additional tuning per device and
-per workload.
+This document provides guidance on tuning systems with various AMD Instinct
+accelerators for HPC workloads. The following sections don't comprise an
+all-inclusive guide, and some items referred to may have similar, but different,
+names in various OEM systems (for example, OEM-specific BIOS settings). This
+following sections also provide suggestions on items that should be the initial
+focus of additional, application-specific tuning.
 
-.. _mi-optimization-guides:
+While this guide is a good starting point, developers are encouraged to perform
+their own performance testing for additional tuning.
 
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
 
-   * - Optimization guide
+   * - System optimization guide
 
      - Architecture reference
 
      - White papers
 
-   * - :doc:`AMD Instinct MI200 <tuning-guides/mi200>`
+   * - :doc:`AMD Instinct MI300X <mi300x>`
+
+     - `AMD Instinct MI300 instruction set architecture <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf>`_
+
+     - `CDNA 3 architecture <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf>`_
+
+   * - :doc:`AMD Instinct MI200 <mi200>`
 
      - `AMD Instinct MI200 instruction set architecture <https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf>`_
 
      - `CDNA 2 architecture <https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf>`_
 
-   * - :doc:`AMD Instinct MI100 <tuning-guides/mi100>`
+   * - :doc:`AMD Instinct MI100 <mi100>`
 
      - `AMD Instinct MI100 instruction set architecture <https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf>`_
 
@@ -87,19 +91,17 @@ tasks.
 The main purpose of this document is to help users utilize the RDNA™ 2 GPUs to
 their full potential.
 
-.. _rdna-optimization-guides:
-
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
 
-   * - Optimization guide
+   * - System optimization guide
 
      - Architecture reference
 
      - White papers
 
-   * - :doc:`AMD Radeon PRO W6000 and V620 <tuning-guides/w6000-v620>`
+   * - :doc:`AMD Radeon PRO W6000 and V620 <w6000-v620>`
 
      - `AMD RDNA 2 instruction set architecture <https://www.amd.com/system/files/TechDocs/rdna2-shader-instruction-set-architecture.pdf>`_
 

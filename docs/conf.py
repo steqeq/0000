@@ -7,21 +7,6 @@
 import os
 import shutil
 
-import jinja2
-
-# Environment to process Jinja templates.
-jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
-
-# Jinja templates to render out.
-templates = []
-
-# Render templates and output files without the last extension.
-# For example: 'install.md.jinja' becomes 'install.md'.
-for template in templates:
-    rendered = jinja_env.get_template(template).render()
-    with open(os.path.splitext(template)[0], "w") as file:
-        file.write(rendered)
-
 shutil.copy2("../RELEASE.md", "./about/release-notes.md")
 
 latex_engine = "xelatex"
@@ -45,44 +30,61 @@ all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
+    {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-06-04"},
+    {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-06-04"},
+    {"file": "how-to/deep-learning-rocm", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/index", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/install", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/train-a-model", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/deploy-your-model", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/hugging-face-models", "os": ["linux"]},
+    {"file": "how-to/rocm-for-hpc/index", "os": ["linux"]},
+    {"file": "how-to/llm-fine-tuning-optimization/index", "os": ["linux"]},
+    {"file": "how-to/llm-fine-tuning-optimization/overview", "os": ["linux"]},
     {
-        "file":"about/release-notes",
-        "os":["linux", "windows"],
-        "date":"2024-06-04"
+        "file": "how-to/llm-fine-tuning-optimization/fine-tuning-and-inference",
+        "os": ["linux"],
     },
     {
-        "file":"about/changelog",
-        "os":["linux", "windows"],
-        "date":"2024-06-04"
+        "file": "how-to/llm-fine-tuning-optimization/single-gpu-fine-tuning-and-inference",
+        "os": ["linux"],
     },
-
-    {"file":"how-to/deep-learning-rocm", "os":["linux"]},
-    {"file":"how-to/gpu-enabled-mpi", "os":["linux"]},
-    {"file":"how-to/system-debugging", "os":["linux"]},
-    {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
-
-    {"file":"how-to/rocm-for-ai/index", "os":["linux"]},
-    {"file":"how-to/rocm-for-ai/install", "os":["linux"]},
-    {"file":"how-to/rocm-for-ai/train-a-model", "os":["linux"]},
-    {"file":"how-to/rocm-for-ai/deploy-your-model", "os":["linux"]},
-    {"file":"how-to/rocm-for-ai/hugging-face-models", "os":["linux"]},
-
-    {"file":"how-to/rocm-for-hpc/index", "os":["linux"]},
-
-    {"file":"how-to/llm-fine-tuning-optimization/index", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/overview", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/fine-tuning-and-inference", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/single-gpu-fine-tuning-and-inference", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/multi-gpu-fine-tuning-and-inference", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/llm-inference-frameworks", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/model-acceleration-libraries", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/model-quantization", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/optimizing-with-composable-kernel", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/optimizing-triton-kernel", "os":["linux"]},
-    {"file":"how-to/llm-fine-tuning-optimization/profiling-and-debugging", "os":["linux"]},
+    {
+        "file": "how-to/llm-fine-tuning-optimization/multi-gpu-fine-tuning-and-inference",
+        "os": ["linux"],
+    },
+    {
+        "file": "how-to/llm-fine-tuning-optimization/llm-inference-frameworks",
+        "os": ["linux"],
+    },
+    {
+        "file": "how-to/llm-fine-tuning-optimization/model-acceleration-libraries",
+        "os": ["linux"],
+    },
+    {"file": "how-to/llm-fine-tuning-optimization/model-quantization", "os": ["linux"]},
+    {
+        "file": "how-to/llm-fine-tuning-optimization/optimizing-with-composable-kernel",
+        "os": ["linux"],
+    },
+    {
+        "file": "how-to/llm-fine-tuning-optimization/optimizing-triton-kernel",
+        "os": ["linux"],
+    },
+    {
+        "file": "how-to/llm-fine-tuning-optimization/profiling-and-debugging",
+        "os": ["linux"],
+    },
+    {"file": "how-to/system-optimization/index", "os": ["linux"]},
+    {"file": "how-to/system-optimization/mi300x", "os": ["linux"]},
+    {"file": "how-to/system-optimization/mi200", "os": ["linux"]},
+    {"file": "how-to/system-optimization/mi100", "os": ["linux"]},
+    {"file": "how-to/system-optimization/w6000-v620", "os": ["linux"]},
+    {"file": "how-to/tuning-guides/mi300x/index", "os": ["linux"]},
+    {"file": "how-to/tuning-guides/mi300x/system", "os": ["linux"]},
+    {"file": "how-to/tuning-guides/mi300x/workload", "os": ["linux"]},
+    {"file": "how-to/system-debugging", "os": ["linux"]},
+    {"file": "how-to/gpu-enabled-mpi", "os": ["linux"]},
 ]
-
-exclude_patterns = ["temp"]
 
 external_toc_path = "./sphinx/_toc.yml"
 
@@ -106,3 +108,5 @@ html_title = "ROCm Documentation"
 html_theme_options = {"link_main_doc": False}
 
 redirects = {"reference/openmp/openmp": "../../about/compatibility/openmp.html"}
+
+numfig = False

@@ -19,6 +19,7 @@ parameters:
   type: object
   default:
     - clr
+    - hipRAND
     - llvm-project
     - rocBLAS
     - rocm-cmake
@@ -26,6 +27,7 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
+    - rocRAND
     - ROCT-Thunk-Interface
 
 jobs:

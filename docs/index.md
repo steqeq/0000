@@ -42,6 +42,27 @@ ROCm documentation is organized into the following categories:
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
+<!-- markdownlint-disable MD051 -->
+:::{grid-item-card}
+:img-top: ./data/banner-reference.jpg
+:img-alt: Reference documentation
+:padding: 2
+
+* [API libraries](./reference/api-libraries.md)
+  * [Artificial intelligence](#artificial-intelligence-apis)
+  * [C++ primitives](#cpp-primitives)
+  * [Communication](#communication-libraries)
+  * [Math](#math-apis)
+  * [Random number generators](#random-number-apis)
+  * [HIP runtime](#hip-runtime)
+* [Tools](./reference/rocm-tools.md)
+  * [Development](#development-tools)
+  * [Performance analysis](#performance-tools)
+  * [System](#system-tools)
+* [Hardware specifications](./reference/gpu-arch-specs.rst)
+:::
+<!-- markdownlint-enable MD051 -->
+
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ./data/banner-howto.jpg
@@ -51,11 +72,15 @@ ROCm documentation is organized into the following categories:
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
-* [System optimization](./how-to/tuning-guides.rst)
-  * [AMD Instinct MI200](./how-to/tuning-guides/mi200.md)
-  * [AMD Instinct MI100](./how-to/tuning-guides/mi100.md)
-  * [AMD Instinct RDNA2](./how-to/tuning-guides/w6000-v620.md)
-* [System level debugging](./how-to/system-debugging.md)
+* [System optimization](./how-to/system-optimization/index.rst)
+  * [AMD Instinct MI300X](./how-to/system-optimization/mi300x.rst)
+  * [AMD Instinct MI200](./how-to/system-optimization/mi200.md)
+  * [AMD Instinct MI100](./how-to/system-optimization/mi100.md)
+  * [AMD Instinct RDNA2](./how-to/system-optimization/w6000-v620.md)
+* [AMD Instinct MI300X tuning guides](./how-to/tuning-guides/mi300x/index.rst)
+  * [System tuning](./how-to/tuning-guides/mi300x/system.rst)
+  * [Workload tuning](./how-to/tuning-guides/mi300x/workload.rst)
+* [System debugging](./how-to/system-debugging.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
 * [Using advanced compiler features](./conceptual/compiler-topics.md)
 * [Setting the number of CUs](./how-to/setting-cus)  
