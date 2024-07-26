@@ -288,7 +288,7 @@ The runtime behavior on MI300A and other discrete GPUs depends on the status of 
 
 OpenMP provides a relaxed shared memory model. Map clauses provided in the source code indicate how data is used and copied to and from the GPU device for each target region. On GPUs that provide USM like the MI300A, these clauses are optional but facilitate portability to discrete memory GPUs. The [unified shared memory pragma](#unified-shared-memory-pragma) `requires unified_shared_memory` informs the compiler and runtime that the code is NOT portable to discrete memory GPUs, and must be compiled and executed on GPUs providing USM, such as MI300A. The MI300A is one of the several AMDGPUs with [XNACK capability](#xnack-capability).
 
-The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
+The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification:
 
 | MI300A | `requires unified_shared_memory` <br>NOT specified</br> | `requires unified_shared_memory` <br>specified</br> |
 | --- | --- | --- |
@@ -305,8 +305,8 @@ Here are the environment variables used to control the host memory prefaulting b
 
 | Environment variable   | Description   | Default value | Usage   |
 | --- | --- | --- | --- |
-| LIBOMPTARGET_APU_PREFAULT_MEMCOPY | Controls prefaulting. Setting it to false disables prefaulting for all memory copy sizes >= 1MB. | True | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY=false ./app_exec` |
-| LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE | Controls the minimum size at or after which prefaulting is performed, which enables prefaulting at sizes lower than the default size of 1MB. | 1MB | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE=1024 ./app_exe` |
+| `LIBOMPTARGET_APU_PREFAULT_MEMCOPY` | Controls prefaulting. Setting it to false disables prefaulting for all memory copy sizes >= 1MB. | True | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY=false ./app_exec` |
+| `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE` | Controls the minimum size at or after which prefaulting is performed, which enables prefaulting at sizes lower than the default size of 1MB. | 1MB | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE=1024 ./app_exe` |
 
 ##### Implicit zero-copy on discrete GPUs
 
@@ -315,9 +315,10 @@ To turn on implicit zero-copy behavior on discrete memory GPUs such as MI200 and
 ```bash
 HSA_XNACK=1 OMPX_APU_MAPS=1 ./app_exec
 ```
+
 When OMPX_APU_MAPS is not set, then applications not using unified shared memory pragma will run in copy mode irrespective of the XNACK configuration.
 
-The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification: 
+The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification:
 
 | Discrete GPUs | `unified_shared_memory` <br>NOT specified</br> | `unified_shared_memory` specified |
 | --- | --- | --- |
@@ -331,6 +332,7 @@ The following table lists the runtime behavior based on the unified shared memor
 ```bash
 OMPX_STRICT_SANITY_CHECKS=true ./app_exec
 ```
+
 :::
 
 ### OMPT target support
