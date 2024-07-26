@@ -80,7 +80,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.ON_PREM_BUILD_POOL }}
+  pool: ${{ variables.TEST_POOL }}
   workspace:
     clean: all
   steps:
@@ -137,7 +137,7 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmTestDependencies }}
         dependencySource: tag-builds
-  # anything outside of the agent directory for ON_PREM_BUILD_POOL is persistent
+  # anything in /opt may be persistent across runs
   # so we need to remove the symlink if it already exists
   - script: |
       sudo rm -f /opt/rocm

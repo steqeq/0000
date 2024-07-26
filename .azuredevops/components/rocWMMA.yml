@@ -87,7 +87,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.ON_PREM_BUILD_POOL }}
+  pool: ${{ variables.TEST_POOL }}
   workspace:
     clean: all
   steps:
