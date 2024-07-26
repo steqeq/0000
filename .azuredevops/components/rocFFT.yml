@@ -11,6 +11,7 @@ parameters:
     - cmake
     - ninja-build
     - libboost-program-options-dev
+    - libdrm-dev
     - libgtest-dev
     - libfftw3-dev
     - python3-pip
