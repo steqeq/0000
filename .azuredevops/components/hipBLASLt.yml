@@ -31,7 +31,7 @@ parameters:
 
 jobs:
 - job: hipBLASLt
-  timeoutInMinutes: 100
+  timeoutInMinutes: 360
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -47,7 +47,7 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -95,12 +95,8 @@ jobs:
     inputs:
       targetType: inline
       script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
-  - script: sudo chmod 777 /mnt
-    displayName: 'Set permissions for /mnt'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      cmakeBuildDir: /mnt/build
-      cmakeSourceDir: $(Pipeline.Workspace)/s
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
