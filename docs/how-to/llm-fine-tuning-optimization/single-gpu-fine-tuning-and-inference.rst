@@ -103,7 +103,7 @@ Setting up the base implementation environment
       pip install peft
       
       # Install the other dependencies.
-      pip install transformers, datasets, huggingface-hub, scipy
+      pip install transformers datasets huggingface-hub scipy
 
 #. Check that the required packages can be imported.
 
