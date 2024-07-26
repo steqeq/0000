@@ -66,3 +66,4 @@ jobs:
       componentName: amdsmi
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/share/amd_smi/tests/amdsmitst'
+      testParameters: '--verbosity=3'
