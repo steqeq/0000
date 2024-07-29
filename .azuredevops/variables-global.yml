@@ -31,7 +31,6 @@ variables:
   value: 6.1
 - name: KEYRING_VERSION
   value: 6.1
-
 - name: AMDMIGRAPHX_GFX942_TEST_PIPELINE_ID
   value: 197
 - name: AMDMIGRAPHX_PIPELINE_ID
