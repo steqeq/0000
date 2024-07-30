@@ -42,27 +42,6 @@ ROCm documentation is organized into the following categories:
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
-<!-- markdownlint-disable MD051 -->
-:::{grid-item-card}
-:img-top: ./data/banner-reference.jpg
-:img-alt: Reference documentation
-:padding: 2
-
-* [API libraries](./reference/api-libraries.md)
-  * [Artificial intelligence](#artificial-intelligence-apis)
-  * [C++ primitives](#cpp-primitives)
-  * [Communication](#communication-libraries)
-  * [Math](#math-apis)
-  * [Random number generators](#random-number-apis)
-  * [HIP runtime](#hip-runtime)
-* [Tools](./reference/rocm-tools.md)
-  * [Development](#development-tools)
-  * [Performance analysis](#performance-tools)
-  * [System](#system-tools)
-* [Hardware specifications](./reference/gpu-arch-specs.rst)
-:::
-<!-- markdownlint-enable MD051 -->
-
 :::{grid-item-card}
 :class-card: sd-text-black
 :img-top: ./data/banner-howto.jpg
