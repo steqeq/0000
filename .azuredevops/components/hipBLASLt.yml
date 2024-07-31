@@ -31,7 +31,7 @@ parameters:
 
 jobs:
 - job: hipBLASLt
-  timeoutInMinutes: 360
+  timeoutInMinutes: 300
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
