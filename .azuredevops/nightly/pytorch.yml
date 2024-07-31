@@ -145,7 +145,7 @@ jobs:
     value: -GNinja
   - name: DESIRED_DEVTOOLSET
     value: cxx11-abi
-  pool: rocm-ci_larger_base_disk_pool
+  pool: ${{ variables.ULTRA_BUILD_POOL }}
   workspace:
     clean: all
   steps:
