@@ -21,6 +21,7 @@ parameters:
     - libprotobuf-dev
     - protobuf-compiler
     - python3-pybind11
+    - libdrm-dev
 - name: pipModules
   type: object
   default:
@@ -45,13 +46,18 @@ parameters:
     - aomp-extras
     - rocBLAS
     - composable_kernel
+# below are test dependencies
+    - hipBLASLt
+    - roctracer
+    - rocprofiler-register
+    - ROCR-Runtime
 
 jobs:
 - job: AMDMIGraphX
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.ON_PREM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -63,6 +69,29 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+# Manually download aqlprofile, hard-coded 6.1.0 version
+  - task: Bash@3
+    displayName: 'Download aqlprofile'
+    inputs:
+      targetType: inline
+      script: wget -nv https://repo.radeon.com/rocm/apt/6.1/pool/main/h/hsa-amd-aqlprofile/hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Extract aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir hsa-amd-aqlprofile
+        dpkg-deb -R hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb hsa-amd-aqlprofile
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Move aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir -p $(Agent.BuildDirectory)/rocm
+        cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
+      workingDirectory: '$(Pipeline.Workspace)'
 # half version should be fixed to 5.6.0
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
@@ -70,13 +99,13 @@ jobs:
       fixedComponentName: half
       fixedPipelineIdentifier: $(half560-pipeline-id)
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
@@ -94,4 +123,7 @@ jobs:
         -DBUILD_TESTING=ON
         -GNinja
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: AMDMIGraphX
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
