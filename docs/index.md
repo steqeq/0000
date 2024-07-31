@@ -53,6 +53,7 @@ ROCm documentation is organized into the following categories:
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
 * [System optimization](./how-to/system-optimization/index.rst)
   * [AMD Instinct MI300X](./how-to/system-optimization/mi300x.rst)
+  * [AMD Instinct MI300A](./how-to/system-optimization/mi300a.rst)
   * [AMD Instinct MI200](./how-to/system-optimization/mi200.md)
   * [AMD Instinct MI100](./how-to/system-optimization/mi100.md)
   * [AMD Instinct RDNA2](./how-to/system-optimization/w6000-v620.md)

@@ -65,6 +65,12 @@ their own performance testing for additional tuning.
 
      - `CDNA 3 architecture <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf>`_
 
+   * - :doc:`AMD Instinct MI300A <mi300a>`
+
+     - `AMD Instinct MI300 instruction set architecture <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-mi300-cdna3-instruction-set-architecture.pdf>`_
+
+     - `CDNA 3 architecture <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-3-white-paper.pdf>`_
+
    * - :doc:`AMD Instinct MI200 <mi200>`
 
      - `AMD Instinct MI200 instruction set architecture <https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf>`_

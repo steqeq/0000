@@ -67,6 +67,8 @@ subtrees:
     - entries:
       - file: how-to/system-optimization/mi300x.rst
         title: AMD Instinct MI300X
+      - file: how-to/system-optimization/mi300a.rst
+        title: AMD Instinct MI300A
       - file: how-to/system-optimization/mi200.md
         title: AMD Instinct MI200
       - file: how-to/system-optimization/mi100.md
