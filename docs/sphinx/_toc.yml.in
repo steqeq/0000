@@ -99,7 +99,7 @@ subtrees:
   - file: how-to/setting-cus
     title: Setting the number of CUs  
   - url: https://github.com/amd/rocm-examples
-    title: GitHub examples
+    title: ROCm examples
 
 - caption: Compatibility
   entries:
@@ -166,7 +166,7 @@ subtrees:
     - file: reference/api-libraries.md
       title: ROCm libraries
     - file: reference/rocm-tools.md
-      title: Tools and compilers
+      title: ROCm tools, compilers, and runtimes
     - file: reference/gpu-arch-specs.rst
       title: Hardware specifications
 
