@@ -31,7 +31,7 @@ parameters:
 
 jobs:
 - job: hipBLASLt
-  timeoutInMinutes: 100
+  timeoutInMinutes: 300
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -95,12 +95,8 @@ jobs:
     inputs:
       targetType: inline
       script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
-  - script: sudo chmod 777 /mnt
-    displayName: 'Set permissions for /mnt'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      cmakeBuildDir: /mnt/build
-      cmakeSourceDir: $(Pipeline.Workspace)/s
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
