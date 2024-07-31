@@ -60,7 +60,6 @@ To make edits to our documentation via PR, follow these steps:
    Spell checking is performed for pull requests by {doc}`ROCm Docs Core<rocm-docs-core:index>`. To ensure your PR passes spell checking you might need at add new words or acronyms to the `.wordlist.txt` file as described in {doc}`Spell Check<rocm-docs-core:user_guide/spellcheck>`. 
    ```
 
-
 7. Optionally run a local test build of the documentation to ensure the content builds and looks as expected. In your terminal, run the following commands from within the `./docs` folder of your cloned repository:
 
      ```bash
