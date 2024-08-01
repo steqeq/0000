@@ -24,6 +24,7 @@ parameters:
   type: object
   default:
     - joblib
+    - pyyaml
 - name: rocmDependencies
   type: object
   default:
@@ -37,6 +38,16 @@ parameters:
     - rocm-core
     - aomp
     - aomp-extras
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - llvm-project
+    - rocminfo
+    - rocprofiler-register
+    - rocm_smi_lib
+    - ROCR-Runtime
 
 jobs:
 - job: rocBLAS
@@ -120,3 +131,74 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocBLAS_testing
+  dependsOn: rocBLAS
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.TEST_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      targetPath: $(System.ArtifactsDirectory)
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.xz'
+      RemoveDotFiles: true
+  # Manually download aqlprofile, hard-coded 6.1.0 version
+  - task: Bash@3
+    displayName: 'Download aqlprofile'
+    inputs:
+      targetType: inline
+      script: wget -nv https://repo.radeon.com/rocm/apt/6.1/pool/main/h/hsa-amd-aqlprofile/hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Extract aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir hsa-amd-aqlprofile
+        dpkg-deb -R hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb hsa-amd-aqlprofile
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Move aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir -p $(Agent.BuildDirectory)/rocm
+        cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
+      workingDirectory: '$(Pipeline.Workspace)'
+  # CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: staging
+  # manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, '') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocBLAS
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: './rocblas-test'
+      testParameters: '--yaml rocblas_smoke.yaml --gtest_output=xml --gtest_color=yes'

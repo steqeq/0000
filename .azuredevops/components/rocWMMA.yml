@@ -28,6 +28,17 @@ parameters:
     - rocBLAS
     - aomp
     - rocm_smi_lib
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - llvm-project
+    - rocBLAS
+    - rocm-cmake
+    - rocm_smi_lib
+    - rocminfo
+    - ROCR-Runtime
 
 jobs:
 - job: rocWMMA
@@ -46,13 +57,13 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
   # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
@@ -69,3 +80,48 @@ jobs:
         -GNinja
 # gfx1030 not supported in documentation
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocWMMA_testing
+  dependsOn: rocWMMA
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.TEST_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      targetPath: $(System.ArtifactsDirectory)
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.xz'
+      RemoveDotFiles: true
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocWMMA
+      testDir: '$(Agent.BuildDirectory)/rocm/bin/rocwmma'

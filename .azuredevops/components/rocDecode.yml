@@ -29,6 +29,13 @@ parameters:
     - clr
     - rocminfo
     - rocm-core
+- name: rocmTestDependencies
+  type: object
+  default:
+    - clr
+    - llvm-project
+    - rocprofiler-register
+    - ROCR-Runtime
 
 jobs:
 - job: rocDecode
@@ -60,13 +67,13 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
   # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
@@ -80,3 +87,80 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocDecode_testing
+  dependsOn: rocDecode
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.TEST_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      targetPath: $(System.ArtifactsDirectory)
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.xz'
+      RemoveDotFiles: true
+  # Manually download aqlprofile, hard-coded 6.1.0 version
+  - task: Bash@3
+    displayName: 'Download aqlprofile'
+    inputs:
+      targetType: inline
+      script: wget -nv https://repo.radeon.com/rocm/apt/6.1/pool/main/h/hsa-amd-aqlprofile/hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Extract aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir hsa-amd-aqlprofile
+        dpkg-deb -R hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb hsa-amd-aqlprofile
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Move aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir -p $(Agent.BuildDirectory)/rocm
+        cp -R hsa-amd-aqlprofile/opt/rocm-6.1.0/* $(Agent.BuildDirectory)/rocm
+      workingDirectory: '$(Pipeline.Workspace)'
+  # CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: staging
+  # manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: tag-builds
+  # anything in /opt may be persistent across runs
+  # so we need to remove the symlink if it already exists
+  - script: |
+      sudo rm -f /opt/rocm
+      sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+      mkdir rocDecode-tests
+      cd rocDecode-tests
+      cmake /opt/rocm/share/rocdecode/test
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocDecode
+      testDir: 'rocDecode-tests'
+      testParameters: '-VV --output-on-failure --force-new-ctest-process --output-junit test_output.xml'

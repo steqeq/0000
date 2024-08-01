@@ -20,15 +20,28 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
-    - llvm-project
-    - ROCR-Runtime
     - clr
-    - rocminfo
-    - rocBLAS
-    - rocPRIM
-    - rocSPARSE
     - hipSPARSE
+    - llvm-project
+    - rocBLAS
+    - rocm-cmake
+    - rocminfo
+    - rocPRIM
+    - ROCR-Runtime
+    - rocSPARSE
+- name: rocmTestDependencies
+  type: object
+  default:
+    - clr
+    - hipSPARSE
+    - llvm-project
+    - rocBLAS
+    - rocm-cmake
+    - rocminfo
+    - rocPRIM
+    - rocprofiler-register
+    - ROCR-Runtime
+    - rocSPARSE
 
 jobs:
 - job: rocSOLVER
@@ -53,13 +66,13 @@ jobs:
       script: git clone --depth 1 --branch v3.9.1 https://github.com/Reference-LAPACK/lapack
       workingDirectory: '$(Build.SourcesDirectory)'
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
@@ -88,3 +101,50 @@ jobs:
         -DBUILD_CLIENTS_SAMPLES=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocSOLVER_testing
+  dependsOn: rocSOLVER
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.TEST_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      targetPath: $(System.ArtifactsDirectory)
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.xz'
+      RemoveDotFiles: true
+# CI case: download latest default branch build
+  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: staging
+# manual build case: triggered by ROCm/ROCm repo
+  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocSOLVER
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: './rocsolver-test'
+      testParameters: --gtest_filter='*checkin*'
