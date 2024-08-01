@@ -37,7 +37,7 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-  # extra steps for ctest suite
+# extra steps for ctest suite
   - script: |
       python -m pip install -r $(Build.SourcesDirectory)/docs/requirements.txt
       python -m pip install -r $(Build.SourcesDirectory)/test/docsphinx/docs/.sphinx/requirements.txt
