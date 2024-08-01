@@ -59,13 +59,13 @@ jobs:
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+  - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+  - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
@@ -115,13 +115,13 @@ jobs:
       Contents: '/**/*.tar.xz'
       RemoveDotFiles: true
 # CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, 'develop') }}:
+  - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmTestDependencies }}
         dependencySource: staging
 # manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, 'develop') }}:
+  - ${{ if ne(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         dependencyList: ${{ parameters.rocmTestDependencies }}
