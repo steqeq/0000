@@ -12,7 +12,7 @@ There are four standard ways to provide feedback on this repository.
 
 All contributions to ROCm documentation should arrive via the
 [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-targeting the develop branch of the repository. 
+targeting the develop branch of the repository.
 
 For more in-depth information on creating a pull request (PR), see
 [Contributing](./contributing.md).
