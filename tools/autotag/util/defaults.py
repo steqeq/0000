@@ -11,7 +11,7 @@ def template_factory():
     """A dictionary for changelog regexes by library, with default."""
     return (
         r"""## \[?(?:\((?:Unr|R)eleased\) (?:- )?|(?:Unr|R)eleased (?:- )?)?"""
-        r"""(?P<lib_name>[a-zA-Z-]+)[\s-](?P<lib_version>\d+\.\d+(?:\.\d+)?)"""
+        r"""(?P<lib_name>[a-zA-Z-]+)[\s-](?P<lib_version>\d+\.\d+(?:\.\d+)?(?:-\d+)?)"""
         r"""(?P<for_rocm> for ROCm )?"""
         r"""(?P<rocm_version>(?(for_rocm)\d+\.\d+(?:\.\d+)?|.*))?"""
         r"""\]?\n"""
