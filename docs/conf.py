@@ -7,9 +7,10 @@
 import os
 import shutil
 
-# Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2("../RELEASE.md", "./about/release-notes.md")
-shutil.copy2("../CHANGELOG.md", "./about/changelog.md")
+
+os.system("mkdir -p ../_readthedocs/html/downloads")
+os.system("cp data/reference/compatibility-matrix-historical-6.0.csv ../_readthedocs/html/downloads/compatibility-matrix-historical-6.0.csv")
 
 latex_engine = "xelatex"
 latex_elements = {
@@ -29,16 +30,16 @@ if os.environ.get("READTHEDOCS", "") == "True":
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved."
-version = "6.1.2"
-release = "6.1.2"
+version = "6.2.0"
+release = "6.2.0"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
-    {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-06-04"},
-    {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-06-04"},
+    {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-08-02"},
+    {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-08-02"},
     {"file": "how-to/deep-learning-rocm", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/index", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/install", "os": ["linux"]},
@@ -99,11 +100,16 @@ extensions = ["rocm_docs", "sphinx_reredirects"]
 
 external_projects_current_project = "rocm"
 
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "rocm-stg.amd.com")
+html_context = {}
+if os.environ.get("READTHEDOCS", "") == "True":
+    html_context["READTHEDOCS"] = True
+
 html_theme = "rocm_docs_theme"
 html_theme_options = {"flavor": "rocm-docs-home"}
 
 html_static_path = ["sphinx/static/css"]
-html_css_files = ["rocm_custom.css"]
+html_css_files = ["rocm_custom.css", "rocm_rn.css"]
 
 html_title = "ROCm Documentation"
 
