@@ -387,13 +387,13 @@ links in the *Version* column to go to the detailed component changelogs.
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-6.2.0">hipSPARSELt</a></td>
                 <td>0.2.0&nbsp;&Rightarrow;&nbsp;<a href="#hipsparselt-0-2-1">0.2.1</a></td>
-                <td><a href="https://github.com/ROCm/hipSPARSE/releases/tag/rocm-6.2.0"><i
+                <td><a href="https://github.com/ROCm/hipSPARSELt/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocALUTION/en/docs-6.2.0">rocALUTION</a></td>
                 <td>3.1.1&nbsp;&Rightarrow;&nbsp;<a href="#rocalution-3-2-0">3.2.0</a></td>
-                <td><a href="https://github.com/ROCm/hipSPARSE/releases/tag/rocm-6.2.0"><i
+                <td><a href="https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
@@ -473,13 +473,13 @@ links in the *Version* column to go to the detailed component changelogs.
                 <th rowspan="6">System management</th>
                 <td><a href="https://rocm.docs.amd.com/projects/amdsmi/en/docs-6.2.0">AMD SMI</a></td>
                 <td>24.5.2&nbsp;&Rightarrow;&nbsp;<a href="#amd-smi-24-6-2">24.6.2</a></td>
-                <td><a href="https://github.com/ROCm/rdc/releases/tag/rocm-6.2.0"><i
+                <td><a href="https://github.com/ROCm/amdsmi/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/rdc/en/docs-6.2.0">rocminfo</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/rocminfo/en/docs-6.2.0">rocminfo</a></td>
                 <td>1.0.0</td>
-                <td><a href="https://github.com/ROCm/rdc/releases/tag/rocm-6.2.0"><i
+                <td><a href="https://github.com/ROCm/rocminfo/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
@@ -489,9 +489,9 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/rdc/en/docs-6.2.0">ROCm SMI</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/rocm_smi_lib/en/docs-6.2.0">ROCm SMI</a></td>
                 <td>7.2.0&nbsp;&Rightarrow;&nbsp;<a href="#rocm-smi-7-3-0">7.3.0</a></td>
-                <td><a href="https://github.com/ROCm/rdc/releases/tag/rocm-6.2.0"><i
+                <td><a href="https://github.com/ROCm/rocm_smi_lib/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
@@ -526,13 +526,13 @@ links in the *Version* column to go to the detailed component changelogs.
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/ROCProfiler/en/docs-6.2.0">ROCProfiler</a></td>
                 <td>2.0.0&nbsp;&Rightarrow;&nbsp;<a href="#rocprofiler-2-0-0">2.0.0</a></td>
-                <td><a href="https://github.com/ROCm/rocm_bandwidth_test/releases/tag/rocm-6.2.0"><i
+                <td><a href="https://github.com/ROCm/ROCProfiler/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-6.2.0">ROCprofiler-SDK</a></td>
                 <td>0.4.0</td>
-                <td><a href="https://github.com/ROCm/rocm_bandwidth_test/releases/tag/rocm-6.2.0"><i
+                <td><a href="https://github.com/ROCm/rocprofiler-sdk/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr >
@@ -564,7 +564,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/rocm-cmake/en/docs-6.2.0">ROCm Debugger (ROCgdb)</a>
+                <td><a href="https://rocm.docs.amd.com/projects/ROCgdb/en/docs-6.2.0">ROCm Debugger (ROCgdb)</a>
                 </td>
                 <td>14.1&nbsp;&Rightarrow;&nbsp;<a href="#rocm-debugger-rocgdb-14-2">14.2</a></td>
                 <td><a href="https://github.com/ROCm/ROCgdb/releases/tag/rocm-6.2.0"><i
@@ -602,7 +602,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/ROCr-Runtime/en/docs-6.2.0">ROCr Runtime</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/ROCR-Runtime/en/docs-6.2.0">ROCr Runtime</a></td>
                 <td>1.13.0&nbsp;&Rightarrow;&nbsp;<a href="#rocr-runtime-1-14-0">1.14.0</a></td>
                 <td><a href="https://github.com/ROCm/ROCR-Runtime/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
