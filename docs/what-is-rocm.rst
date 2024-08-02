@@ -126,8 +126,8 @@ Development
 .. csv-table::
   :header: "Component", "Description"
 
-  ":doc:`ROCm CMake <rocmcmakebuildtools:index>`", "Collection of CMake modules for common build and development tasks"
   ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
+  ":doc:`ROCm CMake <rocmcmakebuildtools:index>`", "Collection of CMake modules for common build and development tasks"
   ":doc:`ROCdbgapi <rocdbgapi:index>`", "ROCm debugger API library"
   ":doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`", "Source-level debugger for Linux, based on the GNU Debugger (GDB)"
   ":doc:`ROCr Debug Agent <rocr_debug_agent:index>`", "Prints the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running"
@@ -138,8 +138,8 @@ Compilers
 .. csv-table::
   :header: "Component", "Description"
 
-  ":doc:`ROCm Compilers <llvm-project:index>`", "ROCm LLVM compilers"
   ":doc:`HIPCC <hipcc:index>`", "Compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure"
+  ":doc:`ROCm compilers <llvm-project:index>`", "ROCm LLVM compiler infrastructure"
   "`FLANG <https://github.com/ROCm/flang/>`_", "An out-of-tree Fortran compiler targeting LLVM"
 
 Runtimes

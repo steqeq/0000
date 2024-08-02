@@ -162,12 +162,12 @@ tools available depending on their specific profiling needs.
 
 * ROCProfiler tool collects kernel execution performance
   metrics. For more information, see the
-  `ROCProfiler <https://rocm.docs.amd.com/projects/rocprofiler/en/latest/rocprofv1.html>`_
+  :doc:`ROCProfiler <rocprofiler:index>`
   documentation.
 
 * Omniperf builds upon ROCProfiler but provides more guided analysis.
   For more information, see
-  `Omniperf documentation <https://rocm.github.io/omniperf/>`_.
+  :doc:`Omniperf documentation <omniperf:index>`.
 
 Refer to :doc:`/how-to/llm-fine-tuning-optimization/profiling-and-debugging`
 to explore commonly used profiling tools and their usage patterns.
