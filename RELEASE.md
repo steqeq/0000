@@ -660,6 +660,8 @@ The following sections describe key changes to ROCm components.
 - `amdsmi_get_gpu_process_isolation` and `amdsmi_clean_gpu_local_data` commands do not work.
   They will be supported in a future release.
 
+See [issue #3500](https://github.com/ROCm/ROCm/issues/3500) on GitHub.
+
 ```{note}
 See the [detailed AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/docs/6.2.0/CHANGELOG.md)
 on GitHub for more information.
@@ -1274,6 +1276,8 @@ unsigned long istring = 0 // Initialize the input to __shfl
 return __shfl(istring, 0, 64)
 ```
 
+See [issue #3499](https://github.com/ROCm/ROCm/issues/3499) on GitHub.
+
 ### **MIGraphX** (2.10.0)
 
 #### Changes
@@ -1412,6 +1416,8 @@ return __shfl(istring, 0, 64)
   *See: /opt/rocm-6.2.0/libexec/omniperf/requirements.txt*"
 
   As a workaround, install these Python requirements manually: `pip install /opt/rocm-6.2.0/libexec/omniperf/requirements.txt`.
+
+See [issue #3498](https://github.com/ROCm/ROCm/issues/3498) on GitHub.
 
 ### **OpenMP** (17.0.0)
 
@@ -1962,6 +1968,9 @@ If unsure of the default processor affinity settings for your environment, run t
 
 bash -c "echo taskset -p \$\$" 
 ```
+
+See [issue #3493](https://github.com/ROCm/ROCm/issues/3493) on GitHub.
+
 ### Display issues on servers with Instinct MI300-series accelerators when loading AMDGPU driver
 
 AMD Instinct MI300-series accelerators and third-party GPUs such as the Matrox G200 have an issue impacting video
@@ -1973,10 +1982,14 @@ this includes both the local video output and remote access via iDRAC. The displ
 the `amdgpu` driver modules. Video output impacts both terminal access when running in `runlevel 3` and GUI access when
 running in `runlevel 5`. Server functionality can still be accessed via SSH or other remote connection methods.
 
+See [issue #3494](https://github.com/ROCm/ROCm/issues/3494) on GitHub.
+
 ### KFDTest failure on Instinct MI300X with Oracle Linux 8.9
 
 The `KFDEvictTest.QueueTest` is failing on the MI300X platform during KFD (Kernel Fusion Driver) tests, causing the full
 suite to not execute properly. This issue is suspected to be hardware-related.
+
+See [issue #3495](https://github.com/ROCm/ROCm/issues/3495) on GitHub.
 
 ### Bandwidth limitation in gang and non-gang modes on Instinct MI300A
 
@@ -1984,6 +1997,8 @@ Expected target peak non-gang performance (~60GB/s) and target peak gang perform
 and non-gang performance are observed to be limited at 45GB/s.
 
 This issue will be addressed in a future ROCm release.
+
+See [issue #3496](https://github.com/ROCm/ROCm/issues/3496) on GitHub.
 
 ### rocm-llvm-alt
 
@@ -1993,6 +2008,8 @@ the ROCm 6.2.0 release. Users who attempt to invoke the closed-source compiler w
 LLVM consumer-producer mismatch and the compilation will fail. There is no workaround that allows
 use of the closed-source compiler. It is recommended to compile using the default open-source
 compiler, which generates high-quality AMD CPU and AMD GPU code.
+
+See [issue #3492](https://github.com/ROCm/ROCm/issues/3492) on GitHub.
 
 ## ROCm upcoming changes
 
