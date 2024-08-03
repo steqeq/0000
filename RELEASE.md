@@ -127,7 +127,7 @@ and [Installing TensorFlow for ROCm](https://rocm.docs.amd.com/projects/install-
 PyTorch now supports Autocast for recurrent neural networks (RNNs) on ROCm. This can help to reduce computational
 workloads and improve performance. Based on the information about the magnitude of values, Autocast can substitute the
 original `float32` linear layers and convolutions with their `float16` or `bfloat16` variants. For more information, see
-[Automatic mixed precision](https://rocm.docs.amd.com/en/docs-6.2.0/how-to/rocm-for-ai/train-a-model#automatic-mixed-precision-amp).
+[Automatic mixed precision](https://rocm.docs.amd.com/en/docs-6.2.0/how-to/rocm-for-ai/train-a-model.html#automatic-mixed-precision-amp).
 
 #### Memory savings for bitsandbytes model quantization
 
