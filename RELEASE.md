@@ -87,7 +87,7 @@ multiple unique configurations for use when installing ROCm on a target. Other n
 * Resolution and inclusion of dependency packages for offline installation
 
 For more information, see
-[ROCm Offline Installer Creator](https://rocm.docs.amd.com/projects/rocm-install-on-linux/en/docs-6.2.0/install/rocm-offline-installer.html).
+[ROCm Offline Installer Creator](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.0/install/rocm-offline-installer.html).
 
 ### Math libraries default to Clang instead of HIPCC
 
