@@ -44,7 +44,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.17.3,1.14.1
       ,,,
       THIRD PARTY COMMS,".. _thirdpartycomms-support-compatibility-matrix:",,
-      `UCC <https://github.com/ROCm/ucc>`_,>=1.2.0,>=1.2.0,>=1.2.0
+      `UCC <https://github.com/ROCm/ucc>`_,>=1.3.0,>=1.3.0,>=1.2.0
       `UCX <https://github.com/ROCm/ucx>`_,>=1.15.0,>=1.14.1,>=1.14.1
       ,,,
       THIRD PARTY ALGORITHM,".. _thirdpartyalgorithm-support-compatibility-matrix:",,
