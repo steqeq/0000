@@ -26,7 +26,6 @@ jobs:
     parameters:
       useDefaultBranch: false
       componentName: HIP
-      latestFromBranch: true
       branchName: develop
   - template:  ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
     parameters:
