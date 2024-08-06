@@ -70,17 +70,6 @@ parameters:
     roctracer: amd-master
     rocWMMA: develop
     rpp: master
-- name: componentsFailureOkay
-  type: object
-  default: 
-    array:
-    - rocm-cmake
-- name: componentsPullAny # remove this once these pipelines are functional
-  type: object
-  default:
-    array:
-    - clr
-    - rocMLIR
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
