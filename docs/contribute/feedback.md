@@ -6,10 +6,10 @@
 
 # Providing feedback
 
-Feedback is welcome. You can provide feedback either through GitHub Discussions or GitHub Issues
+Your feedback is welcome. You can provide feedback either through GitHub Discussions or GitHub Issues.
 
 Use [GitHub Discussions](https://github.com/ROCm/ROCm/discussions) to ask questions, view announcements, and communicate with other members of the community.
 
-Use [GitHub Issues](https://github.com/ROCm/ROCm/issues) to submit issues about existing or absent documentation.
+Use [GitHub Issues](https://github.com/ROCm/ROCm/issues) to submit issues you find with ROCm or with the ROCm documentation.
 
-For information on contributing to our repository and creating a pull request (PR), see [Contributing](./contributing.md).
+For information about contributing to the ROCm repository and creating a pull request (PR), see [Contributing](./contributing.md).
