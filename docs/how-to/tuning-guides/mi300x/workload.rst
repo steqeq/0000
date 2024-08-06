@@ -1626,7 +1626,7 @@ Identifying a faulting kernel is often enough to triage a memory access
 fault. The ROCr Debug Agent can trap a memory access fault and provide a
 dump of all active wavefronts that caused the error, as well as the name
 of the kernel. For more information, see
-`ROCr Debug Agent documentation <rocr_debug_agent:index>`__.
+:doc:`ROCr Debug Agent documentation <rocr_debug_agent:index>`.
 
 To summarize, the key points include:
 
