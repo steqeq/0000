@@ -27,7 +27,7 @@ ROCm Version,6.2.0, 6.1.2, 6.1.1, 6.1.0, 6.0.2, 6.0.0
       `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.17.3,1.17.3,1.17.3,1.14.1,1.14.1
       ,,,,,,
       THIRD PARTY COMMS,".. _thirdpartycomms-support-compatibility-matrix-past-60:",,,,,
-      `UCC <https://github.com/ROCm/ucc>`_,>=1.2.0,>=1.2.0,>=1.2.0,>=1.2.0,>=1.2.0,>=1.2.0
+      `UCC <https://github.com/ROCm/ucc>`_,>=1.3.0,>=1.3.0,>=1.3.0,>=1.3.0,>=1.2.0,>=1.2.0
       `UCX <https://github.com/ROCm/ucx>`_,>=1.15.0,>=1.14.1,>=1.14.1,>=1.14.1,>=1.14.1,>=1.14.1
       ,,,,,,
       THIRD PARTY ALGORITHM,".. _thirdpartyalgorithm-support-compatibility-matrix-past-60:",,,,,
