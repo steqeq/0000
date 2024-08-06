@@ -282,11 +282,15 @@ the ROCr runtime to set the pages pointed by “b” as coarse grain.
 
 #### Zero-copy behavior on MI300A and discrete GPUs
 
-The runtime behavior on MI300A and other discrete GPUs depends on the status of XNACK and the existence of the pragma `requires unified_shared_memory` as discussed in the following sections.
+OpenMP provides a relaxed shared memory model, which allows you to achieve zero-copy behavior on MI300A and other discrete GPUs. Zero-copy is the implementation of OpenMP data mapping that does not result in GPU memory allocations and CPU-to-GPU memory copies. While data mapping is optional on any GPU that provides native USM, it helps to achieve good performance when porting across MI300A and discrete memory GPUs.
 
-##### Implicit zero-copy behavior on MI300A
+The following sections explain achieving zero-copy behavior on MI300A and discrete GPUs.
 
-OpenMP provides a relaxed shared memory model. Map clauses provided in the source code indicate how data is used and copied to and from the GPU device for each target region. On GPUs that provide USM like the MI300A, these clauses are optional but facilitate portability to discrete memory GPUs. The [unified shared memory pragma](#unified-shared-memory-pragma) `requires unified_shared_memory` informs the compiler and runtime that the code is NOT portable to discrete memory GPUs, and must be compiled and executed on GPUs providing USM, such as MI300A. The MI300A is one of the several AMDGPUs with [XNACK capability](#xnack-capability).
+##### Zero-copy behavior on MI300A
+
+ To obtain zero-copy implementation on MI300A, use either of the following two ways:
+ - Specify the [unified shared memory pragma](#unified-shared-memory-pragma) `requires unified_shared_memory` in the code to inform the compiler and runtime that the code must be compiled for and executed on GPUs providing USM through XNACK.
+ - Don't specify the unified shared memory pragma and rely on the OpenMP runtime's implicit zero-copy behavior on MI300A. When the OpenMP runtime detects that it is running on an MI300A and the XNACK support is enabled in the environment, in which the application is run, it turns on the zero-copy mode. This behavior is named implicit zero-copy.
 
 The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification:
 
@@ -295,20 +299,7 @@ The following table lists the runtime behavior based on the unified shared memor
 | XNACK enabled | implicit zero-copy |  zero-copy |
 | XNACK disabled | copy |  runtime warning* |
 
-###### Host memory prefaulting in zero-copy modes
-
-When MI300A runs in any zero-copy mode, implicit or with unified shared memory pragma being specified, host memory Translation Lookaside Buffer (TLB) prefaulting occurs by default.
-
-The host memory prefaulting behavior applies to all memory copies with a size larger than or equal to 1MB, where the OpenMP runtime makes the copied host memory visible to the target device agent before calling the copy function. All memory copies that are performed synchronously will have the host memory prefaulted first.
-
-Here are the environment variables used to control the host memory prefaulting behavior:
-
-| Environment variable   | Description   | Default value | Usage   |
-| --- | --- | --- | --- |
-| `LIBOMPTARGET_APU_PREFAULT_MEMCOPY` | Controls prefaulting. Setting it to false disables prefaulting for all memory copy sizes >= 1MB. | True | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY=false ./app_exec` |
-| `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE` | Controls the minimum size at or after which prefaulting is performed, which enables prefaulting at sizes lower than the default size of 1MB. | 1MB | `LIBOMPTARGET_APU_PREFAULT_MEMCOPY_SIZE=1024 ./app_exe` |
-
-##### Implicit zero-copy on discrete GPUs
+##### Zero-copy behavior on discrete GPUs
 
 To turn on implicit zero-copy behavior on discrete memory GPUs such as MI200 and MI300X for applications not using unified shared memory pragma, run applications in XNACK enabled environment and set the environment variable OMPX_APU_MAPS to true:
 
