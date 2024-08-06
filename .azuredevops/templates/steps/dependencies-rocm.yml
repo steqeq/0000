@@ -21,6 +21,9 @@ parameters:
 - name: fixedComponentName
   type: string
   default: ''
+- name: latestFromBranch
+  type: boolean
+  default: true
 # match case of the repo in this object for the left side of the maps
 # should not need to replace these parameters
 - name: stagingPipelineIdentifiers
@@ -147,12 +150,14 @@ steps:
       parameters:
         componentName: ${{ dependency }}
         pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+        latestFromBranch: ${{ parameters.latestFromBranch }}
         extractToMnt: ${{ parameters.extractToMnt }}
   - ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
         pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
+        latestFromBranch: ${{ parameters.latestFromBranch }}
         extractToMnt: ${{ parameters.extractToMnt }}
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
@@ -160,6 +165,7 @@ steps:
     parameters:
       componentName: ${{ parameters.fixedComponentName }}
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
+      latestFromBranch: ${{ parameters.latestFromBranch }}
       extractToMnt: ${{ parameters.extractToMnt }}
 - task: Bash@3
   displayName: 'list downloaded ROCm files'

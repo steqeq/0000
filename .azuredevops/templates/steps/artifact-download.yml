@@ -9,6 +9,9 @@ parameters:
 - name: useDefaultBranch
   type: boolean
   default: true
+- name: latestFromBranch
+  type: boolean
+  default: true
 - name: extractToMnt
   type: boolean
   default: false
@@ -21,7 +24,7 @@ parameters:
     aomp: aomp-dev
     clr: develop
     composable_kernel: develop
-    half: master
+    half: rocm
     HIP: develop
     hipBLAS: develop
     hipBLASLt: develop
@@ -67,10 +70,6 @@ parameters:
     roctracer: amd-master
     rocWMMA: develop
     rpp: master
-- name: componentsFailureOkay
-  type: object
-  default:
-    - rocm-cmake
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
@@ -84,11 +83,14 @@ steps:
     project: ROCm-CI
     definition: ${{ parameters.pipelineId }}
     specificBuildWithTriggering: true
+    ${{ if eq(parameters.latestFromBranch, true) }}:
+      ${{ if notIn(parameters.componentName, 'aomp', 'clr', 'rocMLIR') }}: # remove this once these pipelines are functional + up-to-date
+        buildVersionToDownload: latestFromBranch # default is 'latest'
     ${{ if eq(parameters.useDefaultBranch, true) }}:
-      branchName: ${{ parameters.defaultBranchList[parameters.componentName] }}
+      branchName: refs/heads/${{ parameters.defaultBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
-    ${{ if in(parameters.componentName, parameters.componentsFailureOkay) }}:
+    ${{ if in(parameters.componentName, 'rocm-cmake') }}:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
