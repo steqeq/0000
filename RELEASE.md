@@ -192,7 +192,7 @@ all the accessible features, and the `vllm/Dockerfile.rocm` file can be used.
 
 ### Enhanced performance tuning on AMD Instinct accelerators
 
-ROCm is pretuned for high-performance computing workloads including large language models, generative AI, and scientific computing.
+ROCm is pre-tuned for high-performance computing workloads including large language models, generative AI, and scientific computing.
 The ROCm documentation provides comprehensive guidance on configuring your system for AMD Instinct accelerators. It includes
 detailed instructions on system settings and application tuning suggestions to help you fully leverage the capabilities of these
 accelerators for optimal performance. For more information, see

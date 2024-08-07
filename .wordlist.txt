@@ -266,6 +266,7 @@ OpenMP
 OpenMPI
 OpenSSL
 OpenVX
+OpenXLA
 PCC
 PCI
 PCIe
@@ -295,6 +296,8 @@ RDMA
 RDNA
 README
 RHEL
+RNN
+RNNs
 ROC
 ROCProfiler
 ROCTracer
