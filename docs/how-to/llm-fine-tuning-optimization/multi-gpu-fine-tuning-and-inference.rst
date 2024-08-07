@@ -44,7 +44,7 @@ Setting up the base implementation environment
 
    .. code-block:: shell
 
-      rocm-smi -showproductname
+      rocm-smi --showproductname
 
 #. Check that your accelerators are available to PyTorch.
 
