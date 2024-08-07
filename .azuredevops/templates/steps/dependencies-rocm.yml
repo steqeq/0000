@@ -157,7 +157,6 @@ steps:
       parameters:
         componentName: ${{ dependency }}
         pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
-        latestFromBranch: ${{ parameters.latestFromBranch }}
         extractToMnt: ${{ parameters.extractToMnt }}
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
@@ -165,7 +164,6 @@ steps:
     parameters:
       componentName: ${{ parameters.fixedComponentName }}
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
-      latestFromBranch: ${{ parameters.latestFromBranch }}
       extractToMnt: ${{ parameters.extractToMnt }}
 - task: Bash@3
   displayName: 'list downloaded ROCm files'
