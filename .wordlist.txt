@@ -31,6 +31,7 @@ BARs
 BLAS
 BMC
 Blit
+Blockwise
 Bluefield
 Bootloader
 CCD
@@ -304,6 +305,7 @@ ROCm
 ROCmCC
 ROCmSoftwarePlatform
 ROCmValidationSuite
+ROCprofiler
 ROCr
 RST
 RW
