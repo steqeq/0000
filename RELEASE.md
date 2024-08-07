@@ -137,7 +137,7 @@ ROCm 6.2.0 introduces the following bitsandbytes changes:
 
 - `Int8` matrix multiplication is enabled, and it includes the following functions:
   - `extract-outliers` – extracts rows and columns that have outliers in the inputs. They’re later used for matrix multiplication without quantization.
-  - `transform` – row-to-column and column-to-row transformations are enabled, along with transpose operations. These are used before and after matmul computation.
+  - `transform` – row-to-column and column-to-row transformations are enabled, along with transpose operations. These are used before and after `matmul` computation.
   - `igemmlt` – new function for GEMM computation A*B^T. It uses
     [hipblasLtMatMul](https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-6.2.0/api-reference.html#hipblasltmatmul) and performs 8-bit GEMM operations.
   - `dequant_mm` – dequantizes output matrix to original data type using scaling factors from vector-wise quantization.

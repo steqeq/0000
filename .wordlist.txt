@@ -178,6 +178,7 @@ Ioffe
 JSON
 Jupyter
 KFD
+KFDTest
 KiB
 KV
 KVM
@@ -555,6 +556,7 @@ hpp
 hsa
 hsakmt
 hyperparameter
+iDRAC
 ib_core
 inband
 incrementing
