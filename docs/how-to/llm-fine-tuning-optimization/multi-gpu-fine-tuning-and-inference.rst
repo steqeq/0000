@@ -95,7 +95,7 @@ Now, it's important to adjust how you load the model. Add the ``device_map`` par
    # Load base model to GPU memory
    base_model = AutoModelForCausalLM.from_pretrained(
            base_model_name, 
-           device_map = "auto"
+           device_map = "auto",
            trust_remote_code = True)
    ...
    # Run training
