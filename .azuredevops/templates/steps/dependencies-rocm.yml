@@ -164,7 +164,7 @@ steps:
           componentName: ${{ split(dependency, ':')[0] }}
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[split(dependency, ':')[0]] }}
           fileFilter: ${{ split(dependency, ':')[1] }}
-          latestFromBranch: ${{ parameters.latestFromBranch }}
+          latestFromBranch: false
           extractToMnt: ${{ parameters.extractToMnt }}
 # no colon (:) found in this item in the list
   - ${{ else }}:
@@ -180,7 +180,7 @@ steps:
         parameters:
           componentName: ${{ dependency }}
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
-          latestFromBranch: ${{ parameters.latestFromBranch }}
+          latestFromBranch: false
           extractToMnt: ${{ parameters.extractToMnt }}
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
