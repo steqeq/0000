@@ -53,8 +53,10 @@ ROCm supports popular machine learning frameworks and libraries including `PyTor
 Review the framework installation documentation. For ease-of-use, it's recommended to use official ROCm prebuilt Docker
 images with the framework pre-installed.
 
-* :doc:`PyTorch for ROCm <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
-* :doc:`TensorFlow for ROCm <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
-* :doc:`JAX for ROCm <rocm-install-on-linux:how-to/3rd-party/jax-install>`
+* :doc:`PyTorch for ROCm <rocm-install-on-linux:install/3rd-party/pytorch-install>`
+
+* :doc:`TensorFlow for ROCm <rocm-install-on-linux:install/3rd-party/tensorflow-install>`
+
+* :doc:`JAX for ROCm <rocm-install-on-linux:install/3rd-party/jax-install>`
 
 The sections that follow in :doc:`Training a model <train-a-model>` are geared for a ROCm with PyTorch installation.
