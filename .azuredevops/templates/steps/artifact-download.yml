@@ -15,6 +15,9 @@ parameters:
 - name: extractToMnt
   type: boolean
   default: false
+- name: fileFilter
+  type: string
+  default: ''
 - name: defaultBranchList
   type: object
   default:
@@ -83,6 +86,7 @@ steps:
     project: ROCm-CI
     definition: ${{ parameters.pipelineId }}
     specificBuildWithTriggering: true
+    itemPattern: '**/*${{ parameters.fileFilter }}*'
     ${{ if eq(parameters.latestFromBranch, true) }}:
       ${{ if notIn(parameters.componentName, 'aomp', 'clr', 'rocMLIR') }}: # remove this once these pipelines are functional + up-to-date
         buildVersionToDownload: latestFromBranch # default is 'latest'

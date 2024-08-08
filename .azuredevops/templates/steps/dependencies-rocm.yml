@@ -144,21 +144,44 @@ parameters:
 
 steps:
 # assuming artifact-download.yml template file in same directory
+# for the case where rocm dependency item in list has a colon (:)
+# assume it is of the format of componentName:fileFilter
+# fileFilter could contain both a subcomponent name or gpu name separated by asterisks
+# e.g., gfx942 to only download artifacts from component for this gpu if applicable
 - ${{ each dependency in parameters.dependencyList }}:
-  - ${{ if eq(parameters.dependencySource, 'staging') }}:
-    - template: artifact-download.yml
-      parameters:
-        componentName: ${{ dependency }}
-        pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
-        latestFromBranch: ${{ parameters.latestFromBranch }}
-        extractToMnt: ${{ parameters.extractToMnt }}
-  - ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
-    - template: artifact-download.yml
-      parameters:
-        componentName: ${{ dependency }}
-        pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
-        latestFromBranch: ${{ parameters.latestFromBranch }}
-        extractToMnt: ${{ parameters.extractToMnt }}
+  - ${{ if contains(dependency, ':') }}:
+    - ${{ if eq(parameters.dependencySource, 'staging') }}:
+      - template: artifact-download.yml
+        parameters:
+          componentName: ${{ split(dependency, ':')[0] }}
+          pipelineId: ${{ parameters.stagingPipelineIdentifiers[split(dependency, ':')[0]] }}
+          fileFilter: ${{ split(dependency, ':')[1] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
+          extractToMnt: ${{ parameters.extractToMnt }}
+    - ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
+      - template: artifact-download.yml
+        parameters:
+          componentName: ${{ split(dependency, ':')[0] }}
+          pipelineId: ${{ parameters.taggedPipelineIdentifiers[split(dependency, ':')[0]] }}
+          fileFilter: ${{ split(dependency, ':')[1] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
+          extractToMnt: ${{ parameters.extractToMnt }}
+# no colon (:) found in this item in the list
+  - ${{ else }}:
+    - ${{ if eq(parameters.dependencySource, 'staging') }}:
+      - template: artifact-download.yml
+        parameters:
+          componentName: ${{ dependency }}
+          pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
+          extractToMnt: ${{ parameters.extractToMnt }}
+    - ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
+      - template: artifact-download.yml
+        parameters:
+          componentName: ${{ dependency }}
+          pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
+          extractToMnt: ${{ parameters.extractToMnt }}
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
   - template: artifact-download.yml
