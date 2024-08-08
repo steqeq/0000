@@ -194,27 +194,29 @@ steps:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ split(dependency, ':')[0] }}
+        extractToMnt: ${{ parameters.extractToMnt }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          latestFromBranch: false
         ${{ if containsValue( parameters.componentsWithGPUTarget, split(dependency, ':')[0] ) }}:
           fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
         ${{ else }}:
           fileFilter: ${{ split(dependency, ':')[1] }}
-          latestFromBranch: false
-          extractToMnt: ${{ parameters.extractToMnt }}
 # no colon (:) found in this item in the list
   - ${{ else }}:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
+        extractToMnt: ${{ parameters.extractToMnt }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
           latestFromBranch: false
-          extractToMnt: ${{ parameters.extractToMnt }}
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
   - template: artifact-download.yml
