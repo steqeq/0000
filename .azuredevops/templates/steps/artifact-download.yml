@@ -45,7 +45,7 @@ parameters:
     rocAL: develop
     rocALUTION: develop
     rocBLAS: develop
-    ROCdbgapi : amd-master
+    ROCdbgapi : amd-staging
     rocDecode: develop
     rocFFT: develop
     rocgdb: amd-staging
