@@ -245,8 +245,8 @@ jobs:
         DESIRED_DEVTOOLSET=$(DESIRED_DEVTOOLSET)
         bash ./manywheel/build_rocm.sh
       workingDirectory: $(Build.SourcesDirectory)/builder
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
-    parameters:
-      sourceDir: /remote
-      contentsString: 'wheelhouserocm*/torch*.whl'
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  - task: PublishPipelineArtifact@1
+    displayName: 'ROCm pytorch wheel file Publish'
+    retryCountOnTaskFailure: 3
+    inputs:
+      targetPath: /remote/wheelhouserocm$(ROCM_VERSION)

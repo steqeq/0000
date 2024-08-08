@@ -87,7 +87,7 @@ multiple unique configurations for use when installing ROCm on a target. Other n
 * Resolution and inclusion of dependency packages for offline installation
 
 For more information, see
-[ROCm Offline Installer Creator](https://rocm.docs.amd.com/projects/rocm-install-on-linux/en/docs-6.2.0/install/rocm-offline-installer.html).
+[ROCm Offline Installer Creator](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.0/install/rocm-offline-installer.html).
 
 ### Math libraries default to Clang instead of HIPCC
 
@@ -127,7 +127,7 @@ and [Installing TensorFlow for ROCm](https://rocm.docs.amd.com/projects/install-
 PyTorch now supports Autocast for recurrent neural networks (RNNs) on ROCm. This can help to reduce computational
 workloads and improve performance. Based on the information about the magnitude of values, Autocast can substitute the
 original `float32` linear layers and convolutions with their `float16` or `bfloat16` variants. For more information, see
-[Automatic mixed precision](https://rocm.docs.amd.com/en/docs-6.2.0/how-to/rocm-for-ai/train-a-model#automatic-mixed-precision-amp).
+[Automatic mixed precision](https://rocm.docs.amd.com/en/docs-6.2.0/how-to/rocm-for-ai/train-a-model.html#automatic-mixed-precision-amp).
 
 #### Memory savings for bitsandbytes model quantization
 
@@ -254,7 +254,7 @@ ROCm 6.2.0 marks the end of support (EoS) for:
 
 ROCm 6.2.0 has been tested against pre-release Ubuntu 22.04.5 (kernel: 6.5 [HWE]).
 
-See the [Compatibility matrix](https://rocm.docs.amd.com/en/docs/6.2.0/compatibility/compatibility-matrix.html) for an
+See the [Compatibility matrix](https://rocm.docs.amd.com/en/docs-6.2.0/compatibility/compatibility-matrix.html) for an
 overview of supported operating systems and hardware architectures.
 
 ## ROCm components
@@ -1255,8 +1255,8 @@ on GitHub for more information.
 
   * The LLVM filesystem class `UniqueID` and function `equivalent`() no longer determine that distinct different path
     names for the same hard linked file actually are equal. This is an intentional tradeoff in a bug fix, where the bug
-    used to cause distinct files to be considered equivalent on some file systems. This change fixed the issues
-    [https://github.com/llvm/llvm-project/issues/61401]() and [https://github.com/llvm/llvm-project/issues/22079]().
+    used to cause distinct files to be considered equivalent on some file systems. This change fixed the GitHub issues
+    [#61401](https://github.com/llvm/llvm-project/issues/61401) and [#22079](https://github.com/llvm/llvm-project/issues/22079).
 
 #### Known issues
 
