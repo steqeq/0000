@@ -16,10 +16,10 @@ Before getting started, install ROCm and supported machine learning frameworks.
 
       Each release of ROCm supports specific hardware and software configurations. Before installing, consult the
       :doc:`System requirements <rocm-install-on-linux:reference/system-requirements>` and
-      :doc:`Installation prerequisites <rocm-install-on-linux:how-to/prerequisites>` guides.
+      :doc:`Installation prerequisites <rocm-install-on-linux:install/prerequisites>` guides.
 
 If you’re new to ROCm, refer to the :doc:`ROCm quick start install guide for Linux
-<rocm-install-on-linux:tutorial/quick-start>`.
+<rocm-install-on-linux:install/quick-start>`.
 
 If you’re using a Radeon GPU for graphics-accelerated applications, refer to the
 :doc:`Radeon installation instructions <radeon:docs/install/install-radeon>`.
