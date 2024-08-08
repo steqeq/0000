@@ -16,10 +16,10 @@ Before getting started, install ROCm and supported machine learning frameworks.
 
       Each release of ROCm supports specific hardware and software configurations. Before installing, consult the
       :doc:`System requirements <rocm-install-on-linux:reference/system-requirements>` and
-      :doc:`Installation prerequisites <rocm-install-on-linux:how-to/prerequisites>` guides.
+      :doc:`Installation prerequisites <rocm-install-on-linux:install/prerequisites>` guides.
 
 If you’re new to ROCm, refer to the :doc:`ROCm quick start install guide for Linux
-<rocm-install-on-linux:tutorial/quick-start>`.
+<rocm-install-on-linux:install/quick-start>`.
 
 If you’re using a Radeon GPU for graphics-accelerated applications, refer to the
 :doc:`Radeon installation instructions <radeon:docs/install/install-radeon>`.
@@ -53,8 +53,10 @@ ROCm supports popular machine learning frameworks and libraries including `PyTor
 Review the framework installation documentation. For ease-of-use, it's recommended to use official ROCm prebuilt Docker
 images with the framework pre-installed.
 
-* :doc:`PyTorch for ROCm <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
-* :doc:`TensorFlow for ROCm <rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
-* :doc:`JAX for ROCm <rocm-install-on-linux:how-to/3rd-party/jax-install>`
+* :doc:`PyTorch for ROCm <rocm-install-on-linux:install/3rd-party/pytorch-install>`
+
+* :doc:`TensorFlow for ROCm <rocm-install-on-linux:install/3rd-party/tensorflow-install>`
+
+* :doc:`JAX for ROCm <rocm-install-on-linux:install/3rd-party/jax-install>`
 
 The sections that follow in :doc:`Training a model <train-a-model>` are geared for a ROCm with PyTorch installation.
