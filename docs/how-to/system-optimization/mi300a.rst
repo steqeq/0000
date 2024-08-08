@@ -215,7 +215,7 @@ System management
 For a complete guide on installing, managing, and uninstalling ROCm on Linux, see
 :doc:`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`. To verify that the
 installation was successful, see the
-:doc:`Post-installation instructions<rocm-install-on-linux:how-to/native-install/post-install>` and 
+:doc:`Post-installation instructions<rocm-install-on-linux:install/native-install/post-install>` and 
 :doc:`ROCm tools <../../reference/rocm-tools>` guides. If verification
 fails, consult the :doc:`System debugging guide <../system-debugging>`.
 
