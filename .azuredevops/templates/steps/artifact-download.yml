@@ -62,7 +62,7 @@ parameters:
     rocm_smi_lib: develop
     rocPRIM: develop
     rocprofiler-register: amd-mainline
-    rocprofiler: amd-master
+    rocprofiler: amd-staging
     ROCR-Runtime: master
     rocRAND: develop
     rocr_debug_agent: amd-staging
@@ -70,7 +70,7 @@ parameters:
     rocSPARSE: develop
     ROCT-Thunk-Interface: master
     rocThrust: develop
-    roctracer: amd-master
+    roctracer: amd-staging
     rocWMMA: develop
     rpp: master
 # BELOW REQUIRED IF useDefaultBranch false
