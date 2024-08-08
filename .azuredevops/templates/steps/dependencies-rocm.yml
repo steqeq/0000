@@ -202,8 +202,8 @@ steps:
           fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
         ${{ else }}:
           fileFilter: ${{ split(dependency, ':')[1] }}
-        latestFromBranch: ${{ parameters.latestFromBranch }}
-        extractToMnt: ${{ parameters.extractToMnt }}
+          latestFromBranch: false
+          extractToMnt: ${{ parameters.extractToMnt }}
 # no colon (:) found in this item in the list
   - ${{ else }}:
     - template: artifact-download.yml
@@ -213,17 +213,15 @@ steps:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
-        ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
-          fileFilter: ${{ parameters.gpuTarget }}
-        latestFromBranch: ${{ parameters.latestFromBranch }}
-        extractToMnt: ${{ parameters.extractToMnt }}
+          latestFromBranch: false
+          extractToMnt: ${{ parameters.extractToMnt }}
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
   - template: artifact-download.yml
     parameters:
       componentName: ${{ parameters.fixedComponentName }}
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
-      latestFromBranch: ${{ parameters.latestFromBranch }}
+      latestFromBranch: false
       extractToMnt: ${{ parameters.extractToMnt }}
 - task: Bash@3
   displayName: 'list downloaded ROCm files'
