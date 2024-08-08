@@ -57,6 +57,7 @@
     <project groups="mathlibs" name="rocALUTION" />
     <project groups="mathlibs" name="rocBLAS" />
     <project groups="mathlibs" name="rocDecode" />
+    <project groups="mathlibs" name="rocPyDecode" />
     <project groups="mathlibs" name="rocFFT" />
     <project groups="mathlibs" name="rocPRIM" />
     <project groups="mathlibs" name="rocRAND" />
