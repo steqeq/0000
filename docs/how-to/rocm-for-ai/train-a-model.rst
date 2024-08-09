@@ -137,4 +137,4 @@ The following developer blogs showcase examples of how to fine-tune a model on a
 * Recipes for fine-tuning Llama2 and 3 with ``llama-recipes``
 
   * `meta-llama/llama-recipes: Scripts for fine-tuning Meta Llama3 with composable FSDP & PEFT methods to cover
-    single/multi-node GPUs <https://github.com/meta-llama/llama-recipes/tree/main/recipes/finetuning>`_
+    single/multi-node GPUs <https://github.com/meta-llama/llama-recipes/tree/main/recipes/quickstart/finetuning>`_
