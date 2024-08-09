@@ -217,6 +217,8 @@ steps:
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
           latestFromBranch: false
+        ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
+          fileFilter: ${{ parameters.gpuTarget }}
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
   - template: artifact-download.yml
