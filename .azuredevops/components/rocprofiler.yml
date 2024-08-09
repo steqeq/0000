@@ -40,7 +40,7 @@ parameters:
     - ROCR-Runtime
     - rocprofiler-register
     - ROCT-Thunk-Interface
-    - roctracer
+    - roctracer:amd-staging
 
 jobs:
 - job: rocprofiler
