@@ -250,4 +250,4 @@ page describes the options.
    :align: center
 
 Learn more about optimizing kernels with TunableOp in
-:ref:`Optimizing Triton kernels <fine-tuning-llms-triton-tunableop>`.
+:ref:`Optimizing Triton kernels <mi300x-tunableop>`.
