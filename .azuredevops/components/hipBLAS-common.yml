@@ -10,33 +10,27 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - gfortran
-    - googletest
     - git
-    - libgtest-dev
     - wget
     - python3-pip
-    - libomp-dev
 - name: rocmDependencies
   type: object
   default:
-    - aomp
-    - clr
-    - llvm-project
     - rocm-cmake
+    - llvm-project
     - ROCR-Runtime
+    - clr
     - rocminfo
-    - rocprofiler-register
-    - rocBLAS
-    - rocSPARSE
-    - rocSOLVER
 
 jobs:
-- job: hipBLAS
+- job: hipBLAS_common
   variables:
   - group: common
+  - name: ROCM_PATH
+    value: $(Agent.BuildDirectory)/rocm
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: 
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -47,18 +41,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - task: Bash@3
-    displayName: 'Download AOCL'
-    inputs:
-      targetType: inline
-      script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-1/aocl-linux-aocc-4.1.0_1_amd64.deb
-      workingDirectory: '$(Pipeline.Workspace)'
-  - task: Bash@3
-    displayName: 'Install AOCL'
-    inputs:
-      targetType: inline
-      script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
-      workingDirectory: '$(Pipeline.Workspace)'
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
@@ -75,12 +57,6 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DHIP_PLATFORM=amd
-        -DBUILD_CLIENTS_TESTS=ON
-        -DBUILD_CLIENTS_BENCHMARKS=OFF
-        -DBUILD_CLIENTS_SAMPLES=OFF
-        -DCPACK_SET_DESTDIR=OFF
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
