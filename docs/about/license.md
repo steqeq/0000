@@ -25,66 +25,69 @@ additional licenses. Please review individual repositories for more information.
 <!-- spellcheck-disable -->
 | Component | License |
 |:---------------------|:-------------------------|
-| [HIP](https://github.com/ROCm/HIP/) | [MIT](https://github.com/ROCm/HIP/blob/develop/LICENSE.txt) |
-| [HIPCC](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/hipcc) | [MIT](https://github.com/ROCm/llvm-project/blob/amd-staging/amd/hipcc/LICENSE.txt) |
-| [HIPIFY](https://github.com/ROCm/HIPIFY/) | [MIT](https://github.com/ROCm/HIPIFY/blob/amd-staging/LICENSE.txt) |
-| [AMDMIGraphX](https://github.com/ROCm/AMDMIGraphX/) | [MIT](https://github.com/ROCm/AMDMIGraphX/blob/develop/LICENSE) |
-| [MIOpen](https://github.com/ROCm/MIOpen/) | [MIT](https://github.com/ROCm/MIOpen/blob/develop/LICENSE.txt) |
-| [MIVisionX](https://github.com/ROCm/MIVisionX/) | [MIT](https://github.com/ROCm/MIVisionX/blob/develop/LICENSE.txt) |
 | [AMD Common Language Runtime (CLR)](https://github.com/ROCm/clr) | [MIT](https://github.com/ROCm/clr/blob/develop/LICENCE) |
-| [ROCm-Core](https://github.com/ROCm/rocm-core) | [MIT](https://github.com/ROCm/rocm-core/blob/master/copyright) |
-| [hipamd](https://github.com/ROCm/clr/tree/develop/hipamd) | [MIT](https://github.com/ROCm/clr/blob/develop/hipamd/LICENSE.txt) |
-| [ROCm-OpenCL-Runtime](https://github.com/ROCm/clr/tree/develop/opencl) | [MIT](https://github.com/ROCm/clr/blob/develop/opencl/LICENSE.txt) |
-| [Tensile](https://github.com/ROCm/Tensile/) | [MIT](https://github.com/ROCm/Tensile/blob/develop/LICENSE.md) |
+| [AMD SMI](https://github.com/ROCm/amdsmi) | [MIT](https://github.com/ROCm/amdsmi/blob/develop/LICENSE) |
 | [aomp](https://github.com/ROCm/aomp/) | [Apache 2.0](https://github.com/ROCm/aomp/blob/aomp-dev/LICENSE) |
 | [aomp-extras](https://github.com/ROCm/aomp-extras/) | [MIT](https://github.com/ROCm/aomp-extras/blob/aomp-dev/LICENSE) |
-| [llvm-project](https://github.com/ROCm/llvm-project/) | [Apache](https://github.com/ROCm/llvm-project/blob/amd-staging/LICENSE.TXT) |
-| [llvm-project/flang](https://github.com/ROCm/llvm-project/tree/amd-staging/flang) | [Apache 2.0](https://github.com/ROCm/llvm-project/blob/amd-staging/flang/LICENSE.TXT) |
 | [Code Object Manager (Comgr)](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/comgr) | [The University of Illinois/NCSA](https://github.com/ROCm/llvm-project/blob/amd-staging/amd/comgr/LICENSE.txt) |
-| [ROCm-Device-Libs](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/device-libs) | [The University of Illinois/NCSA](https://github.com/ROCm/llvm-project/blob/amd-staging/amd/device-libs/LICENSE.TXT) |
-| [clang-ocl](https://github.com/ROCm/clang-ocl/) | [MIT](https://github.com/ROCm/clang-ocl/blob/master/LICENSE) |
-| [ROCK-Kernel-Driver](https://github.com/ROCm/ROCK-Kernel-Driver/) | [GPL 2.0 WITH Linux-syscall-note](https://github.com/ROCm/ROCK-Kernel-Driver/blob/master/COPYING) |
-| [ROCT-Thunk-Interface](https://github.com/ROCm/ROCT-Thunk-Interface/) | [MIT](https://github.com/ROCm/ROCT-Thunk-Interface/blob/master/LICENSE.md) |
-| [ROCR-Runtime](https://github.com/ROCm/ROCR-Runtime/) | [The University of Illinois/NCSA](https://github.com/ROCm/ROCR-Runtime/blob/master/LICENSE.txt) |
-| [ROCR Debug Agent](https://github.com/ROCm/rocr_debug_agent/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocr_debug_agent/blob/amd-staging/LICENSE.txt) |
 | [Composable Kernel](https://github.com/ROCm/composable_kernel) | [MIT](https://github.com/ROCm/composable_kernel/blob/develop/LICENSE) |
 | [half](https://github.com/ROCm/half/) | [MIT](https://github.com/ROCm/half/blob/rocm/LICENSE.txt) |
+| [HIP](https://github.com/ROCm/HIP/) | [MIT](https://github.com/ROCm/HIP/blob/develop/LICENSE.txt) |
+| [hipamd](https://github.com/ROCm/clr/tree/develop/hipamd) | [MIT](https://github.com/ROCm/clr/blob/develop/hipamd/LICENSE.txt) |
 | [hipBLAS](https://github.com/ROCm/hipBLAS/) | [MIT](https://github.com/ROCm/hipBLAS/blob/develop/LICENSE.md) |
 | [hipBLASLt](https://github.com/ROCm/hipBLASLt/) | [MIT](https://github.com/ROCm/hipBLASLt/blob/develop/LICENSE.md) |
+| [HIPCC](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/hipcc) | [MIT](https://github.com/ROCm/llvm-project/blob/amd-staging/amd/hipcc/LICENSE.txt) |
 | [hipCUB](https://github.com/ROCm/hipCUB/) | [Custom](https://github.com/ROCm/hipCUB/blob/develop/LICENSE.txt) |
 | [hipFFT](https://github.com/ROCm/hipFFT/) | [MIT](https://github.com/ROCm/hipFFT/blob/develop/LICENSE.md) |
-| [hipFORT](https://github.com/ROCm/hipfort/) | [MIT](https://github.com/ROCm/hipfort/blob/develop/LICENSE) |
+| [hipfort](https://github.com/ROCm/hipfort/) | [MIT](https://github.com/ROCm/hipfort/blob/develop/LICENSE) |
+| [HIPIFY](https://github.com/ROCm/HIPIFY/) | [MIT](https://github.com/ROCm/HIPIFY/blob/amd-staging/LICENSE.txt) |
 | [hipRAND](https://github.com/ROCm/hipRAND/) | [MIT](https://github.com/ROCm/hipRAND/blob/develop/LICENSE.txt) |
 | [hipSOLVER](https://github.com/ROCm/hipSOLVER/) | [MIT](https://github.com/ROCm/hipSOLVER/blob/develop/LICENSE.md) |
 | [hipSPARSE](https://github.com/ROCm/hipSPARSE/) | [MIT](https://github.com/ROCm/hipSPARSE/blob/develop/LICENSE.md) |
 | [hipSPARSELt](https://github.com/ROCm/hipSPARSELt/) | [MIT](https://github.com/ROCm/hipSPARSELt/blob/develop/LICENSE.md) |
 | [hipTensor](https://github.com/ROCm/hipTensor) | [MIT](https://github.com/ROCm/hipTensor/blob/develop/LICENSE) |
+| hsa-amd-aqlprofile | [AMD Software EULA](https://www.amd.com/en/legal/eula/amd-software-eula.html) |
+| [llvm-project](https://github.com/ROCm/llvm-project/) | [Apache](https://github.com/ROCm/llvm-project/blob/amd-staging/LICENSE.TXT) |
+| [llvm-project/flang](https://github.com/ROCm/llvm-project/tree/amd-staging/flang) | [Apache 2.0](https://github.com/ROCm/llvm-project/blob/amd-staging/flang/LICENSE.TXT) |
+| [MIGraphX](https://github.com/ROCm/AMDMIGraphX/) | [MIT](https://github.com/ROCm/AMDMIGraphX/blob/develop/LICENSE) |
+| [MIOpen](https://github.com/ROCm/MIOpen/) | [MIT](https://github.com/ROCm/MIOpen/blob/develop/LICENSE.txt) |
+| [MIVisionX](https://github.com/ROCm/MIVisionX/) | [MIT](https://github.com/ROCm/MIVisionX/blob/develop/LICENSE.txt) |
+| [Omniperf](https://github.com/ROCm/omniperf) | [MIT](https://github.com/ROCm/omniperf/blob/main/LICENSE) |
+| [Omnitrace](https://github.com/ROCm/omnitrace) | [MIT](https://github.com/ROCm/omnitrace/blob/main/LICENSE) |
 | [rocAL](https://github.com/ROCm/rocAL) | [MIT](https://github.com/ROCm/rocAL/blob/develop/LICENSE.txt) |
 | [rocALUTION](https://github.com/ROCm/rocALUTION/) | [MIT](https://github.com/ROCm/rocALUTION/blob/develop/LICENSE.md) |
 | [rocBLAS](https://github.com/ROCm/rocBLAS/) | [MIT](https://github.com/ROCm/rocBLAS/blob/develop/LICENSE.md) |
+| [ROCdbgapi](https://github.com/ROCm/ROCdbgapi/) | [MIT](https://github.com/ROCm/ROCdbgapi/blob/amd-staging/LICENSE.txt) |
 | [rocDecode](https://github.com/ROCm/rocDecode) | [MIT](https://github.com/ROCm/rocDecode/blob/develop/LICENSE) |
 | [rocFFT](https://github.com/ROCm/rocFFT/) | [MIT](https://github.com/ROCm/rocFFT/blob/develop/LICENSE.md) |
-| [rocPRIM](https://github.com/ROCm/rocPRIM/) | [MIT](https://github.com/ROCm/rocPRIM/blob/develop/LICENSE.txt) |
+| [ROCgdb](https://github.com/ROCm/ROCgdb/) | [GNU General Public License v2.0](https://github.com/ROCm/ROCgdb/blob/amd-master/COPYING) |
+| [ROCK-Kernel-Driver](https://github.com/ROCm/ROCK-Kernel-Driver/) | [GPL 2.0 WITH Linux-syscall-note](https://github.com/ROCm/ROCK-Kernel-Driver/blob/master/COPYING) |
+| [rocminfo](https://github.com/ROCm/rocminfo/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocminfo/blob/amd-staging/License.txt) |
+| [ROCm Bandwidth Test](https://github.com/ROCm/rocm_bandwidth_test/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocm_bandwidth_test/blob/master/LICENSE.txt) |
+| [ROCm CMake](https://github.com/ROCm/rocm-cmake/) | [MIT](https://github.com/ROCm/rocm-cmake/blob/develop/LICENSE) |
+| [ROCm Communication Collectives Library (RCCL)](https://github.com/ROCm/rccl/) | [Custom](https://github.com/ROCm/rccl/blob/develop/LICENSE.txt) |
+| [ROCm-Core](https://github.com/ROCm/rocm-core) | [MIT](https://github.com/ROCm/rocm-core/blob/master/copyright) |
+| [ROCm Data Center (RDC)](https://github.com/ROCm/rdc/) | [MIT](https://github.com/ROCm/rdc/blob/develop/LICENSE) |
+| [ROCm-Device-Libs](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/device-libs) | [The University of Illinois/NCSA](https://github.com/ROCm/llvm-project/blob/amd-staging/amd/device-libs/LICENSE.TXT) |
+| [ROCm-OpenCL-Runtime](https://github.com/ROCm/clr/tree/develop/opencl) | [MIT](https://github.com/ROCm/clr/blob/develop/opencl/LICENSE.txt) |
 | [ROCm Performance Primitives (RPP)](https://github.com/ROCm/rpp) | [MIT](https://github.com/ROCm/rpp/blob/develop/LICENSE) |
+| [ROCm SMI Lib](https://github.com/ROCm/rocm_smi_lib/) | [MIT](https://github.com/ROCm/rocm_smi_lib/blob/develop/License.txt) |
+| [ROCm Validation Suite](https://github.com/ROCm/ROCmValidationSuite/) | [MIT](https://github.com/ROCm/ROCmValidationSuite/blob/master/LICENSE) |
+| [rocPRIM](https://github.com/ROCm/rocPRIM/) | [MIT](https://github.com/ROCm/rocPRIM/blob/develop/LICENSE.txt) |
+| [ROCProfiler](https://github.com/ROCm/rocprofiler/) | [MIT](https://github.com/ROCm/rocprofiler/blob/amd-master/LICENSE) |
+| [ROCprofiler-SDK](https://github.com/ROCm/rocprofiler-sdk) | [MIT](https://github.com/ROCm/rocprofiler-sdk/blob/amd-mainline/LICENSE) |
+| [rocPyDecode](https://github.com/ROCm/rocPyDecode) | [MIT](https://github.com/ROCm/rocPyDecode/blob/develop/LICENSE) |
 | [rocRAND](https://github.com/ROCm/rocRAND/) | [MIT](https://github.com/ROCm/rocRAND/blob/develop/LICENSE.txt) |
+| [ROCr Debug Agent](https://github.com/ROCm/rocr_debug_agent/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocr_debug_agent/blob/amd-staging/LICENSE.txt) |
+| [ROCR-Runtime](https://github.com/ROCm/ROCR-Runtime/) | [The University of Illinois/NCSA](https://github.com/ROCm/ROCR-Runtime/blob/master/LICENSE.txt) |
 | [rocSOLVER](https://github.com/ROCm/rocSOLVER/) | [BSD-2-Clause](https://github.com/ROCm/rocSOLVER/blob/develop/LICENSE.md) |
 | [rocSPARSE](https://github.com/ROCm/rocSPARSE/) | [MIT](https://github.com/ROCm/rocSPARSE/blob/develop/LICENSE.md) |
 | [rocThrust](https://github.com/ROCm/rocThrust/) | [Apache 2.0](https://github.com/ROCm/rocThrust/blob/develop/LICENSE) |
-| [rocWMMA](https://github.com/ROCm/rocWMMA/) | [MIT](https://github.com/ROCm/rocWMMA/blob/develop/LICENSE.md) |
-| [ROCm Communication Collectives Library (RCCL)](https://github.com/ROCm/rccl/) | [Custom](https://github.com/ROCm/rccl/blob/develop/LICENSE.txt) |
-| [ROCm Data Center (RDC)](https://github.com/ROCm/rdc/) | [MIT](https://github.com/ROCm/rdc/blob/develop/LICENSE) |
-| [ROCm CMake](https://github.com/ROCm/rocm-cmake/) | [MIT](https://github.com/ROCm/rocm-cmake/blob/develop/LICENSE) |
-| [ROCdbgapi](https://github.com/ROCm/ROCdbgapi/) | [MIT](https://github.com/ROCm/ROCdbgapi/blob/amd-staging/LICENSE.txt) |
-| [ROCgdb](https://github.com/ROCm/ROCgdb/) | [GNU General Public License v2.0](https://github.com/ROCm/ROCgdb/blob/amd-master/COPYING) |
-| [ROCm SMI Lib](https://github.com/ROCm/rocm_smi_lib/) | [MIT](https://github.com/ROCm/rocm_smi_lib/blob/develop/License.txt) |
-| [AMD SMI](https://github.com/ROCm/amdsmi) | [MIT](https://github.com/ROCm/amdsmi/blob/develop/LICENSE) |
-| [rocminfo](https://github.com/ROCm/rocminfo/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocminfo/blob/amd-staging/License.txt) |
-| [ROCProfiler](https://github.com/ROCm/rocprofiler/) | [MIT](https://github.com/ROCm/rocprofiler/blob/amd-master/LICENSE) |
 | [ROCTracer](https://github.com/ROCm/roctracer/) | [MIT](https://github.com/ROCm/roctracer/blob/amd-master/LICENSE) |
-| [ROCm Bandwidth Test](https://github.com/ROCm/rocm_bandwidth_test/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocm_bandwidth_test/blob/master/LICENSE.txt) |
+| [ROCT-Thunk-Interface](https://github.com/ROCm/ROCT-Thunk-Interface/) | [MIT](https://github.com/ROCm/ROCT-Thunk-Interface/blob/master/LICENSE.md) |
+| [rocWMMA](https://github.com/ROCm/rocWMMA/) | [MIT](https://github.com/ROCm/rocWMMA/blob/develop/LICENSE.md) |
+| [Tensile](https://github.com/ROCm/Tensile/) | [MIT](https://github.com/ROCm/Tensile/blob/develop/LICENSE.md) |
 | [TransferBench](https://github.com/ROCm/TransferBench) | [MIT](https://github.com/ROCm/TransferBench/blob/develop/LICENSE.md) |
-| [ROCmValidationSuite](https://github.com/ROCm/ROCmValidationSuite/) | [MIT](https://github.com/ROCm/ROCmValidationSuite/blob/master/LICENSE) |
-| hsa-amd-aqlprofile | [AMD Software EULA](https://www.amd.com/en/legal/eula/amd-software-eula.html)
 
 Open sourced ROCm components are released via public GitHub
 repositories, packages on [https://repo.radeon.com](https://repo.radeon.com) and other distribution channels.

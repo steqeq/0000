@@ -16,7 +16,7 @@ class Changelog():
 
     def __init__(self, releases: Dict[str, ReleaseBundle]):
         self.releases = list(releases.items())
-        self.releases.sort(key=lambda x: Version(x[0]), reverse=True)
+        # self.releases.sort(key=lambda x: Version(x[0]), reverse=True)
 
         # For each library find the earliest ROCm release where it updated.
         rocm_ver_by_lib_ver: Dict[str, Dict[str, str]] = defaultdict(dict)

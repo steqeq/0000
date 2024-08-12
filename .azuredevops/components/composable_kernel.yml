@@ -25,7 +25,7 @@ parameters:
 
 jobs:
 - job: composable_kernel
-  timeoutInMinutes: 300
+  timeoutInMinutes: 100
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -59,6 +59,6 @@ jobs:
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
-        -DINSTANCES_ONLY=ON
+        -DGPU_TARGETS=gfx942
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

@@ -8,6 +8,8 @@ Model acceleration libraries
 
 This section discusses model acceleration techniques and libraries to improve memory efficiency and performance.
 
+.. _acceleration-flash-attention:
+
 Flash Attention 2
 =================
 
@@ -248,4 +250,4 @@ page describes the options.
    :align: center
 
 Learn more about optimizing kernels with TunableOp in
-:ref:`Optimizing Triton kernels <fine-tuning-llms-triton-tunableop>`.
+:ref:`Optimizing Triton kernels <mi300x-tunableop>`.
