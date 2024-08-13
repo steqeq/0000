@@ -22,6 +22,7 @@ parameters:
   default:
     - aomp
     - clr
+    - hipBLAS-common
     - llvm-project
     - rocm-cmake
     - ROCR-Runtime
