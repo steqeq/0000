@@ -11,6 +11,7 @@ parameters:
     - half
     - HIP
     - hipBLAS
+    - hipBLAS-common
     - hipBLASLt
     - hipCUB
     - hipFFT
