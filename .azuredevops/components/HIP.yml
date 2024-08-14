@@ -10,6 +10,9 @@ parameters:
   default:
     - libnuma-dev
     - mesa-common-dev
+    - ocl-icd-libopencl1
+    - ocl-icd-opencl-dev
+    - opencl-headers
 - name: pipModules
   type: object
   default:
@@ -57,7 +60,7 @@ jobs:
       checkoutRepo: matching_repo
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
+      dependencyList: ${{ parameters.rocmDependenciesAMD }}
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
@@ -109,7 +112,7 @@ jobs:
       checkoutRepo: hipother_repo
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
+      dependencyList: ${{ parameters.rocmDependenciesNvidia }}
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
