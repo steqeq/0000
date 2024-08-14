@@ -87,7 +87,7 @@ multiple unique configurations for use when installing ROCm on a target. Other n
 * Resolution and inclusion of dependency packages for offline installation
 
 For more information, see
-[ROCm Offline Installer Creator](https://rocm.docs.amd.com/projects/rocm-install-on-linux/en/docs-6.2.0/install/rocm-offline-installer.html).
+[ROCm Offline Installer Creator](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.0/install/rocm-offline-installer.html).
 
 ### Math libraries default to Clang instead of HIPCC
 
@@ -113,7 +113,7 @@ for installation instructions.
 
 Refer to the
 [Third-party support matrix](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.0/reference/3rd-party-support-matrix.html#deep-learning)
-for a comprehensive list of third-party frameworks and libraries suppported by ROCm.
+for a comprehensive list of third-party frameworks and libraries supported by ROCm.
 
 #### Optimized framework support for OpenXLA
 
@@ -127,7 +127,7 @@ and [Installing TensorFlow for ROCm](https://rocm.docs.amd.com/projects/install-
 PyTorch now supports Autocast for recurrent neural networks (RNNs) on ROCm. This can help to reduce computational
 workloads and improve performance. Based on the information about the magnitude of values, Autocast can substitute the
 original `float32` linear layers and convolutions with their `float16` or `bfloat16` variants. For more information, see
-[Automatic mixed precision](https://rocm.docs.amd.com/en/docs-6.2.0/how-to/rocm-for-ai/train-a-model#automatic-mixed-precision-amp).
+[Automatic mixed precision](https://rocm.docs.amd.com/en/docs-6.2.0/how-to/rocm-for-ai/train-a-model.html#automatic-mixed-precision-amp).
 
 #### Memory savings for bitsandbytes model quantization
 
@@ -137,7 +137,7 @@ ROCm 6.2.0 introduces the following bitsandbytes changes:
 
 - `Int8` matrix multiplication is enabled, and it includes the following functions:
   - `extract-outliers` – extracts rows and columns that have outliers in the inputs. They’re later used for matrix multiplication without quantization.
-  - `transform` – row-to-column and column-to-row transformations are enabled, along with transpose operations. These are used before and after matmul computation.
+  - `transform` – row-to-column and column-to-row transformations are enabled, along with transpose operations. These are used before and after `matmul` computation.
   - `igemmlt` – new function for GEMM computation A*B^T. It uses
     [hipblasLtMatMul](https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-6.2.0/api-reference.html#hipblasltmatmul) and performs 8-bit GEMM operations.
   - `dequant_mm` – dequantizes output matrix to original data type using scaling factors from vector-wise quantization.
@@ -192,7 +192,7 @@ all the accessible features, and the `vllm/Dockerfile.rocm` file can be used.
 
 ### Enhanced performance tuning on AMD Instinct accelerators
 
-ROCm is pretuned for high-performance computing workloads including large language models, generative AI, and scientific computing.
+ROCm is pre-tuned for high-performance computing workloads including large language models, generative AI, and scientific computing.
 The ROCm documentation provides comprehensive guidance on configuring your system for AMD Instinct accelerators. It includes
 detailed instructions on system settings and application tuning suggestions to help you fully leverage the capabilities of these
 accelerators for optimal performance. For more information, see
@@ -254,7 +254,7 @@ ROCm 6.2.0 marks the end of support (EoS) for:
 
 ROCm 6.2.0 has been tested against pre-release Ubuntu 22.04.5 (kernel: 6.5 [HWE]).
 
-See the [Compatibility matrix](https://rocm.docs.amd.com/en/docs/6.2.0/compatibility/compatibility-matrix.html) for an
+See the [Compatibility matrix](https://rocm.docs.amd.com/en/docs-6.2.0/compatibility/compatibility-matrix.html) for an
 overview of supported operating systems and hardware architectures.
 
 ## ROCm components
@@ -660,6 +660,8 @@ The following sections describe key changes to ROCm components.
 - `amdsmi_get_gpu_process_isolation` and `amdsmi_clean_gpu_local_data` commands do not work.
   They will be supported in a future release.
 
+See [issue #3500](https://github.com/ROCm/ROCm/issues/3500) on GitHub.
+
 ```{note}
 See the [detailed AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/docs/6.2.0/CHANGELOG.md)
 on GitHub for more information.
@@ -669,7 +671,7 @@ on GitHub for more information.
 
 #### Changes
 
-- Added suppport for:
+- Added support for:
   - Permute scale for any dimension (#1198).
   - Combined elementwise op (#1217).
   - Multi D in grouped convolution backward weight (#1280).
@@ -950,7 +952,7 @@ on GitHub for more information.
 
   * Added `llvm.exp10` intrinsic.
 
-* LLVM infrastruture
+* LLVM infrastructure
 
   * The minimum Clang version to build LLVM in C++20 configuration is now `clang-17.0.6`.
 
@@ -1253,8 +1255,8 @@ on GitHub for more information.
 
   * The LLVM filesystem class `UniqueID` and function `equivalent`() no longer determine that distinct different path
     names for the same hard linked file actually are equal. This is an intentional tradeoff in a bug fix, where the bug
-    used to cause distinct files to be considered equivalent on some file systems. This change fixed the issues
-    [https://github.com/llvm/llvm-project/issues/61401]() and [https://github.com/llvm/llvm-project/issues/22079]().
+    used to cause distinct files to be considered equivalent on some file systems. This change fixed the GitHub issues
+    [#61401](https://github.com/llvm/llvm-project/issues/61401) and [#22079](https://github.com/llvm/llvm-project/issues/22079).
 
 #### Known issues
 
@@ -1273,6 +1275,8 @@ As a workaround, initialize the parameters to ``__shfl``. For example:
 unsigned long istring = 0 // Initialize the input to __shfl
 return __shfl(istring, 0, 64)
 ```
+
+See [issue #3499](https://github.com/ROCm/ROCm/issues/3499) on GitHub.
 
 ### **MIGraphX** (2.10.0)
 
@@ -1412,6 +1416,8 @@ return __shfl(istring, 0, 64)
   *See: /opt/rocm-6.2.0/libexec/omniperf/requirements.txt*"
 
   As a workaround, install these Python requirements manually: `pip install /opt/rocm-6.2.0/libexec/omniperf/requirements.txt`.
+
+See [issue #3498](https://github.com/ROCm/ROCm/issues/3498) on GitHub.
 
 ### **OpenMP** (17.0.0)
 
@@ -1706,7 +1712,7 @@ on GitHub for more information.
   - Generator creation (`rocrand_create_generator`), initialization (`rocrand_initialize_generator`), and destruction (`rocrand_destroy_generator`) must still happen outside the hipGraph.
   - After the generator is created, you may call API functions to set its seed, offset, and order.
   - After the generator is initialized (but before stream capture or manual graph creation begins), use `rocrand_set_stream` to set the stream the generator will use within the graph.
-  - A generator's seed, offset, and stream may not be changed from within the hipGraph. Attempting to do so may result in unpredicable behaviour.
+  - A generator's seed, offset, and stream may not be changed from within the hipGraph. Attempting to do so may result in unpredictable behaviour.
   - API calls for the poisson distribution (for example, `rocrand_generate_poisson`) are not yet supported inside of hipGraphs.
   - For sample usage, see the unit tests in `test/test_rocrand_hipgraphs.cpp`
 * Building rocRAND now requires a C++17 capable compiler, as the internal library sources now require it. However consuming rocRAND is still possible from C++11 as public headers don't make use of the new features.
@@ -1909,7 +1915,7 @@ on GitHub for more information.
 - Fixed mismatch issue with `GlobalReadCoalesceGroup`.
 - Fixed rocBLAS build fail on gfx11 (used state["ISA"] for reject conditions instead of globalParameters["CurrentISA"]).
 - Fixed for LdsPad auto (fixed incorrect value assignment for autoAdjusted, set LdsBlockSizePerPadA or B = 0 if stride is not power of 2).
-- Fixed inacurate vgpr allocation for ClusterLocalRead.
+- Fixed inaccurate vgpr allocation for ClusterLocalRead.
 - Fixed mismatch issue with LdsBlockSizePerPad + MT1(or 0) not power of 2.
 - Fixed mismatch issue with InitAccOpt + InnerUnroll (use const 0 for src1 of MFMA only if index of innerUnrll (iui) is 0).
 - Fixed HostLibraryTests on gfx942 and gfx941.
@@ -1962,6 +1968,9 @@ If unsure of the default processor affinity settings for your environment, run t
 
 bash -c "echo taskset -p \$\$" 
 ```
+
+See [issue #3493](https://github.com/ROCm/ROCm/issues/3493) on GitHub.
+
 ### Display issues on servers with Instinct MI300-series accelerators when loading AMDGPU driver
 
 AMD Instinct MI300-series accelerators and third-party GPUs such as the Matrox G200 have an issue impacting video
@@ -1973,10 +1982,14 @@ this includes both the local video output and remote access via iDRAC. The displ
 the `amdgpu` driver modules. Video output impacts both terminal access when running in `runlevel 3` and GUI access when
 running in `runlevel 5`. Server functionality can still be accessed via SSH or other remote connection methods.
 
+See [issue #3494](https://github.com/ROCm/ROCm/issues/3494) on GitHub.
+
 ### KFDTest failure on Instinct MI300X with Oracle Linux 8.9
 
 The `KFDEvictTest.QueueTest` is failing on the MI300X platform during KFD (Kernel Fusion Driver) tests, causing the full
 suite to not execute properly. This issue is suspected to be hardware-related.
+
+See [issue #3495](https://github.com/ROCm/ROCm/issues/3495) on GitHub.
 
 ### Bandwidth limitation in gang and non-gang modes on Instinct MI300A
 
@@ -1984,6 +1997,8 @@ Expected target peak non-gang performance (~60GB/s) and target peak gang perform
 and non-gang performance are observed to be limited at 45GB/s.
 
 This issue will be addressed in a future ROCm release.
+
+See [issue #3496](https://github.com/ROCm/ROCm/issues/3496) on GitHub.
 
 ### rocm-llvm-alt
 
@@ -1993,6 +2008,8 @@ the ROCm 6.2.0 release. Users who attempt to invoke the closed-source compiler w
 LLVM consumer-producer mismatch and the compilation will fail. There is no workaround that allows
 use of the closed-source compiler. It is recommended to compile using the default open-source
 compiler, which generates high-quality AMD CPU and AMD GPU code.
+
+See [issue #3492](https://github.com/ROCm/ROCm/issues/3492) on GitHub.
 
 ## ROCm upcoming changes
 

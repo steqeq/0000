@@ -1,2 +1,2 @@
 from .defaults import TEMPLATES, PROCESSORS
-from .custom_templates import hipfort, hipify, mivisionx, rpp, rvs
+from .custom_templates import hipify

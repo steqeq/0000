@@ -54,6 +54,12 @@ jobs:
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -63,43 +69,38 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
-    - task: Bash@3
-      displayName: 'Download AOCL'
-      inputs:
-        targetType: inline
+  - task: Bash@3
+    displayName: 'Download AOCL'
+    inputs:
+      targetType: inline
+      workingDirectory: '$(Pipeline.Workspace)'
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
         script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - task: Bash@3
-      displayName: 'Install AOCL'
-      inputs:
-        targetType: inline
-        script: sudo apt install --yes ./aocl-linux-gcc-4.2.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
-        dependencySource: staging
-# manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
-    - task: Bash@3
-      displayName: 'Download AOCL'
-      inputs:
-        targetType: inline
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-1/aocl-linux-aocc-4.1.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - task: Bash@3
-      displayName: 'Install AOCL'
-      inputs:
-        targetType: inline
+  - task: Bash@3
+    displayName: 'Install AOCL'
+    inputs:
+      targetType: inline
+      workingDirectory: '$(Pipeline.Workspace)'
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        script: sudo apt install --yes ./aocl-linux-gcc-4.2.0_1_amd64.deb
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
-  - script: echo $PATH
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -108,7 +109,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
-        -DAMDGPU_TARGETS=gfx942
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DTensile_CODE_OBJECT_VERSION=default
         -DTensile_LOGIC=asm_full
         -DTensile_SEPARATE_ARCHITECTURES=ON
@@ -120,3 +121,5 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
