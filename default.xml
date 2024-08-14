@@ -16,6 +16,7 @@
     <project name="rocm_bandwidth_test" />
     <project name="rocm_smi_lib" />
     <project name="rocm-core" />
+    <project name="rocm-examples" />
     <project name="rocminfo" />
     <project name="rocprofiler" />
     <project name="rocprofiler-register" />
