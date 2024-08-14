@@ -119,16 +119,20 @@ schedules:
 jobs:
 - job: pytorch
   timeoutInMinutes: 120
+  strategy:
+    matrix:
+      amd-staging-gfx942:
+        ROCM_BRANCH: amd-staging
+        JOB_GPU_TARGET: gfx942
+      amd-staging-gfx90a:
+        ROCM_BRANCH: amd-staging
+        JOB_GPU_TARGET: gfx90a
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
 # various flags/parameters expected by bash scripts in pytorch builder repo
   - name: ROCM_VERSION
     value: 6.3.0
-  - name: PYTORCH_ROCM_ARCH
-    value: gfx942
-  - name: GPU_TARGET
-    value: gfx942
   - name: ROCM_PATH
     value: /opt/rocm
   - name: DESIRED_CUDA
@@ -169,6 +173,7 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       dependencySource: staging
+      gpuTarget: $(JOB_GPU_TARGET)
   - task: Bash@3
     displayName: ROCm symbolic links
     inputs:
@@ -221,15 +226,15 @@ jobs:
     inputs:
       targetType: inline
       script: |
-        sudo PYTORCH_ROCM_ARCH=$(PYTORCH_ROCM_ARCH) MKLROOT=$(MKLROOT) bash pytorch/.ci/docker/common/install_rocm_magma.sh
+        sudo PYTORCH_ROCM_ARCH=$(JOB_GPU_TARGET) MKLROOT=$(MKLROOT) bash pytorch/.ci/docker/common/install_rocm_magma.sh
       workingDirectory: $(Build.SourcesDirectory)
   - task: Bash@3
     displayName: Install AOTriton Shared Library
     inputs:
       targetType: inline
       script: |
-        sudo bash ./install_aotriton.sh /opt/rocm
-      workingDirectory: $(Build.SourcesDirectory)/pytorch/.ci/docker/common
+        sudo bash ./common/install_aotriton.sh /opt/rocm
+      workingDirectory: $(Build.SourcesDirectory)/pytorch/.ci/docker
   - task: Bash@3
     displayName: Run ROCm Build Script
     inputs:
@@ -237,12 +242,16 @@ jobs:
       script: >-
         sudo
         DESIRED_CUDA=$(DESIRED_CUDA)
-        PYTORCH_ROCM_ARCH=$(PYTORCH_ROCM_ARCH)
+        PYTORCH_ROCM_ARCH=$(JOB_GPU_TARGET)
+        GPU_TARGET=$(JOB_GPU_TARGET)
         DESIRED_PYTHON=$(DESIRED_PYTHON)
         PYTORCH_ROOT=$(PYTORCH_ROOT)
         CMAKE_ARGS=$(CMAKE_ARGS)
         AOTRITON_INSTALLED_PREFIX=$(AOTRITON_INSTALLED_PREFIX)
         DESIRED_DEVTOOLSET=$(DESIRED_DEVTOOLSET)
+        TORCH_PACKAGE_NAME=torch.$(ROCM_BRANCH).$(JOB_GPU_TARGET)
+        PYTORCH_BUILD_VERSION=$(cat $(Build.SourcesDirectory)/pytorch/version.txt | cut -da -f1)
+        PYTORCH_BUILD_NUMBER=$(date -u +%Y%m%d)
         bash ./manywheel/build_rocm.sh
       workingDirectory: $(Build.SourcesDirectory)/builder
   - task: PublishPipelineArtifact@1
