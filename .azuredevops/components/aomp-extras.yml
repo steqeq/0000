@@ -48,7 +48,7 @@ jobs:
     parameters:
       componentName: aomp-extras
       extraBuildFlags: >-
-        -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm
+        -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/lib/llvm
         -DCMAKE_BUILD_TYPE=Release
         -DAOMP_STANDALONE_BUILD=0
         -DAOMP_VERSION_STRING=$(LATEST_RELEASE_TAG)

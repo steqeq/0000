@@ -29,7 +29,7 @@ jobs:
   - name: ROCM_PATH
     value: $(Agent.BuildDirectory)/rocm
   - template: /.azuredevops/variables-global.yml
-  pool: 
+  pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
@@ -57,6 +57,6 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang++
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

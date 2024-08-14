@@ -61,7 +61,7 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -GNinja
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang++
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)

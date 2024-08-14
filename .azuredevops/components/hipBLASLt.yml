@@ -38,15 +38,15 @@ jobs:
   - name: HIP_ROCCLR_HOME
     value: $(Build.BinariesDirectory)/rocm
   - name: TENSILE_ROCM_ASSEMBLER_PATH
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+    value: $(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang
   - name: CMAKE_CXX_COMPILER
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
+    value: $(Agent.BuildDirectory)/rocm/lib/llvm/bin/clang-offload-bundler
   - name: TENSILE_ROCM_PATH
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: PATH
-    value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+    value: $(Agent.BuildDirectory)/rocm/lib/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
@@ -98,13 +98,13 @@ jobs:
     displayName: Symlink to rocm/lib/llvm
     inputs:
       targetType: inline
-      script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+      script: ln -s $(Agent.BuildDirectory)/rocm/lib/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DTensile_LOGIC=
         -DTensile_CPU_THREADS=

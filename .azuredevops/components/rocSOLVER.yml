@@ -84,8 +84,8 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Pipeline.Workspace)/deps-install
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DBUILD_CLIENTS_TESTS=ON
         -DBUILD_CLIENTS_BENCHMARKS=OFF

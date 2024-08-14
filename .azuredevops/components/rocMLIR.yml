@@ -47,8 +47,8 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/clang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/clang
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DBUILD_FAT_LIBROCKCOMPILER=1
         -GNinja

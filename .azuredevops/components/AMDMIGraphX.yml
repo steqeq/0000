@@ -88,11 +88,11 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/clang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/clang
         -DCMAKE_BUILD_TYPE=Release
         -DGPU_TARGETS=$(JOB_GPU_TARGET)
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/lib/llvm;$(Agent.BuildDirectory)/rocm
         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DBUILD_TESTING=ON

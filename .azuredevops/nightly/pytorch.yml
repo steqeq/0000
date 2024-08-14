@@ -180,7 +180,7 @@ jobs:
       targetType: inline
       script: |
         sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
-        sudo ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+        sudo ln -s $(Agent.BuildDirectory)/rocm/lib/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
   - checkout: self
   - task: Bash@3
     displayName: git clone pytorch builder

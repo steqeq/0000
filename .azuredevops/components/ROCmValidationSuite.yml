@@ -69,17 +69,11 @@ jobs:
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
-# Set link to redirect llvm folder
-  - task: Bash@3
-    displayName: create symlink
-    inputs:
-      targetType: inline
-      script: ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/clang++
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCPACK_PACKAGING_INSTALL_PREFIX=$(Build.BinariesDirectory)
         -GNinja

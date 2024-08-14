@@ -83,7 +83,7 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DMIOPEN_BACKEND=HIP
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang++
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF

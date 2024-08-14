@@ -65,7 +65,7 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang++
         -DCMAKE_BUILD_TYPE=Release
         -DROCWMMA_BUILD_TESTS=ON
         -DROCWMMA_BUILD_SAMPLES=OFF

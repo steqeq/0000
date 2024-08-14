@@ -67,7 +67,7 @@ jobs:
     parameters:
       # https://github.com/ROCm/HIP/issues/2203
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/lib/llvm/bin/amdclang++
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DROCM_ROOT=$(Agent.BuildDirectory)/rocm
         -DCMAKE_HIP_ARCHITECTURES=$(JOB_GPU_TARGET)
