@@ -11,8 +11,8 @@ parameters:
     - libnuma-dev
     - mesa-common-dev
     - ocl-icd-libopencl1
-    - opencl-headers
     - ocl-icd-opencl-dev
+    - opencl-headers
 - name: pipModules
   type: object
   default:
@@ -62,10 +62,10 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmDependenciesAMD }}
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
 # compile clr
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
@@ -114,10 +114,10 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmDependenciesNvidia }}
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - script: 'ls -1R $(Agent.BuildDirectory)/rocm'
     displayName: 'Artifact listing'
