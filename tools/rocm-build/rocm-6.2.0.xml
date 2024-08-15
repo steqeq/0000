@@ -73,4 +73,3 @@
     <project name="aomp-extras" path="openmp-extras/aomp-extras" />
     <project name="flang" path="openmp-extras/flang" />
 </manifest>
-
