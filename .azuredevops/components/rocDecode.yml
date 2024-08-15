@@ -29,6 +29,7 @@ parameters:
     - clr
     - rocminfo
     - rocm-core
+    - rocprofiler-register
 
 jobs:
 - job: rocDecode
