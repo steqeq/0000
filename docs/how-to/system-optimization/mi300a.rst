@@ -124,8 +124,8 @@ This section describes performance-based settings.
 
 * **Increase the amount of allocatable memory**
 
-  By default, when using a device allocator via HIP, it is only possible to allocate 96GB out of 
-  a possible 128GB of memory on the MI300A. This limitation does not affect host allocations.
+  By default, when using a device allocator via HIP, it is only possible to allocate 96GiB out of 
+  a possible 128GiB of memory on the MI300A. This limitation does not affect host allocations.
   To increase the amount of available system memory, load the ``amdttm`` module with new values for
   ``pages_limit`` and ``page_pool_size``. These numbers correspond to the number of 4 KiB pages of memory.
   To make 128 GiB of memory available across all four devices, for a total amount of 512 GiB,
