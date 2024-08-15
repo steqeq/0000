@@ -239,6 +239,11 @@ steps:
       script: ls -1R $(Agent.BuildDirectory)/rocm
 - ${{ if eq(parameters.skipLibraryLinking, false) }}:
   - task: Bash@3
+    displayName: temporary symlink
+    inputs:
+      targetType: inline
+      script: ln -s $(Agent.BuildDirectory)/rocm/lib/llvm $(Agent.BuildDirectory)/rocm/llvm
+  - task: Bash@3
     displayName: 'link ROCm shared libraries'
     inputs:
       targetType: inline
@@ -246,14 +251,14 @@ steps:
       ${{ if eq(parameters.extractToMnt, true) }}:
         script: |
           echo /mnt/rocm/lib | sudo tee -a /etc/ld.so.conf
-          echo /mnt/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf
+          echo /mnt/rocm/lib/llvm/lib | sudo tee -a /etc/ld.so.conf
           sudo cat /etc/ld.so.conf
           sudo ldconfig -v
           ldconfig -p
       ${{ else }}:
         script: |
           echo $(Agent.BuildDirectory)/rocm/lib | sudo tee -a /etc/ld.so.conf
-          echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf
+          echo $(Agent.BuildDirectory)/rocm/lib/llvm/lib | sudo tee -a /etc/ld.so.conf
           sudo cat /etc/ld.so.conf
           sudo ldconfig -v
           ldconfig -p
