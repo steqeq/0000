@@ -37,7 +37,7 @@ ROCm documentation is organized into the following categories:
 * {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`
 * {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
-* [OpenMP](./about/compatibility/openmp.md)
+* {doc}`OpenMP<llvm-project:conceptual/openmp>`
 * [Precision support](./compatibility/precision-support.rst)
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
