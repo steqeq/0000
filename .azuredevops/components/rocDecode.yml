@@ -18,10 +18,8 @@ parameters:
     - libavutil-dev
     - libstdc++-12-dev
     - libva-dev
-    - libdrm-dev
-    # below are packages registered from repo.radeon.com
     - mesa-amdgpu-va-drivers
-    # - rocm-hip-runtime-dev
+    - libdrm-dev
 - name: rocmDependencies
   type: object
   default:
