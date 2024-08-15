@@ -76,11 +76,11 @@ jobs:
         -DPACKAGE_VENDOR=AMD
         -DCLANG_LINK_FLANG_LEGACY=ON
         -DCMAKE_CXX_STANDARD=17
-        -DROCM_LLVM_BACKWARD_COMPAT_LINK=$(Build.BinariesDirectory)/lib/llvm
+        -DROCM_LLVM_BACKWARD_COMPAT_LINK=$(Build.BinariesDirectory)/llvm
         -DROCM_LLVM_BACKWARD_COMPAT_LINK_TARGET=./lib/llvm
         -GNinja
       cmakeBuildDir: 'llvm/build'
-      installDir: '$(Build.BinariesDirectory)/lib/llvm'
+      installDir: '$(Build.BinariesDirectory)/llvm'
 # use llvm-lit to run unit tests for llvm, clang, and lld
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
