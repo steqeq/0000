@@ -20,6 +20,7 @@ parameters:
     - libva-dev
     - mesa-amdgpu-va-drivers
     - libdrm-dev
+    - rocm-hip-runtime-dev
 - name: rocmDependencies
   type: object
   default:
@@ -75,7 +76,6 @@ jobs:
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_INCLUDE_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
