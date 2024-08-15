@@ -21,7 +21,7 @@ parameters:
     - libdrm-dev
     # below are packages registered from repo.radeon.com
     - mesa-amdgpu-va-drivers
-    - rocm-hip-runtime-dev
+    # - rocm-hip-runtime-dev
 - name: rocmDependencies
   type: object
   default:
