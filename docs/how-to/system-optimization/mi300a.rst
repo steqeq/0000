@@ -126,7 +126,7 @@ This section describes performance-based settings.
 
   By default, when using a device allocator via HIP, it is only possible to allocate 96 GiB out of 
   a possible 128 GiB of memory on the MI300A. This limitation does not affect host allocations.
-  To increase the amount of available system memory, load the ``amdttm`` module with new values for
+  To increase the available system memory, load the ``amdttm`` module with new values for
   ``pages_limit`` and ``page_pool_size``. These numbers correspond to the number of 4 KiB pages of memory.
   To make 128 GiB of memory available across all four devices, for a total amount of 512 GiB,
   set ``pages_limit`` and ``page_pool_size`` to ``134217728``. For a two-socket system, divide these values
@@ -163,8 +163,8 @@ This section describes performance-based settings.
   .. note::
 
      The system settings for ``pages_limit`` and ``page_pool_size`` are calculated by multiplying the
-     per-APU limit of 4 KiB pages, which is ``33554432``, by the number of APUs on the node. For a system with
-     two APUs, the limit is ``33554432 x 2`` or ``67108864``.
+     per-APU limit of 4 KiB pages, which is ``33554432``, by the number of APUs on the node. The limit for a system with
+     two APUs ``33554432 x 2`` or ``67108864``.
      This means the ``modprobe`` command for two APUs is ``sudo modprobe amdttm pages_limit=67108864 page_pool_size=67108864``.
 
 * **Limit the maximum and single memory allocations on the GPU**
