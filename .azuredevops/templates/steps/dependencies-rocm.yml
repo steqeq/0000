@@ -183,6 +183,12 @@ parameters:
     - MIVision
     - rocAL
     - ROCmValidationSuite
+- name: componentsExcludeTarget
+  type: object
+  default:
+    gfx90a:
+      - hipSPARSELt
+    gfx942:
 
 steps:
 # assuming artifact-download.yml template file in same directory
@@ -192,10 +198,13 @@ steps:
 # gpu name will be specified by parameters.gpuTarget for components that are in componentsWithGPUTarget
 # e.g., gfx942 to only download artifacts from component for this gpu if applicable
 - ${{ each dependency in parameters.dependencyList }}:
-  - ${{ if contains(dependency, ':') }}:
+
+  # no gpuTarget specified OR component does not have specific gfx builds
+  # do not apply a gfx target download filter
+  - ${{ if or( eq(gpuTarget, ''), not(containsValue(parameters.componentsWithGPUTarget, split(dependency, ':')[0])) ) }}:
     - template: artifact-download.yml
       parameters:
-        componentName: ${{ split(dependency, ':')[0] }}
+        componentName: ${{ dependency }}
         extractToMnt: ${{ parameters.extractToMnt }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
@@ -203,24 +212,90 @@ steps:
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: false
-        ${{ if containsValue( parameters.componentsWithGPUTarget, split(dependency, ':')[0] ) }}:
-          fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
-        ${{ else }}:
+        ${{ if contains(dependency, ':') }}:
           fileFilter: ${{ split(dependency, ':')[1] }}
-# no colon (:) found in this item in the list
-  - ${{ else }}:
-    - template: artifact-download.yml
-      parameters:
-        componentName: ${{ dependency }}
-        extractToMnt: ${{ parameters.extractToMnt }}
-        ${{ if eq(parameters.dependencySource, 'staging') }}:
-          pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
-          latestFromBranch: ${{ parameters.latestFromBranch }}
-        ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
-          pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
-          latestFromBranch: false
-        ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
-          fileFilter: ${{ parameters.gpuTarget }}
+  # gpuTarget == gfx942
+  - ${{ elseif eq(gpuTarget, 'gfx942') }}:
+    # component supports gfx942
+    - ${{ if not(containsValue(componentsExcludeTarget.gfx942, split(dependency, ':')[0])) }}:
+      - template: artifact-download.yml
+        parameters:
+          componentName: ${{ dependency }}
+          extractToMnt: ${{ parameters.extractToMnt }}
+          ${{ if eq(parameters.dependencySource, 'staging') }}:
+            pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+            latestFromBranch: ${{ parameters.latestFromBranch }}
+          ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
+            pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+            latestFromBranch: false
+          ${{ if contains(dependency, ':') }}:
+            fileFilter: ${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}
+          ${{ else }}:
+            fileFilter: ${{ parameters.gpuTarget }}
+    # component does not support gfx942
+    - ${{ else }}:
+      - task: Bash@3
+        displayName: ${{ dependency }} does not support ${{ gpuTarget }}
+        inputs:
+          targetType: inline
+          script: echo "Component ${{ dependency }} does not support ${{ gpuTarget }}"
+  # gpuTarget == gfx90a
+  - ${{ elseif eq(gpuTarget, 'gfx90a') }}:
+    # component supports gfx90a
+    - ${{ if not(containsValue(componentsExcludeTarget.gfx90a, split(dependency, ':')[0])) }}:
+      - template: artifact-download.yml
+        parameters:
+          componentName: ${{ dependency }}
+          extractToMnt: ${{ parameters.extractToMnt }}
+          ${{ if eq(parameters.dependencySource, 'staging') }}:
+            pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+            latestFromBranch: ${{ parameters.latestFromBranch }}
+          ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
+            pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+            latestFromBranch: false
+          ${{ if contains(dependency, ':') }}:
+            fileFilter: ${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}
+          ${{ else }}:
+            fileFilter: ${{ parameters.gpuTarget }}
+    # component does not support gfx90a
+    - ${{ else }}:
+      - task: Bash@3
+        displayName: ${{ dependency }} does not support ${{ gpuTarget }}
+        inputs:
+          targetType: inline
+          script: echo "Component ${{ dependency }} does not support ${{ gpuTarget }}"
+
+
+#   - ${{ if contains(dependency, ':') }}:
+#     - template: artifact-download.yml
+#       parameters:
+#         componentName: ${{ split(dependency, ':')[0] }}
+#         extractToMnt: ${{ parameters.extractToMnt }}
+#         ${{ if eq(parameters.dependencySource, 'staging') }}:
+#           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+#           latestFromBranch: ${{ parameters.latestFromBranch }}
+#         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
+#           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+#           latestFromBranch: false
+#         ${{ if containsValue( parameters.componentsWithGPUTarget, split(dependency, ':')[0] ) }}:
+#           fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
+#         ${{ else }}:
+#           fileFilter: ${{ split(dependency, ':')[1] }}
+# # no colon (:) found in this item in the list
+#   - ${{ else }}:
+#     - template: artifact-download.yml
+#       parameters:
+#         componentName: ${{ dependency }}
+#         extractToMnt: ${{ parameters.extractToMnt }}
+#         ${{ if eq(parameters.dependencySource, 'staging') }}:
+#           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+#           latestFromBranch: ${{ parameters.latestFromBranch }}
+#         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
+#           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
+#           latestFromBranch: false
+#         ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
+#           fileFilter: ${{ parameters.gpuTarget }}
+
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
   - template: artifact-download.yml
