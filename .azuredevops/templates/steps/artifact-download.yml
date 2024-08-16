@@ -25,10 +25,10 @@ parameters:
     amdsmi: develop
     aomp-extras: aomp-dev
     aomp: aomp-dev
-    clr: develop
+    clr: amd-staging
     composable_kernel: develop
     half: rocm
-    HIP: develop
+    HIP: amd-staging
     hipBLAS: develop
     hipBLASLt: develop
     hipBLAS-common: develop
