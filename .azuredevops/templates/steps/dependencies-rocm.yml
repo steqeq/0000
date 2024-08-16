@@ -200,7 +200,7 @@ steps:
 - ${{ each dependency in parameters.dependencyList }}:
   # no gpuTarget specified OR component does not have specific gfx builds
   # do not apply a gfx target download filter
-  - ${{ if or( eq(gpuTarget, ''), not(containsValue(parameters.componentsWithGPUTarget, split(dependency, ':')[0])) ) }}:
+  - ${{ if or( eq(parameters.gpuTarget, ''), not(containsValue(parameters.componentsWithGPUTarget, split(dependency, ':')[0])) ) }}:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
@@ -214,7 +214,7 @@ steps:
         ${{ if contains(dependency, ':') }}:
           fileFilter: ${{ split(dependency, ':')[1] }}
   # gpuTarget == gfx942
-  - ${{ elseif eq(gpuTarget, 'gfx942') }}:
+  - ${{ elseif eq(parameters.gpuTarget, 'gfx942') }}:
     # component supports gfx942
     - ${{ if not(containsValue(componentsExcludeTarget.gfx942, split(dependency, ':')[0])) }}:
       - template: artifact-download.yml
@@ -259,10 +259,10 @@ steps:
     # component does not support gfx90a
     - ${{ else }}:
       - task: Bash@3
-        displayName: ${{ dependency }} does not support ${{ gpuTarget }}
+        displayName: ${{ dependency }} does not support ${{ parameters.gpuTarget }}
         inputs:
           targetType: inline
-          script: echo "Component ${{ dependency }} does not support ${{ gpuTarget }}"
+          script: echo "Component ${{ dependency }} does not support ${{ parameters.gpuTarget }}"
 # fixed case only accepts one component at a time, so no array input
 - ${{ if eq(parameters.dependencySource, 'fixed') }}:
   - template: artifact-download.yml
