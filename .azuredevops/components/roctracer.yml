@@ -25,6 +25,7 @@ parameters:
     - rocprofiler-register
     - clr
     - rocminfo
+    - hipSPARSELt
 
 jobs:
 - job: roctracer
