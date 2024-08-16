@@ -121,7 +121,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,N/A,0.5.0,0.5.0
       :doc:`hipCC <hipcc:index>`,1.1.1,1.0.0,1.0.0
       `Flang <https://github.com/ROCm/flang>`_,18.0.0.24232,17.0.0.24193,17.0.0.23483
-      `llvm-project <https://github.com/ROCm/llvm-project>`_,18.0.0.24232,17.0.0.24193,17.0.0.23483
+      :doc:`llvm-project <llvm-project:index>`,18.0.0.24232,17.0.0.24193,17.0.0.23483
       `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24232,17.0.0.24193,17.0.0.23483
       ,,,
       RUNTIMES,".. _runtime-support-compatibility-matrix:",,
