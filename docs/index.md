@@ -39,7 +39,7 @@ ROCm documentation is organized into the following categories:
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
-:::{grid-item-card} "How to"
+:::{grid-item-card} How to
 :class-body: rocm-card-banner rocm-hue-6
 
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
