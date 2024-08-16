@@ -122,6 +122,51 @@ This section describes performance-based settings.
 
        transparent_hugepage=always
 
+* **Increase the amount of allocatable memory**
+
+  By default, when using a device allocator via HIP, it is only possible to allocate 96 GiB out of 
+  a possible 128 GiB of memory on the MI300A. This limitation does not affect host allocations.
+  To increase the available system memory, load the ``amdttm`` module with new values for
+  ``pages_limit`` and ``page_pool_size``. These numbers correspond to the number of 4 KiB pages of memory.
+  To make 128 GiB of memory available across all four devices, for a total amount of 512 GiB,
+  set ``pages_limit`` and ``page_pool_size`` to ``134217728``. For a two-socket system, divide these values
+  by two. After setting these values, reload the AMDGPU driver.
+
+  First, review the current settings using this shell command:
+
+  .. code-block:: shell
+
+     cat /sys/module/ttm/parameters/pages_limit 
+  
+  To set the amount of allocatable memory to all available memory on all four APU devices, run these commands:
+
+  .. code-block:: shell
+
+     sudo modprobe amdttm pages_limit=134217728 page_pool_size=134217728
+     sudo modprobe amdgpu
+
+  These settings can also be hardcoded in the ``/etc/modprobe.d/amdttm.conf`` file. To use this method, 
+  the filesystem must already be set up when the kernel driver is loaded.
+  Add the following lines to ``/etc/modprobe.d/amdttm.conf``:
+
+  .. code-block:: shell
+
+     options amdttm pages_limit=134217728
+     options amdttm page_pool_size=134217728
+
+  To verify the new settings and confirm the change, use this command:
+
+  .. code-block:: shell
+
+     cat /sys/module/ttm/parameters/pages_limit 
+
+  .. note::
+
+     The system settings for ``pages_limit`` and ``page_pool_size`` are calculated by multiplying the
+     per-APU limit of 4 KiB pages, which is ``33554432``, by the number of APUs on the node. The limit for a system with
+     two APUs ``33554432 x 2`` or ``67108864``.
+     This means the ``modprobe`` command for two APUs is ``sudo modprobe amdttm pages_limit=67108864 page_pool_size=67108864``.
+
 * **Limit the maximum and single memory allocations on the GPU**
   
   Many AI-related applications were originally developed on discrete GPUs. Some of these applications 

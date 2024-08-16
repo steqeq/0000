@@ -430,6 +430,7 @@ accuracies
 activations
 addr
 alloc
+allocatable
 allocator
 allocators
 amdgpu
