@@ -25,11 +25,8 @@ ROCm documentation is organized into the following categories:
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-compatibility.jpg
-:img-alt: Compatibility information
-:padding: 2
+:::{grid-item-card} Compatibility
+:class-body: rocm-card-banner rocm-hue-1
 
 * [Compatibility matrix](./compatibility/compatibility-matrix.rst)
 * {doc}`Linux system requirements<rocm-install-on-linux:reference/system-requirements>`
@@ -42,11 +39,8 @@ ROCm documentation is organized into the following categories:
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-howto.jpg
-:img-alt: How-to documentation
-:padding: 2
+:::{grid-item-card} "How to"
+:class-body: rocm-card-banner rocm-hue-6
 
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
@@ -67,11 +61,8 @@ ROCm documentation is organized into the following categories:
 * [GitHub examples](https://github.com/amd/rocm-examples)
 :::
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-conceptual.jpg
-:img-alt: Conceptual documentation
-:padding: 2
+:::{grid-item-card} Concepts
+:class-body: rocm-card-banner rocm-hue-3
 
 * [GPU architecture](./conceptual/gpu-arch.md)
 * [GPU memory](./conceptual/gpu-memory.md)
@@ -84,11 +75,8 @@ ROCm documentation is organized into the following categories:
 :::
 
 <!-- markdownlint-disable MD051 -->
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-reference.jpg
-:img-alt: Reference documentation
-:padding: 2
+:::{grid-item-card} Reference
+:class-body: rocm-card-banner rocm-hue-4
 
 * [Libraries](./reference/api-libraries.md)
   * [Artificial intelligence](#artificial-intelligence-apis)
