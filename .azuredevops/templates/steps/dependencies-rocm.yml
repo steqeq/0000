@@ -234,10 +234,10 @@ steps:
     # component does not support gfx942
     - ${{ else }}:
       - task: Bash@3
-        displayName: ${{ dependency }} does not support ${{ parameters.gpuTarget }}
+        displayName: ${{ dependency }} does not support ${{ gpuTarget }}
         inputs:
           targetType: inline
-          script: echo "Component ${{ dependency }} does not support ${{ parameters.gpuTarget }}"
+          script: echo "Component ${{ dependency }} does not support ${{ gpuTarget }}"
   # gpuTarget == gfx90a
   - ${{ elseif eq(gpuTarget, 'gfx90a') }}:
     # component supports gfx90a
