@@ -162,12 +162,12 @@ tools available depending on their specific profiling needs.
 
 * ROCProfiler tool collects kernel execution performance
   metrics. For more information, see the
-  `ROCProfiler <https://rocm.docs.amd.com/projects/rocprofiler/en/latest/rocprofv1.html>`_
+  :doc:`ROCProfiler <rocprofiler:index>`
   documentation.
 
 * Omniperf builds upon ROCProfiler but provides more guided analysis.
   For more information, see
-  `Omniperf documentation <https://rocm.github.io/omniperf/>`_.
+  :doc:`Omniperf documentation <omniperf:index>`.
 
 Refer to :doc:`/how-to/llm-fine-tuning-optimization/profiling-and-debugging`
 to explore commonly used profiling tools and their usage patterns.
@@ -1626,7 +1626,7 @@ Identifying a faulting kernel is often enough to triage a memory access
 fault. The ROCr Debug Agent can trap a memory access fault and provide a
 dump of all active wavefronts that caused the error, as well as the name
 of the kernel. For more information, see
-`ROCr Debug Agent documentation <rocr_debug_agent:index>`__.
+:doc:`ROCr Debug Agent documentation <rocr_debug_agent:index>`.
 
 To summarize, the key points include:
 

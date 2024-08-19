@@ -6,7 +6,7 @@
   algebra, AMD">
 </head>
 
-# ROCm API libraries
+# ROCm libraries
 
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
