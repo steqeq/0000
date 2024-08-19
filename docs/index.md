@@ -38,7 +38,6 @@ ROCm documentation is organized into the following categories:
 * {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
-* [Precision support](./compatibility/precision-support.rst)
 * {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
@@ -99,6 +98,7 @@ ROCm documentation is organized into the following categories:
   * [HIP runtime](#hip-runtime)
 * [ROCm tools and compilers](./reference/rocm-tools.md)
 * [GPU hardware specifications](./reference/gpu-arch-specs.rst)
+* [Precision support](./reference/precision-support.rst)
 :::
 <!-- markdownlint-enable MD051 -->
 

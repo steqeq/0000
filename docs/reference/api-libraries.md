@@ -25,6 +25,7 @@
 * {doc}`MIVisionX <mivisionx:index>`
 * {doc}`rocAL <rocal:index>`
 * {doc}`rocDecode <rocdecode:index>`
+* {doc}`rocPyDecode <rocpydecode:index>`
 * {doc}`ROCm Performance Primitives (RPP) <rpp:index>`
 :::
 
