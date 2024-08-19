@@ -239,7 +239,7 @@ steps:
           targetType: inline
           script: echo "Component ${{ dependency }} does not support ${{ parameters.gpuTarget }}"
   # gpuTarget == gfx90a
-  - ${{ elseif eq(parameters.gpuTarget, 'gfx90a') }}:
+  - ${{ elseif eq(gpuTarget, 'gfx90a') }}:
     # component supports gfx90a
     - ${{ if not(containsValue(componentsExcludeTarget.gfx90a, split(dependency, ':')[0])) }}:
       - template: artifact-download.yml
