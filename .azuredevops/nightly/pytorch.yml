@@ -175,12 +175,10 @@ jobs:
       dependencySource: staging
       gpuTarget: $(JOB_GPU_TARGET)
   - task: Bash@3
-    displayName: ROCm symbolic links
+    displayName: ROCm symbolic link
     inputs:
       targetType: inline
-      script: |
-        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
-        sudo ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+      script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
   - checkout: self
   - task: Bash@3
     displayName: git clone pytorch builder
