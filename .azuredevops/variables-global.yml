@@ -24,7 +24,7 @@ variables:
 - name: LARGE_DISK_BUILD_POOL
   value: rocm-ci_larger_base_disk_pool
 - name: TEST_POOL
-  value: rocm-ci_test_pool
+  value: MI300
 - name: LATEST_RELEASE_TAG
   value: rocm-6.1.0
 - name: DOCKER_IMAGE_NAME
