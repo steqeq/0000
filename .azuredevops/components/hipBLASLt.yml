@@ -24,6 +24,7 @@ parameters:
   default:
     - clr
     - hipBLAS
+    - hipBLAS-common
     - llvm-project
     - rocminfo
     - rocprofiler-register
