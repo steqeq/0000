@@ -8,55 +8,44 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - git
+    - python3-pip
     - cmake
     - ninja-build
+    - pkg-config
+    - ffmpeg
+    - libavcodec-dev
+    - libavformat-dev
+    - libavutil-dev
+    - libva-dev
     - libdrm-dev
-    - libnuma-dev
-    - python3-pip
-    - python3-venv
-    - libtbb-dev
-    - nlohmann-json3-dev
-    - libmsgpack-dev
-    - libsqlite3-dev
-    - libprotobuf-dev
-    - protobuf-compiler
+    - pybind11-dev
     - python3-pybind11
+    - libdlpack-dev
 - name: pipModules
   type: object
   default:
-    - https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
-    - onnx==1.14.1
-    - numpy==1.21.6
-    - typing==3.7.4
-    - pytest==6.0.1
-    - packaging==23.0
-    - protobuf==3.20.2
+    - -i
+    - https://test.pypi.org/simple
+    - hip-python
 - name: rocmDependencies
   type: object
   default:
-    - aomp
-    - aomp-extras
-    - clr
-    - composable_kernel
-    - hipBLAS
-    - hipBLAS-common
-    - hipBLASLt
-    - llvm-project
-    - MIOpen
     - rocm-cmake
+    - llvm-project
     - ROCR-Runtime
-    - rocBLAS
+    - clr
     - rocminfo
-    - rocMLIR
+    - rocm-core
     - rocprofiler-register
+    - rocDecode
 
 jobs:
-- job: AMDMIGraphX
+- job: rocPyDecode
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool:
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
   strategy:
@@ -74,14 +63,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# half version should be fixed to 5.6.0
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-    parameters:
-      dependencySource: fixed
-      fixedComponentName: half
-      fixedPipelineIdentifier: $(half560-pipeline-id)
-      skipLibraryLinking: true
-      skipLlvmSymlink: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
@@ -95,17 +76,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
-        -DGPU_TARGETS=$(JOB_GPU_TARGET)
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
-        -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
-        -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
-        -DBUILD_TESTING=ON
+        -DCMAKE_INSTALL_PREFIX_PYTHON=$(Build.BinariesDirectory)
         -GNinja
-# REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)

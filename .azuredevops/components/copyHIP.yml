@@ -24,9 +24,8 @@ jobs:
   - checkout: none
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
     parameters:
-      useDefaultBranch: false
       componentName: HIP
-      branchName: develop
+      pipelineId: $(hip-pipeline-id)
   - template:  ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
     parameters:
       sourceDir: $(Agent.BuildDirectory)/rocm
