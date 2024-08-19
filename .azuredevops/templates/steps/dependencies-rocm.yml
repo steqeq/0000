@@ -197,7 +197,6 @@ steps:
       parameters:
         componentName: ${{ split(dependency, ':')[0] }}
         extractToMnt: ${{ parameters.extractToMnt }}
-        gpuTarget: ${{ parameters.gpuTarget }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
@@ -214,7 +213,6 @@ steps:
       parameters:
         componentName: ${{ dependency }}
         extractToMnt: ${{ parameters.extractToMnt }}
-        gpuTarget: ${{ parameters.gpuTarget }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
@@ -228,7 +226,6 @@ steps:
   - template: artifact-download.yml
     parameters:
       componentName: ${{ parameters.fixedComponentName }}
-      gpuTarget: ${{ parameters.gpuTarget }}
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
       latestFromBranch: false
       extractToMnt: ${{ parameters.extractToMnt }}
