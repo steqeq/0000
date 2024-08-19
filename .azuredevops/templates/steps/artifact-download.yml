@@ -78,9 +78,18 @@ parameters:
 - name: branchName
   type: string
   default: '$(Build.SourceBranchName)' # for tagged builds
+- name: gpuTarget
+  type: string
+  default: ''
+- name: gpuExclude
+  type: object
+  default:
+    $(JOB_GPU_TARGET):
+      - hipSPARSELt
 
 steps:
 - task: DownloadPipelineArtifact@2
+  condition: ${{ not(containsValue(parameters.gpuExclude[parameters.gpuTarget], parameters.componentName)) }}
   displayName: Download ${{ parameters.componentName }}
   inputs:
     buildType: 'specific'
@@ -99,6 +108,7 @@ steps:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
+  condition: ${{ not(containsValue(parameters.gpuExclude[parameters.gpuTarget], parameters.componentName)) }}
   displayName: Extract ${{ parameters.componentName }}
   inputs:
     archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
@@ -109,6 +119,7 @@ steps:
     cleanDestinationFolder: false
     overwriteExistingFiles: true
 - task: DeleteFiles@1
+  condition: ${{ not(containsValue(parameters.gpuExclude[parameters.gpuTarget], parameters.componentName)) }}
   displayName: Cleanup Compressed ${{ parameters.componentName }}
   inputs:
     SourceFolder: '$(Pipeline.Workspace)/d'
