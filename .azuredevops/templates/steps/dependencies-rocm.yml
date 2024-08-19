@@ -229,8 +229,14 @@ steps:
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
       latestFromBranch: false
       extractToMnt: ${{ parameters.extractToMnt }}
+# Set link to redirect llvm folder
 - task: Bash@3
-  displayName: 'list downloaded ROCm files'
+  displayName: Symlink from rocm/llvm to rocm/lib/llvm
+  inputs:
+    targetType: inline
+    script: sudo ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+- task: Bash@3
+  displayName: 'List downloaded ROCm files'
   inputs:
     targetType: inline
     ${{ if eq(parameters.extractToMnt, true) }}:
@@ -239,7 +245,7 @@ steps:
       script: ls -1R $(Agent.BuildDirectory)/rocm
 - ${{ if eq(parameters.skipLibraryLinking, false) }}:
   - task: Bash@3
-    displayName: 'link ROCm shared libraries'
+    displayName: 'Link ROCm shared libraries'
     inputs:
       targetType: inline
 # OS ignores if the ROCm lib folder shows up more than once
