@@ -1,9 +1,13 @@
 #!/bin/bash
 
 usage() {
-    echo "Usage: $0 <version> <os>"
-    echo "  version: 6.1 or 6.2"
-    echo "  os: ubuntu20, ubuntu22, or ubuntu24"
+    echo >&2 "Usage: $0 <version> <os>"
+    echo >&2 "  version: 6.1 or 6.2"
+    echo >&2 "  os: ubuntu20, ubuntu22, or ubuntu24"
+    echo >&2 "Supported combinations:"
+    echo >&2 "  ubuntu20_6.1, ubuntu20_6.2"
+    echo >&2 "  ubuntu22_6.1, ubuntu22_6.2"
+    echo >&2 "  ubuntu24_6.2"
     exit 1
 }
 
@@ -14,58 +18,59 @@ fi
 VERSION=$1
 OS=$2
 
-if [[ "$VERSION" != "6.1" && "$VERSION" != "6.2" ]]; then
-    echo "Error: Only versions 6.1 and 6.2 supported at this time"
-    usage
-fi
-
-if [[ "$OS" != "ubuntu20" && "$OS" != "ubuntu22" && "$OS" != "ubuntu24" ]]; then
-    echo "Error: OS must be ubuntu20, ubuntu22, or ubuntu24"
-    usage
-fi
-
 case "${OS}_${VERSION}" in
-    "ubuntu20_6.1")
+    ("ubuntu20_6.1")
         BASE_IMAGE="rocm/rocm-build-ubuntu-20.04:6.1"
         ;;
-    "ubuntu20_6.2")
+    ("ubuntu20_6.2")
         BASE_IMAGE="rocm/dev-ubuntu-20.04:6.2-complete"
         ;;
-    "ubuntu22_6.1")
+    ("ubuntu22_6.1")
         BASE_IMAGE="rocm/rocm-build-ubuntu-22.04:6.1"
         ;;
-    "ubuntu22_6.2")
+    ("ubuntu22_6.2")
         BASE_IMAGE="rocm/dev-ubuntu-22.04:6.2-complete"
         ;;
-    "ubuntu24_6.2")
+    ("ubuntu24_6.2")
         BASE_IMAGE="rocm/dev-ubuntu-24.04:6.2-complete"
         ;;
-    *)
-        echo "Error: Unsupported OS and version combination"
-        exit 1
+    (*)
+        echo >&2 "Error: Unsupported OS and version combination"
+        usage
         ;;
 esac
 
 echo "Pulling Docker image: $BASE_IMAGE"
-docker pull $BASE_IMAGE
+if ! docker pull $BASE_IMAGE; then
+    echo >&2 "Error: Failed to pull Docker image"
+    exit 1
+fi
 
-fake_group="$PWD/group"
 fake_passwd="$PWD/passwd"
+fake_shadow="$PWD/shadow"
+fake_group="$PWD/group"
 
-getent group > "${fake_group}"
 getent passwd > "${fake_passwd}"
+getent group > "${fake_group}"
+sed 's/:[^:]*:/:x:/' "${fake_passwd}" > "${fake_shadow}"
 
+mkdir -p ${HOME}/.ccache
+
+docker_exit_code=0
 docker run -ti \
     -e ROCM_VERSION=${VERSION} \
-    -e CCACHE_DIR=$HOME/.ccache \
+    -e CCACHE_DIR=/.ccache \
     -e CCACHE_ENABLED=true \
     -e DOCK_WORK_FOLD=/src \
     -w /src \
     -v $PWD:/src \
-    --mount="type=bind,src=${fake_group},dst=/etc/group,readonly" \
     --mount="type=bind,src=${fake_passwd},dst=/etc/passwd,readonly" \
-    -v ${HOME}/.ccache:${HOME}/.ccache \
+    --mount="type=bind,src=${fake_shadow},dst=/etc/shadow,readonly" \
+    --mount="type=bind,src=${fake_group},dst=/etc/group,readonly" \
+    -v ${HOME}/.ccache:/.ccache \
     -u $(id -u):$(id -g) \
-    ${BASE_IMAGE} bash
+    ${BASE_IMAGE} bash || docker_exit_code=$?
 
-rm "${fake_group}" "${fake_passwd}"
+rm "${fake_passwd}" "${fake_shadow}" "${fake_group}"
+
+exit $docker_exit_code
