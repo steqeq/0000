@@ -143,6 +143,11 @@ parameters:
 - name: skipLibraryLinking
   type: boolean
   default: false
+# set to true if llvm-project is not downloaded in a particular call
+# or if you just don't want the symlink
+- name: skipLlvmSymlink
+  type: boolean
+  default: false
 # some ROCm components can specify GPU target and this will affect downloads
 - name: gpuTarget
   type: string
@@ -230,11 +235,12 @@ steps:
       latestFromBranch: false
       extractToMnt: ${{ parameters.extractToMnt }}
 # Set link to redirect llvm folder
-- task: Bash@3
-  displayName: Symlink from rocm/llvm to rocm/lib/llvm
-  inputs:
-    targetType: inline
-    script: sudo ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+- ${{ if eq(parameters.skipLlvmSymlink, false) }}:
+  - task: Bash@3
+    displayName: Symlink from rocm/llvm to rocm/lib/llvm
+    inputs:
+      targetType: inline
+      script: sudo ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
 - task: Bash@3
   displayName: 'List downloaded ROCm files'
   inputs:
