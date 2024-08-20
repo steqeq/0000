@@ -23,7 +23,6 @@ parameters:
   type: object
   default:
     - clr
-    - hipBLAS
     - hipBLAS-common
     - llvm-project
     - rocminfo
