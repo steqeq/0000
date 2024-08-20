@@ -101,12 +101,12 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
   - script: df -h
     displayName: System disk space after ROCm
-  - script: du -sh /mnt/rocm
+  - script: du -sh $(Agent.BuildDirectory)/rocm
     displayName: Uncompressed ROCm size
   - task: ArchiveFiles@2
     displayName: Compress rocm-nightly
     inputs:
-      rootFolderOrFile: /mnt/rocm
+      rootFolderOrFile: $(Agent.BuildDirectory)/rocm
       includeRootFolder: false
       archiveType: tar
       tarCompression: gz
