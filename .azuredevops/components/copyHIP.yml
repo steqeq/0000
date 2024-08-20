@@ -25,6 +25,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-download.yml
     parameters:
       componentName: HIP
+      piplineId: $(hip-pipeline-id)
   - template:  ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
     parameters:
       sourceDir: $(Agent.BuildDirectory)/rocm
