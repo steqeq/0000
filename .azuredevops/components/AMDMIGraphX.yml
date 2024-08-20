@@ -75,6 +75,8 @@ jobs:
       dependencySource: fixed
       fixedComponentName: half
       fixedPipelineIdentifier: $(half560-pipeline-id)
+      skipLibraryLinking: true
+      skipLlvmSymlink: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}

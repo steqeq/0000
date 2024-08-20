@@ -553,7 +553,7 @@ links in the *Version* column to go to the detailed component changelogs.
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/ROCdbgapi/en/docs-6.2.0">ROCdbgapi</a></td>
-                <td>0.71.0&nbsp;&Rightarrow;&nbsp;<a href="#rocdbgapi-0-75-0">0.75.0</a></td>
+                <td>0.71.0&nbsp;&Rightarrow;&nbsp;<a href="#rocdbgapi-0-76-0">0.76.0</a></td>
                 <td><a href="https://github.com/ROCm/ROCdbgapi/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -1524,7 +1524,7 @@ See [issue #3498](https://github.com/ROCm/ROCm/issues/3498) on GitHub.
 * Deprecated `rocblas_gemm_ex3`, `gemm_batched_ex3` and `gemm_strided_batched_ex3`. They will be removed in the next
   major release of rocBLAS. Refer to [hipBLASLt](https://github.com/ROCm/hipBLASLt) for future 8-bit float usage.
 
-### **ROCdbgapi** (0.75.0)
+### **ROCdbgapi** (0.76.0)
 
 #### Removals
 - Renamed `(AMD_DBGAPI_EXCEPTION_WAVE,AMD_DBGAPI_WAVE_STOP_REASON)_APERTURE_VIOLATION` to `(AMD_DBGAPI_EXCEPTION_WAVE,AMD_DBGAPI_WAVE_STOP_REASON)_ADDRESS_ERROR`.
