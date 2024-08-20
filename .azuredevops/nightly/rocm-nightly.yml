@@ -91,15 +91,12 @@ jobs:
       SourceFolder: '$(Build.ArtifactStagingDirectory)'
       Contents: '/**/*'
       RemoveDotFiles: true
-  - script: sudo chmod 777 /mnt
-    displayName: 'Set permissions for /mnt'
   - script: df -h
     displayName: System disk space before ROCm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       dependencySource: staging
-      extractToMnt: true
       skipLibraryLinking: true
       gpuTarget: $(JOB_GPU_TARGET)
   - script: df -h
