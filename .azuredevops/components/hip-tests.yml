@@ -1,0 +1,81 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+- name: aptPackages
+  type: object
+  default:
+    - cmake
+    - ninja-build
+    - git
+    - libnuma-dev
+    - mesa-common-dev
+    - ocl-icd-libopencl1
+    - ocl-icd-opencl-dev
+    - opencl-headers
+    - libglu1-mesa-dev
+    - freeglut3-dev
+    - libboost-all-dev
+    - python3-pip
+- name: rocmDependencies
+  type: object
+  default:
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
+    - rocprofiler-register
+
+# HIP with AMD backend
+jobs:
+- job: hip_tests
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  - name: HIP_ROCCLR_HOME
+    value: $(Agent.BuildDirectory)/rocm
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  # compile hip-tests
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: hip-tests
+      cmakeSourceDir: '../catch'
+      customBuildTarget: build_tests
+      extraBuildFlags: >-
+        -DHIP_PLATFORM=amd
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DHIP_PATH=$(Agent.BuildDirectory)/rocm
+        -DOFFLOAD_ARCH_STR="--offload-arch=$(JOB_GPU_TARGET)"
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)

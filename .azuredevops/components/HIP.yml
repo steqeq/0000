@@ -101,6 +101,7 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
 # checkout triggering repo (either HIP or clr)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
