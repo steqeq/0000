@@ -19,6 +19,8 @@ parameters:
   type: object
   default:
     - clr
+    - hipBLAS-common
+    - hipBLASLt
     - hipRAND
     - llvm-project
     - rocBLAS
