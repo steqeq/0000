@@ -105,6 +105,7 @@ parameters:
     # below are additional dependencies not called out by build script, but throw errors during cmake
     - hipCUB
     - rocThrust
+    - hipBLAS-common
 
 trigger: none
 pr: none
