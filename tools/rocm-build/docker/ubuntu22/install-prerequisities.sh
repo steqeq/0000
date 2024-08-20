@@ -3,6 +3,15 @@
 set -ex
 
 apt-get -y update 
+
+if [ ! -f "/tmp/packages" ]; then
+    mv packages /tmp
+fi
+
+if [ ! -f "/tmp/local-pin-600" ]; then
+    mv local-pin-600 /tmp
+fi
+
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(sed 's/#.*//' /tmp/packages)
 apt-get clean 
 rm -rf /var/cache/apt/ /var/lib/apt/lists/* /etc/apt/apt.conf.d/01proxy
