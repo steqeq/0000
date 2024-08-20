@@ -91,25 +91,22 @@ jobs:
       SourceFolder: '$(Build.ArtifactStagingDirectory)'
       Contents: '/**/*'
       RemoveDotFiles: true
-  - script: sudo chmod 777 /mnt
-    displayName: 'Set permissions for /mnt'
   - script: df -h
     displayName: System disk space before ROCm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       dependencySource: staging
-      extractToMnt: true
       skipLibraryLinking: true
       gpuTarget: $(JOB_GPU_TARGET)
   - script: df -h
     displayName: System disk space after ROCm
-  - script: du -sh /mnt/rocm
+  - script: du -sh $(Agent.BuildDirectory)/rocm
     displayName: Uncompressed ROCm size
   - task: ArchiveFiles@2
     displayName: Compress rocm-nightly
     inputs:
-      rootFolderOrFile: /mnt/rocm
+      rootFolderOrFile: $(Agent.BuildDirectory)/rocm
       includeRootFolder: false
       archiveType: tar
       tarCompression: gz
