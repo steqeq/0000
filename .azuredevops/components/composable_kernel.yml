@@ -25,7 +25,7 @@ parameters:
 
 jobs:
 - job: composable_kernel
-  timeoutInMinutes: 180
+  timeoutInMinutes: 240
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
