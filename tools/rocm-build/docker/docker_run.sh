@@ -23,7 +23,7 @@ case "${OS}_${VERSION}" in
         BASE_IMAGE="rocm/rocm-build-ubuntu-20.04:6.1"
         ;;
     ("ubuntu20_6.2")
-        BASE_IMAGE="rocm/dev-ubuntu-20.04:6.2-complete"
+        BASE_IMAGE="rocm/rocm-build-ubuntu-20.04:6.2"
         ;;
     ("ubuntu22_6.1")
         BASE_IMAGE="rocm/rocm-build-ubuntu-22.04:6.1"
