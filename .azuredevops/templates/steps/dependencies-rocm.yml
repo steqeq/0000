@@ -1,8 +1,5 @@
 # download and install rocm dependencies through pipeline builds in the project
 # REQUIRED
-variables:
-- group: common
-- template: ./.azuredevops/variables-global.yml
 parameters:
 - name: dependencyList
   type: object
@@ -29,114 +26,115 @@ parameters:
 - name: stagingPipelineIdentifiers
   type: object
   default:
-    AMDMIGraphX: ${{ variables.AMDMIGRAPHX_PIPELINE_ID }}
-    amdsmi: ${{ variables.AMDSMI_PIPELINE_ID }}
-    aomp-extras: ${{ variables.AOMP_EXTRAS_PIPELINE_ID }}
-    aomp: ${{ variables.AOMP_PIPELINE_ID }}
-    clr: ${{ variables.CLR_PIPELINE_ID }}
-    composable_kernel: ${{ variables.COMPOSABLE_KERNEL_PIPELINE_ID }}
-    half: ${{ variables.HALF_PIPELINE_ID }}
-    HIP: ${{ variables.HIP_PIPELINE_ID }}
-    hipBLAS: ${{ variables.HIPBLAS_PIPELINE_ID }}
-    hipBLASLt: ${{ variables.HIPBLASLT_PIPELINE_ID }}
-    hipCUB: ${{ variables.HIPCUB_PIPELINE_ID }}
-    hipFFT: ${{ variables.HIPFFT_PIPELINE_ID }}
-    hipfort: ${{ variables.HIPFORT_PIPELINE_ID }}
-    HIPIFY: ${{ variables.HIPIFY_PIPELINE_ID }}
-    hipRAND: ${{ variables.HIPRAND_PIPELINE_ID }}
-    hipSOLVER: ${{ variables.HIPSOLVER_PIPELINE_ID }}
-    hipSPARSE: ${{ variables.HIPSPARSE_PIPELINE_ID }}
-    hipSPARSELt: ${{ variables.HIPSPARSELT_PIPELINE_ID }}
-    hipTensor: ${{ variables.HIPTENSOR_PIPELINE_ID }}
-    llvm-project: ${{ variables.LLVM_PROJECT_PIPELINE_ID }}
-    MIOpen: ${{ variables.MIOpen_PIPELINE_ID }}
-    MIVisionX: ${{ variables.MIVISIONX_PIPELINE_ID }}
-    rccl: ${{ variables.RCCL_PIPELINE_ID }}
-    rdc: ${{ variables.RDC_PIPELINE_ID }}
-    rocAL: ${{ variables.ROCAL_PIPELINE_ID }}
-    rocALUTION: ${{ variables.ROCALUTION_PIPELINE_ID }}
-    rocBLAS: ${{ variables.ROCBLAS_PIPELINE_ID }}
-    ROCdbgapi: ${{ variables.ROCDBGAPI_PIPELINE_ID }}
-    rocDecode: ${{ variables.ROCDECODE_PIPELINE_ID }}
-    rocFFT: ${{ variables.ROCFFT_PIPELINE_ID }}
-    ROCgdb: ${{ variables.ROCGDB_PIPELINE_ID }}
-    rocm-cmake: ${{ variables.ROCM_CMAKE_PIPELINE_ID }}
-    rocm-core: ${{ variables.ROCM_CORE_PIPELINE_ID }}
-    rocm-examples: ${{ variables.ROCM_EXAMPLES_PIPELINE_ID }}
-    rocminfo: ${{ variables.ROCMINFO_PIPELINE_ID }}
-    rocMLIR: ${{ variables.ROCMLIR_PIPELINE_ID }}
-    ROCmValidationSuite: ${{ variables.ROCMVALIDATIONSUITE_PIPELINE_ID }}
-    rocm_bandwidth_test: ${{ variables.ROCM_BANDWIDTH_TEST_PIPELINE_ID }}
-    rocm_smi_lib: ${{ variables.ROCM_SMI_LIB_PIPELINE_ID }}
-    rocPRIM: ${{ variables.ROCPRIM_PIPELINE_ID }}
-    rocprofiler-register: ${{ variables.ROCPROFILER_REGISTER_PIPELINE_ID }}
-    rocprofiler: ${{ variables.ROCPROFILER_PIPELINE_ID }}
-    ROCR-Runtime: ${{ variables.ROCR_RUNTIME_PIPELINE_ID }}
-    rocRAND: ${{ variables.ROCRAND_PIPELINE_ID }}
-    rocr_debug_agent: ${{ variables.ROCR_DEBUG_AGENT_PIPELINE_ID }}
-    rocSOLVER: ${{ variables.ROCSOLVER_PIPELINE_ID }}
-    rocSPARSE: ${{ variables.ROCSPARSE_PIPELINE_ID }}
-    ROCT-Thunk-Interface: ${{ variables.ROCT_THUNK_INTERFACE_PIPELINE_ID }}
-    rocThrust: ${{ variables.ROCTHRUST_PIPELINE_ID }}
-    roctracer: ${{ variables.ROCTRACER_PIPELINE_ID }}
-    rocWMMA: ${{ variables.ROCWMMA_PIPELINE_ID }}
-    rpp: ${{ variables.RPP_PIPELINE_ID }}
+    AMDMIGraphX: $(AMDMIGRAPHX_PIPELINE_ID)
+    amdsmi: $(AMDSMI_PIPELINE_ID)
+    aomp-extras: $(AOMP_EXTRAS_PIPELINE_ID)
+    aomp: $(AOMP_PIPELINE_ID)
+    clr: $(CLR_PIPELINE_ID)
+    composable_kernel: $(COMPOSABLE_KERNEL_PIPELINE_ID)
+    half: $(HALF_PIPELINE_ID)
+    HIP: $(HIP_PIPELINE_ID)
+    hipBLAS: $(HIPBLAS_PIPELINE_ID)
+    hipBLASLt: $(HIPBLASLT_PIPELINE_ID)
+    hipCUB: $(HIPCUB_PIPELINE_ID)
+    hipFFT: $(HIPFFT_PIPELINE_ID)
+    hipfort: $(HIPFORT_PIPELINE_ID)
+    HIPIFY: $(HIPIFY_PIPELINE_ID)
+    hipRAND: $(HIPRAND_PIPELINE_ID)
+    hipSOLVER: $(HIPSOLVER_PIPELINE_ID)
+    hipSPARSE: $(HIPSPARSE_PIPELINE_ID)
+    hipSPARSELt: $(HIPSPARSELT_PIPELINE_ID)
+    hipTensor: $(HIPTENSOR_PIPELINE_ID)
+    llvm-project: $(LLVM_PROJECT_PIPELINE_ID)
+    MIOpen: $(MIOpen_PIPELINE_ID)
+    MIVisionX: $(MIVISIONX_PIPELINE_ID)
+    rccl: $(RCCL_PIPELINE_ID)
+    rdc: $(RDC_PIPELINE_ID)
+    rocAL: $(ROCAL_PIPELINE_ID)
+    rocALUTION: $(ROCALUTION_PIPELINE_ID)
+    rocBLAS: $(ROCBLAS_PIPELINE_ID)
+    ROCdbgapi: $(ROCDBGAPI_PIPELINE_ID)
+    rocDecode: $(ROCDECODE_PIPELINE_ID)
+    rocFFT: $(ROCFFT_PIPELINE_ID)
+    ROCgdb: $(ROCGDB_PIPELINE_ID)
+    rocm-cmake: $(ROCM_CMAKE_PIPELINE_ID)
+    rocm-core: $(ROCM_CORE_PIPELINE_ID)
+    rocm-examples: $(ROCM_EXAMPLES_PIPELINE_ID)
+    rocminfo: $(ROCMINFO_PIPELINE_ID)
+    rocMLIR: $(ROCMLIR_PIPELINE_ID)
+    ROCmValidationSuite: $(ROCMVALIDATIONSUITE_PIPELINE_ID)
+    rocm_bandwidth_test: $(ROCM_BANDWIDTH_TEST_PIPELINE_ID)
+    rocm_smi_lib: $(ROCM_SMI_LIB_PIPELINE_ID)
+    rocPRIM: $(ROCPRIM_PIPELINE_ID)
+    rocprofiler-register: $(ROCPROFILER_REGISTER_PIPELINE_ID)
+    rocprofiler: $(ROCPROFILER_PIPELINE_ID)
+    ROCR-Runtime: $(ROCR_RUNTIME_PIPELINE_ID)
+    rocRAND: $(ROCRAND_PIPELINE_ID)
+    rocr_debug_agent: $(ROCR_DEBUG_AGENT_PIPELINE_ID)
+    rocSOLVER: $(ROCSOLVER_PIPELINE_ID)
+    rocSPARSE: $(ROCSPARSE_PIPELINE_ID)
+    ROCT-Thunk-Interface: $(ROCT_THUNK_INTERFACE_PIPELINE_ID)
+    rocThrust: $(ROCTHRUST_PIPELINE_ID)
+    roctracer: $(ROCTRACER_PIPELINE_ID)
+    rocWMMA: $(ROCWMMA_PIPELINE_ID)
+    rpp: $(RPP_PIPELINE_ID)
 
 - name: taggedPipelineIdentifiers
   type: object
   default:
-    AMDMIGraphX: ${{ variables.AMDMIGRAPHX_TAGGED_PIPELINE_ID }}
-    amdsmi: ${{ variables.AMDSMI_TAGGED_PIPELINE_ID }}
-    aomp-extras: ${{ variables.AOMP_EXTRAS_TAGGED_PIPELINE_ID }}
-    aomp: ${{ variables.AOMP_TAGGED_PIPELINE_ID }}
-    clr: ${{ variables.CLR_TAGGED_PIPELINE_ID }}
-    composable_kernel: ${{ variables.COMPOSABLE_KERNEL_TAGGED_PIPELINE_ID }}
-    half: ${{ variables.HALF_TAGGED_PIPELINE_ID }}
-    HIP: ${{ variables.HIP_TAGGED_PIPELINE_ID }}
-    hipBLAS: ${{ variables.HIPBLAS_TAGGED_PIPELINE_ID }}
-    hipBLASLt: ${{ variables.HIPBLASLT_TAGGED_PIPELINE_ID }}
-    hipCUB: ${{ variables.HIPCUB_TAGGED_PIPELINE_ID }}
-    hipFFT: ${{ variables.HIPFFT_TAGGED_PIPELINE_ID }}
-    hipfort: ${{ variables.HIPFORT_TAGGED_PIPELINE_ID }}
-    HIPIFY: ${{ variables.HIPIFY_TAGGED_PIPELINE_ID }}
-    hipRAND: ${{ variables.HIPRAND_TAGGED_PIPELINE_ID }}
-    hipSOLVER: ${{ variables.HIPSOLVER_TAGGED_PIPELINE_ID }}
-    hipSPARSE: ${{ variables.HIPSPARSE_TAGGED_PIPELINE_ID }}
-    hipSPARSELt: ${{ variables.HIPSPARSELT_TAGGED_PIPELINE_ID }}
-    hipTensor: ${{ variables.HIPTENSOR_TAGGED_PIPELINE_ID }}
-    llvm-project: ${{ variables.LLVM_PROJECT_TAGGED_PIPELINE_ID }}
-    MIOpen: ${{ variables.MIOpen_TAGGED_PIPELINE_ID }}
-    MIVisionX: ${{ variables.MIVISIONX_TAGGED_PIPELINE_ID }}
-    rccl: ${{ variables.RCCL_TAGGED_PIPELINE_ID }}
-    rdc: ${{ variables.RDC_TAGGED_PIPELINE_ID }}
-    rocAL: ${{ variables.ROCAL_TAGGED_PIPELINE_ID }}
-    rocALUTION: ${{ variables.ROCALUTION_TAGGED_PIPELINE_ID }}
-    rocBLAS: ${{ variables.ROCBLAS_TAGGED_PIPELINE_ID }}
-    ROCdbgapi: ${{ variables.ROCDBGAPI_TAGGED_PIPELINE_ID }}
-    rocDecode: ${{ variables.ROCDECODE_TAGGED_PIPELINE_ID }}
-    rocFFT: ${{ variables.ROCFFT_TAGGED_PIPELINE_ID }}
-    ROCgdb: ${{ variables.ROCGDB_TAGGED_PIPELINE_ID }}
-    rocm-cmake: ${{ variables.ROCM_CMAKE_TAGGED_PIPELINE_ID }}
-    rocm-core: ${{ variables.ROCM_CORE_TAGGED_PIPELINE_ID }}
-    rocm-examples: ${{ variables.ROCM_EXAMPLES_TAGGED_PIPELINE_ID }}
-    rocminfo: ${{ variables.ROCMINFO_TAGGED_PIPELINE_ID }}
-    rocMLIR: ${{ variables.ROCMLIR_TAGGED_PIPELINE_ID }}
-    ROCmValidationSuite: ${{ variables.ROCMVALIDATIONSUITE_TAGGED_PIPELINE_ID }}
-    rocm_bandwidth_test: ${{ variables.ROCM_BANDWIDTH_TEST_TAGGED_PIPELINE_ID }}
-    rocm_smi_lib: ${{ variables.ROCM_SMI_LIB_TAGGED_PIPELINE_ID }}
-    rocPRIM: ${{ variables.ROCPRIM_TAGGED_PIPELINE_ID }}
-    rocprofiler-register: ${{ variables.ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID }}
-    rocprofiler: ${{ variables.ROCPROFILER_TAGGED_PIPELINE_ID }}
-    ROCR-Runtime: ${{ variables.ROCR_RUNTIME_TAGGED_PIPELINE_ID }}
-    rocRAND: ${{ variables.ROCRAND_TAGGED_PIPELINE_ID }}
-    rocr_debug_agent: ${{ variables.ROCR_DEBUG_AGENT_TAGGED_PIPELINE_ID }}
-    rocSOLVER: ${{ variables.ROCSOLVER_TAGGED_PIPELINE_ID }}
-    rocSPARSE: ${{ variables.ROCSPARSE_TAGGED_PIPELINE_ID }}
-    ROCT-Thunk-Interface: ${{ variables.ROCT_THUNK_INTERFACE_TAGGED_PIPELINE_ID }}
-    rocThrust: ${{ variables.ROCTHRUST_TAGGED_PIPELINE_ID }}
-    roctracer: ${{ variables.ROCTRACER_TAGGED_PIPELINE_ID }}
-    rocWMMA: ${{ variables.ROCWMMA_TAGGED_PIPELINE_ID }}
-    rpp: ${{ variables.RPP_TAGGED_PIPELINE_ID }}
+    AMDMIGraphX: $(AMDMIGRAPHX_TAGGED_PIPELINE_ID)
+    amdsmi: $(AMDSMI_TAGGED_PIPELINE_ID)
+    aomp-extras: $(AOMP_EXTRAS_TAGGED_PIPELINE_ID)
+    aomp: $(AOMP_TAGGED_PIPELINE_ID)
+    clr: $(CLR_TAGGED_PIPELINE_ID)
+    composable_kernel: $(COMPOSABLE_KERNEL_TAGGED_PIPELINE_ID)
+    half: $(HALF_TAGGED_PIPELINE_ID)
+    HIP: $(HIP_TAGGED_PIPELINE_ID)
+    hipBLAS: $(HIPBLAS_TAGGED_PIPELINE_ID)
+    hipBLASLt: $(HIPBLASLT_TAGGED_PIPELINE_ID)
+    hipCUB: $(HIPCUB_TAGGED_PIPELINE_ID)
+    hipFFT: $(HIPFFT_TAGGED_PIPELINE_ID)
+    hipfort: $(HIPFORT_TAGGED_PIPELINE_ID)
+    HIPIFY: $(HIPIFY_TAGGED_PIPELINE_ID)
+    hipRAND: $(HIPRAND_TAGGED_PIPELINE_ID)
+    hipSOLVER: $(HIPSOLVER_TAGGED_PIPELINE_ID)
+    hipSPARSE: $(HIPSPARSE_TAGGED_PIPELINE_ID)
+    hipSPARSELt: $(HIPSPARSELT_TAGGED_PIPELINE_ID)
+    hipTensor: $(HIPTENSOR_TAGGED_PIPELINE_ID)
+    llvm-project: $(LLVM_PROJECT_TAGGED_PIPELINE_ID)
+    MIOpen: $(MIOpen_TAGGED_PIPELINE_ID)
+    MIVisionX: $(MIVISIONX_TAGGED_PIPELINE_ID)
+    rccl: $(RCCL_TAGGED_PIPELINE_ID)
+    rdc: $(RDC_TAGGED_PIPELINE_ID)
+    rocAL: $(ROCAL_TAGGED_PIPELINE_ID)
+    rocALUTION: $(ROCALUTION_TAGGED_PIPELINE_ID)
+    rocBLAS: $(ROCBLAS_TAGGED_PIPELINE_ID)
+    ROCdbgapi: $(ROCDBGAPI_TAGGED_PIPELINE_ID)
+    rocDecode: $(ROCDECODE_TAGGED_PIPELINE_ID)
+    rocFFT: $(ROCFFT_TAGGED_PIPELINE_ID)
+    ROCgdb: $(ROCGDB_TAGGED_PIPELINE_ID)
+    rocm-cmake: $(ROCM_CMAKE_TAGGED_PIPELINE_ID)
+    rocm-core: $(ROCM_CORE_TAGGED_PIPELINE_ID)
+    rocm-examples: $(ROCM_EXAMPLES_TAGGED_PIPELINE_ID)
+    rocminfo: $(ROCMINFO_TAGGED_PIPELINE_ID)
+    rocMLIR: $(ROCMLIR_TAGGED_PIPELINE_ID)
+    ROCmValidationSuite: $(ROCMVALIDATIONSUITE_TAGGED_PIPELINE_ID)
+    rocm_bandwidth_test: $(ROCM_BANDWIDTH_TEST_TAGGED_PIPELINE_ID)
+    rocm_smi_lib: $(ROCM_SMI_LIB_TAGGED_PIPELINE_ID)
+    rocPRIM: $(ROCPRIM_TAGGED_PIPELINE_ID)
+    rocprofiler-register: $(ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID)
+    rocprofiler: $(ROCPROFILER_TAGGED_PIPELINE_ID)
+    ROCR-Runtime: $(ROCR_RUNTIME_TAGGED_PIPELINE_ID)
+    rocRAND: $(ROCRAND_TAGGED_PIPELINE_ID)
+    rocr_debug_agent: $(ROCR_DEBUG_AGENT_TAGGED_PIPELINE_ID)
+    rocSOLVER: $(ROCSOLVER_TAGGED_PIPELINE_ID)
+    rocSPARSE: $(ROCSPARSE_TAGGED_PIPELINE_ID)
+    ROCT-Thunk-Interface: $(ROCT_THUNK_INTERFACE_TAGGED_PIPELINE_ID)
+    rocThrust: $(ROCTHRUST_TAGGED_PIPELINE_ID)
+    roctracer: $(ROCTRACER_TAGGED_PIPELINE_ID)
+    rocWMMA: $(ROCWMMA_TAGGED_PIPELINE_ID)
+    rpp: $(RPP_TAGGED_PIPELINE_ID)
+
 
   # set to true if you're calling this template file multiple files in same pipeline
 # only leave last call false to optimize sequence
