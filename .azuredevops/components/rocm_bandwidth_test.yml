@@ -24,7 +24,6 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
-    - ROCT-Thunk-Interface
 
 jobs:
 - job: rocm_bandwidth_test

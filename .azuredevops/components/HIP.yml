@@ -21,7 +21,6 @@ parameters:
   type: object
   default:
     - llvm-project
-    - ROCT-Thunk-Interface
     - ROCR-Runtime
     - rocprofiler-register
 - name: rocmDependenciesNvidia

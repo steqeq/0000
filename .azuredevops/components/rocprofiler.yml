@@ -39,7 +39,6 @@ parameters:
     - rocminfo
     - ROCR-Runtime
     - rocprofiler-register
-    - ROCT-Thunk-Interface
     - roctracer
 
 jobs:
