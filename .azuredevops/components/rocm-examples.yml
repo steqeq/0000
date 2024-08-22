@@ -18,12 +18,14 @@ parameters:
     - hipBLAS-common
     - hipBLASLt
     - hipCUB
+    - hipFFT
     - HIPIFY
     - hipRAND
     - hipSOLVER
     - hipSPARSE
     - llvm-project
     - rocBLAS
+    - rocFFT
     - rocPRIM
     - rocprofiler-register
     - ROCR-Runtime
@@ -72,6 +74,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DROCM_ROOT=$(Agent.BuildDirectory)/rocm
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DCMAKE_HIP_ARCHITECTURES=$(JOB_GPU_TARGET)
         -DCMAKE_EXE_LINKER_FLAGS=-fgpu-rdc
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
