@@ -1,8 +1,8 @@
 # download and install rocm dependencies through pipeline builds in the project
 # REQUIRED
 variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
+- group: common
+- template: /.azuredevops/variables-global.yml
 parameters:
 - name: dependencyList
   type: object
