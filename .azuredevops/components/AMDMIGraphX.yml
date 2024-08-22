@@ -68,7 +68,7 @@ jobs:
     parameters:
       dependencySource: fixed
       fixedComponentName: half
-      fixedPipelineIdentifier: $(half560-pipeline-id)
+      fixedPipelineIdentifier: ${{ variables.HALF560_PIPELINE_ID }}
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
