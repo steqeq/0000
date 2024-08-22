@@ -79,7 +79,7 @@ Obtain the value of `gpu-arch` by running the following command:
 
 See the complete list of [compiler command-line references](https://github.com/ROCm/llvm-project/blob/amd-staging/openmp/docs/CommandLineArgumentReference.rst).
 
-### Using `rocprof` with OpenMP
+### Using rocprof with OpenMP
 
 The following steps describe a typical workflow for using `rocprof` with OpenMP
 code compiled with AOMP:
@@ -288,13 +288,13 @@ The following sections explain achieving zero-copy behavior on MI300A and discre
 
 ##### Zero-copy behavior on MI300A
 
- To obtain zero-copy implementation on MI300A, use either of the following two ways:
- - Specify the [unified shared memory pragma](#unified-shared-memory-pragma) `requires unified_shared_memory` in the code to inform the compiler and runtime that the code must be compiled for and executed on GPUs providing USM through XNACK.
- - Don't specify the unified shared memory pragma and rely on the OpenMP runtime's implicit zero-copy behavior on MI300A. When the OpenMP runtime detects that it is running on an MI300A and the XNACK support is enabled in the environment, in which the application is run, it turns on the zero-copy mode. This behavior is named implicit zero-copy.
+To obtain zero-copy implementation on MI300A, use either of the following two ways:
+- Specify the [unified shared memory pragma](#unified-shared-memory-pragma) `requires unified_shared_memory` in the code to inform the compiler and runtime that the code must be compiled for and executed on GPUs providing USM through XNACK.
+- Don't specify the unified shared memory pragma and rely on the OpenMP runtime's implicit zero-copy behavior on MI300A. When the OpenMP runtime detects that it is running on an MI300A and the XNACK support is enabled in the environment, in which the application is run, it turns on the zero-copy mode. This behavior is named implicit zero-copy.
 
 The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification:
 
-| MI300A | `requires unified_shared_memory` <br>NOT specified</br> | `requires unified_shared_memory` <br>specified</br> |
+| MI300A | unified_shared_memory pragma <br>NOT specified</br> | unified_shared_memory pragma <br>specified</br> |
 | --- | --- | --- |
 | XNACK enabled | implicit zero-copy |  zero-copy |
 | XNACK disabled | copy |  runtime warning* |
@@ -311,7 +311,7 @@ When OMPX_APU_MAPS is not set, then applications not using unified shared memory
 
 The following table lists the runtime behavior based on the unified shared memory pragma and XNACK specification:
 
-| Discrete GPUs | `unified_shared_memory` <br>NOT specified</br> | `unified_shared_memory` specified |
+| Discrete GPUs | unified_shared_memory pragma <br>NOT specified</br> | unified_shared_memory pragma <br>specified</br> |
 | --- | --- | --- |
 | XNACK enabled and OMPX_APU_MAPS=1 | implicit zero-copy | zero-copy |
 | XNACK enabled | copy | zero-copy |
