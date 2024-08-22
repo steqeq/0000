@@ -69,7 +69,6 @@ parameters:
     rocr_debug_agent: amd-staging
     rocSOLVER: develop
     rocSPARSE: develop
-    ROCT-Thunk-Interface: master
     rocThrust: develop
     roctracer: amd-staging
     rocWMMA: develop

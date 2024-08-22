@@ -36,7 +36,6 @@ parameters:
     - rocm-cmake
     - llvm-project
     - ROCR-Runtime
-    - ROCT-Thunk-Interface
 
 jobs:
 - job: aomp
