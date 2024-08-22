@@ -2,7 +2,7 @@
 # REQUIRED
 variables:
 - group: common
-- template: /.azuredevops/variables-global.yml
+- template: ./.azuredevops/variables-global.yml
 parameters:
 - name: dependencyList
   type: object
