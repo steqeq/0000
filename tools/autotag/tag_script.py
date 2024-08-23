@@ -188,7 +188,7 @@ def run_tagging():
     # Use the manifest included in the ROCm GitHub repository by default.
     if args.manifest_url is None:
         manifest_path = (
-            "./../../default.xml"
+            "./components.xml"
         )
     else:
         manifest_url = args.manifest_url
@@ -233,31 +233,26 @@ def run_tagging():
     )
 
     # Find all the math libraries and their remotes.
-    included_names = [
-        "AMDMIGraphX",
-        "HIPIFY", #
-        "MIOpen",
-        "MIVisionX",
-        "ROCmValidationSuite", #
-        "composable_kernel",
-        "hipfort",
-        "rocDecode",
-        "rocm-cmake",
-        "rpp",
-    ]
-    included_groups = [
-        "mathlibs"
+    included_categories = [
+        "libs",
+        "tools",
+        "compilers",
+        "runtimes",
     ]
     projects = [ ]
     for project in manifest_tree.iterfind(".//project"):
-        include = str(project.get("name")) in included_names
-        if (project.get("name") in included_names) or (project.get("groups") in included_groups):
+        if project.get("category") in included_categories:
             projects.append(project)
-    names_and_remotes = list((entry.get("name"), entry.get("remote")) for entry in projects)
+    component_information = list(
+        (entry.get("name"), 
+         entry.get("remote"),
+         entry.get("group"),
+         entry.get("category"),
+        ) for entry in projects)
 
     # Get all the relevant ROCm releases, and only the last version if not doing previous.
     minimum_version = "5.0.0" if args.previous else args.version
-    releases = release_bundle_factory.create_data_dict(args.version, names_and_remotes, minimum_version)
+    releases = release_bundle_factory.create_data_dict(args.version, component_information, minimum_version)
 
     # Process the individual releases.
     failed: List[Tuple[str, str]] = []
