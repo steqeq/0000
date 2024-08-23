@@ -84,6 +84,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
   workspace:
     clean: all
   strategy:
@@ -91,7 +92,6 @@ jobs:
       gfx942:
         JOB_GPU_TARGET: gfx942
         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
-  pool: $(JOB_TEST_POOL)
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
