@@ -17,6 +17,9 @@ sudo getent shadow > "${fake_shadow}"
 
 mkdir -p ${HOME}/.ccache
 
+
+CURRENT_USER=$(whoami)
+
 docker_exit_code=0
 
 docker run -ti \
@@ -30,10 +33,14 @@ docker run -ti \
     --mount="type=bind,src=${fake_shadow},dst=/etc/shadow,readonly" \
     --mount="type=bind,src=${fake_group},dst=/etc/group,readonly" \
     -v ${HOME}/.ccache:/.ccache \
+    -v ${HOME}:/home/${CURRENT_USER} \
     -u $(id -u):$(id -g) \
-    --cap-add SYS_ADMIN \
-    --cap-add DAC_READ_SEARCH \
-    ${BASE_IMAGE} bash || docker_exit_code=$?
+    ${BASE_IMAGE} /bin/bash -c "
+        mkdir -p /home/${CURRENT_USER}
+        chown $(id -u):$(id -g) /home/${CURRENT_USER}
+        export HOME=/home/${CURRENT_USER}
+        bash
+    " || docker_exit_code=$?
 
 rm "${fake_passwd}" "${fake_shadow}" "${fake_group}"
 
