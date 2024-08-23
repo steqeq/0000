@@ -72,7 +72,7 @@ parameters:
     rocThrust: develop
     roctracer: amd-staging
     rocWMMA: develop
-    rpp: master
+    rpp: develop
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
