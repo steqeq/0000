@@ -49,7 +49,6 @@ parameters:
     - rocr_debug_agent
     - rocSOLVER
     - rocSPARSE
-    - ROCT-Thunk-Interface
     - rocThrust
     - roctracer
     - rocWMMA
