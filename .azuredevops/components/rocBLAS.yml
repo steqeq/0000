@@ -37,6 +37,8 @@ parameters:
     - rocm-core
     - aomp
     - aomp-extras
+    - hipBLAS-common
+    - hipBLASLt
 
 jobs:
 - job: rocBLAS
