@@ -29,7 +29,6 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
-    - rocRAND
 
 jobs:
 - job: rocRAND

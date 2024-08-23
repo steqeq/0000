@@ -96,7 +96,7 @@ jobs:
       testParameters: ''
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
-      componentName: rocminfo
+      componentName: rocm_agent_enumerator
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/bin/rocm_agent_enumerator'
       testParameters: ''

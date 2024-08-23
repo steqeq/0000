@@ -32,6 +32,9 @@ parameters:
   default:
     - clr
     - llvm-project
+    - hipBLAS-common
+    - hipBLASLt
+    - hipSPARSE
     - rocBLAS
     - rocm-cmake
     - rocminfo
@@ -130,6 +133,29 @@ jobs:
       SourceFolder: '$(System.ArtifactsDirectory)'
       Contents: '/**/*.tar.xz'
       RemoveDotFiles: true
+  # Manually download aqlprofile, hard-coded 6.1.0 version
+  - task: Bash@3
+    displayName: 'Download aqlprofile'
+    inputs:
+      targetType: inline
+      script: wget -nv https://repo.radeon.com/rocm/misc/aqlprofile/ubuntu-22.04/hsa-amd-aqlprofile_1.0.0.60200.60200-crdnnh.14213~22.04_amd64.deb
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Extract aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir hsa-amd-aqlprofile
+        dpkg-deb -R hsa-amd-aqlprofile_1.0.0.60200.60200-crdnnh.14213~22.04_amd64.deb hsa-amd-aqlprofile
+      workingDirectory: '$(Pipeline.Workspace)'
+  - task: Bash@3
+    displayName: 'Move aqlprofile'
+    inputs:
+      targetType: inline
+      script: |
+        mkdir -p $(Agent.BuildDirectory)/rocm
+        cp -R hsa-amd-aqlprofile/opt/rocm-6.2.0-14213/* $(Agent.BuildDirectory)/rocm
+      workingDirectory: '$(Pipeline.Workspace)'
 # CI case: download latest default branch build
   - ${{ if eq(parameters.checkoutRef, '') }}:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml

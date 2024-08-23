@@ -33,11 +33,14 @@ parameters:
   default:
     - aomp
     - clr
+    - hipBLAS-common
+    - hipBLASLt
     - llvm-project
     - rocBLAS
     - rocm-cmake
     - rocm_smi_lib
     - rocminfo
+    - rocprofiler-register
     - ROCR-Runtime
 
 jobs:
@@ -88,6 +91,7 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: rocWMMA_testing
+  timeoutInMinutes: 90
   dependsOn: rocWMMA
   condition: succeeded()
   variables:

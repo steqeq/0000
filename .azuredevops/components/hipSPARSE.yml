@@ -30,6 +30,8 @@ parameters:
   default:
     - clr
     - llvm-project
+    - hipBLAS-common
+    - hipBLASLt
     - rocBLAS
     - rocminfo
     - rocprofiler-register

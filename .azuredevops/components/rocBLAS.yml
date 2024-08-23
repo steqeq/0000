@@ -38,6 +38,8 @@ parameters:
     - rocm-core
     - aomp
     - aomp-extras
+    - hipBLAS-common
+    - hipBLASLt
 - name: rocmTestDependencies
   type: object
   default:
@@ -48,7 +50,6 @@ parameters:
     - rocprofiler-register
     - rocm_smi_lib
     - ROCR-Runtime
-    - rocBLAS
 
 jobs:
 - job: rocBLAS
@@ -137,8 +138,8 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: rocBLAS_testing
-  # dependsOn: rocBLAS
-  # condition: succeeded()
+  dependsOn: rocBLAS
+  condition: succeeded()
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

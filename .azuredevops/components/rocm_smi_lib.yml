@@ -62,4 +62,4 @@ jobs:
       componentName: rocm_smi_lib
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/share/rocm_smi/rsmitst_tests/rsmitst'
-      testParameters: '--verbosity=3'
+      testParameters: ''
