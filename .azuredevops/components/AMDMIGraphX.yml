@@ -80,11 +80,14 @@ jobs:
       dependencySource: fixed
       fixedComponentName: half
       fixedPipelineIdentifier: ${{ variables.HALF560_PIPELINE_ID }}
-# CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+      skipLibraryLinking: true
+      skipLlvmSymlink: true
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
