@@ -228,14 +228,13 @@ When XNACK support is not needed:
 
 #### Unified shared memory pragma
 
-This OpenMP pragma is available on MI200 through `xnack+` support.
+There are two ways in which you can trigger USM:
 
-```bash
-omp requires unified_shared_memory
-```
+- Add ``#pragma omp requires unified_shared_memory`` in your source files or translation units to be more precise.
 
-As stated in the OpenMP specifications, this pragma makes the map clause on
-target constructs optional. By default, on MI200, all memory allocated on the
+- Use the flag ``-fopenmp-force-usm`` and run the application in XNACK-enabled mode.
+
+As stated in the OpenMP specifications, the ``omp requires unified_shared_memory`` pragma makes the map clause on target constructs optional. By default, on MI200, all memory allocated on the
 host is fine grain. Using the map clause on a target clause is allowed, which
 transforms the access semantics of the associated memory to coarse grain.
 
@@ -296,8 +295,8 @@ The following table lists the runtime behavior based on the unified shared memor
 
 | MI300A | unified_shared_memory pragma <br>NOT specified</br> | unified_shared_memory pragma <br>specified</br> |
 | --- | --- | --- |
-| XNACK enabled | implicit zero-copy |  zero-copy |
-| XNACK disabled | copy |  runtime warning* |
+| XNACK enabled | implicit zero-copy | zero-copy |
+| XNACK disabled | copy | runtime warning* |
 
 ##### Zero-copy behavior on discrete GPUs
 
