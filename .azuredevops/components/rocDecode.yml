@@ -158,7 +158,7 @@ jobs:
   # anything in /opt may be persistent across runs
   # so we need to remove the symlink if it already exists
   - script: |
-      sudo rm -f /opt/rocm
+      sudo rm -rf /opt/rocm
       sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
       mkdir rocDecode-tests
       cd rocDecode-tests
@@ -168,3 +168,4 @@ jobs:
       componentName: rocDecode
       testDir: 'rocDecode-tests'
       testParameters: '-VV --output-on-failure --force-new-ctest-process --output-junit test_output.xml'
+  - script: sudo rm /opt/rocm
