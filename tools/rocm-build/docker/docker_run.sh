@@ -50,11 +50,9 @@ docker run -ti \
     --mount="type=bind,src=${fake_shadow},dst=/etc/shadow,readonly" \
     --mount="type=bind,src=${fake_group},dst=/etc/group,readonly" \
     -v ${HOME}/.ccache:${HOME}/.ccache \
-    -v ${HOME}:/home/$(id -un) \
     -u $(id -u):$(id -g) \
     ${BASE_IMAGE} /bin/bash -c "
         mkdir -p /home/$(id -un)
-        chown $(id -u):$(id -g) /home/$(id -un)
         export HOME=/home/$(id -un)
         bash
     " || docker_exit_code=$?
