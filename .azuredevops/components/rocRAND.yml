@@ -133,18 +133,15 @@ jobs:
         mkdir -p $(Agent.BuildDirectory)/rocm
         cp -R hsa-amd-aqlprofile/opt/rocm-6.2.0-14213/* $(Agent.BuildDirectory)/rocm
       workingDirectory: '$(Pipeline.Workspace)'
-# CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmTestDependencies }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-        gpuTarget: $(JOB_GPU_TARGET)
-# manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmTestDependencies }}
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
