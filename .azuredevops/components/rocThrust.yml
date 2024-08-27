@@ -99,28 +99,15 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - task: DownloadPipelineArtifact@2
-    inputs:
-      targetPath: $(System.ArtifactsDirectory)
-  - task: ExtractFiles@1
-    inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
-      destinationFolder: '$(Agent.BuildDirectory)/rocm'
-      cleanDestinationFolder: false
-      overwriteExistingFiles: true
-  - task: DeleteFiles@1
-    inputs:
-      SourceFolder: '$(System.ArtifactsDirectory)'
-      Contents: '/**/*.tar.xz'
-      RemoveDotFiles: true
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
