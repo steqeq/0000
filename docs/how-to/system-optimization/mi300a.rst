@@ -163,7 +163,7 @@ This section describes performance-based settings.
 
   .. code-block:: shell
 
-     vmlinuz-[...] amdttm.pages_limit=134217728 amdttm.page_pool_size=134217728 [...]
+     vmlinux-[...] amdttm.pages_limit=134217728 amdttm.page_pool_size=134217728 [...]
 
   To verify the new settings and confirm the change, use this command:
 
