@@ -230,7 +230,7 @@ When XNACK support is not needed:
 
 There are two ways in which you can trigger USM:
 
-- Add ``#pragma omp requires unified_shared_memory`` in your source files or translation units to be more precise.
+- Add ``#pragma omp requires unified_shared_memory`` in your source files.
 
 - Use the flag ``-fopenmp-force-usm`` and run the application in XNACK-enabled mode.
 
