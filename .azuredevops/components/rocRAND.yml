@@ -117,3 +117,4 @@ jobs:
     parameters:
       componentName: rocRAND
       testDir: '$(Agent.BuildDirectory)/rocm/bin/rocRAND'
+      testPublishResults: false

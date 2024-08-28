@@ -125,3 +125,4 @@ jobs:
     parameters:
       componentName: rocWMMA
       testDir: '$(Agent.BuildDirectory)/rocm/bin/rocwmma'
+      testPublishResults: false

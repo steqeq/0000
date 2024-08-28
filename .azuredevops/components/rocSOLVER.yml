@@ -152,3 +152,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocsolver-test'
       testParameters: --gtest_filter='*checkin*'
+      testPublishResults: false

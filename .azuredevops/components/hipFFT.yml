@@ -136,3 +136,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './hipfft-test'
       testParameters: '--test_prob 0.002'
+      testPublishResults: false

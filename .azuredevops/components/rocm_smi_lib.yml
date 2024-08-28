@@ -52,3 +52,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/share/rocm_smi/rsmitst_tests/rsmitst'
       testParameters: ''
+      testPublishResults: false

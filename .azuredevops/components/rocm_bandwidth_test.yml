@@ -107,3 +107,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/bin/rocm-bandwidth-test'
       testParameters: ''
+      testPublishResults: false

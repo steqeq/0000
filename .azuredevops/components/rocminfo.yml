@@ -85,3 +85,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/bin/rocm_agent_enumerator'
       testParameters: ''
+      testPublishResults: false

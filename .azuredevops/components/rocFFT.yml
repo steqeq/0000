@@ -135,3 +135,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocfft-test'
       testParameters: '--test_prob 0.004'
+      testPublishResults: false

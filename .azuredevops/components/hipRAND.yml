@@ -120,3 +120,4 @@ jobs:
     parameters:
       componentName: hipRAND
       testDir: '$(Agent.BuildDirectory)/rocm/bin/hipRAND'
+      testPublishResults: false

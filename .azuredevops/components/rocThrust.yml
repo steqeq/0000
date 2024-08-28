@@ -114,3 +114,4 @@ jobs:
     parameters:
       componentName: rocThrust
       testDir: '$(Agent.BuildDirectory)/rocm/bin/rocthrust'
+      testPublishResults: false

@@ -106,3 +106,4 @@ jobs:
     parameters:
       componentName: rocPRIM
       testDir: '$(Agent.BuildDirectory)/rocm/bin/rocprim'
+      testPublishResults: false

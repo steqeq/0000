@@ -146,3 +146,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocsparse-test'
       testParameters: '--gtest_filter="*quick*"'
+      testPublishResults: false

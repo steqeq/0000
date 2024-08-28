@@ -16,7 +16,16 @@ parameters:
   default: test_output.xml
 - name: testOutputFormat
   type: string
-  default: 'junit'
+  default: 'JUnit'
+  values:
+    - JUnit
+    - NUnit
+    - VSTest
+    - XUnit
+    - CTest
+- name: testPublishResults
+  type: boolean
+  default: true
 
 steps:
 # run test, continue on failure to publish results
@@ -28,9 +37,10 @@ steps:
     targetType: inline
     script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
     workingDirectory: ${{ parameters.testDir }}
-- task: PublishTestResults@2
-  displayName: '${{ parameters.componentName }} Publish Results'
-  inputs:
-    testResultsFormat: ${{ parameters.testOutputFormat }}
-    testResultsFiles: '**/${{ parameters.testOutputFile }}'
-  condition: succeededOrFailed()
+- ${{ if parameters.testPublishResults }}:
+  - task: PublishTestResults@2
+    displayName: '${{ parameters.componentName }} Publish Results'
+    inputs:
+      testResultsFormat: ${{ parameters.testOutputFormat }}
+      testResultsFiles: '**/${{ parameters.testOutputFile }}'
+    condition: succeededOrFailed()

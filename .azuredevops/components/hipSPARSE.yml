@@ -136,3 +136,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './hipsparse-test'
       testParameters: ''
+      testPublishResults: false

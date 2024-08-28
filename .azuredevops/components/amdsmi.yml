@@ -61,3 +61,4 @@ jobs:
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/share/amd_smi/tests/amdsmitst'
       testParameters: ''
+      testPublishResults: false
