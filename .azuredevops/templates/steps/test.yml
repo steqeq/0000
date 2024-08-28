@@ -10,7 +10,7 @@ parameters:
   default: 'ctest'
 - name: testParameters
   type: string
-  default: '--output-on-failure --force-new-ctest-process --output-junit test_output.xml'
+  default: '-VV --output-on-failure --force-new-ctest-process --output-junit test_output.xml'
 - name: testOutputFile
   type: string
   default: test_output.xml
@@ -41,6 +41,7 @@ steps:
   - task: PublishTestResults@2
     displayName: '${{ parameters.componentName }} Publish Results'
     inputs:
+      searchFolder: ${{ parameters.testDir }}
       testResultsFormat: ${{ parameters.testOutputFormat }}
       testResultsFiles: '**/${{ parameters.testOutputFile }}'
     condition: succeededOrFailed()

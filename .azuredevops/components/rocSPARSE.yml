@@ -40,7 +40,7 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
-    
+
 jobs:
 - job: rocSPARSE
   variables:
@@ -145,5 +145,5 @@ jobs:
       componentName: rocSPARSE
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocsparse-test'
-      testParameters: '--gtest_filter="*quick*"'
-      testPublishResults: false
+      testParameters: '--gtest_filter="*quick*" --gtest_output=xml:./test_output.xml --gtest_color=yes'
+

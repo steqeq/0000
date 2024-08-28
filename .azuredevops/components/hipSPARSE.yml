@@ -135,5 +135,4 @@ jobs:
       componentName: hipSPARSE
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './hipsparse-test'
-      testParameters: ''
-      testPublishResults: false
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'

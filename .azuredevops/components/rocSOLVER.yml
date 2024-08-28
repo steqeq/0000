@@ -151,5 +151,4 @@ jobs:
       componentName: rocSOLVER
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocsolver-test'
-      testParameters: --gtest_filter='*checkin*'
-      testPublishResults: false
+      testParameters: '--gtest_filter="*checkin*" --gtest_output=xml:./test_output.xml --gtest_color=yes'

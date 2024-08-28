@@ -134,5 +134,4 @@ jobs:
       componentName: rocFFT
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocfft-test'
-      testParameters: '--test_prob 0.004'
-      testPublishResults: false
+      testParameters: '--test_prob 0.004 --gtest_output=xml:./test_output.xml --gtest_color=yes'

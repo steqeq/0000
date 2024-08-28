@@ -166,4 +166,3 @@ jobs:
     parameters:
       componentName: MIVisionX
       testDir: 'mivisionx-tests'
-      testParameters: '-VV --output-on-failure --force-new-ctest-process --output-junit test_output.xml'

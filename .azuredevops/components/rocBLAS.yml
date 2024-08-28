@@ -181,5 +181,4 @@ jobs:
       componentName: rocBLAS
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './rocblas-test'
-      testParameters: '--yaml rocblas_smoke.yaml --gtest_output=xml --gtest_color=yes'
-      testPublishResults: false
+      testParameters: '--yaml rocblas_smoke.yaml --gtest_output=xml:./test_output.xml --gtest_color=yes'

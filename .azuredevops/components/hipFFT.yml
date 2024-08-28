@@ -135,5 +135,4 @@ jobs:
       componentName: hipFFT
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './hipfft-test'
-      testParameters: '--test_prob 0.002'
-      testPublishResults: false
+      testParameters: '--test_prob 0.002 --gtest_output=xml:./test_output.xml --gtest_color=yes'

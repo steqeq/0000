@@ -106,8 +106,6 @@ jobs:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-    parameters:
-      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
       ${{ if eq(parameters.checkoutRef, '') }}:
@@ -134,5 +132,4 @@ jobs:
     parameters:
       componentName: rocDecode
       testDir: 'rocDecode-tests'
-      testParameters: '-VV --output-on-failure --force-new-ctest-process --output-junit test_output.xml'
   - script: sudo rm /opt/rocm
