@@ -242,8 +242,11 @@ This section describes performance-based settings.
   
   This change prevents internal ROCm threads from having their CPU core affinity mask 
   set to all CPU cores available. With this setting, the threads inherit their parent's 
-  CPU core affinity mask. If you have any questions regarding this setting, 
-  contact your MI300A platform vendor. To enable this setting, enter the following command:
+  CPU core affinity mask. Before adjusting this setting, ensure you thoroughly understand 
+  your system topology and how the application, runtime environment, and batch system
+  set the thread-to-core affinity. If you have any questions regarding this setting, 
+  contact your MI300A platform vendor or the AMD support team. 
+  To enable this setting, enter the following command:
 
   .. code-block:: shell
 
