@@ -1,0 +1,24 @@
+parameters:
+  - name: gpuTarget
+    type: string
+    default: ''
+
+steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download Pipeline Build'
+    inputs:
+      itemPattern: '**/*${{ parameters.gpuTarget }}*'
+      targetPath: $(System.ArtifactsDirectory)
+  - task: ExtractFiles@1
+    displayName: 'Extract Pipeline Build'
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    displayName: 'Clean up Compressed Pipeline Build'
+    inputs:
+      SourceFolder: '$(System.ArtifactsDirectory)'
+      Contents: '/**/*.tar.xz'
+      RemoveDotFiles: true

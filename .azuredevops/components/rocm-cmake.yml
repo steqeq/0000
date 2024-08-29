@@ -44,5 +44,7 @@ jobs:
       git config --global user.email "you@example.com"
       git config --global user.name "Your Name"
     displayName: "ctest setup"
-#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocm-cmake
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
