@@ -715,6 +715,7 @@ subexpression
 subfolder
 subfolders
 submodule
+submodules
 supercomputing
 symlink
 symlinks

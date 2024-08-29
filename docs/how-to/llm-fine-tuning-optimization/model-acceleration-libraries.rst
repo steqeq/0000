@@ -256,7 +256,7 @@ Learn more about optimizing kernels with TunableOp in
 FBGEMM and FBGEMM_GPU
 =====================
 
-FBGEMM (Facebook GEneral Matrix Multiplication) is a low-precision, high-performance CPU kernel library
+FBGEMM (Facebook General Matrix Multiplication) is a low-precision, high-performance CPU kernel library
 for matrix-matrix multiplications and convolutions. It is used for server-side inference
 and as a back end for PyTorch quantized operators. FBGEMM offers optimized on-CPU performance for reduced precision calculations,
 strong performance on native tensor formats, and the ability to generate
@@ -267,7 +267,7 @@ collects several high-performance PyTorch GPU operator libraries
 for use in training and inference. It provides efficient table-batched embedding functionality,
 data layout transformation, and quantization support.
 
-For more information about FB GEMM, see the `PyTorch FBGEMM GitHub <https://github.com/pytorch/FBGEMM>`_
+For more information about FBGEMM, see the `PyTorch FBGEMM GitHub <https://github.com/pytorch/FBGEMM>`_
 and the `PyTorch FBGEMM documentation <https://pytorch.org/FBGEMM/>`_.
 The `Meta blog post about FBGEMM <https://engineering.fb.com/2018/11/07/ml-applications/fbgemm/>`_ provides
 additional background about the library.
@@ -358,8 +358,8 @@ Install the GCC compiler, create the compiler symlinks, and install some additio
 
       conda install -n ${env_name} -c conda-forge -y gxx_linux-64=${gcc_version} sysroot_linux-64=2.17
 
-#. Add symlinks for the C/C++ compiler to the binpath. This overwrites any existing symlinks. In a Miniconda environment, the 
-   binpath is located at ``$CONDA_PREFIX/bin``.
+#. Add symlinks for the C/C++ compiler to the binary path. This overwrites any existing symlinks. In a Miniconda environment, the 
+   binary path is located at ``$CONDA_PREFIX/bin``.
 
    .. code-block:: shell
 
