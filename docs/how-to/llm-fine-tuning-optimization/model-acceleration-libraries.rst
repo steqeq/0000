@@ -251,3 +251,265 @@ page describes the options.
 
 Learn more about optimizing kernels with TunableOp in
 :ref:`Optimizing Triton kernels <mi300x-tunableop>`.
+
+
+FBGEMM and FBGEMM_GPU
+=====================
+
+FBGEMM (Facebook GEneral Matrix Multiplication) is a low-precision, high-performance CPU kernel library
+for matrix-matrix multiplications and convolutions. It is used for server-side inference
+and as a back end for PyTorch quantized operators. FBGEMM offers optimized on-CPU performance for reduced precision calculations,
+strong performance on native tensor formats, and the ability to generate
+high-performance shape- and size-specific kernels at runtime.
+
+Meta now supports FBGEMM on ROCm as part of the FBGEMM_GPU GPU kernel library. FBGEMM_GPU
+collects several high-performance PyTorch GPU operator libraries  
+for use in training and inference. It provides efficient table-batched embedding functionality,
+data layout transformation, and quantization support.
+
+For more information about FB GEMM, see the `PyTorch FBGEMM GitHub <https://github.com/pytorch/FBGEMM>`_
+and the `PyTorch FBGEMM documentation <https://pytorch.org/FBGEMM/>`_.
+The `Meta blog post about FBGEMM <https://engineering.fb.com/2018/11/07/ml-applications/fbgemm/>`_ provides
+additional background about the library.
+
+Installing FBGEMM 
+----------------------
+
+Installing FBGEMM and FBGEMM_GPU consists of the following steps:
+
+*  Set up an isolated Miniconda environment
+*  Install any necessary ROCm components
+*  Install the build tools
+*  Install `PyTorch <https://pytorch.org/>`_
+*  Complete the pre-build and build tasks
+
+Set up the Miniconda environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To install Miniconda, use the following commands.
+
+#. Install a `Miniconda environment <https://docs.anaconda.com/miniconda/>`_ for reproducible builds.
+   All subsequent commands run inside this environment.
+
+   .. code-block:: shell
+
+      export PLATFORM_NAME="$(uname -s)-$(uname -m)"
+
+      # Set the Miniconda prefix directory
+      miniconda_prefix=$HOME/miniconda
+
+      # Download the Miniconda installer
+      wget -q "https://repo.anaconda.com/miniconda/Miniconda3-latest-${PLATFORM_NAME}.sh" -O miniconda.sh
+
+      # Run the installer
+      bash miniconda.sh -b -p "$miniconda_prefix" -u
+
+      # Load the shortcuts
+      . ~/.bashrc
+
+      # Run updates
+      conda update -n base -c defaults -y conda
+
+#. Create a Miniconda environment with Python version 3.12:
+
+   .. code-block:: shell
+
+      env_name=<ENV NAME>
+      python_version=3.12
+
+      # Create the environment
+      conda create -y --name ${env_name} python="${python_version}"
+
+      # Upgrade PIP and pyOpenSSL package
+      conda run -n ${env_name} pip install --upgrade pip
+      conda run -n ${env_name} python -m pip install pyOpenSSL>22.1.0
+
+Install the ROCm components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+FBGEMM requires installation of the full ROCm package. It also requires the :doc:`MIOpen <miopen:index>` component
+as a dependency. To install MIOpen, use the ``apt install`` command.
+
+.. code-block:: shell
+
+   apt install hipify-clang miopen-hip miopen-hip-dev
+
+Install the build tools
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Install the GCC compiler, create the compiler symlinks, and install some additional build tools.
+
+#. Install the GCC C/C++ compiler. You must install a version of the compiler that supports C++20. GCC also requires the ``sysroot`` package.
+
+   .. note::
+
+      Newer versions of GCC can be used, but they are not compatible with older
+      systems such as Ubuntu 20.04. This is because the compiled library could
+      reference symbols from unsupported versions of ``GLIBCXX``. For more information, see the
+      `PyTorch FBGEMM build tools documentation <https://pytorch.org/FBGEMM/fbgemm_gpu-development/BuildInstructions.html#install-the-build-tools>`_.
+
+   .. code-block:: shell
+
+      # Set GCC to 10.4.0 to keep compatibility with older versions of GLIBCXX
+      #
+      # A newer versions of GCC also works, but will need to be accompanied by an
+      # appropriate updated version of the sysroot_linux package.
+      gcc_version=10.4.0
+
+      conda install -n ${env_name} -c conda-forge -y gxx_linux-64=${gcc_version} sysroot_linux-64=2.17
+
+#. Add symlinks for the C/C++ compiler to the binpath. This overwrites any existing symlinks. In a Miniconda environment, the 
+   binpath is located at ``$CONDA_PREFIX/bin``.
+
+   .. code-block:: shell
+
+      conda_prefix=$(conda run -n ${env_name} printenv CONDA_PREFIX)
+
+      ln -sf "${path_to_gcc}" "$(conda_prefix)/bin/cc"
+      ln -sf "${path_to_gcc}" "$(conda_prefix)/bin/c++"
+
+#. Install some additional build tools.
+
+   .. code-block:: shell
+
+      conda install -n ${env_name} -y \
+         click \
+         cmake \
+         hypothesis \
+         jinja2 \
+         make \
+         ncurses \
+         ninja \
+         numpy \
+         scikit-build \
+         wheel
+
+Install PyTorch
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Install `PyTorch <https://pytorch.org/>`_ using ``pip`` for the most reliable and consistent results.
+
+#. Install PyTorch using ``pip``.
+
+   .. code-block:: shell
+
+      # Install the latest nightly, ROCm variant
+      conda run -n ${env_name} pip install --pre torch --index-url https://download.pytorch.org/whl/nightly/rocm6.2/
+
+#. Ensure PyTorch loads correctly and verify the version and variant of the installation using an ``import`` test.
+
+   .. code-block:: shell
+
+      # Ensure that the package loads properly
+      conda run -n ${env_name} python -c "import torch.distributed"
+
+      # Verify the version and variant of the installation
+      conda run -n ${env_name} python -c "import torch; print(torch.__version__)"
+
+Perform the pre-build and build
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Clone the FBGEMM repository and the relevant submodules. Use ``pip`` to install the 
+   components in ``requirements.txt``. Run the following commands inside the Miniconda environment.
+
+   .. code-block:: shell
+
+      # Select a version tag
+      FBGEMM_VERSION=v0.8.0
+
+      # Clone the repo along with its submodules
+      git clone --recursive -b ${FBGEMM_VERSION} https://github.com/pytorch/FBGEMM.git fbgemm_${FBGEMM_VERSION}
+
+      # Install additional required packages for building and testing
+      cd fbgemm_${FBGEMM_VERSION}/fbgemm_gpu
+      pip install requirements.txt
+
+#. Clear the build cache to remove stale build information.
+
+   .. code-block:: shell
+
+      # !! Run in fbgemm_gpu/ directory inside the Conda environment !!
+
+      python setup.py clean
+
+#. Set the wheel build variables, including the package name, Python version tag, and Python platform name.
+
+   .. code-block:: shell
+
+      # Set the package name depending on the build variant
+      export package_name=fbgemm_gpu_rocm
+
+      # Set the Python version tag.  It should follow the convention `py<major><minor>`,
+      # e.g. Python 3.12 --> py312
+      export python_tag=py312
+
+      # Determine the processor architecture
+      export ARCH=$(uname -m)
+
+      # Set the Python platform name for the Linux case
+      export python_plat_name="manylinux2014_${ARCH}"
+
+#. Build FBGEMM for the ROCm platform. Set ``ROCM_PATH`` to the path to your ROCm installation. 
+   Run these commands from the ``fbgemm_gpu/`` directory inside the Miniconda environment.
+
+    .. code-block:: shell
+
+      # !! Run in the fbgemm_gpu/ directory inside the Conda environment !!
+
+      export ROCM_PATH=/path/to/rocm
+
+      # Build for the target architecture of the ROCm device installed on the machine (for example, 'gfx942;gfx90a')
+      # See :doc:`The Linux system requirements <../../reference/system-requirements>` for a list of supported GPUs.
+      export PYTORCH_ROCM_ARCH=$(${ROCM_PATH}/bin/rocminfo | grep -o -m 1 'gfx.*')
+
+      # Build the wheel artifact only
+      python setup.py bdist_wheel \
+         --package_variant=rocm \
+         --python-tag="${python_tag}" \
+         --plat-name="${python_plat_name}" \
+         -DHIP_ROOT_DIR="${ROCM_PATH}" \
+         -DCMAKE_C_FLAGS="-DTORCH_USE_HIP_DSA" \
+         -DCMAKE_CXX_FLAGS="-DTORCH_USE_HIP_DSA"
+
+      # Build and install the library into the Conda environment
+      python setup.py install \
+         --package_variant=rocm \
+         -DHIP_ROOT_DIR="${ROCM_PATH}" \
+         -DCMAKE_C_FLAGS="-DTORCH_USE_HIP_DSA" \
+         -DCMAKE_CXX_FLAGS="-DTORCH_USE_HIP_DSA"  
+
+Post-build validation
+----------------------
+
+After building FBGEMM, run some verification checks to ensure the build is correct. Continue
+to run all commands inside the ``fbgemm_gpu/`` directory inside the Miniconda environment.
+
+#. FBGEMM generates many Jinja and C++ templates, so
+   it is important to confirm no undefined symbols remain after the build.
+
+   .. code-block:: shell
+
+      # !! Run in fbgemm_gpu/ directory inside the Conda environment !!
+
+      # Locate the built .SO file
+      fbgemm_gpu_lib_path=$(find . -name fbgemm_gpu_py.so)
+
+      # Check that the undefined symbols don't include fbgemm_gpu-defined functions
+      nm -gDCu "${fbgemm_gpu_lib_path}" | sort
+
+#. Verify the referenced version number of ``GLIBCXX`` and the presence of certain function symbols:
+
+   .. code-block:: shell
+
+      # !! Run in fbgemm_gpu/ directory inside the Conda environment !!
+
+      # Locate the built .SO file
+      fbgemm_gpu_lib_path=$(find . -name fbgemm_gpu_py.so)
+
+      # Note the versions of GLIBCXX referenced by the .SO
+      # The libstdc++.so.6 available on the install target must support these versions
+      objdump -TC "${fbgemm_gpu_lib_path}" | grep GLIBCXX | sed 's/.*GLIBCXX_\([.0-9]*\).*/GLIBCXX_\1/g' | sort -Vu | cat
+
+      # Test for the existence of a given function symbol in the .SO
+      nm -gDC "${fbgemm_gpu_lib_path}" | grep " fbgemm_gpu::merge_pooled_embeddings("
+      nm -gDC "${fbgemm_gpu_lib_path}" | grep " fbgemm_gpu::jagged_2d_to_dense("

@@ -97,6 +97,7 @@ ENDPGM
 EPYC
 ESXi
 EoS
+FBGEMM
 FFT
 FFTs
 FFmpeg
@@ -110,6 +111,7 @@ Flang
 Fortran
 Fuyu
 GALB
+GCC
 GCD
 GCDs
 GCN
@@ -175,6 +177,7 @@ Interop
 Intersphinx
 Intra
 Ioffe
+Jinja
 JSON
 Jupyter
 KFD
@@ -221,6 +224,7 @@ Megatron
 Mellanox
 Mellanox's
 Meta's
+Miniconda
 MirroredStrategy
 Multicore
 Multithreaded
@@ -713,6 +717,7 @@ subfolders
 submodule
 supercomputing
 symlink
+symlinks
 td
 tensorfloat
 th
