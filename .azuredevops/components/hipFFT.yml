@@ -27,6 +27,19 @@ parameters:
     - rocminfo
     - rocFFT
     - aomp
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - hipRAND
+    - llvm-project
+    - rocFFT
+    - rocminfo
+    - rocprofiler-register
+    - ROCR-Runtime
+    - rocRAND
+
 jobs:
 - job: hipFFT
   variables:
@@ -80,3 +93,46 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
+
+- job: hipFFT_testing
+  dependsOn: hipFFT
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: hipFFT
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: './hipfft-test'
+      testParameters: '--test_prob 0.002 --gtest_output=xml:./test_output.xml --gtest_color=yes'

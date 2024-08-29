@@ -32,3 +32,30 @@ jobs:
       extraBuildFlags: >-
         -DBUILD_TESTS=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: amdsmi_testing
+  dependsOn: amdsmi
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: amdsmi
+      testDir: '$(Agent.BuildDirectory)'
+      testExecutable: './rocm/share/amd_smi/tests/amdsmitst'
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
