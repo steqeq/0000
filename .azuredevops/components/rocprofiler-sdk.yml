@@ -39,6 +39,7 @@ parameters:
     - rocm-core
     - rocminfo
     - ROCR-Runtime
+    - rocprofiler
     - rocprofiler-register
 
 jobs:
