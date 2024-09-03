@@ -327,8 +327,27 @@ To install Miniconda, use the following commands.
 Install the ROCm components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-FBGEMM requires installation of the full ROCm package. It also requires the :doc:`MIOpen <miopen:index>` component
-as a dependency. To install MIOpen, use the ``apt install`` command.
+FBGEMM_GPU can run in a ROCm Docker container or within the full ROCm installation.
+However, the Docker method is easier and is the recommended approach.
+
+To run FBGEMM_GPU in the Docker image, pull the `Minimal Docker image for ROCm <https://hub.docker.com/r/rocm/rocm-terminal>`_.
+This image includes all preinstalled ROCm packages required to integrate FBGEMM. To pull
+and run the ROCm Docker image, use this command:
+
+.. code-block:: shell
+
+   # Run for ROCm 6.2.0
+   docker run -it --entrypoint "/bin/bash" rocm/rocm-terminal:6.2
+
+.. note::
+
+   The `Full Docker image for ROCM <https://hub.docker.com/r/rocm/dev-ubuntu-20.04>`_, which includes all
+   ROCm packages, can also be used. However, it results in a very large container, so the minimal
+   Docker image is recommended installed.
+
+If you are installing ROCm using the package manager, FBGEMM requires installation of the full ROCm package.
+It also requires the :doc:`MIOpen <miopen:index>` component as a dependency. 
+To install MIOpen, use the ``apt install`` command.
 
 .. code-block:: shell
 
@@ -513,3 +532,38 @@ to run all commands inside the ``fbgemm_gpu/`` directory inside the Miniconda en
       # Test for the existence of a given function symbol in the .SO
       nm -gDC "${fbgemm_gpu_lib_path}" | grep " fbgemm_gpu::merge_pooled_embeddings("
       nm -gDC "${fbgemm_gpu_lib_path}" | grep " fbgemm_gpu::jagged_2d_to_dense("
+
+Testing FBGEMM
+----------------------
+
+FBGEMM includes some tests and benchmarks that can be used to validate performance. To run these tests,
+the ROCm version must be 5.7 or more recent on the host or container. To run tests against
+FBGEMM, follow these instructions:
+
+.. code-block:: shell
+
+   # !! Run inside the Conda environment !!
+
+   # Enable for running in CPU-only mode (when on a GPU-capable machine)
+   export CUDA_VISIBLE_DEVICES=-1
+
+   # Enable for debugging failed kernel executions
+   export CUDA_LAUNCH_BLOCKING=1
+
+   # For operators involving NCCL, if the rpath is not set up correctly for
+   # libnccl.so.2, LD_LIBRARY_PATH will need to be updated.
+   export LD_LIBRARY_PATH="/path/to/nccl/lib:${LD_LIBRARY_PATH}"
+
+   # Run the test
+   python -m pytest -v -rsx -s -W ignore::pytest.PytestCollectionWarning split_table_batched_embeddings_test.py
+
+To run the FBGEMM_GPU benchmarking test, use these commands. These tests only support the AMD MI210 and 
+newer accelerators. 
+
+.. code-block:: shell
+
+# Run this inside the Conda environment from the /fbgemm_gpu/ directory
+export HSA_XNACK=1
+cd bench
+
+python split_table_batched_embeddings_benchmark.py uvm
