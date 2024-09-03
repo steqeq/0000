@@ -5,6 +5,9 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
+- name: checkoutRefCompare
+  type: string
+  default: 'develop'
 - name: aptPackages
   type: object
   default:
@@ -50,6 +53,25 @@ parameters:
     - rocminfo
     - rocMLIR
     - rocprofiler-register
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - aomp-extras
+    - clr
+    - composable_kernel
+    - hipBLAS
+    - hipBLAS-common
+    - hipBLASLt
+    - llvm-project
+    - MIOpen
+    - rocm-cmake
+    - ROCR-Runtime
+    - rocBLAS
+    - rocminfo
+    - rocMLIR
+    - rocprofiler-register
+    - roctracer
 
 jobs:
 - job: AMDMIGraphX
@@ -87,10 +109,10 @@ jobs:
       dependencyList: ${{ parameters.rocmDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -109,3 +131,81 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
+      publish: false
+  # MIGraphX tests assume you are running tests in the exact same environment as the build (ie. right after the build)
+  # Paths to test binaries and files are hardcoded(!!) during the build process
+  # Just package the entire source directory to preserve the directory structure
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Build.SourcesDirectory)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      artifactName: testFiles
+      gpuTarget: $(JOB_GPU_TARGET)
+
+- job: AMDMIGraphX_testing
+  dependsOn: AMDMIGraphX
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      artifactName: drop
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      artifactName: testFiles
+      gpuTarget: $(JOB_GPU_TARGET)
+      destinationFolder: $(Agent.BuildDirectory)/s
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+        dependencySource: tag-builds
+  # Change the hardcoded MIGraphX test paths to the actual current directory
+  - task: Bash@3
+    displayName: Edit CTest paths
+    inputs:
+      targetType: inline
+      script: |
+        CURRENT_DIR=$(pwd)
+        find $CURRENT_DIR -name 'CTestTestfile.cmake' -type f -exec sed -ie "s:/agent/_work/.:$CURRENT_DIR:g" {} \;
+      workingDirectory: $(Agent.BuildDirectory)/s
+  - task: Bash@3
+    displayName: Create symlink for MIGraphX build files
+    inputs:
+      targetType: inline
+      script: ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/rocm/s
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: AMDMIGraphX
+      testDir: '$(Agent.BuildDirectory)/rocm/s/build/test'
+  - task: Bash@3
+    displayName: 'List all files'
+    inputs:
+      targetType: inline
+      script: ls -1R $(Agent.BuildDirectory)
