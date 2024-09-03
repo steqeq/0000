@@ -989,7 +989,7 @@ on GitHub for more information.
   * `Zihintntl` extension version was upgraded to 1.0 and is no longer experimental.
 
   * Intrinsics were added for `Zk*`, `Zbb`, and `Zbc`. See
-    [Scalar Bit Manipulation Extension Intrinsics](https://github.com/riscv-non-isa/riscv-c-api-doc/blob/master/riscv-c-api.md#scalar-bit-manipulation-extension-intrinsics) in the RISC-V C API specification.
+    [Scalar Bit Manipulation Extension Intrinsics](https://github.com/riscv-non-isa/riscv-c-api-doc/blob/main/src/c-api.adoc#scalar-bit-manipulation-extension-intrinsics) in the RISC-V C API specification.
 
   * Default ABI with F but without D was changed to ilp32f for RV32 and to lp64f for RV64.
 
