@@ -9,46 +9,33 @@ parameters:
   type: object
   default:
     - cmake
-    - libgtest-dev
-    - libdrm-dev
-    - libdw-dev
-    - libsystemd-dev
-    - libelf-dev
+    - ninja-build
+    - git
     - libnuma-dev
-    - libpciaccess-dev
+    - mesa-common-dev
+    - ocl-icd-libopencl1
+    - ocl-icd-opencl-dev
+    - opencl-headers
+    - libglu1-mesa-dev
+    - freeglut3-dev
+    - libboost-all-dev
     - python3-pip
-- name: pipModules
-  type: object
-  default:
-    - pyyaml==5.3.1
-    - Cppheaderparser
-    - websockets
-    - matplotlib
-    - lxml
-    - barectf
-    - pandas
 - name: rocmDependencies
   type: object
   default:
-    - clr
     - llvm-project
-    - ROCdbgapi
-    - rocm-cmake
-    - rocm-core
-    - rocm_smi_lib
-    - rocminfo
     - ROCR-Runtime
+    - clr
+    - rocminfo
     - rocprofiler-register
-    - roctracer
 
+# HIP with AMD backend
 jobs:
-- job: rocprofiler
+- job: hip_tests
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
   - name: HIP_ROCCLR_HOME
-    value: $(Agent.BuildDirectory)/rocm
-  - name: ROCM_PATH
     value: $(Agent.BuildDirectory)/rocm
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
@@ -63,35 +50,32 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
-    parameters:
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  # compile hip-tests
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
+      componentName: hip-tests
+      cmakeSourceDir: '../catch'
+      customBuildTarget: build_tests
       extraBuildFlags: >-
-        -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules;$(Agent.BuildDirectory)/rocm/lib/cmake;$(Agent.BuildDirectory)/rocm/lib/cmake/hip
+        -DHIP_PLATFORM=amd
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DENABLE_LDCONFIG=OFF
-        -DUSE_PROF_API=1
-        -DGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DHIP_PATH=$(Agent.BuildDirectory)/rocm
+        -DOFFLOAD_ARCH_STR="--offload-arch=$(JOB_GPU_TARGET)"
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
