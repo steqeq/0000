@@ -262,8 +262,7 @@ and as a back end for PyTorch quantized operators. FBGEMM offers optimized on-CP
 strong performance on native tensor formats, and the ability to generate
 high-performance shape- and size-specific kernels at runtime.
 
-Meta now supports FBGEMM on ROCm as part of the FBGEMM_GPU GPU kernel library. FBGEMM_GPU
-collects several high-performance PyTorch GPU operator libraries  
+FBGEMM_GPU collects several high-performance PyTorch GPU operator libraries  
 for use in training and inference. It provides efficient table-batched embedding functionality,
 data layout transformation, and quantization support.
 
@@ -272,16 +271,20 @@ and the `PyTorch FBGEMM documentation <https://pytorch.org/FBGEMM/>`_.
 The `Meta blog post about FBGEMM <https://engineering.fb.com/2018/11/07/ml-applications/fbgemm/>`_ provides
 additional background about the library.
 
-Installing FBGEMM 
+Installing FBGEMM_GPU
 ----------------------
 
-Installing FBGEMM and FBGEMM_GPU consists of the following steps:
+Installing FBGEMM_GPU consists of the following steps:
 
 *  Set up an isolated Miniconda environment
-*  Install any necessary ROCm components
-*  Install the build tools
-*  Install `PyTorch <https://pytorch.org/>`_
+*  Install ROCm using Docker or the package manager
+*  Install the nightly `PyTorch build <https://pytorch.org/>`_
 *  Complete the pre-build and build tasks
+  
+.. note::
+
+   It isn't necessary to install or run FBGEMM to install and use FBGEMM_GPU. To optionally install
+   FBGEMM, see the `FBGEMM install instructions <https://pytorch.org/FBGEMM/fbgemm-development/BuildInstructions.html>`_.
 
 Set up the Miniconda environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -324,70 +327,7 @@ To install Miniconda, use the following commands.
       conda run -n ${env_name} pip install --upgrade pip
       conda run -n ${env_name} python -m pip install pyOpenSSL>22.1.0
 
-Install the ROCm components
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-FBGEMM_GPU can run in a ROCm Docker container or within the full ROCm installation.
-However, the Docker method is easier and is the recommended approach.
-
-To run FBGEMM_GPU in the Docker image, pull the `Minimal Docker image for ROCm <https://hub.docker.com/r/rocm/rocm-terminal>`_.
-This image includes all preinstalled ROCm packages required to integrate FBGEMM. To pull
-and run the ROCm Docker image, use this command:
-
-.. code-block:: shell
-
-   # Run for ROCm 6.2.0
-   docker run -it --entrypoint "/bin/bash" rocm/rocm-terminal:6.2
-
-.. note::
-
-   The `Full Docker image for ROCM <https://hub.docker.com/r/rocm/dev-ubuntu-20.04>`_, which includes all
-   ROCm packages, can also be used. However, it results in a very large container, so the minimal
-   Docker image is recommended installed.
-
-If you are installing ROCm using the package manager, FBGEMM requires installation of the full ROCm package.
-It also requires the :doc:`MIOpen <miopen:index>` component as a dependency. 
-To install MIOpen, use the ``apt install`` command.
-
-.. code-block:: shell
-
-   apt install hipify-clang miopen-hip miopen-hip-dev
-
-Install the build tools
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Install the GCC compiler, create the compiler symlinks, and install some additional build tools.
-
-#. Install the GCC C/C++ compiler. You must install a version of the compiler that supports C++20. GCC also requires the ``sysroot`` package.
-
-   .. note::
-
-      Newer versions of GCC can be used, but they are not compatible with older
-      systems such as Ubuntu 20.04. This is because the compiled library could
-      reference symbols from unsupported versions of ``GLIBCXX``. For more information, see the
-      `PyTorch FBGEMM build tools documentation <https://pytorch.org/FBGEMM/fbgemm_gpu-development/BuildInstructions.html#install-the-build-tools>`_.
-
-   .. code-block:: shell
-
-      # Set GCC to 10.4.0 to keep compatibility with older versions of GLIBCXX
-      #
-      # A newer versions of GCC also works, but will need to be accompanied by an
-      # appropriate updated version of the sysroot_linux package.
-      gcc_version=10.4.0
-
-      conda install -n ${env_name} -c conda-forge -y gxx_linux-64=${gcc_version} sysroot_linux-64=2.17
-
-#. Add symlinks for the C/C++ compiler to the binary path. This overwrites any existing symlinks. In a Miniconda environment, the 
-   binary path is located at ``$CONDA_PREFIX/bin``.
-
-   .. code-block:: shell
-
-      conda_prefix=$(conda run -n ${env_name} printenv CONDA_PREFIX)
-
-      ln -sf "${path_to_gcc}" "$(conda_prefix)/bin/cc"
-      ln -sf "${path_to_gcc}" "$(conda_prefix)/bin/c++"
-
-#. Install some additional build tools.
+#. Install some additional build tools:
 
    .. code-block:: shell
 
@@ -403,19 +343,49 @@ Install the GCC compiler, create the compiler symlinks, and install some additio
          scikit-build \
          wheel
 
+Install the ROCm components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+FBGEMM_GPU can run in a ROCm Docker container or along with the full ROCm installation.
+The Docker method is recommended because it requires fewer steps and provides a stable environment.
+
+To run FBGEMM_GPU in the Docker container, pull the `Minimal Docker image for ROCm <https://hub.docker.com/r/rocm/rocm-terminal>`_.
+This image includes all preinstalled ROCm packages required to integrate FBGEMM. To pull
+and run the ROCm Docker image, use this command:
+
+.. code-block:: shell
+
+   # Run for ROCm 6.2.0
+   docker run -it --entrypoint "/bin/bash" rocm/rocm-terminal:6.2
+
+.. note::
+
+   The `Full Docker image for ROCm <https://hub.docker.com/r/rocm/dev-ubuntu-20.04>`_, which includes all
+   ROCm packages, can also be used. However, it results in a very large container, so the minimal
+   Docker image is recommended.
+
+You can also install ROCm using the package manager, FBGEMM_GPU requires installation of the full ROCm package.
+For more information, see :doc:`the ROCm installation guide <rocm-install-on-linux:install/detailed-install>`.
+The ROCm package also requires the :doc:`MIOpen <miopen:index>` component as a dependency. 
+To install MIOpen, use the ``apt install`` command.
+
+.. code-block:: shell
+
+   apt install hipify-clang miopen-hip miopen-hip-dev
+
 Install PyTorch
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Install `PyTorch <https://pytorch.org/>`_ using ``pip`` for the most reliable and consistent results.
 
-#. Install PyTorch using ``pip``.
+#. Install the nightly PyTorch build using ``pip``.
 
    .. code-block:: shell
 
       # Install the latest nightly, ROCm variant
       conda run -n ${env_name} pip install --pre torch --index-url https://download.pytorch.org/whl/nightly/rocm6.2/
 
-#. Ensure PyTorch loads correctly and verify the version and variant of the installation using an ``import`` test.
+#. Ensure PyTorch loads correctly. Verify the version and variant of the installation using an ``import`` test.
 
    .. code-block:: shell
 
@@ -468,14 +438,14 @@ Perform the pre-build and build
       # Set the Python platform name for the Linux case
       export python_plat_name="manylinux2014_${ARCH}"
 
-#. Build FBGEMM for the ROCm platform. Set ``ROCM_PATH`` to the path to your ROCm installation. 
+#. Build FBGEMM_GPU for the ROCm platform. Set ``ROCM_PATH`` to the path to your ROCm installation. 
    Run these commands from the ``fbgemm_gpu/`` directory inside the Miniconda environment.
 
-    .. code-block:: shell
+   .. code-block:: shell
 
       # !! Run in the fbgemm_gpu/ directory inside the Conda environment !!
 
-      export ROCM_PATH=/path/to/rocm
+      export ROCM_PATH=</path/to/rocm>
 
       # Build for the target architecture of the ROCm device installed on the machine (for example, 'gfx942;gfx90a')
       # See :doc:`The Linux system requirements <../../reference/system-requirements>` for a list of supported GPUs.
@@ -500,10 +470,10 @@ Perform the pre-build and build
 Post-build validation
 ----------------------
 
-After building FBGEMM, run some verification checks to ensure the build is correct. Continue
+After building FBGEMM_GPU, run some verification checks to ensure the build is correct. Continue
 to run all commands inside the ``fbgemm_gpu/`` directory inside the Miniconda environment.
 
-#. FBGEMM generates many Jinja and C++ templates, so
+#. FBGEMM_GPU generates many Jinja and C++ templates, so
    it is important to confirm no undefined symbols remain after the build.
 
    .. code-block:: shell
@@ -536,9 +506,9 @@ to run all commands inside the ``fbgemm_gpu/`` directory inside the Miniconda en
 Testing FBGEMM
 ----------------------
 
-FBGEMM includes some tests and benchmarks that can be used to validate performance. To run these tests,
-the ROCm version must be 5.7 or more recent on the host or container. To run tests against
-FBGEMM, follow these instructions:
+FBGEMM includes tests and benchmarks to validate performance. To run these tests,
+you must use ROCm version 5.7 or more recent on the host or container. To run FBGEMM tests,
+follow these instructions:
 
 .. code-block:: shell
 
@@ -558,12 +528,12 @@ FBGEMM, follow these instructions:
    python -m pytest -v -rsx -s -W ignore::pytest.PytestCollectionWarning split_table_batched_embeddings_test.py
 
 To run the FBGEMM_GPU benchmarking test, use these commands. These tests only support the AMD MI210 and 
-newer accelerators. 
+more recent accelerators. 
 
 .. code-block:: shell
 
-# Run this inside the Conda environment from the /fbgemm_gpu/ directory
-export HSA_XNACK=1
-cd bench
+   # Run this inside the Conda environment from the /fbgemm_gpu/ directory
+   export HSA_XNACK=1
+   cd bench
 
-python split_table_batched_embeddings_benchmark.py uvm
+   python split_table_batched_embeddings_benchmark.py uvm
