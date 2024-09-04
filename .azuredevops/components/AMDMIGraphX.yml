@@ -78,7 +78,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.LARSE_DISK_BUILD_POOL }}
+  pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
   workspace:
     clean: all
   strategy:
