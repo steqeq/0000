@@ -266,7 +266,7 @@ FBGEMM_GPU collects several high-performance PyTorch GPU operator libraries
 for use in training and inference. It provides efficient table-batched embedding functionality,
 data layout transformation, and quantization support.
 
-For more information about FBGEMM, see the `PyTorch FBGEMM GitHub <https://github.com/pytorch/FBGEMM>`_
+For more information about FBGEMM and FBGEMM_GPU, see the `PyTorch FBGEMM GitHub <https://github.com/pytorch/FBGEMM>`_
 and the `PyTorch FBGEMM documentation <https://pytorch.org/FBGEMM/>`_.
 The `Meta blog post about FBGEMM <https://engineering.fb.com/2018/11/07/ml-applications/fbgemm/>`_ provides
 additional background about the library.
@@ -278,7 +278,7 @@ Installing FBGEMM_GPU consists of the following steps:
 
 *  Set up an isolated Miniconda environment
 *  Install ROCm using Docker or the package manager
-*  Install the nightly `PyTorch build <https://pytorch.org/>`_
+*  Install the nightly `PyTorch <https://pytorch.org/>`_ build
 *  Complete the pre-build and build tasks
   
 .. note::
@@ -346,7 +346,7 @@ To install Miniconda, use the following commands.
 Install the ROCm components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-FBGEMM_GPU can run in a ROCm Docker container or along with the full ROCm installation.
+FBGEMM_GPU can run in a ROCm Docker container or in conjunction with the full ROCm installation.
 The Docker method is recommended because it requires fewer steps and provides a stable environment.
 
 To run FBGEMM_GPU in the Docker container, pull the `Minimal Docker image for ROCm <https://hub.docker.com/r/rocm/rocm-terminal>`_.
@@ -364,7 +364,7 @@ and run the ROCm Docker image, use this command:
    ROCm packages, can also be used. However, it results in a very large container, so the minimal
    Docker image is recommended.
 
-You can also install ROCm using the package manager, FBGEMM_GPU requires installation of the full ROCm package.
+You can also install ROCm using the package manager. FBGEMM_GPU requires installation of the full ROCm package.
 For more information, see :doc:`the ROCm installation guide <rocm-install-on-linux:install/detailed-install>`.
 The ROCm package also requires the :doc:`MIOpen <miopen:index>` component as a dependency. 
 To install MIOpen, use the ``apt install`` command.
@@ -473,8 +473,8 @@ Post-build validation
 After building FBGEMM_GPU, run some verification checks to ensure the build is correct. Continue
 to run all commands inside the ``fbgemm_gpu/`` directory inside the Miniconda environment.
 
-#. FBGEMM_GPU generates many Jinja and C++ templates, so
-   it is important to confirm no undefined symbols remain after the build.
+#. The build process generates many Jinja and C++ templates, so
+   it is important to confirm no undefined symbols remain.
 
    .. code-block:: shell
 
@@ -507,7 +507,7 @@ Testing FBGEMM
 ----------------------
 
 FBGEMM includes tests and benchmarks to validate performance. To run these tests,
-you must use ROCm version 5.7 or more recent on the host or container. To run FBGEMM tests,
+you must use ROCm version 5.7 or a more recent version on the host or container. To run FBGEMM tests,
 follow these instructions:
 
 .. code-block:: shell
