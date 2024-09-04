@@ -521,6 +521,7 @@ follow these instructions:
    # Enable for debugging failed kernel executions
    export HIP_LAUNCH_BLOCKING=1
 
+   # Run the test
    python -m pytest -v -rsx -s -W ignore::pytest.PytestCollectionWarning split_table_batched_embeddings_test.py
 
 To run the FBGEMM_GPU ``uvm`` test, use these commands. These tests only support the AMD MI210 and 
