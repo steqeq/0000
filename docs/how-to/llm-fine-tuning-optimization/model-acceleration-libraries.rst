@@ -507,33 +507,29 @@ Testing FBGEMM
 ----------------------
 
 FBGEMM includes tests and benchmarks to validate performance. To run these tests,
-you must use ROCm version 5.7 or a more recent version on the host or container. To run FBGEMM tests,
+you must use ROCm version 5.7 or a more recent version on the host and container. To run FBGEMM tests,
 follow these instructions:
 
 .. code-block:: shell
 
    # !! Run inside the Conda environment !!
 
-   # Enable for running in CPU-only mode (when on a GPU-capable machine)
-   export CUDA_VISIBLE_DEVICES=-1
+   # From the /fbgemm_gpu/ directory
+   cd test
 
+   export FBGEMM_TEST_WITH_ROCM=1
    # Enable for debugging failed kernel executions
-   export CUDA_LAUNCH_BLOCKING=1
+   export HIP_LAUNCH_BLOCKING=1
 
-   # For operators involving NCCL, if the rpath is not set up correctly for
-   # libnccl.so.2, LD_LIBRARY_PATH will need to be updated.
-   export LD_LIBRARY_PATH="/path/to/nccl/lib:${LD_LIBRARY_PATH}"
-
-   # Run the test
    python -m pytest -v -rsx -s -W ignore::pytest.PytestCollectionWarning split_table_batched_embeddings_test.py
 
-To run the FBGEMM_GPU benchmarking test, use these commands. These tests only support the AMD MI210 and 
+To run the FBGEMM_GPU ``uvm`` test, use these commands. These tests only support the AMD MI210 and 
 more recent accelerators. 
 
 .. code-block:: shell
 
    # Run this inside the Conda environment from the /fbgemm_gpu/ directory
    export HSA_XNACK=1
-   cd bench
+   cd test
 
-   python split_table_batched_embeddings_benchmark.py uvm
+   python -m pytest -v -rsx -s -W ignore::pytest.PytestCollectionWarning ./uvm/uvm_test.py
