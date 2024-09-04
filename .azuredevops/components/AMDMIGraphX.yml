@@ -196,10 +196,12 @@ jobs:
         find $CURRENT_DIR -name 'CTestTestfile.cmake' -type f -exec sed -ie "s:/agent/_work/.:$CURRENT_DIR:g" {} \;
       workingDirectory: $(Agent.BuildDirectory)/s
   - task: Bash@3
-    displayName: Create symlink for MIGraphX build files
+    displayName: Create symlinks for MIGraphX build files
     inputs:
       targetType: inline
-      script: ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/rocm/s
+      script: |
+        ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/rocm/s
+        ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/s/s
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: AMDMIGraphX
