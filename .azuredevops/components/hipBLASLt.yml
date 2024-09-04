@@ -8,13 +8,16 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - gfortran
     - git
     - libdrm-dev
     - libmsgpack-dev
     - ninja-build
     - python3-pip
     - python3-venv
+    - gfortran
+    - libgfortran5
+    - libomp-dev
+    - libblas-dev
 - name: pipModules
   type: object
   default:
@@ -22,10 +25,12 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
+    - aomp
     - clr
     - hipBLAS-common
     - llvm-project
     - rocminfo
+    - rocm_smi_lib
     - rocprofiler-register
     - ROCR-Runtime
 
@@ -71,10 +76,10 @@ jobs:
       dependencyList: ${{ parameters.rocmDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
   - script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
     displayName: ROCm symbolic link
@@ -82,6 +87,7 @@ jobs:
 # $(Pipeline.Workspace)/deps is a temporary folder for the build process
 # $(Pipeline.Workspace)/s/deps is part of the hipBLASLt repo
   - script: mkdir $(Pipeline.Workspace)/deps
+    displayName: Create temp folder for external dependencies
 # hipBLASLt already has a CMake script for external deps, so we can just run that
 # https://github.com/ROCm/hipBLASLt/blob/develop/deps/CMakeLists.txt
   - script: cmake $(Pipeline.Workspace)/s/deps
@@ -105,6 +111,8 @@ jobs:
         -DTensile_CODE_OBJECT_VERSION=default
         -DTensile_LIBRARY_FORMAT=msgpack
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
+        -DBUILD_CLIENTS_TESTS=ON
+        -DBUILD_FORTRAN_CLIENTS=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
