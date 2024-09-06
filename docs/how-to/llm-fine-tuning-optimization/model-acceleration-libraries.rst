@@ -407,7 +407,7 @@ Perform the pre-build and build
       FBGEMM_VERSION=v0.8.0
 
       # Clone the repo along with its submodules
-      git clone --recursive -b ${FBGEMM_VERSION} https://github.com/pytorch/FBGEMM.git fbgemm_${FBGEMM_VERSION}
+      git clone https://github.com/pytorch/FBGEMM.git --branch=v0.8.0 --recursive fbgemm_${FBGEMM_VERSION}
 
       # Install additional required packages for building and testing
       cd fbgemm_${FBGEMM_VERSION}/fbgemm_gpu
