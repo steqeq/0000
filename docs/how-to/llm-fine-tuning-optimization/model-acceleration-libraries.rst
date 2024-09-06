@@ -277,13 +277,13 @@ Installing FBGEMM_GPU
 Installing FBGEMM_GPU consists of the following steps:
 
 *  Set up an isolated Miniconda environment
-*  Install ROCm using Docker or the package manager
+*  Install ROCm using Docker or the :doc:`package manager <rocm-install-on-linux:install/native-install/index>`
 *  Install the nightly `PyTorch <https://pytorch.org/>`_ build
 *  Complete the pre-build and build tasks
   
 .. note::
 
-   It isn't necessary to install or run FBGEMM to install and use FBGEMM_GPU. To optionally install
+   FBGEMM_GPU doesn't require the installation of FBGEMM. To optionally install
    FBGEMM, see the `FBGEMM install instructions <https://pytorch.org/FBGEMM/fbgemm-development/BuildInstructions.html>`_.
 
 Set up the Miniconda environment
@@ -313,7 +313,7 @@ To install Miniconda, use the following commands.
       # Run updates
       conda update -n base -c defaults -y conda
 
-#. Create a Miniconda environment with Python version 3.12:
+#. Create a Miniconda environment with Python 3.12:
 
    .. code-block:: shell
 
@@ -327,7 +327,7 @@ To install Miniconda, use the following commands.
       conda run -n ${env_name} pip install --upgrade pip
       conda run -n ${env_name} python -m pip install pyOpenSSL>22.1.0
 
-#. Install some additional build tools:
+#. Install additional build tools:
 
    .. code-block:: shell
 
@@ -365,7 +365,7 @@ and run the ROCm Docker image, use this command:
    ROCm packages, can also be used. However, it results in a very large container, so the minimal
    Docker image is recommended.
 
-You can also install ROCm using the package manager. FBGEMM_GPU requires installation of the full ROCm package.
+You can also install ROCm using the package manager. FBGEMM_GPU requires the installation of the full ROCm package.
 For more information, see :doc:`the ROCm installation guide <rocm-install-on-linux:install/detailed-install>`.
 The ROCm package also requires the :doc:`MIOpen <miopen:index>` component as a dependency. 
 To install MIOpen, use the ``apt install`` command.
@@ -396,7 +396,7 @@ Install `PyTorch <https://pytorch.org/>`_ using ``pip`` for the most reliable an
       # Verify the version and variant of the installation
       conda run -n ${env_name} python -c "import torch; print(torch.__version__)"
 
-Perform the pre-build and build
+Perform the prebuild and build
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Clone the FBGEMM repository and the relevant submodules. Use ``pip`` to install the 
@@ -430,7 +430,7 @@ Perform the pre-build and build
       export package_name=fbgemm_gpu_rocm
 
       # Set the Python version tag.  It should follow the convention `py<major><minor>`,
-      # e.g. Python 3.12 --> py312
+      # for example, Python 3.12 --> py312
       export python_tag=py312
 
       # Determine the processor architecture
@@ -474,7 +474,7 @@ Post-build validation
 After building FBGEMM_GPU, run some verification checks to ensure the build is correct. Continue
 to run all commands inside the ``fbgemm_gpu/`` directory inside the Miniconda environment.
 
-#. The build process generates many Jinja and C++ templates, so
+#. The build process generates many build artifacts and C++ templates, so
    it is important to confirm no undefined symbols remain.
 
    .. code-block:: shell
@@ -508,7 +508,7 @@ Testing FBGEMM
 ----------------------
 
 FBGEMM includes tests and benchmarks to validate performance. To run these tests,
-you must use ROCm version 5.7 or a more recent version on the host and container. To run FBGEMM tests,
+you must use ROCm 5.7 or a more recent version on the host and container. To run FBGEMM tests,
 follow these instructions:
 
 .. code-block:: shell
