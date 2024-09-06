@@ -356,7 +356,8 @@ and run the ROCm Docker image, use this command:
 .. code-block:: shell
 
    # Run for ROCm 6.2.0
-   docker run -it --entrypoint "/bin/bash" rocm/rocm-terminal:6.2
+   docker run -it --network=host --shm-size 16G --device=/dev/kfd --device=/dev/dri --group-add video \
+   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --ipc=host rocm/rocm-terminal:6.2 /bin/bash
 
 .. note::
 
