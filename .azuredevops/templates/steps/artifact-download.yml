@@ -9,6 +9,10 @@ parameters:
 - name: useDefaultBranch
   type: boolean
   default: true
+# useMainlineBranch only processed if useDefaultBranch is false
+- name: useMainlineBranch
+  type: boolean
+  default: false
 - name: latestFromBranch
   type: boolean
   default: true
@@ -45,7 +49,7 @@ parameters:
     MIOpen: develop
     MIVisionX: develop
     rccl: develop
-    rdc: develop
+    rdc: amd-staging
     rocAL: develop
     rocALUTION: develop
     rocBLAS: develop
@@ -60,10 +64,11 @@ parameters:
     rocMLIR: develop
     ROCmValidationSuite: master
     rocm_bandwidth_test: master
-    rocm_smi_lib: develop
+    rocm_smi_lib: amd-staging
     rocPRIM: develop
-    rocprofiler-register: amd-mainline
     rocprofiler: amd-staging
+    rocprofiler-register: amd-staging
+    rocprofiler-sdk: amd-staging
     ROCR-Runtime: amd-staging
     rocRAND: develop
     rocr_debug_agent: amd-staging
@@ -73,6 +78,62 @@ parameters:
     roctracer: amd-staging
     rocWMMA: develop
     rpp: develop
+- name: mainlineBranchList
+  type: object
+  default:
+    AMDMIGraphX: mainline
+    amdsmi: amd-mainline
+    aomp-extras: amd-mainline-open
+    aomp: amd-mainline-open
+    clr: amd-mainline
+    composable_kernel: mainline
+    half: rocm
+    HIP: amd-mainline
+    hipBLAS: mainline
+    hipBLASLt: mainline
+    hipBLAS-common: mainline
+    hipCUB: mainline
+    hipFFT: mainline
+    hipfort: mainline
+    HIPIFY: amd-mainline
+    hipRAND: mainline
+    hipSOLVER: mainline
+    hipSPARSE: mainline
+    hipSPARSELt: mainline
+    hipTensor: mainline
+    llvm-project: amd-mainline-open # needs the yaml file
+    MIOpen: mainline
+    MIVisionX: mainline
+    rccl: mainline
+    rdc: amd-mainline
+    rocAL: mainline # needs the yaml file
+    rocALUTION: mainline
+    rocBLAS: mainline
+    ROCdbgapi : amd-mainline # needs the yaml file
+    rocDecode: mainline
+    rocFFT: mainline
+    ROCgdb: amd-staging # which one is it?
+    rocm-cmake: mainline
+    rocm-core: master
+    rocm-examples: develop # no mainline
+    rocminfo: amd-master
+    rocMLIR: mainline # needs the yaml file
+    ROCmValidationSuite: master
+    rocm_bandwidth_test: master
+    rocm_smi_lib: amd-mainline
+    rocPRIM: mainline
+    rocprofiler: amd-master
+    rocprofiler-register: amd-mainline
+    rocprofiler-sdk: amd-mainline
+    ROCR-Runtime: amd-master
+    rocRAND: mainline
+    rocr_debug_agent: amd-mainline # needs the yaml file
+    rocSOLVER: mainline
+    rocSPARSE: mainline
+    rocThrust: mainline
+    roctracer: amd-master
+    rocWMMA: mainline
+    rpp: mainline
 - name: allowPartiallySucceededBuilds
   type: object
   default:
@@ -81,7 +142,7 @@ parameters:
     - rocm_smi_lib
     - rocFFT
     - MIVisionX
-# BELOW REQUIRED IF useDefaultBranch false
+# BELOW REQUIRED IF useDefaultBranch and useMainlineBranch both false
 - name: branchName
   type: string
   default: '$(Build.SourceBranchName)' # for tagged builds
@@ -100,6 +161,8 @@ steps:
         buildVersionToDownload: latestFromBranch # default is 'latest'
     ${{ if eq(parameters.useDefaultBranch, true) }}:
       branchName: refs/heads/${{ parameters.defaultBranchList[parameters.componentName] }}
+    ${{ elseif eq(parameters.useMainlineBranch, true) }}:
+      branchName: refs/heads/${{ parameters.mainlineBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:

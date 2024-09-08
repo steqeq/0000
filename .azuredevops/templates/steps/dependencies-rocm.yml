@@ -9,6 +9,7 @@ parameters:
   default: staging
   values:
     - staging
+    - mainline
     - tag-builds
     - fixed
 - name: extractToMnt
@@ -205,6 +206,9 @@ steps:
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
+        ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
+          pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: false
@@ -219,6 +223,9 @@ steps:
         componentName: ${{ dependency }}
         extractToMnt: ${{ parameters.extractToMnt }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
+          pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
+        ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
