@@ -208,6 +208,7 @@ steps:
           latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          useMainlineBranch: true
           latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
@@ -227,6 +228,7 @@ steps:
           latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          useMainlineBranch: true
           latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
