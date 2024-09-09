@@ -136,7 +136,7 @@ This section describes performance-based settings.
 
   .. code-block:: shell
 
-     cat /sys/module/ttm/parameters/pages_limit 
+     cat /sys/module/amdttm/parameters/pages_limit 
   
   To set the amount of allocatable memory to all available memory on all four APU devices, run these commands:
 
@@ -169,7 +169,7 @@ This section describes performance-based settings.
 
   .. code-block:: shell
 
-     cat /sys/module/ttm/parameters/pages_limit 
+     cat /sys/module/amdttm/parameters/pages_limit 
 
   .. note::
 
