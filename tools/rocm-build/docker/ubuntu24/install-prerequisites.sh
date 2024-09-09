@@ -8,6 +8,13 @@ set -ex
 echo 'Acquire::http { Proxy "http://rocm-ci-services.amd.com:3142";  };' > /etc/apt/apt.conf.d/01proxy
 
 apt-get update 
+if [ ! -f "/tmp/packages" ]; then
+    cp packages /tmp
+fi
+
+if [ ! -f "/tmp/local-pin-600" ]; then
+    cp local-pin-600 /tmp
+fi
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(sed 's/#.*//' /tmp/packages)
 update-ccache-symlinks
 apt-get upgrade

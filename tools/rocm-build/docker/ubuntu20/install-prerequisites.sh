@@ -3,6 +3,10 @@
 set -ex
 
 apt-get update 
+
+if [ ! -f "/tmp/packages" ]; then
+    cp packages /tmp
+fi
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(grep -v '^#' /tmp/packages)
 apt-get clean 
 rm -rf /var/cache/apt/ /var/lib/apt/lists/* /etc/apt/apt.conf.d/01proxy
