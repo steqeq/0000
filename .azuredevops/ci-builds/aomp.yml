@@ -36,4 +36,4 @@ pr: none
 jobs:
   - template: ${{ variables.CI_COMPONENT_PATH }}/aomp.yml
     parameters:
-      checkoutRepo: release_repo
+      checkoutRepo: aomp_repo
