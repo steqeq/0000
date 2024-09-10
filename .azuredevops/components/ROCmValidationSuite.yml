@@ -116,9 +116,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
-      buildType: specific
-      definitionId: 150
-      buildId: 7024
       gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
