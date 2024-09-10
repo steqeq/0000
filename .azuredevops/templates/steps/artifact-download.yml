@@ -78,6 +78,7 @@ parameters:
   default:
     - rocm-cmake
     - amdsmi
+    - HIPIFY
     - rocm_smi_lib
     - rocFFT
     - MIVisionX
