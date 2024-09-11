@@ -25,7 +25,7 @@ parameters:
     - libturbojpeg-dev
     - libjpeg-turbo-official=3.0.2-20240124
     - libopencv-dev
-    - --allow-downgrades
+    - --allow-downgrades # for libjpeg-turbo
 - name: pipModules
   type: object
   default:
