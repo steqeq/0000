@@ -2,11 +2,32 @@ parameters:
   - name: gpuTarget
     type: string
     default: ''
+  # Set buildType to specific to download artifacts from previous builds, useful for saving time when debugging
+  - name: buildType
+    type: string
+    default: current
+    values:
+      - current
+      - specific
+  # Must be set if buildType == specific
+  # Set definitionId to the pipeline ID and buildId to the specific build ID
+  - name: definitionId
+    type: string
+    default: 0
+  - name: buildId
+    type: string
+    default: 0
 
 steps:
   - task: DownloadPipelineArtifact@2
     displayName: 'Download Pipeline Build'
     inputs:
+      ${{ if eq(parameters.buildType, 'specific') }}:
+        buildType: specific
+        buildVersionToDownload: specific
+        project: ROCm-CI
+        definition: ${{ parameters.definitionId }}
+        buildId: ${{ parameters.buildId }}
       itemPattern: '**/*${{ parameters.gpuTarget }}*'
       targetPath: $(System.ArtifactsDirectory)
   - task: ExtractFiles@1
