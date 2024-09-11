@@ -38,7 +38,7 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: HIP_ROCCLR_HOME
     value: $(Build.BinariesDirectory)/rocm
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
   workspace:
     clean: all
   strategy:
