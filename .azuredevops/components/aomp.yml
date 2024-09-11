@@ -384,6 +384,26 @@ jobs:
       rm $(Build.BinariesDirectory)/bin/llvm-config
       rm $(Build.BinariesDirectory)/llvm
     displayName: Remove temporary symbolic links
-# TODO: Determine if release build has these artifacts inside the llvm folder.
-# The artifacts will be extracted in the ROCm root without an additional step here.
+# Copy the files to artifact staging temporarily to clean up binaries directory
+# and then copy files back to llvm subdirectory in the cleaned up binaries directory
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Build.BinariesDirectory)
+      targetDir: $(Build.ArtifactStagingDirectory)
+  - task: DeleteFiles@1
+    displayName: 'Cleanup Binaries Directory'
+    inputs:
+      SourceFolder: '$(Build.BinariesDirectory)'
+      Contents: '/**/*'
+      RemoveDotFiles: true
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Build.ArtifactStagingDirectory)
+      targetDir: $(Build.BinariesDirectory)/llvm
+  - task: DeleteFiles@1
+    displayName: 'Cleanup Staging Directory'
+    inputs:
+      SourceFolder: $(Build.ArtifactStagingDirectory)
+      Contents: '/**/*'
+      RemoveDotFiles: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
