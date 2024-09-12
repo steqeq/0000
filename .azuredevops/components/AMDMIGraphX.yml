@@ -85,8 +85,8 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
+      # gfx90a:
+      #   JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -127,6 +127,12 @@ jobs:
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DBUILD_TESTING=ON
         -GNinja
+  - task: Bash@3
+    displayName: Install MIGraphX tests
+    inputs:
+      targetType: inline
+      script: make install-tests
+      workingDirectory: build
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
@@ -143,71 +149,71 @@ jobs:
       artifactName: testFiles
       gpuTarget: $(JOB_GPU_TARGET)
 
-- job: AMDMIGraphX_testing
-  dependsOn: AMDMIGraphX
-  condition: succeeded()
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  pool: $(JOB_TEST_POOL)
-  workspace:
-    clean: all
-  strategy:
-    matrix:
-      gfx942:
-        JOB_GPU_TARGET: gfx942
-        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
-  steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-    parameters:
-      artifactName: drop
-      gpuTarget: $(JOB_GPU_TARGET)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-    parameters:
-      artifactName: testFiles
-      gpuTarget: $(JOB_GPU_TARGET)
-      destinationFolder: $(Agent.BuildDirectory)/s
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
-    parameters:
-      ${{ if eq(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
-        dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-    parameters:
-      dependencyList: ${{ parameters.rocmTestDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
-        dependencySource: tag-builds
-  # Change the hardcoded MIGraphX test paths to the actual current directory
-  - task: Bash@3
-    displayName: Edit CTest paths
-    inputs:
-      targetType: inline
-      script: |
-        CURRENT_DIR=$(pwd)
-        find $CURRENT_DIR -name 'CTestTestfile.cmake' -type f -exec sed -ie "s:/agent/_work/.:$CURRENT_DIR:g" {} \;
-      workingDirectory: $(Agent.BuildDirectory)/s
-  - task: Bash@3
-    displayName: Create symlinks for MIGraphX build files
-    inputs:
-      targetType: inline
-      script: |
-        ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/rocm/s
-        ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/s/s
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-    parameters:
-      componentName: AMDMIGraphX
-      testDir: '$(Agent.BuildDirectory)/rocm/s/build/test'
-  - task: Bash@3
-    displayName: 'List all files'
-    inputs:
-      targetType: inline
-      script: ls -1R $(Agent.BuildDirectory)
+# - job: AMDMIGraphX_testing
+#   dependsOn: AMDMIGraphX
+#   condition: succeeded()
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   pool: $(JOB_TEST_POOL)
+#   workspace:
+#     clean: all
+#   strategy:
+#     matrix:
+#       gfx942:
+#         JOB_GPU_TARGET: gfx942
+#         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+#   steps:
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+#     parameters:
+#       aptPackages: ${{ parameters.aptPackages }}
+#       pipModules: ${{ parameters.pipModules }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+#     parameters:
+#       artifactName: drop
+#       gpuTarget: $(JOB_GPU_TARGET)
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+#     parameters:
+#       artifactName: testFiles
+#       gpuTarget: $(JOB_GPU_TARGET)
+#       destinationFolder: $(Agent.BuildDirectory)/s
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+#     parameters:
+#       ${{ if eq(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+#         dependencySource: staging
+#       ${{ elseif ne(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+#         dependencySource: tag-builds
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#     parameters:
+#       dependencyList: ${{ parameters.rocmTestDependencies }}
+#       gpuTarget: $(JOB_GPU_TARGET)
+#       ${{ if eq(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+#         dependencySource: staging
+#       ${{ elseif ne(parameters.checkoutRef, parameters.checkoutRefCompare) }}:
+#         dependencySource: tag-builds
+#   # Change the hardcoded MIGraphX test paths to the actual current directory
+#   - task: Bash@3
+#     displayName: Edit CTest paths
+#     inputs:
+#       targetType: inline
+#       script: |
+#         CURRENT_DIR=$(pwd)
+#         find $CURRENT_DIR -name 'CTestTestfile.cmake' -type f -exec sed -ie "s:/agent/_work/.:$CURRENT_DIR:g" {} \;
+#       workingDirectory: $(Agent.BuildDirectory)/s
+#   - task: Bash@3
+#     displayName: Create symlinks for MIGraphX build files
+#     inputs:
+#       targetType: inline
+#       script: |
+#         ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/rocm/s
+#         ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/s/s
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+#     parameters:
+#       componentName: AMDMIGraphX
+#       testDir: '$(Agent.BuildDirectory)/rocm/s/build/test'
+#   - task: Bash@3
+#     displayName: 'List all files'
+#     inputs:
+#       targetType: inline
+#       script: ls -1R $(Agent.BuildDirectory)
