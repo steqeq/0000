@@ -6,6 +6,8 @@
 
 # Contribute to ROCm documentation
 
+You can contribute to the ROCm documentation by participating in discussion, reporting issues, and adding or editing the documentation directly.
+
 The documentation repositories for ROCm and for all ROCm projects are available on GitHub under the ROCm organization at [https://github.com/ROCm](https://github.com/ROCm).
 
 Documentation for ROCm and for all ROCm projects is located in the `docs` directory of their repositories.
@@ -17,8 +19,6 @@ The repository for ROCm installation on Linux is [https://github.com/ROCm/rocm-i
 The repository for HIP SDK installation on Windows is [https://github.com/ROCm/rocm-install-on-windows](https://github.com/ROCm/rocm-install-on-windows).
 
 The repositories for all other ROCm projects are findable through a search under [The ROCm organization](https://github.com/ROCm).
-
-You can contribute to the ROCm documentation by participating in discussion, reporting issues, and adding or editing the documentation directly.
 
 ## Participate in discussions through GitHub Discussions
 
