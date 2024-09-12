@@ -23,6 +23,7 @@ parameters:
   default:
     - llvm-project
     - rocm_smi_lib
+    - rocprofiler-register
 
 jobs:
 # - job: ROCR_Runtime
