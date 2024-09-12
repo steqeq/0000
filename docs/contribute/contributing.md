@@ -8,7 +8,7 @@
 
 All ROCm projects are GitHub-based, so if you want to contribute, you can do so by:
 
-* [Submitting a pull request in the appropriate GitHub repository](#submit-a-pull-request)
+* [Submitting a pull request in the appropriate repository](#submit-a-pull-request)
 * [Creating an issue in the appropriate GitHub repository](#create-an-issue)
 * [Suggesting a new feature](#suggest-a-new-feature)
 
