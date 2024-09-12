@@ -117,7 +117,7 @@ jobs:
           -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
           -DTARGET_DEVICES=gfx942 \
           -DROCM_DIR=$(Agent.BuildDirectory)/rocm \
-          -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm \
+          -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm/bin \
           -DOPENCL_DIR=$(Agent.BuildDirectory)/rocm
         make
         make rocrtst_kernels
