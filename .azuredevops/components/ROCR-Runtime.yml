@@ -91,13 +91,18 @@ jobs:
       ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: tag-builds
   - task: Bash@3
-    displayName: Build kfdtest
+    displayName: Clone ROCR-Runtime
     inputs:
       targetType: 'inline'
       script: |
         cd $(Agent.BuildDirectory)
         git clone https://github.com/ROCm/ROCR-Runtime.git --depth=1
-        cd ROCR-Runtime/libhsakmt/tests/kfdtest
+  - task: Bash@3
+    displayName: Build kfdtest
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest
         mkdir build && cd build
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
         make
@@ -112,7 +117,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/drv
+        cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
         RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make
         sudo insmod amdp2ptest.ko
   - task: Bash@3
@@ -120,7 +125,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app
+        cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
         cmake --build .
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
@@ -128,7 +133,7 @@ jobs:
       componentName: rdmatest
       testExecutable: ./rdma_test
       testParameters: ''
-      testDir: $$(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app
+      testDir: $$(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
   - task: Bash@3
     displayName: Build rocrtst
     inputs:
