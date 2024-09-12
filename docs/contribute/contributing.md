@@ -57,9 +57,9 @@ To edit or add to ROCm or a ROCm project's documentation:
      python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
      ```
 
-    The output files are placed in the `docs/_build` directory. Open `docs/_build/html/index.html` to view the documentation. 
+    The output files will be located in the `docs/_build` directory. Open `docs/_build/html/index.html` to view the documentation.
 
-    For more information on the build process, see [Building documentation](building.md). 
+    For more information on the build process, see [Building documentation](building.md).
 
     For more information on ROCm build tools, see [Documentation toolchain](toolchain.md).
 6. Push your changes. A GitHub link will be returned in the output of the `git push` command. Open this link in a browser to create the pull request.
