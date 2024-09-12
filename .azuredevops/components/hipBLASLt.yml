@@ -11,11 +11,11 @@ parameters:
     - git
     - libdrm-dev
     - libmsgpack-dev
+    - libnuma-dev
     - ninja-build
     - python3-pip
     - python3-venv
     - gfortran
-    - libgfortran5
     - libomp-dev
     - libblas-dev
 - name: pipModules
@@ -23,6 +23,17 @@ parameters:
   default:
     - joblib
 - name: rocmDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - hipBLAS-common
+    - llvm-project
+    - rocminfo
+    - rocm_smi_lib
+    - rocprofiler-register
+    - ROCR-Runtime
+- name: rocmTestDependencies
   type: object
   default:
     - aomp
@@ -112,8 +123,45 @@ jobs:
         -DTensile_LIBRARY_FORMAT=msgpack
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -DBUILD_CLIENTS_TESTS=ON
-        -DBUILD_FORTRAN_CLIENTS=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
+
+
+- job: hipBLASLt_testing
+  dependsOn: hipBLASLt
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: hipBLASLt
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: './hipblaslt-test'
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
