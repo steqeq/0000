@@ -7,7 +7,7 @@ Our documentation follows the Pitchfork folder structure. Most documentation fil
 All images are stored in the `/docs/data` folder. An image's file path mirrors that of the documentation
 file where it is used.
 
-Our naming structure uses kebab case; for example, `my-file-name.rst`.
+Our naming structure uses dash-case; for example, `my-file-name.rst`.
 
 ## Supported formats and syntax
 
