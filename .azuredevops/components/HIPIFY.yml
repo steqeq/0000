@@ -28,7 +28,7 @@ jobs:
     value: https://github.com/llvm/llvm-project.git
   - name: UPSTREAM_LLVM_TAG
     value: llvmorg-18.1.2
-  pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
