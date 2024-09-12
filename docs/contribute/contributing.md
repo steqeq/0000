@@ -49,7 +49,7 @@ To edit or add to ROCm or a ROCm project's documentation:
 3. Create a new local branch cut from the `develop` branch of the repository.
 4. Make your changes to the documentation.
 
-    Documentation for ROCm and ROCm projects is written in reStructuredText (rst) and Markdown. File names are in dash-case. ROCm documentation follows the [Google developer documentation style guide](https://developers.google.com/style/highlights) and is structured according to the [the Diàtaxis model](https://diataxis.fr/how-to-use-diataxis/).
+    Documentation for ROCm and ROCm projects is written in reStructuredText (rst) and Markdown. File names are in dash-case. ROCm documentation follows the [Google developer documentation style guide](https://developers.google.com/style/highlights) and is structured according to the [the Diátaxis model](https://diataxis.fr/how-to-use-diataxis/).
 5. [Optional] Build the documentation locally before creating a pull request by running the following commands from within the `docs` directory:
 
     ```bash
