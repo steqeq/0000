@@ -17,36 +17,113 @@ parameters:
   default:
     - llvm-project
     - rocprofiler-register
+- name: rocmTestDependencies
+  type: object
+  default:
+    - llvm-project
 
 jobs:
-- job: ROCR_Runtime
+# - job: ROCR_Runtime
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   pool:
+#     vmImage: ${{ variables.BASE_BUILD_POOL }}
+#   workspace:
+#     clean: all
+#   steps:
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+#     parameters:
+#       aptPackages: ${{ parameters.aptPackages }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+#     parameters:
+#       checkoutRepo: ${{ parameters.checkoutRepo }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#     parameters:
+#       dependencyList: ${{ parameters.rocmDependencies }}
+#       # CI case: download latest default branch build
+#       ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+#         dependencySource: staging
+#       # manual build case: triggered by ROCm/ROCm repo
+#       ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+#         dependencySource: tag-builds
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#     parameters:
+#       extraBuildFlags: >-
+#         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+#         -DBUILD_SHARED_LIBS=ON
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: ROCR_Runtime_testing
+  # dependsOn: ROCR_Runtime
+  # condition: succeeded()
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  pool: $(JOB_TEST_POOL)
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
+      buildType: specific
+      definitionId: 164
+      buildId: 7516
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
-      # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: staging
-      # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+  - task: Bash@3
+    displayName: Build kfdtest
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd $(Agent.BuildDirectory)
+        git clone https://github.com/ROCm/ROCT-Thunk-Interface.git --depth=1
+        cd ROCT-Thunk-Interface/tests/kfdtest
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm .
+        cmake --build .
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
-      extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DBUILD_SHARED_LIBS=ON
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+      componentName: kfdtest
+      testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest/scripts/run_kfdtest.sh
+      testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testDir: $(Agent.BuildDirectory)
+  - task: Bash@3
+    displayName: Build rdmatest app
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
+        cmake --build .
+  - task: Bash@3
+    displayName: Build rdmatest driver
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/drv
+        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
+        ls -la
+        sudo make install
+        ls -la
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rdmatest
+      testExecutable: $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app/rdma_test
+      testParameters: ''
+      testDir: $(Agent.BuildDirectory)
