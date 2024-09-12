@@ -224,6 +224,7 @@ jobs:
     parameters:
       componentName: rocAL
       testDir: rocAL-tests
+      reloadAMDGPU: true
   - task: Bash@3
     displayName: Clean up libjpeg-turbo
     inputs:
