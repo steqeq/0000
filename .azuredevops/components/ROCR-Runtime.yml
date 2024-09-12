@@ -94,23 +94,23 @@ jobs:
       targetType: 'inline'
       script: |
         cd $(Agent.BuildDirectory)
-        git clone https://github.com/ROCm/ROCT-Thunk-Interface.git --depth=1
-        cd ROCT-Thunk-Interface/tests/kfdtest
+        git clone https://github.com/ROCm/ROCR-Runtime.git --depth=1
+        cd ROCR-Runtime/libhsakmt/tests/kfdtest
         mkdir build && cd build
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
         make
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: kfdtest
-      testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest/build ./run_kfdtest.sh
+      testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/build ./run_kfdtest.sh
       testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
-      testDir: $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest/scripts
+      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/scripts
   - task: Bash@3
     displayName: Build rocrtst
     inputs:
       targetType: 'inline'
       script: |
-        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/rocrtst/suites/test_common
+        cd $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common
         mkdir build && cd build
         cmake .. \
           -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
@@ -125,4 +125,4 @@ jobs:
       componentName: rocrtst
       testExecutable: ./rocrtst64
       testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
-      testDir: $(Agent.BuildDirectory)/ROCT-Thunk-Interface/rocrtst/suites/test_common/build/gfx942
+      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common/build/gfx942
