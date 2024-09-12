@@ -8,9 +8,10 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - libelf-dev
     - g++
     - libdrm-dev
+    - libelf-dev
+    - libhwloc-dev
     - libnuma-dev
 - name: rocmDependencies
   type: object
@@ -75,10 +76,10 @@ jobs:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-    parameters:
-      buildType: specific
-      definitionId: 164
-      buildId: 7516
+    # parameters:
+    #   buildType: specific
+    #   definitionId: 164
+    #   buildId: 7516
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
@@ -95,35 +96,33 @@ jobs:
         cd $(Agent.BuildDirectory)
         git clone https://github.com/ROCm/ROCT-Thunk-Interface.git --depth=1
         cd ROCT-Thunk-Interface/tests/kfdtest
-        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm .
-        cmake --build .
+        mkdir && cd build
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
+        make
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: kfdtest
-      testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest/scripts/run_kfdtest.sh
+      testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest/build ./run_kfdtest.sh
       testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
-      testDir: $(Agent.BuildDirectory)
+      testDir: $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/kfdtest/scripts
   - task: Bash@3
-    displayName: Build rdmatest app
+    displayName: Build rocrtst
     inputs:
       targetType: 'inline'
       script: |
-        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app
-        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
-        cmake --build .
-  - task: Bash@3
-    displayName: Build rdmatest driver
-    inputs:
-      targetType: 'inline'
-      script: |
-        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/drv
-        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
-        ls -la
-        sudo make install
-        ls -la
+        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/rocrtst/suites/test_common
+        mkdir && cd build
+        cmake .. \
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
+          -DTARGET_DEVICES=gfx942 \
+          -DROCM_DIR=$(Agent.BuildDirectory)/rocm \
+          -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm \
+          -OPENCL_DIR=$(Agent.BuildDirectory)/rocm
+        make
+        make rocrtst_kernels
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
-      componentName: rdmatest
-      testExecutable: $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app/rdma_test
-      testParameters: ''
-      testDir: $(Agent.BuildDirectory)
+      componentName: rocrtst
+      testExecutable: ./rocrtst64
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testDir: $(Agent.BuildDirectory)/ROCT-Thunk-Interface/rocrtst/suites/test_common/build/gfx942
