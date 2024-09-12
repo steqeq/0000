@@ -152,9 +152,8 @@ address any new bottlenecks that may emerge.
 
 ROCm provides a prebuilt optimized Docker image that has everything required to implement
 the tips in this section. It includes ROCm, vLLM, PyTorch, and tuning files in the CSV 
-format. For more information, see the guide to 
-`LLM inference performance validation with vLLM on the AMD Instinct™ MI300X accelerator <https://github.com/ROCm/MAD/blob/develop/benchmark/vllm/README.md>`_ 
-on the ROCm GitHub repository.
+format. For more information, see
+:doc:`/performance-validation/mi300x/llm-inference-docker`.
 
 .. _mi300x-profiling-tools:
 

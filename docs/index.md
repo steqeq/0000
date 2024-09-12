@@ -58,6 +58,7 @@ ROCm documentation is organized into the following categories:
   * [AMD Instinct MI100](./how-to/system-optimization/mi100.md)
   * [AMD Instinct RDNA2](./how-to/system-optimization/w6000-v620.md)
 * [AMD Instinct MI300X tuning guides](./how-to/tuning-guides/mi300x/index.rst)
+  * [LLM inference performance validation](./how-to/tuning-guides/mi300x/performance-validation-vllm.rst)
   * [System tuning](./how-to/tuning-guides/mi300x/system.rst)
   * [Workload tuning](./how-to/tuning-guides/mi300x/workload.rst)
 * [System debugging](./how-to/system-debugging.md)

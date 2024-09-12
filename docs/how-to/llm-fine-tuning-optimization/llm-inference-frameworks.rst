@@ -16,7 +16,7 @@ This section discusses how to implement `vLLM <https://docs.vllm.ai/en/latest>`_
 vLLM inference
 ==============
 
-vLLM is renowned for its paged attention algorithm that can reduce memory consumption and increase throughput thanks to
+vLLM is renowned for its PagedAttention algorithm that can reduce memory consumption and increase throughput thanks to
 its paging scheme. Instead of allocating GPU high-bandwidth memory (HBM) for the maximum output token lengths of the
 models, the paged attention of vLLM allocates GPU HBM dynamically for its actual decoding lengths. This paged attention
 is also effective when multiple requests share the same key and value contents for a large value of beam search or

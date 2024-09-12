@@ -90,6 +90,7 @@ article_pages = [
     {"file": "how-to/tuning-guides/mi300x/index", "os": ["linux"]},
     {"file": "how-to/tuning-guides/mi300x/system", "os": ["linux"]},
     {"file": "how-to/tuning-guides/mi300x/workload", "os": ["linux"]},
+    {"file": "how-to/performance-validation/mi300x/vllm-unified-docker", "os": ["linux"]},
     {"file": "how-to/system-debugging", "os": ["linux"]},
     {"file": "how-to/gpu-enabled-mpi", "os": ["linux"]},
 ]

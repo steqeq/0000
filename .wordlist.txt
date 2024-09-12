@@ -82,6 +82,7 @@ DPM
 DRI
 DW
 DWORD
+Dashboarding
 Dask
 DataFrame
 DataLoader
@@ -282,6 +283,7 @@ PRNG
 PRs
 PaLM
 Pageable
+PagedAttention
 PeerDirect
 PerfDb
 Perfetto
