@@ -1,0 +1,27 @@
+parameters:
+- name: repositoryUrl
+  type: string
+  default: https://download.amd.com/developer/eula/aocl/aocl-4-2
+- name: packageName
+  type: string
+  default: aocl-linux-gcc-4.2.0_1_amd64.deb
+
+steps:
+- task: Bash@3
+  displayName: Download AOCL
+  inputs:
+    targetType: inline
+    workingDirectory: $(Pipeline.Workspace)
+    script: wget -nv ${{ parameters.repositoryUrl }}/${{ parameters.packageName }}
+- task: Bash@3
+  displayName: Install AOCL
+  inputs:
+    targetType: inline
+    workingDirectory: $(Pipeline.Workspace)
+    script: sudo apt install -y ./${{ parameters.packageName }}
+- task: Bash@3
+  displayName: Clean up AOCL
+  inputs:
+    targetType: inline
+    workingDirectory: $(Pipeline.Workspace)
+    script: rm -f ${{ parameters.packageName }}
