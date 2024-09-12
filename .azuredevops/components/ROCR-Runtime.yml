@@ -96,7 +96,7 @@ jobs:
         cd $(Agent.BuildDirectory)
         git clone https://github.com/ROCm/ROCT-Thunk-Interface.git --depth=1
         cd ROCT-Thunk-Interface/tests/kfdtest
-        mkdir && cd build
+        mkdir build && cd build
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
         make
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
@@ -111,7 +111,7 @@ jobs:
       targetType: 'inline'
       script: |
         cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/rocrtst/suites/test_common
-        mkdir && cd build
+        mkdir build && cd build
         cmake .. \
           -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
           -DTARGET_DEVICES=gfx942 \
