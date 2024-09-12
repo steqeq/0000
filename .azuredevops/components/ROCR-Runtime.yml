@@ -22,7 +22,7 @@ parameters:
   type: object
   default:
     - llvm-project
-    - rocm_smi
+    - rocm_smi_lib
 
 jobs:
 # - job: ROCR_Runtime
