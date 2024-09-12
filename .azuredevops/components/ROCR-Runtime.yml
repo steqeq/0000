@@ -108,6 +108,28 @@ jobs:
       testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
       testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/scripts
   - task: Bash@3
+    displayName: Build rdmatest driver
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/drv
+        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make
+        sudo insmod amdp2ptest.ko
+  - task: Bash@3
+    displayName: Build rdmatest app
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd $(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
+        cmake --build .
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rdmatest
+      testExecutable: ./rdma_test
+      testParameters: ''
+      testDir: $$(Agent.BuildDirectory)/ROCT-Thunk-Interface/tests/rdma/simple/app
+  - task: Bash@3
     displayName: Build rocrtst
     inputs:
       targetType: 'inline'
