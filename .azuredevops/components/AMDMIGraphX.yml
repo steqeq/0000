@@ -128,7 +128,7 @@ jobs:
     displayName: Install MIGraphX tests
     inputs:
       targetType: inline
-      script: make install-tests
+      script: make install tests
       workingDirectory: build
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
