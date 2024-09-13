@@ -165,6 +165,7 @@ jobs:
       targetType: inline
       script: |
         for file in *; do
+          echo Now running: $file
           ./$file | tee -a $(TEST_LOG_FILE)
         done
       workingDirectory: $(Agent.BuildDirectory)/rocm/examples
