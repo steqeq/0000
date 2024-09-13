@@ -126,7 +126,7 @@ jobs:
       targetType: 'inline'
       script: |
         cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
-        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make -I $(Agent.BuildDirectory)/rocm/include
+        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
         sudo insmod amdp2ptest.ko
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
