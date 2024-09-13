@@ -50,6 +50,7 @@ parameters:
     - rocminfo
     - rocMLIR
     - rocprofiler-register
+    - roctracer
 - name: rocmTestDependencies
   type: object
   default:
@@ -71,19 +72,78 @@ parameters:
     - roctracer
 
 jobs:
-- job: AMDMIGraphX
+# - job: AMDMIGraphX_library
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
+#   workspace:
+#     clean: all
+#   strategy:
+#     matrix:
+#       gfx942:
+#         JOB_GPU_TARGET: gfx942
+#       # gfx90a:
+#       #   JOB_GPU_TARGET: gfx90a
+#   steps:
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+#     parameters:
+#       aptPackages: ${{ parameters.aptPackages }}
+#       pipModules: ${{ parameters.pipModules }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+#     parameters:
+#       checkoutRepo: ${{ parameters.checkoutRepo }}
+# # half version should be fixed to 5.6.0
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#     parameters:
+#       dependencySource: fixed
+#       fixedComponentName: half
+#       fixedPipelineIdentifier: ${{ variables.HALF560_PIPELINE_ID }}
+#       skipLibraryLinking: true
+#       skipLlvmSymlink: true
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#     parameters:
+#       dependencyList: ${{ parameters.rocmDependencies }}
+#       gpuTarget: $(JOB_GPU_TARGET)
+#       # CI case: download latest default branch build
+#       ${{ if eq(parameters.checkoutRef, 'develop') }}:
+#         dependencySource: staging
+#       # manual build case: triggered by ROCm/ROCm repo
+#       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+#         dependencySource: tag-builds
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#     parameters:
+#       extraBuildFlags: >-
+#         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
+#         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
+#         -DCMAKE_BUILD_TYPE=Release
+#         -DGPU_TARGETS=$(JOB_GPU_TARGET)
+#         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+#         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
+#         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
+#         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
+#         -DBUILD_TESTING=ON
+#         -GNinja
+# # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+#     parameters:
+#       gpuTarget: $(JOB_GPU_TARGET)
+
+- job: AMDMIGraphX_testing
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
+  - name: MIGRAPHX_TRACE_BENCHMARKING
+    value: 1
+  pool: $(JOB_TEST_POOL)
   workspace:
     clean: all
   strategy:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      # gfx90a:
-      #   JOB_GPU_TARGET: gfx90a
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -93,6 +153,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+        dependencySource: tag-builds
 # half version should be fixed to 5.6.0
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
@@ -103,7 +169,7 @@ jobs:
       skipLlvmSymlink: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
+      dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, 'develop') }}:
@@ -111,106 +177,45 @@ jobs:
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
-        -DCMAKE_BUILD_TYPE=Release
-        -DGPU_TARGETS=$(JOB_GPU_TARGET)
-        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
-        -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
-        -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
-        -DBUILD_TESTING=ON
-        -GNinja
   - task: Bash@3
-    displayName: Install MIGraphX tests
+    displayName: Configure MIGraphX test flags
     inputs:
       targetType: inline
-      script: make install tests
+      script: |
+        mkdir -p build && cd build
+        cmake .. \
+          -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++ \
+          -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DGPU_TARGETS=gfx942 \
+          -DAMDGPU_TARGETS=gfx942 \
+          -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm" \
+          -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include \
+          -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF \
+          -DBUILD_TESTING=ON \
+          -DMIGRAPHX_ENABLE_C_API_TEST=ON
+  - task: Bash@3
+    displayName: Build and run MIGraphX tests
+    inputs:
+      targetType: inline
       workingDirectory: build
-# REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-    parameters:
-      gpuTarget: $(JOB_GPU_TARGET)
-      publish: false
-  # MIGraphX tests assume you are running tests in the exact same environment as the build (ie. right after the build)
-  # Paths to test binaries and files are hardcoded(!!) during the build process
-  # Just package the entire source directory to preserve the directory structure
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
-    parameters:
-      sourceDir: $(Build.SourcesDirectory)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-    parameters:
-      artifactName: testFiles
-      gpuTarget: $(JOB_GPU_TARGET)
-
-# - job: AMDMIGraphX_testing
-#   dependsOn: AMDMIGraphX
-#   condition: succeeded()
-#   variables:
-#   - group: common
-#   - template: /.azuredevops/variables-global.yml
-#   pool: $(JOB_TEST_POOL)
-#   workspace:
-#     clean: all
-#   strategy:
-#     matrix:
-#       gfx942:
-#         JOB_GPU_TARGET: gfx942
-#         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
-#   steps:
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-#     parameters:
-#       aptPackages: ${{ parameters.aptPackages }}
-#       pipModules: ${{ parameters.pipModules }}
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-#     parameters:
-#       artifactName: drop
-#       gpuTarget: $(JOB_GPU_TARGET)
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-#     parameters:
-#       artifactName: testFiles
-#       gpuTarget: $(JOB_GPU_TARGET)
-#       destinationFolder: $(Agent.BuildDirectory)/s
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
-#     parameters:
-#       ${{ if eq(parameters.checkoutRef, 'develop') }}:
-#         dependencySource: staging
-#       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
-#         dependencySource: tag-builds
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-#     parameters:
-#       dependencyList: ${{ parameters.rocmTestDependencies }}
-#       gpuTarget: $(JOB_GPU_TARGET)
-#       ${{ if eq(parameters.checkoutRef, 'develop') }}:
-#         dependencySource: staging
-#       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
-#         dependencySource: tag-builds
-#   # Change the hardcoded MIGraphX test paths to the actual current directory
-#   - task: Bash@3
-#     displayName: Edit CTest paths
-#     inputs:
-#       targetType: inline
-#       script: |
-#         CURRENT_DIR=$(pwd)
-#         find $CURRENT_DIR -name 'CTestTestfile.cmake' -type f -exec sed -ie "s:/agent/_work/.:$CURRENT_DIR:g" {} \;
-#       workingDirectory: $(Agent.BuildDirectory)/s
-#   - task: Bash@3
-#     displayName: Create symlinks for MIGraphX build files
-#     inputs:
-#       targetType: inline
-#       script: |
-#         ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/rocm/s
-#         ln -s $(Agent.BuildDirectory)/s $(Agent.BuildDirectory)/s/s
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-#     parameters:
-#       componentName: AMDMIGraphX
-#       testDir: '$(Agent.BuildDirectory)/rocm/s/build/test'
-#   - task: Bash@3
-#     displayName: 'List all files'
-#     inputs:
-#       targetType: inline
-#       script: ls -1R $(Agent.BuildDirectory)
+      script: make -j$(nproc) check
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+  #   parameters:
+  #     extraBuildFlags: >-
+  #       -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
+  #       -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
+  #       -DCMAKE_BUILD_TYPE=Release
+  #       -DGPU_TARGETS=$(JOB_GPU_TARGET)
+  #       -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+  #       -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
+  #       -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
+  #       -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
+  #       -DBUILD_TESTING=ON
+  #       -DMIGRAPHX_ENABLE_C_API_TEST=ON
+  #       -GNinja
+  #       -DMIOPEN_TEST_GFX94X=ON
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+  #   parameters:
+  #     componentName: AMDMIGraphX
+  #     testDir: build
