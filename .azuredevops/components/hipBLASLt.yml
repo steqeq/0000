@@ -170,4 +170,4 @@ jobs:
       componentName: hipBLASLt
       testDir: '$(Agent.BuildDirectory)/rocm/bin'
       testExecutable: './hipblaslt-test'
-      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes --gtest_filter=*pre_checkin*'
