@@ -126,6 +126,8 @@ jobs:
       targetType: 'inline'
       script: |
         cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
+        sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c  
+        sed -i 's/"MIT"/"GPL"/' amdp2ptest.c  
         RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
         sudo insmod amdp2ptest.ko
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
