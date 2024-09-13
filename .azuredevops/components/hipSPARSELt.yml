@@ -123,7 +123,6 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: hipSPARSELt_testing
-  timeoutInMinutes: 180
   dependsOn: hipSPARSELt
   condition: succeeded()
   variables:
