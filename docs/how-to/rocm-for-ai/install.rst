@@ -24,23 +24,23 @@ If you’re new to ROCm, refer to the :doc:`ROCm quick start install guide for L
 If you’re using a Radeon GPU for graphics-accelerated applications, refer to the
 :doc:`Radeon installation instructions <radeon:docs/install/install-radeon>`.
 
-ROCm supports two methods for installation. There is no difference in the final ROCm installation between these two
-methods. You can also opt for :ref:`single-version or multi-version installation
-<rocm-install-on-linux:installation-types>`.
+ROCm supports multiple :doc:`installation methods <rocm-install-on-linux:install/install-overview>`:
 
-*  :doc:`Using your Linux distribution's package manager <rocm-install-on-linux:how-to/native-install/index>`
+* :doc:`Using your Linux distribution's package manager <rocm-install-on-linux:install/native-install/index>`
 
-*  :doc:`Using the AMDGPU installer <rocm-install-on-linux:how-to/amdgpu-install>`
+* :doc:`Using the AMDGPU installer <rocm-install-on-linux:install/amdgpu-install>`
+
+* :ref:`Multi-version installation <rocm-install-on-linux:installation-types>`.
 
 .. grid:: 1
 
    .. grid-item-card:: Post-install
 
-      Follow the :doc:`post-installation instructions <rocm-install-on-linux:how-to/native-install/post-install>` to
+      Follow the :doc:`post-installation instructions <rocm-install-on-linux:install/post-install>` to
       configure your system linker, PATH, and verify the installation.
 
       If you encounter any issues during installation, refer to the
-      :doc:`Installation troubleshooting <rocm-install-on-linux:how-to/native-install/install-faq>` guide.
+      :doc:`Installation troubleshooting <rocm-install-on-linux:reference/install-faq>` guide.
 
 Machine learning frameworks
 ===========================

@@ -33,6 +33,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
+      skipLlvmSymlink: true
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
@@ -77,6 +78,7 @@ jobs:
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/bin/rocminfo'
       testParameters: ''
+      testPublishResults: false
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocm_agent_enumerator
