@@ -81,7 +81,7 @@ jobs:
     parameters:
       buildType: specific
       definitionId: 164
-      buildId: 7747
+      buildId: 7516
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
