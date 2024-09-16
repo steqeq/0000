@@ -94,15 +94,14 @@ jobs:
     displayName: Clone ROCR-Runtime
     inputs:
       targetType: 'inline'
-      script: |
-        cd $(Agent.BuildDirectory)
-        git clone https://github.com/ROCm/ROCR-Runtime.git --depth=1
+      workingDirectory: $(Agent.BuildDirectory)
+      script: git clone https://github.com/ROCm/ROCR-Runtime.git --depth=1
   - task: Bash@3
     displayName: Build kfdtest
     inputs:
       targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest
       script: |
-        cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest
         mkdir build && cd build
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
         make
@@ -116,19 +115,26 @@ jobs:
     displayName: Build rdmatest app
     inputs:
       targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
       script: |
-        cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
         cmake --build .
   - task: Bash@3
     displayName: Build rdmatest driver
     inputs:
       targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
       script: |
-        cd $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
         sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c  
         sed -i 's/"MIT"/"GPL"/' amdp2ptest.c  
         RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
+  - task: Bash@3
+    displayName: Install rdmatest driver
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
+      script: |
+        sudo rmmod amdp2ptest.ko
         sudo insmod amdp2ptest.ko
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
@@ -140,8 +146,8 @@ jobs:
     displayName: Build rocrtst
     inputs:
       targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common
       script: |
-        cd $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common
         mkdir build && cd build
         cmake .. \
           -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
