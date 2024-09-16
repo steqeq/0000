@@ -4,53 +4,46 @@
   <meta name="keywords" content="ROCm, contributing, contribute, maintainer, contributor">
 </head>
 
-# Contribute to ROCm documentation
+# Contributing to the ROCm documentation
 
-You can contribute to the ROCm documentation by participating in discussion, reporting issues, and adding or editing the documentation directly.
+The ROCm documentation, like all of ROCm, is open source and available on GitHub. You can contribute to the ROCm documentation by forking the appropriate repository, making your changes, and opening a pull request.
 
-The documentation repositories for ROCm and for all ROCm projects are available on GitHub under the ROCm organization at [https://github.com/ROCm](https://github.com/ROCm).
+To provide feedback on the ROCm documentation, including submitting an issue or suggesting a feature, see [Providing feedback about the ROCm documentation](./feedback.md).
 
-Documentation for ROCm and for all ROCm projects is located in the `docs` directory of their repositories.
+## The ROCm repositories
 
-The main ROCm repository is [https://github.com/ROCm/ROCm](https://github.com/ROCm/ROCm).
+The repositories for ROCm and for all ROCm components are available on GitHub.
 
-The repository for ROCm installation on Linux is [https://github.com/ROCm/rocm-install-on-linux](https://github.com/ROCm/rocm-install-on-linux).
+| Module | Documentation location |
+| --- | --- |
+| ROCm framework | [https://github.com/ROCm/ROCm/tree/develop/docs](https://github.com/ROCm/ROCm/tree/develop/docs) |
+| ROCm installater for Linux | [https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs](https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs) |
+| ROCm HIP SDK installer for Windows |  [https://github.com/ROCm/rocm-install-on-windows/tree/develop/docs](https://github.com/ROCm/rocm-install-on-windows/tree/develop/docs) |
 
-The repository for HIP SDK installation on Windows is [https://github.com/ROCm/rocm-install-on-windows](https://github.com/ROCm/rocm-install-on-windows).
+Individual components have their own repositories with their own documentation in their own `docs` directories.
 
-The repositories for all other ROCm projects are findable through a search under [The ROCm organization](https://github.com/ROCm).
+The `docs` directories across ROCm are structured as follows:
 
-## Participate in discussions through GitHub Discussions
+| Directory name | Documentation type |
+|-------|----------|
+| `install` | Installation instructions, build instructions, and prerequisites |
+| `conceptual` | Important concepts |
+| `how-to` | How to implement specific use cases |
+| `tutorials` | Tutorials |
+| `reference` | API references |
 
-You can ask questions, view announcements, suggest new features, and communicate with other members of the community through [GitHub Discussions](https://github.com/ROCm/ROCm/discussions).
+## Editing and adding to the documentation
 
-## Submit issues through GitHub Issues
+The ROCm documentation is written in reStructuredText (rst) and Github-flavoured Markdown, and follows the [Google developer documentation style guide](https://developers.google.com/style/highlights). reStructured text is preferred when adding content to the documentation.
 
-You can submit issues through [GitHub Issues](https://github.com/ROCm/ROCm/issues).
+To edit or add to the documentation:
 
-Before creating a new issue, search to see if the same issue has already been logged. If same issue already exists, upvote the issue, and comment or post to provide any additional details you might have.
-
-If you find an issue that is similar, open your issue, then add a comment that includes the issue number of the similar issue, and a link to the issue.
-
-Always provide as much information as possible when creating a new issue. This helps reduce the time required to reproduce the issue.
-
-Check your issue regularly for any requests for additional information.
-
-## Edit or add to the documentation directly
-
-And you can edit and add to the documentation by forking a ROCm repository and submitting a pull request.
-
-Documentation for ROCm and for all ROCm projects is located in the `docs` directory of the repository.
-
-To edit or add to ROCm or a ROCm project's documentation:
-
-1. Fork the repository of the documentation you want to add to or edit.
+1. Fork the repository you want to add to or edit.
 2. Clone your fork locally.
 3. Create a new local branch cut from the `develop` branch of the repository.
 4. Make your changes to the documentation.
 
-    Documentation for ROCm and ROCm projects is written in reStructuredText (rst) and Markdown. File names are in dash-case. ROCm documentation follows the [Google developer documentation style guide](https://developers.google.com/style/highlights) and is structured according to the [the Diátaxis model](https://diataxis.fr/how-to-use-diataxis/).
-5. [Optional] Build the documentation locally before creating a pull request by running the following commands from within the `docs` directory:
+5. Optionally, build the documentation locally before creating a pull request by running the following commands from within the `docs` directory:
 
     ```bash
      pip3 install -r sphinx/requirements.txt  # You only need to run this command once
