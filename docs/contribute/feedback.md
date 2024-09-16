@@ -24,4 +24,4 @@ When creating a new issue, follow the following guidelines:
 
 After creating your issue, make sure to check it regularly for any requests for additional information.
 
-For information about contributing content to the ROCm dcoumentation, see [Contributing to the ROCm documentation](./contributing.md).
+For information about contributing content to the ROCm documentation, see [Contributing to the ROCm documentation](./contributing.md).

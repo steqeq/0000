@@ -17,7 +17,7 @@ The repositories for ROCm and for all ROCm components are available on GitHub.
 | Module | Documentation location |
 | --- | --- |
 | ROCm framework | [https://github.com/ROCm/ROCm/tree/develop/docs](https://github.com/ROCm/ROCm/tree/develop/docs) |
-| ROCm installater for Linux | [https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs](https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs) |
+| ROCm installer for Linux | [https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs](https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs) |
 | ROCm HIP SDK installer for Windows |  [https://github.com/ROCm/rocm-install-on-windows/tree/develop/docs](https://github.com/ROCm/rocm-install-on-windows/tree/develop/docs) |
 
 Individual components have their own repositories with their own documentation in their own `docs` directories.
@@ -34,7 +34,7 @@ The `docs` directories across ROCm are structured as follows:
 
 ## Editing and adding to the documentation
 
-The ROCm documentation is written in reStructuredText (rst) and Github-flavoured Markdown, and follows the [Google developer documentation style guide](https://developers.google.com/style/highlights). reStructured text is preferred when adding content to the documentation.
+The ROCm documentation is written in reStructuredText (rst) and Github-flavoured Markdown, and follows the [Google developer documentation style guide](https://developers.google.com/style/highlights). reStructuredText is preferred when adding content to the documentation.
 
 To edit or add to the documentation:
 
