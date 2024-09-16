@@ -139,7 +139,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rdmatest
-      testExecutable: ./rdma_test
+      testExecutable: yes | ./rdma_test
       testParameters: ''
       testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
   - task: Bash@3
