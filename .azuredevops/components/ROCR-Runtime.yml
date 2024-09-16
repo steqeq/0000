@@ -154,7 +154,7 @@ jobs:
           -DTARGET_DEVICES=gfx942 \
           -DROCM_DIR=$(Agent.BuildDirectory)/rocm \
           -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm/bin \
-          -DOPENCL_DIR =$(Agent.BuildDirectory)/rocm/llvm/bin
+          -DOPENCL_DIR=$(Agent.BuildDirectory)/rocm/llvm/bin
         make
         make rocrtst_kernels
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
