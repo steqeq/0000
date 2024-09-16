@@ -11,7 +11,7 @@ The ROCm documentation relies on several open source toolchains and sites.
 ## rocm-docs-core
 
 [rocm-docs-core](https://github.com/ROCm/rocm-docs-core) is an AMD-maintained
-project that applies customization for our documentation. This project is the tool most ROCm
+project that applies customizations for the ROCm documentation. This project is the tool most ROCm
 repositories use as part of their documentation build pipeline. It is available as a
 [pip package on PyPI](https://pypi.org/project/rocm-docs-core/).
 

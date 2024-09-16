@@ -11,8 +11,7 @@ Our naming structure uses dash-case; for example, `my-file-name.rst`.
 
 ## Supported formats and syntax
 
-Our documentation includes both Markdown and RST files. We are gradually transitioning existing
-Markdown to RST in order to more effectively meet our documentation needs. When contributing,
+Our documentation includes both Markdown and RST files. When contributing,
 RST is preferred; if you must use Markdown, use GitHub-flavored Markdown.
 
 We use [Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html) syntax and compile

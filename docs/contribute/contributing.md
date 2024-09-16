@@ -34,7 +34,7 @@ The `docs` directories across ROCm are structured as follows:
 
 ## Editing and adding to the documentation
 
-The ROCm documentation is written in reStructuredText (rst) and Github-flavoured Markdown, and follows the [Google developer documentation style guide](https://developers.google.com/style/highlights). reStructuredText is preferred when adding content to the documentation.
+The ROCm documentation is written in [reStructuredText (rst)](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html) and [Github-flavoured Markdown](https://github.github.com/gfm/), and follows the [Google developer documentation style guide](https://developers.google.com/style/highlights). reStructuredText is preferred when adding content to the documentation.
 
 To edit or add to the documentation:
 
@@ -57,11 +57,13 @@ To edit or add to the documentation:
     For more information on ROCm build tools, see [Documentation toolchain](toolchain.md).
 6. Push your changes. A GitHub link will be returned in the output of the `git push` command. Open this link in a browser to create the pull request.
 
-    The documentation is built as part of the checks on pull requests. Always verify that the documentation has been successfully built and that changes are rendered properly.
+    The documentation is built as part of the checks on pull request, along with spell checking and linting. Scroll to the bottom of your pull request to view all the checks. 
 
-    Spell checking and linting are performed on pull requests. New words or acronyms can be added to the [wordlist file](https://github.com/ROCm/rocm-docs-core/blob/develop/.wordlist.txt) as needed.
+    Verify that the linking and spell checking have passed, and that the documentation was built successfully. New words or acronyms can be added to the [wordlist file](https://github.com/ROCm/rocm-docs-core/blob/develop/.wordlist.txt) as needed.
 
-See the GitHub documentation for information on how to fork and clone a repository, and how to create and push a branch.
+    The Read The Docs build of your pull request can be accessed by clicking on the Details link next to the Read The Docs build check. Verify that the changes you have made are in the build and look as expected.
+
+See the [GitHub documentation](https://docs.github.com/en) for information on how to fork and clone a repository, and how to create and push a branch.
 
 ```{important}
 By creating a pull request (PR), you agree to allow your contribution to be licensed under the terms of the

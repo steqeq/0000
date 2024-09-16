@@ -7,6 +7,7 @@
 
 # Building documentation
 
+
 You can build our documentation via GitHub (in a pull request) or locally (using the command line or
 Visual Studio (VS) Code.
 
