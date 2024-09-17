@@ -154,11 +154,12 @@ kernels by configuring the ``exllama_config`` parameter as the following.
 .. code-block:: python
 
    from transformers import AutoModelForCausalLM, GPTQConfig
-   pretrained_model_dir = "meta-llama/Llama-2-7b"
-   gptq_config = GPTQConfig(bits=4, exllama_config={"version":2})
+   #pretrained_model_dir = "meta-llama/Llama-2-7b"
+   base_model_name = "NousResearch/Llama-2-7b-hf"
+   gptq_config = GPTQConfig(bits=4, dataset="c4", exllama_config={"version":2})
    quantized_model = AutoModelForCausalLM.from_pretrained(
-                           base_model_name, 
-                           device_map="auto", 
+                           base_model_name,
+                           device_map="auto",
                            quantization_config=gptq_config)
 
 bitsandbytes
@@ -187,6 +188,9 @@ Installing bitsandbytes
 
       # Use -DBNB_ROCM_ARCH to specify target GPU arch
       cmake -DBNB_ROCM_ARCH="gfx942" -DCOMPUTE_BACKEND=hip -S .
+
+      # Compile the project
+      make
 
       # Install 
       python setup.py install
@@ -218,12 +222,11 @@ To get started with bitsandbytes primitives, use the following code as reference
 Using bitsandbytes with Hugging Face Transformers
 -------------------------------------------------
 
-To load a Transformers model in 4-bit, set ``load_int_4bt=true`` in ``BitsAndBytesConfig``.
+To load a Transformers model in 4-bit, set ``load_in_4bit=true`` in ``BitsAndBytesConfig``.
 
 .. code-block:: python
 
-   from transformers import AutoModelForCausalLM
-   from bitsandbytes import BitsAndBytesConfig
+   from transformers import AutoModelForCausalLM, BitsAndBytesConfig
    
    base_model_name = "NousResearch/Llama-2-7b-hf"
    quantization_config = BitsAndBytesConfig(load_in_4bit=True)
@@ -239,8 +242,7 @@ To load a model in 8-bit for inference, use the ``load_in_8bit`` option.
 
 .. code-block:: python
 
-   from transformers import AutoModelForCausalLM, AutoTokenizer
-   from bitsandbytes import BitsAndBytesConfig
+   from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
    
    base_model_name = "NousResearch/Llama-2-7b-hf"
    

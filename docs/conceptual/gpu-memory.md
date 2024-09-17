@@ -51,7 +51,7 @@ In HIP, pinned memory allocations are coherent by default (`hipHostMallocDefault
 There are additional pinned memory flags (e.g. `hipHostMallocMapped` and `hipHostMallocPortable`).
 On MI200 these options do not impact performance.
 <!-- TODO: link to programming_manual#memory-allocation-flags -->
-For more information, see the section *memory allocation flags* in the HIP Programming Guide: {doc}`hip:user_guide/programming_manual`.
+For more information, see the section *memory allocation flags* in the HIP Programming Guide: {doc}`hip:how-to/programming_manual`.
 :::
 
 Much like how a process can be locked to a CPU core by setting affinity, a pinned memory allocator does this with the memory storage system.

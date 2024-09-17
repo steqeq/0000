@@ -21,3 +21,6 @@ In this guide, you'll learn about:
 - :doc:`Running models from Hugging Face <hugging-face-models>`
 
 - :doc:`Deploying your model <deploy-your-model>`
+
+To learn about ROCm for HPC applications and scientific computing, see
+:doc:`../rocm-for-hpc/index`.

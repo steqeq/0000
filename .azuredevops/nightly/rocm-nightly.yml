@@ -1,0 +1,119 @@
+parameters:
+# currently excludes clr and rocm-examples
+- name: rocmDependencies
+  type: object
+  default:
+    - AMDMIGraphX
+    - amdsmi
+    - aomp-extras
+    - aomp
+    - composable_kernel
+    - half
+    - HIP
+    - hipBLAS
+    - hipBLAS-common
+    - hipBLASLt
+    - hipCUB
+    - hipFFT
+    - hipfort
+    - HIPIFY
+    - hipRAND
+    - hipSOLVER
+    - hipSPARSE
+    - hipSPARSELt
+    - hipTensor
+    - llvm-project
+    - MIOpen
+    - MIVisionX
+    - rccl
+    - rdc
+    - rocAL
+    - rocALUTION
+    - rocBLAS
+    - ROCdbgapi
+    - rocDecode
+    - rocFFT
+    - ROCgdb
+    - rocm-cmake
+    - rocm-core
+    - rocminfo
+    - rocMLIR
+    - ROCmValidationSuite
+    - rocm_bandwidth_test
+    - rocm_smi_lib
+    - rocPRIM
+    - rocprofiler-register
+    - rocprofiler
+    - ROCR-Runtime
+    - rocRAND
+    - rocr_debug_agent
+    - rocSOLVER
+    - rocSPARSE
+    - rocThrust
+    - roctracer
+    - rocWMMA
+    - rpp
+
+trigger: none
+pr: none
+schedules:
+- cron: '30 7 * * *'
+  displayName: Nightly build
+  branches:
+    include:
+    - develop
+  always: true
+
+jobs:
+- job: rocm_nightly
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
+  steps:
+  - task: DeleteFiles@1
+    displayName: 'Cleanup checkout space'
+    inputs:
+      SourceFolder: '$(Agent.BuildDirectory)/s'
+      Contents: '**/*'
+  - task: DeleteFiles@1
+    displayName: 'Cleanup Staging Area'
+    inputs:
+      SourceFolder: '$(Build.ArtifactStagingDirectory)'
+      Contents: '/**/*'
+      RemoveDotFiles: true
+  - script: df -h
+    displayName: System disk space before ROCm
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      dependencySource: staging
+      skipLibraryLinking: true
+      gpuTarget: $(JOB_GPU_TARGET)
+  - script: df -h
+    displayName: System disk space after ROCm
+  - script: du -sh $(Agent.BuildDirectory)/rocm
+    displayName: Uncompressed ROCm size
+  - task: ArchiveFiles@2
+    displayName: Compress rocm-nightly
+    inputs:
+      rootFolderOrFile: $(Agent.BuildDirectory)/rocm
+      includeRootFolder: false
+      archiveType: tar
+      tarCompression: gz
+      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.DefinitionName)_$(Build.BuildNumber)_ubuntu2204_$(JOB_GPU_TARGET).tar.gz
+  - script: du -sh $(Build.ArtifactStagingDirectory)
+    displayName: Compressed ROCm size
+  - task: PublishPipelineArtifact@1
+    displayName: 'Public ROCm Nightly Artifact'
+    retryCountOnTaskFailure: 3
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'

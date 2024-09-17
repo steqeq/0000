@@ -10,15 +10,36 @@ parameters:
   default: 'ctest'
 - name: testParameters
   type: string
-  default: '--output-on-failure --force-new-ctest-process --output-junit test_output.xml'
+  default: '-VV --output-on-failure --force-new-ctest-process --output-junit test_output.xml'
 - name: testOutputFile
   type: string
   default: test_output.xml
 - name: testOutputFormat
   type: string
-  default: 'junit'
+  default: 'JUnit'
+  values:
+    - JUnit
+    - NUnit
+    - VSTest
+    - XUnit
+    - CTest
+- name: testPublishResults
+  type: boolean
+  default: true
+- name: reloadAMDGPU
+  type: boolean
+  default: false
 
 steps:
+# Avoids occasional AMDGPU driver issues with opening /dev/kfd
+- ${{ if parameters.reloadAMDGPU }}:
+  - task: Bash@3
+    displayName: Unload and reload AMDGPU
+    inputs:
+      targetType: inline
+      script: |
+        sudo modprobe -r amdgpu
+        sudo modprobe amdgpu
 # run test, continue on failure to publish results
 # and to publish build artifacts
 - task: Bash@3
@@ -28,9 +49,11 @@ steps:
     targetType: inline
     script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
     workingDirectory: ${{ parameters.testDir }}
-- task: PublishTestResults@2
-  displayName: '${{ parameters.componentName }} Publish Results'
-  inputs:
-    testResultsFormat: ${{ parameters.testOutputFormat }}
-    testResultsFiles: '**/${{ parameters.testOutputFile }}'
-  condition: succeededOrFailed()
+- ${{ if parameters.testPublishResults }}:
+  - task: PublishTestResults@2
+    displayName: '${{ parameters.componentName }} Publish Results'
+    inputs:
+      searchFolder: ${{ parameters.testDir }}
+      testResultsFormat: ${{ parameters.testOutputFormat }}
+      testResultsFiles: '**/${{ parameters.testOutputFile }}'
+    condition: succeededOrFailed()

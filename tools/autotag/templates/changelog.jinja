@@ -23,19 +23,23 @@ This page contains the release notes for AMD ROCm™ Software.
 -------------------
 
 ## ROCm {{version}}
-
-{%- set rocm_changes = "./rocm_changes/" ~ version ~ ".md" %}
-{% include rocm_changes ignore missing %}
+{{- "\n\n" -}}
+{%- set highlights = "./highlights/" ~ version ~ ".md" %}
+{%- include highlights ignore missing -%}
+{{- "\n\n" -}}
+{%- set support = "./support/" ~ version ~ ".md" %}
+{%- include support ignore missing -%}
 
 ### Library changes in ROCm {{version}}
 
-| Library | Version |
-|---------|---------|
-{%- for lib_name, lib in release.libraries | dictsort %}
+| Category | Group | Name | Version | Repository |
+|----------|-------|------|---------|------------|
+{%- for lib_name in release.libraries %}
+{%- set lib = release.libraries[lib_name] %}
 {%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version and (prev_lib_ver[lib_name][lib.lib_version] | default([]) | length > 0) and lib.lib_version %}
-| {{ lib_name }} | {{prev_lib_ver[lib_name][lib.lib_version]}} ⇒ [{{ lib.lib_version }}]({{ lib.release_url }}) |
+| {{ lib.category }} | {{ lib.group }} | [{{ lib_name }}]({{ lib.documentation_page }}) | {{prev_lib_ver[lib_name][lib.lib_version]}} ⇒ [{{ lib.lib_version }}]({{ lib.release_url }}) | [ROCm/{{ lib_name }}]({{ lib.repository_url }}) |
 {%- elif lib.lib_version %}
-| {{ lib_name }} | [{{ lib.lib_version }}]({{ lib.release_url }}) |
+| {{ lib.category }} | {{ lib.group }} | [{{ lib_name }}]({{ lib.documentation_page }}) | [{{ lib.lib_version }}]({{ lib.release_url }}) | [ROCm/{{ lib_name }}]({{ lib.repository_url }}) |
 {%- endif %}
 {%- endfor %}
 
@@ -53,7 +57,17 @@ This page contains the release notes for AMD ROCm™ Software.
 {{change|trim|e}}
 
 {%- endfor %}{# change in lib.data.changes #}
-{%- endif  %}
+{%- endif -%}
 {%- endfor %}{# lib in release.libraries #}
+{{- "\n\n" -}}
+{%- set extra_components = "./extra_components/" ~ version ~ ".md" %}
+{%- include extra_components ignore missing -%}
+{{- "\n\n" -}}
+{%- set known_issues = "./known_issues/" ~ version ~ ".md" %}
+{%- include known_issues ignore missing -%}
+{{- "\n\n" -}}
+{%- set upcoming_changes = "./upcoming_changes/" ~ version ~ ".md" %}
+{%- include upcoming_changes ignore missing -%}
+
 {%- endfor %}{# release in releases #}
 {# EOF #}

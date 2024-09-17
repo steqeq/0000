@@ -234,6 +234,22 @@ The following tables provide an overview of the hardware specifications for AMD 
           - VGPR File (KiB)
           - SGPR File (KiB)
         *
+          - Radeon PRO W7900 Dual Slot
+          - RDNA3
+          - gfx1100
+          - 48
+          - 96
+          - 32
+          - 128
+          - 96
+          - 6
+          - 256
+          - 32
+          - 16
+          - 32
+          - 384
+          - 20
+        *
           - Radeon PRO W7900
           - RDNA3
           - gfx1100
