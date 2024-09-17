@@ -35,6 +35,7 @@
 :padding: 2
 
 * {doc}`ROCm Bandwidth Test <rocm_bandwidth_test:index>`
+* {doc}`TransferBench <transferbench:index>`
 * {doc}`ROCProfiler <rocprofiler:profiler_home_page>`
 * [rocprofiler-register](https://github.com/ROCm/rocprofiler-register)
 * {doc}`ROCTracer <roctracer:index>`
