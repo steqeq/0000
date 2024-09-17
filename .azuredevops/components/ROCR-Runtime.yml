@@ -11,7 +11,6 @@ parameters:
     - g++
     - libdrm-dev
     - libelf-dev
-    - libhwloc-dev
     - libnuma-dev
 - name: rocmDependencies
   type: object
@@ -76,6 +75,14 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+  - task: Bash@3
+    displayName: Install libhwloc5
+    inputs:
+      targetType: 'inline'
+      script: |
+        wget http://ftp.us.debian.org/debian/pool/main/h/hwloc/libhwloc5_1.11.12-3_amd64.deb
+        wget http://ftp.us.debian.org/debian/pool/main/h/hwloc/libhwloc-dev_1.11.12-3_amd64.deb
+        sudo apt install ./libhwloc5_1.11.12-3_amd64.deb ./libhwloc-dev_1.11.12-3_amd64.deb
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
@@ -125,8 +132,8 @@ jobs:
       targetType: 'inline'
       workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
       script: |
-        sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c  
-        sed -i 's/"MIT"/"GPL"/' amdp2ptest.c  
+        sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c
+        sed -i 's/"MIT"/"GPL"/' amdp2ptest.c
         RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
   - task: Bash@3
     displayName: Install rdmatest driver
@@ -142,6 +149,7 @@ jobs:
       testExecutable: yes | ./rdma_test
       testParameters: ''
       testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
+      testPublishResults: false
   - task: Bash@3
     displayName: Build rocrtst
     inputs:
