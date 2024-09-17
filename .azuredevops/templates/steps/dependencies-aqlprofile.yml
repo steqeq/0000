@@ -8,13 +8,13 @@ parameters:
 - name: repositoryUrl
   type: object
   default: 
-    staging: https://repo.radeon.com/rocm/misc/aqlprofile/ubuntu-22.04
-    tag-builds: https://repo.radeon.com/rocm/apt/6.1/pool/main/h/hsa-amd-aqlprofile
+    staging: https://repo.radeon.com/rocm/apt/6.2/pool/main/h/hsa-amd-aqlprofile
+    tag-builds: https://repo.radeon.com/rocm/apt/6.2/pool/main/h/hsa-amd-aqlprofile
 - name: packageName
   type: object
   default:
-    staging: hsa-amd-aqlprofile_1.0.0.60200.60200-crdnnh.14213~22.04_amd64.deb
-    tag-builds: hsa-amd-aqlprofile_1.0.0.60100.60100-82~22.04_amd64.deb
+    staging: hsa-amd-aqlprofile_1.0.0.60200.60200-66~22.04_amd64.deb
+    tag-builds: hsa-amd-aqlprofile_1.0.0.60200.60200-66~22.04_amd64.deb
 
 steps:
 - task: Bash@3
