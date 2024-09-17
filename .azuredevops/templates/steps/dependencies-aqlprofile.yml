@@ -8,8 +8,8 @@ parameters:
 - name: repositoryUrl
   type: object
   default: 
-    staging: https://repo.radeon.com/rocm/misc/aqlprofile/ubuntu-22.04
-    tag-builds: https://repo.radeon.com/rocm/apt/6.1/pool/main/h/hsa-amd-aqlprofile
+    staging: https://repo.radeon.com/rocm/apt/6.2/pool/main/h/hsa-amd-aqlprofile
+    tag-builds: https://repo.radeon.com/rocm/apt/6.2/pool/main/h/hsa-amd-aqlprofile
 - name: packageName
   type: object
   default:
