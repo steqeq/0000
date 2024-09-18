@@ -79,8 +79,8 @@ subtrees:
         title: AMD Instinct MI100
       - file: how-to/system-optimization/w6000-v620.md
         title: AMD RDNA 2
-  - file: how-to/performance-validation/mi300x/vllm-unified-docker.rst
-    title: AMD MI300X LLM inference performance validation
+      - file: how-to/performance-validation/mi300x/vllm-unified-docker.rst
+        title: AMD MI300X LLM inference performance validation
   - file: how-to/system-debugging.md
   - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
