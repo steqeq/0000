@@ -34,6 +34,7 @@ parameters:
     - rocm_smi_lib
     - rocprofiler-register
     - ROCR-Runtime
+    - roctracer
 - name: rocmTestDependencies
   type: object
   default:
