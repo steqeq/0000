@@ -42,6 +42,7 @@ parameters:
     - python3-setuptools
     - python3-dev
     - libudev-dev
+    - parallel
   # Referencing comment snippet below but excluding rocprofiler and roctracer.
   # This is to remove need for separate build per gpu target.
   # With our selected build flags, compilation and installation work fine without these two.
@@ -55,16 +56,18 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
-    - llvm-project
-    - ROCR-Runtime
+    - amdsmi
     - clr
-    - rocminfo
-    - rocprofiler-register
+    - llvm-project
     - ROCdbgapi
     - ROCgdb
+    - rocm-cmake
+    - rocm-core
+    - rocminfo
     - rocm_smi_lib
-    - amdsmi
+    - rocprofiler-register
+    - ROCR-Runtime
+    - roctracer
 
 jobs:
 - job: aomp
@@ -407,3 +410,79 @@ jobs:
       Contents: '/**/*'
       RemoveDotFiles: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: aomp_testing
+  dependsOn: aomp
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - task: Bash@3
+    displayName: ROCm symbolic link
+    inputs:
+      targetType: inline
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: aomp-extras_repo
+# these copy steps are from the aomp prototype script for test prep
+  - task: CopyFiles@2
+    displayName: 'Copy AOMP contents'
+    inputs:
+      CleanTargetFolder: false
+      SourceFolder: $(Build.SourcesDirectory)/aomp
+      Contents: |
+        **
+        !**/.git/**
+        !**/.github/**
+        !**/.gitignore
+      TargetFolder: $(Agent.BuildDirectory)/rocm/share/openmp-extras/tests
+      retryCount: 3
+  - task: CopyFiles@2
+    displayName: 'Copy FileCheck'
+    inputs:
+      CleanTargetFolder: false
+      SourceFolder: $(Agent.BuildDirectory)/rocm/llvm/bin
+      Contents: FileCheck
+      TargetFolder: $(Agent.BuildDirectory)/rocm/share/openmp-extras/tests/bin
+      retryCount: 3
+  - task: Bash@3
+    displayName: Test AOMP
+    continueOnError: true
+    inputs:
+      targetType: inline
+      script: ./run_rocm_test.sh
+      workingDirectory: $(Build.SourcesDirectory)/aomp/bin
+    env:
+      AOMP: $(Agent.BuildDirectory)/rocm/llvm
+      AOMP_REPOS_TEST: $(Build.SourcesDirectory)/aomp-test
+      AOMP_TEST_DIR: $(Build.SourcesDirectory)/aomp-test
+      SKIP_TEST_PACKAGE: 1
+      MAINLINE_BUILD: 1
+      SUITE_LIST: smoke
