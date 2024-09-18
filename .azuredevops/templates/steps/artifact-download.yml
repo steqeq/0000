@@ -78,6 +78,7 @@ parameters:
   default:
     - amdsmi
     - HIPIFY
+    - rccl
     - rdc
     - rocm-cmake
     - rocm_smi_lib
