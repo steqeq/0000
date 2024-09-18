@@ -99,10 +99,10 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: tag-builds
 # Because clang is not being rebuilt and to separate downloaded ROCm
 # dependencies from the new artifacts, we use temporary symbolic links
