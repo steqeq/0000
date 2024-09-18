@@ -11,26 +11,137 @@ parameters:
     - gfortran
     - git
     - cmake
+    - python3-pip
+    - python3-dev
+    - ninja-build
+- name: rocmDependencies
+  type: object
+  default:
+    - aomp
+    - llvm-project
+    - clr
+    - hipBLAS
+    - hipBLAS-common
+    - hipBLASLt
+    - hipFFT
+    - hipRAND
+    - hipSOLVER
+    - hipSPARSE
+    - rocBLAS
+    - rocFFT
+    - rocm-cmake
+    - rocminfo
+    - rocprofiler
+    - rocprofiler-register
+    - rocRAND
+    - ROCR-Runtime
+    - rocSOLVER
+    - rocSPARSE
+    - roctracer
 
 jobs:
 - job: hipfort
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/llvm
+        -DHIPFORT_INSTALL_DIR=$(Build.BinariesDirectory)
+        -DHIPFORT_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/flang
+        -DCMAKE_Fortran_FLAGS="-Mfree -fPIC"
+        -DCMAKE_Fortran_FLAGS_DEBUG=""
+        -DHIPFORT_COMPILER_FLAGS="-cpp"
+        -DHIPFORT_AR=$(Agent.BuildDirectory)/rocm/llvm/bin/llvm-ar
+        -DHIPFORT_RANLIB=$(Agent.BuildDirectory)/rocm/llvm/bin/llvm-ranlib
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DBUILD_TESTING=ON
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+
+- job: hipfort_testing
+  dependsOn: hipfort
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DHIPFORT_INSTALL_DIR=/tmp/hipfort
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  - task: Bash@3
+    displayName: 'ROCm symbolic link'
+    inputs:
+      targetType: inline
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+      workingDirectory: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: 'Test hipfort'
+    inputs:
+      targetType: inline
+      script: PATH=$(Agent.BuildDirectory)/rocm/bin:$PATH make run_all
+      workingDirectory: $(Build.SourcesDirectory)/test
