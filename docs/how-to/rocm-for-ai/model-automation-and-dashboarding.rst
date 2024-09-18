@@ -26,17 +26,17 @@ Use MAD to:
 Getting started with MAD
 ========================
 
-Refer to the steps to set up your host computer with :doc:`ROCm <rocm:index>` here. Follow the detailed
-:doc:`installation instructions <rocm-install-on-linux:install/detailed-install>` for Linux-based platforms.
+Refer to the procedures in :doc:`rocm-install-on-linux:index` to set up your host computer with ROCm. Follow the
+detailed :doc:`installation instructions <rocm-install-on-linux:install/detailed-install>` for Linux-based platforms.
 
 ROCm Docker images
 ------------------
 
 You can find ROCm Docker images for PyTorch and TensorFlow on Docker Hub at
-:fab:`docker` `rocm/pytorch <https://hub.docker.com/r/rocm/pytorch>`_ and
-:fab:`docker` `rocm/tensorflow <https://hub.docker.com/r/rocm/tensorflow>`_.
+`rocm/pytorch <https://hub.docker.com/r/rocm/pytorch>`_ and
+`rocm/tensorflow <https://hub.docker.com/r/rocm/tensorflow>`_.
 
-AMD publishes a unified Docker image at :fab:`docker` `rocm/vllm <https://hub.docker.com/r/rocm/vllm>`_ that packages
+AMD publishes a unified Docker image at `rocm/vllm <https://hub.docker.com/r/rocm/vllm>`_ that packages
 together vLLM and PyTorch for the AMD Instinct™ MI300X accelerator. This enables users to quickly validate the expected
 inference performance numbers on the MI300X. This Docker image includes:
 
@@ -46,7 +46,7 @@ inference performance numbers on the MI300X. This Docker image includes:
 
 - PyTorch
 
-- Tuning files (.csv format)
+- Tuning files (CSV format)
 
 See `<https://github.com/ROCm/MAD/tree/develop/benchmark/vllm>`__ for more information.
 
@@ -55,7 +55,7 @@ See `<https://github.com/ROCm/MAD/tree/develop/benchmark/vllm>`__ for more infor
 Using MAD to run models locally
 ===============================
 
-The following describes MAD's basic functionalities.
+The following describes MAD's basic usage and functionalities.
 
 1. Clone the `MAD repository <https://github.com/ROCm/MAD>`_ to a local directory and install the required packages
    on the host machine. For example:
@@ -88,7 +88,7 @@ For each model in ``models.json``, the script:
   The container should automatically be stopped and removed whenever
   the script exits.
 
-* Clones the git ``url``, and runs the ``scripts``.
+* Clones the git ``url`` and runs the ``scripts``.
 
 * Compiles the final ``perf.csv`` and ``perf.html``.
 
@@ -97,11 +97,34 @@ For each model in ``models.json``, the script:
 Arguments
 ---------
 
+The following list of options describe some of MAD capabilities.
+
 --help, -h
    Show this help message and exit
 
 --tags TAGS
-   Tags to run (can be multiple). Overrides ``tags.json``. See :ref:`mad-run-tags`.
+   Tags to run (can be multiple). Overrides ``tags.json``.
+
+   With the tag functionality, you can select a subset of the models with the corresponding tags to be run. User-specified
+   tags can be specified in ``tags.json`` or with the ``--tags`` argument. If multiple tags are specified, all models that
+   match any specified tag are selected.
+
+   .. note::
+
+      Each model name in ``models.json`` is automatically a tag that can be used to run that model. Tags are also supported
+      in comma-separated form.
+
+   For example, to run the ``pyt_huggingface_bert`` model, use:
+
+   .. code-block:: shell
+
+      python3 tools/run_models.py --tags pyt_huggingface_bert
+
+   Or, to run all PyTorch models, use:
+
+   .. code-block:: shell
+
+      python3 tools/run_models.py --tags pyt
 
 --model-name MODEL_NAME
    Model name to run the application.
@@ -110,7 +133,7 @@ Arguments
    Timeout for the application running model in seconds, default timeout of 7200 (2 hours).
 
 --live-output
-   Prints output in real-time directly on STDOUT.
+   Prints output in real-time directly on `STDOUT`.
 
 --clean-docker-cache
    Rebuild docker image without using cache.
@@ -127,33 +150,7 @@ Arguments
 --log-level LOG_LEVEL
    Log level for the logger.
 
-.. _mad-run-tags:
-
-Tags
-----
-
-With the tag functionality, you can select a subset of the models with the corresponding tags to be run. User-specified
-tags can be specified in ``tags.json`` or with the ``--tags`` argument. If multiple tags are specified, all models that
-match any specified tag are selected.
-
 .. note::
 
-   Each model name in ``models.json`` is automatically a tag that can be used to run that model. Tags are also supported
-   in comma-separated form.
-
-For example, to run the ``pyt_huggingface_bert`` model, use:
-
-.. code-block:: shell
-
-   python3 tools/run_models.py --tags pyt_huggingface_bert
-
-Or, to run all PyTorch models, use:
-
-.. code-block:: shell
-
-   python3 tools/run_models.py --tags pyt
-
-
-.. note::
-
-   Learn more about MAD's options by visiting `<https://github.com/ROCm/MAD/blob/develop/README.md>`__.
+   Learn more about MAD's capabilities by visiting the README at
+   `<https://github.com/ROCm/MAD/blob/develop/README.md>`__.
