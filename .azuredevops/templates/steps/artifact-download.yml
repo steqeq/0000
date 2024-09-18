@@ -79,6 +79,7 @@ parameters:
     - amdsmi
     - aomp
     - HIPIFY
+    - rccl
     - rdc
     - rocm-cmake
     - rocm_smi_lib
