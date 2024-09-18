@@ -38,7 +38,7 @@ Setting up the base implementation environment
 ----------------------------------------------
 
 #. Install PyTorch for ROCm. Refer to the
-   :doc:`PyTorch installation guide <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`. For a consistent
+   :doc:`PyTorch installation guide <rocm-install-on-linux:install/3rd-party/pytorch-install>`. For a consistent
    installation, it’s recommended to use official ROCm prebuilt Docker images with the framework pre-installed.
 
 #. In the Docker container, check the availability of ROCm-capable accelerators using the following command.
@@ -103,7 +103,7 @@ Setting up the base implementation environment
       pip install peft
       
       # Install the other dependencies.
-      pip install transformers, datasets, huggingface-hub, scipy
+      pip install transformers datasets huggingface-hub scipy
 
 #. Check that the required packages can be imported.
 

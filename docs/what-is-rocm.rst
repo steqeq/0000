@@ -1,4 +1,4 @@
-.. meta::
+ .. meta::
   :description: What is ROCm
   :keywords: ROCm components, ROCm projects, introduction, ROCm, AMD, runtimes, compilers, tools, libraries, API
 
@@ -10,7 +10,7 @@ ROCm is an open-source stack, composed primarily of open-source software, design
 graphics processing unit (GPU) computation. ROCm consists of a collection of drivers, development
 tools, and APIs that enable GPU programming from low-level kernel to end-user applications.
 
-.. image:: data/rocm-software-stack-6_1_0.jpg
+.. image:: data/rocm-software-stack-6_2_0.jpg
   :width: 800
   :alt: AMD's ROCm software stack and neighboring technologies.
   :align: center
@@ -44,9 +44,10 @@ Machine Learning & Computer Vision
   ":doc:`MIGraphX <amdmigraphx:index>`", "Graph inference engine that accelerates machine learning model inference"
   ":doc:`MIOpen <miopen:index>`", "An open source deep-learning library"
   ":doc:`MIVisionX <mivisionx:index>`", "Set of comprehensive computer vision and machine learning libraries, utilities, and applications"
+  ":doc:`ROCm Performance Primitives (RPP) <rpp:index>`", "Comprehensive high-performance computer vision library for AMD processors with HIP/OpenCL/CPU back-ends"
   ":doc:`rocAL <rocal:index>`", "An augmentation library designed to decode and process images and videos"
   ":doc:`rocDecode <rocdecode:index>`", "High-performance SDK for access to video decoding features on AMD GPUs"
-  ":doc:`ROCm Performance Primitives (RPP) <rpp:index>`", "Comprehensive high-performance computer vision library for AMD processors with HIP/OpenCL/CPU back-ends"
+  ":doc:`rocPyDecode <rocpydecode:index>`", "Provides access to rocDecode APIs in both Python and C/C++ languages"
 
 Communication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -94,22 +95,41 @@ Primitives
 Tools
 -----------------------------------------------
 
+System Management
+^^^^^^^^^^^^^^^^^
+
 .. csv-table::
   :header: "Component", "Description"
 
   ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
-  ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
-  ":doc:`ROCdbgapi <rocdbgapi:index>`", "ROCm debugger API library"
-  ":doc:`ROCm compilers <./reference/rocmcc>`", "Clang/LLVM-based compiler"
-  ":doc:`rocminfo <rocminfo:index>`", "Reports system information"
-  ":doc:`ROCProfiler <rocprofiler:index>`", "Profiling tool for HIP applications"
-  ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
-  ":doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`", "Captures the performance characteristics of buffer copying and kernel read/write operations"
-  ":doc:`ROCm CMake <rocmcmakebuildtools:index>`", "Collection of CMake modules for common build and development tasks"
   ":doc:`ROCm Data Center Tool <rdc:index>`", "Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments"
-  ":doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`", "Source-level debugger for Linux, based on the GNU Debugger (GDB)"
+  ":doc:`rocminfo <rocminfo:index>`", "Reports system information"
   ":doc:`ROCm SMI <rocm_smi_lib:index>`", "C library for Linux that provides a user space interface for applications to monitor and control GPU applications"
   ":doc:`ROCm Validation Suite <rocmvalidationsuite:index>`", "Detects and troubleshoots common problems affecting AMD GPUs running in a high-performance computing environment"
+
+Performance
+^^^^^^^^^^^
+
+.. csv-table::
+  :header: "Component", "Description"
+
+  ":doc:`Omniperf <omniperf:index>`", "System performance profiling tool for machine learning and HPC workloads"
+  ":doc:`Omnitrace <omnitrace:index>`", "Comprehensive profiling and tracing tool for HIP applications"
+  ":doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`", "Captures the performance characteristics of buffer copying and kernel read/write operations"
+  ":doc:`ROCProfiler <rocprofiler:index>`", "Profiling tool for HIP applications"
+  ":doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`", "Toolkit for developing analysis tools for profiling and tracing GPU compute applications. This toolkit is in beta and subject to change"
+  ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
+
+Development
+^^^^^^^^^^^
+
+.. csv-table::
+  :header: "Component", "Description"
+
+  ":doc:`HIPIFY <hipify:index>`", "Translates CUDA source code into portable HIP C++"
+  ":doc:`ROCm CMake <rocmcmakebuildtools:index>`", "Collection of CMake modules for common build and development tasks"
+  ":doc:`ROCdbgapi <rocdbgapi:index>`", "ROCm debugger API library"
+  ":doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`", "Source-level debugger for Linux, based on the GNU Debugger (GDB)"
   ":doc:`ROCr Debug Agent <rocr_debug_agent:index>`", "Prints the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running"
 
 Compilers
@@ -118,9 +138,9 @@ Compilers
 .. csv-table::
   :header: "Component", "Description"
 
+  ":doc:`HIPCC <hipcc:index>`", "Compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure"
+  ":doc:`ROCm compilers <llvm-project:index>`", "ROCm LLVM compiler infrastructure"
   "`FLANG <https://github.com/ROCm/flang/>`_", "An out-of-tree Fortran compiler targeting LLVM"
-  ":doc:`hipCC <hipcc:index>`", "Compiler driver utility that calls Clang or NVCC and passes the appropriate include and library options for the target compiler and HIP infrastructure"
-  "`LLVM (amdclang) <https://github.com/ROCm/llvm-project>`_ ", "Toolkit for the construction of highly optimized compilers, optimizers, and runtime environments"
 
 Runtimes
 -----------------------------------------------

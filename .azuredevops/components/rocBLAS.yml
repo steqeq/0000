@@ -24,6 +24,7 @@ parameters:
   type: object
   default:
     - joblib
+    - pyyaml
 - name: rocmDependencies
   type: object
   default:
@@ -37,6 +38,20 @@ parameters:
     - rocm-core
     - aomp
     - aomp-extras
+    - hipBLAS-common
+    - hipBLASLt
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - hipBLAS-common
+    - hipBLASLt
+    - llvm-project
+    - rocminfo
+    - rocprofiler-register
+    - rocm_smi_lib
+    - ROCR-Runtime
 
 jobs:
 - job: rocBLAS
@@ -54,6 +69,12 @@ jobs:
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -63,43 +84,17 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
-    - task: Bash@3
-      displayName: 'Download AOCL'
-      inputs:
-        targetType: inline
-        script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - task: Bash@3
-      displayName: 'Install AOCL'
-      inputs:
-        targetType: inline
-        script: sudo apt install --yes ./aocl-linux-gcc-4.2.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aocl.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-# manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
-    - task: Bash@3
-      displayName: 'Download AOCL'
-      inputs:
-        targetType: inline
-        script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-1/aocl-linux-aocc-4.1.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - task: Bash@3
-      displayName: 'Install AOCL'
-      inputs:
-        targetType: inline
-        script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
-        workingDirectory: '$(Pipeline.Workspace)'
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
-  - script: echo $PATH
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -108,7 +103,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/bin/hipcc
-        -DAMDGPU_TARGETS=gfx1030;gfx1100
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DTensile_CODE_OBJECT_VERSION=default
         -DTensile_LOGIC=asm_full
         -DTensile_SEPARATE_ARCHITECTURES=ON
@@ -120,3 +115,49 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+
+- job: rocBLAS_testing
+  dependsOn: rocBLAS
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocBLAS
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: './rocblas-test'
+      testParameters: '--yaml rocblas_smoke.yaml --gtest_output=xml:./test_output.xml --gtest_color=yes'

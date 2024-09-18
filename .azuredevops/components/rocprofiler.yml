@@ -39,7 +39,6 @@ parameters:
     - rocminfo
     - ROCR-Runtime
     - rocprofiler-register
-    - ROCT-Thunk-Interface
     - roctracer
 
 jobs:
@@ -54,6 +53,12 @@ jobs:
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -63,40 +68,21 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# Manually download aqlprofile, hard-coded 6.1.0 version
-  - task: Bash@3
-    displayName: 'Download aqlprofile'
-    inputs:
-      targetType: inline
-      script: wget -nv https://repo.radeon.com/rocm/misc/aqlprofile/ubuntu-22.04/hsa-amd-aqlprofile_1.0.0.60200.60200-crdnnh.14213~22.04_amd64.deb
-      workingDirectory: '$(Pipeline.Workspace)'
-  - task: Bash@3
-    displayName: 'Extract aqlprofile'
-    inputs:
-      targetType: inline
-      script: |
-        mkdir hsa-amd-aqlprofile
-        dpkg-deb -R hsa-amd-aqlprofile_1.0.0.60200.60200-crdnnh.14213~22.04_amd64.deb hsa-amd-aqlprofile
-      workingDirectory: '$(Pipeline.Workspace)'
-  - task: Bash@3
-    displayName: 'Move aqlprofile'
-    inputs:
-      targetType: inline
-      script: |
-        mkdir -p $(Agent.BuildDirectory)/rocm
-        cp -R hsa-amd-aqlprofile/opt/rocm-6.2.0-14213/* $(Agent.BuildDirectory)/rocm
-      workingDirectory: '$(Pipeline.Workspace)'
-# CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-# manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -105,5 +91,7 @@ jobs:
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DENABLE_LDCONFIG=OFF
         -DUSE_PROF_API=1
-        -DGPU_TARGETS=gfx1030;gfx1100
+        -DGPU_TARGETS=$(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)

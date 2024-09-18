@@ -91,7 +91,7 @@ class TaggingArgs(argparse.Namespace):
         return defaults + (self._exclude if self._exclude is not None else [])
 
 
-def parse_args() -> TaggingArgs:
+def parse_arguments() -> TaggingArgs:
     """Parse arguments."""
 
     def add_arg_pair(
@@ -153,7 +153,10 @@ def parse_args() -> TaggingArgs:
     )
     add_arg_pair(parser, "release", "the tag & release.")
     add_arg_pair(parser, "pulls", "the pull requests to internal repos.")
-    add_arg_pair(parser, "previous", " use previous versions as required.")
+    parser.add_argument(
+        "--starting-version",
+        help="The starting version for the autotag script.",
+    )
     parser.add_argument(
         "--manifest-url",
         help="The url to download the manifest.xml file from.",
@@ -183,12 +186,12 @@ def parse_args() -> TaggingArgs:
 
 def run_tagging():
     """Run the tagging/releasing process on each specified library."""
-    args = parse_args()
+    args = parse_arguments()
 
     # Use the manifest included in the ROCm GitHub repository by default.
     if args.manifest_url is None:
         manifest_path = (
-            "./../../default.xml"
+            "./components.xml"
         )
     else:
         manifest_url = args.manifest_url
@@ -233,31 +236,26 @@ def run_tagging():
     )
 
     # Find all the math libraries and their remotes.
-    included_names = [
-        "AMDMIGraphX",
-        "HIPIFY", #
-        "MIOpen",
-        "MIVisionX",
-        "ROCmValidationSuite", #
-        "composable_kernel",
-        "hipfort",
-        "rocDecode",
-        "rocm-cmake",
-        "rpp",
+    included_categories = [
+        "libs",
+        "tools",
+        "compilers",
+        "runtimes",
     ]
-    included_groups = [
-        "mathlibs"
-    ]
-    projects = [ ]
+    projects = []
     for project in manifest_tree.iterfind(".//project"):
-        include = str(project.get("name")) in included_names
-        if (project.get("name") in included_names) or (project.get("groups") in included_groups):
+        if project.get("category") in included_categories:
             projects.append(project)
-    names_and_remotes = list((entry.get("name"), entry.get("remote")) for entry in projects)
+    component_information = list(
+        (entry.get("name"), 
+         entry.get("remote"),
+         entry.get("group"),
+         entry.get("category"),
+        ) for entry in projects)
 
-    # Get all the relevant ROCm releases, and only the last version if not doing previous.
-    minimum_version = "5.0.0" if args.previous else args.version
-    releases = release_bundle_factory.create_data_dict(args.version, names_and_remotes, minimum_version)
+    # Get all the relevant ROCm releases
+    minimum_version = args.version if not args.starting_version else args.starting_version
+    releases = release_bundle_factory.create_data_dict(args.version, component_information, minimum_version)
 
     # Process the individual releases.
     failed: List[Tuple[str, str]] = []
@@ -265,10 +263,11 @@ def run_tagging():
         for (_, library) in release.libraries.items():
             # Parse the changelog for each library and each version
             try:
+                is_starting_version_set = True if args.starting_version else False
                 success = PROCESSORS[library.name](
                     library,
                     TEMPLATES[library.name],
-                    args.previous,
+                    is_starting_version_set,
                     Version(version) < Version(args.version)
                 )
             except Exception as e:

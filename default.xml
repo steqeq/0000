@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remote name="rocm-org" fetch="https://github.com/ROCm/" />
-    <default revision="refs/tags/rocm-6.1.2"
+    <default revision="refs/tags/rocm-6.2.0"
      remote="rocm-org"
      sync-c="true"
      sync-j="4" />
@@ -10,19 +10,21 @@
     <project name="ROCR-Runtime" />
     <project name="ROCT-Thunk-Interface" />
     <project name="amdsmi" />
-    <project name="clang-ocl" />
+    <project name="omniperf" />
+    <project name="omnitrace" />
     <project name="rdc" />
     <project name="rocm_bandwidth_test" />
     <project name="rocm_smi_lib" />
     <project name="rocm-core" />
+    <project name="rocm-examples" />
     <project name="rocminfo" />
     <project name="rocprofiler" />
     <project name="rocprofiler-register" />
+    <project name="rocprofiler-sdk" />
     <project name="roctracer" />
 <!--HIP Projects-->
     <project name="HIP" />
     <project name="hip-tests" />
-    <project name="HIP-Examples" />
     <project name="HIPIFY" />
     <project name="clr" />
     <project name="hipother" />
@@ -51,9 +53,11 @@
     <project groups="mathlibs" name="hipTensor" />
     <project groups="mathlibs" name="hipfort" />
     <project groups="mathlibs" name="rccl" />
+    <project groups="mathlibs" name="rocAL" />
     <project groups="mathlibs" name="rocALUTION" />
     <project groups="mathlibs" name="rocBLAS" />
     <project groups="mathlibs" name="rocDecode" />
+    <project groups="mathlibs" name="rocPyDecode" />
     <project groups="mathlibs" name="rocFFT" />
     <project groups="mathlibs" name="rocPRIM" />
     <project groups="mathlibs" name="rocRAND" />

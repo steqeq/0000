@@ -9,6 +9,6 @@
 
 The following topics describe using specific features of the compilation tools:
 
-* [Using AddressSanitizer](./using-gpu-sanitizer.md)
-* [Compiler disambiguation](./compiler-disambiguation.md)
-* [OpenMP support in ROCm](../about/compatibility/openmp.md)
+* [ROCm compiler infrastructure](https://rocm.docs.amd.com/projects/llvm-project/en/latest/index.html)
+* [Using AddressSanitizer](https://rocm.docs.amd.com/projects/llvm-project/en/latest/conceptual/using-gpu-sanitizer.html)
+* [OpenMP support](https://rocm.docs.amd.com/projects/llvm-project/en/latest/conceptual/openmp.html)

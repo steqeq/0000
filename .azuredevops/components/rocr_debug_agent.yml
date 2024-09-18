@@ -12,6 +12,8 @@ parameters:
     - ninja-build
     - libelf-dev
     - libdw-dev
+    - libstdc++-12-dev
+    - python-is-python3
 - name: rocmDependencies
   type: object
   default:
@@ -22,6 +24,15 @@ parameters:
     - rocminfo
     - ROCR-Runtime
     - rocprofiler-register
+- name: rocmTestDependencies
+  type: object
+  default:
+    - clr
+    - llvm-project
+    - ROCdbgapi
+    - rocminfo
+    - rocprofiler-register
+    - ROCR-Runtime
 
 jobs:
 - job: rocr_debug_agent
@@ -40,17 +51,14 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-# CI case: download latest default branch build
-  - ${{ if eq(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-# manual build case: triggered by ROCm/ROCm repo
-  - ${{ if ne(parameters.checkoutRef, '') }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-      parameters:
-        dependencyList: ${{ parameters.rocmDependencies }}
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -61,3 +69,52 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocr_debug_agent_testing
+  dependsOn: rocr_debug_agent
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: rocr_debug_agent-tests
+      extraBuildFlags: >-
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake;$(Agent.BuildDirectory)/rocm/lib/cmake/hip
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+      cmakeBuildDir: '$(Agent.BuildDirectory)/rocm/src/rocm-debug-agent-test'
+      cmakeSourceDir: '.'
+      installEnabled: false
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocr_debug_agent
+      testDir: '$(Agent.BuildDirectory)/rocm/src/rocm-debug-agent-test'

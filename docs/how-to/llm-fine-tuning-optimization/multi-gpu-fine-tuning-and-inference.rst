@@ -37,14 +37,14 @@ Setting up the base implementation environment
 ----------------------------------------------
 
 #. Install PyTorch for ROCm. Refer to the
-   :doc:`PyTorch installation guide <rocm-install-on-linux:how-to/3rd-party/pytorch-install>`. For consistent
+   :doc:`PyTorch installation guide <rocm-install-on-linux:install/3rd-party/pytorch-install>`. For consistent
    installation, it’s recommended to use official ROCm prebuilt Docker images with the framework pre-installed.
 
 #. In the Docker container, check the availability of ROCM-capable accelerators using the following command.
 
    .. code-block:: shell
 
-      rocm-smi -showproductname
+      rocm-smi --showproductname
 
 #. Check that your accelerators are available to PyTorch.
 
@@ -95,7 +95,7 @@ Now, it's important to adjust how you load the model. Add the ``device_map`` par
    # Load base model to GPU memory
    base_model = AutoModelForCausalLM.from_pretrained(
            base_model_name, 
-           device_map = "auto"
+           device_map = "auto",
            trust_remote_code = True)
    ...
    # Run training

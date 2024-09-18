@@ -26,3 +26,27 @@ jobs:
         -DBUILD_TESTS=ON
         -DROCM_DEP_ROCMCORE=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: rocm_smi_lib_testing
+  dependsOn: rocm_smi_lib
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocm_smi_lib
+      testDir: '$(Agent.BuildDirectory)'
+      testExecutable: './rocm/share/rocm_smi/rsmitst_tests/rsmitst'
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'

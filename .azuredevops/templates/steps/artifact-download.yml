@@ -9,9 +9,15 @@ parameters:
 - name: useDefaultBranch
   type: boolean
   default: true
+- name: latestFromBranch
+  type: boolean
+  default: true
 - name: extractToMnt
   type: boolean
   default: false
+- name: fileFilter
+  type: string
+  default: ''
 - name: defaultBranchList
   type: object
   default:
@@ -19,12 +25,13 @@ parameters:
     amdsmi: develop
     aomp-extras: aomp-dev
     aomp: aomp-dev
-    clr: develop
+    clr: amd-staging
     composable_kernel: develop
-    half: master
-    HIP: develop
+    half: rocm
+    HIP: amd-staging
     hipBLAS: develop
     hipBLASLt: develop
+    hipBLAS-common: develop
     hipCUB: develop
     hipFFT: develop
     hipfort: develop
@@ -42,10 +49,10 @@ parameters:
     rocAL: develop
     rocALUTION: develop
     rocBLAS: develop
-    ROCdbgapi : amd-master
+    ROCdbgapi : amd-staging
     rocDecode: develop
     rocFFT: develop
-    rocgdb: amd-staging
+    ROCgdb: amd-staging
     rocm-cmake: develop
     rocm-core: master
     rocm-examples: develop
@@ -56,21 +63,26 @@ parameters:
     rocm_smi_lib: develop
     rocPRIM: develop
     rocprofiler-register: amd-mainline
-    rocprofiler: amd-master
-    ROCR-Runtime: master
+    rocprofiler: amd-staging
+    ROCR-Runtime: amd-staging
     rocRAND: develop
     rocr_debug_agent: amd-staging
     rocSOLVER: develop
     rocSPARSE: develop
-    ROCT-Thunk-Interface: master
     rocThrust: develop
-    roctracer: amd-master
+    roctracer: amd-staging
     rocWMMA: develop
-    rpp: master
-- name: componentsFailureOkay
+    rpp: develop
+- name: allowPartiallySucceededBuilds
   type: object
   default:
+    - amdsmi
+    - HIPIFY
+    - rdc
     - rocm-cmake
+    - rocm_smi_lib
+    - rocFFT
+    - MIVisionX
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
@@ -84,11 +96,15 @@ steps:
     project: ROCm-CI
     definition: ${{ parameters.pipelineId }}
     specificBuildWithTriggering: true
+    itemPattern: '**/*${{ parameters.fileFilter }}*'
+    ${{ if eq(parameters.latestFromBranch, true) }}:
+      ${{ if notIn(parameters.componentName, 'aomp') }}: # remove this once these pipelines are functional + up-to-date
+        buildVersionToDownload: latestFromBranch # default is 'latest'
     ${{ if eq(parameters.useDefaultBranch, true) }}:
-      branchName: ${{ parameters.defaultBranchList[parameters.componentName] }}
+      branchName: refs/heads/${{ parameters.defaultBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
-    ${{ if in(parameters.componentName, parameters.componentsFailureOkay) }}:
+    ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1

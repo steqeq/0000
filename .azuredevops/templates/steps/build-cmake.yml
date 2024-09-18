@@ -11,6 +11,12 @@ parameters:
 - name: cmakeBuildDir
   type: string
   default: 'build'
+- name: cmakeSourceDir
+  type: string
+  default: '..'
+- name: customBuildTarget
+  type: string
+  default: ''
 - name: cmakeTarget
   type: string
   default: 'install'
@@ -35,17 +41,24 @@ steps:
   inputs:
     workingDirectory: ${{ parameters.cmakeBuildDir }}
     ${{ if eq(parameters.customInstallPath, true) }}:
-      cmakeArgs: -DCMAKE_INSTALL_PREFIX=${{ parameters.installDir }} ${{ parameters.extraBuildFlags }} ..
+      cmakeArgs: -DCMAKE_INSTALL_PREFIX=${{ parameters.installDir }} ${{ parameters.extraBuildFlags }} ${{ parameters.cmakeSourceDir }}
     ${{ else }}:
       cmakeArgs: ${{ parameters.extraBuildFlags }} ..
+- script: df -h
+  displayName: Disk space before build
 # equivalent to running make $cmakeTargetDir from $cmakeBuildDir
 # i.e., cd $cmakeBuildDir; make $cmakeTargetDir
 - task: CMake@1
   displayName: '${{parameters.componentName }} Build'
   inputs:
     workingDirectory: ${{ parameters.cmakeBuildDir }}
-    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} ${{ parameters.multithreadFlag }}'
+    ${{ if eq(parameters.customBuildTarget, '') }}:
+      cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} ${{ parameters.multithreadFlag }}'
+    ${{ else }}:
+      cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} --target ${{ parameters.customBuildTarget }} ${{ parameters.multithreadFlag }}'
     retryCountOnTaskFailure: 10
+- script: df -h
+  displayName: Disk space after build
 # equivalent to running make $cmakeTarget from $cmakeBuildDir
 # e.g., make install
 - ${{ if eq(parameters.installEnabled, true) }}:
