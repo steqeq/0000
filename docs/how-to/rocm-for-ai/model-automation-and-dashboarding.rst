@@ -1,19 +1,19 @@
 .. meta::
-   :description: Discover and run deep learning models with AMD MAD -- Model Automation and Dashboarding tool.
-   :keywords: AI, LLM, machine, dashboarding, zoo,
+   :description: Discover, run, and benchmark deep learning models with AMD MAD -- Model Automation and Dashboarding tool.
+   :keywords: dashboard, machine, deep, container, playground, tune
 
 ************************
 Running models using MAD
 ************************
 
-The AMD Model Automation and Dashboarding (MAD) tool brings together an AI model zoo with automated execution across
-various GPU architectures. It facilitates performance tracking by including mechanisms for maintaining historical
-performance data and generating dashboards for analysis. MAD's source code repository and full documentation are located
-at `<https://github.com/ROCm/MAD>`__.
+The AMD Model Automation and Dashboarding (MAD) tool integrates an AI model zoo with automated execution capabilities
+across various GPU architectures. It facilitates performance tracking by maintaining historical performance data and
+generating dashboards for analysis. MAD's source code repository and full documentation can be found at
+`<https://github.com/ROCm/MAD>`__.
 
-MAD pulls various models from their repositories and tests their performance inside ROCm Docker images. It is an index
-of deep learning models that have been trained to get the best reproducible accuracy and performance with AMD’s ROCm
-software stack running on AMD GPUs.
+MAD retrieves various models from their repositories and tests their performance in ROCm Docker images. It is an index
+of deep learning models optimized for reproducible accuracy and performance on AMD GPUs and accelerators using the ROCm
+software stack.
 
 Use MAD to:
 
@@ -67,7 +67,8 @@ The following describes MAD's basic usage and functionalities.
       pip3 install -r requirements.txt
 
 2. Using the ``tools/run_models.py`` script, you can run and collect performance results for all models in
-   ``models.json`` locally on a Docker host.
+   ``models.json`` locally on a Docker host. Refer to
+   `MAD/models.json <https://github.com/ROCm/blob/develop/models.json>`_.
 
    ``run_models.py`` is the main MAD command line interface for running models locally. While the tool has many options,
    running any single model is very easy. To run a model, look for its name or tag in the ``models.json`` and pass it to
