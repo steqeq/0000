@@ -33,7 +33,7 @@ copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved
 version = "6.2.0"
 release = "6.2.0"
 setting_all_article_info = True
-all_article_info_os = ["linux", "windows"]
+all_article_info_os = []
 all_article_info_author = ""
 
 # pages with specific settings
