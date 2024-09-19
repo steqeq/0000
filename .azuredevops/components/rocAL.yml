@@ -25,6 +25,7 @@ parameters:
     - libturbojpeg-dev
     - libjpeg-turbo-official=3.0.2-20240124
     - libopencv-dev
+    - --allow-downgrades # for libjpeg-turbo
 - name: pipModules
   type: object
   default:
@@ -44,6 +45,17 @@ parameters:
     - rpp
     - MIVisionX
     - aomp
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - half
+    - llvm-project
+    - MIVisionX
+    - rocprofiler-register
+    - ROCR-Runtime
+    - rpp
 
 jobs:
 - job: rocAL
@@ -142,3 +154,81 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
+
+- job: rocAL_testing
+  dependsOn: rocAL
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  - name: ROCM_PATH
+    value: $(Agent.BuildDirectory)/rocm
+  - name: CMAKE_INCLUDE_PATH
+    value: $(Agent.BuildDirectory)/rocm/include/rocal
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - task: Bash@3
+    displayName: 'Register libjpeg-turbo packages'
+    inputs:
+      targetType: inline
+      script: |
+        sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+        wget -q -O- https://packagecloud.io/dcommander/libjpeg-turbo/gpgkey | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/libjpeg-turbo.gpg > /dev/null
+        echo "deb [signed-by=/etc/apt/trusted.gpg.d/libjpeg-turbo.gpg] https://packagecloud.io/dcommander/libjpeg-turbo/any/ any main" | sudo tee /etc/apt/sources.list.d/libjpeg-turbo.list
+        sudo apt update
+        apt-cache show libjpeg-turbo-official | grep Version
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - task: Bash@3
+    displayName: Link libjpeg-turbo
+    inputs:
+      targetType: inline
+      script: |
+        echo /opt/libjpeg-turbo/lib64 | sudo tee /etc/ld.so.conf.d/libjpeg-turbo.conf
+        sudo ldconfig -v
+  - task: Bash@3
+    displayName: Build rocAL tests
+    inputs:
+      targetType: inline
+      script: |
+        mkdir rocAL-tests
+        cd rocAL-tests
+        cmake $(Agent.BuildDirectory)/rocm/share/rocal/test
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocAL
+      testDir: rocAL-tests
+      reloadAMDGPU: true
+  - task: Bash@3
+    displayName: Clean up libjpeg-turbo
+    inputs:
+      targetType: inline
+      script: |
+        sudo rm /etc/ld.so.conf.d/libjpeg-turbo.conf
+        sudo ldconfig -v

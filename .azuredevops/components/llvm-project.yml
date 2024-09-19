@@ -41,6 +41,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
+      skipLlvmSymlink: true
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
@@ -103,6 +104,14 @@ jobs:
       testExecutable: './bin/llvm-lit'
       testParameters: '-q --xunit-xml-output=lld_test_output.xml ./tools/lld/test'
       testOutputFile: lld_test_output.xml
+  - task: CopyFiles@2
+    displayName: Copy FileCheck for Publishing
+    inputs:
+      CleanTargetFolder: false
+      SourceFolder: llvm/build/bin
+      Contents: FileCheck
+      TargetFolder: $(Build.BinariesDirectory)/llvm/bin
+      retryCount: 3
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       componentName: device-libs

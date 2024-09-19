@@ -97,6 +97,7 @@ ENDPGM
 EPYC
 ESXi
 EoS
+FBGEMM
 FFT
 FFTs
 FFmpeg
@@ -110,6 +111,7 @@ Flang
 Fortran
 Fuyu
 GALB
+GCC
 GCD
 GCDs
 GCN
@@ -175,6 +177,7 @@ Interop
 Intersphinx
 Intra
 Ioffe
+Jinja
 JSON
 Jupyter
 KFD
@@ -221,6 +224,7 @@ Megatron
 Mellanox
 Mellanox's
 Meta's
+Miniconda
 MirroredStrategy
 Multicore
 Multithreaded
@@ -430,6 +434,7 @@ accuracies
 activations
 addr
 alloc
+allocatable
 allocator
 allocators
 amdgpu
@@ -619,6 +624,7 @@ performant
 perl
 pragma
 pre
+prebuild
 prebuilt
 precompiled
 preconditioner
@@ -710,8 +716,10 @@ subexpression
 subfolder
 subfolders
 submodule
+submodules
 supercomputing
 symlink
+symlinks
 td
 tensorfloat
 th

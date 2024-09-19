@@ -13,21 +13,37 @@ parameters:
     - libmsgpack-dev
     - git
     - python3-pip
+    - gfortran
+    - libgfortran5
+    - libomp-dev
+    - libopenblas-dev
 - name: pipModules
   type: object
   default:
     - joblib
-# rocm dependencies should match dependencies-rocm.yml
 - name: rocmDependencies
   type: object
   default:
-    - llvm-project
-    - ROCR-Runtime
+    - aomp
     - clr
+    - hipSPARSE
+    - llvm-project
+    - rocBLAS
     - rocminfo
     - rocprofiler-register
-    - hipSPARSE
+    - ROCR-Runtime
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - clr
+    - llvm-project
+    - hipBLAS-common
+    - hipBLASLt
     - rocBLAS
+    - rocminfo
+    - rocprofiler-register
+    - ROCR-Runtime
 
 jobs:
 - job: hipSPARSELt
@@ -71,6 +87,22 @@ jobs:
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+# Build and install gtest and lapack
+# $(Pipeline.Workspace)/deps is a temporary folder for the build process
+# $(Pipeline.Workspace)/s/deps is part of the hipSPARSELt repo
+  - script: mkdir $(Pipeline.Workspace)/deps
+    displayName: Create temp folder for external dependencies
+# hipSPARSELt already has a CMake script for external deps, so we can just run that
+# https://github.com/ROCm/hipSPARSELt/blob/develop/deps/CMakeLists.txt
+  - script: cmake $(Pipeline.Workspace)/s/deps
+    displayName: Configure hipSPARSELt external dependencies
+    workingDirectory: $(Pipeline.Workspace)/deps
+  - script: make
+    displayName: Build hipSPARSELt external dependencies
+    workingDirectory: $(Pipeline.Workspace)/deps
+  - script: sudo make install
+    displayName: Install hipSPARSELt external dependencies
+    workingDirectory: $(Pipeline.Workspace)/deps
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -84,7 +116,45 @@ jobs:
         -DTensile_LIBRARY_FORMAT=msgpack
         -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
+        -DBUILD_CLIENTS_TESTS=ON
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
+
+- job: hipSPARSELt_testing
+  dependsOn: hipSPARSELt
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: hipSPARSELt
+      testDir: '$(Agent.BuildDirectory)/rocm/bin'
+      testExecutable: './hipsparselt-test'
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes --gtest_filter=*pre_checkin*'

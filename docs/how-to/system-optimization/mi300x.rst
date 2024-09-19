@@ -534,7 +534,7 @@ optimizing user applications.
 For a complete guide on how to install, manage, or uninstall ROCm on Linux, refer to
 :doc:`rocm-install-on-linux:install/quick-start`. For verifying that the
 installation was successful, refer to the
-:doc:`rocm-install-on-linux:install/native-install/post-install`.
+:doc:`rocm-install-on-linux:install/post-install`.
 Should verification fail, consult :doc:`/how-to/system-debugging`.
 
 Hardware verification with ROCm

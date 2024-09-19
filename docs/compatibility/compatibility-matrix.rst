@@ -39,12 +39,12 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       ,,,
       FRAMEWORK SUPPORT,".. _framework-support-compatibility-matrix:",,
       :doc:`PyTorch <rocm-install-on-linux:install/3rd-party/pytorch-install>`,"2.3, 2.2, 2.1, 2.0, 1.13","2.1, 2.0, 1.13","2.1, 2.0, 1.13"
-      :doc:`TensorFlow <rocm-install-on-linux:install/3rd-party/tensorflow-install>`,"2.16.1, 2.15.1, 2.14.1","2.15, 2.14, 2.13","2.14, 2.13, 2.12"
+      :doc:`TensorFlow <rocm-install-on-linux:install/3rd-party/tensorflow-install>`,"2.16.1, 2.15.1, 2.14.1","2.15.0, 2.14.0, 2.13.1","2.14.0, 2.13.1, 2.12.1"
       :doc:`JAX <rocm-install-on-linux:install/3rd-party/jax-install>`,0.4.26,0.4.26,0.4.26
       `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.17.3,1.14.1
       ,,,
       THIRD PARTY COMMS,".. _thirdpartycomms-support-compatibility-matrix:",,
-      `UCC <https://github.com/ROCm/ucc>`_,>=1.2.0,>=1.2.0,>=1.2.0
+      `UCC <https://github.com/ROCm/ucc>`_,>=1.3.0,>=1.3.0,>=1.2.0
       `UCX <https://github.com/ROCm/ucx>`_,>=1.15.0,>=1.14.1,>=1.14.1
       ,,,
       THIRD PARTY ALGORITHM,".. _thirdpartyalgorithm-support-compatibility-matrix:",,
@@ -56,8 +56,9 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :doc:`MIGraphX <amdmigraphx:index>`,2.10.0,2.9.0,2.8.0
       :doc:`MIOpen <miopen:index>`,3.2.0,3.1.0,3.0.0
       :doc:`MIVisionX <mivisionx:index>`,3.0.0,2.5.0,2.5.0
-      :doc:`rocDecode <rocdecode:index>`,0.6.0,0.6.0,N/A
       :doc:`RPP <rpp:index>`,1.8.0,1.5.0,1.4.0
+      :doc:`rocAL <rocal:index>`,1.0.0,1.0.0,1.0.0
+      :doc:`rocDecode <rocdecode:index>`,0.6.0,0.6.0,N/A
       :doc:`rocPyDecode <rocpydecode:index>`,0.1.0,N/A,N/A
       ,,,
       COMMUNICATION,".. _commlibs-support-compatibility-matrix:",,
@@ -118,11 +119,13 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       ,,,
       COMPILERS,".. _compilers-support-compatibility-matrix:",,
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,N/A,0.5.0,0.5.0
+      :doc:`hipCC <hipcc:index>`,1.1.1,1.0.0,1.0.0
       `Flang <https://github.com/ROCm/flang>`_,18.0.0.24232,17.0.0.24193,17.0.0.23483
-      `llvm-project <https://github.com/ROCm/llvm-project>`_,18.0.0.24232,17.0.0.24193,17.0.0.23483
+      :doc:`llvm-project <llvm-project:index>`,18.0.0.24232,17.0.0.24193,17.0.0.23483
       `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24232,17.0.0.24193,17.0.0.23483
       ,,,
       RUNTIMES,".. _runtime-support-compatibility-matrix:",,
+      :doc:`AMD CLR <hip:understand/amd_clr>`,6.2.41133,6.1.40093,6.1.32830
       :doc:`HIP <hip:index>`,6.2.41133,6.1.40093,6.1.32830
       `OpenCL Runtime <https://github.com/ROCm/clr/tree/develop/opencl>`_,2.0.0,2.0.0,2.0.0
       :doc:`ROCR-Runtime <rocr-runtime:index>`,1.13.0,1.13.0,1.12.0

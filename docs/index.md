@@ -33,9 +33,11 @@ ROCm documentation is organized into the following categories:
 * {doc}`Linux system requirements<rocm-install-on-linux:reference/system-requirements>`
 * {doc}`Windows system requirements<rocm-install-on-windows:reference/system-requirements>`
 * {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`
-* {doc}`User and kernel-space support matrix<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
-* {doc}`Docker image support matrix<rocm-install-on-linux:reference/docker-image-support-matrix>`
-* {doc}`Use ROCm on Radeon GPUs<radeon:index>`
+* {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
+* {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
+* {doc}`OpenMP<llvm-project:conceptual/openmp>`
+* [Precision support](./compatibility/precision-support.rst)
+* {doc}`ROCm on Radeon GPUs<radeon:index>`
 :::
 
 :::{grid-item-card} How to

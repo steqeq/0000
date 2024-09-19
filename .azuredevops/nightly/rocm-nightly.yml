@@ -11,6 +11,7 @@ parameters:
     - half
     - HIP
     - hipBLAS
+    - hipBLAS-common
     - hipBLASLt
     - hipCUB
     - hipFFT
@@ -48,7 +49,6 @@ parameters:
     - rocr_debug_agent
     - rocSOLVER
     - rocSPARSE
-    - ROCT-Thunk-Interface
     - rocThrust
     - roctracer
     - rocWMMA
@@ -72,6 +72,12 @@ jobs:
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
   steps:
   - task: DeleteFiles@1
     displayName: 'Cleanup checkout space'
@@ -84,28 +90,26 @@ jobs:
       SourceFolder: '$(Build.ArtifactStagingDirectory)'
       Contents: '/**/*'
       RemoveDotFiles: true
-  - script: sudo chmod 777 /mnt
-    displayName: 'Set permissions for /mnt'
   - script: df -h
     displayName: System disk space before ROCm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       dependencySource: staging
-      extractToMnt: true
       skipLibraryLinking: true
+      gpuTarget: $(JOB_GPU_TARGET)
   - script: df -h
     displayName: System disk space after ROCm
-  - script: du -sh /mnt/rocm
+  - script: du -sh $(Agent.BuildDirectory)/rocm
     displayName: Uncompressed ROCm size
   - task: ArchiveFiles@2
     displayName: Compress rocm-nightly
     inputs:
-      rootFolderOrFile: /mnt/rocm
+      rootFolderOrFile: $(Agent.BuildDirectory)/rocm
       includeRootFolder: false
       archiveType: tar
       tarCompression: gz
-      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.DefinitionName)_$(Build.BuildNumber)_ubuntu2204.tar.gz
+      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.DefinitionName)_$(Build.BuildNumber)_ubuntu2204_$(JOB_GPU_TARGET).tar.gz
   - script: du -sh $(Build.ArtifactStagingDirectory)
     displayName: Compressed ROCm size
   - task: PublishPipelineArtifact@1

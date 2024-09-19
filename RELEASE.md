@@ -433,7 +433,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/tensile/en/docs-6.2.0">Tensile</a></td>
+                <td><a href="https://github.com/ROCm/tensile/">Tensile</a></td>
                 <td>4.40.0&nbsp;&Rightarrow;&nbsp;<a href="#tensile-4-41-0">4.41.0</a></td>
                 <td><a href="https://github.com/ROCm/tensile/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -524,7 +524,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/ROCProfiler/en/docs-6.2.0">ROCProfiler</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/rocprofiler/en/docs-6.2.0/">ROCProfiler</a></td>
                 <td>2.0.0&nbsp;&Rightarrow;&nbsp;<a href="#rocprofiler-2-0-0">2.0.0</a></td>
                 <td><a href="https://github.com/ROCm/ROCProfiler/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -536,7 +536,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr >
-                <td><a href="https://rocm.docs.amd.com/projects/ROCTracer/en/docs-6.2.0">ROCTracer</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/roctracer/en/docs-6.2.0/">ROCTracer</a></td>
                 <td>4.1.0</td>
                 <td><a href="https://github.com/ROCm/ROCTracer/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -546,19 +546,19 @@ links in the *Version* column to go to the detailed component changelogs.
             <tr>
                 <th rowspan="5"></th>
                 <th rowspan="5">Development</th>
-                <td><a href="https://rocm.docs.amd.com/projects/HIPIFY/docs-6.2.0">HIPIFY</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/HIPIFY/en/docs-6.2.0/">HIPIFY</a></td>
                 <td>17.0.0&nbsp;&Rightarrow;&nbsp;<a href="#hipify-18-0-0">18.0.0</a></td>
                 <td><a href="https://github.com/ROCm/HIPIFY/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/ROCdbgapi/en/docs-6.2.0">ROCdbgapi</a></td>
-                <td>0.71.0&nbsp;&Rightarrow;&nbsp;<a href="#rocdbgapi-0-75-0">0.75.0</a></td>
+                <td>0.71.0&nbsp;&Rightarrow;&nbsp;<a href="#rocdbgapi-0-76-0">0.76.0</a></td>
                 <td><a href="https://github.com/ROCm/ROCdbgapi/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/rocm-cmake/en/docs-6.2.0">ROCm CMake</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/ROCmCMakeBuildTools/en/docs-6.2.0/">ROCm CMake</a></td>
                 <td>0.12.0&nbsp;&Rightarrow;&nbsp;<a href="#rocm-cmake-0-13-0">0.13.0</a></td>
                 <td><a href="https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -989,7 +989,7 @@ on GitHub for more information.
   * `Zihintntl` extension version was upgraded to 1.0 and is no longer experimental.
 
   * Intrinsics were added for `Zk*`, `Zbb`, and `Zbc`. See
-    [Scalar Bit Manipulation Extension Intrinsics](https://github.com/riscv-non-isa/riscv-c-api-doc/blob/master/riscv-c-api.md#scalar-bit-manipulation-extension-intrinsics) in the RISC-V C API specification.
+    [Scalar Bit Manipulation Extension Intrinsics](https://github.com/riscv-non-isa/riscv-c-api-doc/blob/main/src/c-api.adoc#scalar-bit-manipulation-extension-intrinsics) in the RISC-V C API specification.
 
   * Default ABI with F but without D was changed to ilp32f for RV32 and to lp64f for RV64.
 
@@ -1524,7 +1524,7 @@ See [issue #3498](https://github.com/ROCm/ROCm/issues/3498) on GitHub.
 * Deprecated `rocblas_gemm_ex3`, `gemm_batched_ex3` and `gemm_strided_batched_ex3`. They will be removed in the next
   major release of rocBLAS. Refer to [hipBLASLt](https://github.com/ROCm/hipBLASLt) for future 8-bit float usage.
 
-### **ROCdbgapi** (0.75.0)
+### **ROCdbgapi** (0.76.0)
 
 #### Removals
 - Renamed `(AMD_DBGAPI_EXCEPTION_WAVE,AMD_DBGAPI_WAVE_STOP_REASON)_APERTURE_VIOLATION` to `(AMD_DBGAPI_EXCEPTION_WAVE,AMD_DBGAPI_WAVE_STOP_REASON)_ADDRESS_ERROR`.

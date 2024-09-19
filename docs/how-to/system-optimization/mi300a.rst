@@ -122,6 +122,62 @@ This section describes performance-based settings.
 
        transparent_hugepage=always
 
+* **Increase the amount of allocatable memory**
+
+  By default, when using a device allocator via HIP, it is only possible to allocate 96 GiB out of 
+  a possible 128 GiB of memory on the MI300A. This limitation does not affect host allocations.
+  To increase the available system memory, load the ``amdttm`` module with new values for
+  ``pages_limit`` and ``page_pool_size``. These numbers correspond to the number of 4 KiB pages of memory.
+  To make 128 GiB of memory available across all four devices, for a total amount of 512 GiB,
+  set ``pages_limit`` and ``page_pool_size`` to ``134217728``. For a two-socket system, divide these values
+  by two. After setting these values, reload the AMDGPU driver.
+
+  First, review the current settings using this shell command:
+
+  .. code-block:: shell
+
+     cat /sys/module/amdttm/parameters/pages_limit 
+  
+  To set the amount of allocatable memory to all available memory on all four APU devices, run these commands:
+
+  .. code-block:: shell
+
+     sudo modprobe amdttm pages_limit=134217728 page_pool_size=134217728
+     sudo modprobe amdgpu
+
+  These settings can also be hardcoded in the ``/etc/modprobe.d/amdttm.conf`` file or specified as boot
+  parameters.
+  
+  To use the hardcoded method, 
+  the filesystem must already be set up when the kernel driver is loaded.
+  To hardcode the settings, add the following lines to ``/etc/modprobe.d/amdttm.conf``:
+
+  .. code-block:: shell
+
+     options amdttm pages_limit=134217728
+     options amdttm page_pool_size=134217728
+
+  If the filesystem is not already set up when the kernel driver is loaded, then the options
+  must be specified as boot parameters. To specify the settings
+  as boot parameters when loading the kernel, use this example as a guideline:
+
+  .. code-block:: shell
+
+     vmlinux-[...] amdttm.pages_limit=134217728 amdttm.page_pool_size=134217728 [...]
+
+  To verify the new settings and confirm the change, use this command:
+
+  .. code-block:: shell
+
+     cat /sys/module/amdttm/parameters/pages_limit 
+
+  .. note::
+
+     The system settings for ``pages_limit`` and ``page_pool_size`` are calculated by multiplying the
+     per-APU limit of 4 KiB pages, which is ``33554432``, by the number of APUs on the node. The limit for a system with
+     two APUs ``33554432 x 2`` or ``67108864``.
+     This means the ``modprobe`` command for two APUs is ``sudo modprobe amdttm pages_limit=67108864 page_pool_size=67108864``.
+
 * **Limit the maximum and single memory allocations on the GPU**
   
   Many AI-related applications were originally developed on discrete GPUs. Some of these applications 
@@ -195,10 +251,13 @@ This section describes performance-based settings.
 
 * **Change affinity of ROCm helper threads**
   
-  This change prevents internal ROCm threads from having their CPU core affinity mask 
+  Changing the affinity prevents internal ROCm threads from having their CPU core affinity mask 
   set to all CPU cores available. With this setting, the threads inherit their parent's 
-  CPU core affinity mask. If you have any questions regarding this setting, 
-  contact your MI300A platform vendor. To enable this setting, enter the following command:
+  CPU core affinity mask. Before adjusting this setting, ensure you thoroughly understand 
+  your system topology and how the application, runtime environment, and batch system
+  set the thread-to-core affinity. If you have any questions regarding this setting, 
+  contact your MI300A platform vendor or the AMD support team. 
+  To enable this setting, enter the following command:
 
   .. code-block:: shell
 
@@ -213,9 +272,9 @@ System management
 ========================================
 
 For a complete guide on installing, managing, and uninstalling ROCm on Linux, see
-:doc:`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`. To verify that the
+:doc:`Quick-start (Linux)<rocm-install-on-linux:install/quick-start>`. To verify that the
 installation was successful, see the
-:doc:`Post-installation instructions<rocm-install-on-linux:install/native-install/post-install>` and 
+:doc:`Post-installation instructions<rocm-install-on-linux:install/post-install>` and 
 :doc:`ROCm tools <../../reference/rocm-tools>` guides. If verification
 fails, consult the :doc:`System debugging guide <../system-debugging>`.
 

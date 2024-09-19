@@ -10,6 +10,9 @@ parameters:
   default:
     - libnuma-dev
     - mesa-common-dev
+    - ocl-icd-libopencl1
+    - ocl-icd-opencl-dev
+    - opencl-headers
 - name: pipModules
   type: object
   default:
@@ -18,7 +21,6 @@ parameters:
   type: object
   default:
     - llvm-project
-    - ROCT-Thunk-Interface
     - ROCR-Runtime
     - rocprofiler-register
 - name: rocmDependenciesNvidia
@@ -55,9 +57,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: matching_repo
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: hipother_repo
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
+      dependencyList: ${{ parameters.rocmDependenciesAMD }}
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
@@ -95,6 +100,7 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
 # checkout triggering repo (either HIP or clr)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -109,7 +115,7 @@ jobs:
       checkoutRepo: hipother_repo
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
+      dependencyList: ${{ parameters.rocmDependenciesNvidia }}
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging

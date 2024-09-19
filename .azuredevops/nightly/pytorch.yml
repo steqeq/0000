@@ -54,6 +54,14 @@ parameters:
     - libdrm-amdgpu1
     - ccache
     - zip
+    - libjpeg-turbo-official
+    - libjpeg-dev
+    - libwebp-dev
+    - libfreetype-dev
+    - gnutls-bin
+    - ffmpeg
+    - libopenblas-dev
+    - liblapack-dev
 - name: pipModules
   type: object
   default:
@@ -76,6 +84,9 @@ parameters:
     - ninja
     - packaging
     - optree>=0.12.0
+  # list for vision
+    - auditwheel
+    - future
 # list from https://github.com/pytorch/builder/blob/main/manywheel/build_rocm.sh
 - name: rocmDependencies
   type: object
@@ -105,6 +116,7 @@ parameters:
     # below are additional dependencies not called out by build script, but throw errors during cmake
     - hipCUB
     - rocThrust
+    - hipBLAS-common
 
 trigger: none
 pr: none
@@ -119,16 +131,20 @@ schedules:
 jobs:
 - job: pytorch
   timeoutInMinutes: 120
+  strategy:
+    matrix:
+      amd-staging-gfx942:
+        ROCM_BRANCH: amd-staging
+        JOB_GPU_TARGET: gfx942
+      amd-staging-gfx90a:
+        ROCM_BRANCH: amd-staging
+        JOB_GPU_TARGET: gfx90a
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
 # various flags/parameters expected by bash scripts in pytorch builder repo
   - name: ROCM_VERSION
     value: 6.3.0
-  - name: PYTORCH_ROCM_ARCH
-    value: gfx942
-  - name: GPU_TARGET
-    value: gfx942
   - name: ROCM_PATH
     value: /opt/rocm
   - name: DESIRED_CUDA
@@ -141,8 +157,6 @@ jobs:
     value: 3.10
   - name: PYTORCH_ROOT
     value: $(Build.SourcesDirectory)/pytorch
-  - name: CMAKE_ARGS
-    value: -GNinja
   - name: DESIRED_DEVTOOLSET
     value: cxx11-abi
   pool: ${{ variables.ULTRA_BUILD_POOL }}
@@ -152,6 +166,16 @@ jobs:
 # copy environment setup from https://github.com/pytorch/builder/blob/main/manywheel/Dockerfile
 # but instead of centos, use ubuntu environment
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
+  - task: Bash@3
+    displayName: 'Register libjpeg-turbo packages'
+    inputs:
+      targetType: inline
+      script: |
+        sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+        wget -q -O- https://packagecloud.io/dcommander/libjpeg-turbo/gpgkey | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/libjpeg-turbo.gpg > /dev/null
+        echo "deb [signed-by=/etc/apt/trusted.gpg.d/libjpeg-turbo.gpg] https://packagecloud.io/dcommander/libjpeg-turbo/any/ any main" | sudo tee /etc/apt/sources.list.d/libjpeg-turbo.list
+        sudo apt update
+        apt-cache show libjpeg-turbo-official | grep Version
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
@@ -169,13 +193,12 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       dependencySource: staging
+      gpuTarget: $(JOB_GPU_TARGET)
   - task: Bash@3
-    displayName: ROCm symbolic links
+    displayName: ROCm symbolic link
     inputs:
       targetType: inline
-      script: |
-        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
-        sudo ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+      script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
   - checkout: self
   - task: Bash@3
     displayName: git clone pytorch builder
@@ -189,12 +212,6 @@ jobs:
       targetType: inline
       script: git clone https://github.com/pytorch/pytorch.git --depth=1 --recurse-submodules
       workingDirectory: $(Build.SourcesDirectory)
-  - task: Bash@3
-    displayName: Patch out forced GPU testing block in pytorch build script
-    inputs:
-      targetType: inline
-      script: git apply $(Build.SourcesDirectory)/.azuredevops/patches/pytorch/0001-ROCm-CI-patches.patch
-      workingDirectory: $(Build.SourcesDirectory)/builder
   - task: Bash@3
     displayName: Install patchelf
     inputs:
@@ -221,15 +238,14 @@ jobs:
     inputs:
       targetType: inline
       script: |
-        sudo PYTORCH_ROCM_ARCH=$(PYTORCH_ROCM_ARCH) MKLROOT=$(MKLROOT) bash pytorch/.ci/docker/common/install_rocm_magma.sh
+        sudo PYTORCH_ROCM_ARCH=$(JOB_GPU_TARGET) MKLROOT=$(MKLROOT) bash pytorch/.ci/docker/common/install_rocm_magma.sh
       workingDirectory: $(Build.SourcesDirectory)
   - task: Bash@3
     displayName: Install AOTriton Shared Library
     inputs:
       targetType: inline
-      script: |
-        sudo bash ./install_aotriton.sh /opt/rocm
-      workingDirectory: $(Build.SourcesDirectory)/pytorch/.ci/docker/common
+      script: sudo bash ./common/install_aotriton.sh /opt/rocm
+      workingDirectory: $(Build.SourcesDirectory)/pytorch/.ci/docker
   - task: Bash@3
     displayName: Run ROCm Build Script
     inputs:
@@ -237,16 +253,69 @@ jobs:
       script: >-
         sudo
         DESIRED_CUDA=$(DESIRED_CUDA)
-        PYTORCH_ROCM_ARCH=$(PYTORCH_ROCM_ARCH)
+        PYTORCH_ROCM_ARCH=$(JOB_GPU_TARGET)
+        GPU_TARGET=$(JOB_GPU_TARGET)
         DESIRED_PYTHON=$(DESIRED_PYTHON)
         PYTORCH_ROOT=$(PYTORCH_ROOT)
-        CMAKE_ARGS=$(CMAKE_ARGS)
+        CMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         AOTRITON_INSTALLED_PREFIX=$(AOTRITON_INSTALLED_PREFIX)
         DESIRED_DEVTOOLSET=$(DESIRED_DEVTOOLSET)
+        TORCH_PACKAGE_NAME=torch.$(ROCM_BRANCH).$(JOB_GPU_TARGET)
+        PYTORCH_BUILD_VERSION=$(cat $(Build.SourcesDirectory)/pytorch/version.txt | cut -da -f1)
+        PYTORCH_BUILD_NUMBER=$(date -u +%Y%m%d)
+        SKIP_ALL_TESTS=1
         bash ./manywheel/build_rocm.sh
       workingDirectory: $(Build.SourcesDirectory)/builder
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: /remote/wheelhouserocm$(ROCM_VERSION)
+      contentsString: '*.whl'
+# common helper source for pytorch vision and audio
+  - task: Bash@3
+    displayName: git clone pytorch test-infra
+    inputs:
+      targetType: inline
+      script: git clone https://github.com/pytorch/test-infra.git --depth=1 --recurse-submodules
+      workingDirectory: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: install package helper
+    inputs:
+      targetType: inline
+      script: python3 -m pip install test-infra/tools/pkg-helpers
+      workingDirectory: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: pytorch pkg helpers
+    inputs:
+      targetType: inline
+      script: CU_VERSION=${CU_VERSION} CHANNEL=${CHANNEL} python -m pytorch_pkg_helpers
+# get torch vision source and build
+  - task: Bash@3
+    displayName: git clone pytorch vision
+    inputs:
+      targetType: inline
+      script: git clone https://github.com/pytorch/vision.git --depth=1 --recurse-submodules
+      workingDirectory: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: Build vision
+    inputs:
+      targetType: inline
+      script: >-
+        BUILD_VERSION=$(ROCM_BRANCH).$(JOB_GPU_TARGET)-$(cat $(Build.SourcesDirectory)/pytorch/version.txt | cut -da -f1)$(date -u +%Y%m%d)
+        python3 setup.py bdist_wheel
+      workingDirectory: $(Build.SourcesDirectory)/vision
+  - task: Bash@3
+    displayName: Relocate vision
+    inputs:
+      targetType: inline
+      script: python3 packaging/wheel/relocate.py
+      workingDirectory: $(Build.SourcesDirectory)/vision
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Build.SourcesDirectory)/vision/dist
+      contentsString: '*.whl'
+      clean: false
   - task: PublishPipelineArtifact@1
-    displayName: 'ROCm pytorch wheel file Publish'
+    displayName: 'wheel file Publish'
     retryCountOnTaskFailure: 3
     inputs:
-      targetPath: /remote/wheelhouserocm$(ROCM_VERSION)
+      targetPath: $(Build.BinariesDirectory)
