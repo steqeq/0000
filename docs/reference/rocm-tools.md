@@ -37,10 +37,10 @@
 * {doc}`Omniperf <omniperf:index>`
 * {doc}`Omnitrace <omnitrace:index>`
 * {doc}`ROCm Bandwidth Test <rocm_bandwidth_test:index>`
-* {doc}`TransferBench <transferbench:index>`
 * {doc}`ROCProfiler <rocprofiler:index>`
 * {doc}`ROCprofiler-SDK <rocprofiler-sdk:index>`
 * {doc}`ROCTracer <roctracer:index>`
+* {doc}`TransferBench <transferbench:index>`
 :::
 
 (development-tools)=

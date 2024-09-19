@@ -116,10 +116,11 @@ Performance
   ":doc:`Omniperf <omniperf:index>`", "System performance profiling tool for machine learning and HPC workloads"
   ":doc:`Omnitrace <omnitrace:index>`", "Comprehensive profiling and tracing tool for HIP applications"
   ":doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`", "Captures the performance characteristics of buffer copying and kernel read/write operations"
-  ":doc:`TransferBench <transferbench:index>`", "Benchmarks simultaneous transfers between user-specified devices"
   ":doc:`ROCProfiler <rocprofiler:index>`", "Profiling tool for HIP applications"
   ":doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`", "Toolkit for developing analysis tools for profiling and tracing GPU compute applications. This toolkit is in beta and subject to change"
   ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
+  ":doc:`TransferBench <transferbench:index>`", "Benchmarks simultaneous transfers between user-specified devices"
+
 
 Development
 ^^^^^^^^^^^
