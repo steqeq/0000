@@ -433,7 +433,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/tensile/en/docs-6.2.0">Tensile</a></td>
+                <td><a href="https://github.com/ROCm/tensile/">Tensile</a></td>
                 <td>4.40.0&nbsp;&Rightarrow;&nbsp;<a href="#tensile-4-41-0">4.41.0</a></td>
                 <td><a href="https://github.com/ROCm/tensile/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -524,7 +524,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/ROCProfiler/en/docs-6.2.0">ROCProfiler</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/rocprofiler/en/docs-6.2.0/">ROCProfiler</a></td>
                 <td>2.0.0&nbsp;&Rightarrow;&nbsp;<a href="#rocprofiler-2-0-0">2.0.0</a></td>
                 <td><a href="https://github.com/ROCm/ROCProfiler/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -536,7 +536,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr >
-                <td><a href="https://rocm.docs.amd.com/projects/ROCTracer/en/docs-6.2.0">ROCTracer</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/roctracer/en/docs-6.2.0/">ROCTracer</a></td>
                 <td>4.1.0</td>
                 <td><a href="https://github.com/ROCm/ROCTracer/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -546,7 +546,7 @@ links in the *Version* column to go to the detailed component changelogs.
             <tr>
                 <th rowspan="5"></th>
                 <th rowspan="5">Development</th>
-                <td><a href="https://rocm.docs.amd.com/projects/HIPIFY/docs-6.2.0">HIPIFY</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/HIPIFY/en/docs-6.2.0/">HIPIFY</a></td>
                 <td>17.0.0&nbsp;&Rightarrow;&nbsp;<a href="#hipify-18-0-0">18.0.0</a></td>
                 <td><a href="https://github.com/ROCm/HIPIFY/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
@@ -558,7 +558,7 @@ links in the *Version* column to go to the detailed component changelogs.
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
-                <td><a href="https://rocm.docs.amd.com/projects/rocm-cmake/en/docs-6.2.0">ROCm CMake</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/ROCmCMakeBuildTools/en/docs-6.2.0/">ROCm CMake</a></td>
                 <td>0.12.0&nbsp;&Rightarrow;&nbsp;<a href="#rocm-cmake-0-13-0">0.13.0</a></td>
                 <td><a href="https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.2.0"><i
                             class="fab fa-github fa-lg"></i></a></td>
