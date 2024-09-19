@@ -5,11 +5,6 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
-- name: checkoutRefCompare
-  type: object
-  default:
-    - ''
-    - develop
 - name: aptPackages
   type: object
   default:
@@ -98,10 +93,10 @@ jobs:
 #       dependencyList: ${{ parameters.rocmDependencies }}
 #       gpuTarget: $(JOB_GPU_TARGET)
 #       # CI case: download latest default branch build
-#       ${{ if containsValue(parameters.checkoutRefCompare, parameters.checkoutRef) }}:
+#       ${{ if eq(parameters.checkoutRef, '') }}:
 #         dependencySource: staging
 #       # manual build case: triggered by ROCm/ROCm repo
-#       ${{ elseif not(containsValue(parameters.checkoutRefCompare, parameters.checkoutRef)) }}:
+#       ${{ elseif ne(parameters.checkoutRef, '') }}:
 #         dependencySource: tag-builds
 #   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
 #     parameters:
@@ -158,56 +153,58 @@ jobs:
         sudo add-apt-repository ppa:mhier/libboost-latest -y
         sudo apt-get --yes install libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
-      buildType: specific
-      definitionId: 144
-      buildId: 7521
-      gpuTarget: $(JOB_GPU_TARGET)
+      checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
-      ${{ if containsValue(parameters.checkoutRefCompare, parameters.checkoutRef) }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif not(containsValue(parameters.checkoutRefCompare, parameters.checkoutRef)) }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if containsValue(parameters.checkoutRefCompare, parameters.checkoutRef) }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif not(containsValue(parameters.checkoutRefCompare, parameters.checkoutRef)) }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - task: Bash@3
     displayName: ' Build MIOpen tests'
     inputs:
       targetType: 'inline'
       script: |
-        git clone https://github.com/ROCm/MIOpen.git --depth=1
-        cd MIOpen && mkdir build && cd build
+        mkdir -p build && cd build
         cmake .. \
           -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
           -DCMAKE_INSTALL_PREFIX=$(Agent.BuildDirectory)/rocm \
           -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++ \
+          -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang \
           -DMIOPEN_BACKEND=HIP \
           -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF \
           -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF \
           -DMIOPEN_TEST_FLAGS=--disable-verification-cache \
           -DMIOPEN_TEST_DISCRETE=OFF \
           -DMIOPEN_USE_MLIR=ON \
-          -DMIOPEN_GPU_SYNC=Off \
-          -DBUILD_DEV=On \
+          -DMIOPEN_GPU_SYNC=OFF \
+          -DBUILD_DEV=ON \
           -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_TESTING=ON \
-          -DMIOPEN_TEST_GFX94X=ON \
-          -GNinja
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-    parameters:
-      componentName: MIOpen
-      testExecutable: cmake
-      testParameters: --build . --config Release --target check
-      testDir: MIOpen/build
-      reloadAMDGPU: true
+          -DMIOPEN_TEST_GFX94X=ON
+  - task: Bash@3
+    displayName: Build and run MIGraphX tests
+    inputs:
+      targetType: inline
+      workingDirectory: build
+      script: make -j$(nproc) check
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+  #   parameters:
+  #     componentName: MIOpen
+  #     testExecutable: cmake
+  #     testParameters: --build . --config Release --target check
+  #     testDir: MIOpen/build
+  #     reloadAMDGPU: true
 
 - job: MIOpen_testing_cleanup
   dependsOn: MIOpen_testing
