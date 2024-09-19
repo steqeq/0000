@@ -19,6 +19,7 @@ parameters:
     - libgtest-dev
     - libdrm-dev
     - libstdc++-12-dev
+    - zstd
 - name: rocmDependencies
   type: object
   default:
@@ -171,7 +172,7 @@ jobs:
       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
   - task: Bash@3
-    displayName: ' Build MIOpen tests'
+    displayName: Configure MIOpen test flags
     inputs:
       targetType: 'inline'
       script: |
@@ -193,7 +194,7 @@ jobs:
           -DBUILD_TESTING=ON \
           -DMIOPEN_TEST_GFX94X=ON
   - task: Bash@3
-    displayName: Build and run MIGraphX tests
+    displayName: Build and run MIOpen tests
     inputs:
       targetType: inline
       workingDirectory: build
