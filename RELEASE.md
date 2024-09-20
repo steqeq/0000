@@ -24,6 +24,10 @@ See the [ROCm documentation release history](https://rocm.docs.amd.com/en/latest
 
 The following are notable new features and improvements in ROCm 6.2.1. For changes to individual components, see [Detailed component changes](#detailed-component-changes).
 
+### rocAL version change
+
+The version of rocAL has been updated to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0. See [the rocAL detailed changes](#rocal-2-0-0) for more information.
+
 ### New support for FBGEMM (Facebook General Matrix Multiplication)
 
 As of ROCm 6.2.1, ROCm supports Facebook General Matrix Multiplication (FBGEMM) and the related FBGEMM_GPU library. 
@@ -481,7 +485,7 @@ The following sections describe key changes to ROCm components.
 
 #### Known issues
  
-* Requires custom dependencies to install. See the [rocAL README on GitHub](https://github.com/ROCm/rocAL/blob/docs/6.2.1/README.md#prerequisites-setup-script) for details.
+* Dependencies are not installed with the rocAL package installer. Dependencies must be installed with the prerequisite setup script provided. See the [rocAL README on GitHub](https://github.com/ROCm/rocAL/blob/docs/6.2.1/README.md#prerequisites-setup-script) for details.
 
 ### **rocBLAS** (4.2.1)
 
