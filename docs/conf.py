@@ -30,16 +30,16 @@ if os.environ.get("READTHEDOCS", "") == "True":
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved."
-version = "6.2.0"
-release = "6.2.0"
+version = "6.2.1"
+release = "6.2.1"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
-    {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-08-02"},
-    {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-08-02"},
+    {"file": "about/release-notes", "os": ["linux", "windows"], "date": "2024-09-20"},
+    {"file": "about/changelog", "os": ["linux", "windows"], "date": "2024-09-20"},
     {"file": "how-to/deep-learning-rocm", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/index", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/install", "os": ["linux"]},
