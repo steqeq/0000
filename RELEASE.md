@@ -140,7 +140,7 @@ Click the component's updated version to go to a detailed list of its changes. C
                 <th rowspan="1"></th>
                 <th rowspan="1">Communication</th>
                 <td><a href="https://rocm.docs.amd.com/projects/rccl/en/docs-6.2.1">RCCL</a></td>
-                <td>2.20.5</td>
+                <td>2.20.5&nbsp;&Rightarrow;&nbsp;<a href="#rccl-2-20-5">2.20.5</a></td>
                 <td><a href="https://github.com/ROCm/rccl/releases/tag/rocm-6.2.1"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -459,9 +459,21 @@ The following sections describe key changes to ROCm components.
 
 #### Known Issues
 
-* Perfetto can no longer open Omnitrace proto files. Loading Perfetto trace output `.proto` files in the latest version of `ui.perfetto.dev` can result in a dialog with the message, "Oops, something went wrong! Please file a bug." The information in the dialog will refer to an "Unknown field type." The workaround is to open the files with the previous version of the Perfetto UI found at [https://ui.perfetto.dev/v46.0-35b3d9845/#!/](https://ui.perfetto.dev/v46.0-35b3d9845/#!/).
+Perfetto can no longer open Omnitrace proto files. Loading Perfetto trace output `.proto` files in the latest version of `ui.perfetto.dev` can result in a dialog with the message, "Oops, something went wrong! Please file a bug." The information in the dialog will refer to an "Unknown field type." The workaround is to open the files with the previous version of the Perfetto UI found at [https://ui.perfetto.dev/v46.0-35b3d9845/#!/](https://ui.perfetto.dev/v46.0-35b3d9845/#!/).
 
 See [issue #3767](https://github.com/ROCm/ROCm/issues/3767) on GitHub.
+
+### **RCCL** (2.20.5)
+
+#### Known issues
+
+On systems running Linux kernel 6.8.0, such as Ubuntu 24.04, GPUDirect RDMA is disabled and impacts multi-node RCCL performance.
+This issue was reproduced with RCCL 2.20.5 (ROCm 6.2.0 and 6.2.1) on Dell XE9680 systems with Broadcom Thor-2 NICs and affects other systems with RoCE networks using Linux 6.8.0 or newer.
+Older RCCL versions are also impacted.
+
+This issue will be addressed in a future ROCm release.
+
+See [issue #3772](https://github.com/ROCm/ROCm/issues/3772) on GitHub.
 
 ### **rocAL** (2.0.0)
 
