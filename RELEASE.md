@@ -26,7 +26,7 @@ The following are notable new features and improvements in ROCm 6.2.1. For chang
 
 ### rocAL major version change
 
-The new version of rocAL introduces many new features, but does not modify any of the existing public API functions.However, the version number was incremented from 1.3 to 2.0.
+The new version of rocAL introduces many new features, but does not modify any of the existing public API functions. However, the version number was incremented from 1.3 to 2.0.
 Applications linked to version 1.3 must be recompiled to link against version 2.0.
 
 See [the rocAL detailed changes](#rocal-2-0-0) for more information.
