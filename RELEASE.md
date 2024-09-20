@@ -461,6 +461,8 @@ The following sections describe key changes to ROCm components.
 
 * Perfetto can no longer open Omnitrace proto files. Loading Perfetto trace output `.proto` files in the latest version of `ui.perfetto.dev` can result in a dialog with the message, "Oops, something went wrong! Please file a bug." The information in the dialog will refer to an "Unknown field type." The workaround is to open the files with the previous version of the Perfetto UI found at [https://ui.perfetto.dev/v46.0-35b3d9845/#!/](https://ui.perfetto.dev/v46.0-35b3d9845/#!/).
 
+See [issue #3767](https://github.com/ROCm/ROCm/issues/3767) on GitHub.
+
 ### **rocAL** (2.0.0)
 
 #### Changes
@@ -539,6 +541,8 @@ successfully, which can result in the system being left in an undefined state. A
 this state. Additionally, error logging might fail in these situations, hindering diagnostics.
 
 This issue is under investigation and will be resolved in a future ROCm release.
+
+See [issue #3766](https://github.com/ROCm/ROCm/issues/3766) on GitHub.
 
 ## ROCm upcoming changes
 
