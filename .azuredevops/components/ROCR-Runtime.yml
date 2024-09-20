@@ -16,7 +16,6 @@ parameters:
   type: object
   default:
     - llvm-project
-    - ROCT-Thunk-Interface
     - rocprofiler-register
 
 jobs:
@@ -49,5 +48,5 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-      cmakeBuildDir: 'src/build'
+        -DBUILD_SHARED_LIBS=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

@@ -11,6 +11,7 @@ parameters:
     - git
     - cmake
     - ninja-build
+    - libdrm-dev
     - libnuma-dev
     - python3-pip
     - python3-venv
@@ -34,17 +35,21 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
-    - llvm-project
-    - ROCR-Runtime
-    - clr
-    - rocminfo
-    - rocMLIR
-    - MIOpen
     - aomp
     - aomp-extras
-    - rocBLAS
+    - clr
     - composable_kernel
+    - hipBLAS
+    - hipBLAS-common
+    - hipBLASLt
+    - llvm-project
+    - MIOpen
+    - rocm-cmake
+    - ROCR-Runtime
+    - rocBLAS
+    - rocminfo
+    - rocMLIR
+    - rocprofiler-register
 
 jobs:
 - job: AMDMIGraphX
@@ -74,7 +79,7 @@ jobs:
     parameters:
       dependencySource: fixed
       fixedComponentName: half
-      fixedPipelineIdentifier: $(half560-pipeline-id)
+      fixedPipelineIdentifier: ${{ variables.HALF560_PIPELINE_ID }}
       skipLibraryLinking: true
       skipLlvmSymlink: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
@@ -94,6 +99,7 @@ jobs:
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
         -DCMAKE_BUILD_TYPE=Release
         -DGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF

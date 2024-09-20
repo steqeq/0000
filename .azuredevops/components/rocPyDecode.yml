@@ -8,49 +8,44 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - cmake
-    - libgtest-dev
-    - libdrm-dev
-    - libdw-dev
-    - libsystemd-dev
-    - libelf-dev
-    - libnuma-dev
-    - libpciaccess-dev
     - python3-pip
+    - cmake
+    - ninja-build
+    - pkg-config
+    - ffmpeg
+    - libavcodec-dev
+    - libavformat-dev
+    - libavutil-dev
+    - libva-dev
+    - libdrm-dev
+    - pybind11-dev
+    - python3-pybind11
+    - libdlpack-dev
 - name: pipModules
   type: object
   default:
-    - pyyaml==5.3.1
-    - Cppheaderparser
-    - websockets
-    - matplotlib
-    - lxml
-    - barectf
-    - pandas
+    - -i
+    - https://test.pypi.org/simple
+    - hip-python
 - name: rocmDependencies
   type: object
   default:
-    - clr
-    - llvm-project
-    - ROCdbgapi
     - rocm-cmake
-    - rocm-core
-    - rocm_smi_lib
-    - rocminfo
+    - llvm-project
     - ROCR-Runtime
+    - clr
+    - rocminfo
+    - rocm-core
     - rocprofiler-register
-    - roctracer
+    - rocDecode
 
 jobs:
-- job: rocprofiler
+- job: rocPyDecode
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  - name: HIP_ROCCLR_HOME
-    value: $(Agent.BuildDirectory)/rocm
-  - name: ROCM_PATH
-    value: $(Agent.BuildDirectory)/rocm
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool:
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
   strategy:
@@ -68,12 +63,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
-    parameters:
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
@@ -87,11 +76,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_MODULE_PATH=$(Build.SourcesDirectory)/cmake_modules;$(Agent.BuildDirectory)/rocm/lib/cmake;$(Agent.BuildDirectory)/rocm/lib/cmake/hip
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DENABLE_LDCONFIG=OFF
-        -DUSE_PROF_API=1
-        -DGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DCMAKE_BUILD_TYPE=Release
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DCMAKE_INSTALL_PREFIX_PYTHON=$(Build.BinariesDirectory)
+        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)

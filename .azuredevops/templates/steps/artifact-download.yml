@@ -64,16 +64,27 @@ parameters:
     rocPRIM: develop
     rocprofiler-register: amd-mainline
     rocprofiler: amd-staging
-    ROCR-Runtime: master
+    ROCR-Runtime: amd-staging
     rocRAND: develop
     rocr_debug_agent: amd-staging
     rocSOLVER: develop
     rocSPARSE: develop
-    ROCT-Thunk-Interface: master
     rocThrust: develop
     roctracer: amd-staging
     rocWMMA: develop
-    rpp: master
+    rpp: develop
+- name: allowPartiallySucceededBuilds
+  type: object
+  default:
+    - amdsmi
+    - aomp
+    - HIPIFY
+    - rccl
+    - rdc
+    - rocm-cmake
+    - rocm_smi_lib
+    - rocFFT
+    - MIVisionX
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
@@ -95,7 +106,7 @@ steps:
       branchName: refs/heads/${{ parameters.defaultBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
-    ${{ if in(parameters.componentName, 'rocm-cmake') }}:
+    ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1

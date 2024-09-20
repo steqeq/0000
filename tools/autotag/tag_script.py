@@ -91,7 +91,7 @@ class TaggingArgs(argparse.Namespace):
         return defaults + (self._exclude if self._exclude is not None else [])
 
 
-def parse_args() -> TaggingArgs:
+def parse_arguments() -> TaggingArgs:
     """Parse arguments."""
 
     def add_arg_pair(
@@ -153,7 +153,10 @@ def parse_args() -> TaggingArgs:
     )
     add_arg_pair(parser, "release", "the tag & release.")
     add_arg_pair(parser, "pulls", "the pull requests to internal repos.")
-    add_arg_pair(parser, "previous", " use previous versions as required.")
+    parser.add_argument(
+        "--starting-version",
+        help="The starting version for the autotag script.",
+    )
     parser.add_argument(
         "--manifest-url",
         help="The url to download the manifest.xml file from.",
@@ -183,7 +186,7 @@ def parse_args() -> TaggingArgs:
 
 def run_tagging():
     """Run the tagging/releasing process on each specified library."""
-    args = parse_args()
+    args = parse_arguments()
 
     # Use the manifest included in the ROCm GitHub repository by default.
     if args.manifest_url is None:
@@ -239,7 +242,7 @@ def run_tagging():
         "compilers",
         "runtimes",
     ]
-    projects = [ ]
+    projects = []
     for project in manifest_tree.iterfind(".//project"):
         if project.get("category") in included_categories:
             projects.append(project)
@@ -250,8 +253,8 @@ def run_tagging():
          entry.get("category"),
         ) for entry in projects)
 
-    # Get all the relevant ROCm releases, and only the last version if not doing previous.
-    minimum_version = "5.0.0" if args.previous else args.version
+    # Get all the relevant ROCm releases
+    minimum_version = args.version if not args.starting_version else args.starting_version
     releases = release_bundle_factory.create_data_dict(args.version, component_information, minimum_version)
 
     # Process the individual releases.
@@ -260,10 +263,11 @@ def run_tagging():
         for (_, library) in release.libraries.items():
             # Parse the changelog for each library and each version
             try:
+                is_starting_version_set = True if args.starting_version else False
                 success = PROCESSORS[library.name](
                     library,
                     TEMPLATES[library.name],
-                    args.previous,
+                    is_starting_version_set,
                     Version(version) < Version(args.version)
                 )
             except Exception as e:

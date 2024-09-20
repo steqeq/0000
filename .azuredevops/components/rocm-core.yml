@@ -29,5 +29,5 @@ jobs:
         -DCPACK_GENERATOR=DEB
         -DCPACK_DEBIAN_PACKAGE_RELEASE="local.9999~99.99"
         -DCPACK_RPM_PACKAGE_RELEASE="local.9999"
-        -DROCM_VERSION="$(last-release)"
+        -DROCM_VERSION="$(next-release)"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

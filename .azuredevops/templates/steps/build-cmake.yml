@@ -14,6 +14,9 @@ parameters:
 - name: cmakeSourceDir
   type: string
   default: '..'
+- name: customBuildTarget
+  type: string
+  default: ''
 - name: cmakeTarget
   type: string
   default: 'install'
@@ -49,7 +52,10 @@ steps:
   displayName: '${{parameters.componentName }} Build'
   inputs:
     workingDirectory: ${{ parameters.cmakeBuildDir }}
-    cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} ${{ parameters.multithreadFlag }}'
+    ${{ if eq(parameters.customBuildTarget, '') }}:
+      cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} ${{ parameters.multithreadFlag }}'
+    ${{ else }}:
+      cmakeArgs: '--build ${{ parameters.cmakeTargetDir }} --target ${{ parameters.customBuildTarget }} ${{ parameters.multithreadFlag }}'
     retryCountOnTaskFailure: 10
 - script: df -h
   displayName: Disk space after build
