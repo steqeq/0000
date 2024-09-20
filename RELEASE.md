@@ -24,7 +24,7 @@ See the [ROCm documentation release history](https://rocm.docs.amd.com/en/latest
 
 The following are notable new features and improvements in ROCm 6.2.1. For changes to individual components, see [Detailed component changes](#detailed-component-changes).
 
-### rocAL version change
+### rocAL major version change
 
 The version of rocAL has been updated to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0. See [the rocAL detailed changes](#rocal-2-0-0) for more information.
 
