@@ -76,8 +76,12 @@ parameters:
 - name: allowPartiallySucceededBuilds
   type: object
   default:
-    - rocm-cmake
     - amdsmi
+    - aomp
+    - HIPIFY
+    - rccl
+    - rdc
+    - rocm-cmake
     - rocm_smi_lib
     - rocFFT
     - MIVisionX

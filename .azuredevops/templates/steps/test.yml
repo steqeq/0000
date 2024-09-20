@@ -26,8 +26,20 @@ parameters:
 - name: testPublishResults
   type: boolean
   default: true
+- name: reloadAMDGPU
+  type: boolean
+  default: false
 
 steps:
+# Avoids occasional AMDGPU driver issues with opening /dev/kfd
+- ${{ if parameters.reloadAMDGPU }}:
+  - task: Bash@3
+    displayName: Unload and reload AMDGPU
+    inputs:
+      targetType: inline
+      script: |
+        sudo modprobe -r amdgpu
+        sudo modprobe amdgpu
 # run test, continue on failure to publish results
 # and to publish build artifacts
 - task: Bash@3

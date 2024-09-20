@@ -455,6 +455,7 @@ blit
 bootloader
 boson
 bosons
+br
 buildable
 bursty
 bzip
@@ -582,6 +583,7 @@ invariants
 invocating
 ipo
 kdb
+kfd
 latencies
 libfabric
 libjpeg
