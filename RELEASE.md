@@ -26,7 +26,10 @@ The following are notable new features and improvements in ROCm 6.2.1. For chang
 
 ### rocAL major version change
 
-The version of rocAL has been updated to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0. See [the rocAL detailed changes](#rocal-2-0-0) for more information.
+The new version of rocAL introduces many new features, but does not modify any of the existing public API functions.However, the version number was incremented from 1.3 to 2.0.
+Applications linked to version 1.3 must be recompiled to link against version 2.0.
+
+See [the rocAL detailed changes](#rocal-2-0-0) for more information.
 
 ### New support for FBGEMM (Facebook General Matrix Multiplication)
 
@@ -468,7 +471,7 @@ See [issue #3767](https://github.com/ROCm/ROCm/issues/3767) on GitHub.
 #### Known issues
 
 On systems running Linux kernel 6.8.0, such as Ubuntu 24.04, GPUDirect RDMA is disabled and impacts multi-node RCCL performance.
-This issue was reproduced with RCCL 2.20.5 (ROCm 6.2.0 and 6.2.1) on Dell XE9680 systems with Broadcom Thor-2 NICs and affects other systems with RoCE networks using Linux 6.8.0 or newer.
+This issue was reproduced with RCCL 2.20.5 (ROCm 6.2.0 and 6.2.1) on systems with Broadcom Thor-2 NICs and affects other systems with RoCE networks using Linux 6.8.0 or newer.
 Older RCCL versions are also impacted.
 
 This issue will be addressed in a future ROCm release.
@@ -479,7 +482,8 @@ See [issue #3772](https://github.com/ROCm/ROCm/issues/3772) on GitHub.
 
 #### Changes
  
-* Version updated from 1.0.0 to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0.
+* The new version of rocAL introduces many new features, but does not modify any of the existing public API functions.However, the version number was incremented from 1.3 to 2.0.
+  Applications linked to version 1.3 must be recompiled to link against version 2.0.
 * Added development and test packages.
 * Added C++ rocAL audio unit test and Python script to run and compare the outputs.
 * Added Python support for audio decoders.
