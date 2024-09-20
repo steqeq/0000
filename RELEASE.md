@@ -24,9 +24,12 @@ See the [ROCm documentation release history](https://rocm.docs.amd.com/en/latest
 
 The following are notable new features and improvements in ROCm 6.2.1. For changes to individual components, see [Detailed component changes](#detailed-component-changes).
 
-### rocAL version change
+### rocAL major version change
 
-The version of rocAL has been updated to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0. See [the rocAL detailed changes](#rocal-2-0-0) for more information.
+The new version of rocAL introduces many new features, but does not modify any of the existing public API functions. However, the version number was incremented from 1.3 to 2.0.
+Applications linked to version 1.3 must be recompiled to link against version 2.0.
+
+See [the rocAL detailed changes](#rocal-2-0-0) for more information.
 
 ### New support for FBGEMM (Facebook General Matrix Multiplication)
 
@@ -140,7 +143,7 @@ Click the component's updated version to go to a detailed list of its changes. C
                 <th rowspan="1"></th>
                 <th rowspan="1">Communication</th>
                 <td><a href="https://rocm.docs.amd.com/projects/rccl/en/docs-6.2.1">RCCL</a></td>
-                <td>2.20.5</td>
+                <td>2.20.5&nbsp;&Rightarrow;&nbsp;<a href="#rccl-2-20-5">2.20.5</a></td>
                 <td><a href="https://github.com/ROCm/rccl/releases/tag/rocm-6.2.1"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -457,15 +460,30 @@ The following sections describe key changes to ROCm components.
 
 ### **Omnitrace** (1.11.2)
 
-#### Known Issues
+#### Known issues
 
-* Perfetto can no longer open Omnitrace proto files. Loading Perfetto trace output `.proto` files in the latest version of `ui.perfetto.dev` can result in a dialog with the message, "Oops, something went wrong! Please file a bug." The information in the dialog will refer to an "Unknown field type." The workaround is to open the files with the previous version of the Perfetto UI found at [https://ui.perfetto.dev/v46.0-35b3d9845/#!/](https://ui.perfetto.dev/v46.0-35b3d9845/#!/).
+Perfetto can no longer open Omnitrace proto files. Loading Perfetto trace output `.proto` files in the latest version of `ui.perfetto.dev` can result in a dialog with the message, "Oops, something went wrong! Please file a bug." The information in the dialog will refer to an "Unknown field type." The workaround is to open the files with the previous version of the Perfetto UI found at [https://ui.perfetto.dev/v46.0-35b3d9845/#!/](https://ui.perfetto.dev/v46.0-35b3d9845/#!/).
+
+See [issue #3767](https://github.com/ROCm/ROCm/issues/3767) on GitHub.
+
+### **RCCL** (2.20.5)
+
+#### Known issues
+
+On systems running Linux kernel 6.8.0, such as Ubuntu 24.04, GPUDirect RDMA is disabled and impacts multi-node RCCL performance.
+This issue was reproduced with RCCL 2.20.5 (ROCm 6.2.0 and 6.2.1) on systems with Broadcom Thor-2 NICs and affects other systems with RoCE networks using Linux 6.8.0 or newer.
+Older RCCL versions are also impacted.
+
+This issue will be addressed in a future ROCm release.
+
+See [issue #3772](https://github.com/ROCm/ROCm/issues/3772) on GitHub.
 
 ### **rocAL** (2.0.0)
 
 #### Changes
  
-* Version updated from 1.0.0 to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0.
+* The new version of rocAL introduces many new features, but does not modify any of the existing public API functions.However, the version number was incremented from 1.3 to 2.0.
+  Applications linked to version 1.3 must be recompiled to link against version 2.0.
 * Added development and test packages.
 * Added C++ rocAL audio unit test and Python script to run and compare the outputs.
 * Added Python support for audio decoders.
@@ -539,6 +557,8 @@ successfully, which can result in the system being left in an undefined state. A
 this state. Additionally, error logging might fail in these situations, hindering diagnostics.
 
 This issue is under investigation and will be resolved in a future ROCm release.
+
+See [issue #3766](https://github.com/ROCm/ROCm/issues/3766) on GitHub.
 
 ## ROCm upcoming changes
 
