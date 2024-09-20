@@ -41,7 +41,7 @@ ROCm documentation is organized into the following categories:
 :::
 
 :::{grid-item-card} How to
-:class-body: rocm-card-banner rocm-hue-7
+:class-body: rocm-card-banner rocm-hue-12
 
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
