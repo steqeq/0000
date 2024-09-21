@@ -35,12 +35,12 @@ See [the rocAL detailed changes](#rocal-2-0-0) for more information.
 
 As of ROCm 6.2.1, ROCm supports Facebook General Matrix Multiplication (FBGEMM) and the related FBGEMM_GPU library. 
 
-FBGEMM is a low-precision, high-performance CPU kernel library for convolution and matrix multiplication. It is used for server-side inference and as a back end for PyTorch quantized operators. FBGEMM_GPU includes a collection of PyTorch GPU operator libraries for training and inference. For more information, see the ROCm [Model acceleration libraries guide](https://rocm.docs.amd.com/en/6.2.1/how-to/llm-fine-tuning-optimization/model-acceleration-libraries.html)
+FBGEMM is a low-precision, high-performance CPU kernel library for convolution and matrix multiplication. It is used for server-side inference and as a back end for PyTorch quantized operators. FBGEMM_GPU includes a collection of PyTorch GPU operator libraries for training and inference. For more information, see the ROCm [Model acceleration libraries guide](https://rocm.docs.amd.com/en/docs-6.2.1/how-to/llm-fine-tuning-optimization/model-acceleration-libraries.html)
 and [PyTorch's FBGEMM GitHub repository](https://github.com/pytorch/FBGEMM).
 
 ### ROCm Offline Installer Creator changes
 
-The [ROCm Offline Installer Creator 6.2.1](https://rocm.docs.amd.com/projects/install-on-linux/en/6.2.1/install/rocm-offline-installer.html) introduces several new features and improvements including:
+The [ROCm Offline Installer Creator 6.2.1](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.1/install/rocm-offline-installer.html) introduces several new features and improvements including:
 
 * Logging support for create and install logs
 * More stringent checks for Linux versions and distributions
@@ -52,8 +52,8 @@ The [ROCm Offline Installer Creator 6.2.1](https://rocm.docs.amd.com/projects/in
 There have been no changes to supported hardware or operating systems from ROCm 6.2.0 to ROCm 6.2.1.
 
 * The Programming Model Reference and Understanding the Programming Model topics in HIP have been consolidated into one topic,
-[HIP programming model (conceptual)](https://rocm.docs.amd.com/projects/HIP/en/6.2.1/understand/programming_model.html). 
-* The [HIP virtual memory management](https://rocm.docs.amd.com/projects/HIP/en/6.2.1/how-to/virtual_memory.html) and [HIP virtual memory management API](https://rocm.docs.amd.com/projects/HIP/en/6.2.1/reference/virtual_memory_reference.html) topics have been added.
+[HIP programming model (conceptual)](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/understand/programming_model.html). 
+* The [HIP virtual memory management](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/how-to/virtual_memory.html) and [HIP virtual memory management API](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/reference/virtual_memory_reference.html) topics have been added.
 
 ```{note}
 The ROCm documentation, like all ROCm projects, is open source and available on GitHub. To contribute to ROCm documentation, see the [ROCm documentation contribution guidelines](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
