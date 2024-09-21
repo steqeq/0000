@@ -117,7 +117,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :doc:`ROCTracer <roctracer:index>`,4.1.60201,4.1.60200,4.1.60100
       ,,,
       DEVELOPMENT TOOLS,,,
-      :doc:`HIPIFY <hipify:index>`,18.0.0.24332,18.0.0.24232,17.0.0.24103
+      :doc:`HIPIFY <hipify:index>`,18.0.0.24355,18.0.0.24232,17.0.0.24103
       :doc:`ROCm CMake <rocmcmakebuildtools:index>`,0.13.0,0.13.0,0.12.0
       :doc:`ROCdbgapi <rocdbgapi:index>`,0.76.0,0.76.0,0.71.0
       :doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`,14.2.0,14.2.0,14.1.0
@@ -127,8 +127,8 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       COMPILERS,.. _compilers-support-compatibility-matrix:,,
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,N/A,N/A,0.5.0
       :doc:`hipCC <hipcc:index>`,1.1.1,1.1.1,1.0.0
-      `Flang <https://github.com/ROCm/flang>`_,18.0.0.24332,18.0.0.24232,17.0.0.24103
-      :doc:`llvm-project <llvm-project:index>`,18.0.0.24332,18.0.0.24232,17.0.0.24103
+      `Flang <https://github.com/ROCm/flang>`_,18.0.0.24355,18.0.0.24232,17.0.0.24103
+      :doc:`llvm-project <llvm-project:index>`,18.0.0.24355,18.0.0.24232,17.0.0.24103
       `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24332,18.0.0.24232,17.0.0.24103
       ,,,
       RUNTIMES,.. _runtime-support-compatibility-matrix:,,
