@@ -73,6 +73,13 @@ jobs:
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - task: Bash@3
+    displayName: 'ROCm symbolic link'
+    inputs:
+      targetType: inline
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -85,6 +92,24 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
+      publish: false
+  - task: Bash@3
+    displayName: Create wheel file
+    inputs:
+      targetType: inline
+      script: python setup.py bdist_wheel
+      workingDirectory: $(Build.SourcesDirectory)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Build.SourcesDirectory)/dist
+      contentsString: '*.whl'
+      targetDir: $(Build.ArtifactStagingDirectory)
+      clean: false
+  - task: PublishPipelineArtifact@1
+    displayName: 'wheel file Publish'
+    retryCountOnTaskFailure: 3
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)
 
 - job: rocPyDecode_testing
   dependsOn: rocPyDecode
