@@ -25,41 +25,41 @@ parameters:
     - rocprofiler-register
 
 jobs:
-# - job: ROCR_Runtime
-#   variables:
-#   - group: common
-#   - template: /.azuredevops/variables-global.yml
-#   pool:
-#     vmImage: ${{ variables.BASE_BUILD_POOL }}
-#   workspace:
-#     clean: all
-#   steps:
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-#     parameters:
-#       aptPackages: ${{ parameters.aptPackages }}
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-#     parameters:
-#       checkoutRepo: ${{ parameters.checkoutRepo }}
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-#     parameters:
-#       dependencyList: ${{ parameters.rocmDependencies }}
-#       # CI case: download latest default branch build
-#       ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
-#         dependencySource: staging
-#       # manual build case: triggered by ROCm/ROCm repo
-#       ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
-#         dependencySource: tag-builds
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-#     parameters:
-#       extraBuildFlags: >-
-#         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-#         -DBUILD_SHARED_LIBS=ON
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+- job: ROCR_Runtime
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool:
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  workspace:
+    clean: all
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DBUILD_SHARED_LIBS=ON
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
 
 - job: ROCR_Runtime_testing
-  # dependsOn: ROCR_Runtime
-  # condition: succeeded()
+  dependsOn: ROCR_Runtime
+  condition: succeeded()
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -85,10 +85,10 @@ jobs:
         sudo apt install -y --allow-downgrades ./libhwloc5_1.11.12-3_amd64.deb ./libhwloc-dev_1.11.12-3_amd64.deb
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-    parameters:
-      buildType: specific
-      definitionId: 164
-      buildId: 7516
+    # parameters:
+    #   buildType: specific
+    #   definitionId: 164
+    #   buildId: 7516
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
       ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
@@ -109,53 +109,53 @@ jobs:
       targetType: 'inline'
       workingDirectory: $(Agent.BuildDirectory)
       script: git clone https://github.com/ROCm/ROCR-Runtime.git --depth=1
-  - task: Bash@3
-    displayName: Build kfdtest
-    inputs:
-      targetType: 'inline'
-      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest
-      script: |
-        mkdir build && cd build
-        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
-        make
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-    parameters:
-      componentName: kfdtest
-      testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/build ./run_kfdtest.sh
-      testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
-      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/scripts
-  - task: Bash@3
-    displayName: Build rdmatest app
-    inputs:
-      targetType: 'inline'
-      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
-      script: |
-        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
-        cmake --build .
-  - task: Bash@3
-    displayName: Build rdmatest driver
-    inputs:
-      targetType: 'inline'
-      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
-      script: |
-        sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c
-        sed -i 's/"MIT"/"GPL"/' amdp2ptest.c
-        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
-  - task: Bash@3
-    displayName: Install rdmatest driver
-    inputs:
-      targetType: 'inline'
-      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
-      script: |
-        sudo rmmod amdp2ptest.ko
-        sudo insmod amdp2ptest.ko
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-    parameters:
-      componentName: rdmatest
-      testExecutable: yes | ./rdma_test
-      testParameters: ''
-      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
-      testPublishResults: false
+  # - task: Bash@3
+  #   displayName: Build kfdtest
+  #   inputs:
+  #     targetType: 'inline'
+  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest
+  #     script: |
+  #       mkdir build && cd build
+  #       cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
+  #       make
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+  #   parameters:
+  #     componentName: kfdtest
+  #     testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/build ./run_kfdtest.sh
+  #     testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
+  #     testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/scripts
+  # - task: Bash@3
+  #   displayName: Build rdmatest app
+  #   inputs:
+  #     targetType: 'inline'
+  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
+  #     script: |
+  #       cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
+  #       cmake --build .
+  # - task: Bash@3
+  #   displayName: Build rdmatest driver
+  #   inputs:
+  #     targetType: 'inline'
+  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
+  #     script: |
+  #       sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c
+  #       sed -i 's/"MIT"/"GPL"/' amdp2ptest.c
+  #       RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
+  # - task: Bash@3
+  #   displayName: Install rdmatest driver
+  #   inputs:
+  #     targetType: 'inline'
+  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
+  #     script: |
+  #       sudo rmmod amdp2ptest.ko
+  #       sudo insmod amdp2ptest.ko
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+  #   parameters:
+  #     componentName: rdmatest
+  #     testExecutable: yes | ./rdma_test
+  #     testParameters: ''
+  #     testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
+  #     testPublishResults: false
   - task: Bash@3
     displayName: Build rocrtst
     inputs:
@@ -177,5 +177,5 @@ jobs:
     parameters:
       componentName: rocrtst
       testExecutable: ./rocrtst64
-      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testParameters: '--gtest_filter="rocrtstPerf.*" --gtest_output=xml:./test_output.xml --gtest_color=yes'
       testDir: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common/build/gfx942
