@@ -177,5 +177,5 @@ jobs:
     parameters:
       componentName: rocrtst
       testExecutable: ./rocrtst64
-      testParameters: '--gtest_filter="rocrtstPerf.*" --gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
       testDir: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common/build/gfx942
