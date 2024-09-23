@@ -9,13 +9,12 @@ parameters:
   type: object
   default:
     - cmake
-    - libomp-dev # needed to pass flag step
     - ninja-build
     - clang
 - name: rocmDependencies
   type: object
   default:
-    - aomp # needed to pass build step
+    - aomp
     - clr
     - half
     - llvm-project

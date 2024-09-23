@@ -519,7 +519,7 @@ See [issue #3772](https://github.com/ROCm/ROCm/issues/3772) on GitHub.
 
 #### Optimizations
 
-* Implemented 1D kernels for factorizable sizes greater than 1024.
+* Implemented 1D kernels for factorizable sizes less than 1024.
 
 ### **ROCm SMI** (7.3.0)
 
