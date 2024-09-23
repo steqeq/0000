@@ -16,7 +16,6 @@ parameters:
     - python3-pip
     - python3-venv
     - gfortran
-    - libomp-dev
     - libblas-dev
     - ccache
 - name: pipModules
@@ -66,6 +65,8 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+  - name: DAY_STRING
+    value: $[format('{0:ddMMyyyy}', pipeline.startTime)]
   pool: ${{ variables.ULTRA_BUILD_POOL }}
   workspace:
     clean: all
