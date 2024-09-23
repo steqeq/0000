@@ -159,6 +159,10 @@ variables:
   value: 80
 - name: MIVISIONX_TAGGED_PIPELINE_ID
   value: 18
+- name: OMNIPERF_PIPELINE_ID
+  value: 241
+- name: OMNIPERF_TAGGED_PIPELINE_ID
+  value: 242
 - name: RCCL_GFX942_TEST_PIPELINE_ID
   value: 184
 - name: RCCL_PIPELINE_ID
