@@ -6,9 +6,9 @@
      sync-c="true"
      sync-j="4" />
 <!--list of projects for ROCm-->
-    <project name="ROCK-Kernel-Driver" />
+    <project name="ROCK-Kernel-Driver" revision="refs/tags/rocm-6.2.0" />
     <project name="ROCR-Runtime" />
-    <project name="ROCT-Thunk-Interface" />
+    <project name="ROCT-Thunk-Interface" revision="refs/tags/rocm-6.2.0" />
     <project name="amdsmi" />
     <project name="omniperf" />
     <project name="omnitrace" />
