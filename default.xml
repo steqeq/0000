@@ -22,6 +22,7 @@
     <project name="rocprofiler-register" />
     <project name="rocprofiler-sdk" />
     <project name="roctracer" />
+    <project name="ROCm" revision="roc-6.2.x" />
 <!--HIP Projects-->
     <project name="HIP" />
     <project name="hip-tests" />
