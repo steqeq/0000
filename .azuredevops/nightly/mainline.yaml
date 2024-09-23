@@ -1,0 +1,96 @@
+trigger: none
+
+schedules:
+- cron: "0 0 * * *"
+  displayName: Nightly build
+  branches:
+    include:
+    - main
+  always: true
+
+variables:
+  ROCM_VERSION: '6.2.0'
+  GPU_ARCHS: 'gfx942'
+  DOCKER_IMAGE: 'rocm/rocm-build-ubuntu-24.04:6.2'
+  BUILD_USER: 'AzDevOps'
+
+pool: rocmci
+
+jobs:
+- job: BuildROCm
+  timeoutInMinutes: 360 
+  steps:
+  - script: |
+      sudo apt-get update
+      sudo apt-get install ca-certificates curl
+      sudo install -m 0755 -d /etc/apt/keyrings
+      sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+      sudo chmod a+r /etc/apt/keyrings/docker.asc
+      echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      sudo apt-get update
+      sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+      sudo chmod 666 /var/run/docker.sock
+      sudo docker run hello-world
+      docker info
+    displayName: 'Install Docker'
+
+  - script: |
+      mkdir -p ~/bin/
+      curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+      chmod a+x ~/bin/repo
+    displayName: 'Install repo tool'
+
+  - script: |
+      sudo apt-get install -y git-lfs
+    displayName: 'Install git-lfs'
+
+  - script: |
+      mkdir -p ~/WORKSPACE/
+      cd ~/WORKSPACE/
+      export ROCM_VERSION=6.2.0
+      ~/bin/repo init https://github.com/ROCm/ROCm.git -b amd-mainline
+      ~/bin/repo sync
+    displayName: 'Step 1: Clone source code'
+
+  - script: |
+      sudo docker pull $(DOCKER_IMAGE)
+    displayName: 'Pull ROCm build Docker image'
+    
+  - script: |
+      docker run \
+          -e ROCM_VERSION=${ROCM_VERSION} \
+          -e CCACHE_DIR=$HOME/.ccache \
+          -e CCACHE_ENABLED=true \
+          -e DOCK_WORK_FOLD=/src \
+          -w /src \
+          -v $HOME/WORKSPACE:/src \
+          -v /etc/passwd:/etc/passwd \
+          -v /etc/shadow:/etc/shadow \
+          -v ${HOME}/.ccache:${HOME}/.ccache \
+          -u $(id -u):$(id -g) \
+          $(DOCKER_IMAGE) \
+          bash -c "set -ex && \
+                  cd /src && \
+                  echo 'Contents of /src directory:' && \
+                  ls -la && \
+                  echo 'Starting rocm-dev build...' && \
+                  make -f ROCm/tools/rocm-build/ROCm.mk -j \$(nproc) rocm-dev && \
+                  echo 'rocm-dev build completed. Starting full build...' && \
+                  make -f ROCm/tools/rocm-build/ROCm.mk -j \$(nproc) all && \
+                  echo 'Full build completed.'" 
+    displayName: 'Build ROCm in Docker container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: '$HOME/WORKSPACE/out/ubuntu-24.04/24.04/deb'
+      artifactName: 'rocm-packages'
+    displayName: 'Publish ROCm packages'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: '$HOME/WORKSPACE/out/ubuntu-24.04/24.04/logs'
+      artifactName: 'build-logs'
+    displayName: 'Publish build logs'
+    condition: succeededOrFailed()
