@@ -101,6 +101,7 @@ jobs:
       dependencyList: ${{ parameters.rocmDependencies }}
       dependencySource: staging
       skipLibraryLinking: true
+      skipLlvmSymlink: true
       gpuTarget: $(JOB_GPU_TARGET)
   - script: df -h
     displayName: System disk space after ROCm
