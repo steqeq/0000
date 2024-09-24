@@ -59,7 +59,7 @@ There have been no changes to supported hardware or operating systems from ROCm 
 The ROCm documentation, like all ROCm projects, is open source and available on GitHub. To contribute to ROCm documentation, see the [ROCm documentation contribution guidelines](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
 ```
 
-### Operating system and hardware support changes
+## Operating system and hardware support changes
 
 ROCm 6.2.1 adds support for Ubuntu 24.04.1 (kernel: 6.8 [GA]).
 
