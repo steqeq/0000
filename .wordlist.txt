@@ -53,6 +53,7 @@ CSC
 CSE
 CSV
 CSn
+CTest
 CTests
 CU
 CUDA
@@ -387,6 +388,7 @@ UAC
 UC
 UCC
 UCX
+UE
 UIF
 UMC
 USM
@@ -653,6 +655,7 @@ quasirandom
 queueing
 rccl
 rdc
+rdma
 reStructuredText
 redirections
 refactorization

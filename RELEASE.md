@@ -1,6 +1,43 @@
-# ROCm 6.2.1 release notes
+# ROCm 6.2.2 release notes
 
-The release notes provide a summary of notable changes since the previous ROCm release.
+These release notes provide a summary of notable changes since the previous ROCm release.
+
+```{note}
+As ROCm 6.2.2 was released shortly after 6.2.1, the changes between these versions
+are minimal. For a comprehensive overview of recent updates, the ROCm 6.2.1 release
+notes are appended to the end of this document.
+
+For detailed information about the changes in ROCm 6.2.1, refer to the appended
+section: [ROCm 6.2.1 release notes](rocm-6-2-1-release-notes).
+```
+
+The [Compatibility matrix](https://rocm.docs.amd.com/en/docs-6.2.2/compatibility/compatibility-matrix.html)
+provides the full list of supported hardware, operating systems, ecosystems, third-party components, and ROCm components
+for each ROCm release.
+
+Release notes for previous ROCm releases are available in earlier versions of the documentation.
+See the [ROCm documentation release history](https://rocm.docs.amd.com/en/latest/release/versions.html).
+
+## Release highlights
+
+The following is a significant fix introduced in ROCm 6.2.2.
+
+### Fixed Instinct MI300X error recovery failure
+
+Improved the reliability of AMD Instinct MI300X accelerators in scenarios involving
+uncorrectable errors. Previously, error recovery did not occur as expected,
+potentially leaving the system in an undefined state. This fix ensures that error
+recovery functions as expected, maintaining system stability.
+
+See the [original issue](#instinct-mi300x-gpu-recovery-failure-on-uncorrectable-errors)
+noted in the ROCm 6.2.1 release notes.
+
+---
+
+## ROCm 6.2.1 release notes
+
+The ROCm 6.2.1 release notes document newly added ecosystem support, ROCm Offline Installer Creator updates,
+and improvements to several ROCm libraries and tools.
 
 - [Release highlights](release-highlights)
 
@@ -14,55 +51,52 @@ The release notes provide a summary of notable changes since the previous ROCm r
 
 - [ROCm upcoming changes](rocm-upcoming-changes)
 
-The [Compatibility matrix](https://rocm.docs.amd.com/en/docs-6.2.1/compatibility/compatibility-matrix.html)
-provides the full list of supported hardware, operating systems, ecosystems, third-party components, and ROCm components for each ROCm release.
-
-Release notes for previous ROCm releases are available in earlier versions of the documentation.
-See the [ROCm documentation release history](https://rocm.docs.amd.com/en/latest/release/versions.html).
-
-## Release highlights
+### Release highlights
 
 The following are notable new features and improvements in ROCm 6.2.1. For changes to individual components, see [Detailed component changes](#detailed-component-changes).
 
-### rocAL version change
+#### rocAL major version change
 
-The version of rocAL has been updated to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0. See [the rocAL detailed changes](#rocal-2-0-0) for more information.
+The new version of rocAL introduces many new features, but does not modify any of the existing public API functions. However, the version number was incremented from 1.3 to 2.0.
+Applications linked to version 1.3 must be recompiled to link against version 2.0.
 
-### New support for FBGEMM (Facebook General Matrix Multiplication)
+See [the rocAL detailed changes](#rocal-2-0-0) for more information.
+
+#### New support for FBGEMM (Facebook General Matrix Multiplication)
 
 As of ROCm 6.2.1, ROCm supports Facebook General Matrix Multiplication (FBGEMM) and the related FBGEMM_GPU library. 
 
-FBGEMM is a low-precision, high-performance CPU kernel library for convolution and matrix multiplication. It is used for server-side inference and as a back end for PyTorch quantized operators. FBGEMM_GPU includes a collection of PyTorch GPU operator libraries for training and inference. For more information, see the ROCm [Model acceleration libraries guide](https://rocm.docs.amd.com/en/6.2.1/how-to/llm-fine-tuning-optimization/model-acceleration-libraries.html)
+FBGEMM is a low-precision, high-performance CPU kernel library for convolution and matrix multiplication. It is used for server-side inference and as a back end for PyTorch quantized operators. FBGEMM_GPU includes a collection of PyTorch GPU operator libraries for training and inference. For more information, see the ROCm [Model acceleration libraries guide](https://rocm.docs.amd.com/en/docs-6.2.1/how-to/llm-fine-tuning-optimization/model-acceleration-libraries.html)
 and [PyTorch's FBGEMM GitHub repository](https://github.com/pytorch/FBGEMM).
 
-### ROCm Offline Installer Creator changes
+#### ROCm Offline Installer Creator changes
 
-The [ROCm Offline Installer Creator 6.2.1](https://rocm.docs.amd.com/projects/install-on-linux/en/6.2.1/install/rocm-offline-installer.html) introduces several new features and improvements including:
+The [ROCm Offline Installer Creator 6.2.1](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.1/install/rocm-offline-installer.html) introduces several new features and improvements including:
 
 * Logging support for create and install logs
 * More stringent checks for Linux versions and distributions
 * Updated prerequisite repositories
 * Fixed CTest issues
 
-### ROCm documentation changes 
+#### ROCm documentation changes 
 
 There have been no changes to supported hardware or operating systems from ROCm 6.2.0 to ROCm 6.2.1.
 
 * The Programming Model Reference and Understanding the Programming Model topics in HIP have been consolidated into one topic,
-[HIP programming model (conceptual)](https://rocm.docs.amd.com/projects/HIP/en/6.2.1/understand/programming_model.html). 
-* The [HIP virtual memory management](https://rocm.docs.amd.com/projects/HIP/en/6.2.1/how-to/virtual_memory.html) and [HIP virtual memory management API](https://rocm.docs.amd.com/projects/HIP/en/6.2.1/reference/virtual_memory_reference.html) topics have been added.
+[HIP programming model (conceptual)](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/understand/programming_model.html). 
+* The [HIP virtual memory management](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/how-to/virtual_memory.html) and [HIP virtual memory management API](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/reference/virtual_memory_reference.html) topics have been added.
 
 ```{note}
 The ROCm documentation, like all ROCm projects, is open source and available on GitHub. To contribute to ROCm documentation, see the [ROCm documentation contribution guidelines](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
 ```
 
-## Operating system and hardware support changes
+### Operating system and hardware support changes
 
-There are no changes to supported hardware or operating systems from ROCm 6.2.0 to ROCm 6.2.1.
+ROCm 6.2.1 adds support for Ubuntu 24.04.1 (kernel: 6.8 [GA]).
 
 See the [Compatibility matrix](https://rocm.docs.amd.com/en/docs-6.2.1/compatibility/compatibility-matrix.html) for the full list of supported operating systems and hardware architectures.
 
-## ROCm components
+### ROCm components
 
 The following table lists the versions of ROCm components for ROCm 6.2.1, including any version changes from 6.2.0 to 6.2.1. 
 
@@ -140,7 +174,7 @@ Click the component's updated version to go to a detailed list of its changes. C
                 <th rowspan="1"></th>
                 <th rowspan="1">Communication</th>
                 <td><a href="https://rocm.docs.amd.com/projects/rccl/en/docs-6.2.1">RCCL</a></td>
-                <td>2.20.5</td>
+                <td>2.20.5&nbsp;&Rightarrow;&nbsp;<a href="#rccl-2-20-5">2.20.5</a></td>
                 <td><a href="https://github.com/ROCm/rccl/releases/tag/rocm-6.2.1"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -417,37 +451,37 @@ Click the component's updated version to go to a detailed list of its changes. C
     </table>
 </div>
 
-## Detailed component changes
+### Detailed component changes
 
 The following sections describe key changes to ROCm components.
 
-### **AMD SMI** (24.6.3)
+#### **AMD SMI** (24.6.3)
 
-#### Changes
+##### Changes
 
 * Added `amd-smi static --ras` on Guest VMs. Guest VMs can view enabled/disabled RAS features on Host cards.
 
-#### Removals
+##### Removals
 
 * Removed `amd-smi metric --ecc` & `amd-smi metric --ecc-blocks` on Guest VMs. Guest VMs do not support getting current ECC counts from the Host cards.
 
-#### Resolved issues
+##### Resolved issues
 
 * Fixed TypeError in `amd-smi process -G`.
 * Updated CLI error strings to handle empty and invalid GPU/CPU inputs.
 * Fixed Guest VM showing passthrough options.
 * Fixed firmware formatting where leading 0s were missing.
 
-### **HIP** (6.2.1)
+#### **HIP** (6.2.1)
 
-#### Resolved issues
+##### Resolved issues
 
 * Soft hang when using `AMD_SERIALIZE_KERNEL`
 * Memory leak in `hipIpcCloseMemHandle`
 
-### **HIPIFY** (18.0.0)
+#### **HIPIFY** (18.0.0)
 
-#### Changes
+##### Changes
 
 * Added CUDA 12.5.1 support
 * Added cuDNN 9.2.1 support
@@ -455,17 +489,32 @@ The following sections describe key changes to ROCm components.
 * Added `hipBLAS` 64-bit APIs support
 * Added Support for math constants `math_constants.h`
 
-### **Omnitrace** (1.11.2)
+#### **Omnitrace** (1.11.2)
 
-#### Known Issues
+##### Known issues
 
-* Perfetto can no longer open Omnitrace proto files. Loading Perfetto trace output `.proto` files in the latest version of `ui.perfetto.dev` can result in a dialog with the message, "Oops, something went wrong! Please file a bug." The information in the dialog will refer to an "Unknown field type." The workaround is to open the files with the previous version of the Perfetto UI found at [https://ui.perfetto.dev/v46.0-35b3d9845/#!/](https://ui.perfetto.dev/v46.0-35b3d9845/#!/).
+Perfetto can no longer open Omnitrace proto files. Loading Perfetto trace output `.proto` files in the latest version of `ui.perfetto.dev` can result in a dialog with the message, "Oops, something went wrong! Please file a bug." The information in the dialog will refer to an "Unknown field type." The workaround is to open the files with the previous version of the Perfetto UI found at [https://ui.perfetto.dev/v46.0-35b3d9845/#!/](https://ui.perfetto.dev/v46.0-35b3d9845/#!/).
 
-### **rocAL** (2.0.0)
+See [issue #3767](https://github.com/ROCm/ROCm/issues/3767) on GitHub.
 
-#### Changes
+#### **RCCL** (2.20.5)
+
+##### Known issues
+
+On systems running Linux kernel 6.8.0, such as Ubuntu 24.04, Direct Memory Access (DMA) transfers between the GPU and NIC are disabled and impacts multi-node RCCL performance.
+This issue was reproduced with RCCL 2.20.5 (ROCm 6.2.0 and 6.2.1) on systems with Broadcom Thor-2 NICs and affects other systems with RoCE networks using Linux 6.8.0 or newer.
+Older RCCL versions are also impacted.
+
+This issue will be addressed in a future ROCm release.
+
+See [issue #3772](https://github.com/ROCm/ROCm/issues/3772) on GitHub.
+
+#### **rocAL** (2.0.0)
+
+##### Changes
  
-* Version updated from 1.0.0 to 2.0.0. Applications built using rocAL 1.0.0 must be recompiled to work with rocAL 2.0.0.
+* The new version of rocAL introduces many new features, but does not modify any of the existing public API functions.However, the version number was incremented from 1.3 to 2.0.
+  Applications linked to version 1.3 must be recompiled to link against version 2.0.
 * Added development and test packages.
 * Added C++ rocAL audio unit test and Python script to run and compare the outputs.
 * Added Python support for audio decoders.
@@ -483,37 +532,37 @@ The following sections describe key changes to ROCm components.
 * Image to tensor updates
 * ROCm install - use case graphics removed
 
-#### Known issues
+##### Known issues
  
 * Dependencies are not installed with the rocAL package installer. Dependencies must be installed with the prerequisite setup script provided. See the [rocAL README on GitHub](https://github.com/ROCm/rocAL/blob/docs/6.2.1/README.md#prerequisites-setup-script) for details.
 
-### **rocBLAS** (4.2.1)
+#### **rocBLAS** (4.2.1)
 
-#### Removals
+##### Removals
 
 * Removed Device_Memory_Allocation.pdf link in documentation.
 
-#### Resolved issues
+##### Resolved issues
 
 * Fixed error/warning message during `rocblas_set_stream()` call.
 
-### **rocFFT** (1.0.29)
+#### **rocFFT** (1.0.29)
 
-#### Optimizations
+##### Optimizations
 
-* Implemented 1D kernels for factorizable sizes greater than 1024.
+* Implemented 1D kernels for factorizable sizes less than 1024.
 
-### **ROCm SMI** (7.3.0)
+#### **ROCm SMI** (7.3.0)
 
-#### Optimizations
+##### Optimizations
 
 * Improved handling of UnicodeEncodeErrors with non UTF-8 locales. Non UTF-8 locales were causing crashes on UTF-8 special characters.
 
-#### Resolved issues
+##### Resolved issues
 
 * Fixed an issue where the Compute Partition tests segfaulted when AMDGPU was loaded with optional parameters.
 
-#### Known issues
+##### Known issues
 
 * When setting CPX as a partition mode, there is a DRM node limit of 64. This is a known limitation when multiple drivers are using the DRM nodes. The `ls /sys/class/drm` command can be used to see the number of DRM nodes, and the following steps can be used to remove unnecessary drivers:
         
@@ -521,18 +570,18 @@ The following sections describe key changes to ROCm components.
     2. Remove any unnecessary drivers using `rmmod`. For example, to remove an AST driver, run `sudo rmmod ast`.
     3. Reload AMDGPU using `modprobe`: `sudo modprobe amdgpu`.
 
-### **rocPRIM** (3.2.1)
+#### **rocPRIM** (3.2.1)
 
-#### Optimizations
+##### Optimizations
 
 * Improved performance of `block_reduce_warp_reduce` when warp size equals block size.
 
-## ROCm known issues
+### ROCm known issues
 
 ROCm known issues are tracked on [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue). Known issues related to
 individual components are listed in the [Detailed component changes](detailed-component-changes) section.
 
-### Instinct MI300X GPU recovery failure on uncorrectable errors
+#### Instinct MI300X GPU recovery failure on uncorrectable errors
 
 For the AMD Instinct MI300X accelerator, GPU recovery resets triggered by uncorrectable errors (UE) might not complete
 successfully, which can result in the system being left in an undefined state. A system reboot is needed to recover from
@@ -540,14 +589,16 @@ this state. Additionally, error logging might fail in these situations, hinderin
 
 This issue is under investigation and will be resolved in a future ROCm release.
 
-## ROCm upcoming changes
+See [issue #3766](https://github.com/ROCm/ROCm/issues/3766) on GitHub.
+
+### ROCm upcoming changes
 
 The following changes to the ROCm software stack are anticipated for future releases.
 
-### rocm-llvm-alt
+#### rocm-llvm-alt
 
 The `rocm-llvm-alt` package will be removed in an upcoming release. Users relying on the functionality provided by the closed-source compiler should transition to the open-source compiler. Once the `rocm-llvm-alt` package is removed, any compilation requesting functionality provided by the closed-source compiler will result in a Clang warning: "*[AMD] proprietary optimization compiler has been removed*".
 
-### rccl-rdma-sharp-plugins
+#### rccl-rdma-sharp-plugins
 
 The RCCL plugin package, `rccl-rdma-sharp-plugins`, will be removed in an upcoming ROCm release. 
