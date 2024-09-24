@@ -20,9 +20,27 @@ build_rocal() {
         set_address_sanitizer_on
     fi
 
-    mkdir -p $BUILD_DIR && cd $BUILD_DIR
+#    python3 ${COMPONENT_SRC}/rocAL-setup.py
+    pushd /tmp
+    # PyBind11
+    git clone -b v2.11.1  https://github.com/pybind/pybind11
+    cd pybind11 && mkdir build && cd build
+    cmake -DDOWNLOAD_CATCH=ON -DDOWNLOAD_EIGEN=ON ../
+    make -j$(nproc) && sudo make install
+    cd ../..
+    # Turbo JPEG
+    git clone -b 3.0.2 https://github.com/libjpeg-turbo/libjpeg-turbo.git
+    cd libjpeg-turbo && mkdir build && cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RELEASE -DENABLE_STATIC=FALSE -DCMAKE_INSTALL_DEFAULT_LIBDIR=lib -DWITH_JPEG8=TRUE ..
+    make -j$(nproc) && sudo make install
+    cd ../..
+    # RapidJSON
+    git clone https://github.com/Tencent/rapidjson.git
+    cd rapidjson && mkdir build && cd build
+    cmake .. && make -j$(nproc) && sudo make install
+    popd
 
-    python3 ${COMPONENT_SRC}/rocAL-setup.py
+    mkdir -p $BUILD_DIR && cd $BUILD_DIR
 
     cmake -DAMDRPP_PATH=$ROCM_PATH ${COMPONENT_SRC}
     make -j${PROC}
