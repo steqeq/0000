@@ -160,7 +160,8 @@ Use this look up table to confirm which operating system and kernel versions are
    :widths: 40, 20, 40
    :stub-columns: 1
 
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04, "6.8 GA"
+   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04.1, "6.8 GA"
+   , 24.04, "6.8 GA"
    `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 22.04.05, "5.15 GA, 6.8 HWE"
    , 22.04.04, "5.15 GA, 6.5 HWE"
    , 22.04.03, "5.15 GA, 6.2 HWE"
