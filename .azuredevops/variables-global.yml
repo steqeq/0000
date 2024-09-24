@@ -79,6 +79,10 @@ variables:
   value: 93
 - name: HIP_TAGGED_PIPELINE_ID
   value: 31
+- name: HIP-TESTS_PIPELINE_ID
+  value: 233
+- name: HIP-TESTS_TAGGED_PIPELINE_ID
+  value: 220
 - name: HIPBLAS_COMMON_PIPELINE_ID
   value: 223
 - name: HIPBLAS_COMMON_TAGGED_PIPELINE_ID
