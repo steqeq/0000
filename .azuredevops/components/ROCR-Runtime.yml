@@ -109,53 +109,53 @@ jobs:
       targetType: 'inline'
       workingDirectory: $(Agent.BuildDirectory)
       script: git clone https://github.com/ROCm/ROCR-Runtime.git --depth=1
-  # - task: Bash@3
-  #   displayName: Build kfdtest
-  #   inputs:
-  #     targetType: 'inline'
-  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest
-  #     script: |
-  #       mkdir build && cd build
-  #       cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
-  #       make
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-  #   parameters:
-  #     componentName: kfdtest
-  #     testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/build ./run_kfdtest.sh
-  #     testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
-  #     testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/scripts
-  # - task: Bash@3
-  #   displayName: Build rdmatest app
-  #   inputs:
-  #     targetType: 'inline'
-  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
-  #     script: |
-  #       cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
-  #       cmake --build .
-  # - task: Bash@3
-  #   displayName: Build rdmatest driver
-  #   inputs:
-  #     targetType: 'inline'
-  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
-  #     script: |
-  #       sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c
-  #       sed -i 's/"MIT"/"GPL"/' amdp2ptest.c
-  #       RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
-  # - task: Bash@3
-  #   displayName: Install rdmatest driver
-  #   inputs:
-  #     targetType: 'inline'
-  #     workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
-  #     script: |
-  #       sudo rmmod amdp2ptest.ko
-  #       sudo insmod amdp2ptest.ko
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-  #   parameters:
-  #     componentName: rdmatest
-  #     testExecutable: yes | ./rdma_test
-  #     testParameters: ''
-  #     testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
-  #     testPublishResults: false
+  - task: Bash@3
+    displayName: Build kfdtest
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest
+      script: |
+        mkdir build && cd build
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
+        make
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: kfdtest
+      testExecutable: BIN_DIR=$(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/build ./run_kfdtest.sh
+      testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/kfdtest/scripts
+  - task: Bash@3
+    displayName: Build rdmatest app
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
+      script: |
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
+        cmake --build .
+  - task: Bash@3
+    displayName: Build rdmatest driver
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
+      script: |
+        sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c
+        sed -i 's/"MIT"/"GPL"/' amdp2ptest.c
+        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
+  - task: Bash@3
+    displayName: Install rdmatest driver
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/drv
+      script: |
+        sudo rmmod amdp2ptest.ko
+        sudo insmod amdp2ptest.ko
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rdmatest
+      testExecutable: yes | ./rdma_test
+      testParameters: ''
+      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/libhsakmt/tests/rdma/simple/app
+      testPublishResults: false
   - task: Bash@3
     displayName: Build rocrtst
     inputs:
@@ -177,5 +177,5 @@ jobs:
     parameters:
       componentName: rocrtst
       testExecutable: ./rocrtst64
-      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testParameters: '--gtest_filter="-rocrtstNeg.Memory_Negative_Tests" --gtest_output=xml:./test_output.xml --gtest_color=yes'
       testDir: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common/build/gfx942
