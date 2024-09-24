@@ -20,7 +20,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :header: "ROCm Version", "6.2.1", "6.2.0", "6.1.0"
       :stub-columns: 1
 
-      :ref:`Operating Systems & kernels <OS-kernel-versions>`,"Ubuntu 24.04.1, Ubuntu 24.04","Ubuntu 24.04.1, Ubuntu 24.04",
+      :ref:`Operating Systems & kernels <OS-kernel-versions>`,"Ubuntu 24.04.1, Ubuntu 24.04",Ubuntu 24.04,
       ,"Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.4, 22.04.3"
       ,,,"Ubuntu 20.04.6, 20.04.5"
       ,"RHEL 9.4, 9.3","RHEL 9.4, 9.3","RHEL 9.4 [#red-hat94]_, 9.3, 9.2"
