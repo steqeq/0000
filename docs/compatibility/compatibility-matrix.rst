@@ -20,7 +20,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :header: "ROCm Version", "6.2.1", "6.2.0", "6.1.0"
       :stub-columns: 1
 
-      :ref:`Operating Systems & kernels <OS-kernel-versions>`,Ubuntu 24.04,Ubuntu 24.04,
+      :ref:`Operating Systems & kernels <OS-kernel-versions>`,"Ubuntu 24.04.1, 24.04",Ubuntu 24.04,
       ,"Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.4, 22.04.3"
       ,,,"Ubuntu 20.04.6, 20.04.5"
       ,"RHEL 9.4, 9.3","RHEL 9.4, 9.3","RHEL 9.4 [#red-hat94]_, 9.3, 9.2"
@@ -129,7 +129,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :doc:`hipCC <hipcc:index>`,1.1.1,1.1.1,1.0.0
       `Flang <https://github.com/ROCm/flang>`_,18.0.0.24355,18.0.0.24232,17.0.0.24103
       :doc:`llvm-project <llvm-project:index>`,18.0.0.24355,18.0.0.24232,17.0.0.24103
-      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24332,18.0.0.24232,17.0.0.24103
+      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24355,18.0.0.24232,17.0.0.24103
       ,,,
       RUNTIMES,.. _runtime-support-compatibility-matrix:,,
       :doc:`AMD CLR <hip:understand/amd_clr>`,6.2.41134,6.2.41133,6.1.40091
@@ -160,7 +160,8 @@ Use this look up table to confirm which operating system and kernel versions are
    :widths: 40, 20, 40
    :stub-columns: 1
 
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04, "6.8 GA"
+   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04.1, "6.8 GA"
+   , 24.04, "6.8 GA"
    `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 22.04.05, "5.15 GA, 6.8 HWE"
    , 22.04.04, "5.15 GA, 6.5 HWE"
    , 22.04.03, "5.15 GA, 6.2 HWE"
