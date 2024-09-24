@@ -129,7 +129,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :doc:`hipCC <hipcc:index>`,1.1.1,1.1.1,1.0.0
       `Flang <https://github.com/ROCm/flang>`_,18.0.0.24355,18.0.0.24232,17.0.0.24103
       :doc:`llvm-project <llvm-project:index>`,18.0.0.24355,18.0.0.24232,17.0.0.24103
-      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24332,18.0.0.24232,17.0.0.24103
+      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24355,18.0.0.24232,17.0.0.24103
       ,,,
       RUNTIMES,.. _runtime-support-compatibility-matrix:,,
       :doc:`AMD CLR <hip:understand/amd_clr>`,6.2.41134,6.2.41133,6.1.40091
