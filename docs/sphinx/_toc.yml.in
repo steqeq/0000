@@ -100,13 +100,17 @@ subtrees:
   - file: compatibility/compatibility-matrix.rst
     title: Compatibility matrix
   - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
-    title: Linux
+    title: Linux system requirements
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
-    title: Windows
-  - file: compatibility/precision-support.rst
-    title: Precision support
+    title: Windows system requirements
   - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/3rd-party-support-matrix.html
-    title: Third-party
+    title: Third-party support
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html
+    title: User and kernel-space support matrix
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/docker-image-support-matrix.html
+    title: Docker image support matrix
+  - url: https://rocm.docs.amd.com/projects/radeon/en/latest/index.html
+    title: Use ROCm on Radeon GPUs
 
 - caption: Conceptual
   entries:
@@ -163,6 +167,8 @@ subtrees:
       title: ROCm tools, compilers, and runtimes
     - file: reference/gpu-arch-specs.rst
       title: Hardware specifications
+    - file: reference/precision-support.rst
+      title: Precision support
 
 - caption: Contribute
   entries:
