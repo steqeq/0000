@@ -76,7 +76,7 @@ The following describes MAD's basic usage and functionalities.
 
    .. code-block:: shell
 
-      tools/run_models.py [-h] [--model_name MODEL_NAME] [--timeout TIMEOUT] [--live_output] [--clean_docker_cache] [--keep_alive] [--keep_model_dir] [-o OUTPUT] [--log_level LOG_LEVEL]
+      tools/run_models.py [-h] [--tags TAGS] [--timeout TIMEOUT] [--live-output] [--clean-docker-cache] [--keep-alive] [--keep-model-dir] [-o OUTPUT] [--log-level LOG-LEVEL]
 
    See :ref:`mad-run-args` for the list of options and their descriptions.
 
@@ -104,7 +104,7 @@ The following list of options describe some of MAD capabilities.
    Show this help message and exit
 
 --tags TAGS
-   Tags to run (can be multiple). Overrides ``tags.json``.
+   Tags to run model (can be multiple). Overrides ``tags.json``.
 
    With the tag functionality, you can select a subset of the models with the corresponding tags to be run. User-specified
    tags can be specified in ``tags.json`` or with the ``--tags`` argument. If multiple tags are specified, all models that
@@ -126,9 +126,6 @@ The following list of options describe some of MAD capabilities.
    .. code-block:: shell
 
       python3 tools/run_models.py --tags pyt
-
---model-name MODEL_NAME
-   Model name to run the application.
 
 --timeout TIMEOUT
    Timeout for the application running model in seconds, default timeout of 7200 (2 hours).
