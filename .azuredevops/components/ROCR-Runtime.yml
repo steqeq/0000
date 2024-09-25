@@ -45,10 +45,10 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -85,23 +85,19 @@ jobs:
         sudo apt install -y --allow-downgrades ./libhwloc5_1.11.12-3_amd64.deb ./libhwloc-dev_1.11.12-3_amd64.deb
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
-    # parameters:
-    #   buildType: specific
-    #   definitionId: 164
-    #   buildId: 7516
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
-      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - task: Bash@3
     displayName: Clone ROCR-Runtime
@@ -163,6 +159,7 @@ jobs:
       workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common
       script: |
         mkdir -p $(Agent.BuildDirectory)/external/llvm-project/clang/lib
+        sudo rm -rf $(Agent.BuildDirectory)/external/llvm-project
         sudo ln -s $(Agent.BuildDirectory)/rocm/llvm/lib/clang/20/include $(Agent.BuildDirectory)/external/llvm-project/clang/lib/Headers
         mkdir build && cd build
         cmake .. \
