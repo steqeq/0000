@@ -11,6 +11,9 @@ parameters:
 - name: installDir
   type: string
   default: '$(Build.BinariesDirectory)'
+- name: makeCallPrefix
+  type: string
+  default: ''
 
 steps:
 - task: Bash@3
@@ -23,7 +26,7 @@ steps:
   displayName: '${{ parameters.componentName }} make'
   inputs:
     targetType: inline
-    script: make -j$(nproc)
+    script: ${{ parameters.makeCallPrefix }} make -j$(nproc)
     workingDirectory: ${{ parameters.buildDir }}
 - task: Bash@3
   displayName: '${{ parameters.componentName }} make install'

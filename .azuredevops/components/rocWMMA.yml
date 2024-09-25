@@ -16,10 +16,10 @@ parameters:
     - googletest
     - libfftw3-dev
     - git
-    - libomp-dev
 - name: rocmDependencies
   type: object
   default:
+    - aomp
     - rocm-cmake
     - llvm-project
     - ROCR-Runtime
@@ -42,6 +42,7 @@ parameters:
     - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
+    - roctracer
 
 jobs:
 - job: rocWMMA
