@@ -29,6 +29,7 @@ parameters:
     composable_kernel: develop
     half: rocm
     HIP: amd-staging
+    hip-tests: amd-staging
     hipBLAS: develop
     hipBLASLt: develop
     hipBLAS-common: develop
@@ -44,6 +45,7 @@ parameters:
     llvm-project: amd-staging
     MIOpen: develop
     MIVisionX: develop
+    omniperf: amd-staging
     rccl: develop
     rdc: develop
     rocAL: develop
