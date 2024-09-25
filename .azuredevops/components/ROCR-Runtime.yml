@@ -99,12 +99,9 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
-  - task: Bash@3
-    displayName: Clone ROCR-Runtime
-    inputs:
-      targetType: 'inline'
-      workingDirectory: $(Agent.BuildDirectory)
-      script: git clone https://github.com/ROCm/ROCR-Runtime.git --depth=1
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
   - task: Bash@3
     displayName: Build kfdtest
     inputs:
