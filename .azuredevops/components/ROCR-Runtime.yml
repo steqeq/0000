@@ -164,7 +164,7 @@ jobs:
         mkdir build && cd build
         cmake .. \
           -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
-          -DTARGET_DEVICES=gfx942 \
+          -DTARGET_DEVICES=$(JOB_GPU_TARGET) \
           -DROCM_DIR=$(Agent.BuildDirectory)/rocm \
           -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm/bin \
           -DOPENCL_DIR=$(Agent.BuildDirectory)/rocm/llvm/bin
@@ -175,4 +175,4 @@ jobs:
       componentName: rocrtst
       testExecutable: ./rocrtst64
       testParameters: '--gtest_filter="-rocrtstNeg.Memory_Negative_Tests" --gtest_output=xml:./test_output.xml --gtest_color=yes'
-      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common/build/gfx942
+      testDir: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common/build/$(JOB_GPU_TARGET)
