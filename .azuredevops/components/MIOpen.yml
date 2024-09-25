@@ -8,18 +8,23 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - software-properties-common
-    - python3-pip
     - cmake
-    - ninja-build
-    - libsqlite3-dev
     - libbz2-dev
-    - nlohmann-json3-dev
-    - libgmock-dev 
-    - libgtest-dev
     - libdrm-dev
+    - libeigen3-dev
+    - libgmock-dev
+    - libgtest-dev
+    - libsqlite3-dev
     - libstdc++-12-dev
+    - ninja-build
+    - nlohmann-json3-dev
+    - python3-pip
+    - software-properties-common
     - zstd
+- name: pipModules
+  type: object
+  default:
+    - cget
 - name: rocmDependencies
   type: object
   default:
@@ -76,6 +81,7 @@ jobs:
 #   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
 #     parameters:
 #       aptPackages: ${{ parameters.aptPackages }}
+#       pipModules: ${{ parameters.pipModules }}
 #   # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
 #   # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest
 #   - task: Bash@3
@@ -146,6 +152,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - task: Bash@3
     displayName: 'Install Boost 1.83'
     inputs:
@@ -171,23 +178,38 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
+# MIOpen Test Build needs frugally-deep
+# Grab its dependencies and build
+# https://github.com/Dobiasd/frugally-deep/blob/master/INSTALL.md
+  - script: cget install Dobiasd/FunctionalPlus
+    displayName: Install FunctionalPlus
   - task: Bash@3
-    displayName: Configure MIOpen test flags
+    displayName: 'git clone frugally-deep'
     inputs:
-      targetType: 'inline'
-      script: |
-        mkdir -p build && cd build
-        cmake .. \
-          -DCMAKE_PREFIX_PATH=$ROCMPATH/rocm \
-          -DCMAKE_INSTALL_PREFIX=$ROCMPATH/rocm \
-          -DCMAKE_CXX_COMPILER=$ROCMPATH/rocm/llvm/bin/amdclang++ \
-          -DCMAKE_C_COMPILER=$ROCMPATH/rocm/llvm/bin/amdclang \
-          -DMIOPEN_BACKEND=HIP \
-          -DMIOPEN_TEST_FLAGS=' --disable-verification-cache' \
-          -DCMAKE_BUILD_TYPE=release \
-          -DBUILD_DEV=OFF \
-          -DMIOPEN_USE_MLIR=ON \
-          -DMIOPEN_GPU_SYNC=OFF
+      targetType: inline
+      script: git clone https://github.com/Dobiasd/frugally-deep --depth=1 --shallow-submodules
+      workingDirectory: $(Build.SourcesDirectory)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: frugally-deep
+      cmakeBuildDir: $(Build.SourcesDirectory)/frugally-deep/build
+      installDir: $(Build.SourcesDirectory)/bin
+      extraBuildFlags: -DCMAKE_PREFIX_PATH=$(Build.SourcesDirectory)/cget/cget/pkg/Dobiasd__FunctionalPlus/install
+  - task: CMake@1
+    displayName: 'MIOpen Test CMake Flags'
+    inputs:
+      cmakeArgs: >-
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Build.SourcesDirectory)/bin
+        -DCMAKE_INSTALL_PREFIX=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DMIOPEN_BACKEND=HIP
+        -DMIOPEN_TEST_FLAGS=" --disable-verification-cache"
+        -DCMAKE_BUILD_TYPE=release
+        -DBUILD_DEV=OFF
+        -DMIOPEN_USE_MLIR=ON
+        -DMIOPEN_GPU_SYNC=OFF
+        ..
   - task: Bash@3
     displayName: Build and run MIOpen tests
     inputs:
