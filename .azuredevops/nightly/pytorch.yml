@@ -139,7 +139,7 @@ parameters:
     - unary_ufuncs
     - binary_ufuncs
     - autograd
-    - inductor/torchinductor
+#    - inductor/torchinductor takes too long
 
 trigger: none
 pr: none
