@@ -158,8 +158,8 @@ jobs:
       targetType: 'inline'
       workingDirectory: $(Agent.BuildDirectory)/ROCR-Runtime/rocrtst/suites/test_common
       script: |
-        mkdir -p $(Agent.BuildDirectory)/external/llvm-project/clang/lib
         sudo rm -rf $(Agent.BuildDirectory)/external/llvm-project
+        mkdir -p $(Agent.BuildDirectory)/external/llvm-project/clang/lib
         sudo ln -s $(Agent.BuildDirectory)/rocm/llvm/lib/clang/20/include $(Agent.BuildDirectory)/external/llvm-project/clang/lib/Headers
         mkdir build && cd build
         cmake .. \
