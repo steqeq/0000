@@ -8,20 +8,21 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - git
     - cmake
-    - ninja-build
+    - git
+    - libdnnl-dev
     - libdrm-dev
-    - libnuma-dev
-    - python3-pip
-    - python3-venv
-    - libtbb-dev
-    - nlohmann-json3-dev
     - libmsgpack-dev
-    - libsqlite3-dev
+    - libnuma-dev
     - libprotobuf-dev
+    - libsqlite3-dev
+    - libtbb-dev
+    - ninja-build
+    - nlohmann-json3-dev
     - protobuf-compiler
+    - python3-pip
     - python3-pybind11
+    - python3-venv
 - name: pipModules
   type: object
   default:
@@ -95,11 +96,10 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
         -DCMAKE_BUILD_TYPE=Release
         -DGPU_TARGETS=$(JOB_GPU_TARGET)
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
         -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
