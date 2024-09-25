@@ -81,12 +81,13 @@ parameters:
     - amdsmi
     - aomp
     - HIPIFY
+    - MIVisionX
+    - omniperf
     - rccl
     - rdc
     - rocm-cmake
     - rocm_smi_lib
     - rocFFT
-    - MIVisionX
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
