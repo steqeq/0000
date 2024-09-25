@@ -511,7 +511,7 @@ jobs:
         targetType: inline
         workingDirectory: $(Build.SourcesDirectory)/pytorch
         ${{ if contains(torchTest, '/') }}:
-          script: pytest test/${{ split(torchTest, ':')[0] }}/test_${{ split(torchTest, ':')[1] }}.py
+          script: pytest test/${{ split(torchTest, '/')[0] }}/test_${{ split(torchTest, '/')[1] }}.py
         ${{ else }}:
           script: pytest test/test_${{ torchTest }}.py
 # Reference on what tests to run for torchvision found in private repo:
