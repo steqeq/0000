@@ -128,7 +128,7 @@ jobs:
 #       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: MIOpen_testing
-  timeoutInMinutes: 240
+  timeoutInMinutes: 60
   # dependsOn: MIOpen
   # condition: succeeded()
   variables:
@@ -178,27 +178,22 @@ jobs:
       script: |
         mkdir -p build && cd build
         cmake .. \
-          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
-          -DCMAKE_INSTALL_PREFIX=$(Agent.BuildDirectory)/rocm \
-          -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++ \
-          -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang \
+          -DCMAKE_PREFIX_PATH=$ROCMPATH/rocm \
+          -DCMAKE_INSTALL_PREFIX=$ROCMPATH/rocm \
+          -DCMAKE_CXX_COMPILER=$ROCMPATH/rocm/llvm/bin/amdclang++ \
+          -DCMAKE_C_COMPILER=$ROCMPATH/rocm/llvm/bin/amdclang \
           -DMIOPEN_BACKEND=HIP \
-          -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF \
-          -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF \
-          -DMIOPEN_TEST_FLAGS=--disable-verification-cache \
-          -DMIOPEN_TEST_DISCRETE=OFF \
+          -DMIOPEN_TEST_FLAGS=' --disable-verification-cache' \
+          -DCMAKE_BUILD_TYPE=release \
+          -DBUILD_DEV=OFF \
           -DMIOPEN_USE_MLIR=ON \
-          -DMIOPEN_GPU_SYNC=OFF \
-          -DBUILD_DEV=ON \
-          -DCMAKE_BUILD_TYPE=Release \
-          -DBUILD_TESTING=ON \
-          -DMIOPEN_TEST_GFX94X=ON
+          -DMIOPEN_GPU_SYNC=OFF
   - task: Bash@3
     displayName: Build and run MIOpen tests
     inputs:
       targetType: inline
       workingDirectory: build
-      script: make -j$(nproc) check
+      script: CTEST_PARALLEL_LEVEL=4 dumb-init make -j$(nproc) check
   # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
   #   parameters:
   #     componentName: MIOpen
