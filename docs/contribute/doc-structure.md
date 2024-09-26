@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Learn about how ROCm structures its documentation in its open-source projects.">
+  <meta name="keywords" content="ROCm, contributing, contribute, maintainer, contributor, organization, restructuredtext">
+</head>
+
 # Documentation structure
 
 Our documentation follows the Pitchfork folder structure. Most documentation files are stored in the
