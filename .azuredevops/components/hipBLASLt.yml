@@ -16,8 +16,8 @@ parameters:
     - python3-pip
     - python3-venv
     - gfortran
-    - libomp-dev
     - libblas-dev
+    - ccache
 - name: pipModules
   type: object
   default:
@@ -33,6 +33,7 @@ parameters:
     - rocm_smi_lib
     - rocprofiler-register
     - ROCR-Runtime
+    - roctracer
 - name: rocmTestDependencies
   type: object
   default:
@@ -44,6 +45,7 @@ parameters:
     - rocm_smi_lib
     - rocprofiler-register
     - ROCR-Runtime
+    - roctracer
 
 jobs:
 - job: hipBLASLt
@@ -63,7 +65,9 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  - name: DAY_STRING
+    value: $[format('{0:ddMMyyyy}', pipeline.startTime)]
+  pool: ${{ variables.ULTRA_BUILD_POOL }}
   workspace:
     clean: all
   strategy:
@@ -110,12 +114,27 @@ jobs:
   - script: sudo make install
     displayName: Install hipBLASLt external dependencies
     workingDirectory: $(Pipeline.Workspace)/deps
+  - script: |
+      mkdir -p $(CCACHE_DIR)
+      echo "##vso[task.prependpath]/usr/lib/ccache"
+    displayName: Update path for ccache
+  - task: Cache@2
+    displayName: Ccache caching
+    inputs:
+      key: hipBLASLt | $(Agent.OS) | $(JOB_GPU_TARGET) | $(DAY_STRING) | $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+      path: $(CCACHE_DIR)
+      restoreKeys: |
+        hipBLASLt | $(Agent.OS) | $(JOB_GPU_TARGET) | $(DAY_STRING)
+        hipBLASLt | $(Agent.OS) | $(JOB_GPU_TARGET)
+        hipBLASLt | $(Agent.OS)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+        -DCMAKE_C_COMPILER_LAUNCHER=ccache
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DTensile_LOGIC=
         -DTensile_CPU_THREADS=

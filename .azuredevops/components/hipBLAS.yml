@@ -16,7 +16,6 @@ parameters:
     - libgtest-dev
     - wget
     - python3-pip
-    - libomp-dev
 - name: rocmDependencies
   type: object
   default:
@@ -46,6 +45,7 @@ parameters:
     - rocBLAS
     - rocSPARSE
     - rocSOLVER
+    - roctracer
 
 jobs:
 - job: hipBLAS

@@ -53,6 +53,7 @@ CSC
 CSE
 CSV
 CSn
+CTest
 CTests
 CU
 CUDA
@@ -387,6 +388,7 @@ UAC
 UC
 UCC
 UCX
+UE
 UIF
 UMC
 USM
@@ -455,6 +457,7 @@ blit
 bootloader
 boson
 bosons
+br
 buildable
 bursty
 bzip
@@ -582,6 +585,7 @@ invariants
 invocating
 ipo
 kdb
+kfd
 latencies
 libfabric
 libjpeg
@@ -651,6 +655,7 @@ quasirandom
 queueing
 rccl
 rdc
+rdma
 reStructuredText
 redirections
 refactorization

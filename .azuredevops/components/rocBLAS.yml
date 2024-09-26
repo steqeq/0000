@@ -52,6 +52,7 @@ parameters:
     - rocprofiler-register
     - rocm_smi_lib
     - ROCR-Runtime
+    - roctracer
 
 jobs:
 - job: rocBLAS

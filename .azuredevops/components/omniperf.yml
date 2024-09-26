@@ -8,43 +8,50 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - gfortran
-    - git
     - cmake
     - python3-pip
-    - python3-dev
-    - ninja-build
+- name: pipModules
+  type: object
+  default:
+    - astunparse==1.6.2
+    - colorlover
+    - dash>=1.12.0
+    - matplotlib
+    - numpy>=1.17.5
+    - pandas>=1.4.3
+    - pymongo
+    - pyyaml
+    - tabulate
+    - tqdm
+    - dash-svg
+    - dash-bootstrap-components
+    - kaleido
+    - setuptools
+    - plotille
+    - mock
+    - pytest
+    - pytest-cov
+    - pytest-xdist
 - name: rocmDependencies
   type: object
   default:
-    - aomp
-    - llvm-project
     - clr
-    - hipBLAS
-    - hipBLAS-common
-    - hipBLASLt
-    - hipFFT
-    - hipRAND
-    - hipSOLVER
-    - hipSPARSE
-    - rocBLAS
-    - rocFFT
+    - llvm-project
     - rocm-cmake
+    - rocm-core
     - rocminfo
+    - ROCR-Runtime
     - rocprofiler
     - rocprofiler-register
-    - rocRAND
-    - ROCR-Runtime
-    - rocSOLVER
-    - rocSPARSE
     - roctracer
 
 jobs:
-- job: hipfort
+- job: omniperf
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  pool:
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
   strategy:
@@ -57,11 +64,17 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
@@ -73,31 +86,18 @@ jobs:
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/llvm
-        -DHIPFORT_INSTALL_DIR=$(Build.BinariesDirectory)
-        -DHIPFORT_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/flang
-        -DCMAKE_Fortran_FLAGS="-Mfree -fPIC"
-        -DCMAKE_Fortran_FLAGS_DEBUG=""
-        -DHIPFORT_COMPILER_FLAGS="-cpp"
-        -DHIPFORT_AR=$(Agent.BuildDirectory)/rocm/llvm/bin/llvm-ar
-        -DHIPFORT_RANLIB=$(Agent.BuildDirectory)/rocm/llvm/bin/llvm-ranlib
-        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
-        -DBUILD_TESTING=ON
-        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
 
-- job: hipfort_testing
-  dependsOn: hipfort
+- job: omniperf_testing
+  dependsOn: omniperf
   condition: succeeded()
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  - name: PYTHON_VERSION
+    value: 3.10
   pool: $(JOB_TEST_POOL)
   workspace:
     clean: all
@@ -110,10 +110,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
-      gpuTarget: $(JOB_GPU_TARGET)
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
       ${{ if eq(parameters.checkoutRef, '') }}:
@@ -128,20 +130,38 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+  - task: Bash@3
+    displayName: Add ROCm binaries to PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/bin"
+  - task: Bash@3
+    displayName: Add ROCm compilers to PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/llvm/bin"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
+      extraBuildFlags: >-
+        -DCMAKE_HIP_ARCHITECTURES=$(JOB_GPU_TARGET)
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_BUILD_TYPE=Release
+        -DENABLE_TESTS=ON
+        -DINSTALL_TESTS=ON
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: omniperf
+      testDir: $(Build.BinariesDirectory)/libexec/omniperf
+      testExecutable: export OMNIPERF_ARCH_OVERRIDE="MI300X"; ctest
   - task: Bash@3
-    displayName: 'ROCm symbolic link'
+    displayName: Remove ROCm binaries from PATH
     inputs:
       targetType: inline
-      script: |
-        sudo rm -rf /opt/rocm
-        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
-      workingDirectory: $(Build.SourcesDirectory)
+      script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/bin;;' -e 's;^/;;' -e 's;/$;;')"
   - task: Bash@3
-    displayName: 'Test hipfort'
+    displayName: Remove ROCm compilers from PATH
     inputs:
       targetType: inline
-      script: PATH=$(Agent.BuildDirectory)/rocm/bin:$PATH make run_all
-      workingDirectory: $(Build.SourcesDirectory)/test
+      script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/llvm/bin;;' -e 's;^/;;' -e 's;/$;;')"

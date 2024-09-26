@@ -105,7 +105,9 @@ jobs:
     displayName: ROCm symbolic link
     inputs:
       targetType: inline
-      script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       installEnabled: false
