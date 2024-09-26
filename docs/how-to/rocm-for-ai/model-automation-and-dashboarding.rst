@@ -104,10 +104,10 @@ The following list of options describe some of MAD capabilities.
    Show this help message and exit
 
 --tags TAGS
-   Tags to run model (can be multiple). Overrides ``tags.json``.
+   Tags to run model (can be multiple).
 
-   With the tag functionality, you can select a subset of the models with the corresponding tags to be run. User-specified
-   tags can be specified in ``tags.json`` or with the ``--tags`` argument. If multiple tags are specified, all models that
+   With the tag functionality, you can select a subset of the models with the corresponding tags to be run. You
+   can specify tags with the ``--tags`` argument. If multiple tags are specified, all models that
    match any specified tag are selected.
 
    .. note::
