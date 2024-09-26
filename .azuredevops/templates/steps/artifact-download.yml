@@ -88,6 +88,7 @@ parameters:
     - rocm-cmake
     - rocm_smi_lib
     - rocFFT
+    - rpp
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
