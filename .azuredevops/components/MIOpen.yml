@@ -232,7 +232,7 @@ jobs:
     inputs:
       targetType: inline
       workingDirectory: build
-      script: CTEST_PARALLEL_LEVEL=4 dumb-init make -j$(nproc) check
+      script: CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check
   # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
   #   parameters:
   #     componentName: MIOpen
