@@ -181,10 +181,27 @@ jobs:
 # MIOpen Test Build needs frugally-deep
 # Grab its dependencies and build
 # https://github.com/Dobiasd/frugally-deep/blob/master/INSTALL.md
-  - script: cget install Dobiasd/FunctionalPlus
-    displayName: Install FunctionalPlus
   - task: Bash@3
-    displayName: 'git clone frugally-deep'
+    displayName: Add Python site-packages binaries to path
+    inputs:
+      targetType: inline
+      script: |
+        USER_BASE=$(python3 -m site --user-base)
+        echo "##vso[task.prependpath]$USER_BASE/bin"
+  - task: Bash@3
+    displayName: Install FunctionalPlus
+    inputs:
+      targetType: inline
+      script: cget install Dobiasd/FunctionalPlus
+  - task: Bash@3
+    displayName: Remove Python site-packages binaries from path
+    inputs:
+      targetType: inline
+      script: |
+        USER_BASE=$(python3 -m site --user-base)
+        echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$USER_BASE/bin;;' -e 's;^/;;' -e 's;/$;;')"
+  - task: Bash@3
+    displayName: git clone frugally-deep
     inputs:
       targetType: inline
       script: git clone https://github.com/Dobiasd/frugally-deep --depth=1 --shallow-submodules
