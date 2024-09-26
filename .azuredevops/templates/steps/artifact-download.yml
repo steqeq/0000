@@ -86,6 +86,7 @@ parameters:
     - rocm-cmake
     - rocm_smi_lib
     - rocFFT
+    - rpp
     - MIVisionX
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
