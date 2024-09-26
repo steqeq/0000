@@ -102,7 +102,6 @@ jobs:
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
-        -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DBUILD_TESTING=ON
         -GNinja
 # REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
