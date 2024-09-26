@@ -216,7 +216,7 @@ jobs:
     displayName: 'MIOpen Test CMake Flags'
     inputs:
       cmakeArgs: >-
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Build.SourcesDirectory)/bin
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Build.SourcesDirectory)/bin;$(Build.SourcesDirectory)/cget/cget/pkg/Dobiasd__FunctionalPlus/install
         -DCMAKE_INSTALL_PREFIX=$(Agent.BuildDirectory)/rocm
         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
