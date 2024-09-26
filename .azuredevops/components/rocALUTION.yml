@@ -43,6 +43,7 @@ parameters:
     - ROCR-Runtime
     - rocRAND
     - rocSPARSE
+    - roctracer
 
 jobs:
 - job: rocALUTION
