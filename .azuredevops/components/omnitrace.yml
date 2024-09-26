@@ -112,6 +112,9 @@ jobs:
         -DOMNITRACE_USE_MPI=ON
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
       multithreadFlag: -- -j32
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: omnitrace
   - task: Bash@3
     displayName: Remove ROCm binaries from PATH
     inputs:
