@@ -66,6 +66,7 @@ parameters:
     rocPRIM: develop
     rocprofiler-register: amd-mainline
     rocprofiler: amd-staging
+    rocPyDecode: develop
     ROCR-Runtime: amd-staging
     rocRAND: develop
     rocr_debug_agent: amd-staging
