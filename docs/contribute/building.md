@@ -7,16 +7,13 @@
 
 # Building documentation
 
-
 You can build our documentation via GitHub (in a pull request) or locally (using the command line or
 Visual Studio (VS) Code.
 
 ## GitHub
 
-If you open a pull request on the `develop` branch of a ROCm repository and scroll to the bottom of
-the page, there is a summary panel. Next to the line
-`docs/readthedocs.com:advanced-micro-devices-demo`, there is a `Details` link. If you click this, it takes
-you to the Read the Docs build for your pull request.
+If you open a pull request on the `develop` branch of a ROCm repository and scroll to the bottom of the page, there is a summary panel. Next to the line
+`docs/readthedocs.com:advanced-micro-devices-demo`, there is a `Details` link. If you click this, it takes you to the Read the Docs build for your pull request.
 
 ![Screenshot of the GitHub documentation build link](../data/contribute/github-docs-build.png)
 
@@ -43,8 +40,7 @@ Navigate to `_build/html/index.html` and open this file in a web browser.
 
 ## Visual Studio Code
 
-With the help of a few extensions, you can create a productive environment to author and test
-documentation locally using Visual Studio (VS) Code. Follow these steps to configure VS Code:
+With the help of a few extensions, you can create a productive environment to author and test documentation locally using Visual Studio (VS) Code. Follow these steps to configure VS Code:
 
 1. Install the required extensions:
 
@@ -128,12 +124,7 @@ documentation locally using Visual Studio (VS) Code. Follow these steps to confi
       }
     ```
 
-    > Implementation detail: two problem matchers were needed to be defined,
-    > because VS Code doesn't tolerate some problem information being potentially
-    > absent. While a single regex could match all types of errors, if a capture
-    > group remains empty (the line number doesn't show up in all warning/error
-    > messages) but the `pattern` references said empty capture group, VS Code
-    > discards the message completely.
+    > Implementation detail: two problem matchers were needed to be defined, because VS Code doesn't tolerate some problem information being potentially absent. While a single regex could match all types of errors, if a capture group remains empty (the line number doesn't show up in all warning/error messages) but the `pattern` references said empty capture group, VS Code discards the message completely.
 
 4. Configure the Python virtual environment (`venv`).
 
@@ -149,6 +140,4 @@ documentation locally using Visual Studio (VS) Code. Follow these steps to confi
 
 6. Open the live preview.
 
-    Navigate to the site output within VS Code: right-click on `.vscode/build/html/index.html` and
-    select `Open with Live Server`. The contents should update on every rebuild without having to
-    refresh the browser.
+    Navigate to the site output within VS Code: right-click on `.vscode/build/html/index.html` and select `Open with Live Server`. The contents should update on every rebuild without having to refresh the browser.
