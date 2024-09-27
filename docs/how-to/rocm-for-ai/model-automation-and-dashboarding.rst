@@ -8,7 +8,7 @@ Running models using MAD
 
 The AMD Model Automation and Dashboarding (MAD) tool integrates an AI model zoo with automated execution capabilities
 across various GPU architectures. It facilitates performance tracking by maintaining historical performance data and
-generating dashboards for analysis. MAD's source code repository and full documentation can be found at
+generating dashboards for analysis. The MAD source code repository and complete documentation are at
 `<https://github.com/ROCm/MAD>`__.
 
 MAD retrieves various models from their repositories and tests their performance in ROCm Docker images. It is an index
@@ -17,11 +17,11 @@ software stack.
 
 Use MAD to:
 
-*  Try new models,
+*  Try new models
 
-*  Compare performance between patches or architectures, and
+*  Compare performance between patches or architectures
 
-*  Track functionality and performance over time.
+*  Track functionality and performance over time
 
 Getting started with MAD
 ========================
@@ -32,13 +32,13 @@ detailed :doc:`installation instructions <rocm-install-on-linux:install/detailed
 ROCm Docker images
 ------------------
 
-You can find ROCm Docker images for PyTorch and TensorFlow on Docker Hub at
+ROCm Docker images for PyTorch and TensorFlow are available on Docker Hub at
 `rocm/pytorch <https://hub.docker.com/r/rocm/pytorch>`_ and
 `rocm/tensorflow <https://hub.docker.com/r/rocm/tensorflow>`_.
 
-AMD publishes a unified Docker image at `rocm/vllm <https://hub.docker.com/r/rocm/vllm>`_ that packages
-together vLLM and PyTorch for the AMD Instinct™ MI300X accelerator. This enables users to quickly validate the expected
-inference performance numbers on the MI300X. This Docker image includes:
+A unified Docker image that packages together vLLM and PyTorch for the AMD Instinct™ MI300X accelerator is at
+`rocm/vllm <https://hub.docker.com/r/rocm/vllm>`_ . This enables users to quickly validate the expected inference
+performance numbers on the MI300X. This Docker image includes:
 
 - ROCm
 
@@ -98,7 +98,7 @@ For each model in ``models.json``, the script:
 Arguments
 ---------
 
-The following list of options describe some of MAD capabilities.
+The following list of arguments describe some of the MAD tool's capabilities.
 
 --help, -h
    Show this help message and exit
@@ -106,26 +106,26 @@ The following list of options describe some of MAD capabilities.
 --tags TAGS
    Tags to run model (can be multiple).
 
-   With the tag functionality, you can select a subset of the models with the corresponding tags to be run. You
-   can specify tags with the ``--tags`` argument. If multiple tags are specified, all models that
-   match any specified tag are selected.
-
    .. note::
+
+      With the tag functionality, you can select a subset of the models with the corresponding tags to be run. You
+      can specify tags with the ``--tags`` argument. If multiple tags are specified, all models that
+      match any specified tag are selected.
 
       Each model name in ``models.json`` is automatically a tag that can be used to run that model. Tags are also supported
       in comma-separated form.
 
-   For example, to run the ``pyt_huggingface_bert`` model, use:
+      For example, to run the ``pyt_huggingface_bert`` model, use:
 
-   .. code-block:: shell
+      .. code-block:: shell
 
-      python3 tools/run_models.py --tags pyt_huggingface_bert
+         python3 tools/run_models.py --tags pyt_huggingface_bert
 
-   Or, to run all PyTorch models, use:
+      Or, to run all PyTorch models, use:
 
-   .. code-block:: shell
+      .. code-block:: shell
 
-      python3 tools/run_models.py --tags pyt
+         python3 tools/run_models.py --tags pyt
 
 --timeout TIMEOUT
    Timeout for the application running model in seconds, default timeout of 7200 (2 hours).
