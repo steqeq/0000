@@ -227,40 +227,48 @@ jobs:
         -DMIOPEN_USE_MLIR=ON
         -DMIOPEN_GPU_SYNC=OFF
         ..
+  # - task: Bash@3
+  #   displayName: Build and run MIOpen tests
+  #   inputs:
+  #     targetType: inline
+  #     workingDirectory: build
+  #     script: CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: MIOpen
+      testExecutable: 'CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check'
+      testParameters: ''
+      reloadAMDGPU: true
   - task: Bash@3
-    displayName: Build and run MIOpen tests
-    inputs:
-      targetType: inline
-      workingDirectory: build
-      script: CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-  #   parameters:
-  #     componentName: MIOpen
-  #     testExecutable: cmake
-  #     testParameters: --build . --config Release --target check
-  #     testDir: MIOpen/build
-  #     reloadAMDGPU: true
-
-- job: MIOpen_testing_cleanup
-  dependsOn: MIOpen_testing
-  condition: succeededOrFailed()
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  pool: $(JOB_TEST_POOL)
-  workspace:
-    clean: all
-  strategy:
-    matrix:
-      gfx942:
-        JOB_GPU_TARGET: gfx942
-        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
-  steps:
-  - task: Bash@3
+    condition: always()
     displayName: Clean up Boost 1.83
     inputs:
       targetType: inline
       script: |
-        sudo apt-get -y autoremove libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
+        sudo apt -y autoremove libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
         sudo add-apt-repository --remove ppa:mhier/libboost-latest -y
-        sudo apt-get update
+        sudo apt update
+
+# - job: MIOpen_testing_cleanup
+#   dependsOn: MIOpen_testing
+#   condition: failed()
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   pool: $(JOB_TEST_POOL)
+#   workspace:
+#     clean: all
+#   strategy:
+#     matrix:
+#       gfx942:
+#         JOB_GPU_TARGET: gfx942
+#         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+#   steps:
+#   - task: Bash@3
+#     displayName: Clean up Boost 1.83
+#     inputs:
+#       targetType: inline
+#       script: |
+#         sudo apt-get -y autoremove libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
+#         sudo add-apt-repository --remove ppa:mhier/libboost-latest -y
+#         sudo apt-get update
