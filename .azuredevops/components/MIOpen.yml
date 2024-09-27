@@ -178,9 +178,9 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
-# MIOpen Test Build needs frugally-deep
-# Grab its dependencies and build
-# https://github.com/Dobiasd/frugally-deep/blob/master/INSTALL.md
+# MIOpen Test Build needs frugally-deep, grab its dependencies and build
+# MIOpen depends on a specific version of frugally-deep which is forked here: https://github.com/ROCm/frugally-deep
+# https://github.com/ROCm/frugally-deep/blob/master/INSTALL.md
   - task: Bash@3
     displayName: Add Python site-packages binaries to path
     inputs:
@@ -204,7 +204,7 @@ jobs:
     displayName: git clone frugally-deep
     inputs:
       targetType: inline
-      script: git clone https://github.com/Dobiasd/frugally-deep --depth=1 --shallow-submodules
+      script: git clone https://github.com/ROCm/frugally-deep --depth=1 --shallow-submodules
       workingDirectory: $(Build.SourcesDirectory)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
