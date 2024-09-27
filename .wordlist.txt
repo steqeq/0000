@@ -693,6 +693,7 @@ rocsolver
 rocsparse
 rocthrust
 roctracer
+rst
 runtime
 runtimes
 sL
