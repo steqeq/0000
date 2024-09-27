@@ -17,10 +17,10 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
 .. container:: format-big-table
 
   .. csv-table:: 
-      :header: "ROCm Version", "6.2.1", "6.2.0", "6.1.0"
+      :header: "ROCm Version", "6.2.2", "6.2.1", "6.1.0"
       :stub-columns: 1
 
-      :ref:`Operating Systems & kernels <OS-kernel-versions>`,"Ubuntu 24.04.1, 24.04",Ubuntu 24.04,
+      :ref:`Operating systems & kernels <OS-kernel-versions>`,"Ubuntu 24.04.1, 24.04","Ubuntu 24.04.1, 24.04",Ubuntu 24.04
       ,"Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.4, 22.04.3"
       ,,,"Ubuntu 20.04.6, 20.04.5"
       ,"RHEL 9.4, 9.3","RHEL 9.4, 9.3","RHEL 9.4 [#red-hat94]_, 9.3, 9.2"
@@ -37,7 +37,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       ,.. _gpu-support-compatibility-matrix:,,
       :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx1100,gfx1100,gfx1100
       ,gfx1030,gfx1030,gfx1030
-      ,gfx942 [#mi300_621]_,gfx942 [#mi300_620]_, gfx942 [#mi300_610]_
+      ,gfx942 [#mi300_622]_,gfx942 [#mi300_621]_, gfx942 [#mi300_610]_
       ,gfx90a,gfx90a,gfx90a
       ,gfx908,gfx908,gfx908
       ,,,
@@ -63,7 +63,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :doc:`MIGraphX <amdmigraphx:index>`,2.10.0,2.10.0,2.9.0
       :doc:`MIOpen <miopen:index>`,3.2.0,3.2.0,3.1.0
       :doc:`MIVisionX <mivisionx:index>`,3.0.0,3.0.0,2.5.0
-      :doc:`rocAL <rocal:index>`,2.0.0,1.0.0,1.0.0
+      :doc:`rocAL <rocal:index>`,2.0.0,2.0.0,1.0.0
       :doc:`rocDecode <rocdecode:index>`,0.6.0,0.6.0,0.5.0
       :doc:`rocPyDecode <rocpydecode:index>`,0.1.0,0.1.0,N/A
       :doc:`RPP <rpp:index>`,1.8.0,1.8.0,1.5.0
@@ -75,15 +75,15 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       `half <https://github.com/ROCm/half>`_ ,1.12.0,1.12.0,1.12.0
       :doc:`hipBLAS <hipblas:index>`,2.2.0,2.2.0,2.1.0
       :doc:`hipBLASLt <hipblaslt:index>`,0.8.0,0.8.0,0.7.0
-      :doc:`hipFFT <hipfft:index>`,1.0.15,1.0.14,1.0.14
+      :doc:`hipFFT <hipfft:index>`,1.0.15,1.0.15,1.0.14
       :doc:`hipFORT <hipfort:index>`,0.4.0,0.4.0,0.4.0
       :doc:`hipRAND <hiprand:index>`,2.11.0,2.11.0,2.10.16
       :doc:`hipSOLVER <hipsolver:index>`,2.2.0,2.2.0,2.1.0
       :doc:`hipSPARSE <hipsparse:index>`,3.1.1,3.1.1,3.0.1
       :doc:`hipSPARSELt <hipsparselt:index>`,0.2.1,0.2.1,0.1.0
       :doc:`rocALUTION <rocalution:index>`,3.2.0,3.2.0,3.1.1
-      :doc:`rocBLAS <rocblas:index>`,4.2.1,4.2.0,4.1.0
-      :doc:`rocFFT <rocfft:index>`,1.0.29,1.0.28,1.0.26
+      :doc:`rocBLAS <rocblas:index>`,4.2.1,4.2.1,4.1.0
+      :doc:`rocFFT <rocfft:index>`,1.0.29,1.0.29,1.0.26
       :doc:`rocRAND <rocrand:index>`,3.1.0,3.1.0,3.0.1
       :doc:`rocSOLVER <rocsolver:index>`,3.26.0,3.26.0,3.25.0
       :doc:`rocSPARSE <rocsparse:index>`,3.2.0,3.2.0,3.1.2
@@ -94,30 +94,30 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       :doc:`hipCUB <hipcub:index>`,3.2.0,3.2.0,3.1.0
       :doc:`hipTensor <hiptensor:index>`,1.3.0,1.3.0,1.2.0
       :doc:`rocPRIM <rocprim:index>`,3.2.0,3.2.0,3.1.0
-      :doc:`rocThrust <rocthrust:index>`,3.1.0,3.0.1,3.0.1
+      :doc:`rocThrust <rocthrust:index>`,3.1.0,3.1.0,3.0.1
       ,,,
       SUPPORT LIBS,,,
-      `hipother <https://github.com/ROCm/hipother>`_,6.2.41134,6.2.41133,6.1.40091
-      `rocm-core <https://github.com/ROCm/rocm-core>`_,6.2.1,6.2.0,6.1.0
-      `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,20240607.4.05,20240607.1.4246,20240125.3.30
+      `hipother <https://github.com/ROCm/hipother>`_,6.2.41134,6.2.41134,6.1.40091
+      `rocm-core <https://github.com/ROCm/rocm-core>`_,6.2.2,6.2.1,6.1.0
+      `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,20240607.4.05,20240607.4.05,20240125.3.30
       ,,,
       SYSTEM MGMT TOOLS,.. _tools-support-compatibility-matrix:,,
-      :doc:`AMD SMI <amdsmi:index>`,24.6.3,24.6.2,24.4.1
+      :doc:`AMD SMI <amdsmi:index>`,24.6.3,24.6.3,24.4.1
       :doc:`ROCm Data Center Tool <rdc:index>`,1.0.0,1.0.0,0.3.0
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0,1.0.0
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.3.0,7.3.0,7.0.0
-      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,rocm-6.2.1,rocm-6.2.0,rocm-6.1.0
+      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,rocm-6.2.2,rocm-6.2.1,rocm-6.1.0
       ,,,
       PERFORMANCE TOOLS,,,
       :doc:`Omniperf <omniperf:index>`,2.0.1,2.0.1,N/A
       :doc:`Omnitrace <omnitrace:index>`,1.11.2,1.11.2,N/A
       :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,1.4.0,1.4.0,1.4.0
-      :doc:`ROCProfiler <rocprofiler:index>`,2.0.60201,2.0.60200,2.0.60100
+      :doc:`ROCProfiler <rocprofiler:index>`,2.0.60202,2.0.60201,2.0.60100
       :doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`,0.4.0,0.4.0,N/A
-      :doc:`ROCTracer <roctracer:index>`,4.1.60201,4.1.60200,4.1.60100
+      :doc:`ROCTracer <roctracer:index>`,4.1.60202,4.1.60201,4.1.60100
       ,,,
       DEVELOPMENT TOOLS,,,
-      :doc:`HIPIFY <hipify:index>`,18.0.0.24332,18.0.0.24232,17.0.0.24103
+      :doc:`HIPIFY <hipify:index>`,18.0.0.24355,18.0.0.24355,17.0.0.24103
       :doc:`ROCm CMake <rocmcmakebuildtools:index>`,0.13.0,0.13.0,0.12.0
       :doc:`ROCdbgapi <rocdbgapi:index>`,0.76.0,0.76.0,0.71.0
       :doc:`ROCm Debugger (ROCgdb) <rocgdb:index>`,14.2.0,14.2.0,14.1.0
@@ -127,24 +127,24 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       COMPILERS,.. _compilers-support-compatibility-matrix:,,
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,N/A,N/A,0.5.0
       :doc:`hipCC <hipcc:index>`,1.1.1,1.1.1,1.0.0
-      `Flang <https://github.com/ROCm/flang>`_,18.0.0.24355,18.0.0.24232,17.0.0.24103
-      :doc:`llvm-project <llvm-project:index>`,18.0.0.24355,18.0.0.24232,17.0.0.24103
-      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24355,18.0.0.24232,17.0.0.24103
+      `Flang <https://github.com/ROCm/flang>`_,18.0.0.24355,18.0.0.24355,17.0.0.24103
+      :doc:`llvm-project <llvm-project:index>`,18.0.0.24355,18.0.0.24355,17.0.0.24103
+      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,18.0.0.24355,18.0.0.24355,17.0.0.24103
       ,,,
       RUNTIMES,.. _runtime-support-compatibility-matrix:,,
-      :doc:`AMD CLR <hip:understand/amd_clr>`,6.2.41134,6.2.41133,6.1.40091
-      :doc:`HIP <hip:index>`,6.2.41134,6.2.41133,6.1.40091
+      :doc:`AMD CLR <hip:understand/amd_clr>`,6.2.41134,6.2.41134,6.1.40091
+      :doc:`HIP <hip:index>`,6.2.41134,6.2.41134,6.1.40091
       `OpenCL Runtime <https://github.com/ROCm/clr/tree/develop/opencl>`_,2.0.0,2.0.0,2.0.0
-      :doc:`ROCR-Runtime <rocr-runtime:index>`,1.14.0,1.13.0,1.13.0
+      :doc:`ROCR-Runtime <rocr-runtime:index>`,1.14.0,1.14.0,1.13.0
 
 
 .. rubric:: Footnotes
 
 .. [#red-hat94] RHEL 9.4 is supported only on AMD Instinct MI300A.
 .. [#oracle89] Oracle Linux is supported only on AMD Instinct MI300X.
+.. [#mi300_622] **For ROCm 6.2.2** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
 .. [#mi300_621] **For ROCm 6.2.1** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
-.. [#mi300_620] **For ROCm 6.2.0** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
-.. [#mi300_610] **For ROCm 6.1.2** - MI300A (gfx942) is supported on Ubuntu 22.04.4, RHEL 9.4, RHEL 9.3, RHEL 8.9, and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.4 and Oracle Linux.
+.. [#mi300_610] **For ROCm 6.1.0** - MI300A (gfx942) is supported on Ubuntu 22.04.4, RHEL 9.4, RHEL 9.3, RHEL 8.9, and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.4.
 .. [#kfd_support] ROCm provides forward and backward compatibility between the Kernel Fusion Driver (KFD) and its user space software for +/- 2 releases. These are the compatibility combinations that are currently supported.
 
 
@@ -207,7 +207,6 @@ Expand for full historical view of:
 
    .. csv-table::
       :file: compatibility-matrix-historical-6.0.csv
-      :widths: 20,10,10,10,10,10,10,10
       :header-rows: 1
       :stub-columns: 1
    
@@ -215,6 +214,7 @@ Expand for full historical view of:
 
    .. [#red-hat94-past-60] RHEL 9.4 is supported only on AMD Instinct MI300A.
    .. [#oracle89-past-60] Oracle Linux is supported only on AMD Instinct MI300X.
+   .. [#mi300_622-past-60] **For ROCm 6.2.2** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_621-past-60] **For ROCm 6.2.1** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_620-past-60] **For ROCm 6.2.0** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_612-past-60] **For ROCm 6.1.2** - MI300A (gfx942) is supported on Ubuntu 22.04.4, RHEL 9.4, RHEL 9.3, RHEL 8.9, and SLES 15 SP5. MI300X (gfx942) is only supported on Ubuntu 22.04.4 and Oracle Linux.

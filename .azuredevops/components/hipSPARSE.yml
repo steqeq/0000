@@ -37,6 +37,7 @@ parameters:
     - rocprofiler-register
     - ROCR-Runtime
     - rocSPARSE
+    - roctracer
 
 jobs:
 - job: hipSPARSE
