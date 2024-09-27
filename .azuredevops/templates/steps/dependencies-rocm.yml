@@ -178,6 +178,7 @@ parameters:
     - rocFFT
     - rocm-examples
     - rocPRIM
+    - rocprofiler-sdk
     - rocprofiler
     - rocPyDecode
     - rocRAND
