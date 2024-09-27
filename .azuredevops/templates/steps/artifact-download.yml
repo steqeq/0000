@@ -29,6 +29,7 @@ parameters:
     composable_kernel: develop
     half: rocm
     HIP: amd-staging
+    hip-tests: amd-staging
     hipBLAS: develop
     hipBLASLt: develop
     hipBLAS-common: develop
@@ -44,6 +45,7 @@ parameters:
     llvm-project: amd-staging
     MIOpen: develop
     MIVisionX: develop
+    omniperf: amd-staging
     rccl: develop
     rdc: develop
     rocAL: develop
@@ -64,6 +66,7 @@ parameters:
     rocPRIM: develop
     rocprofiler-register: amd-mainline
     rocprofiler: amd-staging
+    rocPyDecode: develop
     ROCR-Runtime: amd-staging
     rocRAND: develop
     rocr_debug_agent: amd-staging
@@ -79,12 +82,14 @@ parameters:
     - amdsmi
     - aomp
     - HIPIFY
+    - MIVisionX
+    - omniperf
     - rccl
     - rdc
     - rocm-cmake
     - rocm_smi_lib
     - rocFFT
-    - MIVisionX
+    - rpp
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
