@@ -121,7 +121,7 @@ jobs:
     displayName: Set up omnitrace env
     inputs:
       targetType: inline
-      script : source share/omnitrace/setup-env.sh
+      script: source share/omnitrace/setup-env.sh
       workingDirectory: build
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
