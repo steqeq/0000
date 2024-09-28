@@ -8,17 +8,17 @@ resources:
     type: github
     endpoint: ROCm
     name: ROCm/aomp
-    ref: aomp-dev
+    ref: amd-staging
   - repository: aomp-extras_repo
     type: github
     endpoint: ROCm
     name: ROCm/aomp-extras
-    ref: aomp-dev
+    ref: amd-staging
   - repository: flang_repo
     type: github
     endpoint: ROCm
     name: ROCm/flang
-    ref: aomp-dev
+    ref: amd-staging
   - repository: llvm-project_repo
     type: github
     endpoint: ROCm

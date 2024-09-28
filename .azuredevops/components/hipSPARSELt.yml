@@ -15,7 +15,6 @@ parameters:
     - python3-pip
     - gfortran
     - libgfortran5
-    - libomp-dev
     - libopenblas-dev
 - name: pipModules
   type: object

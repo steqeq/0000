@@ -9,15 +9,13 @@
 # ROCm tools, compilers, and runtimes
 
 ::::{grid} 1 2 2 2
+:gutter: 3
 :class-container: rocm-doc-grid
 
 (system-tools)=
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ../data/reference/banner-system.jpg
-:img-alt: System tools
-:padding: 2
+:::{grid-item-card} System Management
+:class-body: rocm-card-banner rocm-hue-1
 
 * {doc}`AMD SMI <amdsmi:index>`
 * {doc}`ROCm Data Center Tool <rdc:index>`
@@ -28,11 +26,8 @@
 
 (performance-tools)=
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ../data/reference/banner-performance.jpg
-:img-alt: Performance tools
-:padding: 2
+:::{grid-item-card} Performance
+:class-body: rocm-card-banner rocm-hue-6
 
 * {doc}`Omniperf <omniperf:index>`
 * {doc}`Omnitrace <omnitrace:index>`
@@ -44,11 +39,8 @@
 
 (development-tools)=
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ../data/reference/banner-development.jpg
-:img-alt: Development tools
-:padding: 2
+:::{grid-item-card} Development
+:class-body: rocm-card-banner rocm-hue-1
 
 * {doc}`ROCm CMake <rocmcmakebuildtools:index>`
 * {doc}`HIPIFY <hipify:index>`
@@ -59,11 +51,8 @@
 
 (compilers)=
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ../data/reference/banner-compilers.jpg
-:img-alt: Compilers
-:padding: 2
+:::{grid-item-card} Compilers
+:class-body: rocm-card-banner rocm-hue-8
 
 * {doc}`ROCm Compilers <llvm-project:index>`
 * {doc}`HIPCC <hipcc:index>`
@@ -72,11 +61,8 @@
 
 (runtimes)=
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ../data/reference/banner-runtimes.jpg
-:img-alt: Runtimes
-:padding: 2
+:::{grid-item-card} Runtimes
+:class-body: rocm-card-banner rocm-hue-12
 
 * {doc}`AMD Common Language Runtime (CLR) <hip:understand/amd_clr>`
 * {doc}`HIP <hip:index>`

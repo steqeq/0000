@@ -8,20 +8,42 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - python3-pip
     - cmake
-    - ninja-build
+    - python3-pip
+    - libdrm-dev
+    - libdw-dev
+    - libelf-dev
+- name: pipModules
+  type: object
+  default:
+    - black
+    - clang-format
+    - clang-tidy
+    - cmake
+    - cmake-format
+    - dataclasses
+    - numpy
+    - otf2
+    - pandas
+    - perfetto
+    - pycobertura
+    - pytest
+    - pyyaml
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
-    - llvm-project
-    - ROCR-Runtime
     - clr
+    - llvm-project
+    - rccl
+    - rocm-cmake
+    - rocm-core
     - rocminfo
+    - ROCR-Runtime
+    - rocprofiler-register
+    - roctracer
 
 jobs:
-- job: half
+- job: rocprofilersdk
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -29,17 +51,31 @@ jobs:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
       # CI case: download latest default branch build
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
@@ -50,16 +86,10 @@ jobs:
     parameters:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DBUILD_FILE_REORG_BACKWARD_COMPATIBILITY=OFF
-        -GNinja
+        -DROCPROFILER_BUILD_TESTS=ON
+        -DROCPROFILER_BUILD_SAMPLES=OFF
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+      multithreadFlag: -- -j2
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-  # only run test03 because test11 has too many test cases, taking way too long
-  - task: Bash@3
-    displayName: test03
-    inputs:
-      targetType: inline
-      script: |
-        make clean
-        make test03
-        ./bin/test
-      workingDirectory: $(Build.SourcesDirectory)/test
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
