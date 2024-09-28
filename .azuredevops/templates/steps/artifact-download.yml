@@ -64,7 +64,8 @@ parameters:
     rocm_bandwidth_test: master
     rocm_smi_lib: develop
     rocPRIM: develop
-    rocprofiler-register: amd-mainline
+    rocprofiler-register: amd-staging
+    rocprofiler-sdk: amd-staging
     rocprofiler: amd-staging
     rocPyDecode: develop
     ROCR-Runtime: amd-staging
