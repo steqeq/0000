@@ -13,6 +13,7 @@ BUILD_DIR=$(getBuildPath $API_NAME)
 
 TARGET='build'
 MAKETARGET='deb'
+IGNORE_STATIC="off"
 
 cmdOptionHandler
 
