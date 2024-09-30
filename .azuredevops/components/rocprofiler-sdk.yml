@@ -151,7 +151,8 @@ jobs:
       cd rocprofiler-sdk-tests
       cmake $(Agent.BuildDirectory)/rocm/share/rocprofiler-sdk/tests \
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+      make -j$(nproc) .
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
-      componentName: rocDecode
+      componentName: rocprofiler-sdk
       testDir: 'rocprofiler-sdk-tests'
