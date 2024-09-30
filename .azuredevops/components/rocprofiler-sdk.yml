@@ -56,60 +56,60 @@ parameters:
     - roctracer
 
 jobs:
-- job: rocprofiler_sdk
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
-  workspace:
-    clean: all
-  strategy:
-    matrix:
-      gfx942:
-        JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
-  steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
-    parameters:
-      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
-        dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-    parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
-      # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
-        dependencySource: staging
-      # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
-        dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DROCPROFILER_BUILD_TESTS=ON
-        -DROCPROFILER_BUILD_SAMPLES=OFF
-        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
-      multithreadFlag: -- -j2
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-    parameters:
-      gpuTarget: $(JOB_GPU_TARGET)
+# - job: rocprofiler_sdk
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   pool:
+#     vmImage: ${{ variables.BASE_BUILD_POOL }}
+#   workspace:
+#     clean: all
+#   strategy:
+#     matrix:
+#       gfx942:
+#         JOB_GPU_TARGET: gfx942
+#       gfx90a:
+#         JOB_GPU_TARGET: gfx90a
+#   steps:
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+#     parameters:
+#       aptPackages: ${{ parameters.aptPackages }}
+#       pipModules: ${{ parameters.pipModules }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+#     parameters:
+#       checkoutRepo: ${{ parameters.checkoutRepo }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+#     parameters:
+#       ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+#         dependencySource: staging
+#       ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+#         dependencySource: tag-builds
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#     parameters:
+#       dependencyList: ${{ parameters.rocmDependencies }}
+#       gpuTarget: $(JOB_GPU_TARGET)
+#       # CI case: download latest default branch build
+#       ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
+#         dependencySource: staging
+#       # manual build case: triggered by ROCm/ROCm repo
+#       ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
+#         dependencySource: tag-builds
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#     parameters:
+#       extraBuildFlags: >-
+#         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+#         -DROCPROFILER_BUILD_TESTS=ON
+#         -DROCPROFILER_BUILD_SAMPLES=OFF
+#         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+#       multithreadFlag: -- -j2
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+#     parameters:
+#       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: rocprofiler_sdk_testing
-  dependsOn: rocprofiler_sdk
-  condition: succeeded()
+  # dependsOn: rocprofiler_sdk
+  # condition: succeeded()
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -128,6 +128,9 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
+      buildType: specific
+      definitionId: 247
+      buildId: 9198
       gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
@@ -146,7 +149,8 @@ jobs:
   - script: |
       mkdir rocprofiler-sdk-tests
       cd rocprofiler-sdk-tests
-      cmake $(Agent.BuildDirectory)/rocm/share/rocprofiler-sdk/tests
+      cmake $(Agent.BuildDirectory)/rocm/share/rocprofiler-sdk/tests \
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocDecode
