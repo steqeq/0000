@@ -117,4 +117,4 @@ jobs:
     parameters:
       componentName: hipTensor
       testDir: '$(Agent.BuildDirectory)/rocm/bin/hiptensor'
-      testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testParameters: '-E ".*-extended" -VV --output-on-failure --force-new-ctest-process --output-junit test_output.xml'
