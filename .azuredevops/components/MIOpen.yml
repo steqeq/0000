@@ -63,80 +63,63 @@ parameters:
     - roctracer
 
 jobs:
-# - job: MIOpen
-#   timeoutInMinutes: 120
-#   variables:
-#   - group: common
-#   - template: /.azuredevops/variables-global.yml
-#   pool: ${{ variables.LARGE_DISK_BUILD_POOL }}
-#   workspace:
-#     clean: all
-#   strategy:
-#     matrix:
-#       gfx942:
-#         JOB_GPU_TARGET: gfx942
-#       gfx90a:
-#         JOB_GPU_TARGET: gfx90a
-#   steps:
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-#     parameters:
-#       aptPackages: ${{ parameters.aptPackages }}
-#       pipModules: ${{ parameters.pipModules }}
-#   # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
-#   # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest
-#   - task: Bash@3
-#     displayName: 'Install Boost 1.83'
-#     inputs:
-#       targetType: inline
-#       script: |
-#         sudo add-apt-repository ppa:mhier/libboost-latest -y
-#         sudo apt-get --yes install libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-#     parameters:
-#       checkoutRepo: ${{ parameters.checkoutRepo }}
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-#     parameters:
-#       dependencyList: ${{ parameters.rocmDependencies }}
-#       gpuTarget: $(JOB_GPU_TARGET)
-#       # CI case: download latest default branch build
-#       ${{ if eq(parameters.checkoutRef, '') }}:
-#         dependencySource: staging
-#       # manual build case: triggered by ROCm/ROCm repo
-#       ${{ elseif ne(parameters.checkoutRef, '') }}:
-#         dependencySource: tag-builds
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-#     parameters:
-#       extraBuildFlags: >-
-#         -DMIOPEN_BACKEND=HIP
-#         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-#         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-#         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
-#         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
-#         -DCMAKE_BUILD_TYPE=Release
-#         # -DBUILD_TESTING=ON
-#         # -DMIOPEN_TEST_GFX94X=ON
-#         -GNinja
-#   # - task: Bash@3
-#   #   displayName: ' Build MIOpen tests'
-#   #   inputs:
-#   #     targetType: 'inline'
-#   #     script: |
-#   #       cd build
-#   #       cmake --build . --config Release --target check
-#   - task: Bash@3
-#     displayName: 'List downloaded ROCm files'
-#     inputs:
-#       targetType: inline
-#       script: ls -1R $(Agent.BuildDirectory)/rocm
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-#     parameters:
-#       gpuTarget: $(JOB_GPU_TARGET)
+- job: MIOpen
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+      gfx90a:
+        JOB_GPU_TARGET: gfx90a
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
+  # Upgrade boost from apt by following https://launchpad.net/~mhier/+archive/ubuntu/libboost-latest
+  - task: Bash@3
+    displayName: 'Install Boost 1.83'
+    inputs:
+      targetType: inline
+      script: |
+        sudo add-apt-repository ppa:mhier/libboost-latest -y
+        sudo apt-get --yes install libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DMIOPEN_BACKEND=HIP
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
+        -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
+        -DCMAKE_BUILD_TYPE=Release
+        -DBUILD_TESTING=ON
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
 
 - job: MIOpen_testing
-  timeoutInMinutes: 60
-  # dependsOn: MIOpen
-  # condition: succeeded()
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -166,19 +149,18 @@ jobs:
       checkoutRepo: ${{ parameters.checkoutRepo }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
-      ${{ if eq(parameters.checkoutRef, 'develop') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, 'develop') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
-# MIOpen Test Build needs frugally-deep, grab its dependencies and build
 # MIOpen depends on a specific version of frugally-deep which is forked here: https://github.com/ROCm/frugally-deep
 # https://github.com/ROCm/frugally-deep/blob/master/INSTALL.md
   - task: Bash@3
@@ -227,18 +209,13 @@ jobs:
         -DMIOPEN_USE_MLIR=ON
         -DMIOPEN_GPU_SYNC=OFF
         ..
-  # - task: Bash@3
-  #   displayName: Build and run MIOpen tests
-  #   inputs:
-  #     targetType: inline
-  #     workingDirectory: build
-  #     script: CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: MIOpen
       testExecutable: 'CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check'
       testParameters: ''
       reloadAMDGPU: true
+      testPublishResults: false
   - task: Bash@3
     condition: always()
     displayName: Clean up Boost 1.83
@@ -248,27 +225,3 @@ jobs:
         sudo apt -y autoremove libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
         sudo add-apt-repository --remove ppa:mhier/libboost-latest -y
         sudo apt update
-
-# - job: MIOpen_testing_cleanup
-#   dependsOn: MIOpen_testing
-#   condition: failed()
-#   variables:
-#   - group: common
-#   - template: /.azuredevops/variables-global.yml
-#   pool: $(JOB_TEST_POOL)
-#   workspace:
-#     clean: all
-#   strategy:
-#     matrix:
-#       gfx942:
-#         JOB_GPU_TARGET: gfx942
-#         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
-#   steps:
-#   - task: Bash@3
-#     displayName: Clean up Boost 1.83
-#     inputs:
-#       targetType: inline
-#       script: |
-#         sudo apt-get -y autoremove libboost1.83-dev libboost-system1.83-dev libboost-filesystem1.83-dev
-#         sudo add-apt-repository --remove ppa:mhier/libboost-latest -y
-#         sudo apt-get update
