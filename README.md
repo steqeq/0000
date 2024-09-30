@@ -199,4 +199,4 @@ cmake --build build --target=doc
 ## Older ROCm releases
 
 For release information for older ROCm releases, refer to the
-[CHANGELOG](./CHANGELOG.md).
+[ROCm release history](https://rocm.docs.amd.com/en/latest/release/versions.html).
