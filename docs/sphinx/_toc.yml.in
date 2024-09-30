@@ -77,14 +77,8 @@ subtrees:
         title: System tuning
       - file: how-to/tuning-guides/mi300x/workload.rst
         title: Workload tuning
-  - file: conceptual/cluster-networking-topics.md
+  - url: https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/${branch}/index.html
     title: GPU cluster networking guides
-    subtrees:
-    - entries:
-      - url: https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/${branch}/how-to/single-node-config.html
-        title: Single node networking
-      - url: https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/${branch}/how-to/multi-node-config.html
-        title: Multi node networking
   - file: how-to/system-debugging.md
   - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
