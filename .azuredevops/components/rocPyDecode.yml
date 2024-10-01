@@ -97,7 +97,10 @@ jobs:
     displayName: Create wheel file
     inputs:
       targetType: inline
-      script: python setup.py bdist_wheel
+      script: |
+        export ROCM_PATH=$(Agent.BuildDirectory)/rocm
+        export HIP_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include/hip
+        python3 setup.py bdist_wheel
       workingDirectory: $(Build.SourcesDirectory)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
     parameters:
