@@ -490,6 +490,7 @@ cuLIB
 cuRAND
 cuSOLVER
 cuSPARSE
+customizations
 cTDP
 dataset
 datasets
@@ -698,6 +699,7 @@ rocsolver
 rocsparse
 rocthrust
 roctracer
+rst
 runtime
 runtimes
 sL
