@@ -79,9 +79,9 @@ subtrees:
         title: Workload tuning
   - url: https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/${branch}/index.html
     title: GPU cluster networking
-  - file: how-to/system-debugging.md
   - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
+  - file: how-to/system-debugging.md
   - file: conceptual/compiler-topics.md
     title: Using advanced compiler features
     subtrees:
