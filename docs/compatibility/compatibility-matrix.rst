@@ -10,6 +10,11 @@ Use this matrix to view the ROCm compatibility and system requirements across su
 
 You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-rocm-compatibility-matrix>`.
 
+
+.. note::
+
+   AMD Radeon and Radeon Pro GPUs can be used for graphics-related purposes or in headless environments for compute purposes (no graphics components). If you’re not using Radeon or Radeon Pro GPUs in a headless environment, review the `Compatibility matrices <https://rocm.docs.amd.com/projects/radeon/en/latest/docs/compatibility.html>`_ in the Use ROCm on Radeon GPU documentation.
+
 .. |br| raw:: html
 
    <br/>
