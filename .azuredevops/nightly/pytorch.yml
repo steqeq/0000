@@ -319,13 +319,6 @@ jobs:
       script: git clone https://github.com/pytorch/vision.git --depth=1 --recurse-submodules
       workingDirectory: $(Build.SourcesDirectory)
   - task: Bash@3
-    displayName: Apply vision patch
-    inputs:
-      targetType: inline
-      script: |
-        git apply $(Build.SourcesDirectory)/.azuredevops/patches/torchvision-package-name.patch
-      workingDirectory: $(Build.SourcesDirectory)/vision
-  - task: Bash@3
     displayName: Build vision
     inputs:
       targetType: inline
