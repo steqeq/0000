@@ -189,6 +189,9 @@ Installing bitsandbytes
       # Use -DBNB_ROCM_ARCH to specify target GPU arch
       cmake -DBNB_ROCM_ARCH="gfx942" -DCOMPUTE_BACKEND=hip -S .
 
+      # Compile the project
+      make
+
       # Install 
       python setup.py install
 

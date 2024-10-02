@@ -50,7 +50,7 @@ The following example shows how to use the repo tool to download the ROCm source
 ```bash
 mkdir -p ~/ROCm/
 cd ~/ROCm/
-~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.0.x
+~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.2.x
 ~/bin/repo sync
 ```
 
@@ -76,7 +76,7 @@ The Build time will reduce significantly if we limit the GPU Architecture/s agai
 
 mkdir -p ~/WORKSPACE/      # Or any folder name other than WORKSPACE
 cd ~/WORKSPACE/
-export ROCM_VERSION=6.2.0
+export ROCM_VERSION=6.2.2 # Or 6.2.0 or 6.2.1
 ~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.2.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
 ~/bin/repo sync
 
@@ -199,4 +199,4 @@ cmake --build build --target=doc
 ## Older ROCm releases
 
 For release information for older ROCm releases, refer to the
-[CHANGELOG](./CHANGELOG.md).
+[ROCm release history](https://rocm.docs.amd.com/en/latest/release/versions.html).

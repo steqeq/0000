@@ -1,5 +1,5 @@
 parameters:
-# currently excludes clr and rocm-examples
+# currently excludes clr
 - name: rocmDependencies
   type: object
   default:
@@ -10,6 +10,7 @@ parameters:
     - composable_kernel
     - half
     - HIP
+    - hip-tests
     - hipBLAS
     - hipBLAS-common
     - hipBLASLt
@@ -25,6 +26,7 @@ parameters:
     - llvm-project
     - MIOpen
     - MIVisionX
+    - omniperf
     - rccl
     - rdc
     - rocAL
@@ -36,6 +38,7 @@ parameters:
     - ROCgdb
     - rocm-cmake
     - rocm-core
+    - rocm-examples
     - rocminfo
     - rocMLIR
     - ROCmValidationSuite
@@ -43,7 +46,9 @@ parameters:
     - rocm_smi_lib
     - rocPRIM
     - rocprofiler-register
+    - rocprofiler-sdk
     - rocprofiler
+    - rocPyDecode
     - ROCR-Runtime
     - rocRAND
     - rocr_debug_agent
@@ -97,6 +102,7 @@ jobs:
       dependencyList: ${{ parameters.rocmDependencies }}
       dependencySource: staging
       skipLibraryLinking: true
+      skipLlvmSymlink: true
       gpuTarget: $(JOB_GPU_TARGET)
   - script: df -h
     displayName: System disk space after ROCm

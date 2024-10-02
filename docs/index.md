@@ -23,58 +23,41 @@ Installation instructions are available from:
 ROCm documentation is organized into the following categories:
 
 ::::{grid} 1 2 2 2
+:gutter: 3
 :class-container: rocm-doc-grid
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-compatibility.jpg
-:img-alt: Compatibility information
-:padding: 2
+:::{grid-item-card} Compatibility
+:class-body: rocm-card-banner rocm-hue-2
 
 * [Compatibility matrix](./compatibility/compatibility-matrix.rst)
 * {doc}`Linux system requirements<rocm-install-on-linux:reference/system-requirements>`
 * {doc}`Windows system requirements<rocm-install-on-windows:reference/system-requirements>`
 * {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`
-* {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
-* {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
-* {doc}`OpenMP<llvm-project:conceptual/openmp>`
-* [Precision support](./compatibility/precision-support.rst)
-* {doc}`ROCm on Radeon GPUs<radeon:index>`
+* {doc}`User and kernel-space support matrix<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
+* {doc}`Docker image support matrix<rocm-install-on-linux:reference/docker-image-support-matrix>`
+* {doc}`Use ROCm on Radeon GPUs<radeon:index>`
 :::
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-howto.jpg
-:img-alt: How-to documentation
-:padding: 2
+:::{grid-item-card} How to
+:class-body: rocm-card-banner rocm-hue-12
 
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
 * [System optimization](./how-to/system-optimization/index.rst)
-  * [AMD Instinct MI300X](./how-to/system-optimization/mi300x.rst)
-  * [AMD Instinct MI300A](./how-to/system-optimization/mi300a.rst)
-  * [AMD Instinct MI200](./how-to/system-optimization/mi200.md)
-  * [AMD Instinct MI100](./how-to/system-optimization/mi100.md)
-  * [AMD Instinct RDNA2](./how-to/system-optimization/w6000-v620.md)
 * [AMD Instinct MI300X tuning guides](./how-to/tuning-guides/mi300x/index.rst)
-  * [LLM inference performance validation](./how-to/tuning-guides/mi300x/performance-validation-vllm.rst)
-  * [System tuning](./how-to/tuning-guides/mi300x/system.rst)
-  * [Workload tuning](./how-to/tuning-guides/mi300x/workload.rst)
+* [GPU cluster networking](https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/latest/index.html)
 * [System debugging](./how-to/system-debugging.md)
-* [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
+* [Using MPI](./how-to/gpu-enabled-mpi.rst)
 * [Using advanced compiler features](./conceptual/compiler-topics.md)
 * [Setting the number of CUs](./how-to/setting-cus)  
-* [GitHub examples](https://github.com/amd/rocm-examples)
+* [ROCm examples](https://github.com/amd/rocm-examples)
 :::
 
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-conceptual.jpg
-:img-alt: Conceptual documentation
-:padding: 2
+:::{grid-item-card} Conceptual
+:class-body: rocm-card-banner rocm-hue-8
 
-* [GPU architecture](./conceptual/gpu-arch.md)
+* [GPU architecture overview](./conceptual/gpu-arch.md)
 * [GPU memory](./conceptual/gpu-memory.md)
 * [File structure (Linux FHS)](./conceptual/file-reorg.md)
 * [GPU isolation techniques](./conceptual/gpu-isolation.md)
@@ -85,21 +68,13 @@ ROCm documentation is organized into the following categories:
 :::
 
 <!-- markdownlint-disable MD051 -->
-:::{grid-item-card}
-:class-card: sd-text-black
-:img-top: ./data/banner-reference.jpg
-:img-alt: Reference documentation
-:padding: 2
+:::{grid-item-card} Reference
+:class-body: rocm-card-banner rocm-hue-6
 
-* [Libraries](./reference/api-libraries.md)
-  * [Artificial intelligence](#artificial-intelligence-apis)
-  * [C++ primitives](#cpp-primitives)
-  * [Communication](#communication-libraries)
-  * [Math](#math-apis)
-  * [Random number generators](#random-number-apis)
-  * [HIP runtime](#hip-runtime)
-* [ROCm tools and compilers](./reference/rocm-tools.md)
-* [GPU hardware specifications](./reference/gpu-arch-specs.rst)
+* [ROCm libraries](./reference/api-libraries.md)
+* [ROCm tools, compilers, and runtimes](./reference/rocm-tools.md)
+* [Accelerator and  GPU hardware specifications](./reference/gpu-arch-specs.rst)
+* [Precision support](./reference/precision-support.rst)
 :::
 <!-- markdownlint-enable MD051 -->
 

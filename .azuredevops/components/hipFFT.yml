@@ -14,11 +14,11 @@ parameters:
     - libgtest-dev
     - libfftw3-dev
     - python3-pip
-    - libomp-14-dev
 # rocm dependencies should match dependencies-rocm.yml
 - name: rocmDependencies
   type: object
   default:
+    - aomp
     - rocRAND
     - hipRAND
     - llvm-project

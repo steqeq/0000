@@ -90,6 +90,8 @@ jobs:
         -DCMAKE_C_COMPILER_LAUNCHER=ccache
         -DCMAKE_HIP_FLAGS="-Wno-missing-include-dirs"
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DCK_BUILD_JIT_LIB=ON
+        -DCMAKE_POSITION_INDEPENDENT_CODE=ON
         -DCMAKE_BUILD_TYPE=Release
         -DGPU_TARGETS=$(JOB_GPU_TARGET)
         -GNinja

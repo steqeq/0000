@@ -52,6 +52,7 @@ parameters:
     - rocprofiler-register
     - rocm_smi_lib
     - ROCR-Runtime
+    - roctracer
 
 jobs:
 - job: rocBLAS
@@ -84,28 +85,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - task: Bash@3
-    displayName: 'Download AOCL'
-    inputs:
-      targetType: inline
-      workingDirectory: '$(Pipeline.Workspace)'
-      # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb
-      # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        script: wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-1/aocl-linux-aocc-4.1.0_1_amd64.deb
-  - task: Bash@3
-    displayName: 'Install AOCL'
-    inputs:
-      targetType: inline
-      workingDirectory: '$(Pipeline.Workspace)'
-      # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        script: sudo apt install --yes ./aocl-linux-gcc-4.2.0_1_amd64.deb
-      # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        script: sudo apt install --yes ./aocl-linux-aocc-4.1.0_1_amd64.deb
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aocl.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}

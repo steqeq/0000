@@ -4,113 +4,68 @@
   <meta name="keywords" content="ROCm, contributing, contribute, maintainer, contributor">
 </head>
 
-# Contribute to ROCm documentation
+# Contributing to the ROCm documentation
 
-All ROCm projects are GitHub-based, so if you want to contribute, you can do so by:
+The ROCm documentation, like all of ROCm, is open source and available on GitHub. You can contribute to the ROCm documentation by forking the appropriate repository, making your changes, and opening a pull request.
 
-* [Submitting a pull request in the appropriate GitHub repository](#submit-a-pull-request)
-* [Creating an issue in the appropriate GitHub repository](#create-an-issue)
-* [Suggesting a new feature](#suggest-a-new-feature)
+To provide feedback on the ROCm documentation, including submitting an issue or suggesting a feature, see [Providing feedback about the ROCm documentation](./feedback.md).
 
-```{important}
-By creating a pull request (PR), you agree to allow your contribution to be licensed under the terms of the
-LICENSE.txt file in the corresponding repository. Different repositories may use different licenses.
-```
+## The ROCm repositories
 
-## Submit a pull request
+The repositories for ROCm and all ROCm components are available on GitHub.
 
-To make edits to our documentation via PR, follow these steps:
+| Module | Documentation location |
+| --- | --- |
+| ROCm framework | [https://github.com/ROCm/ROCm/tree/develop/docs](https://github.com/ROCm/ROCm/tree/develop/docs) |
+| ROCm installation for Linux | [https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs](https://github.com/ROCm/rocm-install-on-linux/tree/develop/docs) |
+| ROCm HIP SDK installation for Windows |  [https://github.com/ROCm/rocm-install-on-windows/tree/develop/docs](https://github.com/ROCm/rocm-install-on-windows/tree/develop/docs) |
 
-1. Identify the repository and the file you want to update. For example, to update this page, you would
-  need to modify content located in this file:
-  `https://github.com/ROCm/ROCm/blob/develop/docs/contribute/contributing.md`
+Individual components have their own repositories with their own documentation in their own `docs` folders.
 
-2. (optional, but recommended) Fork the repository.
+The sub-folders within the `docs` folders across ROCm are typically structured as follows:
 
-3. Clone the repository locally and (optionally) add your fork. Select the green 'Code' button and copy
-   the URL (e.g., `git@github.com:ROCm/ROCm.git`).
+| Sub-folder name | Documentation type |
+|-------|----------|
+| `install` | Installation instructions, build instructions, and prerequisites |
+| `conceptual` | Important concepts |
+| `how-to` | How to implement specific use cases |
+| `tutorials` | Tutorials |
+| `reference` | API references and other reference resources |
 
-   * From your terminal, run:
+## Editing and adding to the documentation
 
-      ```bash
-      git clone git@github.com:ROCm/ROCm.git
-      ```
+The ROCm documentation is written in [reStructuredText (rst)](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html) and [Github-flavoured Markdown](https://github.github.com/gfm/), and follows the [Google developer documentation style guide](https://developers.google.com/style/highlights). reStructuredText is preferred when adding content to the documentation.
 
-   * Optionally add your fork to this local copy of the repository by running:
+To edit or add to the documentation:
 
-      ```bash
-      git add remote <name-of-my-fork> <git@github.com:my-username/ROCm.git>
-      ```
+1. Fork the repository you want to add to or edit.
+2. Clone your fork locally.
+3. Create a new local branch cut from the `develop` branch of the repository.
+4. Make your changes to the documentation.
 
-      To get the URL of your fork, go to your GitHub profile, select the fork and click the green 'Code'
-      button (the same process you followed to get the main GitHub repository URL).
-
-4. Change directory into your local copy of the repository, and run ``git pull`` (or ``git pull origin develop``) to ensure your local copy has the most recent content.
-
-5. Create and checkout a new branch using the following command:
+5. Optionally, build the documentation locally before creating a pull request by running the following commands from within the `docs` folder:
 
     ```bash
-    git checkout -b <branch_name>
-    ```
-
-6. Change directory into the `./docs` folder and make any documentation changes locally using your preferred code editor. Follow the guidelines listed on the
-   [documentation structure](./doc-structure.md) page.
-
-   ```{note}
-   Spell checking is performed for pull requests by {doc}`ROCm Docs Core<rocm-docs-core:index>`. To ensure your PR passes spell checking you might need at add new words or acronyms to the `.wordlist.txt` file as described in {doc}`Spell Check<rocm-docs-core:user_guide/spellcheck>`. 
-   ```
-
-7. Optionally run a local test build of the documentation to ensure the content builds and looks as expected. In your terminal, run the following commands from within the `./docs` folder of your cloned repository:
-
-     ```bash
      pip3 install -r sphinx/requirements.txt  # You only need to run this command once
      python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
      ```
 
-    The build output files are located in the `docs/_build` folder. To preview your build, open the index file
-    (`docs/_build/html/index.html`) file. For more information, see [Building documentation](building.md). To learn
-    more about our build tools, see [Documentation toolchain](toolchain.md).
+    The output files will be located in the `docs/_build` folder. Open `docs/_build/html/index.html` to view the documentation.
 
-8. Commit your changes and push them to GitHub by running:
+    For more information on ROCm build tools, see [Documentation toolchain](toolchain.md).
+6. Push your changes. A GitHub link will be returned in the output of the `git push` command. Open this link in a browser to create the pull request.
 
-    ```bash
-    git add <path-to-my-modified-file> # To add all modified files, you can use: git add .
-    git commit -m "my-updates"
-    git push <name-of-my-fork>
-    ```
+    The documentation is built as part of the checks on pull request, along with spell checking and linting. Scroll to the bottom of your pull request to view all the checks.
 
-    After pushing, you will get a GitHub link in the terminal output. Copy this link and paste it into a
-    browser to create your PR.
+    Verify that the linking and spell checking have passed, and that the documentation was built successfully. New words or acronyms can be added to the [wordlist file](https://github.com/ROCm/rocm-docs-core/blob/develop/.wordlist.txt) as needed.
 
-## Create an issue
+    The Read The Docs build of your pull request can be accessed by clicking on the Details link next to the Read The Docs build check. Verify that your changes are in the build and look as expected.
 
-1. To create a new GitHub issue, select the 'Issues' tab in the appropriate repository
-  (e.g., https://github.com/ROCm/ROCm/issues).
-2. Use the search bar to make sure the issue doesn't already exist.
-3. If your issue is not already listed, select the green 'New issue' button to the right of the page. Select
-  the type of issue and fill in the resulting template.
+    Your pull request will be reviewed by a member of the ROCm documentation team.
 
-### General issue guidelines
+See the [GitHub documentation](https://docs.github.com/en) for information on how to fork and clone a repository, and how to create and push a local branch.
 
-* Use your best judgement for issue creation. If your issue is already listed, upvote the issue and
-  comment or post to provide additional details, such as how you reproduced this issue.
-* If you're not sure if your issue is the same, err on the side of caution and file your issue.
-  You can add a comment to include the issue number (and link) for the similar issue. If we evaluate
-  your issue as being the same as the existing issue, we'll close the duplicate.
-* If your issue doesn't exist, use the issue template to file a new issue.
-  * When filing an issue, be sure to provide as much information as possible, including script output so
-    we can collect information about your configuration. This helps reduce the time required to
-    reproduce your issue.
-  * Check your issue regularly, as we may require additional information to successfully reproduce the
-    issue.
-
-## Suggest a new feature
-
-Use the [GitHub Discussion forum](https://github.com/ROCm/ROCm/discussions)
-(Ideas category) to propose new features. Our maintainers are happy to provide direction and
-feedback on feature development.
-
-## Future development workflow
-
-The current ROCm development workflow is GitHub-based. If, in the future, we change this platform,
-the tools and links may change. In this instance, we will update contribution guidelines accordingly.
+```{important}
+By creating a pull request (PR), you agree to allow your contribution to be licensed under the terms of the
+LICENSE.txt file in the corresponding repository. Different repositories can use different licenses.
+```
