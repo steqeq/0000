@@ -13,7 +13,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
 
 .. note::
 
-   AMD Radeon and Radeon Pro GPUs can be used for graphics-related purposes or in headless environments for compute purposes (no graphics components). If you’re not using Radeon or Radeon Pro GPUs in a headless environment, review the `Compatibility matrices <https://rocm.docs.amd.com/projects/radeon/en/latest/docs/compatibility.html>`_ in the Use ROCm on Radeon GPU documentation.
+   Like AMD Instinct accelerators, AMD Radeon and Radeon Pro GPUs can be used in environments for compute purposes (no display information or graphics). If using AMD Radeon or Radeon Pro GPUs with ROCm for graphics-related purposes (for example, display connected), review the `Compatibility matrices <https://rocm.docs.amd.com/projects/radeon/en/latest/docs/compatibility.html>`_ in the Use ROCm on Radeon GPU documentation to confirm system requirements.
 
 .. |br| raw:: html
 
