@@ -10,10 +10,7 @@ Use this matrix to view the ROCm compatibility and system requirements across su
 
 You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-rocm-compatibility-matrix>`.
 
-
-.. note::
-
-   Like AMD Instinct accelerators, AMD Radeon and Radeon Pro GPUs can be used in environments for compute purposes (no display information or graphics). If using AMD Radeon or Radeon Pro GPUs with ROCm for graphics-related purposes (for example, display connected), review the `Compatibility matrices <https://rocm.docs.amd.com/projects/radeon/en/latest/docs/compatibility.html>`_ in the Use ROCm on Radeon GPU documentation to confirm system requirements.
+Accelerators and GPUs listed in the following table note support for compute purposes (no display information or graphics). If you’re using ROCm with AMD Radeon or Radeon Pro GPUs for graphics workloads, see the `Use ROCm on Radeon GPU documentation <https://rocm.docs.amd.com/projects/radeon/en/latest/docs/compatibility.html>`_ to verify compatibility and system requirements.
 
 .. |br| raw:: html
 
