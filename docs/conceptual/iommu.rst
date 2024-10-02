@@ -1,6 +1,6 @@
 .. meta::
    :description: Input-Output Memory Management Unit (IOMMU)
-   :keywords: IOMMU, P2PDMA, XGMI, AMD, ROCm
+   :keywords: IOMMU, DMA, PCIe, XGMI, AMD, ROCm
 
 ****************************************************************
 Input-Output Memory Management Unit (IOMMU)
@@ -35,8 +35,8 @@ a number of limitations on various platforms. For example only certain root port
 If one of your devices happens to be on an unsupported root port, it will not work. The Linux kernel has
 special peer to peer DMA code to handle these cases. It provides an API for drivers to use which can look
 at two devices and determine whether or not they can support peer to peer DMA. This functionality is controlled
-by the CONFIG_PCI_P2PDMA kernel config option. In addition to that parameter, you also need to enable
-dma-buf (the framework for sharing DMA memory across drivers). To properly support peer to peer DMA with the IOMMU,
+by the ``CONFIG_PCI_P2PDMA`` kernel config option. In addition to that parameter, you also need to enable
+``dma-buf`` (the framework for sharing DMA memory across drivers). To properly support peer to peer DMA with the IOMMU,
 the following options must be enabled in your kernel config: ``CONFIG_PCI_P2PDMA``, ``CONFIG_DMABUF_MOVE_NOTIFY`` 
 and ``CONFIG_HSA_AMD_P2P``.
 
@@ -55,11 +55,11 @@ Linux has supported the IOMMU for more than a decade in both virtualized environ
 There are 3 modes of operation most commonly used:
 
 * IOMMU disabled. The IOMMU is disabled and the entire platform shares a common platform address space for 
-  system memory and MMIO spaces. Setting iommu=off on the kernel command line will disable the IOMMU.
+  system memory and MMIO spaces. Setting ``iommu=off`` on the kernel command line will disable the IOMMU.
 
 * IOMMU enabled in passthrough mode. In this case, the IOMMU is enabled, but the identity mapping is used for all devices.
   The IOMMU is enabled, but the entire platform still shares a common platform address space for system memory and MMIO spaces.
-  Setting iommu=pt on the kernel command line enables this mode.  There are cases where you many need some
+  Setting ``iommu=pt`` on the kernel command line enables this mode.  There are cases where you many need some
   aspects of the IOMMU (e.g., interrupt remapping), but don't want DMA remapping or you have a system with a lot of cores and
   want good interrupt distribution across the cores.
 
@@ -79,7 +79,7 @@ Advantages
 ----------------------------------------------------------------
 
 * Extra security and debuggability. Devices are prevented from access address space they are not allowed to access.
-  This prevents accidently or nefarious device accesses to the platform address space.  Getting an IOMMU page fault on the
+  This prevents accidental or nefarious device accesses to the platform address space.  Getting an IOMMU page fault on the
   bad access aids in debugging.
 
 * Device DMA addressing limitations are no longer a problem. The kernel will guarantee that the device will always get

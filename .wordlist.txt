@@ -211,6 +211,7 @@ MLM
 MMA
 MMIO
 MMIOH
+MMU
 MNIST
 MPI
 MSVC
@@ -499,6 +500,7 @@ datatypes
 dbgapi
 de
 deallocation
+debuggability
 denoise
 denoised
 denoises
@@ -513,6 +515,7 @@ devsel
 dimensionality
 disambiguates
 distro
+distros
 el
 embeddings
 enablement
@@ -746,6 +749,7 @@ uncached
 uncorrectable
 unhandled
 uninstallation
+unmapped
 unsqueeze
 unstacking
 unswitching
@@ -765,6 +769,8 @@ vectorize
 vectorized
 vectorizer
 vectorizes
+virtualize
+virtualized
 vjxb
 voxel
 walkthrough
