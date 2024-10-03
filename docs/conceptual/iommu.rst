@@ -9,7 +9,7 @@ Input-Output Memory Management Unit (IOMMU)
 Overview
 ================================================================
 
-The IOMMU (IO Memory Management Unit) is device which provides memory remapping services to 
+The IOMMU (IO Memory Management Unit) is a device which provides memory remapping services to 
 IO devices on a platform. Similar to the MMU on a CPU, the IOMMU is able to provide a private 
 virtual address space for each device or group of devices on a platform. While the IOMMU is 
 most commonly used for virtualization provide a private IO space for devices used in a guest 
@@ -67,7 +67,7 @@ There are 3 modes of operation most commonly used:
   All devices on Linux register their DMA addressing capabilities (e.g. 32 bit, 40 bit, 44, bit, etc. i.e., how much address
   space can they natively access). The kernel will then make sure that any address space mapped for DMA is mapped within
   the DMA addressing limits of the device. Additionally, only address space explicitly mapped by the device is mapped into
-  its virtual address space so an access to an unmapped page will generation an IOMMU page fault. This is generally the
+  its virtual address space so an access to an unmapped page will generate an IOMMU page fault. This is generally the
   default when the IOMMU is enabled.
 
 Advantages and disadvantages
