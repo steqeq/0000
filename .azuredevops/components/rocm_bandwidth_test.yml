@@ -72,7 +72,7 @@ jobs:
 
 - job: rocm_bandwidth_test_testing
   dependsOn: rocm_bandwidth_test
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

@@ -93,7 +93,7 @@ jobs:
 
 - job: rpp_testing
   dependsOn: rpp
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

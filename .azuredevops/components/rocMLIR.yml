@@ -66,6 +66,7 @@ jobs:
 
 # compiling and running test on the test system together
 - job: rocMLIR_testing
+  condition: eq(variables.ENABLE_GFX942_TESTS, 'true')
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

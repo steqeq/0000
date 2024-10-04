@@ -84,7 +84,7 @@ jobs:
 
 - job: roctracer_testing
   dependsOn: roctracer
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

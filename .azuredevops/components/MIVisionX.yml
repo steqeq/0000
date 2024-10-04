@@ -120,7 +120,7 @@ jobs:
 
 - job: MIVisionX_testing
   dependsOn: MIVisionX
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
