@@ -62,6 +62,8 @@ parameters:
     - ffmpeg
     - libopenblas-dev
     - liblapack-dev
+    - libswscale-dev
+    - libavformat-dev
 - name: pipModules
   type: object
   default:
@@ -87,6 +89,9 @@ parameters:
   # list for vision
     - auditwheel
     - future
+    - pytest
+    - pytest-azurepipelines
+    - pillow
 # list from https://github.com/pytorch/builder/blob/main/manywheel/build_rocm.sh
 - name: rocmDependencies
   type: object
@@ -117,6 +122,24 @@ parameters:
     - hipCUB
     - rocThrust
     - hipBLAS-common
+- name: rocmTestDependencies
+  type: object
+  default:
+    - rocminfo
+# Reference on what tests to run for torchvision found in private repo:
+# https://github.com/ROCm/rocAutomation/blob/jenkins-pipelines/pytorch/pytorch_ci/test_pytorch_test1.sh#L54
+# Will iterate through this list using pytest
+- name: torchTestList
+  type: object
+  default:
+    - nn
+    - torch
+#    - cuda seg faults and might need cuda installed on test system
+#    - ops takes too long
+    - unary_ufuncs
+    - binary_ufuncs
+    - autograd
+#    - inductor/torchinductor takes too long
 
 trigger: none
 pr: none
@@ -300,7 +323,10 @@ jobs:
     inputs:
       targetType: inline
       script: >-
-        BUILD_VERSION=$(ROCM_BRANCH).$(JOB_GPU_TARGET)-$(cat $(Build.SourcesDirectory)/pytorch/version.txt | cut -da -f1)$(date -u +%Y%m%d)
+        TORCH_PACKAGE_NAME=torch.$(ROCM_BRANCH).$(JOB_GPU_TARGET)
+        TORCHVISION_PACKAGE_NAME=torchvision.$(ROCM_BRANCH).$(JOB_GPU_TARGET)
+        PYTORCH_VERSION=$(cat $(Build.SourcesDirectory)/pytorch/version.txt | cut -da -f1)post$(date -u +%Y%m%d)
+        BUILD_VERSION=$(cat $(Build.SourcesDirectory)/vision/version.txt | cut -da -f1)post$(date -u +%Y%m%d)
         python3 setup.py bdist_wheel
       workingDirectory: $(Build.SourcesDirectory)/vision
   - task: Bash@3
@@ -319,3 +345,192 @@ jobs:
     retryCountOnTaskFailure: 3
     inputs:
       targetPath: $(Build.BinariesDirectory)
+
+- job: torchvision_testing
+  dependsOn: pytorch
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  - name: PYTORCH_TEST_WITH_ROCM
+    value: 1
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - task: Bash@3
+    displayName: 'Register libjpeg-turbo packages'
+    inputs:
+      targetType: inline
+      script: |
+        sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+        wget -q -O- https://packagecloud.io/dcommander/libjpeg-turbo/gpgkey | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/libjpeg-turbo.gpg > /dev/null
+        echo "deb [signed-by=/etc/apt/trusted.gpg.d/libjpeg-turbo.gpg] https://packagecloud.io/dcommander/libjpeg-turbo/any/ any main" | sudo tee /etc/apt/sources.list.d/libjpeg-turbo.list
+        sudo apt update
+        apt-cache show libjpeg-turbo-official | grep Version
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download Pipeline Wheel Files'
+    inputs:
+      itemPattern: '**/*$(JOB_GPU_TARGET)*.whl'
+      targetPath: $(Agent.BuildDirectory)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      dependencySource: staging
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      dependencySource: staging
+      skipLlvmSymlink: true
+# get sources to run test scripts
+  - task: Bash@3
+    displayName: git clone upstream pytorch
+    inputs:
+      targetType: inline
+      script: git clone https://github.com/pytorch/pytorch.git --depth=1 --recurse-submodules
+      workingDirectory: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: git clone pytorch vision
+    inputs:
+      targetType: inline
+      script: git clone https://github.com/pytorch/vision.git --depth=1 --recurse-submodules
+      workingDirectory: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: Install Wheel Files
+    inputs:
+      targetType: inline
+      script: find . -name "*.whl" -exec pip install --no-index --find-links=. --no-dependencies -v {} \;
+      workingDirectory: $(Agent.BuildDirectory)
+  - task: Bash@3
+    displayName: Show Updated pip List
+    inputs:
+      targetType: inline
+      script: pip list -v
+      workingDirectory: $(Agent.BuildDirectory)
+  - task: Bash@3
+    displayName: Add ROCm binaries to PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/bin"
+  - task: Bash@3
+    displayName: Add Python site-packages binaries to path
+    inputs:
+      targetType: inline
+      script: |
+        USER_BASE=$(python3 -m site --user-base)
+        echo "##vso[task.prependpath]$USER_BASE/bin"
+  - task: Bash@3
+    displayName: Add torch libs to ldconfig
+    inputs:
+      targetType: inline
+      script: |
+        echo $(python3 -m site --user-site)/torch/lib | sudo tee /etc/ld.so.conf.d/torch.conf
+        sudo ldconfig -v
+        ldconfig -p
+# https://pytorch.org/get-started/locally/#linux-verification
+# https://rocm.docs.amd.com/projects/install-on-linux/en/latest/how-to/3rd-party/pytorch-install.html#testing-the-pytorch-installation
+  - task: Bash@3
+    displayName: Simple Import Torch Tests
+    inputs:
+      targetType: inline
+      script: |
+        python3 -c 'import torch' 2> /dev/null && echo 'Success' || echo 'Failure'
+        python3 -c 'import torch; print(torch.cuda.is_available())'
+        python3 -c 'import torch; x = torch.rand(5, 3); print(x)'
+# Test artifact build script has too many if statements for different environments
+# Based off the snippet of interest for this environment, with some adjustments
+# https://github.com/pytorch/pytorch/blob/main/.ci/pytorch/build.sh#L335-L375
+# Removing in-line comments since it does not fit with the yaml markup
+  - task: Bash@3
+    displayName: Build Pytorch Test Artifacts
+    continueOnError: true
+    inputs:
+      targetType: inline
+      script: |
+        CUSTOM_TEST_ARTIFACT_BUILD_DIR="build/custom_test_artifacts"
+        CUSTOM_TEST_USE_ROCM=ON
+        CUSTOM_TEST_MODULE_PATH="${PWD}/cmake/public"
+        mkdir -pv "${CUSTOM_TEST_ARTIFACT_BUILD_DIR}"
+
+        CUSTOM_OP_BUILD="${CUSTOM_TEST_ARTIFACT_BUILD_DIR}/custom-op-build"
+        CUSTOM_OP_TEST="${PWD}/test/custom_operator"
+        python --version
+        SITE_PACKAGES="$(python -c 'import site; print(";".join([x for x in site.getsitepackages()] + [x + "/torch" for x in site.getsitepackages()]))')"
+
+        mkdir -p "$CUSTOM_OP_BUILD"
+        pushd "$CUSTOM_OP_BUILD"
+        cmake "$CUSTOM_OP_TEST" -DCMAKE_PREFIX_PATH="$SITE_PACKAGES" -DPython_EXECUTABLE="$(which python)" \
+              -DCMAKE_MODULE_PATH="$CUSTOM_TEST_MODULE_PATH" -DUSE_ROCM="$CUSTOM_TEST_USE_ROCM"
+        make VERBOSE=1
+        popd
+
+        JIT_HOOK_BUILD="${CUSTOM_TEST_ARTIFACT_BUILD_DIR}/jit-hook-build"
+        JIT_HOOK_TEST="$PWD/test/jit_hooks"
+        python --version
+        SITE_PACKAGES="$(python -c 'import site; print(";".join([x for x in site.getsitepackages()] + [x + "/torch" for x in site.getsitepackages()]))')"
+        mkdir -p "$JIT_HOOK_BUILD"
+        pushd "$JIT_HOOK_BUILD"
+        cmake "$JIT_HOOK_TEST" -DCMAKE_PREFIX_PATH="$SITE_PACKAGES" -DPython_EXECUTABLE="$(which python)" \
+              -DCMAKE_MODULE_PATH="$CUSTOM_TEST_MODULE_PATH" -DUSE_ROCM="$CUSTOM_TEST_USE_ROCM"
+        make VERBOSE=1
+        popd
+
+        CUSTOM_BACKEND_BUILD="${CUSTOM_TEST_ARTIFACT_BUILD_DIR}/custom-backend-build"
+        CUSTOM_BACKEND_TEST="${PWD}/test/custom_backend"
+        python --version
+        mkdir -p "$CUSTOM_BACKEND_BUILD"
+        pushd "$CUSTOM_BACKEND_BUILD"
+        cmake "$CUSTOM_BACKEND_TEST" -DCMAKE_PREFIX_PATH="$SITE_PACKAGES" -DPython_EXECUTABLE="$(which python)" \
+              -DCMAKE_MODULE_PATH="$CUSTOM_TEST_MODULE_PATH" -DUSE_ROCM="$CUSTOM_TEST_USE_ROCM"
+        make VERBOSE=1
+        popd
+      workingDirectory: $(Build.SourcesDirectory)/pytorch
+  - ${{ each torchTest in parameters.torchTestList }}:
+    - task: Bash@3
+      displayName: Test ${{ torchTest }}
+      continueOnError: true
+      inputs:
+        targetType: inline
+        workingDirectory: $(Build.SourcesDirectory)/pytorch
+        ${{ if contains(torchTest, '/') }}:
+          script: pytest test/${{ split(torchTest, '/')[0] }}/test_${{ split(torchTest, '/')[1] }}.py
+        ${{ else }}:
+          script: pytest test/test_${{ torchTest }}.py
+# Reference on what tests to run for torchvision found in private repo:
+# https://github.com/ROCm/rocAutomation/blob/jenkins-pipelines/pytorch/pytorch_ci/test_torchvision.sh#L51
+  - task: Bash@3
+    displayName: Test vision/transforms
+    continueOnError: true
+    inputs:
+      targetType: inline
+      script: pytest test/test_transforms.py
+      workingDirectory: $(Build.SourcesDirectory)/vision
+  - task: Bash@3
+    displayName: Uninstall Wheel Files
+    inputs:
+      targetType: inline
+      script: find . -name "*.whl" -exec pip uninstall -y {} \;
+      workingDirectory: $(Agent.BuildDirectory)
+  - task: Bash@3
+    displayName: Remove Python site-packages binaries from path
+    inputs:
+      targetType: inline
+      script: |
+        USER_BASE=$(python3 -m site --user-base)
+        echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$USER_BASE/bin;;' -e 's;^/;;' -e 's;/$;;')"
+  - task: Bash@3
+    displayName: Remove ROCm binaries from PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/bin;;' -e 's;^/;;' -e 's;/$;;')"

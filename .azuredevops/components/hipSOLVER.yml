@@ -42,6 +42,7 @@ parameters:
     - ROCR-Runtime
     - rocSOLVER
     - rocSPARSE
+    - roctracer
 
 jobs:
 - job: hipSOLVER

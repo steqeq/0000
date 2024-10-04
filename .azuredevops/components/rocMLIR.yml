@@ -12,14 +12,23 @@ parameters:
     - ninja-build
     - git
     - python3-pip
+    - libdrm-dev
+- name: pipModules
+  type: object
+  default:
+    - tomli
 - name: rocmDependencies
   type: object
   default:
     - llvm-project
     - rocm-cmake
+    - clr
+    - rocminfo
+    - rocprofiler-register
+    - ROCR-Runtime
 
 jobs:
-- job: rocMLIR
+- job: rocMLIR_library
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -30,6 +39,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -53,3 +63,65 @@ jobs:
         -DBUILD_FAT_LIBROCKCOMPILER=1
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+# compiling and running test on the test system together
+- job: rocMLIR_testing
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: ${{ variables.GFX942_TEST_POOL }}
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - task: Bash@3
+    displayName: ROCm symbolic link
+    inputs:
+      targetType: inline
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      installEnabled: false
+      extraBuildFlags: >-
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DROCM_TEST_CHIPSET=$(JOB_GPU_TARGET)
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocMLIR
+      testDir: $(Build.SourcesDirectory)/build
+      testExecutable: ninja
+      testParameters: check-rocmlir

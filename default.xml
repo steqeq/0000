@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remote name="rocm-org" fetch="https://github.com/ROCm/" />
-    <default revision="refs/tags/rocm-6.2.0"
+    <default revision="refs/tags/rocm-6.2.2"
      remote="rocm-org"
      sync-c="true"
      sync-j="4" />
@@ -25,7 +25,6 @@
 <!--HIP Projects-->
     <project name="HIP" />
     <project name="hip-tests" />
-    <project name="HIP-Examples" />
     <project name="HIPIFY" />
     <project name="clr" />
     <project name="hipother" />

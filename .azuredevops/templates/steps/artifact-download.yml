@@ -33,6 +33,7 @@ parameters:
     composable_kernel: develop
     half: rocm
     HIP: amd-staging
+    hip-tests: amd-staging
     hipBLAS: develop
     hipBLASLt: develop
     hipBLAS-common: develop
@@ -48,6 +49,7 @@ parameters:
     llvm-project: amd-staging
     MIOpen: develop
     MIVisionX: develop
+    omniperf: amd-staging
     rccl: develop
     rdc: amd-staging
     rocAL: develop
@@ -66,9 +68,10 @@ parameters:
     rocm_bandwidth_test: master
     rocm_smi_lib: amd-staging
     rocPRIM: develop
-    rocprofiler: amd-staging
     rocprofiler-register: amd-staging
     rocprofiler-sdk: amd-staging
+    rocprofiler: amd-staging
+    rocPyDecode: develop
     ROCR-Runtime: amd-staging
     rocRAND: develop
     rocr_debug_agent: amd-staging
@@ -137,12 +140,18 @@ parameters:
 - name: allowPartiallySucceededBuilds
   type: object
   default:
-    - rocm-cmake
     - amdsmi
+    - aomp
+    - HIPIFY
+    - MIVisionX
+    - omniperf
+    - rccl
+    - rdc
+    - rocm-cmake
     - rocm_smi_lib
     - rocFFT
-    - MIVisionX
-# BELOW REQUIRED IF useDefaultBranch and useMainlineBranch both false
+    - rpp
+# BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
   default: '$(Build.SourceBranchName)' # for tagged builds

@@ -5,9 +5,8 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
-- name: offloadEnabled
-  type: boolean
-  default: false
+# reference:
+# https://github.com/ROCm/aomp/blob/aomp-dev/docs/SOURCEINSTALL_PREREQUISITE.md
 - name: aptPackages
   type: object
   default:
@@ -30,20 +29,52 @@ parameters:
     - libsystemd-dev
     - libssl-dev
     - libstdc++-12-dev
+    - ccache
+    - libgmp-dev
+    - libmpfr-dev
+    - texinfo
+    - libbison-dev
+    - bison
+    - flex
+    - libbabeltrace-dev
+    - libncurses5-dev
+    - liblzma-dev
+    - python3-setuptools
+    - python3-dev
+    - libudev-dev
+    - parallel
+  # Referencing comment snippet below but excluding rocprofiler and roctracer.
+  # This is to remove need for separate build per gpu target.
+  # With our selected build flags, compilation and installation work fine without these two.
+  #
+  # snippet from https://github.com/ROCm/aomp/blob/aomp-dev/bin/build_aomp.sh#L131-L134
+  #
+  # For ROCM build (AOMP_STANDALONE_BUILD=0) the components roct, rocr,
+  # libdevice, project, comgr, rocminfo, hipamd, rocdbgapi, rocgdb,
+  # roctracer, rocprofiler, rocm_smi_lib, and amdsmi should be found
+  # in ROCM in /opt/rocm.  The ROCM build only needs these components:
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
+    - amdsmi
+    - clr
     - llvm-project
+    - ROCdbgapi
+    - ROCgdb
+    - rocm-cmake
+    - rocm-core
+    - rocminfo
+    - rocm_smi_lib
+    - rocprofiler-register
     - ROCR-Runtime
+    - roctracer
 
 jobs:
 - job: aomp
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
   steps:
@@ -51,9 +82,16 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+# checkout the repos tied to openmp-extras, plus llvm-project
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: aomp-extras_repo
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: flang_repo
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: llvm-project_repo
@@ -66,56 +104,385 @@ jobs:
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+# Because clang is not being rebuilt and to separate downloaded ROCm
+# dependencies from the new artifacts, we use temporary symbolic links
+# for the compilation and installation to go through.
+  - script: |
+      sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+      mkdir -p $(Build.BinariesDirectory)/bin
+      ln -s $(Agent.BuildDirectory)/rocm/llvm/bin/clang $(Build.BinariesDirectory)/bin/clang
+      ln -s $(Agent.BuildDirectory)/rocm/llvm/bin/clang++ $(Build.BinariesDirectory)/bin/clang++
+      ln -s $(Agent.BuildDirectory)/rocm/llvm/bin/llvm-config $(Build.BinariesDirectory)/bin/llvm-config
+      ln -s $(Agent.BuildDirectory)/rocm/llvm $(Build.BinariesDirectory)/llvm
+    displayName: Extra build environment setup
+# We follow the sequence described in the aomp repo instructions
+# https://github.com/ROCm/aomp/blob/aomp-dev/docs/SOURCEINSTALL.md
+# But instead of calling build_aomp.sh directly, we have to split up the calls to build each component
+# in order for the omp.h header file to be both be published as an artifact,
+# and be found when building subsequent components.
+# Environment variables specified per bash script were determined from looking through the
+# individual scripts and iteratively testing compilation.
+# Splitting up the build_aomp.sh call is also easier for debugging within Azure, as the former
+# method leads to a giant build log compared to separate logs per script call.
+#
+# Components compiled and the order for non-standalone build found at
+# https://github.com/ROCm/aomp/blob/aomp-dev/bin/build_aomp.sh#L135-L143
+  - task: Bash@3
+    displayName: Build Prereq
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_prereq.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: Build extras
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_extras.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_EXTRAS: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Install extras
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_extras.sh
+      arguments: install
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_EXTRAS: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Build openmp
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_openmp.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_LEGACY_OPENMP: 1
+      AOMP_USE_NINJA: 1
+      ALTAOMP: $(Agent.BuildDirectory)/rocm/llvm
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_OPENMP: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Install openmp
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_openmp.sh
+      arguments: install
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_LEGACY_OPENMP: 1
+      AOMP_USE_NINJA: 1
+      ALTAOMP: $(Agent.BuildDirectory)/rocm/llvm
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_OPENMP: $(Build.BinariesDirectory)
+  - script: ln -s $(Build.BinariesDirectory)/include/omp.h $(Build.SourcesDirectory)/llvm-project/llvm/include/omp.h
+    displayName: Link omp header
+  - task: Bash@3
+    displayName: Build offload
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_offload.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_LEGACY_OPENMP: 1
+      AOMP_USE_NINJA: 1
+      ALTAOMP: $(Agent.BuildDirectory)/rocm/llvm
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_OPENMP: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Install offload
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_offload.sh
+      arguments: install
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_LEGACY_OPENMP: 1
+      AOMP_USE_NINJA: 1
+      ALTAOMP: $(Agent.BuildDirectory)/rocm/llvm
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_OPENMP: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Build flang-legacy
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_flang-legacy.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Install flang-legacy
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_flang-legacy.sh
+      arguments: install
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Build pgmath
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_pgmath.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_FLANG: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Install pgmath
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_pgmath.sh
+      arguments: install
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_FLANG: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Build flang
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_flang.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_FLANG: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Install flang
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_flang.sh
+      arguments: install
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_FLANG: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Build flang_runtime
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_flang_runtime.sh
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_FLANG: $(Build.BinariesDirectory)
+  - task: Bash@3
+    displayName: Install flang_runtime
+    inputs:
+      filePath: $(Build.SourcesDirectory)/aomp/bin/build_flang_runtime.sh
+      arguments: install
+    env:
+      AOMP_REPOS: $(Build.SourcesDirectory)
+      AOMP_PROJECT_REPO_NAME: llvm-project
+      AOMP_STANDALONE_BUILD: 0
+      AOMP_BUILD_SANITIZER: 0
+      AOMP_BUILD_DEBUG: 0
+      AOMP_USE_NINJA: 1
+      INSTALL_PREFIX: $(Build.BinariesDirectory)
+      CMAKE_INSTALL_PREFIX: $(Build.BinariesDirectory)
+      LLVM_PROJECT_ROOT: $(Build.SourcesDirectory)/llvm-project
+      AOMP: $(Build.BinariesDirectory)
+      AOMP_INSTALL_DIR: $(Build.BinariesDirectory)
+      INSTALL_FLANG: $(Build.BinariesDirectory)
+# Clean up build environment before publish artifact
+  - script: |
+      rm $(Build.BinariesDirectory)/bin/clang
+      rm $(Build.BinariesDirectory)/bin/clang++
+      rm $(Build.BinariesDirectory)/bin/llvm-config
+      rm $(Build.BinariesDirectory)/llvm
+    displayName: Remove temporary symbolic links
+# Copy the files to artifact staging temporarily to clean up binaries directory
+# and then copy files back to llvm subdirectory in the cleaned up binaries directory
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
     parameters:
-      componentName: llvm-openmp
-      extraBuildFlags: >-
-        -DOPENMP_ENABLE_LIBOMPTARGET=1
-        -DOPENMP_TEST_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
-        -DOPENMP_TEST_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DLIBOMPTARGET_AMDGCN_GFXLIST=gfx700;gfx701;gfx801;gfx803;gfx900;gfx902;gfx906;gfx908;gfx90a;gfx90c;gfx940;gfx941;gfx942;gfx1030;gfx1031;gfx1035;gfx1036;gfx1100;gfx1101;gfx1102;gfx1103
-        -DDEVICELIBS_ROOT=$(Build.SourcesDirectory)/llvm-project/amd/device-libs
-        -DLIBOMP_COPY_EXPORTS=OFF
-        -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm
-        -DLLVM_MAIN_INCLUDE_DIR=$(Build.SourcesDirectory)/llvm-project/llvm/include
-        -DLIBOMPTARGET_LLVM_INCLUDE_DIRS=$(Build.SourcesDirectory)/llvm-project/llvm/include
-        -DCUDA_TOOLKIT_ROOT_DIR=OFF
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/lib/cmake
-        -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_SKIP_BUILD_RPATH=TRUE
-        -DCMAKE_SKIP_INSTALL_RPATH=TRUE
-        -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN:$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-        -DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-        -DCMAKE_MODULE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN:$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-        -GNinja
-      cmakeBuildDir: $(Build.SourcesDirectory)/llvm-project/openmp/build
-      installDir: $(Build.BinariesDirectory)/llvm
-# offload does not exist for recent releases, so use CI conditional
-  - ${{ if eq(parameters.offloadEnabled, true) }}:
-    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-      parameters:
-        componentName: llvm-offload
-        extraBuildFlags: >-
-          -DOPENMP_ENABLE_LIBOMPTARGET=1
-          -DOPENMP_TEST_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
-          -DOPENMP_TEST_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-          -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
-          -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-          -DLIBOMPTARGET_AMDGCN_GFXLIST=gfx700;gfx701;gfx801;gfx803;gfx900;gfx902;gfx906;gfx908;gfx90a;gfx90c;gfx940;gfx941;gfx942;gfx1030;gfx1031;gfx1035;gfx1036;gfx1100;gfx1101;gfx1102;gfx1103
-          -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm
-          -DLLVM_MAIN_INCLUDE_DIR=$(Build.SourcesDirectory)/llvm-project/llvm/include
-          -DLIBOMPTARGET_LLVM_INCLUDE_DIRS=$(Build.SourcesDirectory)/llvm-project/llvm/include
-          -DCUDA_TOOLKIT_ROOT_DIR=OFF
-          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/rocm/lib/cmake
-          -DCMAKE_BUILD_TYPE=Release
-          -DCMAKE_SKIP_BUILD_RPATH=TRUE
-          -DCMAKE_SKIP_INSTALL_RPATH=TRUE
-          -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN:$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-          -DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-          -DCMAKE_MODULE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ORIGIN:$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib
-          -GNinja
-        cmakeBuildDir: $(Build.SourcesDirectory)/llvm-project/offload/build
-        installDir: $(Build.BinariesDirectory)/llvm
+      sourceDir: $(Build.BinariesDirectory)
+      targetDir: $(Build.ArtifactStagingDirectory)
+  - task: DeleteFiles@1
+    displayName: 'Cleanup Binaries Directory'
+    inputs:
+      SourceFolder: '$(Build.BinariesDirectory)'
+      Contents: '/**/*'
+      RemoveDotFiles: true
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+    parameters:
+      sourceDir: $(Build.ArtifactStagingDirectory)
+      targetDir: $(Build.BinariesDirectory)/llvm
+  - task: DeleteFiles@1
+    displayName: 'Cleanup Staging Directory'
+    inputs:
+      SourceFolder: $(Build.ArtifactStagingDirectory)
+      Contents: '/**/*'
+      RemoveDotFiles: true
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: aomp_testing
+  dependsOn: aomp
+  condition: succeeded()
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - task: Bash@3
+    displayName: ROCm symbolic link
+    inputs:
+      targetType: inline
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: aomp-extras_repo
+# these copy steps are from the aomp prototype script for test prep
+  - task: CopyFiles@2
+    displayName: 'Copy AOMP contents'
+    inputs:
+      CleanTargetFolder: false
+      SourceFolder: $(Build.SourcesDirectory)/aomp
+      Contents: |
+        **
+        !**/.git/**
+        !**/.github/**
+        !**/.gitignore
+      TargetFolder: $(Agent.BuildDirectory)/rocm/share/openmp-extras/tests
+      retryCount: 3
+  - task: CopyFiles@2
+    displayName: 'Copy FileCheck'
+    inputs:
+      CleanTargetFolder: false
+      SourceFolder: $(Agent.BuildDirectory)/rocm/llvm/bin
+      Contents: FileCheck
+      TargetFolder: $(Agent.BuildDirectory)/rocm/share/openmp-extras/tests/bin
+      retryCount: 3
+  - task: Bash@3
+    displayName: Test AOMP
+    continueOnError: true
+    inputs:
+      targetType: inline
+      script: ./run_rocm_test.sh
+      workingDirectory: $(Build.SourcesDirectory)/aomp/bin
+    env:
+      AOMP: $(Agent.BuildDirectory)/rocm/llvm
+      AOMP_REPOS_TEST: $(Build.SourcesDirectory)/aomp-test
+      AOMP_TEST_DIR: $(Build.SourcesDirectory)/aomp-test
+      SKIP_TEST_PACKAGE: 1
+      MAINLINE_BUILD: 1
+      SUITE_LIST: smoke

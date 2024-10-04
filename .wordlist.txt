@@ -53,6 +53,7 @@ CSC
 CSE
 CSV
 CSn
+CTest
 CTests
 CU
 CUDA
@@ -97,6 +98,7 @@ ENDPGM
 EPYC
 ESXi
 EoS
+FBGEMM
 FFT
 FFTs
 FFmpeg
@@ -110,6 +112,7 @@ Flang
 Fortran
 Fuyu
 GALB
+GCC
 GCD
 GCDs
 GCN
@@ -175,6 +178,7 @@ Interop
 Intersphinx
 Intra
 Ioffe
+Jinja
 JSON
 Jupyter
 KFD
@@ -221,6 +225,7 @@ Megatron
 Mellanox
 Mellanox's
 Meta's
+Miniconda
 MirroredStrategy
 Multicore
 Multithreaded
@@ -383,6 +388,7 @@ UAC
 UC
 UCC
 UCX
+UE
 UIF
 UMC
 USM
@@ -451,6 +457,7 @@ blit
 bootloader
 boson
 bosons
+br
 buildable
 bursty
 bzip
@@ -483,6 +490,7 @@ cuLIB
 cuRAND
 cuSOLVER
 cuSPARSE
+customizations
 cTDP
 dataset
 datasets
@@ -578,6 +586,7 @@ invariants
 invocating
 ipo
 kdb
+kfd
 latencies
 libfabric
 libjpeg
@@ -620,6 +629,7 @@ performant
 perl
 pragma
 pre
+prebuild
 prebuilt
 precompiled
 preconditioner
@@ -646,6 +656,7 @@ quasirandom
 queueing
 rccl
 rdc
+rdma
 reStructuredText
 redirections
 refactorization
@@ -688,6 +699,7 @@ rocsolver
 rocsparse
 rocthrust
 roctracer
+rst
 runtime
 runtimes
 sL
@@ -711,8 +723,10 @@ subexpression
 subfolder
 subfolders
 submodule
+submodules
 supercomputing
 symlink
+symlinks
 td
 tensorfloat
 th
