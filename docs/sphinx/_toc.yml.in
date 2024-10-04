@@ -158,8 +158,6 @@ subtrees:
     title: ROCm & PCIe atomics
   - file: conceptual/ai-pytorch-inception.md
     title: Inception v3 with PyTorch
-  - file: conceptual/ai-migraphx-optimization.md
-    title: Inference optimization with MIGraphX
 
 - caption: Reference
   entries:
