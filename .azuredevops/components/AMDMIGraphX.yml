@@ -129,6 +129,7 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: AMDMIGraphX_testing
+  condition: eq($(ENABLE_GFX942_TESTS), "true")
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
