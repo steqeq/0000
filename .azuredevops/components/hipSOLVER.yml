@@ -103,7 +103,7 @@ jobs:
 
 - job: hipSOLVER_testing
   dependsOn: hipSOLVER
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

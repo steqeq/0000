@@ -32,6 +32,7 @@ parameters:
 
 jobs:
 - job: ROCgdb
+  condition: eq(variables.ENABLE_GFX942_TESTS, 'true')
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

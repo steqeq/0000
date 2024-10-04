@@ -79,7 +79,7 @@ jobs:
 - job: hipTensor_testing
   timeoutInMinutes: 90
   dependsOn: hipTensor
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

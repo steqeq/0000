@@ -123,7 +123,7 @@ jobs:
 
 - job: hipSPARSELt_testing
   dependsOn: hipSPARSELt
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
