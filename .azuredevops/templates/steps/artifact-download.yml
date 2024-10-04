@@ -50,6 +50,7 @@ parameters:
     MIOpen: develop
     MIVisionX: develop
     omniperf: amd-staging
+    omnitrace: amd-staging
     rccl: develop
     rdc: amd-staging
     rocAL: develop
@@ -60,7 +61,7 @@ parameters:
     rocFFT: develop
     ROCgdb: amd-staging
     rocm-cmake: develop
-    rocm-core: master
+    rocm-core: amd-staging
     rocm-examples: develop
     rocminfo: amd-staging
     rocMLIR: develop
@@ -104,20 +105,22 @@ parameters:
     hipSPARSE: mainline
     hipSPARSELt: mainline
     hipTensor: mainline
-    llvm-project: amd-mainline-open # needs the yaml file
+    llvm-project: amd-mainline-open
     MIOpen: mainline
     MIVisionX: mainline
+    omniperf: amd-staging
+    omnitrace: amd-staging
     rccl: mainline
     rdc: amd-mainline
     rocAL: mainline # needs the yaml file
     rocALUTION: mainline
     rocBLAS: mainline
-    ROCdbgapi : amd-mainline # needs the yaml file
+    ROCdbgapi : amd-mainline
     rocDecode: mainline
     rocFFT: mainline
-    ROCgdb: amd-staging # which one is it?
+    ROCgdb: amd-mainline-rocgdb-15 #
     rocm-cmake: mainline
-    rocm-core: master
+    rocm-core: amd-master
     rocm-examples: develop # no mainline
     rocminfo: amd-master
     rocMLIR: mainline # needs the yaml file
@@ -130,7 +133,7 @@ parameters:
     rocprofiler-sdk: amd-mainline
     ROCR-Runtime: amd-master
     rocRAND: mainline
-    rocr_debug_agent: amd-mainline # needs the yaml file
+    rocr_debug_agent: amd-mainline
     rocSOLVER: mainline
     rocSPARSE: mainline
     rocThrust: mainline
