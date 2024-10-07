@@ -26,7 +26,7 @@ parameters:
   type: object
   default:
     AMDMIGraphX: develop
-    amdsmi: develop
+    amdsmi: amd-staging
     aomp-extras: aomp-dev
     aomp: aomp-dev
     clr: amd-staging
@@ -69,9 +69,9 @@ parameters:
     rocm_bandwidth_test: master
     rocm_smi_lib: amd-staging
     rocPRIM: develop
+    rocprofiler: amd-staging
     rocprofiler-register: amd-staging
     rocprofiler-sdk: amd-staging
-    rocprofiler: amd-staging
     rocPyDecode: develop
     ROCR-Runtime: amd-staging
     rocRAND: develop
@@ -93,6 +93,7 @@ parameters:
     composable_kernel: mainline
     half: rocm
     HIP: amd-mainline
+    hip-tests: amd-mainline
     hipBLAS: mainline
     hipBLASLt: mainline
     hipBLAS-common: mainline
@@ -108,11 +109,11 @@ parameters:
     llvm-project: amd-mainline-open
     MIOpen: mainline
     MIVisionX: mainline
-    omniperf: amd-staging
-    omnitrace: amd-staging
+    omniperf: amd-mainline
+    omnitrace: amd-mainline
     rccl: mainline
     rdc: amd-mainline
-    rocAL: mainline # needs the yaml file
+    rocAL: master # needs the yaml file
     rocALUTION: mainline
     rocBLAS: mainline
     ROCdbgapi : amd-mainline
@@ -124,13 +125,14 @@ parameters:
     rocm-examples: develop # no mainline
     rocminfo: amd-master
     rocMLIR: mainline # needs the yaml file
-    ROCmValidationSuite: master
+    ROCmValidationSuite: mainline
     rocm_bandwidth_test: master
     rocm_smi_lib: amd-mainline
     rocPRIM: mainline
     rocprofiler: amd-master
     rocprofiler-register: amd-mainline
     rocprofiler-sdk: amd-mainline
+    rocPyDecode: mainline
     ROCR-Runtime: amd-master
     rocRAND: mainline
     rocr_debug_agent: amd-mainline
