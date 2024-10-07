@@ -58,7 +58,7 @@ jobs:
     displayName: Install hip-python
     inputs:
       targetType: inline
-      script: pip3 install -i https://test.pypi.org/simple hip-python
+      script: pip install -v -i https://test.pypi.org/simple hip-python
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
