@@ -24,6 +24,7 @@ parameters:
 - name: pipModules
   type: object
   default:
+    - cibuildwheel
     - -i
     - https://test.pypi.org/simple
     - hip-python
@@ -55,6 +56,7 @@ jobs:
       gfx90a:
         JOB_GPU_TARGET: gfx90a
   steps:
+  - task: UsePythonVersion@0
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
@@ -68,10 +70,10 @@ jobs:
       dependencyList: ${{ parameters.rocmDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
   - task: Bash@3
     displayName: 'ROCm symbolic link'
@@ -93,26 +95,37 @@ jobs:
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
       publish: false
+#  - task: Bash@3
+#    displayName: Create wheel file
+#    inputs:
+#      targetType: inline
+#      script: |
+#        export ROCM_PATH=$(Agent.BuildDirectory)/rocm
+#        export HIP_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include/hip
+#        python3 setup.py bdist_wheel
+#      workingDirectory: $(Build.SourcesDirectory)
+#  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
+#    parameters:
+#      sourceDir: $(Build.SourcesDirectory)/dist
+#      contentsString: '*.whl'
+#      targetDir: $(Build.ArtifactStagingDirectory)
+#      clean: false
+#  - task: PublishPipelineArtifact@1
+#    displayName: 'wheel file Publish'
+#    retryCountOnTaskFailure: 3
+#    inputs:
+#      targetPath: $(Build.ArtifactStagingDirectory)
   - task: Bash@3
     displayName: Create wheel file
     inputs:
       targetType: inline
-      script: |
-        export ROCM_PATH=$(Agent.BuildDirectory)/rocm
-        export HIP_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include/hip
-        python3 setup.py bdist_wheel
+      script: cibuildwheel --output-dir wheelhouse .
       workingDirectory: $(Build.SourcesDirectory)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
-    parameters:
-      sourceDir: $(Build.SourcesDirectory)/dist
-      contentsString: '*.whl'
-      targetDir: $(Build.ArtifactStagingDirectory)
-      clean: false
   - task: PublishPipelineArtifact@1
     displayName: 'wheel file Publish'
     retryCountOnTaskFailure: 3
     inputs:
-      targetPath: $(Build.ArtifactStagingDirectory)
+      targetPath: wheelhouse
 
 - job: rocPyDecode_testing
   dependsOn: rocPyDecode
