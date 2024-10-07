@@ -81,8 +81,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - task: DeleteFiles@1
     displayName: 'Cleanup checkout space'

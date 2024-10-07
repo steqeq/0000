@@ -159,9 +159,6 @@ jobs:
       amd-staging-gfx942:
         ROCM_BRANCH: amd-staging
         JOB_GPU_TARGET: gfx942
-      amd-staging-gfx90a:
-        ROCM_BRANCH: amd-staging
-        JOB_GPU_TARGET: gfx90a
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
