@@ -113,6 +113,7 @@ jobs:
     env:
       ROCM_PATH: $(Agent.BuildDirectory)/rocm
       CIBW_BEFORE_BUILD: python3 rocPyDecode-requirements.py
+      CIBW_ENVIRONMENT: ROCM_PATH='$(Agent.BuildDirectory)/rocm'
   - task: PublishPipelineArtifact@1
     displayName: 'wheel file Publish'
     retryCountOnTaskFailure: 3
