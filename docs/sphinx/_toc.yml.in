@@ -179,9 +179,8 @@ subtrees:
       - file: contribute/doc-structure.md
         title: Documentation structure
       - file: contribute/toolchain.md
-        title: Documentation toolchain
+        title: ROCm documentation toolchain
       - file: contribute/building.md
-        title: Build our documentation
   - file: contribute/feedback.md
     title: Provide feedback
   - file: about/license.md
