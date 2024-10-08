@@ -13,6 +13,7 @@ parameters:
     - git
     - python3-pip
     - libdrm-dev
+    - libstdc++-12-dev
 - name: pipModules
   type: object
   default:
