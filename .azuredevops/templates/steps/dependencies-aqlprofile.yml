@@ -17,7 +17,7 @@ steps:
   inputs:
     targetType: inline
     script: |
-      export packageName=$(curl -s ${{ parameters.repositoryUrl[parameters.dependencySource] }} | grep -oP 'href="\K[^"]*22\.04[^"]*\.deb')
+      export packageName=$(curl -s ${{ parameters.repositoryUrl[parameters.dependencySource] }} | grep -oP "href=\"\K[^\"]*$(lsb_release -rs)[^\"]*\.deb")
       echo "##vso[task.setvariable variable=packageName;isreadonly=true]$packageName"
 - task: Bash@3
   displayName: 'Download aqlprofile'
