@@ -80,14 +80,16 @@ The [ROCm Offline Installer Creator 6.2.1](https://rocm.docs.amd.com/projects/in
 
 #### ROCm documentation changes 
 
-There have been no changes to supported hardware or operating systems from ROCm 6.2.0 to ROCm 6.2.1.
+The HIP documentation has been updated with several new topics aimed at improving usability
+and providing more detailed information.
 
 * The Programming Model Reference and Understanding the Programming Model topics in HIP have been consolidated into one topic,
 [HIP programming model (conceptual)](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/understand/programming_model.html). 
+
 * The [HIP virtual memory management](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/how-to/virtual_memory.html) and [HIP virtual memory management API](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.1/reference/virtual_memory_reference.html) topics have been added.
 
 ```{note}
-The ROCm documentation, like all ROCm projects, is open source and available on GitHub. To contribute to ROCm documentation, see the [ROCm documentation contribution guidelines](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
+To contribute to ROCm documentation, see the [ROCm documentation contribution guidelines](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
 ```
 
 ### Operating system and hardware support changes
