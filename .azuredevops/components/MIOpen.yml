@@ -118,7 +118,8 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: MIOpen_testing
-  condition: eq(variables.ENABLE_GFX942_TESTS, 'true')
+  dependsOn: MIOpen
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
