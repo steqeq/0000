@@ -158,6 +158,8 @@ subtrees:
     title: ROCm & PCIe atomics
   - file: conceptual/ai-pytorch-inception.md
     title: Inception v3 with PyTorch
+  - file: conceptual/oversubscription.rst
+    title: Oversubscription of hardware resources
 
 - caption: Reference
   entries:
