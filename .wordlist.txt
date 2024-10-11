@@ -272,6 +272,7 @@ OpenMPI
 OpenSSL
 OpenVX
 OpenXLA
+Oversubscription
 PCC
 PCI
 PCIe
@@ -620,6 +621,7 @@ openmp
 openssl
 optimizers
 os
+oversubscription
 pageable
 parallelization
 parameterization
