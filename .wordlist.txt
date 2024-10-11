@@ -272,6 +272,7 @@ OpenMPI
 OpenSSL
 OpenVX
 OpenXLA
+Oversubscription
 PCC
 PCI
 PCIe
@@ -490,6 +491,7 @@ cuLIB
 cuRAND
 cuSOLVER
 cuSPARSE
+customizations
 cTDP
 dataset
 datasets
@@ -619,6 +621,7 @@ openmp
 openssl
 optimizers
 os
+oversubscription
 pageable
 parallelization
 parameterization
@@ -698,6 +701,7 @@ rocsolver
 rocsparse
 rocthrust
 roctracer
+rst
 runtime
 runtimes
 sL
