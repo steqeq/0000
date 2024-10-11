@@ -88,7 +88,7 @@ jobs:
 
 - job: rocDecode_testing
   dependsOn: rocDecode
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
