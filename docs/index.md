@@ -64,7 +64,7 @@ ROCm documentation is organized into the following categories:
 * [Using CMake](./conceptual/cmake-packages.rst)
 * [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
-* [Inference optimization with MIGraphX](./conceptual/ai-migraphx-optimization.md)
+* [Oversubscription of hardware resources](./conceptual/oversubscription.rst)
 :::
 
 <!-- markdownlint-disable MD051 -->
