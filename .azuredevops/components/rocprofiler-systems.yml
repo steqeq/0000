@@ -52,7 +52,7 @@ parameters:
     - roctracer
 
 jobs:
-- job: rocprofiler-systems
+- job: rocprofiler_systems
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
