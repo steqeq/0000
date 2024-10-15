@@ -27,6 +27,7 @@ parameters:
     - MIOpen
     - MIVisionX
     - omniperf
+    - omnitrace # remove later
     - rccl
     - rdc
     - rocAL
@@ -47,6 +48,7 @@ parameters:
     - rocPRIM
     - rocprofiler-register
     - rocprofiler-sdk
+    - rocprofiler-systems
     - rocprofiler
     - rocPyDecode
     - ROCR-Runtime
