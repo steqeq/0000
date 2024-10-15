@@ -23,6 +23,9 @@ parameters:
     - VSTest
     - XUnit
     - CTest
+- name: testCustomParser
+  type: string
+  default: ''
 - name: testPublishResults
   type: boolean
   default: true
@@ -47,7 +50,12 @@ steps:
   continueOnError: true
   inputs:
     targetType: inline
-    script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
+    ${{ if ne(parameters.testCustomParser, '') }}:
+      script: |
+        ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
+        ${{ parameters.testCustomParser }}
+    ${{ else }}:
+      script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
     workingDirectory: ${{ parameters.testDir }}
 - ${{ if parameters.testPublishResults }}:
   - task: PublishTestResults@2

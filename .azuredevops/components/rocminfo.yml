@@ -35,10 +35,10 @@ jobs:
       dependencyList: ${{ parameters.rocmDependencies }}
       skipLlvmSymlink: true
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -68,9 +68,9 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
@@ -78,11 +78,50 @@ jobs:
       testDir: '$(Agent.BuildDirectory)'
       testExecutable: './rocm/bin/rocminfo'
       testParameters: ''
-      testPublishResults: false
+      testCustomParser: |
+        test_name="rocminfo"
+        output_file="test_output.xml"
+        status=$?
+        if [ $status -eq 0 ]; then
+            result="<testsuite name=\"$test_name\" tests=\"1\" failures=\"0\" errors=\"0\" skipped=\"0\">
+            <testcase classname=\"$test_name\" name=\"$test_name\"/>
+        </testsuite>"
+        else
+            result="<testsuite name=\"$test_name\" tests=\"1\" failures=\"1\" errors=\"0\" skipped=\"0\">
+            <testcase classname=\"$test_name\" name=\"$test_name\">
+                <failure message=\"Command failed with status $status\"/>
+            </testcase>
+        </testsuite>"
+        fi
+        echo "$result" > "$output_file"
+        echo "Test results written to $output_file"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocm_agent_enumerator
       testDir: '$(Agent.BuildDirectory)'
-      testExecutable: './rocm/bin/rocm_agent_enumerator'
+      testExecutable: './rocm/bin/rocm_agent_enumerator | tee test_output'
       testParameters: ''
-      testPublishResults: false
+      testCustomParser: |
+        test_name="rocm_agent_enumerator"
+        output_file="test_output.xml"
+        expected_output="gfx942
+        gfx942
+        gfx942
+        gfx942
+        gfx942
+        gfx942
+        gfx942
+        gfx942"
+        if [ "$(cat test_output)" == "$expected_output" ]; then
+            result="<testsuite name=\"$test_name\" tests=\"1\" failures=\"0\" errors=\"0\" skipped=\"0\">
+            <testcase classname=\"$test_name\" name=\"$test_name\"/>
+        </testsuite>"
+        else
+            result="<testsuite name=\"$test_name\" tests=\"1\" failures=\"1\" errors=\"0\" skipped=\"0\">
+            <testcase classname=\"$test_name\" name=\"$test_name\">
+                <failure message=\"Output did not match expected result (8x gfx942)\"/>
+            </testcase>
+        </testsuite>"
+        fi
+        echo "$result" > "$output_file"
+        echo "Test results written to $output_file"
