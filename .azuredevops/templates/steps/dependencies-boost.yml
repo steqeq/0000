@@ -1,60 +1,31 @@
-# download and install rocm dependencies through pipeline builds in the project
-# REQUIRED
-parameters:
-- name: dependencyList
-  type: object
-  default: []
-- name: dependencySource
-  type: string
-  default: staging
-  values:
-    - staging
-    - mainline
-    - tag-builds
-    - fixed
-- name: extractToMnt
-  type: boolean
-  default: false
-# required values for fixed selection
-- name: fixedPipelineIdentifier
-  type: string
-  default: 0
-- name: fixedComponentName
-  type: string
-  default: ''
-- name: latestFromBranch
-  type: boolean
-  default: true
-
 steps:
-# fixed case only accepts one component at a time, so no array input
 - task: DownloadPipelineArtifact@2
-  displayName: Download ${{ parameters.componentName }}
+  displayName: Download Boost
   inputs:
     buildType: specific
     project: ROCm-CI
     definition: $(BOOST_DEPENDENCY_PIPELINE_ID)
     targetPath: $(Pipeline.Workspace)/d
 - task: ExtractFiles@1
-  displayName: Extract ${{ parameters.componentName }}
+  displayName: Extract Boost
   inputs:
     archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
     destinationFolder: $(Agent.BuildDirectory)/boost
     cleanDestinationFolder: true
     overwriteExistingFiles: true
 - task: DeleteFiles@1
-  displayName: Cleanup Compressed ${{ parameters.componentName }}
+  displayName: Cleanup Compressed Boost
   inputs:
     SourceFolder: $(Pipeline.Workspace)/d
     Contents: '**/*.tar.gz'
     RemoveDotFiles: true
 - task: Bash@3
-  displayName: 'List noost files'
+  displayName: 'List Boost files'
   inputs:
     targetType: inline
     script: ls -1R $(Agent.BuildDirectory)/boost
 - task: Bash@3
-  displayName: 'Link boost shared libraries'
+  displayName: 'Link Boost shared libraries'
   inputs:
     targetType: inline
     script: |
