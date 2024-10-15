@@ -72,6 +72,7 @@ parameters:
     rocprofiler: amd-staging
     rocprofiler-register: amd-staging
     rocprofiler-sdk: amd-staging
+    rocprofiler-systems: amd-staging
     rocPyDecode: develop
     ROCR-Runtime: amd-staging
     rocRAND: develop
@@ -132,6 +133,7 @@ parameters:
     rocprofiler: amd-master
     rocprofiler-register: amd-mainline
     rocprofiler-sdk: amd-mainline
+    rocprofiler-systems: amd-mainline
     rocPyDecode: mainline
     ROCR-Runtime: amd-master
     rocRAND: mainline

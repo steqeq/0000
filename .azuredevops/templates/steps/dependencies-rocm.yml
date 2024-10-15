@@ -198,6 +198,7 @@ parameters:
     - MIOpen
     - MIVision
     - omniperf
+    - omnitrace
     - rocAL
     - ROCmValidationSuite
 
