@@ -181,7 +181,7 @@ Installing bitsandbytes
       # Clone the github repo
       git clone --recurse https://github.com/ROCm/bitsandbytes.git
       cd bitsandbytes
-      git checkout rocm_enabled
+      git checkout rocm_enabled_multi_backend
 
       # Install dependencies 
       pip install -r requirements-dev.txt
