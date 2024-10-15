@@ -175,6 +175,7 @@ parameters:
     - hipRAND
     - hipSPARSELt
     - hipTensor
+    - omnitrace
     - rccl
     - rocALUTION
     - rocBLAS
@@ -182,6 +183,7 @@ parameters:
     - rocm-examples
     - rocPRIM
     - rocprofiler-sdk
+    - rocprofiler-systems
     - rocprofiler
     - rocPyDecode
     - rocRAND
