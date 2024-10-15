@@ -325,3 +325,5 @@ variables:
   value: 78
 - name: RPP_TAGGED_PIPELINE_ID
   value: 39
+- name: BOOST_DEPENDENCY_PIPELINE_ID
+  value: 250
