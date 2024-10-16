@@ -118,7 +118,7 @@ redirects = {"reference/openmp/openmp": "../../about/compatibility/openmp.html"}
 
 numfig = False
 
- html_js_files = [
+html_js_files = [
      "readthedocs.js",
  ]
 
