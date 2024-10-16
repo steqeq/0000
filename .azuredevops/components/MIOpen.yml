@@ -204,7 +204,7 @@ jobs:
     inputs:
       targetType: inline
       script: |
-        cmake --build . --target tests
+        cmake --build . --target tests -- -j$(nproc)
       workingDirectory: $(Build.SourcesDirectory)/build
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
