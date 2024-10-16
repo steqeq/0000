@@ -64,57 +64,57 @@ parameters:
     - roctracer
 
 jobs:
-- job: MIOpen
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
-  workspace:
-    clean: all
-  strategy:
-    matrix:
-      gfx942:
-        JOB_GPU_TARGET: gfx942
-  steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
-  # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-boost.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-    parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
-      # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DMIOPEN_BACKEND=HIP
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/boost
-        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
-        -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
-        -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
-        -DCMAKE_BUILD_TYPE=Release
-        -DBUILD_TESTING=ON
-        -GNinja
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-    parameters:
-      gpuTarget: $(JOB_GPU_TARGET)
+# - job: MIOpen
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   pool: ${{ variables.MEDIUM_BUILD_POOL }}
+#   workspace:
+#     clean: all
+#   strategy:
+#     matrix:
+#       gfx942:
+#         JOB_GPU_TARGET: gfx942
+#   steps:
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+#     parameters:
+#       aptPackages: ${{ parameters.aptPackages }}
+#       pipModules: ${{ parameters.pipModules }}
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+#     parameters:
+#       checkoutRepo: ${{ parameters.checkoutRepo }}
+#   # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-boost.yml
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+#     parameters:
+#       dependencyList: ${{ parameters.rocmDependencies }}
+#       gpuTarget: $(JOB_GPU_TARGET)
+#       # CI case: download latest default branch build
+#       ${{ if eq(parameters.checkoutRef, '') }}:
+#         dependencySource: staging
+#       # manual build case: triggered by ROCm/ROCm repo
+#       ${{ elseif ne(parameters.checkoutRef, '') }}:
+#         dependencySource: tag-builds
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+#     parameters:
+#       extraBuildFlags: >-
+#         -DMIOPEN_BACKEND=HIP
+#         -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+#         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/boost
+#         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+#         -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
+#         -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
+#         -DCMAKE_BUILD_TYPE=Release
+#         -DBUILD_TESTING=ON
+#         -GNinja
+#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+#     parameters:
+#       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: MIOpen_testing
-  dependsOn: MIOpen
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  # dependsOn: MIOpen
+  # condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -139,17 +139,17 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-boost.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
 # MIOpen depends on a specific version of frugally-deep which is forked here: https://github.com/ROCm/frugally-deep
 # https://github.com/ROCm/frugally-deep/blob/master/INSTALL.md
@@ -199,10 +199,13 @@ jobs:
         -DMIOPEN_USE_MLIR=ON
         -DMIOPEN_GPU_SYNC=OFF
         ..
+  - task: Bash@3
+    displayName: 'MIOpen Test Build'
+    inputs:
+      targetType: inline
+      script: |
+        cmake --build . --target tests
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: MIOpen
-      testExecutable: 'CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check'
-      testParameters: ''
       reloadAMDGPU: true
-      testPublishResults: false
