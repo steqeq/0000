@@ -27,7 +27,6 @@ parameters:
     - MIOpen
     - MIVisionX
     - omniperf
-    - omnitrace # remove later
     - rccl
     - rdc
     - rocAL
@@ -119,7 +118,7 @@ jobs:
   - script: du -sh $(Build.ArtifactStagingDirectory)
     displayName: Compressed ROCm size
   - task: PublishPipelineArtifact@1
-    displayName: 'Public ROCm Nightly Artifact'
+    displayName: 'Publish ROCm Nightly Artifact'
     retryCountOnTaskFailure: 3
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)'
