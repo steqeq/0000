@@ -10,7 +10,6 @@ parameters:
   default:
     - python3-pip
     - cmake
-    - ninja-build
     - libboost-program-options-dev
     - libgtest-dev
     - googletest
