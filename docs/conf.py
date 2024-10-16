@@ -95,7 +95,7 @@ article_pages = [
 
 external_toc_path = "./sphinx/_toc.yml"
 
-extensions = ["rocm_docs", "sphinx_reredirects"]
+extensions = ["sphinx_build_compatibility.extension", "rocm_docs", "sphinx_reredirects"]
 
 external_projects_current_project = "rocm"
 
