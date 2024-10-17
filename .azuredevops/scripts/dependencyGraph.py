@@ -114,11 +114,17 @@ def build_full_dependency_tree(graph):
 def visualize_graph(graph):
     dot = Digraph()
 
-    for component, deps in graph.items():
-        for dep in deps:
+    # sort edges for consistent dot file hash
+    for component in sorted(graph):
+        for dep in sorted(graph[component]):
             dot.edge(component, dep)
 
     script_directory = os.path.dirname(os.path.abspath(__file__))
+
+    # make an input dot file for comparisons
+    dot_file_path = os.path.join(script_directory, 'input.dot')
+    with open(dot_file_path, 'w') as f:
+        f.write(dot.source)
 
     dot.render(os.path.join(script_directory, 'dependency_graph'), format='png', cleanup=True)  # Save as PNG
 
