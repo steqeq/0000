@@ -65,12 +65,7 @@ jobs:
         echo $USER_BASE
         echo $PATH
   - task: Bash@3
-    displayName: Install zstd
-    inputs:
-      targetType: inline
-      script: cget install facebook/zstd
-  - task: Bash@3
-    displayName: Install zstd
+    displayName: cmake ver
     inputs:
       targetType: inline
       script: cmake --version
