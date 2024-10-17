@@ -199,10 +199,14 @@ jobs:
         -DMIOPEN_USE_MLIR=ON
         -DMIOPEN_GPU_SYNC=OFF
         ..
+  - task: Bash@3
+    displayName: 'MIOpen Test Build'
+    inputs:
+      targetType: inline
+      script: |
+        cmake --build . --target tests -- -j$(nproc)
+      workingDirectory: $(Build.SourcesDirectory)/build
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: MIOpen
-      testExecutable: 'CTEST_PARALLEL_LEVEL=4 make -j$(nproc) check'
-      testParameters: ''
       reloadAMDGPU: true
-      testPublishResults: false
