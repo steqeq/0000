@@ -185,6 +185,7 @@ jobs:
   steps:
 # copy environment setup from https://github.com/pytorch/builder/blob/main/manywheel/Dockerfile
 # but instead of centos, use ubuntu environment
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - task: Bash@3
     displayName: 'Register libjpeg-turbo packages'
     inputs:
