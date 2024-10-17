@@ -28,7 +28,7 @@ def main():
     local_dotfile = os.path.join(script_directory, 'input.dot')
     downloaded_dotfile = os.path.join(script_directory, 'dependency_graph.dot')
 
-    url = 'https://github.com/ROCm/ROCm/blob/generatedependencygraph/.azuredevops/scripts/dependency_graph.dot'
+    url = 'https://raw.githubusercontent.com/ROCm/ROCm/refs/heads/generatedependencygraph/.azuredevops/scripts/dependency_graph.dot'
 
     try:
         download_dotfile(url, downloaded_dotfile)
