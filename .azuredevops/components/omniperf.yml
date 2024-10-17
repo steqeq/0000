@@ -58,8 +58,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -92,7 +90,7 @@ jobs:
 
 - job: omniperf_testing
   dependsOn: omniperf
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

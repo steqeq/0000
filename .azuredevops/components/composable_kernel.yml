@@ -48,8 +48,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -90,6 +88,8 @@ jobs:
         -DCMAKE_C_COMPILER_LAUNCHER=ccache
         -DCMAKE_HIP_FLAGS="-Wno-missing-include-dirs"
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DCK_BUILD_JIT_LIB=ON
+        -DCMAKE_POSITION_INDEPENDENT_CODE=ON
         -DCMAKE_BUILD_TYPE=Release
         -DGPU_TARGETS=$(JOB_GPU_TARGET)
         -GNinja
@@ -99,7 +99,7 @@ jobs:
 
 - job: composable_kernel_testing
   dependsOn: composable_kernel
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

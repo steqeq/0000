@@ -8,14 +8,20 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - libelf-dev
     - g++
     - libdrm-dev
+    - libelf-dev
     - libnuma-dev
 - name: rocmDependencies
   type: object
   default:
     - llvm-project
+    - rocprofiler-register
+- name: rocmTestDependencies
+  type: object
+  default:
+    - llvm-project
+    - rocm_smi_lib
     - rocprofiler-register
 
 jobs:
@@ -50,3 +56,120 @@ jobs:
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DBUILD_SHARED_LIBS=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+
+- job: ROCR_Runtime_testing
+  dependsOn: ROCR_Runtime
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - task: Bash@3
+    displayName: Install libhwloc5
+    inputs:
+      targetType: 'inline'
+      script: |
+        wget http://ftp.us.debian.org/debian/pool/main/h/hwloc/libhwloc5_1.11.12-3_amd64.deb
+        wget http://ftp.us.debian.org/debian/pool/main/h/hwloc/libhwloc-dev_1.11.12-3_amd64.deb
+        sudo apt install -y --allow-downgrades ./libhwloc5_1.11.12-3_amd64.deb ./libhwloc-dev_1.11.12-3_amd64.deb
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - task: Bash@3
+    displayName: Build kfdtest
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/kfdtest
+      script: |
+        mkdir build && cd build
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm ..
+        make
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: kfdtest
+      testExecutable: BIN_DIR=$(Build.SourcesDirectory)/libhsakmt/tests/kfdtest/build ./run_kfdtest.sh
+      testParameters: '-p core --gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testDir: $(Build.SourcesDirectory)/libhsakmt/tests/kfdtest/scripts
+  - task: Bash@3
+    displayName: Build rdmatest app
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/rdma/simple/app
+      script: |
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm -DLIBHSAKMT_PATH=$(Agent.BuildDirectory)/rocm -DDRM_AMDGPU_INCLUDE_DIRS=$(Agent.BuildDirectory)/rocm/include .
+        cmake --build .
+  - task: Bash@3
+    displayName: Build rdmatest driver
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/rdma/simple/drv
+      script: |
+        sed -i 's/HSAKMT_PAGE_SHIFT/PAGE_SHIFT/g' amdp2ptest.c
+        sed -i 's/"MIT"/"GPL"/' amdp2ptest.c
+        RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
+  - task: Bash@3
+    displayName: Install rdmatest driver
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/rdma/simple/drv
+      script: |
+        sudo rmmod amdp2ptest.ko
+        sudo insmod amdp2ptest.ko
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rdmatest
+      testExecutable: yes | ./rdma_test
+      testParameters: ''
+      testDir: $(Build.SourcesDirectory)/libhsakmt/tests/rdma/simple/app
+      testPublishResults: false
+  - task: Bash@3
+    displayName: Build rocrtst
+    inputs:
+      targetType: 'inline'
+      workingDirectory: $(Build.SourcesDirectory)/rocrtst/suites/test_common
+      script: |
+        sudo rm -rf $(Agent.BuildDirectory)/external/llvm-project
+        mkdir -p $(Agent.BuildDirectory)/external/llvm-project/clang/lib
+        sudo ln -s $(Agent.BuildDirectory)/rocm/llvm/lib/clang/20/include $(Agent.BuildDirectory)/external/llvm-project/clang/lib/Headers
+        mkdir build && cd build
+        cmake .. \
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm \
+          -DTARGET_DEVICES=$(JOB_GPU_TARGET) \
+          -DROCM_DIR=$(Agent.BuildDirectory)/rocm \
+          -DLLVM_DIR=$(Agent.BuildDirectory)/rocm/llvm/bin \
+          -DOPENCL_DIR=$(Agent.BuildDirectory)/rocm/llvm/bin
+        make
+        make rocrtst_kernels
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocrtst
+      testExecutable: ./rocrtst64
+      testParameters: '--gtest_filter="-rocrtstNeg.Memory_Negative_Tests" --gtest_output=xml:./test_output.xml --gtest_color=yes'
+      testDir: $(Build.SourcesDirectory)/rocrtst/suites/test_common/build/$(JOB_GPU_TARGET)

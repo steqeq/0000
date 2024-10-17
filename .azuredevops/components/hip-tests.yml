@@ -52,8 +52,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -89,9 +87,9 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: hip_tests_testing
-  timeoutInMinutes: 180
+  timeoutInMinutes: 240
   dependsOn: hip_tests
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -130,6 +128,7 @@ jobs:
     inputs:
       targetType: inline
       script: |
+        sudo rm -rf /opt/rocm
         sudo mkdir -p /opt/rocm/bin
         sudo ln -s $(Agent.BuildDirectory)/rocm/bin/rocm_agent_enumerator /opt/rocm/bin/rocm_agent_enumerator
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml

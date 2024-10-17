@@ -7,17 +7,14 @@
 
 # Building documentation
 
-You can build our documentation via GitHub (in a pull request) or locally (using the command line or
-Visual Studio (VS) Code.
-
 ## GitHub
 
-If you open a pull request on the `develop` branch of a ROCm repository and scroll to the bottom of
-the page, there is a summary panel. Next to the line
-`docs/readthedocs.com:advanced-micro-devices-demo`, there is a `Details` link. If you click this, it takes
-you to the Read the Docs build for your pull request.
+If you open a pull request and scroll down to the summary panel,
+there is a commit status section. Next to the line
+`docs/readthedocs.com:advanced-micro-devices-demo`, there is a `Details` link.
+If you click this, it takes you to the Read the Docs build for your pull request.
 
-![Screenshot of the GitHub documentation build link](../data/contribute/github-docs-build.png)
+![GitHub PR commit status](../data/contribute/commit-status.png)
 
 If you don't see this line, click `Show all checks` to get an itemized view.
 
