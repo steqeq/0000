@@ -11,7 +11,6 @@ parameters:
     - ca-certificates
     - bc
     - bridge-utils
-    - cmake
     - devscripts
     - dkms
     - doxygen
@@ -360,6 +359,7 @@ jobs:
         JOB_GPU_TARGET: gfx942
         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - task: Bash@3
     displayName: 'Register libjpeg-turbo packages'
     inputs:
@@ -374,7 +374,6 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - task: DownloadPipelineArtifact@2
     displayName: 'Download Pipeline Wheel Files'
