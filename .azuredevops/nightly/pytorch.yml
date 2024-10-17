@@ -11,7 +11,6 @@ parameters:
     - ca-certificates
     - bc
     - bridge-utils
-    - cmake
     - devscripts
     - dkms
     - doxygen
@@ -67,6 +66,7 @@ parameters:
 - name: pipModules
   type: object
   default:
+    - cmake
     - astunparse
     - expecttest!=0.2.0
     - hypothesis
@@ -374,7 +374,6 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - task: DownloadPipelineArtifact@2
     displayName: 'Download Pipeline Wheel Files'
