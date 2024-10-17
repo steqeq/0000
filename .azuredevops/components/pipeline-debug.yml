@@ -10,6 +10,7 @@ parameters:
   type: object
   default:
     - cget
+    - cmake
 # list from https://github.com/pytorch/builder/blob/main/manywheel/build_rocm.sh
 - name: rocmDependencies
   type: object
@@ -64,12 +65,12 @@ jobs:
         echo $USER_BASE
         echo $PATH
   - task: Bash@3
-    displayName: Install boost
-    inputs:
-      targetType: inline
-      script: cget install boost,http://downloads.sourceforge.net/project/boost/boost/1.78.0/boost_1_78_0.tar.bz2 --cmake boost
-  - task: Bash@3
     displayName: Install zstd
     inputs:
       targetType: inline
       script: cget install facebook/zstd
+  - task: Bash@3
+    displayName: Install zstd
+    inputs:
+      targetType: inline
+      script: cmake --version
