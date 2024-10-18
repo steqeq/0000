@@ -30,7 +30,7 @@ parameters:
 
 steps:
   - task: DownloadPipelineArtifact@2
-    displayName: 'Download ${{ parameters.componentName }} Build'
+    displayName: 'Download ${{ parameters.componentName }}'
     inputs:
       ${{ if eq(parameters.buildType, 'specific') }}:
         buildType: specific
@@ -42,14 +42,14 @@ steps:
       itemPattern: '**/*${{ parameters.gpuTarget }}*'
       targetPath: $(System.ArtifactsDirectory)
   - task: ExtractFiles@1
-    displayName: 'Extract ${{ parameters.componentName }} Build'
+    displayName: 'Extract ${{ parameters.componentName }}'
     inputs:
       archiveFilePatterns: '$(System.ArtifactsDirectory)/**/*.tar.gz'
       destinationFolder: '$(Agent.BuildDirectory)/rocm'
       cleanDestinationFolder: false
       overwriteExistingFiles: true
   - task: DeleteFiles@1
-    displayName: 'Clean up Compressed ${{ parameters.componentName }} Build'
+    displayName: 'Clean up Compressed ${{ parameters.componentName }}'
     inputs:
       SourceFolder: '$(System.ArtifactsDirectory)'
       Contents: '/**/*.tar.xz'

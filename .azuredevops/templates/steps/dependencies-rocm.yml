@@ -7,13 +7,6 @@ parameters:
 - name: dependencySource
   type: string
   default: staging
-# required values for fixed selection
-- name: fixedPipelineIdentifier
-  type: string
-  default: 0
-- name: fixedComponentName
-  type: string
-  default: ''
 # match case of the repo in this object for the left side of the maps
 # should not need to replace these parameters
 - name: stagingPipelineIdentifiers
@@ -208,15 +201,17 @@ steps:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ split(dependency, ':')[0] }}
+
         ${{ if eq(parameters.dependencySource, 'staging') }}:
-          pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          dependencySource: staging
           branchToUse: staging
         ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
-          pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          dependencySource: staging
           branchToUse: mainline
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
-          pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          dependencySource: tag-builds
           buildVersionToDownload: latest
+
         ${{ if containsValue( parameters.componentsWithGPUTarget, split(dependency, ':')[0] ) }}:
           fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
         ${{ else }}:
@@ -226,24 +221,19 @@ steps:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
+
         ${{ if eq(parameters.dependencySource, 'staging') }}:
-          pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          dependencySource: staging
           branchToUse: staging
         ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
-          pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          dependencySource: staging
           branchToUse: mainline
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
-          pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
+          dependencySource: tag-builds
           buildVersionToDownload: latest
+
         ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
           fileFilter: ${{ parameters.gpuTarget }}
-# fixed case only accepts one component at a time, so no array input
-- ${{ if eq(parameters.dependencySource, 'fixed') }}:
-  - template: artifact-download.yml
-    parameters:
-      componentName: ${{ parameters.fixedComponentName }}
-      pipelineId: ${{ parameters.fixedPipelineIdentifier }}
-      buildVersionToDownload: latest
 # Set link to redirect llvm folder
 - ${{ if eq(parameters.skipLlvmSymlink, false) }}:
   - task: Bash@3
