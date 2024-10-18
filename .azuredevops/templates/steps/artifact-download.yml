@@ -42,181 +42,181 @@ parameters:
   default:
     AMDMIGraphX:
       staging: $(AMDMIGRAPHX_PIPELINE_ID)
-      tag-build: $(AMDMIGRAPHX_TAGGED_PIPELINE_ID)
+      tag-builds: $(AMDMIGRAPHX_TAGGED_PIPELINE_ID)
     amdsmi:
       staging: $(AMDSMI_PIPELINE_ID)
-      tag-build: $(AMDSMI_TAGGED_PIPELINE_ID)
+      tag-builds: $(AMDSMI_TAGGED_PIPELINE_ID)
     aomp-extras:
       staging: $(AOMP_EXTRAS_PIPELINE_ID)
-      tag-build: $(AOMP_EXTRAS_TAGGED_PIPELINE_ID)
+      tag-builds: $(AOMP_EXTRAS_TAGGED_PIPELINE_ID)
     aomp:
       staging: $(AOMP_PIPELINE_ID)
-      tag-build: $(AOMP_TAGGED_PIPELINE_ID)
+      tag-builds: $(AOMP_TAGGED_PIPELINE_ID)
     clr:
       staging: $(CLR_PIPELINE_ID)
-      tag-build: $(CLR_TAGGED_PIPELINE_ID)
+      tag-builds: $(CLR_TAGGED_PIPELINE_ID)
     composable_kernel:
       staging: $(COMPOSABLE_KERNEL_PIPELINE_ID)
-      tag-build: $(COMPOSABLE_KERNEL_TAGGED_PIPELINE_ID)
+      tag-builds: $(COMPOSABLE_KERNEL_TAGGED_PIPELINE_ID)
     half:
       staging: $(HALF_PIPELINE_ID)
-      tag-build: $(HALF_TAGGED_PIPELINE_ID)
+      tag-builds: $(HALF_TAGGED_PIPELINE_ID)
     HIP:
       staging: $(HIP_PIPELINE_ID)
-      tag-build: $(HIP_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIP_TAGGED_PIPELINE_ID)
     hip-tests:
       staging: $(HIP_TESTS_PIPELINE_ID)
-      tag-build: $(HIP_TESTS_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIP_TESTS_TAGGED_PIPELINE_ID)
     hipBLAS:
       staging: $(HIPBLAS_PIPELINE_ID)
-      tag-build: $(HIPBLAS_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPBLAS_TAGGED_PIPELINE_ID)
     hipBLAS-common:
       staging: $(HIPBLAS_COMMON_PIPELINE_ID)
-      tag-build: $(HIPBLAS_COMMON_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPBLAS_COMMON_TAGGED_PIPELINE_ID)
     hipBLASLt:
       staging: $(HIPBLASLT_PIPELINE_ID)
-      tag-build: $(HIPBLASLT_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPBLASLT_TAGGED_PIPELINE_ID)
     hipCUB:
       staging: $(HIPCUB_PIPELINE_ID)
-      tag-build: $(HIPCUB_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPCUB_TAGGED_PIPELINE_ID)
     hipFFT:
       staging: $(HIPFFT_PIPELINE_ID)
-      tag-build: $(HIPFFT_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPFFT_TAGGED_PIPELINE_ID)
     hipfort:
       staging: $(HIPFORT_PIPELINE_ID)
-      tag-build: $(HIPFORT_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPFORT_TAGGED_PIPELINE_ID)
     HIPIFY:
       staging: $(HIPIFY_PIPELINE_ID)
-      tag-build: $(HIPIFY_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPIFY_TAGGED_PIPELINE_ID)
     hipRAND:
       staging: $(HIPRAND_PIPELINE_ID)
-      tag-build: $(HIPRAND_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPRAND_TAGGED_PIPELINE_ID)
     hipSOLVER:
       staging: $(HIPSOLVER_PIPELINE_ID)
-      tag-build: $(HIPSOLVER_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPSOLVER_TAGGED_PIPELINE_ID)
     hipSPARSE:
       staging: $(HIPSPARSE_PIPELINE_ID)
-      tag-build: $(HIPSPARSE_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPSPARSE_TAGGED_PIPELINE_ID)
     hipSPARSELt:
       staging: $(HIPSPARSELT_PIPELINE_ID)
-      tag-build: $(HIPSPARSELT_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPSPARSELT_TAGGED_PIPELINE_ID)
     hipTensor:
       staging: $(HIPTENSOR_PIPELINE_ID)
-      tag-build: $(HIPTENSOR_TAGGED_PIPELINE_ID)
+      tag-builds: $(HIPTENSOR_TAGGED_PIPELINE_ID)
     llvm-project:
       staging: $(LLVM_PROJECT_PIPELINE_ID)
-      tag-build: $(LLVM_PROJECT_TAGGED_PIPELINE_ID)
+      tag-builds: $(LLVM_PROJECT_TAGGED_PIPELINE_ID)
     MIOpen:
       staging: $(MIOpen_PIPELINE_ID)
-      tag-build: $(MIOpen_TAGGED_PIPELINE_ID)
+      tag-builds: $(MIOpen_TAGGED_PIPELINE_ID)
     MIVisionX:
       staging: $(MIVISIONX_PIPELINE_ID)
-      tag-build: $(MIVISIONX_TAGGED_PIPELINE_ID)
+      tag-builds: $(MIVISIONX_TAGGED_PIPELINE_ID)
     omniperf:
       staging: $(OMNIPERF_PIPELINE_ID)
-      tag-build: $(OMNIPERF_TAGGED_PIPELINE_ID)
+      tag-builds: $(OMNIPERF_TAGGED_PIPELINE_ID)
     omnitrace:
       staging: $(OMNITRACE_PIPELINE_ID)
-      tag-build: $(OMNITRACE_TAGGED_PIPELINE_ID)
+      tag-builds: $(OMNITRACE_TAGGED_PIPELINE_ID)
     rccl:
       staging: $(RCCL_PIPELINE_ID)
-      tag-build: $(RCCL_TAGGED_PIPELINE_ID)
+      tag-builds: $(RCCL_TAGGED_PIPELINE_ID)
     rdc:
       staging: $(RDC_PIPELINE_ID)
-      tag-build: $(RDC_TAGGED_PIPELINE_ID)
+      tag-builds: $(RDC_TAGGED_PIPELINE_ID)
     rocAL:
       staging: $(ROCAL_PIPELINE_ID)
-      tag-build: $(ROCAL_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCAL_TAGGED_PIPELINE_ID)
     rocALUTION:
       staging: $(ROCALUTION_PIPELINE_ID)
-      tag-build: $(ROCALUTION_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCALUTION_TAGGED_PIPELINE_ID)
     rocBLAS:
       staging: $(ROCBLAS_PIPELINE_ID)
-      tag-build: $(ROCBLAS_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCBLAS_TAGGED_PIPELINE_ID)
     ROCdbgapi:
       staging: $(ROCDBGAPI_PIPELINE_ID)
-      tag-build: $(ROCDBGAPI_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCDBGAPI_TAGGED_PIPELINE_ID)
     rocDecode:
       staging: $(ROCDECODE_PIPELINE_ID)
-      tag-build: $(ROCDECODE_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCDECODE_TAGGED_PIPELINE_ID)
     rocFFT:
       staging: $(ROCFFT_PIPELINE_ID)
-      tag-build: $(ROCFFT_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCFFT_TAGGED_PIPELINE_ID)
     ROCgdb:
       staging: $(ROCGDB_PIPELINE_ID)
-      tag-build: $(ROCGDB_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCGDB_TAGGED_PIPELINE_ID)
     rocm-cmake:
       staging: $(ROCM_CMAKE_PIPELINE_ID)
-      tag-build: $(ROCM_CMAKE_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCM_CMAKE_TAGGED_PIPELINE_ID)
     rocm-core:
       staging: $(ROCM_CORE_PIPELINE_ID)
-      tag-build: $(ROCM_CORE_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCM_CORE_TAGGED_PIPELINE_ID)
     rocm-examples:
       staging: $(ROCM_EXAMPLES_PIPELINE_ID)
-      tag-build: $(ROCM_EXAMPLES_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCM_EXAMPLES_TAGGED_PIPELINE_ID)
     rocminfo:
       staging: $(ROCMINFO_PIPELINE_ID)
-      tag-build: $(ROCMINFO_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCMINFO_TAGGED_PIPELINE_ID)
     rocMLIR:
       staging: $(ROCMLIR_PIPELINE_ID)
-      tag-build: $(ROCMLIR_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCMLIR_TAGGED_PIPELINE_ID)
     ROCmValidationSuite:
       staging: $(ROCMVALIDATIONSUITE_PIPELINE_ID)
-      tag-build: $(ROCMVALIDATIONSUITE_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCMVALIDATIONSUITE_TAGGED_PIPELINE_ID)
     rocm_bandwidth_test:
       staging: $(ROCM_BANDWIDTH_TEST_PIPELINE_ID)
-      tag-build: $(ROCM_BANDWIDTH_TEST_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCM_BANDWIDTH_TEST_TAGGED_PIPELINE_ID)
     rocm_smi_lib:
       staging: $(ROCM_SMI_LIB_PIPELINE_ID)
-      tag-build: $(ROCM_SMI_LIB_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCM_SMI_LIB_TAGGED_PIPELINE_ID)
     rocPRIM:
       staging: $(ROCPRIM_PIPELINE_ID)
-      tag-build: $(ROCPRIM_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCPRIM_TAGGED_PIPELINE_ID)
     rocprofiler-register:
       staging: $(ROCPROFILER_REGISTER_PIPELINE_ID)
-      tag-build: $(ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID)
     rocprofiler-sdk:
       staging: $(ROCPROFILER_SDK_PIPELINE_ID)
-      tag-build: $(ROCPROFILER_SDK_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCPROFILER_SDK_TAGGED_PIPELINE_ID)
     rocprofiler-systems:
       staging: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
-      tag-build: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
+      tag-builds: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
     rocprofiler:
       staging: $(ROCPROFILER_PIPELINE_ID)
-      tag-build: $(ROCPROFILER_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCPROFILER_TAGGED_PIPELINE_ID)
     rocPyDecode:
       staging: $(ROCPYDECODE_PIPELINE_ID)
-      tag-build: $(ROCPYDECODE_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCPYDECODE_TAGGED_PIPELINE_ID)
     ROCR-Runtime:
       staging: $(ROCR_RUNTIME_PIPELINE_ID)
-      tag-build: $(ROCR_RUNTIME_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCR_RUNTIME_TAGGED_PIPELINE_ID)
     rocRAND:
       staging: $(ROCRAND_PIPELINE_ID)
-      tag-build: $(ROCRAND_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCRAND_TAGGED_PIPELINE_ID)
     rocr_debug_agent:
       staging: $(ROCR_DEBUG_AGENT_PIPELINE_ID)
-      tag-build: $(ROCR_DEBUG_AGENT_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCR_DEBUG_AGENT_TAGGED_PIPELINE_ID)
     rocSOLVER:
       staging: $(ROCSOLVER_PIPELINE_ID)
-      tag-build: $(ROCSOLVER_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCSOLVER_TAGGED_PIPELINE_ID)
     rocSPARSE:
       staging: $(ROCSPARSE_PIPELINE_ID)
-      tag-build: $(ROCSPARSE_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCSPARSE_TAGGED_PIPELINE_ID)
     ROCT-Thunk-Interface:
       staging: $(ROCT_THUNK_INTERFACE_PIPELINE_ID)
-      tag-build: $(ROCT_THUNK_INTERFACE_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCT_THUNK_INTERFACE_TAGGED_PIPELINE_ID)
     rocThrust:
       staging: $(ROCTHRUST_PIPELINE_ID)
-      tag-build: $(ROCTHRUST_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCTHRUST_TAGGED_PIPELINE_ID)
     roctracer:
       staging: $(ROCTRACER_PIPELINE_ID)
-      tag-build: $(ROCTRACER_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCTRACER_TAGGED_PIPELINE_ID)
     rocWMMA:
       staging: $(ROCWMMA_PIPELINE_ID)
-      tag-build: $(ROCWMMA_TAGGED_PIPELINE_ID)
+      tag-builds: $(ROCWMMA_TAGGED_PIPELINE_ID)
     rpp:
       staging: $(RPP_PIPELINE_ID)
-      tag-build: $(RPP_TAGGED_PIPELINE_ID)
+      tag-builds: $(RPP_TAGGED_PIPELINE_ID)
 
 - name: componentBranches
   type: object
