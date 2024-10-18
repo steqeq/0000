@@ -95,9 +95,14 @@ steps:
           fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
         ${{ else }}:
           fileFilter: ${{ split(dependency, ':')[1] }}
+
+        # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
+        # buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
+        # branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
+
         dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
-        buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
-        branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
+        buildVersionToDownload: latestFromBranch
+        branchToUse: staging
         # ${{ if eq(parameters.dependencySource, 'staging') }}:
         #   dependencySource: staging
         #   branchToUse: staging
