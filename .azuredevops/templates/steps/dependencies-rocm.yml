@@ -214,10 +214,11 @@ steps:
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
+          branchToUse: staging
         ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
-          useMainlineBranch: true
           latestFromBranch: ${{ parameters.latestFromBranch }}
+          branchToUse: mainline
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: false

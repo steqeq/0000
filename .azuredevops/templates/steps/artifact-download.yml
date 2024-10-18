@@ -13,6 +13,14 @@ parameters:
 - name: useMainlineBranch
   type: boolean
   default: false
+
+- name: branchToUse
+  type: string
+  default: string
+  values:
+    - staging
+    - mainline
+
 - name: latestFromBranch
   type: boolean
   default: true
@@ -228,10 +236,7 @@ steps:
     itemPattern: '**/*${{ parameters.fileFilter }}*'
     ${{ if eq(parameters.latestFromBranch, true) }}:
       buildVersionToDownload: latestFromBranch # default is 'latest'
-    ${{ if eq(parameters.useDefaultBranch, true) }}:
-      branchName: refs/heads/${{ parameters.branchList[parameters.componentName].staging }}
-    ${{ elseif eq(parameters.useMainlineBranch, true) }}:
-      branchName: refs/heads/${{ parameters.branchList[parameters.componentName].mainline }}
+    branchName: refs/heads/${{ parameters.branchList[parameters.componentName][parameters.branchToUse] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
