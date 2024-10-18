@@ -63,7 +63,7 @@ parameters:
 - name: compileTimeMatrix
   type: object
   default:
-    staging_gfx942:
+    staging-gfx942:
       JOB_NAME: nightly_staging_gfx942
       DEPENDENCY_SOURCE: staging
       JOB_GPU_TARGET: gfx942
@@ -84,7 +84,7 @@ schedules:
 
 jobs:
 - ${{ each matrixItem in parameters.compileTimeMatrix }}:
-  - job: ${{ matrixItem.value.JOB_NAME }}
+  - job: test
     variables:
     - group: common
     - template: /.azuredevops/variables-global.yml
@@ -133,63 +133,3 @@ jobs:
       retryCountOnTaskFailure: 3
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)'
-
-
-
-# - job: rocm_nightly
-#   variables:
-#   - group: common
-#   - template: /.azuredevops/variables-global.yml
-#   pool: 
-#     vmImage: ${{ variables.BASE_BUILD_POOL }}
-#   workspace:
-#     clean: all
-#   strategy:
-#     matrix:
-#       staging-gfx942:
-#         DEPENDENCY_SOURCE: staging
-#         JOB_GPU_TARGET: gfx942
-#       # mainline-gfx942:
-#       #   DEPENDENCY_SOURCE: mainline
-#       #   JOB_GPU_TARGET: gfx942
-#   steps:
-#   - task: DeleteFiles@1
-#     displayName: 'Cleanup checkout space'
-#     inputs:
-#       SourceFolder: '$(Agent.BuildDirectory)/s'
-#       Contents: '**/*'
-#   - task: DeleteFiles@1
-#     displayName: 'Cleanup Staging Area'
-#     inputs:
-#       SourceFolder: '$(Build.ArtifactStagingDirectory)'
-#       Contents: '/**/*'
-#       RemoveDotFiles: true
-#   - script: df -h
-#     displayName: System disk space before ROCm
-#   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-#     parameters:
-#       dependencyList: ${{ parameters.rocmDependencies }}
-#       # dependencySource: staging
-#       dependencySource: $(DEPENDENCY_SOURCE)
-#       skipLibraryLinking: true
-#       skipLlvmSymlink: true
-#       gpuTarget: $(JOB_GPU_TARGET)
-#   - script: df -h
-#     displayName: System disk space after ROCm
-#   - script: du -sh $(Agent.BuildDirectory)/rocm
-#     displayName: Uncompressed ROCm size
-#   - task: ArchiveFiles@2
-#     displayName: Compress rocm-nightly
-#     inputs:
-#       rootFolderOrFile: $(Agent.BuildDirectory)/rocm
-#       includeRootFolder: false
-#       archiveType: tar
-#       tarCompression: gz
-#       archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.DefinitionName)_$(Build.BuildNumber)_ubuntu2204_$(JOB_GPU_TARGET).tar.gz
-#   - script: du -sh $(Build.ArtifactStagingDirectory)
-#     displayName: Compressed ROCm size
-#   - task: PublishPipelineArtifact@1
-#     displayName: 'Publish ROCm Nightly Artifact'
-#     retryCountOnTaskFailure: 3
-#     inputs:
-#       targetPath: '$(Build.ArtifactStagingDirectory)'
