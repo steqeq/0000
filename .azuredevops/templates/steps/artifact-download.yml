@@ -10,9 +10,9 @@ parameters:
 - name: dependencySource
   type: string
   default: staging
-  values:
-    - staging
-    - tag-builds
+  # values:
+  #   - staging
+  #   - tag-builds
 - name: componentPipelineIds
   type: object
   default:
@@ -197,17 +197,17 @@ parameters:
 - name: buildVersionToDownload
   type: string
   default: latestFromBranch
-  values:
-    - latest
-    - latestFromBranch
-    - specific
+  # values:
+  #   - latest
+  #   - latestFromBranch
+  #   - specific
 - name: branchToUse
   type: string
   default: staging
-  values:
-    - staging
-    - mainline
-    - custom
+  # values:
+  #   - staging
+  #   - mainline
+  #   - custom
 - name: customBranchName
   type: string
   default: $(Build.SourceBranchName)
