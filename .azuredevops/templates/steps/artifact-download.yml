@@ -415,9 +415,9 @@ steps:
     itemPattern: '**/*${{ parameters.fileFilter }}*'
     ${{ if notIn(parameters.componentName, 'aomp') }}: # remove this once these pipelines are functional + up-to-date
         buildVersionToDownload: ${{ parameters.buildVersionToDownload }} # default is 'latest'
-    # ${{ if eq(parameters.branchToUse, 'custom') }}:
-    #   branchName: ${{ parameters.customBranchName }}
-    # ${{ else }}:
+    ${{ if eq(parameters.branchToUse, 'custom') }}:
+      branchName: ${{ parameters.customBranchName }}
+    ${{ else }}:
     branchName: refs/heads/${{ parameters.componentBranchNames[parameters.componentName][parameters.branchToUse] }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
       allowPartiallySucceededBuilds: true

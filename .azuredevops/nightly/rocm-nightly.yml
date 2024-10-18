@@ -103,8 +103,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
-      # dependencySource: staging
-      dependencySource: $(DEPENDENCY_SOURCE)
+      dependencySource: staging
+      # dependencySource: $(DEPENDENCY_SOURCE)
       skipLibraryLinking: true
       skipLlvmSymlink: true
       gpuTarget: $(JOB_GPU_TARGET)
