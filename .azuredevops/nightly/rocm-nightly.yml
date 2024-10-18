@@ -67,10 +67,10 @@ parameters:
       JOB_NAME: nightly_staging_gfx942
       DEPENDENCY_SOURCE: staging
       JOB_GPU_TARGET: gfx942
-    # mainline-gfx942:
-    #   JOB_NAME: nightly_mainline_gfx942
-    #   DEPENDENCY_SOURCE: mainline
-    #   JOB_GPU_TARGET: gfx942
+    mainline-gfx942:
+      JOB_NAME: nightly_mainline_gfx942
+      DEPENDENCY_SOURCE: mainline
+      JOB_GPU_TARGET: gfx942
 
 trigger: none
 pr: none
@@ -84,12 +84,11 @@ schedules:
 
 jobs:
 - ${{ each matrixItem in parameters.compileTimeMatrix }}:
-  - job: test
+  - job: ${{ matrixItem.value.JOB_NAME }}
     variables:
     - group: common
     - template: /.azuredevops/variables-global.yml
-    pool: 
-      vmImage: ${{ variables.BASE_BUILD_POOL }}
+    pool: ${{ variables.MEDIUM_BUILD_POOL }}
     workspace:
       clean: all
     steps:
