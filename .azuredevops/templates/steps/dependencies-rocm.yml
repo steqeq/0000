@@ -99,7 +99,7 @@ steps:
         # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
         # buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
         # branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
-        dependencySource: staging
+        dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
         buildVersionToDownload: latestFromBranch
         branchToUse: staging
 
@@ -123,7 +123,7 @@ steps:
         # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
         # buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
         # branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
-        dependencySource: staging
+        dependencySource: $(parameters.matrixParamFixer[parameters.dependencySource].dependencySource)
         buildVersionToDownload: latestFromBranch
         branchToUse: staging
 
