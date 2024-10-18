@@ -8,11 +8,12 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - cmake
+    - build-essential
     - python3-pip
     - libdrm-dev
     - libdw-dev
     - libelf-dev
+    - pkg-config
 - name: pipModules
   type: object
   default:
@@ -27,7 +28,7 @@ parameters:
     - pandas
     - perfetto
     - pycobertura
-    - pytest
+    - pytest>=6.2.5
     - pyyaml
 - name: rocmDependencies
   type: object
@@ -98,7 +99,7 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DROCPROFILER_BUILD_TESTS=ON
-        -DROCPROFILER_BUILD_SAMPLES=OFF
+        -DROCPROFILER_BUILD_SAMPLES=ON
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
       multithreadFlag: -- -j2
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
@@ -141,12 +142,16 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: tag-builds
-  - script: |
-      mkdir rocprofiler-sdk-tests
-      cd rocprofiler-sdk-tests
-      cmake $(Agent.BuildDirectory)/rocm/share/rocprofiler-sdk/tests \
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-      cmake --build . -- -j$(nproc)
+  - task: Bash@3
+    displayName: Build rocprofiler-sdk tests
+    inputs:
+      targetType: inline
+      script: |
+        mkdir rocprofiler-sdk-tests
+        cd rocprofiler-sdk-tests
+        cmake $(Agent.BuildDirectory)/rocm/share/rocprofiler-sdk/tests \
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        cmake --build . -- -j$(nproc)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocprofiler-sdk
