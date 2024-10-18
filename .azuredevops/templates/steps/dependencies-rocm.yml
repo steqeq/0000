@@ -7,9 +7,6 @@ parameters:
 - name: dependencySource
   type: string
   default: staging
-- name: extractToMnt
-  type: boolean
-  default: false
 # required values for fixed selection
 - name: fixedPipelineIdentifier
   type: string
@@ -209,19 +206,11 @@ steps:
 # fileFilter could contain both a subcomponent name or gpu name separated by asterisks
 # gpu name will be specified by parameters.gpuTarget for components that are in componentsWithGPUTarget
 # e.g., gfx942 to only download artifacts from component for this gpu if applicable
-- script: echo ${{ parameters.dependencySource }}
-- ${{ if eq(parameters.dependencySource, 'staging') }}:
-  - script: echo staging
-- ${{ if eq(parameters.dependencySource, 'mainline') }}:
-  - script: echo mainline
-- ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
-  - script: echo tag-builds
 - ${{ each dependency in parameters.dependencyList }}:
   - ${{ if contains(dependency, ':') }}:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ split(dependency, ':')[0] }}
-        extractToMnt: ${{ parameters.extractToMnt }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
@@ -241,7 +230,6 @@ steps:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
-        extractToMnt: ${{ parameters.extractToMnt }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
@@ -261,7 +249,6 @@ steps:
       componentName: ${{ parameters.fixedComponentName }}
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
       latestFromBranch: false
-      extractToMnt: ${{ parameters.extractToMnt }}
 # Set link to redirect llvm folder
 - ${{ if eq(parameters.skipLlvmSymlink, false) }}:
   - task: Bash@3
@@ -281,27 +268,16 @@ steps:
   displayName: 'List downloaded ROCm files'
   inputs:
     targetType: inline
-    ${{ if eq(parameters.extractToMnt, true) }}:
-      script: ls -1R /mnt/rocm
-    ${{ else }}:
-      script: ls -1R $(Agent.BuildDirectory)/rocm
+    script: ls -1R $(Agent.BuildDirectory)/rocm
 - ${{ if eq(parameters.skipLibraryLinking, false) }}:
   - task: Bash@3
     displayName: 'Link ROCm shared libraries'
     inputs:
       targetType: inline
 # OS ignores if the ROCm lib folder shows up more than once
-      ${{ if eq(parameters.extractToMnt, true) }}:
-        script: |
-          echo /mnt/rocm/lib | sudo tee /etc/ld.so.conf.d/rocm-ci.conf
-          echo /mnt/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
-          sudo cat /etc/ld.so.conf.d/rocm-ci.conf
-          sudo ldconfig -v
-          ldconfig -p
-      ${{ else }}:
-        script: |
-          echo $(Agent.BuildDirectory)/rocm/lib | sudo tee /etc/ld.so.conf.d/rocm-ci.conf
-          echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
-          sudo cat /etc/ld.so.conf.d/rocm-ci.conf
-          sudo ldconfig -v
-          ldconfig -p
+      script: |
+        echo $(Agent.BuildDirectory)/rocm/lib | sudo tee /etc/ld.so.conf.d/rocm-ci.conf
+        echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
+        sudo cat /etc/ld.so.conf.d/rocm-ci.conf
+        sudo ldconfig -v
+        ldconfig -p

@@ -83,9 +83,9 @@ jobs:
       staging-gfx942:
         DEPENDENCY_SOURCE: staging
         JOB_GPU_TARGET: gfx942
-      mainline-gfx942:
-        DEPENDENCY_SOURCE: mainline
-        JOB_GPU_TARGET: gfx942
+      # mainline-gfx942:
+      #   DEPENDENCY_SOURCE: mainline
+      #   JOB_GPU_TARGET: gfx942
   steps:
   - task: DeleteFiles@1
     displayName: 'Cleanup checkout space'
@@ -103,7 +103,8 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
-      dependencySource: $(DEPENDENCY_SOURCE)
+      dependencySource: staging
+      # dependencySource: $(DEPENDENCY_SOURCE)
       skipLibraryLinking: true
       skipLlvmSymlink: true
       gpuTarget: $(JOB_GPU_TARGET)

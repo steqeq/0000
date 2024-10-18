@@ -16,134 +16,188 @@ parameters:
 - name: latestFromBranch
   type: boolean
   default: true
-- name: extractToMnt
-  type: boolean
-  default: false
 - name: fileFilter
   type: string
   default: ''
-- name: defaultBranchList
+
+- name: branchList
   type: object
   default:
-    AMDMIGraphX: develop
-    amdsmi: amd-staging
-    aomp-extras: aomp-dev
-    aomp: aomp-dev
-    clr: amd-staging
-    composable_kernel: develop
-    half: rocm
-    HIP: amd-staging
-    hip-tests: amd-staging
-    hipBLAS: develop
-    hipBLASLt: develop
-    hipBLAS-common: develop
-    hipCUB: develop
-    hipFFT: develop
-    hipfort: develop
-    HIPIFY: amd-staging
-    hipRAND: develop
-    hipSOLVER: develop
-    hipSPARSE: develop
-    hipSPARSELt: develop
-    hipTensor: develop
-    llvm-project: amd-staging
-    MIOpen: develop
-    MIVisionX: develop
-    omniperf: amd-staging
-    omnitrace: amd-staging
-    rccl: develop
-    rdc: amd-staging
-    rocAL: develop
-    rocALUTION: develop
-    rocBLAS: develop
-    ROCdbgapi : amd-staging
-    rocDecode: develop
-    rocFFT: develop
-    ROCgdb: amd-staging
-    rocm-cmake: develop
-    rocm-core: amd-staging
-    rocm-examples: develop
-    rocminfo: amd-staging
-    rocMLIR: develop
-    ROCmValidationSuite: master
-    rocm_bandwidth_test: master
-    rocm_smi_lib: amd-staging
-    rocPRIM: develop
-    rocprofiler: amd-staging
-    rocprofiler-register: amd-staging
-    rocprofiler-sdk: amd-staging
-    rocprofiler-systems: amd-staging
-    rocPyDecode: develop
-    ROCR-Runtime: amd-staging
-    rocRAND: develop
-    rocr_debug_agent: amd-staging
-    rocSOLVER: develop
-    rocSPARSE: develop
-    rocThrust: develop
-    roctracer: amd-staging
-    rocWMMA: develop
-    rpp: develop
-- name: mainlineBranchList
-  type: object
-  default:
-    AMDMIGraphX: mainline
-    amdsmi: amd-mainline
-    aomp-extras: amd-mainline-open
-    aomp: amd-mainline-open
-    clr: amd-mainline
-    composable_kernel: mainline
-    half: rocm
-    HIP: amd-mainline
-    hip-tests: amd-mainline
-    hipBLAS: mainline
-    hipBLASLt: mainline
-    hipBLAS-common: mainline
-    hipCUB: mainline
-    hipFFT: mainline
-    hipfort: mainline
-    HIPIFY: amd-mainline
-    hipRAND: mainline
-    hipSOLVER: mainline
-    hipSPARSE: mainline
-    hipSPARSELt: mainline
-    hipTensor: mainline
-    llvm-project: amd-mainline-open
-    MIOpen: mainline
-    MIVisionX: mainline
-    omniperf: amd-mainline
-    omnitrace: amd-mainline
-    rccl: mainline
-    rdc: amd-mainline
-    rocAL: master # needs the yaml file
-    rocALUTION: mainline
-    rocBLAS: mainline
-    ROCdbgapi : amd-mainline
-    rocDecode: mainline
-    rocFFT: mainline
-    ROCgdb: amd-mainline-rocgdb-15 #
-    rocm-cmake: mainline
-    rocm-core: amd-master
-    rocm-examples: develop # no mainline
-    rocminfo: amd-master
-    rocMLIR: mainline # needs the yaml file
-    ROCmValidationSuite: mainline
-    rocm_bandwidth_test: master
-    rocm_smi_lib: amd-mainline
-    rocPRIM: mainline
-    rocprofiler: amd-master
-    rocprofiler-register: amd-mainline
-    rocprofiler-sdk: amd-mainline
-    rocprofiler-systems: amd-mainline
-    rocPyDecode: mainline
-    ROCR-Runtime: amd-master
-    rocRAND: mainline
-    rocr_debug_agent: amd-mainline
-    rocSOLVER: mainline
-    rocSPARSE: mainline
-    rocThrust: mainline
-    roctracer: amd-master
-    rocWMMA: mainline
-    rpp: mainline
+    AMDMIGraphX:
+      staging: develop
+      mainline: mainline
+    amdsmi:
+      staging: amd-staging
+      mainline: amd-mainline
+    aomp-extras:
+      staging: aomp-dev
+      mainline: amd-mainline-open
+    aomp:
+      staging: aomp-dev
+      mainline: amd-mainline-open
+    clr:
+      staging: amd-staging
+      mainline: amd-mainline
+    composable_kernel:
+      staging: develop
+      mainline: mainline
+    half:
+      staging: rocm
+      mainline: rocm
+    HIP:
+      staging: amd-staging
+      mainline: amd-mainline
+    hip-tests:
+      staging: amd-staging
+      mainline: amd-mainline
+    hipBLAS:
+      staging: develop
+      mainline: mainline
+    hipBLASLt:
+      staging: develop
+      mainline: mainline
+    hipBLAS-common:
+      staging: develop
+      mainline: mainline
+    hipCUB:
+      staging: develop
+      mainline: mainline
+    hipFFT:
+      staging: develop
+      mainline: mainline
+    hipfort:
+      staging: develop
+      mainline: mainline
+    HIPIFY:
+      staging: amd-staging
+      mainline: amd-mainline
+    hipRAND:
+      staging: develop
+      mainline: mainline
+    hipSOLVER:
+      staging: develop
+      mainline: mainline
+    hipSPARSE:
+      staging: develop
+      mainline: mainline
+    hipSPARSELt:
+      staging: develop
+      mainline: mainline
+    hipTensor:
+      staging: develop
+      mainline: mainline
+    llvm-project:
+      staging: amd-staging
+      mainline: amd-mainline-open
+    MIOpen:
+      staging: develop
+      mainline: mainline
+    MIVisionX:
+      staging: develop
+      mainline: mainline
+    omniperf:
+      staging: amd-staging
+      mainline: amd-mainline
+    omnitrace:
+      staging: amd-staging
+      mainline: amd-mainline
+    rccl:
+      staging: develop
+      mainline: mainline
+    rdc:
+      staging: amd-staging
+      mainline: amd-mainline
+    rocAL:
+      staging: develop
+      mainline: master
+    rocALUTION:
+      staging: develop
+      mainline: mainline
+    rocBLAS:
+      staging: develop
+      mainline: mainline
+    ROCdbgapi:
+      staging: amd-staging
+      mainline: amd-mainline
+    rocDecode:
+      staging: develop
+      mainline: mainline
+    rocFFT:
+      staging: develop
+      mainline: mainline
+    ROCgdb:
+      staging: amd-staging
+      mainline: amd-mainline-rocgdb-15
+    rocm-cmake:
+      staging: develop
+      mainline: mainline
+    rocm-core:
+      staging: amd-staging
+      mainline: amd-master
+    rocm-examples:
+      staging: develop
+      mainline: develop
+    rocminfo:
+      staging: amd-staging
+      mainline: amd-master
+    rocMLIR:
+      staging: develop
+      mainline: mainline
+    ROCmValidationSuite:
+      staging: master
+      mainline: mainline
+    rocm_bandwidth_test:
+      staging: master
+      mainline: master
+    rocm_smi_lib:
+      staging: amd-staging
+      mainline: amd-mainline
+    rocPRIM:
+      staging: develop
+      mainline: mainline
+    rocprofiler:
+      staging: amd-staging
+      mainline: amd-master
+    rocprofiler-register:
+      staging: amd-staging
+      mainline: amd-mainline
+    rocprofiler-sdk:
+      staging: amd-staging
+      mainline: amd-mainline
+    rocprofiler-systems:
+      staging: amd-staging
+      mainline: amd-mainline
+    rocPyDecode:
+      staging: develop
+      mainline: mainline
+    ROCR-Runtime:
+      staging: amd-staging
+      mainline: amd-master
+    rocRAND:
+      staging: develop
+      mainline: mainline
+    rocr_debug_agent:
+      staging: amd-staging
+      mainline: amd-mainline
+    rocSOLVER:
+      staging: develop
+      mainline: mainline
+    rocSPARSE:
+      staging: develop
+      mainline: mainline
+    rocThrust:
+      staging: develop
+      mainline: mainline
+    roctracer:
+      staging: amd-staging
+      mainline: amd-master
+    rocWMMA:
+      staging: develop
+      mainline: mainline
+    rpp:
+      staging: develop
+      mainline: mainline
+
 - name: allowPartiallySucceededBuilds
   type: object
   default:
@@ -173,12 +227,11 @@ steps:
     specificBuildWithTriggering: true
     itemPattern: '**/*${{ parameters.fileFilter }}*'
     ${{ if eq(parameters.latestFromBranch, true) }}:
-      ${{ if notIn(parameters.componentName, 'aomp') }}: # remove this once these pipelines are functional + up-to-date
-        buildVersionToDownload: latestFromBranch # default is 'latest'
+      buildVersionToDownload: latestFromBranch # default is 'latest'
     ${{ if eq(parameters.useDefaultBranch, true) }}:
-      branchName: refs/heads/${{ parameters.defaultBranchList[parameters.componentName] }}
+      branchName: refs/heads/${{ parameters.branchList.staging[parameters.componentName] }}
     ${{ elseif eq(parameters.useMainlineBranch, true) }}:
-      branchName: refs/heads/${{ parameters.mainlineBranchList[parameters.componentName] }}
+      branchName: refs/heads/${{ parameters.branchList.mainline[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
@@ -188,10 +241,7 @@ steps:
   displayName: Extract ${{ parameters.componentName }}
   inputs:
     archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
-    ${{ if parameters.extractToMnt }}:
-      destinationFolder: '/mnt/rocm'
-    ${{ else }}:
-      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+    destinationFolder: '$(Agent.BuildDirectory)/rocm'
     cleanDestinationFolder: false
     overwriteExistingFiles: true
 - task: DeleteFiles@1
