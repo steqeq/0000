@@ -299,7 +299,7 @@ For a system that has AMD host CPUs add this to ``GRUB_CMDLINE_LINUX``:
 
 .. code-block:: text
 
-   amd_iommu=on iommu=pt
+   iommu=pt
 
 Otherwise, if the system has Intel host CPUs add this instead to
 ``GRUB_CMDLINE_LINUX``:
@@ -500,7 +500,7 @@ If SMT is enabled by setting ``CCD/Core/Thread Enablement > SMT Control`` to
 
 #. In the server BIOS, set IOMMU to ``Enabled``.
 
-#. When configuring the GRUB boot loader, add the following arguments for the Linux kernel: ``amd_iommu=on iommu=pt``.
+#. When configuring the GRUB boot loader, add the following argument for the Linux kernel: ``iommu=pt``.
 
 #. Update GRUB.
 
@@ -515,7 +515,7 @@ If SMT is enabled by setting ``CCD/Core/Thread Enablement > SMT Control`` to
 .. code-block:: shell
 
    [...]
-   [   0.000000] Kernel command line: [...] amd_iommu=on iommu=pt
+   [   0.000000] Kernel command line: [...] iommu=pt
    [...]
 
 Once the system is properly configured, ROCm software can be
