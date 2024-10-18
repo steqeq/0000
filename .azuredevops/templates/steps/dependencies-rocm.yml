@@ -7,11 +7,11 @@ parameters:
 - name: dependencySource
   type: string
   default: staging
-  values:
-    - staging
-    - mainline
-    - tag-builds
-    - fixed
+  # values:
+  #   - staging
+  #   - mainline
+  #   - tag-builds
+  #   - fixed
 - name: extractToMnt
   type: boolean
   default: false

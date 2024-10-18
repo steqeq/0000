@@ -83,6 +83,9 @@ jobs:
       staging-gfx942:
         DEPENDENCY_SOURCE: staging
         JOB_GPU_TARGET: gfx942
+      mainline-gfx942:
+        DEPENDENCY_SOURCE: mainline
+        JOB_GPU_TARGET: gfx942
   steps:
   - task: DeleteFiles@1
     displayName: 'Cleanup checkout space'
