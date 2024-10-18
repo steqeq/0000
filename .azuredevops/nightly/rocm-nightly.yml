@@ -63,7 +63,7 @@ parameters:
 - name: compileTimeMatrix
   type: object
   default:
-    staging-gfx942:
+    staging_gfx942:
       JOB_NAME: nightly_staging_gfx942
       DEPENDENCY_SOURCE: staging
       JOB_GPU_TARGET: gfx942
