@@ -99,10 +99,10 @@ steps:
         # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
         # buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
         # branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
-
         dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
         buildVersionToDownload: latestFromBranch
         branchToUse: staging
+
         # ${{ if eq(parameters.dependencySource, 'staging') }}:
         #   dependencySource: staging
         #   branchToUse: staging
@@ -119,9 +119,14 @@ steps:
         componentName: ${{ dependency }}
         ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
           fileFilter: ${{ parameters.gpuTarget }}
+
+        # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
+        # buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
+        # branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
         dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
-        buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
-        branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
+        buildVersionToDownload: latestFromBranch
+        branchToUse: staging
+
         # ${{ if eq(parameters.dependencySource, 'staging') }}:
         #   dependencySource: staging
         #   branchToUse: staging
