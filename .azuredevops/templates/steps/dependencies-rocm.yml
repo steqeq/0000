@@ -7,11 +7,6 @@ parameters:
 - name: dependencySource
   type: string
   default: staging
-  # values:
-  #   - staging
-  #   - mainline
-  #   - tag-builds
-  #   - fixed
 - name: extractToMnt
   type: boolean
   default: false
@@ -214,6 +209,13 @@ steps:
 # fileFilter could contain both a subcomponent name or gpu name separated by asterisks
 # gpu name will be specified by parameters.gpuTarget for components that are in componentsWithGPUTarget
 # e.g., gfx942 to only download artifacts from component for this gpu if applicable
+- script: echo ${{ parameters.dependencySource }}
+- ${{ if eq(parameters.dependencySource, 'staging') }}:
+  - script: echo staging
+- ${{ if eq(parameters.dependencySource, 'mainline') }}:
+  - script: echo mainline
+- ${{ if eq(parameters.dependencySource, 'tag-builds') }}:
+  - script: echo tag-builds
 - ${{ each dependency in parameters.dependencyList }}:
   - ${{ if contains(dependency, ':') }}:
     - template: artifact-download.yml
