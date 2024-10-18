@@ -6,13 +6,6 @@ parameters:
 - name: pipelineId
   type: string
   default: ''
-- name: useDefaultBranch
-  type: boolean
-  default: true
-# useMainlineBranch only processed if useDefaultBranch is false
-- name: useMainlineBranch
-  type: boolean
-  default: false
 
 - name: branchToUse
   type: string
@@ -20,10 +13,19 @@ parameters:
   values:
     - staging
     - mainline
+    - custom
+- name: customBranchName
+  type: string
+  default: $(Build.SourceBranchName)
 
-- name: latestFromBranch
-  type: boolean
-  default: true
+- name: buildVersionToDownload
+  type: string
+  default: latestFromBranch
+  values:
+    - latest
+    - latestFromBranch
+    - specific
+
 - name: fileFilter
   type: string
   default: ''
@@ -205,7 +207,6 @@ parameters:
     rpp:
       staging: develop
       mainline: mainline
-
 - name: allowPartiallySucceededBuilds
   type: object
   default:
@@ -220,10 +221,6 @@ parameters:
     - rocm_smi_lib
     - rocFFT
     - rpp
-# BELOW REQUIRED IF useDefaultBranch false
-- name: branchName
-  type: string
-  default: '$(Build.SourceBranchName)' # for tagged builds
 
 steps:
 - task: DownloadPipelineArtifact@2
@@ -234,11 +231,11 @@ steps:
     definition: ${{ parameters.pipelineId }}
     specificBuildWithTriggering: true
     itemPattern: '**/*${{ parameters.fileFilter }}*'
-    ${{ if eq(parameters.latestFromBranch, true) }}:
-      buildVersionToDownload: latestFromBranch # default is 'latest'
-    branchName: refs/heads/${{ parameters.branchList[parameters.componentName][parameters.branchToUse] }}
+    buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+    ${{ if eq(parameters.branchToUse, 'custom') }}:
+      branchName: ${{ parameters.customBranchName }}
     ${{ else }}:
-      branchName: ${{ parameters.branchName }}
+      branchName: refs/heads/${{ parameters.branchList[parameters.componentName][parameters.branchToUse] }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'

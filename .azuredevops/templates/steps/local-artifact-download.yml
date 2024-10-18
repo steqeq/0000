@@ -1,4 +1,7 @@
 parameters:
+  - name: componentName
+    type: string
+    default: Fixed
   - name: gpuTarget
     type: string
     default: ''
@@ -9,7 +12,14 @@ parameters:
     values:
       - current
       - specific
-  # Must be set if buildType == specific
+  - name: buildVersionToDownload
+    type: string
+    default: specific
+    values:
+      - latest
+      - latestFromBranch
+      - specific
+  # Must be set if buildType == specific && buildVersionToDownload == specific
   # Set definitionId to the pipeline ID and buildId to the specific build ID
   - name: definitionId
     type: string
@@ -24,10 +34,11 @@ steps:
     inputs:
       ${{ if eq(parameters.buildType, 'specific') }}:
         buildType: specific
-        buildVersionToDownload: specific
+        buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
         project: ROCm-CI
         definition: ${{ parameters.definitionId }}
-        buildId: ${{ parameters.buildId }}
+        ${{ if eq(parameters.buildVersionToDownload, 'specific') }}:
+          buildId: ${{ parameters.buildId }}
       itemPattern: '**/*${{ parameters.gpuTarget }}*'
       targetPath: $(System.ArtifactsDirectory)
   - task: ExtractFiles@1

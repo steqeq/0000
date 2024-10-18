@@ -14,9 +14,6 @@ parameters:
 - name: fixedComponentName
   type: string
   default: ''
-- name: latestFromBranch
-  type: boolean
-  default: true
 # match case of the repo in this object for the left side of the maps
 # should not need to replace these parameters
 - name: stagingPipelineIdentifiers
@@ -213,15 +210,13 @@ steps:
         componentName: ${{ split(dependency, ':')[0] }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
-          latestFromBranch: ${{ parameters.latestFromBranch }}
           branchToUse: staging
         ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
-          latestFromBranch: ${{ parameters.latestFromBranch }}
           branchToUse: mainline
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
-          latestFromBranch: false
+          buildVersionToDownload: latest
         ${{ if containsValue( parameters.componentsWithGPUTarget, split(dependency, ':')[0] ) }}:
           fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
         ${{ else }}:
@@ -233,14 +228,13 @@ steps:
         componentName: ${{ dependency }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
-          latestFromBranch: ${{ parameters.latestFromBranch }}
+          branchToUse: staging
         ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
-          useMainlineBranch: true
-          latestFromBranch: ${{ parameters.latestFromBranch }}
+          branchToUse: mainline
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}
-          latestFromBranch: false
+          buildVersionToDownload: latest
         ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
           fileFilter: ${{ parameters.gpuTarget }}
 # fixed case only accepts one component at a time, so no array input
@@ -249,7 +243,7 @@ steps:
     parameters:
       componentName: ${{ parameters.fixedComponentName }}
       pipelineId: ${{ parameters.fixedPipelineIdentifier }}
-      latestFromBranch: false
+      buildVersionToDownload: latest
 # Set link to redirect llvm folder
 - ${{ if eq(parameters.skipLlvmSymlink, false) }}:
   - task: Bash@3
