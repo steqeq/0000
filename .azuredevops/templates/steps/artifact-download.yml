@@ -231,7 +231,8 @@ steps:
     definition: ${{ parameters.pipelineId }}
     specificBuildWithTriggering: true
     itemPattern: '**/*${{ parameters.fileFilter }}*'
-    buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+    ${{ if notIn(parameters.componentName, 'aomp') }}: # remove this once these pipelines are functional + up-to-date
+        buildVersionToDownload: ${{ parameters.buildVersionToDownload }} # default is 'latest'
     ${{ if eq(parameters.branchToUse, 'custom') }}:
       branchName: ${{ parameters.customBranchName }}
     ${{ else }}:
