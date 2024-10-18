@@ -8,9 +8,9 @@ parameters:
   # Set buildType to specific to download artifacts from previous builds, useful for saving time when debugging
   - name: buildType
     type: string
-    default: current
+    default: latest
     values:
-      - current
+      - latest
       - specific
   - name: buildVersionToDownload
     type: string
