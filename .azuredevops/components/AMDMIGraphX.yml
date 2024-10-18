@@ -106,6 +106,7 @@ jobs:
       componentName: half
       gpuTarget: $(JOB_GPU_TARGET)
       buildType: specific
+      buildVersionToDownload: latest
       definitionId: ${{ variables.HALF560_PIPELINE_ID }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
@@ -176,6 +177,7 @@ jobs:
       componentName: half
       gpuTarget: $(JOB_GPU_TARGET)
       buildType: specific
+      buildVersionToDownload: latest
       definitionId: ${{ variables.HALF560_PIPELINE_ID }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
