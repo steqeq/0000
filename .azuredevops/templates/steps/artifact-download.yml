@@ -16,7 +16,7 @@ parameters:
 
 - name: branchToUse
   type: string
-  default: string
+  default: staging
   values:
     - staging
     - mainline
