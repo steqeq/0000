@@ -96,12 +96,12 @@ steps:
         ${{ else }}:
           fileFilter: ${{ split(dependency, ':')[1] }}
 
-        # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
-        # buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
-        # branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
         dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
-        buildVersionToDownload: latestFromBranch
-        branchToUse: staging
+        buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
+        branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
+        # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
+        # buildVersionToDownload: latestFromBranch
+        # branchToUse: staging
 
         # ${{ if eq(parameters.dependencySource, 'staging') }}:
         #   dependencySource: staging
@@ -120,12 +120,12 @@ steps:
         ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
           fileFilter: ${{ parameters.gpuTarget }}
 
-        # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
-        # buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
-        # branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
         dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
-        buildVersionToDownload: latestFromBranch
-        branchToUse: staging
+        buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
+        branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
+        # dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
+        # buildVersionToDownload: latestFromBranch
+        # branchToUse: staging
 
         # ${{ if eq(parameters.dependencySource, 'staging') }}:
         #   dependencySource: staging

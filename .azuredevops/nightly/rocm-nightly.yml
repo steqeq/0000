@@ -64,11 +64,11 @@ parameters:
   type: object
   default:
     staging-gfx942:
-      JOB_NAME: staging gfx942
+      JOB_NAME: nightly_gfx942_staging
       DEPENDENCY_SOURCE: staging
       JOB_GPU_TARGET: gfx942
     mainline-gfx942:
-      JOB_NAME: mainline gfx942
+      JOB_NAME: nightly_gfx942_mainline
       DEPENDENCY_SOURCE: mainline
       JOB_GPU_TARGET: gfx942
 
