@@ -418,7 +418,7 @@ steps:
     ${{ if eq(parameters.branchToUse, 'custom') }}:
       branchName: ${{ parameters.customBranchName }}
     ${{ else }}:
-    branchName: refs/heads/${{ parameters.componentBranchNames[parameters.componentName][parameters.branchToUse] }}
+      branchName: refs/heads/${{ parameters.componentBranchNames[parameters.componentName][parameters.branchToUse] }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'
