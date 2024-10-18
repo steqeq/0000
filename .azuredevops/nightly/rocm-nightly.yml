@@ -84,7 +84,7 @@ schedules:
 
 jobs:
 - ${{ each matrixItem in parameters.compileTimeMatrix }}:
-  - job: ${{ matrixItem.JOB_NAME }}
+  - job: ${{ matrixItem.value.JOB_NAME }}
     variables:
     - group: common
     - template: /.azuredevops/variables-global.yml
@@ -93,8 +93,6 @@ jobs:
     workspace:
       clean: all
     steps:
-    - script: echo ${{ matrixItem.JOB_NAME }}
-    - script: echo ${{ matrixItem.value.JOB_NAME }}
     - task: DeleteFiles@1
       displayName: 'Cleanup checkout space'
       inputs:
@@ -112,10 +110,10 @@ jobs:
       parameters:
         dependencyList: ${{ parameters.rocmDependencies }}
         # dependencySource: staging
-        dependencySource: ${{ matrixItem.DEPENDENCY_SOURCE }}
+        dependencySource: ${{ matrixItem.value.DEPENDENCY_SOURCE }}
         skipLibraryLinking: true
         skipLlvmSymlink: true
-        gpuTarget: ${{ matrixItem.JOB_GPU_TARGET }}
+        gpuTarget: ${{ matrixItem.value.JOB_GPU_TARGET }}
     - script: df -h
       displayName: System disk space after ROCm
     - script: du -sh $(Agent.BuildDirectory)/rocm
