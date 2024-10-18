@@ -229,9 +229,9 @@ steps:
     ${{ if eq(parameters.latestFromBranch, true) }}:
       buildVersionToDownload: latestFromBranch # default is 'latest'
     ${{ if eq(parameters.useDefaultBranch, true) }}:
-      branchName: refs/heads/${{ parameters.branchList.staging[parameters.componentName] }}
+      branchName: refs/heads/${{ parameters.branchList[parameters.componentName].staging }}
     ${{ elseif eq(parameters.useMainlineBranch, true) }}:
-      branchName: refs/heads/${{ parameters.branchList.mainline[parameters.componentName] }}
+      branchName: refs/heads/${{ parameters.branchList[parameters.componentName].mainline }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
