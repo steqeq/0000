@@ -7,132 +7,6 @@ parameters:
 - name: dependencySource
   type: string
   default: staging
-# match case of the repo in this object for the left side of the maps
-# should not need to replace these parameters
-- name: stagingPipelineIdentifiers
-  type: object
-  default:
-    AMDMIGraphX: $(AMDMIGRAPHX_PIPELINE_ID)
-    amdsmi: $(AMDSMI_PIPELINE_ID)
-    aomp-extras: $(AOMP_EXTRAS_PIPELINE_ID)
-    aomp: $(AOMP_PIPELINE_ID)
-    clr: $(CLR_PIPELINE_ID)
-    composable_kernel: $(COMPOSABLE_KERNEL_PIPELINE_ID)
-    half: $(HALF_PIPELINE_ID)
-    HIP: $(HIP_PIPELINE_ID)
-    hip-tests: $(HIP_TESTS_PIPELINE_ID)
-    hipBLAS: $(HIPBLAS_PIPELINE_ID)
-    hipBLAS-common: $(HIPBLAS_COMMON_PIPELINE_ID)
-    hipBLASLt: $(HIPBLASLT_PIPELINE_ID)
-    hipCUB: $(HIPCUB_PIPELINE_ID)
-    hipFFT: $(HIPFFT_PIPELINE_ID)
-    hipfort: $(HIPFORT_PIPELINE_ID)
-    HIPIFY: $(HIPIFY_PIPELINE_ID)
-    hipRAND: $(HIPRAND_PIPELINE_ID)
-    hipSOLVER: $(HIPSOLVER_PIPELINE_ID)
-    hipSPARSE: $(HIPSPARSE_PIPELINE_ID)
-    hipSPARSELt: $(HIPSPARSELT_PIPELINE_ID)
-    hipTensor: $(HIPTENSOR_PIPELINE_ID)
-    llvm-project: $(LLVM_PROJECT_PIPELINE_ID)
-    MIOpen: $(MIOpen_PIPELINE_ID)
-    MIVisionX: $(MIVISIONX_PIPELINE_ID)
-    omniperf: $(OMNIPERF_PIPELINE_ID)
-    omnitrace: $(OMNITRACE_PIPELINE_ID)
-    rccl: $(RCCL_PIPELINE_ID)
-    rdc: $(RDC_PIPELINE_ID)
-    rocAL: $(ROCAL_PIPELINE_ID)
-    rocALUTION: $(ROCALUTION_PIPELINE_ID)
-    rocBLAS: $(ROCBLAS_PIPELINE_ID)
-    ROCdbgapi: $(ROCDBGAPI_PIPELINE_ID)
-    rocDecode: $(ROCDECODE_PIPELINE_ID)
-    rocFFT: $(ROCFFT_PIPELINE_ID)
-    ROCgdb: $(ROCGDB_PIPELINE_ID)
-    rocm-cmake: $(ROCM_CMAKE_PIPELINE_ID)
-    rocm-core: $(ROCM_CORE_PIPELINE_ID)
-    rocm-examples: $(ROCM_EXAMPLES_PIPELINE_ID)
-    rocminfo: $(ROCMINFO_PIPELINE_ID)
-    rocMLIR: $(ROCMLIR_PIPELINE_ID)
-    ROCmValidationSuite: $(ROCMVALIDATIONSUITE_PIPELINE_ID)
-    rocm_bandwidth_test: $(ROCM_BANDWIDTH_TEST_PIPELINE_ID)
-    rocm_smi_lib: $(ROCM_SMI_LIB_PIPELINE_ID)
-    rocPRIM: $(ROCPRIM_PIPELINE_ID)
-    rocprofiler-register: $(ROCPROFILER_REGISTER_PIPELINE_ID)
-    rocprofiler-sdk: $(ROCPROFILER_SDK_PIPELINE_ID)
-    rocprofiler-systems: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
-    rocprofiler: $(ROCPROFILER_PIPELINE_ID)
-    rocPyDecode: $(ROCPYDECODE_PIPELINE_ID)
-    ROCR-Runtime: $(ROCR_RUNTIME_PIPELINE_ID)
-    rocRAND: $(ROCRAND_PIPELINE_ID)
-    rocr_debug_agent: $(ROCR_DEBUG_AGENT_PIPELINE_ID)
-    rocSOLVER: $(ROCSOLVER_PIPELINE_ID)
-    rocSPARSE: $(ROCSPARSE_PIPELINE_ID)
-    ROCT-Thunk-Interface: $(ROCT_THUNK_INTERFACE_PIPELINE_ID)
-    rocThrust: $(ROCTHRUST_PIPELINE_ID)
-    roctracer: $(ROCTRACER_PIPELINE_ID)
-    rocWMMA: $(ROCWMMA_PIPELINE_ID)
-    rpp: $(RPP_PIPELINE_ID)
-- name: taggedPipelineIdentifiers
-  type: object
-  default:
-    AMDMIGraphX: $(AMDMIGRAPHX_TAGGED_PIPELINE_ID)
-    amdsmi: $(AMDSMI_TAGGED_PIPELINE_ID)
-    aomp-extras: $(AOMP_EXTRAS_TAGGED_PIPELINE_ID)
-    aomp: $(AOMP_TAGGED_PIPELINE_ID)
-    clr: $(CLR_TAGGED_PIPELINE_ID)
-    composable_kernel: $(COMPOSABLE_KERNEL_TAGGED_PIPELINE_ID)
-    half: $(HALF_TAGGED_PIPELINE_ID)
-    HIP: $(HIP_TAGGED_PIPELINE_ID)
-    hip-tests: $(HIP_TESTS_TAGGED_PIPELINE_ID)
-    hipBLAS: $(HIPBLAS_TAGGED_PIPELINE_ID)
-    hipBLAS-common: $(HIPBLAS_COMMON_TAGGED_PIPELINE_ID)
-    hipBLASLt: $(HIPBLASLT_TAGGED_PIPELINE_ID)
-    hipCUB: $(HIPCUB_TAGGED_PIPELINE_ID)
-    hipFFT: $(HIPFFT_TAGGED_PIPELINE_ID)
-    hipfort: $(HIPFORT_TAGGED_PIPELINE_ID)
-    HIPIFY: $(HIPIFY_TAGGED_PIPELINE_ID)
-    hipRAND: $(HIPRAND_TAGGED_PIPELINE_ID)
-    hipSOLVER: $(HIPSOLVER_TAGGED_PIPELINE_ID)
-    hipSPARSE: $(HIPSPARSE_TAGGED_PIPELINE_ID)
-    hipSPARSELt: $(HIPSPARSELT_TAGGED_PIPELINE_ID)
-    hipTensor: $(HIPTENSOR_TAGGED_PIPELINE_ID)
-    llvm-project: $(LLVM_PROJECT_TAGGED_PIPELINE_ID)
-    MIOpen: $(MIOpen_TAGGED_PIPELINE_ID)
-    MIVisionX: $(MIVISIONX_TAGGED_PIPELINE_ID)
-    omniperf: $(OMNIPERF_TAGGED_PIPELINE_ID)
-    omnitrace: $(OMNITRACE_TAGGED_PIPELINE_ID)
-    rccl: $(RCCL_TAGGED_PIPELINE_ID)
-    rdc: $(RDC_TAGGED_PIPELINE_ID)
-    rocAL: $(ROCAL_TAGGED_PIPELINE_ID)
-    rocALUTION: $(ROCALUTION_TAGGED_PIPELINE_ID)
-    rocBLAS: $(ROCBLAS_TAGGED_PIPELINE_ID)
-    ROCdbgapi: $(ROCDBGAPI_TAGGED_PIPELINE_ID)
-    rocDecode: $(ROCDECODE_TAGGED_PIPELINE_ID)
-    rocFFT: $(ROCFFT_TAGGED_PIPELINE_ID)
-    ROCgdb: $(ROCGDB_TAGGED_PIPELINE_ID)
-    rocm-cmake: $(ROCM_CMAKE_TAGGED_PIPELINE_ID)
-    rocm-core: $(ROCM_CORE_TAGGED_PIPELINE_ID)
-    rocm-examples: $(ROCM_EXAMPLES_TAGGED_PIPELINE_ID)
-    rocminfo: $(ROCMINFO_TAGGED_PIPELINE_ID)
-    rocMLIR: $(ROCMLIR_TAGGED_PIPELINE_ID)
-    ROCmValidationSuite: $(ROCMVALIDATIONSUITE_TAGGED_PIPELINE_ID)
-    rocm_bandwidth_test: $(ROCM_BANDWIDTH_TEST_TAGGED_PIPELINE_ID)
-    rocm_smi_lib: $(ROCM_SMI_LIB_TAGGED_PIPELINE_ID)
-    rocPRIM: $(ROCPRIM_TAGGED_PIPELINE_ID)
-    rocprofiler-register: $(ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID)
-    rocprofiler-sdk: $(ROCPROFILER_SDK_TAGGED_PIPELINE_ID)
-    rocprofiler-systems: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
-    rocprofiler: $(ROCPROFILER_TAGGED_PIPELINE_ID)
-    rocPyDecode: $(ROCPYDECODE_TAGGED_PIPELINE_ID)
-    ROCR-Runtime: $(ROCR_RUNTIME_TAGGED_PIPELINE_ID)
-    rocRAND: $(ROCRAND_TAGGED_PIPELINE_ID)
-    rocr_debug_agent: $(ROCR_DEBUG_AGENT_TAGGED_PIPELINE_ID)
-    rocSOLVER: $(ROCSOLVER_TAGGED_PIPELINE_ID)
-    rocSPARSE: $(ROCSPARSE_TAGGED_PIPELINE_ID)
-    ROCT-Thunk-Interface: $(ROCT_THUNK_INTERFACE_TAGGED_PIPELINE_ID)
-    rocThrust: $(ROCTHRUST_TAGGED_PIPELINE_ID)
-    roctracer: $(ROCTRACER_TAGGED_PIPELINE_ID)
-    rocWMMA: $(ROCWMMA_TAGGED_PIPELINE_ID)
-    rpp: $(RPP_TAGGED_PIPELINE_ID)
 # set to true if you're calling this template file multiple files in same pipeline
 # only leave last call false to optimize sequence
 - name: skipLibraryLinking
@@ -189,6 +63,22 @@ parameters:
     - rocAL
     - ROCmValidationSuite
 
+- name: matrixParamFixer
+  type: object
+  default:
+    staging:
+      dependencySource: staging
+      buildVersionToDownload: latestFromBranch
+      branchToUse: staging
+    mainline:
+      dependencySource: staging
+      buildVersionToDownload: latestFromBranch
+      branchToUse: mainline
+    tag-builds:
+      dependencySource: tag-builds
+      buildVersionToDownload: latest
+      branchToUse: staging
+
 steps:
 # assuming artifact-download.yml template file in same directory
 # for the case where rocm dependency item in list has a colon (:)
@@ -201,39 +91,41 @@ steps:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ split(dependency, ':')[0] }}
-
-        ${{ if eq(parameters.dependencySource, 'staging') }}:
-          dependencySource: staging
-          branchToUse: staging
-        ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
-          dependencySource: staging
-          branchToUse: mainline
-        ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
-          dependencySource: tag-builds
-          buildVersionToDownload: latest
-
         ${{ if containsValue( parameters.componentsWithGPUTarget, split(dependency, ':')[0] ) }}:
           fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
         ${{ else }}:
           fileFilter: ${{ split(dependency, ':')[1] }}
+        dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
+        buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
+        branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
+        # ${{ if eq(parameters.dependencySource, 'staging') }}:
+        #   dependencySource: staging
+        #   branchToUse: staging
+        # ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
+        #   dependencySource: staging
+        #   branchToUse: mainline
+        # ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
+        #   dependencySource: tag-builds
+        #   buildVersionToDownload: latest
 # no colon (:) found in this item in the list
   - ${{ else }}:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
-
-        ${{ if eq(parameters.dependencySource, 'staging') }}:
-          dependencySource: staging
-          branchToUse: staging
-        ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
-          dependencySource: staging
-          branchToUse: mainline
-        ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
-          dependencySource: tag-builds
-          buildVersionToDownload: latest
-
         ${{ if containsValue( parameters.componentsWithGPUTarget, dependency ) }}:
           fileFilter: ${{ parameters.gpuTarget }}
+        dependencySource: ${{ parameters.matrixParamFixer[parameters.dependencySource].dependencySource }}
+        buildVersionToDownload: ${{ parameters.matrixParamFixer[parameters.dependencySource].buildVersionToDownload }}
+        branchToUse: ${{ parameters.matrixParamFixer[parameters.dependencySource].branchToUse }}
+        # ${{ if eq(parameters.dependencySource, 'staging') }}:
+        #   dependencySource: staging
+        #   branchToUse: staging
+        # ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
+        #   dependencySource: staging
+        #   branchToUse: mainline
+        # ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
+        #   dependencySource: tag-builds
+        #   buildVersionToDownload: latest
 # Set link to redirect llvm folder
 - ${{ if eq(parameters.skipLlvmSymlink, false) }}:
   - task: Bash@3
