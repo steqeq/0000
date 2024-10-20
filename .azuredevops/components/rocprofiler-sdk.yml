@@ -124,6 +124,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
@@ -142,16 +143,24 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, 'amd-staging') }}:
         dependencySource: tag-builds
+  - task: CMake@1
+    displayName: rocprofiler-sdk test CMake Flags
+    inputs:
+      cmakeArgs: >-
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        $(Agent.BuildDirectory)/rocm/share/rocprofiler-sdk/tests
+      workingDirectory: rocprofiler-sdk-tests
   - task: Bash@3
-    displayName: Build rocprofiler-sdk tests
+    displayName: rocprofiler-sdk test build
     inputs:
       targetType: inline
-      script: |
-        mkdir rocprofiler-sdk-tests
-        cd rocprofiler-sdk-tests
-        cmake $(Agent.BuildDirectory)/rocm/share/rocprofiler-sdk/tests \
-          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        cmake --build . -- -j$(nproc)
+      workingDirectory: rocprofiler-sdk-tests
+      script: cmake --build . -- -j$(nproc)
+  - task: Bash@3
+    displayName: Update pytest
+    inputs:
+      targetType: inline
+      script: pip install -U pytest
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocprofiler-sdk
