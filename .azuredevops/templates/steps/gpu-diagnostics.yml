@@ -27,5 +27,5 @@ steps:
   inputs:
     targetType: inline
     script: |
-      echo 'rocm-ci: ${{ parameters.componentName }} ${{ System.DefinitionId }}' | sudo tee /dev/kmsg
+      echo 'rocm-ci: ${{ parameters.componentName }} $(System.DefinitionId)' | sudo tee /dev/kmsg
       sudo dmesg
