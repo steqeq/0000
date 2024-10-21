@@ -1,0 +1,31 @@
+# Diagnostics for GPU-enabled systems
+parameters:
+- name: componentName
+  type: string
+  default: ''
+
+steps:
+- task: Bash@3
+  displayName: 'List amdgpu/rocm/mesa packages'
+  inputs:
+    targetType: inline
+    script: apt list --installed | grep -E 'amdgpu|rocm|mesa'
+- task: Bash@3
+  displayName: 'List GPU processes'
+  inputs:
+    targetType: inline
+    script: |
+      ls /sys/class/kfd/kfd/proc/
+      lsof | grep amdgpu
+- task: Bash@3
+  displayName: 'System snapshot'
+  inputs:
+    targetType: inline
+    script: top -bn1
+- task: Bash@3
+  displayName: 'List dmesg'
+  inputs:
+    targetType: inline
+    script: |
+      echo 'rocm-ci: ${{ parameters.componentName }} ${{ System.DefinitionId }}' | sudo tee /dev/kmsg
+      sudo dmesg
