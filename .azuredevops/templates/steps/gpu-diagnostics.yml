@@ -1,9 +1,4 @@
 # Diagnostics for GPU-enabled systems
-parameters:
-- name: componentName
-  type: string
-  default: ''
-
 steps:
 - task: Bash@3
   displayName: 'List amdgpu/rocm/mesa packages'
@@ -27,5 +22,5 @@ steps:
   inputs:
     targetType: inline
     script: |
-      echo 'rocm-ci: ${{ parameters.componentName }} $(System.DefinitionId)' | sudo tee /dev/kmsg
+      echo 'rocm-ci: $(Build.DefinitionName) $(System.DefinitionId)' | sudo tee /dev/kmsg
       sudo dmesg
