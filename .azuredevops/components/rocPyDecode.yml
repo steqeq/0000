@@ -78,6 +78,8 @@ jobs:
       script: |
         sudo rm -rf /opt/rocm
         sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+  - script: echo "##vso[task.setvariable variable=USER_SITE;]$(python -m site --user-site)"
+    displayName: 'Set User Site Packages Path'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -86,6 +88,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DCMAKE_INSTALL_PREFIX_PYTHON=$(Build.BinariesDirectory)
+        -DCMAKE_INSTALL_PREFIX_PYTHON=$(USER_SITE)
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
