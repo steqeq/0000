@@ -407,6 +407,7 @@ parameters:
 steps:
 - task: DownloadPipelineArtifact@2
   displayName: Download ${{ parameters.componentName }}
+  continueOnError: true
   inputs:
     buildType: 'specific'
     project: ROCm-CI
@@ -424,6 +425,7 @@ steps:
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
   displayName: Extract ${{ parameters.componentName }}
+  continueOnError: true
   inputs:
     archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
     destinationFolder: '$(Agent.BuildDirectory)/rocm'
@@ -431,6 +433,7 @@ steps:
     overwriteExistingFiles: true
 - task: DeleteFiles@1
   displayName: Cleanup Compressed ${{ parameters.componentName }}
+  continueOnError: true
   inputs:
     SourceFolder: '$(Pipeline.Workspace)/d'
     Contents: '**/*.tar.gz'
