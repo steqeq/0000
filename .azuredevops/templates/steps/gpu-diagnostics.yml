@@ -11,7 +11,7 @@ steps:
     targetType: inline
     script: |
       ls /sys/class/kfd/kfd/proc/
-      lsof | grep amdgpu
+      sudo lsof | grep amdgpu
 - task: Bash@3
   displayName: 'System snapshot'
   inputs:
