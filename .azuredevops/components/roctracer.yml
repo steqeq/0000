@@ -75,6 +75,7 @@ jobs:
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
