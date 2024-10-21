@@ -92,7 +92,7 @@ parameters:
     - pytest
     - pytest-azurepipelines
     - pillow
-# list from https://github.com/pytorch/builder/blob/main/manywheel/build_rocm.sh
+# list from https://github.com/pytorch/pytorch/blob/main/.ci/manywheel/build_rocm.sh
 - name: rocmDependencies
   type: object
   default:
@@ -162,7 +162,7 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-# various flags/parameters expected by bash scripts in pytorch builder repo
+# various flags/parameters expected by bash scripts in pytorch repo's .ci directory
   - name: ROCM_VERSION
     value: 6.3.0
   - name: ROCM_PATH
@@ -183,7 +183,7 @@ jobs:
   workspace:
     clean: all
   steps:
-# copy environment setup from https://github.com/pytorch/builder/blob/main/manywheel/Dockerfile
+# copy environment setup from https://github.com/pytorch/pytorch/blob/main/.ci/docker/manywheel/Dockerfile
 # but instead of centos, use ubuntu environment
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - task: Bash@3
@@ -221,17 +221,18 @@ jobs:
       script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
   - checkout: self
   - task: Bash@3
-    displayName: git clone pytorch builder
-    inputs:
-      targetType: inline
-      script: git clone https://github.com/pytorch/builder.git --depth=1 --recurse-submodules
-      workingDirectory: $(Build.SourcesDirectory)
-  - task: Bash@3
     displayName: git clone upstream pytorch
     inputs:
       targetType: inline
       script: git clone https://github.com/pytorch/pytorch.git --depth=1 --recurse-submodules
       workingDirectory: $(Build.SourcesDirectory)
+# builder clone still needed due to run_tests.sh at end of build_common.sh call
+  - task: Bash@3
+    displayName: git clone pytorch builder
+    inputs:
+      targetType: inline
+      script: git clone https://github.com/pytorch/builder.git --depth=1 --recurse-submodules
+      workingDirectory: $(Build.SourcesDirectory)/pytorch
   - task: Bash@3
     displayName: Install patchelf
     inputs:
@@ -284,8 +285,8 @@ jobs:
         PYTORCH_BUILD_VERSION=$(cat $(Build.SourcesDirectory)/pytorch/version.txt | cut -da -f1)
         PYTORCH_BUILD_NUMBER=$(date -u +%Y%m%d)
         SKIP_ALL_TESTS=1
-        bash ./manywheel/build_rocm.sh
-      workingDirectory: $(Build.SourcesDirectory)/builder
+        bash ./.ci/manywheel/build_rocm.sh
+      workingDirectory: $(Build.SourcesDirectory)/pytorch
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
     parameters:
       sourceDir: /remote/wheelhouserocm$(ROCM_VERSION)
