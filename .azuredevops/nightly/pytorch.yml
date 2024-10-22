@@ -122,6 +122,7 @@ parameters:
     - hipCUB
     - rocThrust
     - hipBLAS-common
+    - composable_kernel
 - name: rocmTestDependencies
   type: object
   default:
