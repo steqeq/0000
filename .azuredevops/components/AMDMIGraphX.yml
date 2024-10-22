@@ -160,7 +160,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
       componentName: half
-      gpuTarget: $(JOB_GPU_TARGET)
       buildType: specific
       buildVersionToDownload: latest
       definitionId: ${{ variables.HALF560_PIPELINE_ID }}
