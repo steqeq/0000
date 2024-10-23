@@ -49,7 +49,7 @@ jobs:
 
 - job: rocminfo_testing
   dependsOn: rocminfo
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), contains(variables.DISABLED_TESTS, '"rocminfo"'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_TESTS, '"rocminfo"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
