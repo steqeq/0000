@@ -32,7 +32,7 @@ parameters:
 
 jobs:
 - job: ROCgdb
-  condition: eq(variables.ENABLE_GFX942_TESTS, 'true', not(contains(variables.DISABLED_GFX942_TESTS, '"ROCgdb"')))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
