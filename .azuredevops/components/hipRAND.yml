@@ -80,7 +80,7 @@ jobs:
 
 - job: hipRAND_testing
   dependsOn: hipRAND
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"hipRAND"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

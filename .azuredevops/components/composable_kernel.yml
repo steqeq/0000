@@ -99,7 +99,7 @@ jobs:
 
 - job: composable_kernel_testing
   dependsOn: composable_kernel
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"composable_kernel"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

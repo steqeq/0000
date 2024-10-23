@@ -76,7 +76,7 @@ jobs:
 
 - job: hipCUB_testing
   dependsOn: hipCUB
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"hipCUB"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

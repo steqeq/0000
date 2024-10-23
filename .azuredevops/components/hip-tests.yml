@@ -89,7 +89,7 @@ jobs:
 - job: hip_tests_testing
   timeoutInMinutes: 240
   dependsOn: hip_tests
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"hip-tests"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

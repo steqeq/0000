@@ -90,7 +90,7 @@ jobs:
 
 - job: omniperf_testing
   dependsOn: omniperf
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"omniperf"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

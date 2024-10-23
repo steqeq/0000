@@ -29,7 +29,7 @@ jobs:
 
 - job: rocm_smi_lib_testing
   dependsOn: rocm_smi_lib
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"rocm_smi_lib"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

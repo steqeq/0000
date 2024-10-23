@@ -115,7 +115,7 @@ jobs:
 
 - job: rocm_examples_testing
   dependsOn: rocm_examples
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"rocm-examples"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

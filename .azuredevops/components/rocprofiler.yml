@@ -98,7 +98,7 @@ jobs:
 
 - job: rocprofiler_testing
   dependsOn: rocprofiler
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"rocprofiler"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

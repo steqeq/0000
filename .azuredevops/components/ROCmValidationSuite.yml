@@ -96,7 +96,7 @@ jobs:
 
 - job: ROCmValidationSuite_testing
   dependsOn: ROCmValidationSuite
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"ROCmValidationSuite"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

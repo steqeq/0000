@@ -92,7 +92,7 @@ jobs:
 - job: rocWMMA_testing
   timeoutInMinutes: 90
   dependsOn: rocWMMA
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"rocWMMA"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

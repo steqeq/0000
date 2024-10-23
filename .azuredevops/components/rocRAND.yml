@@ -77,7 +77,7 @@ jobs:
 
 - job: rocRAND_testing
   dependsOn: rocRAND
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"rocRAND"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

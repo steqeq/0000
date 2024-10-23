@@ -128,7 +128,7 @@ jobs:
 
 - job: AMDMIGraphX_testing
   dependsOn: AMDMIGraphX
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"AMDMIGraphX"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

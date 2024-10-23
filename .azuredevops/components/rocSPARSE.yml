@@ -105,7 +105,7 @@ jobs:
 - job: rocSPARSE_testing
   timeoutInMinutes: 90
   dependsOn: rocSPARSE
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"rocSPARSE"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

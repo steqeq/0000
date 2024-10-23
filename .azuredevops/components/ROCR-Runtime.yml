@@ -59,7 +59,7 @@ jobs:
 
 - job: ROCR_Runtime_testing
   dependsOn: ROCR_Runtime
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"ROCR-Runtime"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml

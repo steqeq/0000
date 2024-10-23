@@ -72,7 +72,7 @@ jobs:
 
 - job: rocr_debug_agent_testing
   dependsOn: rocr_debug_agent
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"rocr_debug_agent"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
