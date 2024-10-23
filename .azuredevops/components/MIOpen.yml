@@ -114,7 +114,7 @@ jobs:
 
 - job: MIOpen_testing
   dependsOn: MIOpen
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), , not(contains(variables.DISABLED_GFX942_TESTS, '"MIOpen"')))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(contains(variables.DISABLED_GFX942_TESTS, '"MIOpen"')))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
