@@ -109,7 +109,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
@@ -117,7 +117,7 @@ jobs:
     parameters:
       dependencyList: ${{ parameters.rocmTestDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
