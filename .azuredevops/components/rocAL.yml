@@ -53,6 +53,7 @@ parameters:
     - half
     - llvm-project
     - MIVisionX
+    - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
     - rpp

@@ -30,6 +30,7 @@ parameters:
   default:
     - clr
     - llvm-project
+    - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
 
