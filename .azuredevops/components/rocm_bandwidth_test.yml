@@ -27,6 +27,7 @@ parameters:
 - name: rocmTestDependencies
   type: object
   default:
+    - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
 
