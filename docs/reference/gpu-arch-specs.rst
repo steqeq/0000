@@ -772,3 +772,7 @@ scalar instructions.
 **GCD**
 
 Graphics Compute Die.
+
+**XCD**
+
+Accelerator Complex Die.
