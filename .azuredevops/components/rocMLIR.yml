@@ -13,6 +13,7 @@ parameters:
     - git
     - python3-pip
     - libdrm-dev
+    - libstdc++-12-dev
 - name: pipModules
   type: object
   default:
@@ -28,7 +29,7 @@ parameters:
     - ROCR-Runtime
 
 jobs:
-- job: rocMLIR_library
+- job: rocMLIR
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -66,16 +67,19 @@ jobs:
 
 # compiling and running test on the test system together
 - job: rocMLIR_testing
+  dependsOn: rocMLIR
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.GFX942_TEST_POOL }}
+  pool: $(JOB_TEST_POOL)
   workspace:
     clean: all
   strategy:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -105,7 +109,9 @@ jobs:
     displayName: ROCm symbolic link
     inputs:
       targetType: inline
-      script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       installEnabled: false
@@ -117,6 +123,7 @@ jobs:
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DROCM_TEST_CHIPSET=$(JOB_GPU_TARGET)
         -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocMLIR

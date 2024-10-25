@@ -9,6 +9,10 @@ parameters:
 - name: useDefaultBranch
   type: boolean
   default: true
+# useMainlineBranch only processed if useDefaultBranch is false
+- name: useMainlineBranch
+  type: boolean
+  default: false
 - name: latestFromBranch
   type: boolean
   default: true
@@ -22,13 +26,14 @@ parameters:
   type: object
   default:
     AMDMIGraphX: develop
-    amdsmi: develop
+    amdsmi: amd-staging
     aomp-extras: aomp-dev
     aomp: aomp-dev
     clr: amd-staging
     composable_kernel: develop
     half: rocm
     HIP: amd-staging
+    hip-tests: amd-staging
     hipBLAS: develop
     hipBLASLt: develop
     hipBLAS-common: develop
@@ -44,8 +49,10 @@ parameters:
     llvm-project: amd-staging
     MIOpen: develop
     MIVisionX: develop
+    omniperf: amd-staging
+    omnitrace: amd-staging
     rccl: develop
-    rdc: develop
+    rdc: amd-staging
     rocAL: develop
     rocALUTION: develop
     rocBLAS: develop
@@ -54,16 +61,19 @@ parameters:
     rocFFT: develop
     ROCgdb: amd-staging
     rocm-cmake: develop
-    rocm-core: master
+    rocm-core: amd-staging
     rocm-examples: develop
     rocminfo: amd-staging
     rocMLIR: develop
     ROCmValidationSuite: master
     rocm_bandwidth_test: master
-    rocm_smi_lib: develop
+    rocm_smi_lib: amd-staging
     rocPRIM: develop
-    rocprofiler-register: amd-mainline
     rocprofiler: amd-staging
+    rocprofiler-register: amd-staging
+    rocprofiler-sdk: amd-staging
+    rocprofiler-systems: amd-staging
+    rocPyDecode: develop
     ROCR-Runtime: amd-staging
     rocRAND: develop
     rocr_debug_agent: amd-staging
@@ -73,18 +83,81 @@ parameters:
     roctracer: amd-staging
     rocWMMA: develop
     rpp: develop
+- name: mainlineBranchList
+  type: object
+  default:
+    AMDMIGraphX: mainline
+    amdsmi: amd-mainline
+    aomp-extras: amd-mainline-open
+    aomp: amd-mainline-open
+    clr: amd-mainline
+    composable_kernel: mainline
+    half: rocm
+    HIP: amd-mainline
+    hip-tests: amd-mainline
+    hipBLAS: mainline
+    hipBLASLt: mainline
+    hipBLAS-common: mainline
+    hipCUB: mainline
+    hipFFT: mainline
+    hipfort: mainline
+    HIPIFY: amd-mainline
+    hipRAND: mainline
+    hipSOLVER: mainline
+    hipSPARSE: mainline
+    hipSPARSELt: mainline
+    hipTensor: mainline
+    llvm-project: amd-mainline-open
+    MIOpen: mainline
+    MIVisionX: mainline
+    omniperf: amd-mainline
+    omnitrace: amd-mainline
+    rccl: mainline
+    rdc: amd-mainline
+    rocAL: master # needs the yaml file
+    rocALUTION: mainline
+    rocBLAS: mainline
+    ROCdbgapi : amd-mainline
+    rocDecode: mainline
+    rocFFT: mainline
+    ROCgdb: amd-mainline-rocgdb-15 #
+    rocm-cmake: mainline
+    rocm-core: amd-master
+    rocm-examples: develop # no mainline
+    rocminfo: amd-master
+    rocMLIR: mainline # needs the yaml file
+    ROCmValidationSuite: mainline
+    rocm_bandwidth_test: master
+    rocm_smi_lib: amd-mainline
+    rocPRIM: mainline
+    rocprofiler: amd-master
+    rocprofiler-register: amd-mainline
+    rocprofiler-sdk: amd-mainline
+    rocprofiler-systems: amd-mainline
+    rocPyDecode: mainline
+    ROCR-Runtime: amd-master
+    rocRAND: mainline
+    rocr_debug_agent: amd-mainline
+    rocSOLVER: mainline
+    rocSPARSE: mainline
+    rocThrust: mainline
+    roctracer: amd-master
+    rocWMMA: mainline
+    rpp: mainline
 - name: allowPartiallySucceededBuilds
   type: object
   default:
     - amdsmi
     - aomp
     - HIPIFY
+    - MIVisionX
+    - omniperf
     - rccl
     - rdc
     - rocm-cmake
     - rocm_smi_lib
     - rocFFT
-    - MIVisionX
+    - rpp
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
@@ -104,6 +177,8 @@ steps:
         buildVersionToDownload: latestFromBranch # default is 'latest'
     ${{ if eq(parameters.useDefaultBranch, true) }}:
       branchName: refs/heads/${{ parameters.defaultBranchList[parameters.componentName] }}
+    ${{ elseif eq(parameters.useMainlineBranch, true) }}:
+      branchName: refs/heads/${{ parameters.mainlineBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
     ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:

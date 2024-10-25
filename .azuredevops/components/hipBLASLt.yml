@@ -16,13 +16,13 @@ parameters:
     - python3-pip
     - python3-venv
     - gfortran
-    - libomp-dev
     - libblas-dev
     - ccache
 - name: pipModules
   type: object
   default:
     - joblib
+    - packaging
 - name: rocmDependencies
   type: object
   default:
@@ -66,6 +66,8 @@ jobs:
     value: $(Agent.BuildDirectory)/rocm/bin/hipcc
   - name: PATH
     value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+  - name: DAY_STRING
+    value: $[format('{0:ddMMyyyy}', pipeline.startTime)]
   pool: ${{ variables.ULTRA_BUILD_POOL }}
   workspace:
     clean: all
@@ -73,8 +75,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -149,7 +149,7 @@ jobs:
 
 - job: hipBLASLt_testing
   dependsOn: hipBLASLt
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -165,6 +165,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
@@ -183,6 +184,7 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: hipBLASLt

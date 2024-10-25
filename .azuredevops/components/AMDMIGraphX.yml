@@ -8,30 +8,31 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - git
     - cmake
-    - ninja-build
+    - git
+    - libdnnl-dev
     - libdrm-dev
-    - libnuma-dev
-    - python3-pip
-    - python3-venv
-    - libtbb-dev
-    - nlohmann-json3-dev
     - libmsgpack-dev
-    - libsqlite3-dev
+    - libnuma-dev
     - libprotobuf-dev
+    - libsqlite3-dev
+    - libtbb-dev
+    - ninja-build
+    - nlohmann-json3-dev
     - protobuf-compiler
+    - python3-pip
     - python3-pybind11
+    - python3-venv
 - name: pipModules
   type: object
   default:
     - https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
-    - onnx==1.14.1
-    - numpy==1.21.6
-    - typing==3.7.4
-    - pytest==6.0.1
-    - packaging==23.0
-    - protobuf==3.20.2
+    - onnx>=1.14.1
+    - numpy>=1.21.6
+    - typing>=3.7.4
+    - pytest>=6.0.1
+    - packaging>=23.0
+    - protobuf>=3.20.2
 - name: rocmDependencies
   type: object
   default:
@@ -50,6 +51,26 @@ parameters:
     - rocminfo
     - rocMLIR
     - rocprofiler-register
+    - roctracer
+- name: rocmTestDependencies
+  type: object
+  default:
+    - aomp
+    - aomp-extras
+    - clr
+    - composable_kernel
+    - hipBLAS
+    - hipBLAS-common
+    - hipBLASLt
+    - llvm-project
+    - MIOpen
+    - rocm-cmake
+    - ROCR-Runtime
+    - rocBLAS
+    - rocminfo
+    - rocMLIR
+    - rocprofiler-register
+    - roctracer
 
 jobs:
 - job: AMDMIGraphX
@@ -63,8 +84,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -95,17 +114,84 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
         -DCMAKE_BUILD_TYPE=Release
         -DGPU_TARGETS=$(JOB_GPU_TARGET)
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
         -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
-        -DMIGRAPHX_USE_COMPOSABLEKERNEL=OFF
         -DBUILD_TESTING=ON
         -GNinja
-# REFERENCE: https://github.com/ROCm/composable_kernel/issues/782
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
+
+- job: AMDMIGraphX_testing
+  dependsOn: AMDMIGraphX
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  - name: MIGRAPHX_TRACE_BENCHMARKING
+    value: 1
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+# half version should be fixed to 5.6.0
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencySource: fixed
+      fixedComponentName: half
+      fixedPipelineIdentifier: ${{ variables.HALF560_PIPELINE_ID }}
+      skipLibraryLinking: true
+      skipLlvmSymlink: true
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmTestDependencies }}
+      gpuTarget: $(JOB_GPU_TARGET)
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - task: CMake@1
+    displayName: MIGraphXTest CMake Flags
+    inputs:
+      cmakeArgs: >-
+        -DCMAKE_BUILD_TYPE=Release
+        -DGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm/llvm;$(Agent.BuildDirectory)/rocm
+        -DHALF_INCLUDE_DIR=$(Agent.BuildDirectory)/rocm/include
+        -DBUILD_TESTING=ON
+        -DMIGRAPHX_ENABLE_C_API_TEST=ON
+        ..
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
+  - task: Bash@3
+    displayName: Build and run MIGraphX tests
+    inputs:
+      targetType: inline
+      workingDirectory: build
+      script: make -j$(nproc) check
