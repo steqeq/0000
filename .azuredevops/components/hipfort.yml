@@ -108,7 +108,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
@@ -138,6 +137,7 @@ jobs:
         sudo rm -rf /opt/rocm
         sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
       workingDirectory: $(Build.SourcesDirectory)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - task: Bash@3
     displayName: 'Test hipfort'
     inputs:
