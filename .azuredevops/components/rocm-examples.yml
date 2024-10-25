@@ -133,7 +133,6 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -162,6 +161,7 @@ jobs:
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DCMAKE_HIP_ARCHITECTURES=$(JOB_GPU_TARGET)
         -DCMAKE_EXE_LINKER_FLAGS=-fgpu-rdc
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocm-examples

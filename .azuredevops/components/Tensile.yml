@@ -96,7 +96,6 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - task: DownloadPipelineArtifact@2
     displayName: 'Download Pipeline Wheel Files'
@@ -144,6 +143,7 @@ jobs:
     inputs:
       targetType: inline
       script: echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/llvm/bin"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - task: Bash@3
     displayName: tox test
     inputs:
