@@ -41,6 +41,8 @@ together with their corresponding HIP type and a short description.
       - ``int64_t``, ``uint64_t``
       - A signed or unsigned 64-bit integer
 
+.. _precision_support_floating_point_types:
+
 Floating-point types
 ==========================================
 

@@ -60,8 +60,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -113,7 +111,7 @@ jobs:
 
 - job: rdc_testing
   dependsOn: rdc
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -131,6 +129,8 @@ jobs:
       aptPackages: ${{ parameters.aptPackages }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
       ${{ if eq(parameters.checkoutRef, '') }}:
@@ -156,6 +156,7 @@ jobs:
         sudo ln -s $(Agent.BuildDirectory)/rocm/bin/rdcd /usr/sbin/rdcd
         echo $(Agent.BuildDirectory)/rocm/lib/rdc/grpc/lib | sudo tee /etc/ld.so.conf.d/grpc.conf
         sudo ldconfig -v
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - task: Bash@3
     displayName: Test rdc
     inputs:

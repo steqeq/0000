@@ -9,6 +9,7 @@ parameters:
   default: staging
   values:
     - staging
+    - mainline
     - tag-builds
     - fixed
 - name: extractToMnt
@@ -37,6 +38,7 @@ parameters:
     composable_kernel: $(COMPOSABLE_KERNEL_PIPELINE_ID)
     half: $(HALF_PIPELINE_ID)
     HIP: $(HIP_PIPELINE_ID)
+    hip-tests: $(HIP_TESTS_PIPELINE_ID)
     hipBLAS: $(HIPBLAS_PIPELINE_ID)
     hipBLAS-common: $(HIPBLAS_COMMON_PIPELINE_ID)
     hipBLASLt: $(HIPBLASLT_PIPELINE_ID)
@@ -52,6 +54,8 @@ parameters:
     llvm-project: $(LLVM_PROJECT_PIPELINE_ID)
     MIOpen: $(MIOpen_PIPELINE_ID)
     MIVisionX: $(MIVISIONX_PIPELINE_ID)
+    omniperf: $(OMNIPERF_PIPELINE_ID)
+    omnitrace: $(OMNITRACE_PIPELINE_ID)
     rccl: $(RCCL_PIPELINE_ID)
     rdc: $(RDC_PIPELINE_ID)
     rocAL: $(ROCAL_PIPELINE_ID)
@@ -71,7 +75,10 @@ parameters:
     rocm_smi_lib: $(ROCM_SMI_LIB_PIPELINE_ID)
     rocPRIM: $(ROCPRIM_PIPELINE_ID)
     rocprofiler-register: $(ROCPROFILER_REGISTER_PIPELINE_ID)
+    rocprofiler-sdk: $(ROCPROFILER_SDK_PIPELINE_ID)
+    rocprofiler-systems: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
     rocprofiler: $(ROCPROFILER_PIPELINE_ID)
+    rocPyDecode: $(ROCPYDECODE_PIPELINE_ID)
     ROCR-Runtime: $(ROCR_RUNTIME_PIPELINE_ID)
     rocRAND: $(ROCRAND_PIPELINE_ID)
     rocr_debug_agent: $(ROCR_DEBUG_AGENT_PIPELINE_ID)
@@ -93,6 +100,7 @@ parameters:
     composable_kernel: $(COMPOSABLE_KERNEL_TAGGED_PIPELINE_ID)
     half: $(HALF_TAGGED_PIPELINE_ID)
     HIP: $(HIP_TAGGED_PIPELINE_ID)
+    hip-tests: $(HIP_TESTS_TAGGED_PIPELINE_ID)
     hipBLAS: $(HIPBLAS_TAGGED_PIPELINE_ID)
     hipBLAS-common: $(HIPBLAS_COMMON_TAGGED_PIPELINE_ID)
     hipBLASLt: $(HIPBLASLT_TAGGED_PIPELINE_ID)
@@ -108,6 +116,8 @@ parameters:
     llvm-project: $(LLVM_PROJECT_TAGGED_PIPELINE_ID)
     MIOpen: $(MIOpen_TAGGED_PIPELINE_ID)
     MIVisionX: $(MIVISIONX_TAGGED_PIPELINE_ID)
+    omniperf: $(OMNIPERF_TAGGED_PIPELINE_ID)
+    omnitrace: $(OMNITRACE_TAGGED_PIPELINE_ID)
     rccl: $(RCCL_TAGGED_PIPELINE_ID)
     rdc: $(RDC_TAGGED_PIPELINE_ID)
     rocAL: $(ROCAL_TAGGED_PIPELINE_ID)
@@ -127,7 +137,10 @@ parameters:
     rocm_smi_lib: $(ROCM_SMI_LIB_TAGGED_PIPELINE_ID)
     rocPRIM: $(ROCPRIM_TAGGED_PIPELINE_ID)
     rocprofiler-register: $(ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID)
+    rocprofiler-sdk: $(ROCPROFILER_SDK_TAGGED_PIPELINE_ID)
+    rocprofiler-systems: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
     rocprofiler: $(ROCPROFILER_TAGGED_PIPELINE_ID)
+    rocPyDecode: $(ROCPYDECODE_TAGGED_PIPELINE_ID)
     ROCR-Runtime: $(ROCR_RUNTIME_TAGGED_PIPELINE_ID)
     rocRAND: $(ROCRAND_TAGGED_PIPELINE_ID)
     rocr_debug_agent: $(ROCR_DEBUG_AGENT_TAGGED_PIPELINE_ID)
@@ -166,13 +179,17 @@ parameters:
     - hipRAND
     - hipSPARSELt
     - hipTensor
+    - omnitrace
     - rccl
     - rocALUTION
     - rocBLAS
     - rocFFT
     - rocm-examples
     - rocPRIM
+    - rocprofiler-sdk
+    - rocprofiler-systems
     - rocprofiler
+    - rocPyDecode
     - rocRAND
     - rocSOLVER
     - rocSPARSE
@@ -186,6 +203,7 @@ parameters:
     - hipSPARSE
     - MIOpen
     - MIVision
+    - omniperf
     - rocAL
     - ROCmValidationSuite
 
@@ -205,6 +223,10 @@ steps:
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: ${{ parameters.latestFromBranch }}
+        ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
+          pipelineId: ${{ parameters.stagingPipelineIdentifiers[ split(dependency, ':')[0] ] }}
+          useMainlineBranch: true
+          latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[ split(dependency, ':')[0] ] }}
           latestFromBranch: false
@@ -220,6 +242,10 @@ steps:
         extractToMnt: ${{ parameters.extractToMnt }}
         ${{ if eq(parameters.dependencySource, 'staging') }}:
           pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          latestFromBranch: ${{ parameters.latestFromBranch }}
+        ${{ elseif eq(parameters.dependencySource, 'mainline') }}:
+          pipelineId: ${{ parameters.stagingPipelineIdentifiers[dependency] }}
+          useMainlineBranch: true
           latestFromBranch: ${{ parameters.latestFromBranch }}
         ${{ elseif eq(parameters.dependencySource, 'tag-builds') }}:
           pipelineId: ${{ parameters.taggedPipelineIdentifiers[dependency] }}

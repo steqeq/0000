@@ -5,24 +5,47 @@ parameters:
 - name: checkoutRef
   type: string
   default: ''
+# reference: https://github.com/ROCm/ROCgdb/blob/amd-staging/README-ROCM.md
 - name: aptPackages
   type: object
   default:
-    - libgmp-dev
-    - libmpfr-dev
-    - texinfo
     - bison
+    - dejagnu
     - flex
+    - libbabeltrace-dev
+    - libexpat-dev
+    - libgmp-dev
+    - liblzma-dev
+    - libmpfr-dev
+    - ncurses-dev
+    - texinfo
+    - zlib1g-dev
+- name: rocmDependencies
+  type: object
+  default:
+    - clr
+    - llvm-project
+    - ROCdbgapi
+    - rocminfo
+    - rocprofiler-register
+    - ROCR-Runtime
 
 jobs:
-- job: rocgdb
+- job: ROCgdb
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  - name: PKG_CONFIG_PATH
+    value: $(Agent.BuildDirectory)/rocm/share/pkgconfig
+  pool: $(JOB_TEST_POOL)
   workspace:
     clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -31,5 +54,64 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    parameters:
+      dependencyList: ${{ parameters.rocmDependencies }}
+      # CI case: download latest default branch build
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      # manual build case: triggered by ROCm/ROCm repo
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-autotools.yml
+    parameters:
+      configureFlags: >-
+        --program-prefix=roc
+        --enable-64-bit-bfd
+        --enable-targets="x86_64-linux-gnu,amdgcn-amd-amdhsa"
+        --disable-ld
+        --disable-gas
+        --disable-gdbserver
+        --disable-sim
+        --enable-tui
+        --disable-gdbtk
+        --disable-shared
+        --disable-gprofng
+        --with-expat
+        --with-system-zlib
+        --without-guile
+        --with-babeltrace
+        --with-lzma
+        --with-python=python3
+        --with-rocm-dbgapi=$(Agent.BuildDirectory)/rocm
+        LDFLAGS="-Wl,--enable-new-dtags,-rpath=$(Agent.BuildDirectory)/rocm/lib"
+      makeCallPrefix: LD_RUN_PATH='${ORIGIN}/../lib'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  - task: Bash@3
+    displayName: Setup test environment
+    inputs:
+      targetType: inline
+      script: |
+        sudo rm -rf /opt/rocm
+        sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+        echo "##vso[task.prependpath]/opt/rocm/bin"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
+  - task: Bash@3
+    displayName: check-gdb
+    continueOnError: true
+    inputs:
+      targetType: inline
+      script: make check-gdb TESTS=gdb.rocm/simple.exp
+      workingDirectory: $(Build.SourcesDirectory)
+  - task: Bash@3
+    displayName: print gdb log
+    inputs:
+      targetType: inline
+      script: find -name gdb.log -exec cat {} \;
+      workingDirectory: $(Build.SourcesDirectory)

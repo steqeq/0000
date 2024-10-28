@@ -14,11 +14,11 @@ parameters:
     - libgtest-dev
     - libfftw3-dev
     - python3-pip
-    - libomp-14-dev
 # rocm dependencies should match dependencies-rocm.yml
 - name: rocmDependencies
   type: object
   default:
+    - aomp
     - rocRAND
     - hipRAND
     - llvm-project
@@ -55,8 +55,6 @@ jobs:
     matrix:
       gfx942:
         JOB_GPU_TARGET: gfx942
-      gfx90a:
-        JOB_GPU_TARGET: gfx90a
   steps:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
@@ -96,7 +94,7 @@ jobs:
 
 - job: hipFFT_testing
   dependsOn: hipFFT
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -130,6 +128,7 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: hipFFT

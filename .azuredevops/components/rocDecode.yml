@@ -17,7 +17,7 @@ parameters:
     - libavformat-dev
     - libavutil-dev
     - libstdc++-12-dev
-    - libva-dev
+    - libva-amdgpu-dev
     - mesa-amdgpu-va-drivers
     - libdrm-dev
 - name: rocmDependencies
@@ -35,6 +35,7 @@ parameters:
   default:
     - clr
     - llvm-project
+    - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
 
@@ -88,7 +89,7 @@ jobs:
 
 - job: rocDecode_testing
   dependsOn: rocDecode
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -128,6 +129,7 @@ jobs:
       mkdir rocDecode-tests
       cd rocDecode-tests
       cmake /opt/rocm/share/rocdecode/test
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocDecode

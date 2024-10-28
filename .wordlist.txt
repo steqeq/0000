@@ -53,6 +53,7 @@ CSC
 CSE
 CSV
 CSn
+CTest
 CTests
 CU
 CUDA
@@ -271,6 +272,7 @@ OpenMPI
 OpenSSL
 OpenVX
 OpenXLA
+Oversubscription
 PCC
 PCI
 PCIe
@@ -387,6 +389,7 @@ UAC
 UC
 UCC
 UCX
+UE
 UIF
 UMC
 USM
@@ -455,6 +458,7 @@ blit
 bootloader
 boson
 bosons
+br
 buildable
 bursty
 bzip
@@ -487,6 +491,7 @@ cuLIB
 cuRAND
 cuSOLVER
 cuSPARSE
+customizations
 cTDP
 dataset
 datasets
@@ -582,6 +587,7 @@ invariants
 invocating
 ipo
 kdb
+kfd
 latencies
 libfabric
 libjpeg
@@ -615,6 +621,7 @@ openmp
 openssl
 optimizers
 os
+oversubscription
 pageable
 parallelization
 parameterization
@@ -651,6 +658,7 @@ quasirandom
 queueing
 rccl
 rdc
+rdma
 reStructuredText
 redirections
 refactorization
@@ -693,6 +701,7 @@ rocsolver
 rocsparse
 rocthrust
 roctracer
+rst
 runtime
 runtimes
 sL
