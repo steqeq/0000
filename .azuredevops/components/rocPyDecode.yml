@@ -18,15 +18,11 @@ parameters:
     - libavutil-dev
     - libva-dev
     - libdrm-dev
-    - pybind11-dev
-    - python3-pybind11
     - libdlpack-dev
 - name: pipModules
   type: object
   default:
-    - -i
-    - https://test.pypi.org/simple
-    - hip-python
+    - pybind11
 - name: rocmDependencies
   type: object
   default:
@@ -57,6 +53,11 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
+  - task: Bash@3
+    displayName: 'pip install hip-python'
+    inputs:
+      targetType: inline
+      script: pip install -i https://test.pypi.org/simple hip-python
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -66,10 +67,10 @@ jobs:
       dependencyList: ${{ parameters.rocmDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
       # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, 'refs/pull/122/merge') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
       # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, 'refs/pull/122/merge') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - task: Bash@3
     displayName: 'ROCm symbolic link'
@@ -78,17 +79,19 @@ jobs:
       script: |
         sudo rm -rf /opt/rocm
         sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
-  - script: echo "##vso[task.setvariable variable=USER_SITE;]$(python -m site --user-site)"
+  - task: Bash@3
     displayName: 'Set User Site Packages Path'
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.setvariable variable=USER_SITE;]$(python -m site --user-site)"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(USER_SITE)/pybind11
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DCMAKE_INSTALL_PREFIX_PYTHON=$(Build.BinariesDirectory)
-        -DPYTHON_INSTALL_OPTIONS='--user'
         -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
@@ -133,21 +136,27 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - task: Bash@3
+    displayName: 'pip install hip-python'
+    inputs:
+      targetType: inline
+      script: pip install -i https://test.pypi.org/simple hip-python
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
-      ${{ if eq(parameters.checkoutRef, 'refs/pull/122/merge') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, 'refs/pull/122/merge') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, 'refs/pull/122/merge') }}:
+      ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, 'refs/pull/122/merge') }}:
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
