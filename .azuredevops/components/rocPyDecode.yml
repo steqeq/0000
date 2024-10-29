@@ -120,7 +120,7 @@ jobs:
 
 - job: rocPyDecode_testing
   dependsOn: rocPyDecode
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -144,6 +144,8 @@ jobs:
       script: pip install -i https://test.pypi.org/simple hip-python
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
       ${{ if eq(parameters.checkoutRef, '') }}:
@@ -172,6 +174,7 @@ jobs:
         cd $(Build.SourcesDirectory)
         sudo pip install .
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(USER_SITE)/pybind11 -DAMDGPU_TARGETS=$(JOB_GPU_TARGET) .
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocPyDecode

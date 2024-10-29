@@ -115,7 +115,7 @@ jobs:
 
 - job: rocm_examples_testing
   dependsOn: rocm_examples
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -161,6 +161,7 @@ jobs:
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DCMAKE_HIP_ARCHITECTURES=$(JOB_GPU_TARGET)
         -DCMAKE_EXE_LINKER_FLAGS=-fgpu-rdc
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocm-examples
