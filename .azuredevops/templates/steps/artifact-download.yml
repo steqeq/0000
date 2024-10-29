@@ -150,6 +150,17 @@ parameters:
   default: '$(Build.SourceBranchName)' # for tagged builds
 
 steps:
+- task: Bash@3
+  displayName: check if componentName is in allowpartialbuilds
+  inputs:
+    targetType: inline
+    script: |
+      if [[ $(echo $(ALLOWED_PARTIAL_SUCCEED_BUILDS) | grep -o ${{ parameters.componentName }}) ]]; then
+        echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]true"
+      else
+        echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]false"
+      fi
+- script: echo $(allowPartiallySucceededBuilds)
 - task: DownloadPipelineArtifact@2
   displayName: Download ${{ parameters.componentName }}
   inputs:
@@ -167,8 +178,7 @@ steps:
       branchName: refs/heads/${{ parameters.mainlineBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
-    ${{ if containsValue(split(variables.ALLOWED_PARTIAL_SUCCEED_BUILDS, ','), parameters.componentName) }}:
-      allowPartiallySucceededBuilds: true
+    allowPartiallySucceededBuilds: $(allowPartiallySucceededBuilds)
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
   displayName: Extract ${{ parameters.componentName }}
