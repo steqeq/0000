@@ -18,15 +18,11 @@ parameters:
     - libavutil-dev
     - libva-dev
     - libdrm-dev
-    - pybind11-dev
-    - python3-pybind11
     - libdlpack-dev
 - name: pipModules
   type: object
   default:
-    - -i
-    - https://test.pypi.org/simple
-    - hip-python
+    - pybind11
 - name: rocmDependencies
   type: object
   default:
@@ -57,6 +53,11 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
+  - task: Bash@3
+    displayName: 'pip install hip-python'
+    inputs:
+      targetType: inline
+      script: pip install -i https://test.pypi.org/simple hip-python
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
@@ -78,11 +79,16 @@ jobs:
       script: |
         sudo rm -rf /opt/rocm
         sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+  - task: Bash@3
+    displayName: 'Set User Site Packages Path'
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.setvariable variable=USER_SITE;]$(python -m site --user-site)"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(USER_SITE)/pybind11
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -DCMAKE_INSTALL_PREFIX_PYTHON=$(Build.BinariesDirectory)
@@ -130,6 +136,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
+  - task: Bash@3
+    displayName: 'pip install hip-python'
+    inputs:
+      targetType: inline
+      script: pip install -i https://test.pypi.org/simple hip-python
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
     parameters:
@@ -158,9 +170,10 @@ jobs:
       script: |
         sudo rm -rf /opt/rocm
         sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+        echo "##vso[task.setvariable variable=USER_SITE;]$(python -m site --user-site)"
         cd $(Build.SourcesDirectory)
         sudo pip install .
-        cmake -DAMDGPU_TARGETS=$(JOB_GPU_TARGET) .
+        cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(USER_SITE)/pybind11 -DAMDGPU_TARGETS=$(JOB_GPU_TARGET) .
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
