@@ -8,17 +8,17 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - python3-pip
     - cmake
-    - ninja-build
-    - pkg-config
     - ffmpeg
     - libavcodec-dev
     - libavformat-dev
     - libavutil-dev
-    - libva-dev
-    - libdrm-dev
     - libdlpack-dev
+    - libdrm-dev
+    - libva-dev
+    - ninja-build
+    - pkg-config
+    - python3-pip
 - name: pipModules
   type: object
   default:
@@ -168,7 +168,7 @@ jobs:
       script: |
         sudo rm -rf /opt/rocm
         sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
-        echo "##vso[task.setvariable variable=USER_SITE;]$(python -m site --user-site)"
+        echo "##vso[task.setvariable variable=USER_SITE;]$(python3 -m site --user-site)"
         cd $(Build.SourcesDirectory)
         sudo pip install .
         cmake -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(USER_SITE)/pybind11 -DAMDGPU_TARGETS=$(JOB_GPU_TARGET) .
