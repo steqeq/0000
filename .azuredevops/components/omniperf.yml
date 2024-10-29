@@ -90,7 +90,7 @@ jobs:
 
 - job: omniperf_testing
   dependsOn: omniperf
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -148,6 +148,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DENABLE_TESTS=ON
         -DINSTALL_TESTS=ON
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: omniperf

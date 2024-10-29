@@ -89,7 +89,7 @@ jobs:
 - job: hip_tests_testing
   timeoutInMinutes: 240
   dependsOn: hip_tests
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -131,6 +131,7 @@ jobs:
         sudo rm -rf /opt/rocm
         sudo mkdir -p /opt/rocm/bin
         sudo ln -s $(Agent.BuildDirectory)/rocm/bin/rocm_agent_enumerator /opt/rocm/bin/rocm_agent_enumerator
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: hip_tests
