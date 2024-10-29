@@ -144,20 +144,6 @@ parameters:
     roctracer: amd-master
     rocWMMA: mainline
     rpp: mainline
-- name: allowPartiallySucceededBuilds
-  type: object
-  default:
-    - amdsmi
-    - aomp
-    - HIPIFY
-    - MIVisionX
-    - omniperf
-    - rccl
-    - rdc
-    - rocm-cmake
-    - rocm_smi_lib
-    - rocFFT
-    - rpp
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
@@ -181,7 +167,7 @@ steps:
       branchName: refs/heads/${{ parameters.mainlineBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
-    ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
+    ${{ if containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName']) }}:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
