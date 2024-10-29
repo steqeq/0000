@@ -167,7 +167,7 @@ steps:
       branchName: refs/heads/${{ parameters.mainlineBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
-    ${{ if containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName']) }}:
+    ${{ if containsValue(split(variables.ALLOWED_PARTIAL_SUCCEED_BUILDS, ','), variables['Build.DefinitionName']) }}:
       allowPartiallySucceededBuilds: true
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
