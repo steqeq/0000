@@ -27,18 +27,41 @@ With this Docker image, you can quickly validate the expected inference
 performance numbers on the MI300X accelerator. This topic also provides tips on
 optimizing performance with popular AI models.
 
+.. hlist::
+   :columns: 6
+
+   * Llama 3.1 8B
+
+   * Llama 3.1 70B
+
+   * Llama 3.1 405B
+
+   * Llama 2 7B
+
+   * Llama 2 70B
+
+   * Mixtral 8x7B
+
+   * Mixtral 8x22B
+
+   * Mixtral 7B
+
+   * Qwen2 7B
+
+   * Qwen2 72B
+
+   * JAIS 13B
+
+   * JAIS 30B
+
 .. _vllm-benchmark-vllm:
 
 .. note::
 
-   vLLM is a toolkit and library for LLM inference and
-   serving. It deploys the PagedAttention algorithm, which reduces memory
-   consumption and increases throughput by leveraging dynamic key and value
-   allocation in GPU memory. vLLM also incorporates many LLM acceleration
-   and quantization algorithms. In addition, AMD implements high-performance
-   custom kernels and modules in vLLM to enhance performance further. See
-   :ref:`fine-tuning-llms-vllm` and :ref:`mi300x-vllm-optimization` for more
-   information.
+   vLLM is a toolkit and library for LLM inference and serving. AMD implements
+   high-performance custom kernels and modules in vLLM to enhance performance.
+   See :ref:`fine-tuning-llms-vllm` and :ref:`mi300x-vllm-optimization` for
+   more information.
 
 Getting started
 ===============
@@ -111,6 +134,7 @@ Available models
 ----------------
 
 .. hlist::
+   :columns: 3
 
    * ``pyt_vllm_llama-3.1-8b``
 
@@ -308,8 +332,8 @@ Here are some examples of running the benchmark with various options.
 See :ref:`Options <vllm-benchmark-standalone-options>` for the list of
 options and their descriptions.
 
-Latency benchmark example
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Example 1: latency benchmark
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  
 Use this command to benchmark the latency of the Llama 3.1 8B model on one GPU with the ``float16`` and ``float8`` data types.
 
@@ -324,8 +348,8 @@ Find the latency reports at:
 
 - ``./reports_float8/summary/Meta-Llama-3.1-8B-Instruct-FP8-KV_latency_report.csv``
 
-Throughput benchmark example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example 2: throughput benchmark
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use this command to benchmark the throughput of the Llama 3.1 8B model on one GPU with the ``float16`` and ``float8`` data types.
 
@@ -365,9 +389,6 @@ Further reading
 
 - To learn more about the options for latency and throughput benchmark scripts,
   see `<https://github.com/ROCm/vllm/tree/main/benchmarks>`_.
-
-- For application performance optimization strategies for HPC and AI workloads,
-  including inference with vLLM, see :doc:`/how-to/tuning-guides/mi300x/workload`.
 
 - To learn more about system settings and management practices to configure your system for
   MI300X accelerators, see :doc:`/how-to/system-optimization/mi300x`.
