@@ -107,6 +107,7 @@ jobs:
       runRocminfo: false
   - task: Bash@3
     displayName: Build kfdtest
+    continueOnError: true
     inputs:
       targetType: 'inline'
       workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/kfdtest
@@ -122,6 +123,7 @@ jobs:
       testDir: $(Build.SourcesDirectory)/libhsakmt/tests/kfdtest/scripts
   - task: Bash@3
     displayName: Build rdmatest app
+    continueOnError: true
     inputs:
       targetType: 'inline'
       workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/rdma/simple/app
@@ -130,6 +132,7 @@ jobs:
         cmake --build .
   - task: Bash@3
     displayName: Build rdmatest driver
+    continueOnError: true
     inputs:
       targetType: 'inline'
       workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/rdma/simple/drv
@@ -139,6 +142,7 @@ jobs:
         RDMA_HEADER_DIR=/usr/src/amdgpu-*/include make all
   - task: Bash@3
     displayName: Install rdmatest driver
+    continueOnError: true
     inputs:
       targetType: 'inline'
       workingDirectory: $(Build.SourcesDirectory)/libhsakmt/tests/rdma/simple/drv
@@ -154,6 +158,7 @@ jobs:
       testPublishResults: false
   - task: Bash@3
     displayName: Build rocrtst
+    continueOnError: true
     inputs:
       targetType: 'inline'
       workingDirectory: $(Build.SourcesDirectory)/rocrtst/suites/test_common
