@@ -186,6 +186,7 @@ parameters:
     - rocFFT
     - rocm-examples
     - rocPRIM
+    - rocprofiler-compute
     - rocprofiler-sdk
     - rocprofiler-systems
     - rocprofiler
