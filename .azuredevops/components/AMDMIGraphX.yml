@@ -189,9 +189,9 @@ jobs:
         -DMIGRAPHX_ENABLE_C_API_TEST=ON
         ..
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
-  - task: Bash@3
-    displayName: Build and run MIGraphX tests
-    inputs:
-      targetType: inline
-      workingDirectory: build
-      script: make -j$(nproc) check
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: AMDMIGraphX
+      testExecutable: make
+      testParameters: -j$(nproc) check
+      testPublishResults: false
