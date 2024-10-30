@@ -70,6 +70,7 @@ parameters:
     rocm_smi_lib: amd-staging
     rocPRIM: develop
     rocprofiler: amd-staging
+    rocprofiler-compute: amd-staging
     rocprofiler-register: amd-staging
     rocprofiler-sdk: amd-staging
     rocprofiler-systems: amd-staging
@@ -131,6 +132,7 @@ parameters:
     rocm_smi_lib: amd-mainline
     rocPRIM: mainline
     rocprofiler: amd-master
+    rocprofiler-compute: amd-mainline
     rocprofiler-register: amd-mainline
     rocprofiler-sdk: amd-mainline
     rocprofiler-systems: amd-mainline
