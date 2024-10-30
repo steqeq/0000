@@ -267,6 +267,8 @@ OpenMPI
 OpenSSL
 OpenVX
 OpenXLA
+Oversubscription
+PagedAttention
 PCC
 PCI
 PCIe
