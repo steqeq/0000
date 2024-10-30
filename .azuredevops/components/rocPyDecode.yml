@@ -182,7 +182,9 @@ jobs:
 # sudo required for pip install but screws up permissions for next pipeline run
   - task: Bash@3
     displayName: Clean up test environment
+    condition: always()
     inputs:
       targetType: inline
       script: |
+        sudo pip uninstall -y rocPyDecode
         sudo rm -rf $(Build.SourcesDirectory)/*
