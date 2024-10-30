@@ -13,11 +13,11 @@ steps:
   inputs:
     targetType: inline
     script: sudo DEBIAN_FRONTEND=noninteractive apt-get --yes update
-# - task: Bash@3
-#   displayName: 'sudo apt-get upgrade'
-#   inputs:
-#     targetType: inline
-#     script: sudo DEBIAN_FRONTEND=noninteractive apt-get --yes upgrade
+- task: Bash@3
+  displayName: 'sudo apt-get upgrade'
+  inputs:
+    targetType: inline
+    script: sudo DEBIAN_FRONTEND=noninteractive apt-get --yes upgrade
 - task: Bash@3
   displayName: 'sudo apt-get fix'
   inputs:

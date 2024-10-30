@@ -151,16 +151,15 @@ parameters:
 
 steps:
 - task: Bash@3
-  displayName: check if componentName is in allowpartialbuilds
+  displayName: Set allowPartiallySucceededBuilds
   inputs:
     targetType: inline
     script: |
-      if [[ $(echo $(ALLOWED_PARTIAL_SUCCEED_BUILDS) | grep -o ${{ parameters.componentName }}) ]]; then
+      if [[ ",$ALLOWED_PARTIAL_SUCCEED_BUILDS," == *",${{ parameters.componentName }},"* ]]; then
         echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]true"
       else
         echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]false"
       fi
-- script: echo $(allowPartiallySucceededBuilds)
 - task: DownloadPipelineArtifact@2
   displayName: Download ${{ parameters.componentName }}
   inputs:
