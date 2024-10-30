@@ -166,4 +166,3 @@ jobs:
     parameters:
       componentName: rocm-examples
       testDir: $(Build.SourcesDirectory)/build
-      reloadAMDGPU: true
