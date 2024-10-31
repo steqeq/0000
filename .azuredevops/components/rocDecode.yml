@@ -92,7 +92,10 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: $(JOB_TEST_POOL)
+  pool:
+    name: $(JOB_TEST_POOL)
+    demands:
+      - firstRenderDeviceAccess -equals "True"
   workspace:
     clean: all
   strategy:
