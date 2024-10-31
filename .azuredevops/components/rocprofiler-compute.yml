@@ -46,7 +46,7 @@ parameters:
     - roctracer
 
 jobs:
-- job: omniperf
+- job: rocprofiler_compute
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -88,9 +88,9 @@ jobs:
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
 
-- job: omniperf_testing
-  dependsOn: omniperf
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+- job: rocprofiler_compute_testing
+  dependsOn: rocprofiler_compute
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -148,11 +148,12 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DENABLE_TESTS=ON
         -DINSTALL_TESTS=ON
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
-      componentName: omniperf
-      testDir: $(Build.BinariesDirectory)/libexec/omniperf
-      testExecutable: export OMNIPERF_ARCH_OVERRIDE="MI300X"; ctest
+      componentName: rocprofiler-compute
+      testDir: $(Build.BinariesDirectory)/libexec/rocprofiler-compute
+      testExecutable: export ROCPROFCOMPUTE_ARCH_OVERRIDE="MI300X"; ctest
   - task: Bash@3
     displayName: Remove ROCm binaries from PATH
     inputs:

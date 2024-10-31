@@ -114,7 +114,7 @@ jobs:
 
 - job: MIOpen_testing
   dependsOn: MIOpen
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -206,7 +206,7 @@ jobs:
       script: |
         cmake --build . --target tests -- -j$(nproc)
       workingDirectory: $(Build.SourcesDirectory)/build
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: MIOpen
-      reloadAMDGPU: true

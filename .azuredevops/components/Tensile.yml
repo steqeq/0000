@@ -79,7 +79,7 @@ jobs:
 
 - job: Tensile_testing
   dependsOn: Tensile
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -105,6 +105,12 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
@@ -143,6 +149,7 @@ jobs:
     inputs:
       targetType: inline
       script: echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/llvm/bin"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - task: Bash@3
     displayName: tox test
     inputs:
