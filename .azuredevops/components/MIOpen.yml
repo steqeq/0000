@@ -210,4 +210,3 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: MIOpen
-      reloadAMDGPU: true

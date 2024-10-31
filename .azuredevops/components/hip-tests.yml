@@ -136,7 +136,6 @@ jobs:
     parameters:
       componentName: hip_tests
       testDir: $(Agent.BuildDirectory)/rocm/share/hip
-      reloadAMDGPU: true
   - task: Bash@3
     displayName: Clean up symlink
     inputs:
