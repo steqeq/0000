@@ -128,7 +128,9 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: $(JOB_TEST_POOL)
+  pool:
+    name: $(JOB_TEST_POOL)
+    demands: firstRenderDeviceAccess
   workspace:
     clean: all
   strategy:
@@ -137,6 +139,17 @@ jobs:
         JOB_GPU_TARGET: gfx942
         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
+  - task: Bash@3
+    displayName: Ensure pybind11-dev is not installed
+    inputs:
+      targetType: inline
+      script: |
+        if dpkg -l | grep -q pybind11-dev; then
+          echo "Removing pybind11-dev..."
+          sudo apt remove -y pybind11-dev
+        else
+          echo "pybind11-dev is not installed."
+        fi
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
@@ -177,17 +190,6 @@ jobs:
         pip uninstall -y rocPyDecode
         find -name *.whl -exec pip install {} \;
       workingDirectory: $(Agent.BuildDirectory)
-  - task: Bash@3
-    displayName: Ensure pybind11-dev is not installed
-    inputs:
-      targetType: inline
-      script: |
-        if dpkg -l | grep -q pybind11-dev; then
-          echo "Removing pybind11-dev..."
-          sudo apt remove -y pybind11-dev
-        else
-          echo "pybind11-dev is not installed."
-        fi
   - task: Bash@3
     displayName: Setup search paths
     inputs:
