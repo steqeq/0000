@@ -103,7 +103,7 @@ You can also refer to the :ref:`past versions of ROCm compatibility matrix<past-
       ,,,
       SYSTEM MGMT TOOLS,.. _tools-support-compatibility-matrix:,,
       :doc:`AMD SMI <amdsmi:index>`,24.6.3,24.6.2,24.4.1
-      :doc:`ROCm Data Center Tool <rdc:index>`,1.0.0,1.0.0,0.3.0
+      :doc:`ROCm Data Center Tool <rdc:index>`,0.3.0,0.3.0,0.3.0
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0,1.0.0
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.3.0,7.3.0,7.0.0
       :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,rocm-6.2.1,rocm-6.2.0,rocm-6.1.0
