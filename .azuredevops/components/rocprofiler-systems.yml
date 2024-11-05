@@ -126,11 +126,13 @@ jobs:
       componentName: rocprofiler-systems
   - task: Bash@3
     displayName: Remove ROCm binaries from PATH
+    condition: always()
     inputs:
       targetType: inline
       script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/bin;;' -e 's;^/;;' -e 's;/$;;')"
   - task: Bash@3
     displayName: Remove ROCm compilers from PATH
+    condition: always()
     inputs:
       targetType: inline
       script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/llvm/bin;;' -e 's;^/;;' -e 's;/$;;')"

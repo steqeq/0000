@@ -178,3 +178,4 @@ jobs:
       testExecutable: 'export PATH=$(Agent.BuildDirectory)/rocm/llvm/bin:$PATH; CC=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang CMAKE_VERBOSE_MAKEFILE=ON VERBOSE=1 ctest'
       testDir: 'rpp-tests'
   - script: sudo rm /opt/rocm
+    condition: always()

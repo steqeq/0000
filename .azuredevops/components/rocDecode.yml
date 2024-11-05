@@ -149,3 +149,4 @@ jobs:
       componentName: rocDecode
       testDir: 'rocDecode-tests'
   - script: sudo rm /opt/rocm
+    condition: always()
