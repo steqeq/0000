@@ -17,7 +17,7 @@ low-level kernels to high-level end-user applications.
 
 Specifically, ROCm provides the tools for
 :doc:`HIP (Heterogeneous-computing Interface for Portability) <hip:index>`,
-OpenCL and OpenMP. This include compilers, libraries for high-level
+OpenCL and OpenMP. These include compilers, libraries for high-level
 functions, debuggers, profilers and runtimes.
 
 .. tip::
