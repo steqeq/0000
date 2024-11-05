@@ -36,7 +36,6 @@ parameters:
     - rocm-cmake
     - rocm_smi_lib
     - roctracer
-    - AMDMIGraphX
 
 steps:
 # run test, continue on failure to publish results
@@ -46,8 +45,7 @@ steps:
   continueOnError: ${{ containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}
   inputs:
     targetType: inline
-    # script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
-    script: "false"
+    script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
     workingDirectory: ${{ parameters.testDir }}
 - ${{ if parameters.testPublishResults }}:
   - task: PublishTestResults@2
