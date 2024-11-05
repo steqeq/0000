@@ -12,9 +12,9 @@ performance from AMD Instinct accelerators and AMD Radeon GPUs while maintaining
 compatibility with industry software frameworks. For more information, see
 [What is ROCm?](./what-is-rocm.rst)
 
-ROCm supports multiple programming
-languages such as {doc}`HIP (Heterogeneous-Compute Interface for Portability)<hip:index>`, OpenCL,
-and OpenMP, as explained in the [Programming guide](./how-to/hip_programming_guide.rst).
+ROCm supports multiple programming languages and programming interfaces such as
+{doc}`HIP (Heterogeneous-Compute Interface for Portability)<hip:index>`, OpenCL,
+and OpenMP, as explained in the [Programming guide](./how-to/programming_guide.rst).
 
 If you're using AMD Radeon™ PRO or Radeon GPUs in a workstation setting with a display connected, review {doc}`Radeon-specific ROCm documentation<radeon:index>`.
 
