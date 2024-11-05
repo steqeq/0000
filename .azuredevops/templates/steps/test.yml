@@ -36,6 +36,7 @@ parameters:
     - rocm-cmake
     - rocm_smi_lib
     - roctracer
+    - AMDMIGraphX
 
 steps:
 # run test, continue on failure to publish results
