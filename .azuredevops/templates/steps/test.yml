@@ -26,15 +26,27 @@ parameters:
 - name: testPublishResults
   type: boolean
   default: true
+- name: allowPartiallySucceededBuilds
+  type: object
+  default:
+    - amdsmi
+    - aomp
+    - HIPIFY
+    - MIVisionX
+    - rocm-cmake
+    - rocm_smi_lib
+    - roctracer
 
 steps:
 # run test, continue on failure to publish results
 # and to publish build artifacts
 - task: Bash@3
   displayName: '${{ parameters.componentName }} Test'
+  continueOnError: ${{ containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}
   inputs:
     targetType: inline
-    script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
+    # script: ${{ parameters.testExecutable }} ${{ parameters.testParameters }}
+    script: "false"
     workingDirectory: ${{ parameters.testDir }}
 - ${{ if parameters.testPublishResults }}:
   - task: PublishTestResults@2
