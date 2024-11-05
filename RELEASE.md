@@ -295,7 +295,7 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rdc/en/docs-6.2.1">ROCm Data Center Tool</a></td>
-                <td>1.0.0</td>
+                <td>0.3.0</td>
                 <td><a href="https://github.com/ROCm/rdc/releases/tag/rocm-6.2.1"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
