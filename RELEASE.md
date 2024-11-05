@@ -317,7 +317,7 @@ Click the component's updated version to go to a detailed list of its changes. C
                 <th rowspan="6"></th>
                 <th rowspan="6">Performance</th>
                 <td><a href="https://rocm.docs.amd.com/projects/omniperf/en/docs-6.2.1">Omniperf</a></td>
-                <td>2.0.1</td>
+                <td>2.0.1&nbsp;&Rightarrow;&nbsp;<a href="#omniperf-2-0-1">2.0.1</a></td>
                 <td><a href="https://github.com/ROCm/omniperf/releases/tag/rocm-6.2.1"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -454,11 +454,32 @@ The following sections describe key changes to ROCm components.
 
 #### Changes
 
-* Added CUDA 12.5.1 support
-* Added cuDNN 9.2.1 support
-* Added LLVM 18.1.8 support
-* Added `hipBLAS` 64-bit APIs support
-* Added Support for math constants `math_constants.h`
+* Added CUDA 12.5.1 support.
+* Added cuDNN 9.2.1 support.
+* Added LLVM 18.1.8 support.
+* Added `hipBLAS` 64-bit APIs support.
+* Added Support for math constants `math_constants.h`.
+
+### **Omniperf** (2.0.1)
+
+#### Changes
+
+* Enabled rocprofv1 for MI300 hardware.
+* Added dependency checks on application launch.
+* Updated Omniperf packaging.
+* Rolled back Grafana version in Dockerfile for Angular plugin compatibility.
+* Added GPU model distinction for MI300 systems.
+* Refactored and updated documemtation.
+
+#### Resolved issues
+
+* Fixed an issue with analysis output.
+* Fixed issues with profiling multi-process and multi-GPU applications.
+
+#### Optimizations
+
+* Reduced running time of Omniperf when profiling.
+* Improved console logging.
 
 ### **Omnitrace** (1.11.2)
 
