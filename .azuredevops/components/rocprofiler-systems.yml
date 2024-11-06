@@ -53,7 +53,7 @@ parameters:
     - roctracer
 
 jobs:
-- job: omnitrace
+- job: rocprofiler_systems
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -105,26 +105,26 @@ jobs:
 # build flags reference: https://rocm.docs.amd.com/projects/omnitrace/en/latest/install/install.html
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DOMNITRACE_BUILD_TESTING=ON
-        -DOMNITRACE_BUILD_DYNINST=ON
-        -DOMNITRACE_BUILD_LIBUNWIND=ON
+        -DROCPROFSYS_BUILD_TESTING=ON
+        -DROCPROFSYS_BUILD_DYNINST=ON
+        -DROCPROFSYS_BUILD_LIBUNWIND=ON
         -DDYNINST_BUILD_TBB=ON
         -DDYNINST_BUILD_ELFUTILS=ON
         -DDYNINST_BUILD_LIBIBERTY=ON
         -DDYNINST_BUILD_BOOST=ON
-        -DOMNITRACE_USE_PAPI=ON
-        -DOMNITRACE_USE_MPI=ON
+        -DROCPROFSYS_USE_PAPI=ON
+        -DROCPROFSYS_USE_MPI=ON
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
       multithreadFlag: -- -j32
   - task: Bash@3
-    displayName: Set up omnitrace env
+    displayName: Set up rocprofiler-systems env
     inputs:
       targetType: inline
-      script: source share/omnitrace/setup-env.sh
+      script: source share/rocprofiler-systems/setup-env.sh
       workingDirectory: build
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
-      componentName: omnitrace
+      componentName: rocprofiler-systems
   - task: Bash@3
     displayName: Remove ROCm binaries from PATH
     inputs:

@@ -9,55 +9,48 @@ parameters:
   type: object
   default:
     - cmake
-    - ninja-build
-    - libyaml-cpp-dev
-    - libpci-dev
-    - libpci3
-    - libgst-dev
-    - libgtest-dev
-    - git
+    - locales
+    - python3-pip
+- name: pipModules
+  type: object
+  default:
+    - astunparse==1.6.2
+    - colorlover
+    - dash>=1.12.0
+    - matplotlib
+    - numpy>=1.17.5
+    - pandas>=1.4.3
+    - pymongo
+    - pyyaml
+    - tabulate
+    - tqdm
+    - dash-svg
+    - dash-bootstrap-components
+    - kaleido
+    - setuptools
+    - plotille
+    - mock
+    - pytest
+    - pytest-cov
+    - pytest-xdist
 - name: rocmDependencies
   type: object
   default:
     - clr
-    - hipBLAS-common
-    - hipBLASLt
-    - hipRAND
     - llvm-project
-    - rocBLAS
     - rocm-cmake
-    - rocm_smi_lib
+    - rocm-core
     - rocminfo
-    - rocprofiler-register
     - ROCR-Runtime
-    - rocRAND
-- name: rocmTestDependencies
-  type: object
-  default:
-    - clr
-    - hipBLAS-common
-    - hipBLASLt
-    - hipRAND
-    - llvm-project
-    - rocBLAS
-    - rocm_smi_lib
-    - rocminfo
+    - rocprofiler
     - rocprofiler-register
-    - ROCR-Runtime
-    - rocRAND
     - roctracer
 
 jobs:
-- job: ROCmValidationSuite
+- job: rocprofiler_compute
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  - name: HIP_ROCCLR_HOME
-    value: $(Build.BinariesDirectory)/rocm
-  - name: ROCM_PATH
-    value: $(Agent.BuildDirectory)/rocm
-  - name: HIP_INC_DIR
-    value: $(Agent.BuildDirectory)/rocm
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
@@ -70,10 +63,17 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, '') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, '') }}:
+        dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
       dependencyList: ${{ parameters.rocmDependencies }}
@@ -85,23 +85,18 @@ jobs:
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
-        -DCPACK_PACKAGING_INSTALL_PREFIX=$(Build.BinariesDirectory)
-        -GNinja
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
 
-- job: ROCmValidationSuite_testing
-  dependsOn: ROCmValidationSuite
+- job: rocprofiler_compute_testing
+  dependsOn: rocprofiler_compute
   condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  - name: PYTHON_VERSION
+    value: 3.10
   pool: $(JOB_TEST_POOL)
   workspace:
     clean: all
@@ -114,10 +109,20 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
+      pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+  - task: Bash@3
+    displayName: Add en_US.UTF-8 locale
+    inputs:
+      targetType: inline
+      script: |
+        sudo locale-gen en_US.UTF-8
+        sudo update-locale
+        locale -a
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
-      gpuTarget: $(JOB_GPU_TARGET)
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
       ${{ if eq(parameters.checkoutRef, '') }}:
@@ -126,17 +131,45 @@ jobs:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     parameters:
-      dependencyList: ${{ parameters.rocmTestDependencies }}
+      dependencyList: ${{ parameters.rocmDependencies }}
       gpuTarget: $(JOB_GPU_TARGET)
       ${{ if eq(parameters.checkoutRef, '') }}:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - task: Bash@3
+    displayName: Add ROCm binaries to PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/bin"
+  - task: Bash@3
+    displayName: Add ROCm compilers to PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/llvm/bin"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_HIP_ARCHITECTURES=$(JOB_GPU_TARGET)
+        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+        -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DCMAKE_BUILD_TYPE=Release
+        -DENABLE_TESTS=ON
+        -DINSTALL_TESTS=ON
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
-      componentName: ROCmValidationSuite
-      testExecutable: $(Agent.BuildDirectory)/rocm/bin/rvs -c $(Agent.BuildDirectory)/rocm/share/rocm-validation-suite/conf/MI300X/gst_single.conf
-      testParameters: ''
-      testDir: $(Agent.BuildDirectory)
-      testPublishResults: false
+      componentName: rocprofiler-compute
+      testDir: $(Build.BinariesDirectory)/libexec/rocprofiler-compute
+      testExecutable: export ROCPROFCOMPUTE_ARCH_OVERRIDE="MI300X"; ctest
+  - task: Bash@3
+    displayName: Remove ROCm binaries from PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/bin;;' -e 's;^/;;' -e 's;/$;;')"
+  - task: Bash@3
+    displayName: Remove ROCm compilers from PATH
+    inputs:
+      targetType: inline
+      script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/llvm/bin;;' -e 's;^/;;' -e 's;/$;;')"

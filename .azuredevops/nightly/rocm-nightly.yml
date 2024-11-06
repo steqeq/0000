@@ -45,8 +45,10 @@ parameters:
     - rocm_bandwidth_test
     - rocm_smi_lib
     - rocPRIM
+    - rocprofiler-compute
     - rocprofiler-register
     - rocprofiler-sdk
+    - rocprofiler-systems
     - rocprofiler
     - rocPyDecode
     - ROCR-Runtime
@@ -117,7 +119,7 @@ jobs:
   - script: du -sh $(Build.ArtifactStagingDirectory)
     displayName: Compressed ROCm size
   - task: PublishPipelineArtifact@1
-    displayName: 'Public ROCm Nightly Artifact'
+    displayName: 'Publish ROCm Nightly Artifact'
     retryCountOnTaskFailure: 3
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)'

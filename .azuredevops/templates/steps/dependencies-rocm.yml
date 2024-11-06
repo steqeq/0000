@@ -55,6 +55,7 @@ parameters:
     MIOpen: $(MIOpen_PIPELINE_ID)
     MIVisionX: $(MIVISIONX_PIPELINE_ID)
     omniperf: $(OMNIPERF_PIPELINE_ID)
+    omnitrace: $(OMNITRACE_PIPELINE_ID)
     rccl: $(RCCL_PIPELINE_ID)
     rdc: $(RDC_PIPELINE_ID)
     rocAL: $(ROCAL_PIPELINE_ID)
@@ -73,8 +74,10 @@ parameters:
     rocm_bandwidth_test: $(ROCM_BANDWIDTH_TEST_PIPELINE_ID)
     rocm_smi_lib: $(ROCM_SMI_LIB_PIPELINE_ID)
     rocPRIM: $(ROCPRIM_PIPELINE_ID)
+    rocprofiler-compute: $(ROCPROFILER_COMPUTE_PIPELINE_ID)
     rocprofiler-register: $(ROCPROFILER_REGISTER_PIPELINE_ID)
     rocprofiler-sdk: $(ROCPROFILER_SDK_PIPELINE_ID)
+    rocprofiler-systems: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
     rocprofiler: $(ROCPROFILER_PIPELINE_ID)
     rocPyDecode: $(ROCPYDECODE_PIPELINE_ID)
     ROCR-Runtime: $(ROCR_RUNTIME_PIPELINE_ID)
@@ -115,6 +118,7 @@ parameters:
     MIOpen: $(MIOpen_TAGGED_PIPELINE_ID)
     MIVisionX: $(MIVISIONX_TAGGED_PIPELINE_ID)
     omniperf: $(OMNIPERF_TAGGED_PIPELINE_ID)
+    omnitrace: $(OMNITRACE_TAGGED_PIPELINE_ID)
     rccl: $(RCCL_TAGGED_PIPELINE_ID)
     rdc: $(RDC_TAGGED_PIPELINE_ID)
     rocAL: $(ROCAL_TAGGED_PIPELINE_ID)
@@ -133,8 +137,10 @@ parameters:
     rocm_bandwidth_test: $(ROCM_BANDWIDTH_TEST_TAGGED_PIPELINE_ID)
     rocm_smi_lib: $(ROCM_SMI_LIB_TAGGED_PIPELINE_ID)
     rocPRIM: $(ROCPRIM_TAGGED_PIPELINE_ID)
+    rocprofiler-compute: $(ROCPROFILER_COMPUTE_TAGGED_PIPELINE_ID)
     rocprofiler-register: $(ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID)
     rocprofiler-sdk: $(ROCPROFILER_SDK_TAGGED_PIPELINE_ID)
+    rocprofiler-systems: $(ROCPROFILER_SYSTEMS_PIPELINE_ID)
     rocprofiler: $(ROCPROFILER_TAGGED_PIPELINE_ID)
     rocPyDecode: $(ROCPYDECODE_TAGGED_PIPELINE_ID)
     ROCR-Runtime: $(ROCR_RUNTIME_TAGGED_PIPELINE_ID)
@@ -175,13 +181,16 @@ parameters:
     - hipRAND
     - hipSPARSELt
     - hipTensor
+    - omnitrace
     - rccl
     - rocALUTION
     - rocBLAS
     - rocFFT
     - rocm-examples
     - rocPRIM
+    - rocprofiler-compute
     - rocprofiler-sdk
+    - rocprofiler-systems
     - rocprofiler
     - rocPyDecode
     - rocRAND
