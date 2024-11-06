@@ -45,6 +45,7 @@ parameters:
     - rocm_bandwidth_test
     - rocm_smi_lib
     - rocPRIM
+    - rocprofiler-compute
     - rocprofiler-register
     - rocprofiler-sdk
     - rocprofiler-systems

@@ -9,6 +9,7 @@ parameters:
   type: object
   default:
     - cmake
+    - locales
     - python3-pip
 - name: pipModules
   type: object
@@ -110,6 +111,14 @@ jobs:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: Bash@3
+    displayName: Add en_US.UTF-8 locale
+    inputs:
+      targetType: inline
+      script: |
+        sudo locale-gen en_US.UTF-8
+        sudo update-locale
+        locale -a
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
