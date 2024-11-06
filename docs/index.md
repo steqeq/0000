@@ -11,7 +11,7 @@ ROCm is an open-source software platform optimized to extract HPC and AI workloa
 performance from AMD Instinct accelerators and AMD Radeon GPUs while maintaining
 compatibility with industry software frameworks. For more information, see [What is ROCm?](./what-is-rocm.rst)
 
-If you're using Radeon GPUs, consider reviewing {doc}`Radeon-specific ROCm documentation<radeon:index>`.
+If you're using AMD Radeon™ PRO or Radeon GPUs in a workstation setting with a display connected, review {doc}`Radeon-specific ROCm documentation<radeon:index>`.
 
 Installation instructions are available from:
 
@@ -45,7 +45,7 @@ ROCm documentation is organized into the following categories:
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
 * [System optimization](./how-to/system-optimization/index.rst)
-* [AMD Instinct MI300X tuning guides](./how-to/tuning-guides/mi300x/index.rst)
+* [AMD Instinct MI300X performance validation and tuning](./how-to/tuning-guides/mi300x/index.rst)
 * [GPU cluster networking](https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/latest/index.html)
 * [System debugging](./how-to/system-debugging.md)
 * [Using MPI](./how-to/gpu-enabled-mpi.rst)

@@ -72,7 +72,7 @@ jobs:
 
 - job: rocr_debug_agent_testing
   dependsOn: rocr_debug_agent
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -114,6 +114,7 @@ jobs:
       cmakeBuildDir: '$(Agent.BuildDirectory)/rocm/src/rocm-debug-agent-test'
       cmakeSourceDir: '.'
       installEnabled: false
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocr_debug_agent

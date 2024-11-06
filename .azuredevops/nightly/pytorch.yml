@@ -11,7 +11,6 @@ parameters:
     - ca-certificates
     - bc
     - bridge-utils
-    - cmake
     - devscripts
     - dkms
     - doxygen
@@ -67,8 +66,9 @@ parameters:
 - name: pipModules
   type: object
   default:
+    - cmake
     - astunparse
-    - expecttest!=0.2.0
+    - expecttest>=0.2.1
     - hypothesis
     - numpy
     - psutil
@@ -85,14 +85,15 @@ parameters:
     - lintrunner
     - ninja
     - packaging
-    - optree>=0.12.0
+    - optree>=0.13.0
+    - click>=8.0.3
   # list for vision
     - auditwheel
     - future
     - pytest
     - pytest-azurepipelines
     - pillow
-# list from https://github.com/pytorch/builder/blob/main/manywheel/build_rocm.sh
+# list from https://github.com/pytorch/pytorch/blob/main/.ci/manywheel/build_rocm.sh
 - name: rocmDependencies
   type: object
   default:
@@ -122,6 +123,7 @@ parameters:
     - hipCUB
     - rocThrust
     - hipBLAS-common
+    - composable_kernel
 - name: rocmTestDependencies
   type: object
   default:
@@ -159,13 +161,10 @@ jobs:
       amd-staging-gfx942:
         ROCM_BRANCH: amd-staging
         JOB_GPU_TARGET: gfx942
-      amd-staging-gfx90a:
-        ROCM_BRANCH: amd-staging
-        JOB_GPU_TARGET: gfx90a
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-# various flags/parameters expected by bash scripts in pytorch builder repo
+# various flags/parameters expected by bash scripts in pytorch repo's .ci directory
   - name: ROCM_VERSION
     value: 6.3.0
   - name: ROCM_PATH
@@ -186,7 +185,7 @@ jobs:
   workspace:
     clean: all
   steps:
-# copy environment setup from https://github.com/pytorch/builder/blob/main/manywheel/Dockerfile
+# copy environment setup from https://github.com/pytorch/pytorch/blob/main/.ci/docker/manywheel/Dockerfile
 # but instead of centos, use ubuntu environment
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - task: Bash@3
@@ -224,16 +223,19 @@ jobs:
       script: sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
   - checkout: self
   - task: Bash@3
-    displayName: git clone pytorch builder
-    inputs:
-      targetType: inline
-      script: git clone https://github.com/pytorch/builder.git --depth=1 --recurse-submodules
-      workingDirectory: $(Build.SourcesDirectory)
-  - task: Bash@3
     displayName: git clone upstream pytorch
     inputs:
       targetType: inline
       script: git clone https://github.com/pytorch/pytorch.git --depth=1 --recurse-submodules
+      workingDirectory: $(Build.SourcesDirectory)
+# builder clone still needed due to run_tests.sh at end of build_common.sh call
+  - task: Bash@3
+    displayName: git clone pytorch builder
+    inputs:
+      targetType: inline
+      script: |
+        git clone https://github.com/pytorch/builder.git --depth=1 --recurse-submodules
+        sudo ln -s $(Build.SourcesDirectory)/builder /builder
       workingDirectory: $(Build.SourcesDirectory)
   - task: Bash@3
     displayName: Install patchelf
@@ -287,8 +289,8 @@ jobs:
         PYTORCH_BUILD_VERSION=$(cat $(Build.SourcesDirectory)/pytorch/version.txt | cut -da -f1)
         PYTORCH_BUILD_NUMBER=$(date -u +%Y%m%d)
         SKIP_ALL_TESTS=1
-        bash ./manywheel/build_rocm.sh
-      workingDirectory: $(Build.SourcesDirectory)/builder
+        bash ./.ci/manywheel/build_rocm.sh
+      workingDirectory: $(Build.SourcesDirectory)/pytorch
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-prepare-package.yml
     parameters:
       sourceDir: /remote/wheelhouserocm$(ROCM_VERSION)
@@ -319,13 +321,6 @@ jobs:
       script: git clone https://github.com/pytorch/vision.git --depth=1 --recurse-submodules
       workingDirectory: $(Build.SourcesDirectory)
   - task: Bash@3
-    displayName: Apply vision patch
-    inputs:
-      targetType: inline
-      script: |
-        git apply $(Build.SourcesDirectory)/.azuredevops/patches/torchvision-package-name.patch
-      workingDirectory: $(Build.SourcesDirectory)/vision
-  - task: Bash@3
     displayName: Build vision
     inputs:
       targetType: inline
@@ -355,7 +350,7 @@ jobs:
 
 - job: torchvision_testing
   dependsOn: pytorch
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -384,7 +379,6 @@ jobs:
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-latest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
   - task: DownloadPipelineArtifact@2
     displayName: 'Download Pipeline Wheel Files'

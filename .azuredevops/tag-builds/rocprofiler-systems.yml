@@ -16,14 +16,14 @@ resources:
   - repository: release_repo
     type: github
     endpoint: ROCm
-    name: ROCm/omniperf
+    name: ROCm/rocprofiler-systems
     ref: ${{ parameters.checkoutRef }}
 
 trigger: none
 pr: none
 
 jobs:
-  - template: ${{ variables.CI_COMPONENT_PATH }}/omniperf.yml
+  - template: ${{ variables.CI_COMPONENT_PATH }}/rocprofiler-systems.yml
     parameters:
       checkoutRepo: release_repo
       checkoutRef: ${{ parameters.checkoutRef }}
