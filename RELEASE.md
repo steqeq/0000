@@ -15,8 +15,8 @@ The release notes provide a summary of notable changes since the previous ROCm r
 - [ROCm upcoming changes](#rocm-upcoming-changes)
 
 ```{note}
-If you’re using Radeon™ PRO or Radeon GPUs for graphics workloads,
-continue to use ROCm 6.2.3. See the [Use ROCm on Radeon
+If you’re using Radeon™ PRO or Radeon GPUs in a workstation setting with a
+display connected, continue to use ROCm 6.2.3. See the [Use ROCm on Radeon
 GPUs](https://rocm.docs.amd.com/projects/radeon/en/latest/index.html)
 documentation to verify compatibility and system requirements.
 ```
@@ -33,7 +33,6 @@ a wider variety of user needs and use cases.
 
 * Added a new GPU cluster networking guide. See
   [Cluster network performance validation for AMD Instinct accelerators](https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/latest/index.html).
-
   This documentation provides guidelines on validating network configurations
   in single-node and multi-node environments to attain optimal speed and bandwidth
   in AMD Instinct-powered clusters.
@@ -46,9 +45,17 @@ a wider variety of user needs and use cases.
 
   * Updated the [Porting CUDA driver API](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_porting_driver_api.html) section.
 
+* Updated the [Post-installation instructions](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.4/install/post-install.html)
+  with guidance on using the `update-alternatives` utility and environment modules to help you manage multiple ROCm
+  versions and streamline PATH configuration.
+
+* Updated the [LLM inference performance validation on AMD Instinct
+  MI300X](https://rocm.docs.amd.com/en/docs-6.2.4/how-to/performance-validation/mi300x/vllm-benchmark.html)
+  documentation with more detailed guidance, new models, and the `float8` data type.
+
 ## Operating system and hardware support changes
 
-ROCm 6.2.4 adds support for the [AMD Radeon PRO V710](https://www.amd.com/en/products/accelerators/radeon-pro/amd-radeon-pro-v710.html) GPU. See 
+ROCm 6.2.4 adds support for the [AMD Radeon PRO V710](https://www.amd.com/en/products/accelerators/radeon-pro/amd-radeon-pro-v710.html) GPU for compute workloads. See 
 [Supported GPUs](https://advanced-micro-devices-demo--287.com.readthedocs.build/projects/install-on-linux-internal/en/287/reference/system-requirements.html)
 for more information.
 
@@ -154,7 +161,7 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipFFT/en/docs-6.2.4">hipFFT</a></td>
-                <td>1.0.15&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">1.0.16</a></td>
+                <td>1.0.15&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/hipFFT/blob/docs/6.2.4/CHANGELOG.md">1.0.16</a></td>
                 <td><a href="https://github.com/ROCm/hipFFT/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -166,7 +173,7 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipRAND/en/docs-6.2.4">hipRAND</a></td>
-                <td>2.11.0&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">2.11.1</a></td>
+                <td>2.11.0&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/hipRAND/blob/docs/6.2.4/CHANGELOG.md">2.11.1</a></td>
                 <td><a href="https://github.com/ROCm/hipRAND/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -190,13 +197,13 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocALUTION/en/docs-6.2.4">rocALUTION</a></td>
-                <td>3.2.0&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">3.2.1</a></td>
+                <td>3.2.0&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/rocALUTION/blob/docs/6.2.4/CHANGELOG.md">3.2.1</a></td>
                 <td><a href="https://github.com/ROCm/rocALUTION/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocBLAS/en/docs-6.2.4">rocBLAS</a></td>
-                <td>4.2.1&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">4.2.4</a></td>
+                <td>4.2.1&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/rocBLAS/blob/docs/6.2.4/CHANGELOG.md">4.2.4</a></td>
                 <td><a href="https://github.com/ROCm/rocBLAS/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -208,7 +215,7 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocRAND/en/docs-6.2.4">rocRAND</a></td>
-                <td>3.1.0&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">3.1.1</a></td>
+                <td>3.1.0&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/rocRAND/blob/docs/6.2.4/CHANGELOG.md">3.1.1</a></td>
                 <td><a href="https://github.com/ROCm/rocRAND/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -220,7 +227,7 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-6.2.4">rocSPARSE</a></td>
-                <td>3.2.0&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">3.2.1</a></td>
+                <td>3.2.0&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/rocSPARSE/blob/docs/6.2.4/CHANGELOG.md">3.2.1</a></td>
                 <td><a href="https://github.com/ROCm/rocSPARSE/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -242,7 +249,7 @@ Click the component's updated version to go to a detailed list of its changes. C
                 <th rowspan="4"></th>
                 <th rowspan="4">Primitives</th>
                 <td><a href="https://rocm.docs.amd.com/projects/hipCUB/en/docs-6.2.4">hipCUB</a></td>
-                <td>3.2.0&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">3.2.1</a></td>
+                <td>3.2.0&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/hipCUB/blob/docs/6.2.4/CHANGELOG.md">3.2.1</a></td>
                 <td><a href="https://github.com/ROCm/hipCUB/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -254,13 +261,13 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocPRIM/en/docs-6.2.4">rocPRIM</a></td>
-                <td>3.2.1&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">3.2.2</a></td>
+                <td>3.2.1&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/rocPRIM/blob/docs/6.2.4/CHANGELOG.md">3.2.2</a></td>
                 <td><a href="https://github.com/ROCm/rocPRIM/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocThrust/en/docs-6.2.4">rocThrust</a></td>
-                <td>3.1.0&nbsp;&Rightarrow;&nbsp;<a href="#hardware-architecture-support-updates">3.1.1</a></td>
+                <td>3.1.0&nbsp;&Rightarrow;&nbsp;<a href="https://github.com/ROCm/rocThrust/blob/docs/6.2.4/CHANGELOG.md">3.1.1</a></td>
                 <td><a href="https://github.com/ROCm/rocThrust/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -270,7 +277,7 @@ Click the component's updated version to go to a detailed list of its changes. C
                 <th rowspan="6">Tools</th>
                 <th rowspan="6">System management</th>
                 <td><a href="https://rocm.docs.amd.com/projects/amdsmi/en/docs-6.2.4">AMD SMI</a></td>
-                <td>24.6.3</td>
+                <td>24.6.3&nbsp;&Rightarrow;&nbsp;<a href="#amd-smi-24-6-3">24.6.3</a></td>
                 <td><a href="https://github.com/ROCm/amdsmi/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -282,7 +289,7 @@ Click the component's updated version to go to a detailed list of its changes. C
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rdc/en/docs-6.2.4">ROCm Data Center Tool</a></td>
-                <td>1.0.0</td>
+                <td>0.3.0</td>
                 <td><a href="https://github.com/ROCm/rdc/releases/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
@@ -413,34 +420,16 @@ Click the component's updated version to go to a detailed list of its changes. C
 
 The following sections describe key changes to ROCm components.
 
-### Hardware architecture support updates
+### **AMD SMI** (24.6.3)
 
-Updated the following math and primitives libraries to pre-enable support for
-an upcoming hardware architecture.
+#### Resolved issues
 
-* hipCUB (3.2.1)
+* Fixed support for the API calls `amdsmi_get_gpu_process_isolation` and
+  `amdsmi_clean_gpu_local_data`, along with the `amd-smi set
+  --process-isolation <0 or 1>` command. See issue
+  [#3500](https://github.com/ROCm/ROCm/issues/3500) on GitHub.
 
-* hipFFT (1.0.16)
-
-* hipRAND (2.11.1)
-
-* rocALUTION (3.2.1)
-
-* rocBLAS (4.2.4)
-
-* rocFFT (1.0.30)
-
-* rocPRIM (3.2.2)
-
-* rocRAND (3.1.1)
-
-* rocSOLVER (3.26.2)
-
-* rocSPARSE (3.2.1)
-
-* rocThrust (3.1.1)
-
-### **rocFFT** (1.0.30)[*](#hardware-architecture-support-updates)
+### **rocFFT** (1.0.30)
 
 #### Optimized
 
@@ -450,7 +439,7 @@ an upcoming hardware architecture.
 
 * Fixed plan creation failure on some even-length real-complex transforms that use Bluestein's algorithm.
 
-### **rocSOLVER** (3.26.2)[*](#hardware-architecture-support-updates)
+### **rocSOLVER** (3.26.2)
 
 #### Resolved issues
 
@@ -459,6 +448,8 @@ an upcoming hardware architecture.
 ## ROCm known issues
 
 ROCm known issues are tracked on [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue).
+Known issues related to individual components are listed in the [Detailed component changes](#detailed-component-changes)
+section.
 
 ## ROCm upcoming changes
 
