@@ -15,8 +15,8 @@ languages are HIP (Heterogeneous-Compute Interface for Portability) and
 OpenCL, but HIP bindings are available for Python and Fortran. 
 
 HIP is an API based on C++ that provides a runtime and kernel language for GPU
-programming, and is the key programming language in ROCm. HIP is also designed
-to be a marshalling language, allowing code written for NVIDIA's CUDA to be
+programming and is the essential ROCm programming language. HIP is also designed
+to be a marshalling language, allowing code written for NVIDIA CUDA to be
 easily ported to run on AMD GPUs. Developers can use HIP to write kernels that
 execute on AMD GPUs while maintaining compatibility with CUDA-based systems.
 
@@ -34,4 +34,4 @@ Fortran bindings can be found at https://github.com/ROCm/hipfort.
 It enables scientific, academic, and legacy applications, particularly those in
 high-performance computing, to run on AMD GPUs via HIP.
 
-For a complete description of the HIP programming language, see the :doc:`HIP programming guide section <hip:index>`.
+For a complete description of the HIP programming language, see the :doc:`HIP programming guide<hip:index>`.
