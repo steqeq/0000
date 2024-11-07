@@ -20,10 +20,6 @@ Specifically, ROCm provides the tools for
 OpenCL and OpenMP. These include compilers, libraries for high-level
 functions, debuggers, profilers and runtimes.
 
-.. tip::
-  If you're using Radeon GPUs, refer to the
-  :doc:`Radeon-specific ROCm documentation <radeon:index>`.
-
 ROCm components
 ===============================================
 
