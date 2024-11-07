@@ -226,6 +226,7 @@ jobs:
       testDir: rocAL-tests
   - task: Bash@3
     displayName: Clean up libjpeg-turbo
+    condition: always()
     inputs:
       targetType: inline
       script: |

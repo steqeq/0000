@@ -138,6 +138,7 @@ jobs:
       testDir: $(Agent.BuildDirectory)/rocm/share/hip
   - task: Bash@3
     displayName: Clean up symlink
+    condition: always()
     inputs:
       targetType: inline
       script: sudo rm -rf /opt/rocm
