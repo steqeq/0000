@@ -77,7 +77,7 @@ jobs:
 - job: hipTensor_testing
   timeoutInMinutes: 90
   dependsOn: hipTensor
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -111,6 +111,7 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: hipTensor

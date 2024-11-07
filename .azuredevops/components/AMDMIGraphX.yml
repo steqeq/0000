@@ -27,12 +27,12 @@ parameters:
   type: object
   default:
     - https://github.com/RadeonOpenCompute/rbuild/archive/master.tar.gz
-    - onnx==1.14.1
-    - numpy==1.21.6
-    - typing==3.7.4
-    - pytest==6.0.1
-    - packaging==23.0
-    - protobuf==3.20.2
+    - onnx>=1.14.1
+    - numpy>=1.21.6
+    - typing>=3.7.4
+    - pytest>=6.0.1
+    - packaging>=23.0
+    - protobuf>=3.20.2
 - name: rocmDependencies
   type: object
   default:
@@ -128,7 +128,7 @@ jobs:
 
 - job: AMDMIGraphX_testing
   dependsOn: AMDMIGraphX
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
@@ -188,9 +188,10 @@ jobs:
         -DBUILD_TESTING=ON
         -DMIGRAPHX_ENABLE_C_API_TEST=ON
         ..
-  - task: Bash@3
-    displayName: Build and run MIGraphX tests
-    inputs:
-      targetType: inline
-      workingDirectory: build
-      script: make -j$(nproc) check
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: AMDMIGraphX
+      testExecutable: make
+      testParameters: -j$(nproc) check
+      testPublishResults: false

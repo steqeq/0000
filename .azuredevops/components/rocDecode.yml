@@ -17,7 +17,7 @@ parameters:
     - libavformat-dev
     - libavutil-dev
     - libstdc++-12-dev
-    - libva-dev
+    - libva-amdgpu-dev
     - mesa-amdgpu-va-drivers
     - libdrm-dev
 - name: rocmDependencies
@@ -35,6 +35,7 @@ parameters:
   default:
     - clr
     - llvm-project
+    - rocminfo
     - rocprofiler-register
     - ROCR-Runtime
 
@@ -88,11 +89,13 @@ jobs:
 
 - job: rocDecode_testing
   dependsOn: rocDecode
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'))
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: $(JOB_TEST_POOL)
+  pool:
+    name: $(JOB_TEST_POOL)
+    demands: firstRenderDeviceAccess
   workspace:
     clean: all
   strategy:
@@ -101,6 +104,18 @@ jobs:
         JOB_GPU_TARGET: gfx942
         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
+  # Since mesa-amdgpu-multimedia-devel is not directly available from apt, register it
+  - task: Bash@3
+    displayName: 'Register ROCm packages'
+    inputs:
+      targetType: inline
+      script: |
+        sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+        wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
+        echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/${{ variables.KEYRING_VERSION }}/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/amdgpu.list
+        echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/${{ variables.KEYRING_VERSION }} jammy main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
+        echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+        sudo apt update
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
@@ -128,6 +143,7 @@ jobs:
       mkdir rocDecode-tests
       cd rocDecode-tests
       cmake /opt/rocm/share/rocdecode/test
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
       componentName: rocDecode
