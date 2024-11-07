@@ -42,30 +42,52 @@ jobs:
   workspace:
     clean: all
   steps:
-# copy environment setup from https://github.com/pytorch/builder/blob/main/manywheel/Dockerfile
-# but instead of centos, use ubuntu environment
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - task: Bash@3
-    displayName: Add Python site-packages binaries to path
-    inputs:
-      targetType: inline
-      script: |
-        USER_BASE=$(python3 -m site --user-base)
-        echo "##vso[task.prependpath]$USER_BASE/bin"
-        echo $USER_BASE
-        echo $PATH
-        echo "##vso[task.setvariable variable=USER_BASE_BIN]$USER_BASE/bin"
-        echo "USER_BASE_BIN is set to: $USER_BASE/bin"
-        echo "USER_BASE_BIN is set to: $USER_BASE_BIN"
-        echo "##vso[task.prependpath]USER_BASE_BIN"
-        echo "Current PATH: $PATH"
-        echo $USER_BASE
-        echo $PATH
-  - task: Bash@3
-    displayName: cmake ver
-    inputs:
-      targetType: inline
-      script: cmake --version
+  - checkout: self
+#    persistCredentials: true
+  - script: |
+      # Define Variables
+      ORGANIZATION="rocm-ci"  # Replace with your Azure DevOps organization name
+      PROJECT="ROCm-CI"  # Replace with your Azure DevOps project name
+      BUILD_ID=13459  # This is the build ID provided by the pipeline
+
+      # Set the API URL to retrieve build details
+      API_URL1="https://dev.azure.com/${ORGANIZATION}/${PROJECT}/_apis/pipelines/145/runs/13459?api-version=6.0-preview.1"
+
+      echo "DEFINITIONS!!!"
+
+      # Make the API call to get the build details (including commit hashes)
+      response1=$(curl -s -u :$(System.AccessToken) $API_URL1)
+      echo $response1
+
+      REPOS_COUNT=$(echo $response1 | jq '.resources.repositories | length')
+      echo "Found $REPOS_COUNT repositories in this run."
+
+      for (( i=0; i<$REPOS_COUNT; i++ ))
+      do
+        # Extract the repository name and commit hash for each repository
+        REPO_NAME=$(echo $response1 | jq -r ".resources.repositories | keys | .[$i]")
+        REPO_COMMIT_HASH=$(echo $response1 | jq -r ".resources.repositories[\"$REPO_NAME\"].version")
+
+        # Extract fullName, refName, and version (commit hash) for each repository
+        REPO_FULL_NAME=$(echo $response1 | jq -r ".resources.repositories | to_entries | .[$i].value.repository.fullName")
+        REPO_REF_NAME=$(echo $response1 | jq -r ".resources.repositories | to_entries | .[$i].value.refName")
+        REPO_COMMIT_HASH=$(echo $response1 | jq -r ".resources.repositories | to_entries | .[$i].value.version")
+
+        # Print the repository details
+        echo "Repository $i:"
+        echo "  Full Name: $REPO_FULL_NAME"
+        echo "  Ref Name: $REPO_REF_NAME"
+        echo "  Commit Hash: $REPO_COMMIT_HASH"
+
+        # below is example using github api
+        # github_commit_response=$(curl "https://api.github.com/repos/ROCm/$REPO_NAME/commits/$REPO_COMMIT_HASH")
+
+        # Extract and print relevant information from the GitHub commit response
+        # COMMIT_MESSAGE=$(echo $github_commit_response | jq -r '.commit.message')
+        # COMMIT_AUTHOR=$(echo $github_commit_response | jq -r '.commit.author.name')
+        # echo "Commit message for $REPO_NAME: $COMMIT_MESSAGE"
+        # echo "Commit author for $REPO_NAME: $COMMIT_AUTHOR"
+      done
+    displayName: 'Fetch Commit Details for Build'
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
