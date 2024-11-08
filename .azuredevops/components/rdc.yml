@@ -25,7 +25,9 @@ parameters:
   default:
     - amdsmi
     - clr
+    - hipBLAS-common
     - hipBLASLt
+    - hipRAND
     - llvm-project
     - rocBLAS
     - rocm-cmake
@@ -36,6 +38,7 @@ parameters:
     - rocprofiler
     - rocprofiler-register
     - ROCR-Runtime
+    - rocRAND
 - name: rocmTestDependencies
   type: object
   default:
