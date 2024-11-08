@@ -25,6 +25,7 @@ parameters:
   default:
     - amdsmi
     - clr
+    - hipBLASLt
     - llvm-project
     - rocBLAS
     - rocm-cmake
