@@ -27,7 +27,6 @@ parameters:
     - clr
     - hipBLAS-common
     - hipBLASLt
-    - hipRAND
     - llvm-project
     - rocBLAS
     - rocm-cmake
@@ -38,7 +37,6 @@ parameters:
     - rocprofiler
     - rocprofiler-register
     - ROCR-Runtime
-    - rocRAND
 - name: rocmTestDependencies
   type: object
   default:
@@ -110,6 +108,7 @@ jobs:
         -DBUILD_RVS=ON
         -DBUILD_PROFILER=ON
         -DBUILD_TESTS=ON
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
