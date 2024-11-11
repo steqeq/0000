@@ -78,6 +78,7 @@ jobs:
       targetPath: $(Build.ArtifactStagingDirectory)
 
 - job: Tensile_testing
+  timeoutInMinutes: 90
   dependsOn: Tensile
   condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
