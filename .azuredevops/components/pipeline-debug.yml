@@ -64,6 +64,17 @@ jobs:
       gfx942:
         JOB_GPU_TARGET: gfx942
   steps:
+  - task: Bash@3
+    displayName: print debug build vars
+    inputs:
+      targetType: inline
+      script: |
+        echo "clrDebug: $(clrDebug)"
+        echo "llvmDebug: $(llvmDebug)"
+        echo "rocmcmakeDebug: $(rocmcmakeDebug)"
+        echo "rocminfoDebug: $(rocminfoDebug)"
+        echo "rocprofilerDebug: $(rocprofilerDebug)"
+        echo "rocrDebug: $(rocrDebug)"
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
