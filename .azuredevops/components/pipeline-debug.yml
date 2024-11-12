@@ -16,11 +16,11 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocm-cmake
-    - llvm-project
-    - ROCR-Runtime
     - clr
+    - llvm-project
+    - rocm-cmake
     - rocminfo
+    - ROCR-Runtime
 - name: rocmTestDependencies
   type: object
   default:
@@ -35,6 +35,9 @@ parameters:
 - name: llvmDebug
   type: number
   default: 13175
+- name: rocmcmakeDebug
+  type: number
+  default: 11004
 - name: rocminfoDebug
   type: number
   default: 13187
@@ -76,6 +79,10 @@ jobs:
     parameters:
       buildType: specific
       buildId: ${{ parameters.llvmDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocm-cmake
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.rocmcmakeDebug }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocminfo
     parameters:
       buildType: specific
