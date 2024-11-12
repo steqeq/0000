@@ -1,0 +1,173 @@
+parameters:
+- name: checkoutRepo
+  type: string
+  default: 'self'
+- name: checkoutRef
+  type: string
+  default: ''
+- name: aptPackages
+  type: object
+  default:
+    - cmake
+    - ninja-build
+    - googletest
+    - libgtest-dev
+    - git
+- name: rocmDependencies
+  type: object
+  default:
+    - rocm-cmake
+    - llvm-project
+    - ROCR-Runtime
+    - clr
+    - rocminfo
+- name: rocmTestDependencies
+  type: object
+  default:
+    - clr
+    - llvm-project
+    - rocminfo
+    - rocprofiler-register
+    - ROCR-Runtime
+- name: clrDebug
+  type: number
+  default: 13162
+- name: llvmDebug
+  type: number
+  default: 13175
+- name: rocminfoDebug
+  type: number
+  default: 13187
+- name: rocprofilerDebug
+  type: number
+  default: 7626
+- name: rocrDebug
+  type: number
+  default: 11676
+
+jobs:
+- job: rocRAND
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  - name: HIP_ROCCLR_HOME
+    value: $(Build.BinariesDirectory)/rocm
+  pool:
+    vmImage: ${{ variables.BASE_BUILD_POOL }}
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # clr
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.clrDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # llvm-project
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.llvmDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocminfo
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.rocminfoDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocprofiler-register
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.rocprofilerDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocr-runtime
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.rocrDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    # parameters:
+    #   dependencyList: ${{ parameters.rocmDependencies }}
+    #   gpuTarget: $(JOB_GPU_TARGET)
+    #   # CI case: download latest default branch build
+    #   ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: staging
+    #   # manual build case: triggered by ROCm/ROCm repo
+    #   ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DBUILD_TEST=ON
+        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+        -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+
+- job: rocRAND_testing
+  dependsOn: rocRAND
+  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
+  variables:
+  - group: common
+  - template: /.azuredevops/variables-global.yml
+  pool: $(JOB_TEST_POOL)
+  workspace:
+    clean: all
+  strategy:
+    matrix:
+      gfx942:
+        JOB_GPU_TARGET: gfx942
+        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
+  steps:
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+    parameters:
+      aptPackages: ${{ parameters.aptPackages }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+    parameters:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
+        dependencySource: staging
+      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+        dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # clr
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.clrDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # llvm-project
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.llvmDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocminfo
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.rocminfoDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocprofiler-register
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.rocprofilerDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocr-runtime
+    parameters:
+      buildType: specific
+      buildId: ${{ parameters.rocrDebug }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    # parameters:
+    #   dependencyList: ${{ parameters.rocmTestDependencies }}
+    #   gpuTarget: $(JOB_GPU_TARGET)
+    #   ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: staging
+    #   ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocRAND
+      testDir: '$(Agent.BuildDirectory)/rocm/bin/rocRAND'
