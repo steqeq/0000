@@ -19,6 +19,7 @@ parameters:
     - libtool
     - pkg-config
     - libdrm-dev
+    - libnuma-dev
     - libyaml-cpp-dev
 - name: rocmDependencies
   type: object
