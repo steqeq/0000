@@ -34,7 +34,7 @@ The sub-folders within the `docs` folders across ROCm are typically structured a
 
 ## Editing and adding to the documentation
 
-ROCm documentation follows the [Google developer documentation style guide](https://developers.google.com/style/highlights). 
+ROCm documentation follows the [Google developer documentation style guide](https://developers.google.com/style/highlights).
 
 Most topics in the ROCm documentation are written in [reStructuredText (rst)](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html), with some topics written in Markdown. Only use reStructuredText when adding new topics. Only use Markdown if the topic you are editing is already in Markdown.
 
