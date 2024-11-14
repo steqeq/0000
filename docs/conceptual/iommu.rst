@@ -46,7 +46,7 @@ The IOMMU also provides virtualized access to the MMIO portions of the platform 
 
 Because peer-to-peer DMA is not officially part of the PCI/PCIe specification, the behavior of peer-to-peer DMA varies between hardware platforms. 
 
-AMD CPUs earlier than AMD Zen only supported peer-to-peer DMA for writes. On CPUs from AMD Zen and onwards, peer-to-peer DMA is fully supported. 
+AMD CPUs earlier than AMD Zen only supported peer-to-peer DMA for writes. On CPUs from AMD Zen on, peer-to-peer DMA is fully supported. 
 
 To use peer-to-peer DMA on Linux, the following options must be enabled in your Linux kernel configuration:
 
