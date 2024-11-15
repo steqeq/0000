@@ -19,7 +19,7 @@ The IOMMU also provides interrupt remapping, which is used by devices that suppo
 
 .. note::
 
-  AMD Instinct accelerators are connected via XGMI links and don't use PCI/PCIe for peer-to-peer DMA. Because PCI/PCIe is not used for peer-to-peer DMA, there are no device physical addressing limitations or platform root port limitations. However, because non-GPU devices such as RDMA NICs use PCIe for peer-to-peer DMA, there might still be physical addressing limitations and platform root port limitations when these non-GPU devices interact with other devices, including GPUs.
+  AMD Instinct accelerators are connected via XGMI links and don't use PCI/PCIe for peer-to-peer DMA. Because PCI/PCIe is not used for peer-to-peer DMA, there are no device physical addressing limitations or platform root port limitations. However, because non-GPU devices such as RDMA NICs use PCIe for peer-to-peer DMA, there might still be physical addressing and platform root port limitations when these non-GPU devices interact with other devices, including GPUs.
 
 Linux supports IOMMU in both virtualized environments and bare metal. 
 
