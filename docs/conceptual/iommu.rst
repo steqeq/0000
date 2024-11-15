@@ -8,7 +8,7 @@ Input-Output Memory Management Unit (IOMMU)
 
 The I/O Memory Management Unit (IOMMU) provides memory remapping services for I/O devices. It adds support for address translation and system memory access protection on direct memory access (DMA) transfers from peripheral devices. 
 
-The IOMMU's memory remapping services are used to:
+The IOMMU's memory remapping services:
 
 * provide private I/O space for devices used in a guest virtual machine.
 * prevent unauthorized DMA requests to system memory and to memory-mapped I/O (MMIO).
