@@ -63,6 +63,10 @@ To edit or add to the documentation:
 
     The Read The Docs build of your pull request can be accessed by clicking on the Details link next to the Read The Docs build check. Verify that your changes are in the build and look as expected.
 
+    ![The GitHub checks are collapsed by default and can be accessed by clicking on "Show All Checks".](../data/contribute/GitHubCheck-Highlight.png)
+  
+    ![The Read The Docs Build is accessed from the Details link in the Read The Docs check.](../data/contribute/GitHub-ReadThe-Docs-Highlight.png)
+
     Your pull request will be reviewed by a member of the ROCm documentation team.
 
 See the [GitHub documentation](https://docs.github.com/en) for information on how to fork and clone a repository, and how to create and push a local branch.
