@@ -48,7 +48,7 @@ Because peer-to-peer DMA is not officially part of the PCI/PCIe specification, t
 
 AMD CPUs earlier than AMD Zen only supported peer-to-peer DMA for writes. On CPUs from AMD Zen and later, peer-to-peer DMA is fully supported. 
 
-To use peer-to-peer DMA on Linux, the following options must be enabled in your Linux kernel configuration:
+To use peer-to-peer DMA on Linux, enable the following options in your Linux kernel configuration:
 
 * ``CONFIG_PCI_P2PDMA``
 * ``CONFIG_DMABUF_MOVE_NOTIFY`` 
