@@ -31,7 +31,7 @@ The IOMMU is enabled by default but can be disabled or put into passthrough mode
 
   * - IOMMU Mode
     - Kernel command
-    - DescriptionThis setting is recommended for AMD Radeon GPUs that need peer-to-peer DMA.
+    - Description
   * - Enabled
     - Default setting
     - Recommended for AMD Radeon GPUs that need peer-to-peer DMA.
