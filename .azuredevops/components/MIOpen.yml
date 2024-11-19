@@ -9,19 +9,14 @@ parameters:
   type: object
   default:
     - cmake
-    - libbz2-dev
+    - jq
     - libdrm-dev
-    - libeigen3-dev
-    - libgmock-dev
-    - libgtest-dev
-    - libsqlite3-dev
     - libstdc++-12-dev
-    - libzstd-dev
     - ninja-build
-    - nlohmann-json3-dev
     - python3-pip
+    - python3-venv
     - software-properties-common
-    - zstd
+    - zip
 - name: pipModules
   type: object
   default:
@@ -29,14 +24,12 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
-    - rocMLIR
+    - half
     - rocRAND
     - rocBLAS
     - hipBLAS
     - hipBLASLt
     - hipBLAS-common
-    - half
-    - composable_kernel
     - rocm-cmake
     - llvm-project
     - ROCR-Runtime
@@ -48,7 +41,6 @@ parameters:
   type: object
   default:
     - clr
-    - composable_kernel
     - half
     - hipBLAS
     - hipBLAS-common
@@ -57,156 +49,218 @@ parameters:
     - rocBLAS
     - rocm-cmake
     - rocminfo
-    - rocMLIR
     - ROCR-Runtime
     - rocprofiler-register
     - rocRAND
     - roctracer
+- name: compileTimeMatrix
+  type: object
+  default:
+    gfx942:
+      JOB_GPU_TARGET: gfx942
+      BUILD_JOB_NAME: MIOpen_gfx942_build
+      TEST_JOB_NAME: MIOpen_gfx942_test
+      BUILD_POOL: $[ variables['MEDIUM_BUILD_POOL'] ]
+      TEST_POOL: $[ variables['GFX942_TEST_POOL'] ]
+      TEST_CONDITION: and(eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
 
 jobs:
-- job: MIOpen
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  pool: ${{ variables.MEDIUM_BUILD_POOL }}
-  workspace:
-    clean: all
-  strategy:
-    matrix:
-      gfx942:
-        JOB_GPU_TARGET: gfx942
-  steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
-  # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-boost.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-    parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
-      # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      extraBuildFlags: >-
-        -DMIOPEN_BACKEND=HIP
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/boost
-        -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
-        -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
-        -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
-        -DCMAKE_BUILD_TYPE=Release
-        -DBUILD_TESTING=ON
-        -GNinja
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-    parameters:
-      gpuTarget: $(JOB_GPU_TARGET)
+- ${{ each matrixItem in parameters.compileTimeMatrix }}:
+  - job: ${{ matrixItem.value.BUILD_JOB_NAME }}
+    variables:
+    - group: common
+    - template: /.azuredevops/variables-global.yml
+    pool: ${{ matrixItem.value.BUILD_POOL }}
+    workspace:
+      clean: all
+    steps:
+    - bash: echo "${{ matrixItem.value.TEST_CONDITION }}"
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+      parameters:
+        aptPackages: ${{ parameters.aptPackages }}
+        pipModules: ${{ parameters.pipModules }}
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+      parameters:
+        checkoutRepo: ${{ parameters.checkoutRepo }}
+    - task: Bash@3
+      name: downloadCKBuild
+      displayName: Download specific CK build
+      continueOnError: true
+      env:
+        CXX: $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+        CC: $(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+      inputs:
+        targetType: inline
+        workingDirectory: $(Build.SourcesDirectory)
+        script: |
+          AZ_API="https://dev.azure.com/ROCm-CI/ROCm-CI/_apis"
+          GH_API="https://api.github.com/repos/ROCm"
+          EXIT_CODE=0
 
-- job: MIOpen_testing
-  dependsOn: MIOpen
-  condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  pool: $(JOB_TEST_POOL)
-  workspace:
-    clean: all
-  strategy:
-    matrix:
-      gfx942:
-        JOB_GPU_TARGET: gfx942
-        JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
-  steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
-    parameters:
-      aptPackages: ${{ parameters.aptPackages }}
-      pipModules: ${{ parameters.pipModules }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
-  # The default boost library from apt is 1.74, which does not satisfy MIOpen's build requirement (1.79+)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-boost.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
-    parameters:
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
-    parameters:
-      dependencyList: ${{ parameters.rocmTestDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
-# MIOpen depends on a specific version of frugally-deep which is forked here: https://github.com/ROCm/frugally-deep
-# https://github.com/ROCm/frugally-deep/blob/master/INSTALL.md
-  - task: Bash@3
-    displayName: Add Python site-packages binaries to path
-    inputs:
-      targetType: inline
-      script: |
-        USER_BASE=$(python3 -m site --user-base)
-        echo "##vso[task.prependpath]$USER_BASE/bin"
-  - task: Bash@3
-    displayName: Install FunctionalPlus
-    inputs:
-      targetType: inline
-      script: cget install Dobiasd/FunctionalPlus
-  - task: Bash@3
-    displayName: Remove Python site-packages binaries from path
-    inputs:
-      targetType: inline
-      script: |
-        USER_BASE=$(python3 -m site --user-base)
-        echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$USER_BASE/bin;;' -e 's;^/;;' -e 's;/$;;')"
-  - task: Bash@3
-    displayName: git clone frugally-deep
-    inputs:
-      targetType: inline
-      script: git clone https://github.com/ROCm/frugally-deep --depth=1 --shallow-submodules
-      workingDirectory: $(Build.SourcesDirectory)
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      componentName: frugally-deep
-      cmakeBuildDir: $(Build.SourcesDirectory)/frugally-deep/build
-      installDir: $(Build.SourcesDirectory)/bin
-      extraBuildFlags: -DCMAKE_PREFIX_PATH=$(Build.SourcesDirectory)/cget/cget/pkg/Dobiasd__FunctionalPlus/install
-  - task: CMake@1
-    displayName: 'MIOpen Test CMake Flags'
-    inputs:
-      cmakeArgs: >-
-        -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Build.SourcesDirectory)/bin;$(Build.SourcesDirectory)/cget/cget/pkg/Dobiasd__FunctionalPlus/install;$(Agent.BuildDirectory)/boost
-        -DCMAKE_INSTALL_PREFIX=$(Agent.BuildDirectory)/rocm
-        -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-        -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
-        -DMIOPEN_BACKEND=HIP
-        -DMIOPEN_TEST_FLAGS=" --disable-verification-cache"
-        -DCMAKE_BUILD_TYPE=release
-        -DBUILD_DEV=OFF
-        -DMIOPEN_USE_MLIR=ON
-        -DMIOPEN_GPU_SYNC=OFF
-        ..
-  - task: Bash@3
-    displayName: 'MIOpen Test Build'
-    inputs:
-      targetType: inline
-      script: |
-        cmake --build . --target tests -- -j$(nproc)
-      workingDirectory: $(Build.SourcesDirectory)/build
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-    parameters:
-      componentName: MIOpen
+          # The commits that MIOpen reference are all merge commits from CK/develop to CK/amd-develop
+          # These commits are present on CK/amd-develop but not on CK/develop
+          # Ex-CI only builds CK/develop, so we need to find a commit present on both CK/develop and CK/amd-develop
+
+          CK_COMMIT=$(grep 'ROCm/composable_kernel' requirements.txt | sed -E 's/.*@([a-f0-9]{40}).*/\1/')
+          echo "Fetching CK build ID for commit $CK_COMMIT"
+          CK_COMMIT_URL="$GH_API/composable_kernel/commits/${CK_COMMIT}"
+          PARENT_COMMIT=$(curl -s $CK_COMMIT_URL | jq '.parents[1].sha' | tr -d '"')
+          echo "Found parent commit: $PARENT_COMMIT"
+          PARENT_CHECKS_URL="$GH_API/composable_kernel/commits/${PARENT_COMMIT}/check-runs"
+          CK_BUILD_ID=$(curl -s $PARENT_CHECKS_URL | \
+            jq '.check_runs[] | select(.name == "composable_kernel" and .app.slug == "azure-pipelines") | .details_url' | \
+            tr -d '"' | grep -oP 'buildId=\K\d+')
+
+          if [ -z "$CK_BUILD_ID" ]; then
+            echo "Did not find specific CK build ID"
+            LATEST_BUILD_URL="$AZ_API/build/builds?definitions=$(COMPOSABLE_KERNEL_PIPELINE_ID)&status=completed&result=succeeded&\$top=1&api-version=7.1"
+            CK_BUILD_ID=$(curl -s $LATEST_BUILD_URL | jq '.value[0].id')
+            echo "Found latest CK build ID: $CK_BUILD_ID"
+            EXIT_CODE=1
+          fi
+
+          ARTIFACT_NAME="composablekernel.${{ matrixItem.value.JOB_GPU_TARGET }}"
+          AZURE_URL="$AZ_API/build/builds/$CK_BUILD_ID/artifacts?artifactName=$ARTIFACT_NAME&api-version=7.1"
+          ARTIFACT_URL=$(curl -s $AZURE_URL | jq '.resource.downloadUrl' | tr -d '"')
+
+          if [ -z "$ARTIFACT_URL" ]; then
+            echo "Did not find specific CK build artifact"
+            LATEST_BUILD_URL="$AZ_API/build/builds?definitions=$(COMPOSABLE_KERNEL_PIPELINE_ID)&status=completed&result=succeeded&\$top=1&api-version=7.1"
+            CK_BUILD_ID=$(curl -s $LATEST_BUILD_URL | jq '.value[0].id')
+            echo "Found latest CK build ID: $CK_BUILD_ID"
+            ARTIFACT_NAME="composablekernel.${{ matrixItem.value.JOB_GPU_TARGET }}"
+            AZURE_URL="$AZ_API/build/builds/$CK_BUILD_ID/artifacts?artifactName=$ARTIFACT_NAME&api-version=7.1"
+            ARTIFACT_URL=$(curl -s $AZURE_URL | jq '.resource.downloadUrl' | tr -d '"')
+            EXIT_CODE=2
+          elif [ $EXIT_CODE -eq 0 ]; then
+            echo "Found specific CK build ID: $CK_BUILD_ID"
+          fi
+
+          # Export CK build ID for reuse in test job
+          echo "##vso[task.setvariable variable=CK_BUILD_ID;isOutput=true]$CK_BUILD_ID"
+
+          echo "Downloading CK artifact from $ARTIFACT_URL"
+          wget -nv $ARTIFACT_URL -O $(System.ArtifactsDirectory)/ck.zip
+          unzip $(System.ArtifactsDirectory)/ck.zip -d $(System.ArtifactsDirectory)
+          mkdir -p $(Agent.BuildDirectory)/rocm
+          tar -zxvf $(System.ArtifactsDirectory)/$ARTIFACT_NAME/*.tar.gz -C $(Agent.BuildDirectory)/rocm
+          rm -r $(System.ArtifactsDirectory)/ck.zip $(System.ArtifactsDirectory)/$ARTIFACT_NAME
+
+          if [ $EXIT_CODE -ne 0 ]; then
+            BUILD_COMMIT=$(curl -s $AZ_API/build/builds/$CK_BUILD_ID | jq '.sourceVersion' | tr -d '"')
+            echo "WARNING: couldn't find a CK build for commit $CK_COMMIT"
+            echo "Instead used latest CK build $CK_BUILD_ID for commit $BUILD_COMMIT"
+          fi
+          exit $EXIT_CODE
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmDependencies }}
+        gpuTarget: ${{ matrixItem.value.JOB_GPU_TARGET }}
+        # CI case: download latest default branch build
+        ${{ if eq(parameters.checkoutRef, 'develop') }}:
+          dependencySource: staging
+        # manual build case: triggered by ROCm/ROCm repo
+        ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+          dependencySource: tag-builds
+    - task: Bash@3
+      displayName: Build and install other dependencies
+      inputs:
+        targetType: inline
+        workingDirectory: $(Build.SourcesDirectory)
+        script: |
+          sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+          sed -i '/composable_kernel/d' requirements.txt
+          sudo cmake -P install_deps.cmake
+          sudo rm -rf /opt/rocm
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+      parameters:
+        extraBuildFlags: >-
+          -DMIOPEN_BACKEND=HIP
+          -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+          -DAMDGPU_TARGETS=${{ matrixItem.value.JOB_GPU_TARGET }}
+          -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF
+          -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF
+          -DCMAKE_BUILD_TYPE=Release
+          -DBUILD_TESTING=ON
+          -GNinja
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+      parameters:
+        gpuTarget: ${{ matrixItem.value.JOB_GPU_TARGET }}
+
+  - job: ${{ matrixItem.value.TEST_JOB_NAME }}
+    dependsOn: ${{ matrixItem.value.BUILD_JOB_NAME }}
+    condition: and(succeeded(), ${{ matrixItem.value.TEST_CONDITION }})
+    variables:
+    - group: common
+    - template: /.azuredevops/variables-global.yml
+    - name: CK_BUILD_ID
+      value: $[ dependencies.${{ matrixItem.value.BUILD_JOB_NAME }}.outputs['downloadCKBuild.CK_BUILD_ID'] ]
+    pool: ${{ matrixItem.value.TEST_POOL }}
+    workspace:
+      clean: all
+    steps:
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
+      parameters:
+        aptPackages: ${{ parameters.aptPackages }}
+        pipModules: ${{ parameters.pipModules }}
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+      parameters:
+        checkoutRepo: ${{ parameters.checkoutRepo }}
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
+      parameters:
+        ${{ if eq(parameters.checkoutRef, 'develop') }}:
+          dependencySource: staging
+        ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+          dependencySource: tag-builds
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
+      parameters:
+        gpuTarget: ${{ matrixItem.value.JOB_GPU_TARGET }}
+        buildType: specific
+        buildId: $(CK_BUILD_ID)
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+      parameters:
+        dependencyList: ${{ parameters.rocmTestDependencies }}
+        gpuTarget: ${{ matrixItem.value.JOB_GPU_TARGET }}
+        ${{ if eq(parameters.checkoutRef, 'develop') }}:
+          dependencySource: staging
+        ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+          dependencySource: tag-builds
+    - task: Bash@3
+      displayName: Build and install other dependencies
+      inputs:
+        targetType: inline
+        workingDirectory: $(Build.SourcesDirectory)
+        script: |
+          sudo ln -s $(Agent.BuildDirectory)/rocm /opt/rocm
+          sed -i '/composable_kernel/d' requirements.txt
+          sudo cmake -P install_deps.cmake
+          sudo rm -rf /opt/rocm
+    - task: CMake@1
+      displayName: 'MIOpen Test CMake Flags'
+      inputs:
+        cmakeArgs: >-
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Build.SourcesDirectory)/bin;$(Build.SourcesDirectory)/cget/cget/pkg/Dobiasd__FunctionalPlus/install
+          -DCMAKE_INSTALL_PREFIX=$(Agent.BuildDirectory)/rocm
+          -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
+          -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
+          -DMIOPEN_BACKEND=HIP
+          -DMIOPEN_TEST_FLAGS=" --disable-verification-cache"
+          -DCMAKE_BUILD_TYPE=release
+          -DBUILD_DEV=OFF
+          -DMIOPEN_USE_MLIR=ON
+          -DMIOPEN_GPU_SYNC=OFF
+          ..
+    - task: Bash@3
+      displayName: 'MIOpen Test Build'
+      inputs:
+        targetType: inline
+        script: |
+          cmake --build . --target tests -- -j$(nproc)
+        workingDirectory: $(Build.SourcesDirectory)/build
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+      parameters:
+        componentName: MIOpen
