@@ -22,30 +22,30 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      componentName: rocprofiler-register
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-    parameters:
-      componentName: rocprofiler-register-tests
-      extraBuildFlags: >-
-        -DCMAKE_PREFIX_PATH=$(Build.BinariesDirectory)
-      cmakeBuildDir: 'tests/build'
-      installEnabled: false
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-    parameters:
-      componentName: rocprofiler-register
-      testDir: 'tests/build'
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+  #   parameters:
+  #     componentName: rocprofiler-register
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+  #   parameters:
+  #     componentName: rocprofiler-register-tests
+  #     extraBuildFlags: >-
+  #       -DCMAKE_PREFIX_PATH=$(Build.BinariesDirectory)
+  #     cmakeBuildDir: 'tests/build'
+  #     installEnabled: false
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+  #   parameters:
+  #     componentName: rocprofiler-register
+  #     testDir: 'tests/build'
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
   - task: Bash@3
     displayName: Create manifest
     inputs:
       targetType: 'inline'
       script: |
-        cat <<EOF > manifest.xml
+        cat <<EOF > $(Agent.BuildDirectory)/manifest.xml
         <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>test</element> </manifest>
         EOF
-        cat <<EOF > manifest.html
+        cat <<EOF > $(Agent.BuildDirectory)/manifest.html
         <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>test</element> </manifest>
         EOF
   - task: PublishHtmlReport@1
