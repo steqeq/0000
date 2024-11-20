@@ -78,7 +78,7 @@ steps:
   continueOnError: true
   inputs:
     tabName: Manifest
-    reportDir: $(Build.ArtifactStagingDirectory)/manifest.html
+    reportDir: $(Build.ArtifactStagingDirectory)/manifest_$(Build.DefinitionName).html
 - task: ArchiveFiles@2
   displayName: '${{ parameters.artifactName }} Compress'
   inputs:
