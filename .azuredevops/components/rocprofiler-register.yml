@@ -35,3 +35,24 @@ jobs:
       componentName: rocprofiler-register
       testDir: 'tests/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  - task: Bash@3
+    displayName: Create manifest
+    inputs:
+      targetType: 'inline'
+      script: |
+        cat <<EOF > manifest.xml
+        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>test</element> </manifest>
+        EOF
+        cat <<EOF > manifest.html
+        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>test</element> </manifest>
+        EOF
+  - task: PublishHtmlReport@1
+    displayName: 'Publish manifest'
+    continueOnError: true
+    inputs:
+      reportDir: $(Agent.BuildDirectory)/manifest.xml
+  - task: PublishHtmlReport@1
+    displayName: 'Publish manifest'
+    continueOnError: true
+    inputs:
+      reportDir: $(Agent.BuildDirectory)/manifest.html
