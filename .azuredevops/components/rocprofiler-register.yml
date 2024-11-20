@@ -18,10 +18,10 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-    parameters:
-      checkoutRepo: ${{ parameters.checkoutRepo }}
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+  #   parameters:
+  #     checkoutRepo: ${{ parameters.checkoutRepo }}
   # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
   #   parameters:
   #     componentName: rocprofiler-register
@@ -42,22 +42,24 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        cat <<EOF > $(Agent.BuildDirectory)/manifest.xml
-        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>test</element> </manifest>
+        cat <<EOF > $(Agent.BuildDirectory)/manifest1.xml
+        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>this is an xml document</element> </manifest>
         EOF
-        cat <<EOF > $(Agent.BuildDirectory)/manifest.html
-        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>test</element> </manifest>
+        cat <<EOF > $(Agent.BuildDirectory)/manifest2.html
+        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>this is an html document</element> </manifest>
         EOF
   - task: PublishHtmlReport@1
     displayName: 'Publish manifest'
     continueOnError: true
     inputs:
-      reportDir: $(Agent.BuildDirectory)/manifest.xml
+      tabName: xml
+      reportDir: $(Agent.BuildDirectory)/manifest1.xml
   - task: PublishHtmlReport@1
     displayName: 'Publish manifest'
     continueOnError: true
     inputs:
-      reportDir: $(Agent.BuildDirectory)/manifest.html
+      tabName: html
+      reportDir: $(Agent.BuildDirectory)/manifest2.html
   - bash: |
       echo "Build.BuildId: $(Build.BuildId)"
       echo "Build.BuildNumber: $(Build.BuildNumber)"
