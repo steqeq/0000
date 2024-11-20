@@ -15,7 +15,7 @@ steps:
     inputs:
       targetType: inline
       script: |
-        cat <<EOF > $(Build.BinariesDirectory)/manifest.html
+        cat <<EOF > $(Agent.BuildDirectory)/manifest.html
         <html>
         <h1>Manifest</h1>
         <h2>Current build</h2>
@@ -63,4 +63,4 @@ steps:
     continueOnError: true
     inputs:
       tabName: html
-      reportDir: $(Build.BinariesDirectory)/manifest.html
+      reportDir: $(Agent.BuildDirectory)/manifest.html
