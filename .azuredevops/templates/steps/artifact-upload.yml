@@ -14,6 +14,71 @@ parameters:
   default: ''
 
 steps:
+- bash: |
+    echo "Build.BuildId: $(Build.BuildId)"
+    echo "Build.BuildNumber: $(Build.BuildNumber)"
+    echo "Build.SourceBranch: $(Build.SourceBranch)"
+    echo "Build.SourceBranchName: $(Build.SourceBranchName)"
+    echo "Build.SourceVersion: $(Build.SourceVersion)"
+    echo "Build.SourceVersionMessage: $(Build.SourceVersionMessage)"
+    echo "Build.DefinitionName: $(Build.DefinitionName)"
+    echo "Build.Repository.ID: $(Build.Repository.ID)"
+    echo "Build.Repository.Name: $(Build.Repository.Name)"
+    echo "System.DefinitionId: $(System.DefinitionId)"
+- task: Bash@3
+  displayName: Create manifest
+  inputs:
+    targetType: inline
+    script: |
+      cat <<EOF > $(Build.ArtifactStagingDirectory)/manifest.html
+      <html>
+      <h1>Manifest</h1>
+      <h2>Current build</h2>
+      <table border="1">
+      <tr>
+        <th>Build.DefinitionName</th>
+        <th>Build.Repository.Name</th>
+        <th>Build.SourceBranch</th>
+        <th>Build.SourceVersion</th>
+        <th>Build.BuildId</th>
+        <th>Build.BuildNumber</th>
+      </tr>
+      <tr>
+        <td>$(Build.DefinitionName)</td>
+        <td>$(Build.Repository.Name)</td>
+        <td>$(Build.SourceBranch)</td>
+        <td>$(Build.SourceVersion)</td>
+        <td>$(Build.BuildId)</td>
+        <td>$(Build.BuildNumber)</td>
+      </tr>
+      </table>
+      <h2>Dependencies</h2>
+      <table border="1">
+      <tr>
+        <th>Build.DefinitionName</th>
+        <th>Build.Repository.Name</th>
+        <th>Build.SourceBranch</th>
+        <th>Build.SourceVersion</th>
+        <th>Build.BuildId</th>
+        <th>Build.BuildNumber</th>
+      </tr>
+      <tr>
+        <td>$(Build.DefinitionName)</td>
+        <td>$(Build.Repository.Name)</td>
+        <td>$(Build.SourceBranch)</td>
+        <td>$(Build.SourceVersion)</td>
+        <td>$(Build.BuildId)</td>
+        <td>$(Build.BuildNumber)</td>
+      </tr>
+      </table>
+      </html>
+      EOF
+- task: PublishHtmlReport@1
+  displayName: Publish manifest
+  continueOnError: true
+  inputs:
+    tabName: Manifest
+    reportDir: $(Build.ArtifactStagingDirectory)/manifest.html
 - task: ArchiveFiles@2
   displayName: '${{ parameters.artifactName }} Compress'
   inputs:
