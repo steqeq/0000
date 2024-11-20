@@ -42,24 +42,34 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        cat <<EOF > $(Agent.BuildDirectory)/manifest1.xml
-        <?xml version="1.0" encoding="UTF-8"?> <manifest> <component>this is an xml line 1</component> <component>this is an xml line 2</component> </manifest>
-        EOF
-        cat <<EOF > $(Agent.BuildDirectory)/manifest2.html
-        <?xml version="1.0" encoding="UTF-8"?> <manifest> <component>this is an html line 1</component> <component>this is an html line 2</component> </manifest>
-        EOF
-  - task: PublishHtmlReport@1
-    displayName: 'Publish manifest'
-    continueOnError: true
-    inputs:
-      tabName: xml
-      reportDir: $(Agent.BuildDirectory)/manifest1.xml
+        cat <<EOF > $(Agent.BuildDirectory)/manifest.html
+        <html>
+        <table>
+        <tr>
+          <th>Build.DefinitionName</th>
+          <th>Build.Repository.Name</th>
+          <th>Build.SourceBranch</th>
+          <th>Build.SourceVersion</th>
+          <th>Build.BuildId</th>
+          <th>Build.BuildNumber</th>
+        </tr>
+        <tr>
+          <td>$(Build.DefinitionName)</td>
+          <td>$(Build.Repository.Name)</td>
+          <td>$(Build.SourceBranch)</td>
+          <td>$(Build.SourceVersion)</td>
+          <td>$(Build.BuildId)</td>
+          <td>$(Build.BuildNumber)</td>
+        </tr>
+        </table>
+        </html>
+        EOF  
   - task: PublishHtmlReport@1
     displayName: 'Publish manifest'
     continueOnError: true
     inputs:
       tabName: html
-      reportDir: $(Agent.BuildDirectory)/manifest2.html
+      reportDir: $(Agent.BuildDirectory)/manifest.html
   - bash: |
       echo "Build.BuildId: $(Build.BuildId)"
       echo "Build.BuildNumber: $(Build.BuildNumber)"
