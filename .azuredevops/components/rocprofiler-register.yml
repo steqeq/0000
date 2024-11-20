@@ -44,7 +44,7 @@ jobs:
       script: |
         cat <<EOF > $(Agent.BuildDirectory)/manifest.html
         <html>
-        <table>
+        <table border="1">
         <tr>
           <th>Build.DefinitionName</th>
           <th>Build.Repository.Name</th>
@@ -63,7 +63,7 @@ jobs:
         </tr>
         </table>
         </html>
-        EOF  
+        EOF
   - task: PublishHtmlReport@1
     displayName: 'Publish manifest'
     continueOnError: true
