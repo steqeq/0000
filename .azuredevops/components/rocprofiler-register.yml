@@ -11,6 +11,8 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  - name: system.debug
+    value: 'true'
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
@@ -56,3 +58,14 @@ jobs:
     continueOnError: true
     inputs:
       reportDir: $(Agent.BuildDirectory)/manifest.html
+  - bash: |
+      echo "Build.BuildId: $(Build.BuildId)"
+      echo "Build.BuildNumber: $(Build.BuildNumber)"
+      echo "Build.SourceBranch: $(Build.SourceBranch)"
+      echo "Build.SourceBranchName: $(Build.SourceBranchName)"
+      echo "Build.SourceVersion: $(Build.SourceVersion)"
+      echo "Build.SourceVersionMessage: $(Build.SourceVersionMessage)"
+      echo "Build.DefinitionName: $(Build.DefinitionName)"
+      echo "Build.Repository.ID: $(Build.Repository.ID)"
+      echo "Build.Repository.Name: $(Build.Repository.Name)"
+      echo "System.DefinitionId: $(System.DefinitionId)"
