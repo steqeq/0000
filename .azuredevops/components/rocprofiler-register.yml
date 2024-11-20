@@ -43,10 +43,10 @@ jobs:
       targetType: 'inline'
       script: |
         cat <<EOF > $(Agent.BuildDirectory)/manifest1.xml
-        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>this is an xml document</element> </manifest>
+        <?xml version="1.0" encoding="UTF-8"?> <manifest> <component>this is an xml line 1</component> <component>this is an xml line 2</component> </manifest>
         EOF
         cat <<EOF > $(Agent.BuildDirectory)/manifest2.html
-        <?xml version="1.0" encoding="UTF-8"?> <manifest> <element>this is an html document</element> </manifest>
+        <?xml version="1.0" encoding="UTF-8"?> <manifest> <component>this is an html line 1</component> <component>this is an html line 2</component> </manifest>
         EOF
   - task: PublishHtmlReport@1
     displayName: 'Publish manifest'
