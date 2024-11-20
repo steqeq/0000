@@ -18,23 +18,23 @@ jobs:
   workspace:
     clean: all
   steps:
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
-  #   parameters:
-  #     checkoutRepo: ${{ parameters.checkoutRepo }}
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-  #   parameters:
-  #     componentName: rocprofiler-register
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
-  #   parameters:
-  #     componentName: rocprofiler-register-tests
-  #     extraBuildFlags: >-
-  #       -DCMAKE_PREFIX_PATH=$(Build.BinariesDirectory)
-  #     cmakeBuildDir: 'tests/build'
-  #     installEnabled: false
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-  #   parameters:
-  #     componentName: rocprofiler-register
-  #     testDir: 'tests/build'
-  # - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+    parameters:
+      checkoutRepo: ${{ parameters.checkoutRepo }}
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: rocprofiler-register
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+    parameters:
+      componentName: rocprofiler-register-tests
+      extraBuildFlags: >-
+        -DCMAKE_PREFIX_PATH=$(Build.BinariesDirectory)
+      cmakeBuildDir: 'tests/build'
+      installEnabled: false
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
+    parameters:
+      componentName: rocprofiler-register
+      testDir: 'tests/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
