@@ -111,6 +111,7 @@ jobs:
           CK_BUILD_ID=$(curl -s $PARENT_CHECKS_URL | \
             jq '.check_runs[] | select(.name == "composable_kernel" and .app.slug == "azure-pipelines") | .details_url' | \
             tr -d '"' | grep -oP 'buildId=\K\d+')
+          CK_BUILD_ID=
 
           if [ -z "$CK_BUILD_ID" ]; then
             echo "Did not find specific CK build ID"
