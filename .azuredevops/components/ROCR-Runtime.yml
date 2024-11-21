@@ -29,6 +29,8 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
+  - name: testIncrement
+    value: 1
   pool:
     vmImage: ${{ variables.BASE_BUILD_POOL }}
   workspace:
@@ -55,23 +57,27 @@ jobs:
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DBUILD_SHARED_LIBS=ON
+  - ${{ each dependency in parameters.rocmDependencies }}:
+    - bash: |
+        echo "Dependency: $(dependency)"
+        echo $(DownloadPipelineArtifact1.BuildNumber)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
 
-- job: test
-  dependsOn: ROCR_Runtime
-  variables:
-  - group: common
-  - template: /.azuredevops/variables-global.yml
-  - name: system.debug
-    value: 'true'
-  - name: checkDependencies
-    value: $[ convertToJson(dependencies) ]
-  pool:
-    vmImage: ${{ variables.BASE_BUILD_POOL }}
-  workspace:
-    clean: all
-  steps:
-  - bash: echo "$(checkDependencies)"
+# - job: test
+#   dependsOn: ROCR_Runtime
+#   variables:
+#   - group: common
+#   - template: /.azuredevops/variables-global.yml
+#   - name: system.debug
+#     value: 'true'
+#   - name: checkDependencies
+#     value: $[ convertToJson(dependencies) ]
+#   pool:
+#     vmImage: ${{ variables.BASE_BUILD_POOL }}
+#   workspace:
+#     clean: all
+#   steps:
+#   - bash: echo "$(checkDependencies)"
 
 # - job: ROCR_Runtime_testing
 #   dependsOn: ROCR_Runtime
