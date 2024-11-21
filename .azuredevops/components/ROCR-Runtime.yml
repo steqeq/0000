@@ -60,24 +60,8 @@ jobs:
   - ${{ each dependency in parameters.rocmDependencies }}:
     - bash: |
         echo "Dependency: ${{ dependency }}"
-        echo $(format(DownloadPipelineArtifact{0}.BuildNumber, testIncrement))
+        echo $[ format('DownloadPipelineArtifact{0}.BuildNumber', testIncrement) ]
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
-
-# - job: test
-#   dependsOn: ROCR_Runtime
-#   variables:
-#   - group: common
-#   - template: /.azuredevops/variables-global.yml
-#   - name: system.debug
-#     value: 'true'
-#   - name: checkDependencies
-#     value: $[ convertToJson(dependencies) ]
-#   pool:
-#     vmImage: ${{ variables.BASE_BUILD_POOL }}
-#   workspace:
-#     clean: all
-#   steps:
-#   - bash: echo "$(checkDependencies)"
 
 # - job: ROCR_Runtime_testing
 #   dependsOn: ROCR_Runtime
