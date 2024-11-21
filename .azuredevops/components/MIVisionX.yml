@@ -33,6 +33,7 @@ parameters:
     - libtiff-dev
     - libdc1394-dev
     - libgmp-dev
+    - libomp-dev
     - libopencv-dev
 - name: pipModules
   type: object
